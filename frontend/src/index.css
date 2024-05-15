@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'Urbanist';
+  src: url("../../frontend/public/Fonts/Urbanist-VariableFont_wght.ttf") format('truetype');
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Urbanist', sans-serif;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary-color: #BAFF66;
+  --secondary-color:#1A1A1A;
+  --background: #2E2D2D;
+  --neutral800: #494949;
+  --neutral700: #5F5F5F;
+  --neutral600: #8C8C8C;
+  --neutral500: #B0B0B0;
+  --neutral400: #CDCACA;
+  --neutral300: #E1E1E1;
+  --neutral200: #D9DBE9;
+  --white: #FFFFFF;
+  --black: #000000;
+}
+
