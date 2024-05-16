@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "./skilluser";
-// import '../../index.css';
 
 export default {
   title: "Skill User Card",

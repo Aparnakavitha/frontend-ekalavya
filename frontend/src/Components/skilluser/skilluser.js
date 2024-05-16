@@ -54,30 +54,27 @@ function Card(props) {
 
         <div className={`col-md-6 ${Styles.lower}`}>
           <div className={Styles.buttons}>
-          <div className={`row ${Styles.buttonsContainer}`}>
-            {displayedSkills.map((skill, index) => (
-              <div key={index} className={`col-6 ${Styles.button}`}>
-                {transformMiniHeading(skill)}
-                <ImCross onClick={() => deleteSkill(index)}
-                  style={{
-                    cursor: "pointer",
-                    fontSize:"10px"
-                  }}
-                />
-              </div>
-            ))}
-            {skills.length > 4 && !showAllSkills && (
-  
-                <div className={`btn ${Styles.viewButton}`} onClick={() => setShowAllSkills(true)}>
-                  View More
+            <div className={`row ${Styles.buttonsContainer}`}>
+              {displayedSkills.map((skill, index) => (
+                <div key={index} className={`col-6 ${Styles.button}`}>
+                  {transformMiniHeading(skill)}
+                  <ImCross onClick={() => deleteSkill(index)}
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "10px",
+                    }}
+                  />
                 </div>
-               
-            
+              ))}
+            </div>
+            {skills.length > 4 && (
+              <div className={`btn ${Styles.viewButton}`} onClick={() => setShowAllSkills(!showAllSkills)}>
+                {showAllSkills ? "View Less" : "View More"}
+              </div>
             )}
-             </div>
             <div className={`col-6 ${Styles.addButtonContainer}`}>
               <button className={`btn ${Styles.addButton}`} onClick={addSkill}>
-                <FaPlus 
+                <FaPlus
                   style={{
                     cursor: "pointer",
                     fontSize: "26px",
@@ -91,5 +88,6 @@ function Card(props) {
     </div>
   );
 }
+
 
 export default Card;
