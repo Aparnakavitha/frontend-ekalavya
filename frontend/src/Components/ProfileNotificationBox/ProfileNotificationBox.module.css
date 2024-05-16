@@ -44,7 +44,7 @@
  
 .gmail {
     margin-left: 19px;
-    color: var(--nuetral200);
+    color: var(--neutral200);
     font-size: 14px;
     white-space: nowrap; /* Prevent line break */
     overflow: hidden; /* Hide overflow text */
