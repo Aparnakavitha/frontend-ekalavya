@@ -1,19 +1,15 @@
-import React from 'react';
-import SearchBar from './Components/Searchbar/Searchbar';
 
-const App = () => {
-  const handleSearch = (query) => {
-    console.log("Searching for:", query);
-    // Implement your search logic here
-  };
+import './App.css';
 
+function App() {
   return (
-    <div>
-    
-      <SearchBar variant="large" placeholder="Search..." onSearch={handleSearch} />
+    <div className="App">
+      <header className="App-header">
+        <h3>Hello Super21</h3>
+        <h1>Lets start</h1>
+      </header>
     </div>
   );
-};
+}
 
 export default App;
-
