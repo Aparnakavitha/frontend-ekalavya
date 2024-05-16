@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 *storybook.log
+
+#Ignroring App.js
+src/App.js
