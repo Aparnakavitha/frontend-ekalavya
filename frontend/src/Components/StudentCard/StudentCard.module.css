@@ -1,7 +1,8 @@
 
 .Cards {
   position: relative;
-  width: 169px
+  width: 169px;
+  cursor: pointer;
 }
 
 .CardOutline {
@@ -240,6 +241,7 @@
   align-items: center;
   color: #fff;
   top: 2px;
+  cursor: pointer;
 }
 
 .arrowHover {
@@ -259,4 +261,5 @@
   box-shadow: none;
   background-color: var(--primary-color);
   top: 2px;
+  cursor: pointer;
 }
