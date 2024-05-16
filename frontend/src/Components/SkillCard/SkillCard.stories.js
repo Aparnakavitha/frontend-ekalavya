@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './SkillCard';
 
 export default {
-  title: 'Components/Card',
+  title: 'Components/SkillCard',
   component: Card,
   argTypes: {
     title: { control: 'text' },
