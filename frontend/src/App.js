@@ -1,6 +1,7 @@
 import "./App.css";
 import EventCard from "./Components/UpcomingEventCard/EventCard";
 
+function App() {
   return (
     <div>
       <div className="App">
@@ -12,6 +13,6 @@ import EventCard from "./Components/UpcomingEventCard/EventCard";
       <EventCard />
     </div>
   );
-};
+}
 
 export default App;
