@@ -40,6 +40,7 @@
     white-space: nowrap; /* Prevent line break */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Display ellipsis for overflow text */
+    cursor: pointer;
 }    
  
 .gmail {
@@ -58,6 +59,7 @@
     width: 26px;
     height: 26px;
     flex-shrink: 0; /* Prevent shrinking */
+    cursor: pointer;
 }
  
 /* Media queries for responsiveness */
