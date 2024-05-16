@@ -9,12 +9,12 @@
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
   padding: 0px 0px ; /* Add padding to the main box, 18px top and bottom, 7px at the bottom */
-  background-color: var(--black);
+  background-color: var(--neutral800);
 }
 
 .innerBox {
   margin: 7px 16px;
-  background-color: var(--black); /* Set background color */
+  background-color: var(--neutral800); /* Set background color */
   width: 242px; /* Fixed width */
   height: calc(100% - 14px); /* Adjust height to fill remaining space after subtracting margins (7px top and bottom each) */
   border-right: 3px solid transparent; /* Set right border */
