@@ -1,0 +1,42 @@
+.profile-picture-frame {
+  width: 105px;
+  height: 105px;
+  gap: 0px;
+  border-radius: 50%;
+  border: 5px solid #ECECEC;
+  background: #FFFFFF;
+  display: flex;
+  overflow: hidden;
+}
+
+.profile-picture {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  padding-top: 12px;
+  padding-left: 8px;
+  gap: 0px;
+  opacity: 2px;
+}
+
+.profile-picture-frame-small {
+  width: 53px;
+  height: 53px;
+  gap: 0px;
+  border-radius: 50%;
+  border: 5px solid #ECECEC;
+  background: #FFFFFF;
+  display: flex;
+  overflow: hidden;
+}
+
+.profile-picture-small {
+  width: 40px;
+  height: 40px;
+  padding-top: 9px;
+  padding-left:8px;
+  gap: 0px;
+  opacity: 1;
+}
+/* image 10 */
+
