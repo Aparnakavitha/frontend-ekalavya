@@ -1,6 +1,4 @@
 import "./App.css";
-import EventCard from "./Components/UpcomingEventCard/EventCard";
-
 function App() {
   return (
     <div>
@@ -10,7 +8,6 @@ function App() {
           <h1>Lets start</h1>
         </header>
       </div>
-      <EventCard />
     </div>
   );
 }
