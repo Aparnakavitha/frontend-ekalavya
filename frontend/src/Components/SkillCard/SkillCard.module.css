@@ -1,0 +1,68 @@
+/* SkillCard.css */
+.card {
+  width: 274px; /* Set width to 274 pixels */
+  height: 58px; /* Set height to 58 pixels */
+  border: 0px solid var(--black);;
+  border-radius: 5px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 0px 0px ; /* Add padding to the main box, 18px top and bottom, 7px at the bottom */
+  background-color: var(--black);
+}
+
+.innerBox {
+  margin: 7px 16px;
+  background-color: var(--black); /* Set background color */
+  width: 242px; /* Fixed width */
+  height: calc(100% - 14px); /* Adjust height to fill remaining space after subtracting margins (7px top and bottom each) */
+  border-right: 3px solid transparent; /* Set right border */
+  opacity: 1; /* Set opacity */
+  border-color: var(--primary-color);
+  position:relative; /* Set position to relative */
+  
+
+  
+
+}
+.title {
+  font-family: Urbanist; /* Set font family */
+  font-size: 24px; /* Set font size */
+  font-weight: 600; /* Set font weight */
+  line-height: 22px; /* Set line height */
+  letter-spacing: -0.408px; /* Set letter spacing */
+  margin-bottom: 0px; /* Add some space between the title and subtitle */
+  margin-top: 0px;
+  color: var(--white);
+  height: 22px;
+}
+
+
+
+
+.subtitle {
+  font-family: Urbanist; /* Set font family */
+  font-size: 13px; /* Set font size */
+  font-weight: 600; /* Set font weight */
+  line-height: 22px; /* Set line height */
+  letter-spacing: -0.408px; /* Set letter spacing */
+  text-align: left; /* Set text alignment */
+  margin:0px;
+  color: var(--white);
+  height: 22px;
+}
+
+.closeIcon {
+  position: absolute; /* Set position to absolute */
+  top: 0; /* Align with the top of the inner box */
+  right: 0; /* Align with the right side of the inner box */
+  color: var(--white);
+  margin:4.5px 14px;
+  width: 35px;
+  height: 35px;
+
+}
+.closeIcon:hover {
+  color: var(--primary-color); /* Change color to red when hovered over */
+}
