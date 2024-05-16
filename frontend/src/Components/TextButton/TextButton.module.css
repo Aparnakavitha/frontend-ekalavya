@@ -1,0 +1,23 @@
+
+  .textbutton{
+      display: flex;
+     align-items: center;
+     cursor: pointer;
+     gap: 3px;
+     color: var(--white);
+  }
+  
+  .textbutton:hover{
+      color:var(--primary-color);
+  }
+  
+  .text{
+      font-size: 16px;
+  }
+  
+  
+  
+  
+    .icon{
+      margin-top: 2px;
+    }
