@@ -13,12 +13,15 @@ const Card = ({ title, subtitle, showCloseIcon, onClose }) => {
   return (
     <div className={styles.card}>
       <div className={styles.innerBox}>
-        {showCloseIcon && <IoIosCloseCircle className={styles.closeIcon} onClick={handleClose} />} {/* Add onClick handler */}
-        <h2 className={styles.title}>{title}</h2>
-        <p className={styles.subtitle}>{subtitle}</p>
+        <div className={styles.content}> <h2 className={styles.title}>{title}</h2>
+          <p className={styles.subtitle}>{subtitle}</p></div>
+<div> {showCloseIcon && <IoIosCloseCircle className={styles.closeIcon} onClick={handleClose} />}
+</div>
+       
       </div>
     </div>
   );
 };
 
 export default Card;
+

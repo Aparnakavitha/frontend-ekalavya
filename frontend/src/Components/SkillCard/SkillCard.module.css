@@ -1,20 +1,19 @@
 /* SkillCard.css */
 .card {
-  width: 274px; /* Set width to 274 pixels */
-  height: 58px; /* Set height to 58 pixels */
-  border: 0px solid var(--black);;
+  width: 274px;
   border-radius: 5px;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   display: flex; /* Use flexbox */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  padding: 0px 0px ; /* Add padding to the main box, 18px top and bottom, 7px at the bottom */
+  padding: 8px ; /* Add padding to the main box, 18px top and bottom, 7px at the bottom */
   background-color: var(--neutral800);
 }
 
 .innerBox {
-  margin: 7px 16px;
-  background-color: var(--neutral800); /* Set background color */
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 16px; /* Set background color */
   width: 242px; /* Fixed width */
   height: calc(100% - 14px); /* Adjust height to fill remaining space after subtracting margins (7px top and bottom each) */
   border-right: 3px solid transparent; /* Set right border */
@@ -26,6 +25,12 @@
   
 
 }
+
+.content{
+  display: flex;
+  flex-direction: column;
+}
+
 .title {
   font-family: Urbanist; /* Set font family */
   font-size: 24px; /* Set font size */
@@ -54,9 +59,7 @@
 }
 
 .closeIcon {
-  position: absolute; /* Set position to absolute */
-  top: 0; /* Align with the top of the inner box */
-  right: 0; /* Align with the right side of the inner box */
+   /* Align with the right side of the inner box */
   color: var(--white);
   margin:4.5px 14px;
   width: 35px;
