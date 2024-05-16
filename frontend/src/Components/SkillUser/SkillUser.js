@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styles from "./skilluser.module.css";
+import Styles from "./SkillUser.module.css";
 import { ImCross } from "react-icons/im";
 import { FaPlus } from "react-icons/fa6";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./skilluser";
+import Card from "./SkillUser";
 
 export default {
   title: "Skill User Card",
