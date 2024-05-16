@@ -1,7 +1,6 @@
 import "./App.css";
 import EventCard from "./Components/UpcomingEventCard/EventCard";
 
-function App() {
   return (
     <div>
       <div className="App">
@@ -13,6 +12,6 @@ function App() {
       <EventCard />
     </div>
   );
-}
+};
 
 export default App;
