@@ -31,8 +31,10 @@
   overflow: hidden;
   /* text-overflow: ellipsis;
   white-space: nowrap;
-  word-wrap: break-word;
-  display: inline-block; */
+  word-wrap: break-word;*/
+  /* display: inline-block;  */
+  /* word-wrap: break-word; */
+  word-break: break-word;
 }
 
 
