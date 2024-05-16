@@ -4,8 +4,8 @@
     border-radius: 19px;
     padding: 25px;
     position: absolute;
-    background-color: var(--nuetral800);
-    color: var(--nuetral500); 
+    background-color: var(--neutral800);
+    color: var(--white); 
     display: flex;
     flex-direction: column;
     gap: 26px;
