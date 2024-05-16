@@ -24,7 +24,7 @@ function SBCards(props) {
     if (cardType === "Skill") {
       maxLength = 30;
     } else {
-      maxLength = 36;
+      maxLength = 33;
     }
   
     if (heading.length > maxLength) {
