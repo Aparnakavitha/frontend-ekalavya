@@ -1,12 +1,12 @@
 import React from 'react';
-import Tablecomponent from './Table';
+import Table from './Table';
 
 export default {
   title: 'Table',
-  component: Tablecomponent,
+  component: Table,
 };
 
-const Template = (args) => <Tablecomponent {...args} />;
+const Template = (args) => <Table {...args} />;
 
 const data = [
   ['John', 'Samual', 30],
@@ -14,11 +14,11 @@ const data = [
   ['Alice', 'Mary', 28],
   ['Meera', 'Davis', 23],
   ['boby', 'Smith', 25],
-  ['Kevin', 'Joy', 27],
+  ['Amala', 'Jayadev', 27],
   ['Amal', 'Wilson', 24],
 ];
 
-const headings = ['First Name', 'Last Name', 'Age',];
+const headings = ['First Name', 'Last Name', 'Age'];
 
 export const WithDataAndHeadings = Template.bind({});
 WithDataAndHeadings.args = {
