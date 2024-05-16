@@ -1,7 +1,7 @@
 import React from 'react'; 
-import styles from './skilltag.module.css';
+import styles from './SkillTag.module.css';
 
-function skilltag(props){
+function skillTag(props){
   const {
     title,
     subTitle,
@@ -19,4 +19,4 @@ function skilltag(props){
   );
 }
 
-export default skilltag;
+export default skillTag;

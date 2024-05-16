@@ -1,9 +1,9 @@
 import React from 'react'; 
 import {action} from '@storybook/addon-actions'
-import skilltag from './Skilltag';
+import skillTag from './SkillTag';
 export default {
-  title: 'Components/Skilltag',
-  component: skilltag,
+  title: 'Components/SkillTag',
+  component: skillTag,
 };
 
 export const Default = {
