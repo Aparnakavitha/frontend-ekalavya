@@ -8,7 +8,6 @@
     border-radius: 9px;
     border-color: var(--neutral600);
     fill: var(--neutral600);
-    /* font-family: 'Urbanic', sans-serif; */
     font-weight: lighter;
     color: var(--white);
     background: transparent;
@@ -26,7 +25,6 @@
     margin-top: 19px;
     margin-bottom: 19px;
     font-size: 14px;
-    /* font-family: 'Urbanic', sans-serif; */
     font-weight: light;
     text-align: left;
 
