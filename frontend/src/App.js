@@ -1,8 +1,8 @@
 
 import './App.css';
-import './Components/Inputbox/Input';
+import './Components/InputBox/InputBox';
 
-import Input from './Components/Inputbox/Input';
+import Input from './Components/InputBox/InputBox';
 
 function App() {
   const inputData = {
