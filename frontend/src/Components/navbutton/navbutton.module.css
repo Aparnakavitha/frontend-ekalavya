@@ -1,21 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
-.nav-button {
+.navButton {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-.back-arrow {
+.backArrow {
     font-size: 24px;
     color: white;
 }
 
-.back-arrow:hover {
+.backArrow:hover {
     color: #BAFF66;
     cursor: pointer;
 }
 
-.page-name {
+.pageName {
     margin-left: 1px;
     color: white;
     font-family: Urbanist;

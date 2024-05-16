@@ -1,6 +1,6 @@
 import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import "./navbutton.css";
+import Styles from "./navbutton.module.css";
 
 const NavButton = ({ pageName, onClick }) => {
   const goBack = () => {
@@ -9,9 +9,9 @@ const NavButton = ({ pageName, onClick }) => {
   };
 
   return (
-    <div className="nav-button" onClick={goBack}>
-      <IoIosArrowBack className="back-arrow" />
-      <span className="page-name"> {pageName} </span>{" "}
+    <div className={Styles.navButton} onClick={goBack}>
+      <IoIosArrowBack className={Styles.backArrow} />{" "}
+      <span className={Styles.pageName}> {pageName} </span>{" "}
     </div>
   );
 };
