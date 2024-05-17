@@ -1,0 +1,84 @@
+.input {
+  display: flex;
+  width: 100%;
+  height: 57px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  border-radius: 9px;
+  border-color: var(--neutral600);
+  fill: var(--neutral600);
+  font-weight: lighter;
+  color: var(--white);
+  background: transparent;
+  border: 1px solid var(--neutral600);
+  transition: border-color 0.3s;
+  margin-top: 13px;
+  outline: none;
+  text-align: left;
+}
+
+.input::placeholder {
+  color: var(--neutral600);
+  margin-left: 25px;
+  margin-top: 19px;
+  margin-bottom: 19px;
+  font-size: 14px;
+  font-weight: light;
+  text-align: left;
+
+  letter-spacing: 0%;
+}
+
+.small {
+  height: 2rem;
+  font-size: 0.875rem;
+}
+
+.medium {
+  height: 3rem;
+  font-size: 1.3rem;
+}
+
+.large {
+  height: 3rem;
+  font-size: 1.3rem;
+}
+
+.input-label {
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--white);
+  letter-spacing: 0%;
+  word-wrap: break-word;
+  text-align: left;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input:hover {
+  border-color: var(--primary-color);
+}
+
+.input:focus {
+  border-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+  .input {
+    width: calc(100% - 2rem);
+    height: 40px;
+    margin-top: 8px;
+  }
+
+  .input-container {
+    width: calc(100% - 2rem);
+  }
+
+  .input-label,
+  .input::placeholder {
+    font-size: 14px;
+  }
+}

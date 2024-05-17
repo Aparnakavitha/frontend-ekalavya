@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import styles from './InputBox.module.css'; 
+import styles from './InputBox.module.css';
 
 const Input = ({ width = '100%', height = '57px', label, placeholders, ...rest }) => {
   const [clicked, setClicked] = useState(false);

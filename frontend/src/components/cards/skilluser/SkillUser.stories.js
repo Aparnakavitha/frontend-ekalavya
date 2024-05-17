@@ -13,8 +13,7 @@ const skillcard = {
   handleClick: (e) => {
     console.log("clicked");
   },
-  profilepic : "image",
-
+  profilepic: "image",
 };
 
 export const SkillsCard = {

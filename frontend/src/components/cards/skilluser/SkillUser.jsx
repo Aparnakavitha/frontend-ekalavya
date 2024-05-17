@@ -37,7 +37,10 @@ const Card = (props) => {
 
   return (
     <div className={`container ${Styles.Cards}`}>
-      <div className={`row ${cardsClass} ${Styles.cardsClass}`} onClick={handleClick}>
+      <div
+        className={`row ${cardsClass} ${Styles.cardsClass}`}
+        onClick={handleClick}
+      >
         <div className={`col-md-6 ${Styles.profile}`}>
           <div className={`${Styles.profilepiccontainer}`}>
             <img
@@ -47,8 +50,12 @@ const Card = (props) => {
             />
           </div>
           <div className={`${Styles.heading}`}>
-            <div className={`${Styles.cardsmainheading}`}>{transformMainHeading(mainHeading)}</div>
-            <div className={`${Styles.cardsminiheading}`}>{transformMainHeading(miniHeading)}</div>
+            <div className={`${Styles.cardsmainheading}`}>
+              {transformMainHeading(mainHeading)}
+            </div>
+            <div className={`${Styles.cardsminiheading}`}>
+              {transformMainHeading(miniHeading)}
+            </div>
           </div>
         </div>
 
@@ -58,7 +65,8 @@ const Card = (props) => {
               {displayedSkills.map((skill, index) => (
                 <div key={index} className={`col-6 ${Styles.button}`}>
                   {transformMiniHeading(skill)}
-                  <ImCross onClick={() => deleteSkill(index)}
+                  <ImCross
+                    onClick={() => deleteSkill(index)}
                     style={{
                       cursor: "pointer",
                       fontSize: "10px",
@@ -68,7 +76,10 @@ const Card = (props) => {
               ))}
             </div>
             {skills.length > 4 && (
-              <div className={`btn ${Styles.viewButton}`} onClick={() => setShowAllSkills(!showAllSkills)}>
+              <div
+                className={`btn ${Styles.viewButton}`}
+                onClick={() => setShowAllSkills(!showAllSkills)}
+              >
                 {showAllSkills ? "View Less" : "View More"}
               </div>
             )}
@@ -87,7 +98,6 @@ const Card = (props) => {
       </div>
     </div>
   );
-}
-
+};
 
 export default Card;
