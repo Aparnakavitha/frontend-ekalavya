@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
-import edunexa from '../../edunexa.png'
-import Button from '../Button/Button';
+import edunexa from './edunexa.png'
+// import Button from '../Button/Button';
 
 export default {
   title: 'Header',
@@ -10,7 +10,7 @@ export default {
     // children: 'Login',
     menuItems: ['Leaderboard', 'Track', 'Top performers', 'Testimonials'], // Placeholder for menuItems prop
     imageSrc: edunexa, // Placeholder for imageSrc prop,
-    button : <Button children={"Login"}/>
+    // button : <Button children={"Login"}/>
   },
 };
 
