@@ -1,5 +1,5 @@
 import Footer from "./Footer"
-import image from "./Logo (1).png"
+import image from "./../../assets/Logo.png"
 
 export default {
     title : "Footer",
