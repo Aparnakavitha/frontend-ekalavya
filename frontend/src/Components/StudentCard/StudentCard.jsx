@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Styles from "./StudentCard.module.css";
 import { GoArrowUpRight } from "react-icons/go";
 
-function StudentCard(props) {
+const StudentCard = (props) => {
   const {
     studentImage = "./image.jpeg",
     studentName,

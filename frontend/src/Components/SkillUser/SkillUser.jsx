@@ -17,7 +17,7 @@ const transformMiniHeading = (heading) => {
   return heading;
 };
 
-function Card(props) {
+const Card = (props) => {
   const {
     miniHeading,
     mainHeading,

@@ -1,7 +1,7 @@
 import React from 'react'; 
 import styles from './SkillTag.module.css';
 
-function skillTag(props){
+const skillTag = (props) => {
   const {
     title,
     subTitle,

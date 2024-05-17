@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styles from './InputBox.module.css'; 
 
-function Input({ width = '100%', height = '57px', label, placeholders, ...rest }) {
+const Input = ({ width = '100%', height = '57px', label, placeholders, ...rest }) => {
   const [clicked, setClicked] = useState(false);
 
   const handleFocus = () => {

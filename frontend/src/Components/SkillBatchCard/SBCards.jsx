@@ -2,7 +2,7 @@ import React from "react";
 import Styles from "./SBCards.module.css";
 import { FaTrash } from "react-icons/fa6";
 
-function SBCards(props) {
+const SBCards = (props) => {
   const {
     miniHeading,
     mainHeading,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Styles from "./Pagination.module.css";
 import { RiArrowLeftSFill, RiArrowRightSFill } from 'react-icons/ri';
 
-function Pagination({ totalPages, currentPage, onPageChange }) {
+const Pagination = ({ totalPages, currentPage, onPageChange }) => {
 
     // const maxVisiblePages = window.innerWidth < 768 ? 3 : 5;
 
