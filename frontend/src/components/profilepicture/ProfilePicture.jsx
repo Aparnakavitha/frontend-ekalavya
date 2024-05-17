@@ -1,15 +1,19 @@
 // ProfilePicture.js
-import React from 'react';
-import PropTypes from 'prop-types';
-import styles from './ProfilePicture.module.css'; // Import your CSS module
+import React from "react";
+import PropTypes from "prop-types";
+import styles from "./ProfilePicture.module.css"; // Import your CSS module
 
 const ProfilePicture = ({ src, size }) => {
   const getSizeClassName = () => {
-    return size === 'small' ? styles['profile-picture-frame-small'] : styles['profile-picture-frame'];
+    return size === "small"
+      ? styles["profile-picture-frame-small"]
+      : styles["profile-picture-frame"];
   };
 
   const getPictureSizeClassName = () => {
-    return size === 'small' ? styles['profile-picture-small'] : styles['profile-picture'];
+    return size === "small"
+      ? styles["profile-picture-small"]
+      : styles["profile-picture"];
   };
 
   return (
@@ -21,11 +25,11 @@ const ProfilePicture = ({ src, size }) => {
 
 ProfilePicture.propTypes = {
   src: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['big', 'small']),
+  size: PropTypes.oneOf(["big", "small"]),
 };
 
 ProfilePicture.defaultProps = {
-  size: 'big',
+  size: "big",
 };
 
 export default ProfilePicture;

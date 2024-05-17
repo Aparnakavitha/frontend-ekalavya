@@ -1,5 +1,5 @@
-import React from 'react';
-import './Table.Module.css';
+import React from "react";
+import "./Table.Module.css";
 
 const Table = ({ data, headings }) => (
   <div className="table-container">

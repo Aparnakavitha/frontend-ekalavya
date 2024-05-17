@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styles from './Searchbar.module.css'; 
+import React, { useState } from "react";
+import styles from "./Searchbar.module.css";
 
-const SearchBar = ({ variant = 'large', placeholder, onSearch }) => {
-  const [query, setQuery] = useState('');
+const SearchBar = ({ variant = "large", placeholder, onSearch }) => {
+  const [query, setQuery] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -10,10 +10,10 @@ const SearchBar = ({ variant = 'large', placeholder, onSearch }) => {
   };
 
   let boxClassName;
-  if (variant === 'large') {
+  if (variant === "large") {
     boxClassName = styles.box;
-  } else if (variant === 'small') {
-    boxClassName = styles['small-box'];
+  } else if (variant === "small") {
+    boxClassName = styles["small-box"];
   } else {
     boxClassName = styles.none;
   }
@@ -21,15 +21,16 @@ const SearchBar = ({ variant = 'large', placeholder, onSearch }) => {
   return (
     <div className={boxClassName}>
       <form onSubmit={handleSearch}>
-        <div className={styles['search-box']}> 
+        <div className={styles["search-box"]}>
           <input
             type="text"
-            className={styles['search-input']} 
+            className={styles["search-input"]}
             placeholder={placeholder}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <button type="submit" className={styles['search-button']}>{/* Updated class name */}
+          <button type="submit" className={styles["search-button"]}>
+            {/* Updated class name */}
             Search
           </button>
         </div>

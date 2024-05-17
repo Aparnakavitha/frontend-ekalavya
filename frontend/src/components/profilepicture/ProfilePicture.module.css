@@ -3,8 +3,8 @@
   height: 105px;
   gap: 0px;
   border-radius: 50%;
-  border: 5px solid #ECECEC;
-  background: #FFFFFF;
+  border: 5px solid #ececec;
+  background: #ffffff;
   display: flex;
   overflow: hidden;
 }
@@ -24,8 +24,8 @@
   height: 53px;
   gap: 0px;
   border-radius: 50%;
-  border: 5px solid #ECECEC;
-  background: #FFFFFF;
+  border: 5px solid #ececec;
+  background: #ffffff;
   display: flex;
   overflow: hidden;
 }
@@ -34,9 +34,8 @@
   width: 40px;
   height: 40px;
   padding-top: 9px;
-  padding-left:8px;
+  padding-left: 8px;
   gap: 0px;
   opacity: 1;
 }
 /* image 10 */
-

@@ -16,19 +16,17 @@ function StudentCard(props) {
 
   const transformMainName = (studentName) => {
     if (studentName.length > 16) {
-      return studentName.slice(0, 15) + '...';
+      return studentName.slice(0, 15) + "...";
     }
     return studentName;
   };
 
   const transformMainMail = (studentMail) => {
     if (studentMail.length > 19) {
-      return studentMail.slice(0, 19) + '...';
+      return studentMail.slice(0, 19) + "...";
     }
     return studentMail;
   };
-
-
 
   // State to track hover state
   const [isHover, setIsHover] = useState(false);
@@ -74,7 +72,7 @@ function StudentCard(props) {
           <a className={Styles.studentphonenumber}>{studentPhoneNumber}</a>
         </div>
       </div>
-      
+
       <div className={Styles.CardsOutline}>
         <div className={leftCardClass}></div>
         <div className={rightCardClass}></div>

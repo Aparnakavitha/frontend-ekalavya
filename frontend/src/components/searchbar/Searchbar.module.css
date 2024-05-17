@@ -42,9 +42,8 @@
 }
 .search-box .search-button:hover {
   background: var(--primary-color);
- 
 }
-.none{
+.none {
   display: none;
 }
 .small-box {
@@ -93,16 +92,16 @@
   .box .search-box {
     height: 35px;
   }
- .small-box .search-box{
-  height: 35px;
- }
- .search-box {
-  height: 35px;
- }
+  .small-box .search-box {
+    height: 35px;
+  }
+  .search-box {
+    height: 35px;
+  }
   .search-box input {
     font-size: 12px;
   }
-  .search-box .search-button{
+  .search-box .search-button {
     font-size: 12px;
   }
 }
@@ -113,11 +112,11 @@
 }
 @media screen and (max-width: 768px) {
   .search-box {
-    width: 90%; 
+    width: 90%;
   }
 }
 @media screen and (max-width: 480px) {
   .search-input {
-    width: calc(100% - 78%); 
+    width: calc(100% - 78%);
   }
 }

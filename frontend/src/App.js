@@ -1,6 +1,6 @@
 import "./App.css";
-import "./Components/UpcomingEventCard/EventCard"
-import EventCard from "./Components/UpcomingEventCard/EventCard";
+import "./components/upcomingeventcard/EventCard";
+import EventCard from "./components/upcomingeventcard/EventCard";
 function App() {
   return (
     <div>

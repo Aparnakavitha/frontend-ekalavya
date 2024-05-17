@@ -33,17 +33,28 @@ const EventCard = (props) => {
             <h1 className={`${styles.main}`}>{formatText(main)}</h1>
             <ul>
               <li className={styles.hello}>
-                <span className={`${styles.duration}`}>{`${start} - ${end}`}</span>
+                <span
+                  className={`${styles.duration}`}
+                >{`${start} - ${end}`}</span>
               </li>
             </ul>
           </div>
 
           <div className={`${styles["details-bottom"]}`}>
             <h4 className={`${styles.sub}`}>
-              Meeting link:<u><a href={`${sub}`}>{formatText(sub)}</a></u>
+              Meeting link:
+              <u>
+                <a href={`${sub}`}>{formatText(sub)}</a>
+              </u>
             </h4>
             <h4 className={`${styles.status} ${styles[status]}`}>
-              {status === "upcoming" ? "Upcoming" : status==="due" ? "Due soon" : status==="happening" ? "Happening now" : "TBA"}
+              {status === "upcoming"
+                ? "Upcoming"
+                : status === "due"
+                  ? "Due soon"
+                  : status === "happening"
+                    ? "Happening now"
+                    : "TBA"}
             </h4>
           </div>
         </div>
@@ -53,5 +64,3 @@ const EventCard = (props) => {
 };
 
 export default EventCard;
-
-

@@ -1,4 +1,4 @@
-.event-card{
+.event-card {
   width: 326px;
   height: 65px;
   padding: 5px;
@@ -11,12 +11,12 @@
   justify-content: center;
 }
 
-.card-contents{
+.card-contents {
   display: flex;
   align-items: center;
 }
 
-.event-date{
+.event-date {
   background-color: var(--primary-color);
   width: 36px;
   height: 36px;
@@ -27,83 +27,91 @@
   justify-content: center;
 }
 
-.date{
+.date {
   color: var(--black);
-  font-family: 'Jost','Sans-serif';
+  font-family: "Jost", "Sans-serif";
   font-size: 14px;
 }
 
-.event-details{
+.event-details {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.details-top{
+.details-top {
   display: flex;
   flex-direction: row;
-  max-width: 100%; 
-  max-height:36px;
+  max-width: 100%;
+  max-height: 36px;
   height: max-content;
   justify-content: space-between;
   gap: 2rem;
   align-items: center;
 }
 
-.details-top ul li{
+.details-top ul li {
   margin: 0;
   text-decoration: none;
 }
 
-.main{
+.main {
   margin-right: auto;
   font-size: 15px;
-  font-family: 'Urbanist','Sans-serif';
+  font-family: "Urbanist", "Sans-serif";
   padding-right: 10px;
 }
 
-.duration{
+.duration {
   font-size: 10px;
-  font-family: 'Urbanist';
+  font-family: "Urbanist";
   font-weight: 600;
 }
 
-.details-bottom{
+.details-bottom {
   display: flex;
-  max-width: 100%; 
+  max-width: 100%;
   max-height: 36px;
   height: fit-content;
   justify-content: space-between;
   align-items: center;
 }
 
-.sub{
+.sub {
   font-size: 10px;
-  font-family: 'Urbanist','Sans-serif';
+  font-family: "Urbanist", "Sans-serif";
 }
 
-.sub a{
+.sub a {
   text-decoration: none;
   color: var(--white);
 }
 
-.sub a:hover{
+.sub a:hover {
   color: var(--primary-color);
 }
 
-.status{
+.status {
   font-size: 10px;
-  font-family: 'Urbanist','Sans-serif';
+  font-family: "Urbanist", "Sans-serif";
 }
 
-.upcoming{color: rgb(255, 153, 36);}
-.due{color: rgb(255, 38, 38);}
-.happening{color: rgb(34, 139, 34);}
-.tba{color: rgb(0, 255, 255);}
+.upcoming {
+  color: rgb(255, 153, 36);
+}
+.due {
+  color: rgb(255, 38, 38);
+}
+.happening {
+  color: rgb(34, 139, 34);
+}
+.tba {
+  color: rgb(0, 255, 255);
+}
 
-.dark{
+.dark {
   background-color: var(--neutral800);
-  color: var(--white); 
+  color: var(--white);
 }
 /* 
 @media only screen and (max-width: 1024px) {
@@ -283,7 +291,7 @@
 
  */
 
- @media only screen and (max-width: 480px) {
+@media only screen and (max-width: 480px) {
   .event-card {
     height: calc(65px * 0.8);
     width: calc(326px * 0.8);
@@ -312,14 +320,13 @@
     gap: 1.8rem;
   }
   .main {
-
     font-size: calc(15px * 0.8);
     padding-right: calc(10px * 0.8);
   }
 
-  .hello{
+  .hello {
     font-size: calc(10px * 0.7);
-    }
+  }
 
   .duration {
     font-size: calc(10px * 0.8);
@@ -337,6 +344,4 @@
     max-height: calc(36px * 0.8);
     margin-top: calc(-15px * 0.8);
   }
-  
 }
-
