@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Button.module.css'; // Import CSS module
-
-function Button(props) {
+const Button=(props)=>{
     const { variant, content, onClick, width } = props;
 
     let widthSize;
