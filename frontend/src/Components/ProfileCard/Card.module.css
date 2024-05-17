@@ -6,6 +6,7 @@
   background-color: var(--neutral700);
   margin: 20px;
   color: var(--white);
+  cursor: pointer;
 }
 
 .card:hover {

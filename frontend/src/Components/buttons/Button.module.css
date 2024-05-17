@@ -1,0 +1,52 @@
+.button {
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 20px; /* You can adjust padding as needed */
+  border-radius: 20px;
+  color: var(--black);
+  width: auto;
+  transition: background-color 0.3s ease; /* Smooth transition for color change */
+}
+
+.primary {
+  
+  background-color: var(--primary-color);
+}
+
+.primary:hover {
+  background-color: var(--white); /* Change to a darker shade of primary color on hover */
+}
+
+.secondary {
+  /* color: var(--white); */
+  background-color: var(--white);
+}
+
+.secondary:hover {
+  color: var(--black);
+  background-color: var(--primary-color); /* Change to a slightly darker shade of secondary color on hover */
+}
+
+.tertiary {
+  background: none;
+  color: var(--white);
+  border: 1px solid var(--primary-color);
+}
+
+.tertiary:hover {
+  background-color: var(--primary-color); /* Change to primary color on hover */
+  color: var(--black); /* Change text color to white on hover */
+}
+
+.full {
+  width: 100%;
+}
+
+.half {
+  width: 60%;
+}

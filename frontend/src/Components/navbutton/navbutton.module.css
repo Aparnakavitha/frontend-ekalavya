@@ -2,12 +2,13 @@
 .navButton {
     display: flex;
     align-items: center;
-    cursor: pointer;
+    
 }
 
 .backArrow {
     font-size: 24px;
     color: white;
+    cursor: pointer;
 }
 
 .backArrow:hover {
