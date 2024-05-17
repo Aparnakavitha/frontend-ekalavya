@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Card.module.css';
+import styles from './ProfileCard.module.css';
 
-const Card=(props)=> {
+const ProfileCard=(props)=> {
   const {
     profileImage,
     title1,
@@ -34,4 +34,4 @@ const Card=(props)=> {
   );
 }
 
-export default Card;
+export default ProfileCard;
