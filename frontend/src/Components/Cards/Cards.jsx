@@ -3,7 +3,7 @@ import Styles from "./Cards.module.css";
 import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
 import { format } from 'date-fns';
 
-function Cards(props) {
+const Cards=(props) =>{
   const {
     miniHeading,
     mainHeading,

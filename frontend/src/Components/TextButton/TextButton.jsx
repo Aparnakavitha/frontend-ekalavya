@@ -2,7 +2,7 @@ import React from "react";
 import Styles from "./TextButton.module.css";
 
 
-function TextButton(props) {
+const TextButton=(props) =>{
   const { icon, text, onClick } = props;
   return (
     <div className={Styles.textbutton} onClick={onClick}>
