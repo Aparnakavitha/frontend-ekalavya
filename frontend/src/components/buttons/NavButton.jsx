@@ -1,6 +1,6 @@
 import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import Styles from "./navbutton.module.css";
+import Styles from "./NavButton.module.css";
 
 const NavButton = ({ pageName, onClick }) => {
   const goBack = () => {
