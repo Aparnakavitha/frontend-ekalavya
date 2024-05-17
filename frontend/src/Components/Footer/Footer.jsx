@@ -1,7 +1,7 @@
 import React from "react";
 import Styles from "./Footer.module.css";
 
-function Footer(props) {
+const Footer=(props) =>{
 const { Logo, quoteContent, copyrightContent, copyrightContent2 ,isLeftALigned } = props;
 const LogoBoxs = isLeftALigned ? Styles.logoBoxLeft : Styles.logoBox
 const Containers = isLeftALigned ? Styles.conatinerLeft : Styles.container
