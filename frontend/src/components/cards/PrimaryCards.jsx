@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Styles from "./Cards.module.css";
+import Styles from "./PrimaryCards.module.css";
 import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
-const Cards=(props) =>{
+const PrimaryCards = (props) => {
   const {
     miniHeading,
     mainHeading,
@@ -15,21 +15,21 @@ const Cards=(props) =>{
 
   const transformMainHeading = (heading) => {
     if (heading && heading.length > 24) {
-      return heading.slice(0, 20) + '...';
+      return heading.slice(0, 20) + "...";
     }
     return heading;
   };
 
   const transformMainDescription = (description) => {
     if (description && description.length > 34) {
-      return description.slice(0, 70) + '...';
+      return description.slice(0, 70) + "...";
     }
     return description;
   };
 
   // Format the dates and times using date-fns
-  const formattedStartDate = format(new Date(startDate), 'MM/dd/yyyy hh:mm a'); // e.g., "05/16/2024 03:24 PM"
-  const formattedEndDate = format(new Date(endDate), 'MM/dd/yyyy hh:mm a'); // e.g., "05/17/2024 04:30 PM"
+  const formattedStartDate = format(new Date(startDate), "MM/dd/yyyy hh:mm a"); // e.g., "05/16/2024 03:24 PM"
+  const formattedEndDate = format(new Date(endDate), "MM/dd/yyyy hh:mm a"); // e.g., "05/17/2024 04:30 PM"
 
   // State to track hover state
   const [isHover, setIsHover] = useState(false);
@@ -61,7 +61,9 @@ const Cards=(props) =>{
     >
       <div className={cardsClass} onClick={handleClick}>
         <a className={Styles.cardsminiheading}>{miniHeading}</a>
-        <a className={Styles.cardsmainheading}>{transformMainHeading(mainHeading)}</a>
+        <a className={Styles.cardsmainheading}>
+          {transformMainHeading(mainHeading)}
+        </a>
         <div className={Styles.dateRow}>
           <a className={Styles.cardsdate}>{formattedStartDate}</a>
           <div>
@@ -69,7 +71,9 @@ const Cards=(props) =>{
           </div>
           <a className={Styles.cardsdate}>{formattedEndDate}</a>
         </div>
-        <a className={Styles.cardsdiscription}>{transformMainDescription(Desicription)}</a>
+        <a className={Styles.cardsdiscription}>
+          {transformMainDescription(Desicription)}
+        </a>
       </div>
       <div className={Styles.CardsOutline}>
         <div className={leftCardClass}></div>
@@ -84,6 +88,6 @@ const Cards=(props) =>{
       </div>
     </div>
   );
-}
+};
 
-export default Cards;
+export default PrimaryCards;
