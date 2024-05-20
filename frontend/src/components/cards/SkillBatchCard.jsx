@@ -12,13 +12,6 @@ const SBCards = (props) => {
     handleDeleteClick,
   } = props;
 
-  // const transformMainHeading = (heading) => {
-  //   if (heading.length > 36) {
-  //     return heading.slice(0, 34) + "...";
-  //   }
-  //   return heading;
-  // };
-
   const transformMainHeading = (heading, cardType) => {
     let maxLength;
     if (cardType === "Skill") {
@@ -48,20 +41,6 @@ const SBCards = (props) => {
     formattedCount = "0 Students";
   }
 
-  // return (
-  //   <div className={Styles.Cards}>
-  //     <div className={cardType === "Skill" ? Styles.rightCard : Styles.leftCard} onClick={handleClick}>
-  //       <div className={Styles.titleContainer}>
-  //         <a className={Styles.cardsminiheading}>{miniHeading}</a>
-  //         <a className={Styles.cardsmainheading} style={cardType === "Skill" ? { width: '100%' } : { width: 'auto' }}>{transformMainHeading(mainHeading)}</a>
-  //         <a className={Styles.cardsdiscription}>{formattedCount}</a>
-  //       </div>
-  //       {cardType === "Skill" && (
-  //         <FaTrash className={Styles.deleteIcon} onClick={handleDeleteIconClick} title="Delete" />
-  //       )}
-  //     </div>
-  //   </div>
-  // );
   return (
     <div className="row">
       <div className={`col-lg-2 col-md-3 col-sm-4 col-xs-6 ${Styles.Cards}`}>

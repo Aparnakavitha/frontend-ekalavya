@@ -1,8 +1,13 @@
+import React, { useState } from "react";
+import styles from "./InputBox.module.css";
 
-import React, { useState } from 'react';
-import styles from './InputBox.module.css';
-
-const Input = ({ width = '100%', height = '57px', label, placeholders, ...rest }) => {
+const Input = ({
+  width = "100%",
+  height = "57px",
+  label,
+  placeholders,
+  ...rest
+}) => {
   const [clicked, setClicked] = useState(false);
 
   const handleFocus = () => {
@@ -13,8 +18,11 @@ const Input = ({ width = '100%', height = '57px', label, placeholders, ...rest }
   };
 
   return (
-    <div className={`${styles['input-container']} ${clicked ? styles.clicked : ''}`} style={{ width: width }}>
-      <label htmlFor={rest.id} className={styles['input-label']}>
+    <div
+      className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}
+      style={{ width: width }}
+    >
+      <label htmlFor={rest.id} className={styles["input-label"]}>
         {label}
       </label>
       {placeholders.map((placeholder, index) => (
@@ -29,6 +37,6 @@ const Input = ({ width = '100%', height = '57px', label, placeholders, ...rest }
       ))}
     </div>
   );
-}
+};
 
 export default Input;

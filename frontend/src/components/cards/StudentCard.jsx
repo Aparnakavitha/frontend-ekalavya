@@ -28,15 +28,12 @@ const StudentCard = (props) => {
     return studentMail;
   };
 
-  // State to track hover state
   const [isHover, setIsHover] = useState(false);
 
-  // Function to handle mouse enter event
   const handleMouseEnter = () => {
     setIsHover(true);
   };
 
-  // Function to handle mouse leave event
   const handleMouseLeave = () => {
     setIsHover(false);
   };

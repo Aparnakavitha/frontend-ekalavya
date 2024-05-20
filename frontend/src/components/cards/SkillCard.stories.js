@@ -8,7 +8,7 @@ export default {
     title: { control: "text" },
     subtitle: { control: "text" },
     showCloseIcon: { control: "boolean" },
-    onClose: { action: "Close button clicked" }, // Define action for onClose prop
+    onClose: { action: "Close button clicked" },
   },
 };
 
@@ -20,8 +20,6 @@ Default.args = {
   subtitle: "Level 1",
   showCloseIcon: true,
   onClose: () => {
-    // Define functionality for close icon click
     console.log("Close button clicked");
-    // You can add additional functionality here
   },
 };

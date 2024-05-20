@@ -1,5 +1,4 @@
 import Filter from "./Filter"
-import React from "react"
 
 export default{
     title:"Filter",

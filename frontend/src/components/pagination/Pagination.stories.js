@@ -1,5 +1,3 @@
-// Pagination.stories.js
-
 import Pagination from "./Pagination";
 
 export default {
