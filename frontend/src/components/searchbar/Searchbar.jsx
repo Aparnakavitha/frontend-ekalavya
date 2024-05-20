@@ -30,7 +30,6 @@ const SearchBar = ({ variant = "large", placeholder, onSearch }) => {
             onChange={(e) => setQuery(e.target.value)}
           />
           <button type="submit" className={styles["search-button"]}>
-            {/* Updated class name */}
             Search
           </button>
         </div>

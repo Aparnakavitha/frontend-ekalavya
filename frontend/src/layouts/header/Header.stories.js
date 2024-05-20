@@ -8,7 +8,7 @@ export default {
   component: Header,
   args: {
     // children: 'Login',
-    menuItems: ["Leaderboard", "Track", "Top performers", "Testimonials"], // Placeholder for menuItems prop
+    menuItems: ["Leaderboard", "Track", "Top performers", "Testimonials"], 
     imageSrc: edunexa, // Placeholder for imageSrc prop,
     // button : <Button children={"Login"}/>
   },

@@ -1,7 +1,7 @@
-// ProfilePicture.js
+
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./ProfilePicture.module.css"; // Import your CSS module
+import styles from "./ProfilePicture.module.css"; 
 
 const ProfilePicture = ({ src, size }) => {
   const getSizeClassName = () => {

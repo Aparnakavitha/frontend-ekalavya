@@ -3,14 +3,13 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Center the header-menu */
-  background-color: var(--background); /* Background color with low opacity */
+  justify-content: space-between; 
+  background-color: var(--background); 
   padding: 0 10%;
 }
 
 .headerTitle {
   width: 130px;
-  /* height: 35px; */
 }
 
 .headerMenu {
@@ -44,9 +43,8 @@
   cursor: pointer;
 }
 
-/* Hamburger Icon Styles */
 .sidebarIcon {
-  display: none; /* Hide hamburger icon by default */
+  display: none; 
 }
 .menuItemResp {
   display: none;
@@ -54,36 +52,11 @@
 .sidebar {
   display: none;
 }
-/* .hamburgerIcon div {
-  width: 25px;
-  height: 3px;
-  background-color: #ffffff;
-  margin: 3px 0;
-} */
 
-/* Sidebar Styles */
-/* .sidebar {
-  position: fixed;
-  top: 016px;
-  right: -250px;
-  height: 100vh;
-  width: 250px;
-  z-index: 999;
-  background-color: #2E2D2D;
-  box-shadow: -10px 0 10px rgba(0,0,0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  transition: right 0.3s ease;
-} */
-
-/* Show Sidebar */
 .show {
   left: 0;
 }
 
-/* Media query for small screens */
 @media (max-width: 768px) {
   .headerContainer {
     position: absolute;
@@ -93,7 +66,7 @@
   }
 
   .headerMenu {
-    display: none; /* Hide menu items initially on small screens */
+    display: none; 
   }
   .menuItemResp {
     cursor: pointer;
@@ -114,14 +87,12 @@
   .headerTitle {
     display: flex;
     width: 100%;
-    /* height: 35px; */
     align-items: center;
     justify-content: center;
   }
   .headerTitleResp {
     display: flex;
     width: 100%;
-    /* height: 35px; */
     align-items: start;
     justify-content: start;
     margin-left: 17px;
@@ -149,13 +120,13 @@
   }
 
   .sidebarIcon {
-    display: block; /* Show hamburger icon on small screens */
-    margin-left: 10px; /* Add some margin for spacing */
-    font-size: 24px; /* Adjust size of hamburger icon */
+    display: block;
+    margin-left: 10px; 
+    font-size: 24px; 
     cursor: pointer;
     color: var(
       --neutral200
-    ); /* Add pointer cursor for indicating clickability */
+    ); 
   }
   .hamburger {
     cursor: pointer;
@@ -165,7 +136,6 @@
     position: fixed;
     left: 25px;
     transition: left 0.5s ease-out;
-    /* Add transition for left property */
   }
   .crossIcon {
     cursor: pointer;

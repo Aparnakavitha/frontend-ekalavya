@@ -1,5 +1,5 @@
 import React from "react";
-import ProfilePicture from "./ProfilePicture"; // Assuming you have a ProfilePicture component
+import ProfilePicture from "./ProfilePicture"; 
 
 export default {
   title: "ProfilePicture",
