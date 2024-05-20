@@ -2,11 +2,11 @@ import Footer from "./Footer";
 import image from "./../../assets/Logo.png";
 
 export default {
-  title: "Footer/Footer",
+  title: "Components/Footer/Footer",
   component: Footer,
 };
 
-export const FootersCentreAligned = {
+export const FooterCentreAligned = {
   args: {
     Logo: image,
     quoteContent: "Embark on Your Learning Journey Today!",
@@ -16,7 +16,7 @@ export const FootersCentreAligned = {
   },
 };
 
-export const FootersLeftAligned = {
+export const FooterLeftAligned = {
   args: {
     Logo: image,
     quoteContent: "Embark on Your Learning Journey Today!",

@@ -2,7 +2,7 @@ import StudentCard from "./StudentCard";
 import image from "../../assets/DP.png";
 
 export default {
-  title: "Cards/Student Cards",
+  title: "Components/Cards/Student Card",
   component: StudentCard,
 };
 
@@ -19,7 +19,7 @@ const studentobject = {
   },
 };
 
-export const Studentcards = {
+export const Studentcard = {
   args: {
     ...studentobject,
   },

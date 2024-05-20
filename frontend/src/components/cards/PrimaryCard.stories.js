@@ -1,7 +1,7 @@
 import PrimaryCards from "./PrimaryCard";
 
 export default {
-  title: "Cards/PrimaryCard",
+  title: "Components/Cards/Primary Card",
   component: PrimaryCards,
 };
 

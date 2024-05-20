@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import PrimaryButton from "./PrimaryButton";
 
 export default {
-  title: "Button/PrimaryButton",
+  title: "Components/Buttons/Primary Button",
   component: PrimaryButton,
 };
 
 export const PrimarybuttonFull = {
   args: {
-    content: "hello",
+    content: "Submit",
     variant: "primary",
     onclick: (r) => {
-      console.log("nidsm");
+      console.log("clicked");
     },
     width: "full",
   },
@@ -19,10 +19,10 @@ export const PrimarybuttonFull = {
 
 export const SecondarybuttonHalf = {
   args: {
-    content: "hello",
+    content: "Submit",
     variant: "secondary",
     onclick: (r) => {
-      console.log("nidsm");
+      console.log("clicked");
     },
     width: "half",
   },
