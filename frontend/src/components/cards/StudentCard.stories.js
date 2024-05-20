@@ -2,7 +2,7 @@ import StudentCard from "./StudentCard";
 import image from "../../assets/DP.png";
 
 export default {
-  title: "Components/Cards/Student Cards",
+  title: "Components/Cards/Student Card",
   component: StudentCard,
 };
 
