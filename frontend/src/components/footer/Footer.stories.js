@@ -6,7 +6,7 @@ export default {
   component: Footer,
 };
 
-export const FootersCentreAligned = {
+export const FooterCentreAligned = {
   args: {
     Logo: image,
     quoteContent: "Embark on Your Learning Journey Today!",
@@ -16,7 +16,7 @@ export const FootersCentreAligned = {
   },
 };
 
-export const FootersLeftAligned = {
+export const FooterLeftAligned = {
   args: {
     Logo: image,
     quoteContent: "Embark on Your Learning Journey Today!",

@@ -19,7 +19,7 @@ const studentobject = {
   },
 };
 
-export const Studentcards = {
+export const Studentcard = {
   args: {
     ...studentobject,
   },
