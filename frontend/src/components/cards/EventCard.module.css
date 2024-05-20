@@ -116,7 +116,6 @@
   color: var(--white);
 }
 
-
 @media only screen and (max-width: 767px) {
   .event-card {
     height: calc(65px * 0.8);
