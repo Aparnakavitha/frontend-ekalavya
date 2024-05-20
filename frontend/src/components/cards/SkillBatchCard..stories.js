@@ -1,5 +1,5 @@
-import SBCards from "./SBCards";
-import { action } from '@storybook/addon-actions';
+import SBCards from "./SkillBatchCard";
+import { action } from "@storybook/addon-actions";
 export default {
   title: "Skill Batch Card",
   component: SBCards,
@@ -8,17 +8,14 @@ export default {
 const courseelement = {
   miniHeading: "<cardId>",
   mainHeading: "<cardName>",
-  Count:0,
+  Count: 0,
   cardType: "Batch",
   handleClick: action("Card clicked!"),
   handleDeleteClick: action("Delete Icon Clicked!"),
-
 };
 
-
 export const SBCard = {
-    args: {
-        ...courseelement
-    }
-}
-
+  args: {
+    ...courseelement,
+  },
+};

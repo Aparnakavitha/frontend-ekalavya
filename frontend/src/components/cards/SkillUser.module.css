@@ -1,5 +1,3 @@
-
-
 * {
   margin: 0;
   padding: 0;
@@ -15,7 +13,7 @@
   flex-direction: column;
   border-radius: 25px;
   background-color: var(--background);
-  border: 1px solid var(--neutral500); 
+  border: 1px solid var(--neutral500);
 }
 
 .cardsClass {
@@ -63,9 +61,9 @@
 .cardsminiheading {
   font-size: 16px;
   font-weight: 700;
-  line-height: 22.4px; 
+  line-height: 22.4px;
   letter-spacing: -0.41px;
-  color: var(--neutral600); 
+  color: var(--neutral600);
 }
 
 .lower {
@@ -84,7 +82,7 @@
   min-height: 40px;
   align-items: flex-end;
 }
-.buttons{
+.buttons {
   display: flex;
   flex-direction: column;
 }
@@ -96,7 +94,7 @@
   font-size: 13px;
   border-radius: 100px;
   font-weight: 700;
-  color: var(--white); 
+  color: var(--white);
   letter-spacing: -0.4px;
   display: flex;
   justify-content: center;
@@ -105,18 +103,18 @@
   padding: 15px;
 }
 
-.viewButton{
+.viewButton {
   min-width: 69px;
   cursor: pointer;
   max-width: 170px;
   padding-top: 8px;
   font-size: 11px;
   font-weight: 400;
-  color: var(--primary-color); 
+  color: var(--primary-color);
   letter-spacing: -0.1px;
   display: flex;
   justify-content: flex-start;
-  align-items:center;
+  align-items: center;
   gap: 7px;
   padding-left: 8px;
   padding-right: 8px;
@@ -131,7 +129,7 @@
 
 .addButton {
   background-color: var(--white);
-  color: var(--black); 
+  color: var(--black);
   border-radius: 100px;
   width: 31px;
   height: 31px;

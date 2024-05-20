@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Styles from "./Filter.module.css";
 import { FaAngleDown } from "react-icons/fa";
 
-function Filter(props) {
+const Filter = (props) => {
   const { Heading, Content, handleDropClick } = props;
   const [dropContent, setDropContent] = useState(false);
   const dropRef = useRef(null);
@@ -34,6 +34,6 @@ function Filter(props) {
       )}
     </div>
   );
-}
+};
 
 export default Filter;

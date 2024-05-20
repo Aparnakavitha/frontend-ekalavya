@@ -1,9 +1,9 @@
-
 .Cards {
   position: relative;
 }
 
-.cardsminiheading, .cardsdiscription {
+.cardsminiheading,
+.cardsdiscription {
   width: 175px;
   height: 22px;
   /* font-family: Urbanist; */
@@ -17,7 +17,6 @@
   word-wrap: break-word;
   display: inline-block;
 }
-
 
 .cardsmainheading {
   width: 175px;
@@ -37,33 +36,24 @@
   word-break: break-word;
 }
 
-
-
-
-
-
-.titleContainer{
+.titleContainer {
   display: flex;
   /* position: absolute; */
-flex-direction: column;
-align-items: flex-start;
-gap: 9px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
   /* width: 209px;
 height: 110px; */
-width: calc(209px + 34px); 
-  height: calc(110px + 48px); 
-padding: 24px 17px;
-
+  width: calc(209px + 34px);
+  height: calc(110px + 48px);
+  padding: 24px 17px;
 }
 /* Union */
 
-
-
-
-
-.leftCard, .rightCard {
+.leftCard,
+.rightCard {
   /* position: absolute; */
-  
+
   border: 1px solid var(--neutral800);
   border-radius: 20px;
   /* display: inline-flex; */
@@ -72,14 +62,16 @@ padding: 24px 17px;
   /* align-items: center; */
   gap: 10px;
   /* padding: 1.5rem; */
-  position: relative;  /* Changed to relative */
-  display: flex;       /* Added */
-  justify-content: flex-start;  
-  align-items: center;  
+  position: relative; /* Changed to relative */
+  display: flex; /* Added */
+  justify-content: flex-start;
+  align-items: center;
   color: var(--white);
   background: var(--neutral800);
   overflow: hidden;
-  transition: color 0.25s, background-color 0.25s;
+  transition:
+    color 0.25s,
+    background-color 0.25s;
 }
 
 .leftCard {
@@ -92,7 +84,8 @@ padding: 24px 17px;
   height: 151px;
 }
 
-.leftCard:hover, .rightCard:hover {
+.leftCard:hover,
+.rightCard:hover {
   color: var(--black);
   cursor: pointer;
   border: 1px solid var(--white);
@@ -107,14 +100,11 @@ padding: 24px 17px;
   top: 20%;
   right: 20px;
   cursor: pointer;
-  transform: translateY(-50%); 
+  transform: translateY(-50%);
   /* left: 172px; */
-/* top: -2.5px; */
+  /* top: -2.5px; */
 }
 
 .rightCard:hover .deleteIcon {
   color: var(--black);
 }
-
-
-

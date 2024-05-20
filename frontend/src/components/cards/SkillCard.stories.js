@@ -1,14 +1,14 @@
-import React from 'react';
-import Card from './SkillCard';
+import React from "react";
+import Card from "./SkillCard";
 
 export default {
-  title: 'Components/SkillCard',
+  title: "Components/SkillCard",
   component: Card,
   argTypes: {
-    title: { control: 'text' },
-    subtitle: { control: 'text' },
-    showCloseIcon: { control: 'boolean' },
-    onClose: { action: 'Close button clicked' }, // Define action for onClose prop
+    title: { control: "text" },
+    subtitle: { control: "text" },
+    showCloseIcon: { control: "boolean" },
+    onClose: { action: "Close button clicked" }, // Define action for onClose prop
   },
 };
 

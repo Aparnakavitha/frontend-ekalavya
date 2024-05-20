@@ -6,29 +6,31 @@
   display: flex; /* Use flexbox */
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically */
-  padding: 8px ; /* Add padding to the main box, 18px top and bottom, 7px at the bottom */
+  padding: 8px; /* Add padding to the main box, 18px top and bottom, 7px at the bottom */
   background-color: var(--neutral800);
   box-sizing: border-box;
 }
- 
+
 .innerBox {
   display: flex;
   justify-content: space-between;
   margin: 5px 16px; /* Set background color */
   width: 226px; /* Fixed width */
-  height: calc(100% - 14px); /* Adjust height to fill remaining space after subtracting margins (7px top and bottom each) */
+  height: calc(
+    100% - 14px
+  ); /* Adjust height to fill remaining space after subtracting margins (7px top and bottom each) */
   border-right: 3px solid transparent; /* Set right border */
   opacity: 1; /* Set opacity */
   border-color: var(--primary-color);
   position: relative; /* Set position to relative */
 }
- 
+
 .content {
   display: flex;
   flex-direction: column;
   overflow: hidden; /* Ensure child elements do not overflow */
 }
- 
+
 .title {
   font-size: 24px; /* Set font size */
   font-weight: 600; /* Set font weight */
@@ -42,7 +44,7 @@
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Add ellipsis on overflow */
 }
- 
+
 .subtitle {
   font-size: 13px; /* Set font size */
   font-weight: 600; /* Set font weight */
@@ -56,7 +58,7 @@
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Add ellipsis on overflow */
 }
- 
+
 .closeIcon {
   /* Align with the right side of the inner box */
   color: var(--white);
@@ -64,7 +66,7 @@
   width: 35px;
   height: 35px;
 }
- 
+
 .closeIcon:hover {
   cursor: pointer;
   color: var(--primary-color); /* Change color to red when hovered over */
