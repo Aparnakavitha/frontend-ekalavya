@@ -1,14 +1,13 @@
-import Filter from "./Filter"
-import React from "react"
+import filter from "./Filter"
 
 export default{
-    title:"Filter",
-    component: Filter
+    title:"components/Filter",
+    component: filter
 }
 
-export const sample = {
+export const Filter = {
     args: {
-        Heading : "Filter",
-        Content : [" 1", " 2", " 3",""]
+        Heading : "Batch",
+        Content : ["Batch 1", "Batch 2", "Batch 3"]
     }
 }

@@ -1,19 +1,18 @@
-import React from "react";
-import Input from "./InputBox";
+import inputBox from "./InputBox";
 
 export default {
-  title: "Input",
-  component: Input,
+  title: "components/InputBox",
+  component: inputBox,
 };
 
 const inputData = {
   label: "Enter email addresses",
   width: "526px",
   height: "57px",
-  placeholders: ["Address ", "Address 2", "Address 3", "Address 3"],
+  placeholders: ["Email Address "],
 };
 
-export const input = {
+export const InputBox = {
   args: {
     ...inputData,
   },

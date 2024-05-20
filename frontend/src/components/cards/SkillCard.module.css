@@ -1,12 +1,10 @@
-/* SkillCard.module.css */
 .card {
   width: 274px;
   border-radius: 5px;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-  display: flex; /* Use flexbox */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  padding: 8px; /* Add padding to the main box, 18px top and bottom, 7px at the bottom */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
   background-color: var(--neutral800);
   box-sizing: border-box;
 }
@@ -14,53 +12,50 @@
 .innerBox {
   display: flex;
   justify-content: space-between;
-  margin: 5px 16px; /* Set background color */
-  width: 226px; /* Fixed width */
-  height: calc(
-    100% - 14px
-  ); /* Adjust height to fill remaining space after subtracting margins (7px top and bottom each) */
-  border-right: 3px solid transparent; /* Set right border */
-  opacity: 1; /* Set opacity */
+  margin: 5px 16px;
+  width: 226px;
+  height: calc(100% - 14px);
+  border-right: 3px solid transparent;
+  opacity: 1;
   border-color: var(--primary-color);
-  position: relative; /* Set position to relative */
+  position: relative;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Ensure child elements do not overflow */
+  overflow: hidden;
 }
 
 .title {
-  font-size: 24px; /* Set font size */
-  font-weight: 600; /* Set font weight */
-  line-height: 22px; /* Set line height */
-  letter-spacing: -0.408px; /* Set letter spacing */
-  margin-bottom: 0px; /* Add some space between the title and subtitle */
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.408px;
+  margin-bottom: 0px;
   margin-top: 0px;
   color: var(--white);
   height: 22px;
-  white-space: nowrap; /* Prevent text wrapping */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis on overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .subtitle {
-  font-size: 13px; /* Set font size */
-  font-weight: 600; /* Set font weight */
-  line-height: 22px; /* Set line height */
-  letter-spacing: -0.408px; /* Set letter spacing */
-  text-align: left; /* Set text alignment */
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: -0.408px;
+  text-align: left;
   margin: 0px;
   color: var(--white);
   height: 22px;
-  white-space: nowrap; /* Prevent text wrapping */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis on overflow */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .closeIcon {
-  /* Align with the right side of the inner box */
   color: var(--white);
   margin: 4.5px 14px;
   width: 35px;
@@ -69,5 +64,5 @@
 
 .closeIcon:hover {
   cursor: pointer;
-  color: var(--primary-color); /* Change color to red when hovered over */
+  color: var(--primary-color);
 }

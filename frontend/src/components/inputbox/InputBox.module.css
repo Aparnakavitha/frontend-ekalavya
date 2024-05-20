@@ -4,7 +4,6 @@
   height: 57px;
   padding-left: 1rem;
   padding-right: 1rem;
-
   border-radius: 9px;
   border-color: var(--neutral600);
   fill: var(--neutral600);
@@ -26,7 +25,6 @@
   font-size: 14px;
   font-weight: light;
   text-align: left;
-
   letter-spacing: 0%;
 }
 
@@ -53,6 +51,7 @@
   word-wrap: break-word;
   text-align: left;
 }
+
 .input-container {
   display: flex;
   flex-direction: column;

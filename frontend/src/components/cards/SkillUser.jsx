@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styles from "./SkillUser.module.css";
+import styles from "./SkillUser.module.css";
 import { ImCross } from "react-icons/im";
 import { FaPlus } from "react-icons/fa6";
 
@@ -31,39 +31,39 @@ const Card = (props) => {
 
   const [showAllSkills, setShowAllSkills] = useState(false);
 
-  const cardsClass = Styles.CardOutline;
+  const cardsClass = styles.CardOutline;
 
   const displayedSkills = showAllSkills ? skills : skills.slice(0, 4);
 
   return (
-    <div className={`container ${Styles.Cards}`}>
+    <div className={`container ${styles.cards}`}>
       <div
-        className={`row ${cardsClass} ${Styles.cardsClass}`}
+        className={`row ${cardsClass} ${styles.cardsClass}`}
         onClick={handleClick}
       >
-        <div className={`col-md-6 ${Styles.profile}`}>
-          <div className={`${Styles.profilepiccontainer}`}>
+        <div className={`col-md-6 ${styles.profile}`}>
+          <div className={`${styles.profilepiccontainer}`}>
             <img
               src={profilepic}
-              className={`${Styles.profilepicture}`}
+              className={`${styles.profilepicture}`}
               alt={alttext}
             />
           </div>
-          <div className={`${Styles.heading}`}>
-            <div className={`${Styles.cardsmainheading}`}>
+          <div className={`${styles.heading}`}>
+            <div className={`${styles.cardsmainheading}`}>
               {transformMainHeading(mainHeading)}
             </div>
-            <div className={`${Styles.cardsminiheading}`}>
+            <div className={`${styles.cardsminiheading}`}>
               {transformMainHeading(miniHeading)}
             </div>
           </div>
         </div>
 
-        <div className={`col-md-6 ${Styles.lower}`}>
-          <div className={Styles.buttons}>
-            <div className={`row ${Styles.buttonsContainer}`}>
+        <div className={`col-md-6 ${styles.lower}`}>
+          <div className={styles.buttons}>
+            <div className={`row ${styles.buttonsContainer}`}>
               {displayedSkills.map((skill, index) => (
-                <div key={index} className={`col-6 ${Styles.button}`}>
+                <div key={index} className={`col-6 ${styles.button}`}>
                   {transformMiniHeading(skill)}
                   <ImCross
                     onClick={() => deleteSkill(index)}
@@ -77,14 +77,14 @@ const Card = (props) => {
             </div>
             {skills.length > 4 && (
               <div
-                className={`btn ${Styles.viewButton}`}
+                className={`btn ${styles.viewButton}`}
                 onClick={() => setShowAllSkills(!showAllSkills)}
               >
                 {showAllSkills ? "View Less" : "View More"}
               </div>
             )}
-            <div className={`col-6 ${Styles.addButtonContainer}`}>
-              <button className={`btn ${Styles.addButton}`} onClick={addSkill}>
+            <div className={`col-6 ${styles.addButtonContainer}`}>
+              <button className={`btn ${styles.addButton}`} onClick={addSkill}>
                 <FaPlus
                   style={{
                     cursor: "pointer",

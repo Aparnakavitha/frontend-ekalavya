@@ -1,10 +1,9 @@
 import React from "react";
 import { IoIosCloseCircle } from "react-icons/io";
-import styles from "./SkillCard.module.css"; // Import CSS module
+import styles from "./SkillCard.module.css";
 
 const Card = ({ title, subtitle, showCloseIcon, onClose }) => {
   const handleClose = () => {
-    // Call the onClose function passed from the parent component
     if (typeof onClose === "function") {
       onClose();
     }

@@ -1,10 +1,8 @@
-// Pagination.stories.js
-
-import Pagination from "./Pagination";
+import pagination from "./Pagination";
 
 export default {
-  title: "Pagination",
-  component: Pagination,
+  title: "components/Pagination",
+  component: pagination,
 };
 
 const pageData = {
@@ -15,7 +13,7 @@ const pageData = {
   },
 };
 
-export const BasicPagination = {
+export const Pagination = {
   args: {
     ...pageData,
   },

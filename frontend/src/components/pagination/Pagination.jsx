@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Styles from "./Pagination.module.css";
+import styles from "./Pagination.module.css";
 import { RiArrowLeftSFill, RiArrowRightSFill } from "react-icons/ri";
 
 const Pagination = ({ totalPages, currentPage, onPageChange }) => {
-  // const maxVisiblePages = window.innerWidth < 768 ? 3 : 5;
-
   const [maxVisiblePages, setMaxVisiblePages] = useState(
     window.innerWidth < 768 ? 3 : 5
   );
@@ -38,17 +36,17 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
   };
 
   return (
-    <div className={Styles.pagination}>
+    <div className={styles.pagination}>
       <button
         className={
           currentPage === 1
-            ? `${Styles.arrow} ${Styles.arrowLeft} ${Styles.disabled}`
-            : `${Styles.arrow} ${Styles.arrowLeft}`
+            ? `${styles.arrow} ${styles.arrowLeft} ${styles.disabled}`
+            : `${styles.arrow} ${styles.arrowLeft}`
         }
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
-        <RiArrowLeftSFill className={Styles.icons} />
+        <RiArrowLeftSFill className={styles.icons} />
       </button>
 
       {visiblePages.map((pageNumber) => (
@@ -56,8 +54,8 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
           key={pageNumber}
           className={
             pageNumber === currentPage
-              ? `${Styles.active} ${Styles.button}`
-              : Styles.button
+              ? `${styles.active} ${styles.button}`
+              : styles.button
           }
           onClick={() => handlePageClick(pageNumber)}
         >
@@ -68,13 +66,13 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
       <button
         className={
           currentPage === totalPages
-            ? `${Styles.arrow} ${Styles.arrowRight} ${Styles.disabled}`
-            : `${Styles.arrow} ${Styles.arrowRight}`
+            ? `${styles.arrow} ${styles.arrowRight} ${styles.disabled}`
+            : `${styles.arrow} ${styles.arrowRight}`
         }
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
-        <RiArrowRightSFill className={Styles.icons} />
+        <RiArrowRightSFill className={styles.icons} />
       </button>
     </div>
   );
