@@ -1,5 +1,5 @@
 import skillUser from "./SkillUser";
-import profilePic from "../../assets/profilePicture/skillUser.png";
+import profilePic from "../../assets/SkillUser.png";
 export default {
   title: "components/cards/SkillUser",
   component: skillUser,
