@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PrimaryButton from "./PrimaryButton";
 
 export default {
-  title: "Components/Button/PrimaryButton",
+  title: "Components/Button/Primary Button",
   component: PrimaryButton,
 };
 

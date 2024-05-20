@@ -2,7 +2,7 @@ import React from "react";
 import NavButton from "./NavButton";
 
 export default {
-  title: "Components/Button/NavButton",
+  title: "Components/Button/Nav Button",
   component: NavButton,
   argTypes: {
     onClick: { action: "clicked" },
