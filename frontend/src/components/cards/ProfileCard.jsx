@@ -4,6 +4,13 @@ import styles from "./ProfileCard.module.css";
 const ProfileCard = (props) => {
   const { profileImage, title1, title2, title3, email, phone, onClick } = props;
 
+  const transformMainMail = (studentMail) => {
+    if (studentMail.length > 24) {
+      return studentMail.slice(0, 24) + "...";
+    }
+    return studentMail;
+  };
+
   return (
     <div className={styles.card} onClick={onClick}>
       <div className={styles.cardContent}>
@@ -21,7 +28,7 @@ const ProfileCard = (props) => {
             <h4 className={`${styles.title} ${styles.title3}`}>{title3}</h4>
           </div>
           <div className={styles.contactInfo}>
-            <p>{email}</p>
+            <p>{transformMainMail(email)}</p>
             <p>{phone}</p>
           </div>
         </div>

@@ -74,10 +74,11 @@
   line-height: 19.2px;
   letter-spacing: -0.01em;
   margin-top: 15px;
+  max-width: 190px;
 }
 
 .contactInfo p {
-  max-width: 190px;
+  
   margin: 0;
   display: flex;
   flex-direction: column;
