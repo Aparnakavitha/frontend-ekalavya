@@ -36,7 +36,7 @@ const Card = (props) => {
   const displayedSkills = showAllSkills ? skills : skills.slice(0, 4);
 
   return (
-    <div className={`container ${styles.Cards}`}>
+    <div className={`container ${styles.cards}`}>
       <div
         className={`row ${cardsClass} ${styles.cardsClass}`}
         onClick={handleClick}

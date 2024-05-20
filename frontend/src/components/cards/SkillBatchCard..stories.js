@@ -6,9 +6,9 @@ export default {
 };
 
 const courseelement = {
-  miniHeading: "<cardId>",
-  mainHeading: "<cardName>",
-  Count: 0,
+  miniHeading: "B301",
+  mainHeading: "Batch 1",
+  Count: 28,
   cardType: "Batch",
   handleClick: action("Card clicked!"),
   handleDeleteClick: action("Delete Icon Clicked!"),

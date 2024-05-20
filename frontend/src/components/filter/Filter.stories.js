@@ -7,7 +7,7 @@ export default{
 
 export const Filter = {
     args: {
-        Heading : "Filter",
-        Content : [" 1", " 2", " 3",""]
+        Heading : "Batch",
+        Content : ["Batch 1", "Batch 2", "Batch 3"]
     }
 }

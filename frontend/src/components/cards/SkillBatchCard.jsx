@@ -43,7 +43,7 @@ const SBCards = (props) => {
 
   return (
     <div className="row">
-      <div className={`col-lg-2 col-md-3 col-sm-4 col-xs-6 ${styles.Cards}`}>
+      <div className={`col-lg-2 col-md-3 col-sm-4 col-xs-6 ${styles.cards}`}>
         <div
           className={cardType === "Skill" ? styles.rightCard : styles.leftCard}
           onClick={handleClick}

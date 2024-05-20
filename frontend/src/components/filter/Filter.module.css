@@ -12,7 +12,7 @@
   background-color: var(--primary-color);
   color: var(--black);
 }
-/* ---------------------------------------------------------------------------- */
+
 .filterClass {
   display: inline-flex;
   flex-direction: row;
@@ -30,6 +30,7 @@
   white-space: nowrap;
   text-align: left;
 }
+
 .filterClass a {
   flex: 1;
   overflow: hidden;
@@ -37,14 +38,15 @@
   white-space: nowrap;
   text-align: left;
 }
+
 .iconAngleDown {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/* ---------------------------------------------------------------------------- */
+
 .drop {
-  min-width: 75px;
+  min-width: 91px;
   width: fit-content;
   display: inline-flex;
   flex-direction: column;
@@ -53,6 +55,7 @@
   left: 0%;
   text-align: left;
 }
+
 .dropcontent {
   max-width: 300px;
   padding: 10px;
@@ -64,6 +67,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .dropcontent a {
   flex: 1;
   overflow: hidden;
