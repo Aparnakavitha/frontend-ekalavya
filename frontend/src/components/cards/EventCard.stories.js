@@ -6,4 +6,20 @@ export default {
   component: EventCard,
 };
 
-export const EventCardDark = () => <EventCard />;
+const sample ={
+  main : "All hands meeting",
+  sub : "http:// www.zoom.com",
+  start : "10:30am",
+  end : "11:30am",
+  status : "due",
+  mode : "dark",
+  date : 17,
+  onclick: (e)=>{console.log("Event card clicked!")}
+}
+
+
+export const EventCardDark = {
+  args: {
+    ...sample
+  },
+};

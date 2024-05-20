@@ -99,12 +99,15 @@
 .upcoming {
   color: rgb(255, 153, 36);
 }
+
 .due {
   color: rgb(255, 38, 38);
 }
+
 .happening {
   color: rgb(34, 139, 34);
 }
+
 .tba {
   color: rgb(0, 255, 255);
 }

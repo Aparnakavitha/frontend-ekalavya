@@ -155,13 +155,6 @@
     right: 40px;
   }
 
-  /* .hamburgerIcon div {
-    width: 25px;
-    height: 3px;
-    background-color: var(--white);
-    margin: 3px 0;
-  } */
-
   .sidebar {
     position: fixed;
     top: 16px;

@@ -10,7 +10,7 @@ const EventCard = (props) => {
     status = "due",
     mode = "dark",
     date = 17,
-    handleClick,
+    handleClick
   } = props;
 
   const formatText = (text) => {
