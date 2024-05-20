@@ -6,7 +6,7 @@ export default {
   component: Footer,
 };
 
-export const Footers = {
+export const FootersCentreAligned = {
   args: {
     Logo: image,
     quoteContent: "Embark on Your Learning Journey Today!",
@@ -15,3 +15,14 @@ export const Footers = {
     isLeftALigned: false,
   },
 };
+
+export const FootersLeftAligned = {
+  args: {
+    Logo: image,
+    quoteContent: "Embark on Your Learning Journey Today!",
+    copyrightContent: "All rights reserved © 2024 Tarento Group.",
+    copyrightContent2: " | Privacy Policy",
+    isLeftALigned: true,
+  },
+};
+

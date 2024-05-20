@@ -26,6 +26,7 @@
 }
 
 .card .profileImage {
+  background-color: var(--white);
   width: 53px;
   height: 53px;
   border-radius: 50%;

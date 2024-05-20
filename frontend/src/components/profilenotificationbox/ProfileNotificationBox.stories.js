@@ -1,5 +1,6 @@
 import React from "react";
 import ProfileNotificationBox from "./ProfileNotificationBox";
+import image from "../../assets/ProfilePicture/DP.png"
 
 export default {
   title: "ProfileNotificationBox/ProfileNotificationBox",
@@ -11,6 +12,6 @@ const Template = (args) => <ProfileNotificationBox {...args} />;
 export const ProfileNotificationbox = Template.bind({});
 ProfileNotificationbox.args = {
   name: "Godwin George U",
-  profilePic: "https://example.com/profile.jpg",
+  profilePic: image,
   gmail: "godwingeorgeu0805@gmail.com",
 };

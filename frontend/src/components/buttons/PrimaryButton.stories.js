@@ -6,13 +6,24 @@ export default {
   component: PrimaryButton,
 };
 
-export const Primarybutton = {
+export const PrimarybuttonFull = {
+  args: {
+    content: "hello",
+    variant: "primary",
+    onclick: (r) => {
+      console.log("nidsm");
+    },
+    width: "full",
+  },
+};
+
+export const SecondarybuttonHalf = {
   args: {
     content: "hello",
     variant: "secondary",
     onclick: (r) => {
       console.log("nidsm");
     },
-    width: "full",
+    width: "half",
   },
 };

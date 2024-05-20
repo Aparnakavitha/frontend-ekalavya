@@ -1,4 +1,5 @@
 import StudentCard from "./StudentCard";
+import image from "../../assets/ProfilePicture/DP.png";
 
 export default {
   title: "Cards/Student Cards",
@@ -6,7 +7,7 @@ export default {
 };
 
 const studentobject = {
-  studentImage: "./image.jpeg",
+  studentImage: image,
   studentName: "John Doe",
   studentId: "123",
   studentCollege: "sfddas",

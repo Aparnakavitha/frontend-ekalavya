@@ -1,6 +1,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import ProfileCard from "./ProfileCard";
+import image from "../../assets/ProfilePicture/DP.png"
 
 export default {
   title: "Cards/ProfileCard",
@@ -12,9 +13,8 @@ export const Profilecard = (args) => (
 );
 
 Profilecard.args = {
-  profileImage:
-    "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/red_stone_23_23.png",
-  title1: "John Doe",
+  profileImage:image,
+    
   title2: "Senior Software Engineer",
   title3: "San Francisco, USA",
   email: "johndoe@email.com",
