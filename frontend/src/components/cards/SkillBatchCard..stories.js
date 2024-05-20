@@ -5,29 +5,17 @@ export default {
   component: skillBatchCard,
 };
 
-const batch = {
+const courseelement = {
   miniHeading: "B301",
   mainHeading: "Batch 1",
   Count: 28,
   cardType: "Batch",
   handleClick: action("Card clicked!"),
-};
-const skill = {
-  miniHeading: "SKILL4785",
-  mainHeading: "Java",
-  Count: 53,
-  cardType: "Skill",
-  handleClick: action("Card clicked!"),
   handleDeleteClick: action("Delete Icon Clicked!"),
 };
 
-export const BatchCard = {
+export const SkillBatchCard = {
   args: {
-    ...batch,
-  },
-};
-export const skillCard = {
-  args: {
-    ...skill,
+    ...courseelement,
   },
 };
