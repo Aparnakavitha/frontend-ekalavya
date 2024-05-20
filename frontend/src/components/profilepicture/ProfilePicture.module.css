@@ -1,32 +1,31 @@
 .profile-picture-frame {
   width: 105px;
   height: 105px;
-  gap: 0px;
   border-radius: 50%;
   border: 5px solid #ececec;
   background: #ffffff;
   display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
 }
 
 .profile-picture {
   width: 90px;
   height: 90px;
-  display: flex;
-  padding-top: 12px;
-  padding-left: 8px;
-  gap: 0px;
+  margin-top: 10px;
   opacity: 2px;
 }
 
 .profile-picture-frame-small {
   width: 53px;
   height: 53px;
-  gap: 0px;
   border-radius: 50%;
   border: 5px solid #ececec;
   background: #ffffff;
   display: flex;
+  justify-content: center;
+  align-items: flex-end;
   overflow: hidden;
 }
 
