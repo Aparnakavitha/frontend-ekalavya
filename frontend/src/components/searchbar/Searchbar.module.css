@@ -99,7 +99,7 @@
   background: var(--primary-color);
 }
 
-@media (max-width: 834px) {
+@media (min-width:768px) and (max-width: 992px) {
   .box .search-box {
     height: 35px;
   }
@@ -122,11 +122,37 @@
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
+  .box .search-box {
+    height: 25px;
+  }
+
+  .small-box .search-box {
+    height: 25px;
+  }
+
   .search-box {
-    width: 90%;
+    height: 25px;
+  }
+
+  .search-box input {
+    font-size: 6px;
+  }
+
+  .search-box .search-button {
+    font-size: 6px;
+  }
+
+  .small-box .search-box {
+    width: 80%;
+  }
+
+  .small-box .search-button {
+    width: 10%;
   }
 }
+
+
 
 
 
