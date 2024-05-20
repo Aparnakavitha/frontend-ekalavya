@@ -4,7 +4,7 @@ import ProfileCard from "./ProfileCard";
 import image from "../../assets/DP.png"
 
 export default {
-  title: "Cards/ProfileCard",
+  title: "Components/Cards/ProfileCard",
   component: ProfileCard,
 };
 

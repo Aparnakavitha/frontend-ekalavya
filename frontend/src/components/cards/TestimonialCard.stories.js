@@ -3,7 +3,7 @@ import TestimonialCard from "./TestimonialCard";
 import image from "../../assets/DP.png"
 
 export default {
-  title: "Cards/TestimonialCard",
+  title: "Components/Cards/TestimonialCard",
   component: TestimonialCard,
   argTypes: {
     name: { control: "text" },
