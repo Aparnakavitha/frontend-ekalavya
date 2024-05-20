@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./SkillCard";
 
 export default {
-  title: "components/cards/SkillCard",
+  title: "Components/cards/SkillCards",
   component: Card,
   argTypes: {
     title: { control: "text" },
@@ -15,7 +15,7 @@ export default {
 const Template = (args) => <Card {...args} />;
 
 export const SkillCard = Template.bind({});
-SkillCard.args = {
+SkillCards.args = {
   title: "Java",
   subtitle: "Level 1",
   showCloseIcon: true,

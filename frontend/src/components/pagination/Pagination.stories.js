@@ -1,8 +1,8 @@
-import pagination from "./Pagination";
+import Paginations from "./Pagination";
 
 export default {
-  title: "components/Pagination",
-  component: pagination,
+  title: "components/Paginations",
+  component: Paginations,
 };
 
 const pageData = {

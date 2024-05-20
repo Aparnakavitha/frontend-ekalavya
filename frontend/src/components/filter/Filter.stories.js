@@ -1,7 +1,7 @@
 import filter from "./Filter"
 
 export default{
-    title:"components/Filter",
+    title:"components/Filters",
     component: filter
 }
 

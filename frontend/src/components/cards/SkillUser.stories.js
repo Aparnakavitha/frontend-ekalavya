@@ -1,7 +1,8 @@
 import skillUser from "./SkillUser";
 import profilePic from "../../assets/SkillUser.png";
+
 export default {
-  title: "components/cards/SkillUser",
+  title: "components/cards/SkillUsers",
   component: skillUser,
 };
 

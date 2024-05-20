@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./SkillTag.module.css";
 
-const skillTag = (props) => {
+const SkillTag = (props) => {
   const { title, subTitle, onCloseIcon } = props;
 
   return (
@@ -13,4 +13,4 @@ const skillTag = (props) => {
   );
 };
 
-export default skillTag;
+export default SkillTag;
