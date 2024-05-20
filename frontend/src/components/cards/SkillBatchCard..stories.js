@@ -1,7 +1,7 @@
 import skillBatchCard from "./SkillBatchCard";
 import { action } from "@storybook/addon-actions";
 export default {
-  title: "components/cards/SkillBatchCard",
+  title: "components/cards/SkillBatch Card",
   component: skillBatchCard,
 };
 

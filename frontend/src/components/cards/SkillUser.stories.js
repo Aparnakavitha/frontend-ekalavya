@@ -2,7 +2,7 @@ import skillUser from "./SkillUser";
 import profilePic from "../../assets/SkillUser.png";
 
 export default {
-  title: "components/cards/SkillUsers",
+  title: "components/cards/Skill User Card",
   component: skillUser,
 };
 
@@ -16,7 +16,7 @@ const skillcard = {
   profilepic: profilePic,
 };
 
-export const SkillUser = {
+export const Skilluser = {
   args: {
     ...skillcard,
   },
