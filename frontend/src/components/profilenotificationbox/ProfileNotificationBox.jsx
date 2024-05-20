@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Styles from "./ProfileNotificationBox.module.css";
+import styles from "./ProfileNotificationBox.module.css";
 import { FiBell } from "react-icons/fi";
 
 const ProfileNotificationBox = ({
@@ -22,14 +22,14 @@ const ProfileNotificationBox = ({
     : "";
 
   return (
-    <div className={Styles.profilenotificationbox}>
-      <FiBell className={Styles.bellicon} onClick={onBellIconClick} />
-      <img src={profilePic} alt="Profile" className={Styles.profilepic} />
-      <div className={Styles.info}>
-        <span className={Styles.name} onClick={onNameClick}>
+    <div className={styles.profilenotificationbox}>
+      <FiBell className={styles.bellicon} onClick={onBellIconClick} />
+      <img src={profilePic} alt="Profile" className={styles.profilepic} />
+      <div className={styles.info}>
+        <span className={styles.name} onClick={onNameClick}>
           {truncatedName}
         </span>
-        <span className={Styles.gmail}>{truncatedGmail}</span>
+        <span className={styles.gmail}>{truncatedGmail}</span>
       </div>
     </div>
   );

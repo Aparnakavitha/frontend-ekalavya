@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "./Footer.module.css";
+import styles from "./Footer.module.css";
 
 const Footer = (props) => {
   const {
@@ -9,29 +9,29 @@ const Footer = (props) => {
     copyrightContent2,
     isLeftALigned,
   } = props;
-  const LogoBoxs = isLeftALigned ? Styles.logoBoxLeft : Styles.logoBox;
-  const Containers = isLeftALigned ? Styles.conatinerLeft : Styles.container;
-  const COpyRights = isLeftALigned ? Styles.copyrightLeft : Styles.copyright;
+  const logoBoxClass = isLeftALigned ? styles.logoBoxLeft : styles.logoBox;
+  const containerClass = isLeftALigned ? styles.containerLeft : styles.container;
+  const copyrightClass = isLeftALigned ? styles.copyrightLeft : styles.copyright;
   return (
-    <div className={Styles.footer}>
-      <div className={Containers}>
-        <div className={LogoBoxs}>
-          <img src={Logo} alt="imagevgbhnj" className={Styles.img} />
-          <span className={Styles.quote}>{quoteContent}</span>
+    <div className={styles.footer}>
+      <div className={containerClass}>
+        <div className={logoBoxClass}>
+          <img src={Logo} alt="Logo" className={styles.img} />
+          <span className={styles.quote}>{quoteContent}</span>
         </div>
       </div>
 
-      <div className={Styles.bottumbox}>
-        <div className={COpyRights}>
-          <span className={Styles.copyrightContent}>{copyrightContent}</span>
+      <div className={styles.bottombox}>
+        <div className={copyrightClass}>
+          <span className={styles.copyrightContent}>{copyrightContent}</span>
           <a
             href="https://www.tarento.com/privacy-policy/"
-            className={Styles.copyrightContent2}
+            className={styles.copyrightContent2}
           >
             {copyrightContent2}
           </a>
         </div>
-        <div className={Styles.footerbox}></div>
+        <div className={styles.footerbox}></div>
       </div>
     </div>
   );

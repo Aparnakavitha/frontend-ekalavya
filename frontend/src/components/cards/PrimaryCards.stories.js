@@ -1,7 +1,7 @@
 import PrimaryCards from "./PrimaryCards";
 
 export default {
-  title: "PrimaryCards",
+  title: "Cards/PrimaryCards",
   component: PrimaryCards,
 };
 
@@ -18,7 +18,7 @@ const courseelement = {
   },
 };
 
-export const CourseCard = {
+export const Primarycards = {
   args: {
     ...courseelement,
   },

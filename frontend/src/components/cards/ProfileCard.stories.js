@@ -1,18 +1,17 @@
-// Card.stories.js
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import ProfileCard from "./ProfileCard";
 
 export default {
-  title: "Components/ProfileCard",
+  title: "Cards/ProfileCard",
   component: ProfileCard,
 };
 
-export const Default = (args) => (
+export const Profilecard = (args) => (
   <ProfileCard {...args} onClick={action("clicked")} />
 );
 
-Default.args = {
+Profilecard.args = {
   profileImage:
     "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/red_stone_23_23.png",
   title1: "John Doe",

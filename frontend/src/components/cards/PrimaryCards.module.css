@@ -1,4 +1,4 @@
-.Cards {
+.cards {
   position: relative;
 }
 .dateRow {
@@ -8,7 +8,7 @@
   gap: 10px;
 }
 
-.CardOutline {
+.cardOutline {
   position: absolute;
   max-width: 280px;
   max-height: 189px;
@@ -22,7 +22,7 @@
   color: var(--white);
 }
 
-.CardOutlineHover {
+.cardOutlineHover {
   z-index: 1;
   position: absolute;
   max-width: 280px;

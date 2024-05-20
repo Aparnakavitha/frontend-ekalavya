@@ -2,7 +2,7 @@ import React from "react";
 import TestimonialCard from "./TestimonialCard";
 
 export default {
-  title: "Components/TestimonialCard",
+  title: "Cards/TestimonialCard",
   component: TestimonialCard,
   argTypes: {
     name: { control: "text" },
@@ -15,8 +15,8 @@ export default {
 
 const Template = (args) => <TestimonialCard {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Testimonialcard = Template.bind({});
+Testimonialcard.args = {
   name: "John Doe",
   info: "Senior Software Engineer",
   place: "Sans-Francisco, USA",

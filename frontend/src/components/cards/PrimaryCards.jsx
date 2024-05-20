@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styles from "./PrimaryCards.module.css";
+import styles from "./PrimaryCards.module.css";
 import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
 import { format } from "date-fns";
 
@@ -27,8 +27,8 @@ const PrimaryCards = (props) => {
     return description;
   };
 
-  const formattedStartDate = format(new Date(startDate), "MM/dd/yyyy hh:mm a"); // e.g., "05/16/2024 03:24 PM"
-  const formattedEndDate = format(new Date(endDate), "MM/dd/yyyy hh:mm a"); // e.g., "05/17/2024 04:30 PM"
+  const formattedStartDate = format(new Date(startDate), "MM/dd/yyyy hh:mm a");
+  const formattedEndDate = format(new Date(endDate), "MM/dd/yyyy hh:mm a");
 
   const [isHover, setIsHover] = useState(false);
 
@@ -40,38 +40,38 @@ const PrimaryCards = (props) => {
     setIsHover(false);
   };
 
-  const leftCardClass = isHover ? Styles.leftCardHover : Styles.leftCard;
-  const rightCardClass = isHover ? Styles.rightCardHover : Styles.rightCard;
-  const maskClass = isHover ? Styles.maskHover : Styles.mask;
-  const mask2Class = isHover ? Styles.mask2Hover : Styles.mask2;
-  const mask3Class = isHover ? Styles.mask3Hover : Styles.mask3;
-  const mask4Class = isHover ? Styles.mask4Hover : Styles.mask4;
-  const arrowClass = isHover ? Styles.arrowHover : Styles.arrow;
-  const cardsClass = isHover ? Styles.CardOutlineHover : Styles.CardOutline;
+  const leftCardClass = isHover ? styles.leftCardHover : styles.leftCard;
+  const rightCardClass = isHover ? styles.rightCardHover : styles.rightCard;
+  const maskClass = isHover ? styles.maskHover : styles.mask;
+  const mask2Class = isHover ? styles.mask2Hover : styles.mask2;
+  const mask3Class = isHover ? styles.mask3Hover : styles.mask3;
+  const mask4Class = isHover ? styles.mask4Hover : styles.mask4;
+  const arrowClass = isHover ? styles.arrowHover : styles.arrow;
+  const cardsClass = isHover ? styles.cardOutlineHover : styles.cardOutline;
 
   return (
     <div
-      className={`${Styles.Cards}`}
+      className={`${styles.cards}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className={cardsClass} onClick={handleClick}>
-        <a className={Styles.cardsminiheading}>{miniHeading}</a>
-        <a className={Styles.cardsmainheading}>
+        <a className={styles.cardsminiheading}>{miniHeading}</a>
+        <a className={styles.cardsmainheading}>
           {transformMainHeading(mainHeading)}
         </a>
-        <div className={Styles.dateRow}>
-          <a className={Styles.cardsdate}>{formattedStartDate}</a>
+        <div className={styles.dateRow}>
+          <a className={styles.cardsdate}>{formattedStartDate}</a>
           <div>
             <GoArrowRight />
           </div>
-          <a className={Styles.cardsdate}>{formattedEndDate}</a>
+          <a className={styles.cardsdate}>{formattedEndDate}</a>
         </div>
-        <a className={Styles.cardsdiscription}>
+        <a className={styles.cardsdiscription}>
           {transformMainDescription(Desicription)}
         </a>
       </div>
-      <div className={Styles.CardsOutline}>
+      <div className={styles.CardsOutline}>
         <div className={leftCardClass}></div>
         <div className={rightCardClass}></div>
         <div className={maskClass}></div>

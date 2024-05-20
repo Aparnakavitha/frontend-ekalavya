@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Styles from "./TestimonialCard.module.css";
+import styles from "./TestimonialCard.module.css";
 
 const TestimonialCard = ({
   name,
@@ -10,16 +10,16 @@ const TestimonialCard = ({
   profilePicture,
 }) => {
   return (
-    <div className={Styles.testimonialbox}>
-      <div className={Styles.testimonialcontent}>
-        <img src={profilePicture} alt="Profile" className={Styles.profile} />
-        <div className={Styles.details}>
-          <div className={Styles.name}>{name}</div>
-          <div className={Styles.info}>{info}</div>
-          <div className={Styles.place}>{place}</div>
+    <div className={styles.testimonialbox}>
+      <div className={styles.testimonialcontent}>
+        <img src={profilePicture} alt="Profile" className={styles.profile} />
+        <div className={styles.details}>
+          <div className={styles.name}>{name}</div>
+          <div className={styles.info}>{info}</div>
+          <div className={styles.place}>{place}</div>
         </div>
       </div>
-      <div className={Styles.description}>{description}</div>
+      <div className={styles.description}>{description}</div>
     </div>
   );
 };

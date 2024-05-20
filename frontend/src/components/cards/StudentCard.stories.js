@@ -1,7 +1,7 @@
 import StudentCard from "./StudentCard";
 
 export default {
-  title: "Student Cards",
+  title: "Cards/Student Cards",
   component: StudentCard,
 };
 
@@ -18,7 +18,7 @@ const studentobject = {
   },
 };
 
-export const StudentCards = {
+export const Studentcards = {
   args: {
     ...studentobject,
   },

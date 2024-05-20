@@ -2,7 +2,7 @@ import React from "react";
 import NavButton from "./NavButton";
 
 export default {
-  title: "NavButton",
+  title: "Button/NavButton",
   component: NavButton,
   argTypes: {
     onClick: { action: "clicked" },
@@ -11,7 +11,7 @@ export default {
 
 const Template = (args) => <NavButton {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Navbutton = Template.bind({});
+Navbutton.args = {
   pageName: "Home",
 };

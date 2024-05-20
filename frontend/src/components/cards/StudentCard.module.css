@@ -1,10 +1,10 @@
-.Cards {
+.cards {
   position: relative;
   width: 169px;
   cursor: pointer;
 }
 
-.CardOutline {
+.cardOutline {
   z-index: 1;
   display: flex;
   width: 169px;
@@ -15,7 +15,7 @@
   color: var(--white);
 }
 
-.CardOutlineHover {
+.cardOutlineHover {
   z-index: 1;
   display: flex;
   width: 169px;

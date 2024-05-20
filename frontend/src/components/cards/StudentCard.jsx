@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styles from "./StudentCard.module.css";
+import styles from "./StudentCard.module.css"; 
 import { GoArrowUpRight } from "react-icons/go";
 
 const StudentCard = (props) => {
@@ -38,18 +38,18 @@ const StudentCard = (props) => {
     setIsHover(false);
   };
 
-  const leftCardClass = isHover ? Styles.leftCardHover : Styles.leftCard;
-  const rightCardClass = isHover ? Styles.rightCardHover : Styles.rightCard;
-  const maskClass = isHover ? Styles.maskHover : Styles.mask;
-  const mask2Class = isHover ? Styles.mask2Hover : Styles.mask2;
-  const mask3Class = isHover ? Styles.mask3Hover : Styles.mask3;
-  const mask4Class = isHover ? Styles.mask4Hover : Styles.mask4;
-  const arrowClass = isHover ? Styles.arrowHover : Styles.arrow;
-  const cardsClass = isHover ? Styles.CardOutlineHover : Styles.CardOutline;
+  const leftCardClass = isHover ? styles.leftCardHover : styles.leftCard;
+  const rightCardClass = isHover ? styles.rightCardHover : styles.rightCard;
+  const maskClass = isHover ? styles.maskHover : styles.mask;
+  const mask2Class = isHover ? styles.mask2Hover : styles.mask2;
+  const mask3Class = isHover ? styles.mask3Hover : styles.mask3;
+  const mask4Class = isHover ? styles.mask4Hover : styles.mask4;
+  const arrowClass = isHover ? styles.arrowHover : styles.arrow;
+  const cardsClass = isHover ? styles.cardOutlineHover : styles.cardOutline;
 
   return (
     <div
-      className={Styles.Cards}
+      className={styles.cards}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -57,20 +57,20 @@ const StudentCard = (props) => {
         <img
           src={studentImage}
           alt="profile Picture"
-          className={Styles.studentImage}
+          className={styles.studentImage}
         />
-        <div className={Styles.maincontent}>
-          <a className={Styles.studentname}>{transformMainName(studentName)}</a>
-          <a className={Styles.studentid}>{studentId}</a>
-          <a className={Styles.studentcollege}>{studentCollege}</a>
+        <div className={styles.maincontent}>
+          <a className={styles.studentname}>{transformMainName(studentName)}</a>
+          <a className={styles.studentid}>{studentId}</a>
+          <a className={styles.studentcollege}>{studentCollege}</a>
         </div>
-        <div className={Styles.maincontent}>
-          <a className={Styles.studentmail}>{transformMainMail(studentMail)}</a>
-          <a className={Styles.studentphonenumber}>{studentPhoneNumber}</a>
+        <div className={styles.maincontent}>
+          <a className={styles.studentmail}>{transformMainMail(studentMail)}</a>
+          <a className={styles.studentphonenumber}>{studentPhoneNumber}</a>
         </div>
       </div>
 
-      <div className={Styles.CardsOutline}>
+      <div className={styles.CardsOutline}>
         <div className={leftCardClass}></div>
         <div className={rightCardClass}></div>
         <div className={maskClass}></div>

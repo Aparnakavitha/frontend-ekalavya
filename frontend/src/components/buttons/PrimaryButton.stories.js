@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import PrimaryButton from "./PrimaryButton";
 
 export default {
-  title: "PrimaryButton",
+  title: "Button/PrimaryButton",
   component: PrimaryButton,
 };
 
-export const sample = {
+export const Primarybutton = {
   args: {
     content: "hello",
     variant: "secondary",
