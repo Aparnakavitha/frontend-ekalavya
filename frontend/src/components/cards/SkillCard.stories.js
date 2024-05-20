@@ -15,7 +15,7 @@ export default {
 const Template = (args) => <Card {...args} />;
 
 export const SkillCard = Template.bind({});
-SkillCards.args = {
+SkillCard.args = {
   title: "Java",
   subtitle: "Level 1",
   showCloseIcon: true,
