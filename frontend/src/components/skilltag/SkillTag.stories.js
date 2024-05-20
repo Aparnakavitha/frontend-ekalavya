@@ -1,10 +1,10 @@
 import skillTag from "./SkillTag";
 export default {
-  title: "Components/SkillTag",
+  title: "components/SkillTag",
   component: skillTag,
 };
 
-export const Default = {
+export const SkillTag = {
   args: {
     title: "Java",
   },

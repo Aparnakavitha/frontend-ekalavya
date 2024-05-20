@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "./SkillBatchCard.module.css";
+import styles from "./SkillBatchCard.module.css";
 import { FaTrash } from "react-icons/fa6";
 
 const SBCards = (props) => {
@@ -43,26 +43,26 @@ const SBCards = (props) => {
 
   return (
     <div className="row">
-      <div className={`col-lg-2 col-md-3 col-sm-4 col-xs-6 ${Styles.Cards}`}>
+      <div className={`col-lg-2 col-md-3 col-sm-4 col-xs-6 ${styles.Cards}`}>
         <div
-          className={cardType === "Skill" ? Styles.rightCard : Styles.leftCard}
+          className={cardType === "Skill" ? styles.rightCard : styles.leftCard}
           onClick={handleClick}
         >
-          <div className={Styles.titleContainer}>
-            <a className={Styles.cardsminiheading}>{miniHeading}</a>
+          <div className={styles.titleContainer}>
+            <a className={styles.cardsminiheading}>{miniHeading}</a>
             <a
-              className={Styles.cardsmainheading}
+              className={styles.cardsmainheading}
               style={
                 cardType === "Skill" ? { width: "90%" } : { width: "auto" }
               }
             >
               {transformMainHeading(mainHeading, cardType)}
             </a>
-            <a className={Styles.cardsdiscription}>{formattedCount}</a>
+            <a className={styles.cardsdiscription}>{formattedCount}</a>
           </div>
           {cardType === "Skill" && (
             <FaTrash
-              className={Styles.deleteIcon}
+              className={styles.deleteIcon}
               onClick={handleDeleteIconClick}
               title="Delete"
             />

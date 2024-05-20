@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Styles from "./Filter.module.css";
+import styles from "./Filter.module.css";
 import { FaAngleDown } from "react-icons/fa";
 
 const Filter = (props) => {
@@ -12,18 +12,18 @@ const Filter = (props) => {
   };
 
   return (
-    <div className={Styles.filter}>
-      <div className={Styles.filterClass} onClick={handleDrop}>
+    <div className={styles.filter}>
+      <div className={styles.filterClass} onClick={handleDrop}>
         <a>{Heading}</a>
-        <div className={Styles.iconAngleDown}>
+        <div className={styles.iconAngleDown}>
           <FaAngleDown />
         </div>
       </div>
       {dropContent && (
-        <div ref={dropRef} className={Styles.drop}>
+        <div ref={dropRef} className={styles.drop}>
           {Content.map((content, index) => (
             <div
-              className={Styles.dropcontent}
+              className={styles.dropcontent}
               key={index}
               onClick={handleDropClick}
             >

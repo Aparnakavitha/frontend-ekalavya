@@ -1,8 +1,8 @@
-import Input from "./InputBox";
+import inputBox from "./InputBox";
 
 export default {
-  title: "Input",
-  component: Input,
+  title: "components/InputBox",
+  component: inputBox,
 };
 
 const inputData = {
@@ -12,7 +12,7 @@ const inputData = {
   placeholders: ["Address ", "Address 2", "Address 3", "Address 3"],
 };
 
-export const input = {
+export const InputBox = {
   args: {
     ...inputData,
   },

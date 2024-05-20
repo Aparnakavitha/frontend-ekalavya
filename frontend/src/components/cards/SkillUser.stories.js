@@ -1,8 +1,8 @@
-import Card from "./SkillUser";
+import skillUser from "./SkillUser";
 
 export default {
-  title: "Skill User Card",
-  component: Card,
+  title: "components/cards/SkillUser",
+  component: skillUser,
 };
 
 const skillcard = {
@@ -15,7 +15,7 @@ const skillcard = {
   profilepic: "image",
 };
 
-export const SkillsCard = {
+export const SkillUser = {
   args: {
     ...skillcard,
   },

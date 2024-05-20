@@ -1,11 +1,11 @@
-import Filter from "./Filter"
+import filter from "./Filter"
 
 export default{
-    title:"Filter",
-    component: Filter
+    title:"components/Filter",
+    component: filter
 }
 
-export const sample = {
+export const Filter = {
     args: {
         Heading : "Filter",
         Content : [" 1", " 2", " 3",""]

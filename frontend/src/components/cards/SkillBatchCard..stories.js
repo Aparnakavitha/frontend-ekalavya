@@ -1,8 +1,8 @@
-import SBCards from "./SkillBatchCard";
+import skillBatchCard from "./SkillBatchCard";
 import { action } from "@storybook/addon-actions";
 export default {
-  title: "Skill Batch Card",
-  component: SBCards,
+  title: "components/cards/SkillBatchCard",
+  component: skillBatchCard,
 };
 
 const courseelement = {
@@ -14,7 +14,7 @@ const courseelement = {
   handleDeleteClick: action("Delete Icon Clicked!"),
 };
 
-export const SBCard = {
+export const SkillBatchCard = {
   args: {
     ...courseelement,
   },
