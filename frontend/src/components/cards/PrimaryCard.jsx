@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import styles from "./PrimaryCards.module.css";
+import styles from "./PrimaryCard.module.css";
 import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
 import { format } from "date-fns";
 
-const PrimaryCards = (props) => {
+const PrimaryCard = (props) => {
   const {
     miniHeading,
     mainHeading,
@@ -86,4 +86,4 @@ const PrimaryCards = (props) => {
   );
 };
 
-export default PrimaryCards;
+export default PrimaryCard;
