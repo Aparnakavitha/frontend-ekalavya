@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import Styles from "./Header.module.css"; // Import the CSS file for styling
-import { BsX, BsList } from "react-icons/bs"; // Import the close and hamburger icons
-// import { edunexa } from '../../edunexa.png';
+import Styles from "./Header.module.css";
+import { BsX, BsList } from "react-icons/bs";
 
 const Header = ({ children, menuItems, imageSrc, iconSize, button }) => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -12,7 +11,6 @@ const Header = ({ children, menuItems, imageSrc, iconSize, button }) => {
 
   return (
     <div className={Styles.headerContainer}>
-      {/* Sidebar */}
       <div className={`${Styles.sidebar} ${showSidebar ? Styles.show : ""}`}>
         <div className={Styles.headerMenuRep}>
           {menuItems.map((item, index) => (
@@ -35,12 +33,11 @@ const Header = ({ children, menuItems, imageSrc, iconSize, button }) => {
         </div>
       </div>
 
-      {/* Header Title */}
       <div className={Styles.headerTitle}>
         <img src={imageSrc} className={Styles.image} alt="Icon" />
       </div>
 
-      {/* Header Menu */}
+   
       <div className={Styles.headerMenu}>
         {menuItems.map((item, index) => (
           <span key={index} className={Styles.menuItem}>
@@ -49,9 +46,6 @@ const Header = ({ children, menuItems, imageSrc, iconSize, button }) => {
         ))}
       </div>
 
-      {/* {button} */}
-
-      {/* Header Button */}
       <div className={Styles.headerButton}>{button}</div>
     </div>
   );

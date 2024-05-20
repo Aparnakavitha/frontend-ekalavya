@@ -3,14 +3,13 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Center the header-menu */
-  background-color: var(--background); /* Background color with low opacity */
+  justify-content: space-between;
+  background-color: var(--background);
   padding: 0 10%;
 }
 
 .headerTitle {
   width: 130px;
-  /* height: 35px; */
 }
 
 .headerMenu {
@@ -44,57 +43,34 @@
   cursor: pointer;
 }
 
-/* Hamburger Icon Styles */
 .sidebarIcon {
-  display: none; /* Hide hamburger icon by default */
+  display: none;
 }
+
 .menuItemResp {
   display: none;
 }
+
 .sidebar {
   display: none;
 }
-/* .hamburgerIcon div {
-  width: 25px;
-  height: 3px;
-  background-color: #ffffff;
-  margin: 3px 0;
-} */
 
-/* Sidebar Styles */
-/* .sidebar {
-  position: fixed;
-  top: 016px;
-  right: -250px;
-  height: 100vh;
-  width: 250px;
-  z-index: 999;
-  background-color: #2E2D2D;
-  box-shadow: -10px 0 10px rgba(0,0,0, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  transition: right 0.3s ease;
-} */
-
-/* Show Sidebar */
 .show {
   left: 0;
 }
 
-/* Media query for small screens */
 @media (max-width: 768px) {
   .headerContainer {
     position: absolute;
-    width: 90%;
+    width: 100%;
     padding: 0 5%;
     left: 0;
   }
 
   .headerMenu {
-    display: none; /* Hide menu items initially on small screens */
+    display: none;
   }
+
   .menuItemResp {
     cursor: pointer;
     display: block;
@@ -104,6 +80,7 @@
     line-height: 100%;
     text-align: left;
   }
+
   .headerMenuRep {
     position: fixed;
     top: 80px;
@@ -114,19 +91,19 @@
   .headerTitle {
     display: flex;
     width: 100%;
-    /* height: 35px; */
     align-items: center;
     justify-content: center;
   }
+
   .headerTitleResp {
     display: flex;
     width: 100%;
-    /* height: 35px; */
     align-items: start;
     justify-content: start;
     margin-left: 17px;
     margin-top: 28px;
   }
+
   .buttonResp {
     width: 94px;
     height: 48px;
@@ -140,23 +117,24 @@
     border-radius: 100px;
     cursor: pointer;
   }
+
   .headerButton {
     position: absolute;
     bottom: 136px;
   }
+
   .button {
     display: none;
   }
 
   .sidebarIcon {
-    display: block; /* Show hamburger icon on small screens */
-    margin-left: 10px; /* Add some margin for spacing */
-    font-size: 24px; /* Adjust size of hamburger icon */
+    display: block;
+    margin-left: 10px;
+    font-size: 24px;
     cursor: pointer;
-    color: var(
-      --neutral200
-    ); /* Add pointer cursor for indicating clickability */
+    color: var(--neutral200);
   }
+
   .hamburger {
     cursor: pointer;
     font-size: 25px;
@@ -165,8 +143,8 @@
     position: fixed;
     left: 25px;
     transition: left 0.5s ease-out;
-    /* Add transition for left property */
   }
+
   .crossIcon {
     cursor: pointer;
     font-size: 25px;
@@ -176,12 +154,14 @@
     padding-top: 3px;
     right: 40px;
   }
-  .hamburgerIcon div {
+
+  /* .hamburgerIcon div {
     width: 25px;
     height: 3px;
     background-color: var(--white);
     margin: 3px 0;
-  }
+  } */
+
   .sidebar {
     position: fixed;
     top: 16px;
@@ -196,18 +176,22 @@
     justify-content: flex-start;
     transition: left 0.5s ease;
   }
+
   .image {
     width: 100px;
     padding-bottom: 0px;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1068px) {
+@media (min-width: 768px) and (max-width: 992px) {
   .headerMenu {
     width: 95%;
   }
+
   .image {
     width: 120px;
     padding-bottom: 0px;
   }
 }
+
+
