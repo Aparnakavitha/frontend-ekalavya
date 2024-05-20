@@ -2,7 +2,7 @@ import TextButton from "./TextButton";
 import { GoTrash } from "react-icons/go";
 
 export default {
-  title: "Components/Button/Text Button",
+  title: "Components/Buttons/Text Button",
   component: TextButton,
 };
 
