@@ -9,7 +9,7 @@ export default {
 export const Textbutton = {
   args: {
     icon: <GoTrash />,
-    text: "fdnej",
+    text: "Delete",
     onClick: (e) => {
       console.log("hllo");
     },
