@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Button.module.css"; // Import CSS module
+import styles from "./PrimaryButton.module.css";
 
-const Button = (props) => {
+const PrimaryButton = (props) => {
   const { variant, content, onClick, width } = props;
 
   let widthSize;
@@ -10,7 +10,7 @@ const Button = (props) => {
   } else if (width === "half") {
     widthSize = styles.half;
   } else {
-    widthSize = ""; // Default to no additional width style if not full or half
+    widthSize = ""; 
   }
 
   return (
@@ -23,4 +23,4 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+export default PrimaryButton;

@@ -17,7 +17,6 @@
 .footer {
   display: flex;
   flex-direction: column;
-  /* height: 367px; */
   gap: 40px;
   background-color: var(--background);
 }
@@ -67,17 +66,13 @@
   color: var(--white);
   font-size: 16px;
   font-weight: 400;
-  /* text-decoration-line: underline; */
 }
 
 .copyrightContent2 {
-  /* padding-left: 57px; */
   font-family: Urbanist;
   color: var(--white);
   font-size: 16px;
-  /* font-style: normal; */
   font-weight: 400;
-  /* line-height: normal; */
   text-decoration-line: underline;
 }
 
@@ -102,7 +97,6 @@
     color: var(--white);
     font-size: 10px;
     font-weight: 400;
-    /* text-decoration-line: underline; */
   }
   .copyrightContent2 {
     font-size: 10px;

@@ -1,19 +1,16 @@
 import React from "react";
 import NavButton from "./NavButton";
 
-// Meta information for the story
 export default {
-  title: "NavButton", // Title of the component/category
-  component: NavButton, // Component to be displayed
+  title: "NavButton",
+  component: NavButton,
   argTypes: {
-    onClick: { action: "clicked" }, // Action for the onClick event
+    onClick: { action: "clicked" },
   },
 };
 
-// Template for the story
 const Template = (args) => <NavButton {...args} />;
 
-// Default story
 export const Default = Template.bind({});
 Default.args = {
   pageName: "Home",

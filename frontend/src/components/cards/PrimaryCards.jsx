@@ -27,19 +27,15 @@ const PrimaryCards = (props) => {
     return description;
   };
 
-  // Format the dates and times using date-fns
   const formattedStartDate = format(new Date(startDate), "MM/dd/yyyy hh:mm a"); // e.g., "05/16/2024 03:24 PM"
   const formattedEndDate = format(new Date(endDate), "MM/dd/yyyy hh:mm a"); // e.g., "05/17/2024 04:30 PM"
 
-  // State to track hover state
   const [isHover, setIsHover] = useState(false);
 
-  // Function to handle mouse enter event
   const handleMouseEnter = () => {
     setIsHover(true);
   };
 
-  // Function to handle mouse leave event
   const handleMouseLeave = () => {
     setIsHover(false);
   };

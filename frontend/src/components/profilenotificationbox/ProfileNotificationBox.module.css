@@ -8,8 +8,8 @@
   padding-right: 21px;
   width: 325px;
   height: 80px;
-  background-color: var(--background); /* Background color */
-  overflow: hidden; /* Ensure contents are clipped */
+  background-color: var(--background);
+  overflow: hidden;
   box-shadow: 5px 4px 28px rgba(0, 0, 0, 0.28);
 }
 
@@ -21,10 +21,10 @@
 }
 
 .info {
-  flex-grow: 1; /* Grow to take remaining space */
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Vertically center the content */
+  justify-content: center;
   align-items: flex-start;
 }
 
@@ -34,10 +34,10 @@
   font-size: 20px;
   line-height: 25px;
   letter-spacing: -0.41px;
-  color: var(--white); /* Name font color */
-  white-space: nowrap; /* Prevent line break */
-  overflow: hidden; /* Hide overflow text */
-  text-overflow: ellipsis; /* Display ellipsis for overflow text */
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: pointer;
 }
 
@@ -45,22 +45,21 @@
   margin-left: 19px;
   color: var(--neutral200);
   font-size: 14px;
-  white-space: nowrap; /* Prevent line break */
-  overflow: hidden; /* Hide overflow text */
-  text-overflow: ellipsis; /* Display ellipsis for overflow text */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .bellicon {
   margin-right: 19px;
   font-size: 20px;
-  color: var(--white); /* Bell icon color */
+  color: var(--white);
   width: 26px;
   height: 26px;
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
   cursor: pointer;
 }
 
-/* Media queries for responsiveness */
 @media only screen and (max-width: 1024px) {
   .profilenotificationbox {
     width: 260px;

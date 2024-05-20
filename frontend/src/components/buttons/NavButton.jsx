@@ -4,7 +4,6 @@ import Styles from "./NavButton.module.css";
 
 const NavButton = ({ pageName, onClick }) => {
   const goBack = () => {
-    // Function to handle going back to the previous page
     onClick();
   };
 

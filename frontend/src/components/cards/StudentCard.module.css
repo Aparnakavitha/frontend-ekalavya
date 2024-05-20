@@ -16,8 +16,6 @@
 }
 
 .CardOutlineHover {
-  /* width: 230px; */
-  /* height: 228px; */
   z-index: 1;
   display: flex;
   width: 169px;
@@ -53,7 +51,7 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
-  line-height: 21px; /* 105% */
+  line-height: 21px; 
   letter-spacing: -0.41px;
 }
 
@@ -61,7 +59,7 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 22px; /* 157.143% */
+  line-height: 22px; 
   letter-spacing: -0.41px;
 }
 
@@ -69,12 +67,11 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 15px; /* 107.143% */
+  line-height: 15px; 
   letter-spacing: -0.41px;
 }
 
 .studentmail {
-  /* font-family: Urbanist; */
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -83,7 +80,6 @@
 }
 
 .studentphonenumber {
-  /* font-family: Urbanist; */
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -91,7 +87,6 @@
   letter-spacing: -0.16px;
 }
 
-/* ///////////////////////////// */
 
 .leftCard {
   position: absolute;
@@ -131,7 +126,6 @@
   left: 0;
   top: 70px;
   background-color: var(--neutral300);
-  /* top: 69px; */
 }
 .mask {
   position: absolute;
@@ -141,7 +135,6 @@
   left: 174px;
   box-shadow: -3px 3px 0 3px var(--neutral800);
   top: 17px;
-  /* background-color: #494949; */
 }
 
 .maskHover {
@@ -152,7 +145,6 @@
   left: 174px;
   top: 17px;
   box-shadow: -3px 3px 0 3px var(--neutral300);
-  /* background-color: #ffffff; */
 }
 
 .mask2 {
@@ -163,7 +155,6 @@
   left: 150px;
   top: 0px;
   background-color: var(--neutral800);
-  /* box-shadow: -10px 10px 0 rgb(87, 64, 64); */
 }
 
 .mask2Hover {
@@ -174,7 +165,6 @@
   left: 150px;
   top: 0px;
   background-color: var(--neutral300);
-  /* background-color: #494949; */
 }
 
 .mask3 {
@@ -185,28 +175,22 @@
   left: 210px;
   top: 57px;
   background-color: var(--neutral800);
-  /* box-shadow: -10px 10px 0 rgb(85, 20, 20); */
 }
 
 .mask3Hover {
   position: absolute;
   width: 20px;
   height: 23px;
-  /* border-top: 1px solid  var(--Primary-Color-1, #baff66); */
-  /* border-right: 1px solid  var(--Primary-Color-1, #baff66); */
   border-radius: 0 69% 0 0;
   left: 210px;
   top: 57px;
   background-color: var(--neutral300);
-  /* background-color: #494949; */
 }
 
 .mask4 {
   position: absolute;
   width: 40px;
   height: 40px;
-  /* border-bottom: 1px solid  var(--Primary-Color-1, #baff66); */
-  /* border-left: 1px solid  var(--Primary-Color-1, #baff66); */
   border-radius: 0 0 0 90%;
   left: 172px;
   top: 17px;
@@ -217,8 +201,6 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  /* border-bottom: 1px solid  var(--Primary-Color-1, #baff66); */
-  /* border-left: 1px solid  var(--Primary-Color-1, #baff66); */
   border-radius: 0 0 0 90%;
   left: 172px;
   top: 17px;
@@ -229,7 +211,6 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  /* border: 0.4px solid  var(--Primary-Color-1, #ffffff); */
   box-shadow: 0 0 0 0.5px var(--white);
   border-radius: 50%;
   left: 190px;
@@ -245,7 +226,6 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  /* border: 0.4px solid  var(--Primary-Color-1, #ffffff); */
   box-shadow: 0 0 0 0.5px var(--white);
   border-radius: 50%;
   left: 190px;
