@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 import styles from "./InputBox.module.css";
 
-const Input = ({
-  width = "100%",
-  height = "57px",
-  label,
-  placeholders,
-  ...rest
-}) => {
+const Input = ({ size, label, placeholders, ...rest }) => {
   const [clicked, setClicked] = useState(false);
 
   const handleFocus = () => {
     setClicked(true);
   };
+
   const handleBlur = () => {
     setClicked(false);
   };
@@ -20,20 +15,30 @@ const Input = ({
   return (
     <div
       className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}
-      style={{ width: width }}
     >
       <label htmlFor={rest.id} className={styles["input-label"]}>
         {label}
       </label>
       {placeholders.map((placeholder, index) => (
-        <input
-          key={index}
-          className={`${styles.input}`}
-          placeholder={placeholder}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          style={{ height: height }}
-        />
+        <React.Fragment key={index}>
+          {size === "tall" ? (
+            <textarea
+              className={`${styles.input} ${styles["tall-size"]}`}
+              placeholder={placeholder}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          ) : (
+            <input
+              className={`${styles.input} ${
+                size === "normal" ? styles["normal-size"] : ""
+              } ${size === "small" ? styles["small-size"] : ""}`}
+              placeholder={placeholder}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+          )}
+        </React.Fragment>
       ))}
     </div>
   );

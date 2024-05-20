@@ -5,15 +5,38 @@ export default {
   component: inputBox,
 };
 
-const inputData = {
-  label: "Enter email addresses",
-  width: "526px",
-  height: "57px",
-  placeholders: ["Email Address "],
+const NormalData = {
+  label: "Enter email address",
+  size: "normal",
+  placeholders: ["Email Address"],
 };
 
-export const InputBox = {
+const SmallData = {
+  label: "First Name",
+  size: "small",
+  placeholders: ["First Name"],
+};
+
+const TallData = {
+  label: "Enter Address",
+  size: "tall",
+  placeholders: ["Address"],
+};
+
+export const Normal = {
   args: {
-    ...inputData,
+    ...NormalData,
+  },
+};
+
+export const Small = {
+  args: {
+    ...SmallData,
+  },
+};
+
+export const Tall = {
+  args: {
+    ...TallData,
   },
 };
