@@ -1,17 +1,17 @@
 import React from "react";
 import Header from "./Header";
-import edunexa from "./edunexa.png";
-// import Button from '../Button/Button';
+import edunexa from "../../assets/edunexa.png";
+// import Button from '../Buttons/PrimaryButton';
 
 export default {
-  title: "Header",
+  title: "Layouts/Header",
   component: Header,
   args: {
     // children: 'Login',
     menuItems: ["Leaderboard", "Track", "Top performers", "Testimonials"], 
     imageSrc: edunexa, // Placeholder for imageSrc prop,
-    // button : <Button children={"Login"}/>
+    // button : <PrimaryButton children={"Login"}/>
   },
 };
 
-export const Default = (args) => <Header {...args} />;
+export const HeaderComponent = (args) => <Header {...args} />;

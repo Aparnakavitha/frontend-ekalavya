@@ -2,7 +2,7 @@ import React from "react";
 import Table from "./Table";
 
 export default {
-  title: "Table",
+  title: "components/Table",
   component: Table,
 };
 
@@ -20,8 +20,8 @@ const data = [
 
 const headings = ["First Name", "Last Name", "Age"];
 
-export const WithDataAndHeadings = Template.bind({});
-WithDataAndHeadings.args = {
+export const TableComponent = Template.bind({});
+TableComponent.args = {
   data,
   headings,
 };

@@ -3,14 +3,23 @@ import { action } from "@storybook/addon-actions";
 import SearchBar from "./Searchbar";
 
 export default {
-  title: "SearchBar",
+  title: "components/SearchBar",
   component: SearchBar,
 };
 
-export const sample = {
+export const SearchbarLarge = {
   args: {
     variant: "large",
     placeholder: "Search...",
     onSearch: action("searched"),
   },
 };
+
+export const SearchbarSmall = {
+  args: {
+    variant: "small",
+    placeholder: "Search...",
+    onSearch: action("searched"),
+  },
+};
+

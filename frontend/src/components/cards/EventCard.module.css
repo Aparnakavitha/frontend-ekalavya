@@ -143,6 +143,7 @@
     max-height: calc(36px * 0.8);
     gap: 1.8rem;
   }
+  
   .main {
     font-size: calc(15px * 0.8);
     padding-right: calc(10px * 0.8);
