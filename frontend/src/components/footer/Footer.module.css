@@ -5,13 +5,14 @@
   align-items: center;
   padding-top: 26px;
 }
+
 .conatinerLeft {
-  padding-left: 57px;
+  /* padding-left: 57px; */
   display: flex;
   flex-direction: column;
   gap: 40px;
   align-items: flex-start;
-  padding-top: 26px;
+  
 }
 
 .footer {
@@ -29,6 +30,8 @@
 }
 
 .logoBoxLeft {
+  padding-top: 26px;
+  padding-left: 57px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -61,11 +64,13 @@
   gap: 10px;
   text-align: center;
 }
+
 .copyrightContent {
   font-family: Urbanist;
   color: var(--white);
   font-size: 16px;
   font-weight: 400;
+  padding-bottom: 10px;
 }
 
 .copyrightContent2 {
@@ -74,6 +79,7 @@
   font-size: 16px;
   font-weight: 400;
   text-decoration-line: underline;
+  padding-bottom: 10px;
 }
 
 .copyright {
@@ -84,6 +90,7 @@
 }
 
 .copyrightLeft {
+  padding-left: 57px;
   display: flex;
   justify-content: flex-start;
   gap: 5px;
@@ -97,9 +104,11 @@
     font-size: 10px;
     font-weight: 400;
   }
+
   .copyrightContent2 {
     font-size: 10px;
   }
+
   .copyright {
     flex-direction: column;
     align-items: center;
@@ -114,10 +123,12 @@
     padding-left: 0px;
     align-items: center;
   }
+
   .logoBoxLeft {
     padding-left: 0px;
     align-items: center;
   }
+
   .copyrightLeft {
     padding-left: 0px;
     justify-content: center;

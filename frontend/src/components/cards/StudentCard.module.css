@@ -29,7 +29,7 @@
 .maincontent {
   z-index: 1;
   display: flex;
-  width: 213px;
+  width: 193px;
   flex-direction: column;
   align-items: flex-start;
   gap: -2px;

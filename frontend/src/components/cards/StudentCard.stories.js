@@ -10,9 +10,9 @@ const studentobject = {
   studentImage: image,
   studentName: "John Doe",
   studentId: "123",
-  studentCollege: "sfddas",
-  studentMail: "sddec",
-  studentPhoneNumber: 1234,
+  studentCollege: "IIT Bomaby",
+  studentMail: "johndoe@gmail.com",
+  studentPhoneNumber: 9865321234,
   cardType: "student",
   handleClick: (e) => {
     console.log("clicked");

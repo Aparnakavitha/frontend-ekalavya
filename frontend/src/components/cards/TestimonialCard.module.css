@@ -17,6 +17,7 @@
   background-color: var(--white);
   color: var(--secondary-color);
 }
+
 .testimonialcontent {
   display: flex;
   flex-direction: row;
@@ -35,15 +36,18 @@
   flex-direction: column;
   width: 145px;
 }
+
 .name {
   font-size: 16px;
   letter-spacing: -0.41px;
   font-weight: 600;
 }
+
 .info,
 .place {
   font-size: 12px;
 }
+
 .description {
   font-size: 14px;
   font-weight: 400;
