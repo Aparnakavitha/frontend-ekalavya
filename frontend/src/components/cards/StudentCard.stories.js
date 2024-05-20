@@ -1,5 +1,5 @@
 import StudentCard from "./StudentCard";
-import image from "../../assets/ProfilePicture/DP.png";
+import image from "../../assets/DP.png";
 
 export default {
   title: "Cards/Student Cards",

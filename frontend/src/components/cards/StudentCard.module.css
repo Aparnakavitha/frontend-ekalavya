@@ -127,6 +127,7 @@
   top: 70px;
   background-color: var(--neutral300);
 }
+
 .mask {
   position: absolute;
   width: 40px;
