@@ -22,4 +22,3 @@ export const SearchbarSmall = {
     onSearch: action("searched"),
   },
 };
-

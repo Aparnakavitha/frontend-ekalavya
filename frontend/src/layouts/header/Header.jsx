@@ -37,7 +37,6 @@ const Header = ({ children, menuItems, imageSrc, iconSize, button }) => {
         <img src={imageSrc} className={Styles.image} alt="Icon" />
       </div>
 
-   
       <div className={Styles.headerMenu}>
         {menuItems.map((item, index) => (
           <span key={index} className={Styles.menuItem}>

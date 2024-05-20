@@ -17,7 +17,6 @@ const sample ={
   onclick: (e)=>{console.log("Event card clicked!")}
 }
 
-
 export const EventcardDark = {
   args: {
     ...sample
