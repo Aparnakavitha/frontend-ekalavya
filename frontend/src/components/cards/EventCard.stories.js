@@ -2,7 +2,7 @@ import React from "react";
 import EventCard from "./EventCard";
 
 export default {
-  title: "components/cards/Event card",
+  title: "components/cards/Event Card",
   component: EventCard,
 };
 
@@ -18,7 +18,7 @@ const sample ={
 }
 
 
-export const EventCardDark = {
+export const EventcardDark = {
   args: {
     ...sample
   },

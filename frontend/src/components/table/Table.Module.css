@@ -20,13 +20,14 @@
 }
 
 .table-container th {
-  font-weight: 400;
+  font-weight: 600;
   font-size: 12px;
   line-height: 22px;
   letter-spacing: 0.41px;
   border-bottom: 1px solid var(--primary-color);
   color: var(--white);
   padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 .table-container tbody tr:not(:last-child) {
