@@ -1,5 +1,5 @@
 import skillUser from "./SkillUser";
-
+import profilePic from "../../assets/profilePicture/skillUser.png";
 export default {
   title: "components/cards/SkillUser",
   component: skillUser,
@@ -12,7 +12,7 @@ const skillcard = {
   handleClick: (e) => {
     console.log("clicked");
   },
-  profilepic: "image",
+  profilepic: profilePic,
 };
 
 export const SkillUser = {
