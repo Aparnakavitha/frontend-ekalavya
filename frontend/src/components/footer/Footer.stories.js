@@ -2,7 +2,7 @@ import Footer from "./Footer";
 import image from "./../../assets/Logo.png";
 
 export default {
-  title: "Components/Footer/Footer",
+  title: "Components/Footer",
   component: Footer,
 };
 
