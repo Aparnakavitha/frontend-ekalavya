@@ -1,0 +1,21 @@
+.navButton {
+  display: flex;
+  align-items: center;
+}
+
+.backArrow {
+  font-size: 24px;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.backArrow:hover {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.pageName {
+  margin-left: 1px;
+  color: var(--white);
+  font-family: Urbanist;
+}

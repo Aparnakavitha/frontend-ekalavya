@@ -39,11 +39,13 @@ const Header = ({ children, menuItems, imageSrc, iconSize, button }) => {
 
    
       <div className={Styles.headerMenu}>
+        <a>
         {menuItems.map((item, index) => (
           <span key={index} className={Styles.menuItem}>
             {item}
           </span>
         ))}
+        </a>
       </div>
 
       <div className={Styles.headerButton}>{button}</div>
