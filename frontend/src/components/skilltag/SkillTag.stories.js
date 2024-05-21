@@ -1,7 +1,7 @@
-import skillTag from "./SkillTag";
+import SkillTags from "./SkillTag";
 export default {
-  title: "components/SkillTag",
-  component: skillTag,
+  title: "components/SkillTags",
+  component: SkillTags,
 };
 
 export const SkillTag = {
