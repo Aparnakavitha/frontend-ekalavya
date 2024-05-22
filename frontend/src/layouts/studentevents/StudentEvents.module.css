@@ -3,12 +3,12 @@
 .eventContainer {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .eventHead {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
   margin-bottom: 20px;
@@ -17,18 +17,51 @@
 .eventTitle {
   color: var(--primary-color);
   font-size: 28px;
-  flex: 1; 
-  text-align: left; 
+  flex: 1;
+  text-align: left;
 }
 
 .exploreButton {
-  width: 236px; 
+  width: 20%;
   height: 34px;
   text-align: right;
 }
 
 .rectangleButtonsContainer {
   display: flex;
-  gap: 10px;
 }
+
+@media (max-width: 767px) {
+  /* large mobile */
+
+
+  .eventHead {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 5px;
+  }
+
+  .eventTitle {
+    font-size: 23px;
+    text-align: left;
+  }
+
+  .exploreButton {
+    width: 66%;
+    
+  }
+
+  .rectangleButtonsContainer {
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 0px;
+
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .exploreButton {
+    width: 33%;
+  }
+}
+
 /* student event menus layout css ends here */

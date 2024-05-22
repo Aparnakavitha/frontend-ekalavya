@@ -7,7 +7,7 @@ export default {
 };
 
 const explore = {
-  content: "Explore Event",
+  content: "Explore Events",
   variant: "secondary",
   onClick: () => {
     console.log("clicked");
