@@ -1,0 +1,34 @@
+/* student event menus layout css begins here */
+
+.eventContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.eventHead {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.eventTitle {
+  color: var(--primary-color);
+  font-size: 28px;
+  flex: 1; 
+  text-align: left; 
+}
+
+.exploreButton {
+  width: 236px; 
+  height: 34px;
+  text-align: right;
+}
+
+.rectangleButtonsContainer {
+  display: flex;
+  gap: 10px;
+}
+/* student event menus layout css ends here */
