@@ -11,13 +11,12 @@ const sample = {
     console.log("clicked");
   },
   width: "full",
-
 }
 export default {
   title: "Layouts/Header",
   component: Header,
   args: {
-    // children: 'Login',
+    // menuItems:menuItems,
     menuItems: ["Leaderboard", "Track", "Top performers", "Testimonials"], 
     imageSrc: edunexa, // Placeholder for imageSrc prop,
     // button : <PrimaryButton children={"Login"}/>

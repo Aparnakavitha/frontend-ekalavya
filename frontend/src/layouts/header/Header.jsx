@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Styles from "./Header.module.css";
 import { BsX, BsList } from "react-icons/bs";
 
-const Header = ({ children, menuItems, imageSrc, iconSize, button }) => {
+const Header = ({ menuItems, imageSrc, button }) => {
   const [showSidebar, setShowSidebar] = useState(false);
 
   const toggleSidebar = () => {
@@ -14,9 +14,12 @@ const Header = ({ children, menuItems, imageSrc, iconSize, button }) => {
       <div className={`${Styles.sidebar} ${showSidebar ? Styles.show : ""}`}>
         <div className={Styles.headerMenuRep}>
           {menuItems.map((item, index) => (
-            <span key={index} className={Styles.menuItemResp}>
-              {item}
-            </span>
+            // <span key={index} className={Styles.menuItemResp}>
+            //   {item}
+            // </span>
+            <a key={index} className={Styles.menuItemResp} href="#">
+            {item}
+          </a>
           ))}
           <div className={Styles.headerButton}>{button}</div>
         </div>
@@ -36,18 +39,25 @@ const Header = ({ children, menuItems, imageSrc, iconSize, button }) => {
       <div className={Styles.headerTitle}>
         <img src={imageSrc} className={Styles.image} alt="Icon" />
       </div>
-
-   
+      {/* <div className={Styles.menuItems}>
+      {menuItems.map((item, index) => (
+        <a
+            key={index}
+            className={Styles.menuItem}
+            href="#"
+            onClick={item.onClick}
+          >
+            {item.label}
+          </a>
+      ))}
+    </div> */}
       <div className={Styles.headerMenu}>
-        <a>
         {menuItems.map((item, index) => (
-          <span key={index} className={Styles.menuItem}>
-            {item}
-          </span>
+          <a key={index} className={Styles.menuItem} href="#">
+        {item}
+      </a>
         ))}
-        </a>
       </div>
-
       <div className={Styles.headerButton}>{button}</div>
     </div>
   );

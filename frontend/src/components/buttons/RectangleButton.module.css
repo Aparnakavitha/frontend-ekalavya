@@ -1,0 +1,48 @@
+
+/* .Events{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: fit-content;
+} */
+
+.EventStatus{
+    width: 102px;
+    height: 35px;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding: 8px 14px; 
+    border-bottom: 2px solid  var(--neutral700);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+.EventStatus:hover {
+    background-color:  var(--primary-color); 
+    color: black;
+  }
+  .EventStatus.active {
+    background-color: var(--white);
+    color: var(--black); /* Keep text color white when active */
+  }
+
+  /* .EventStatus {
+    padding: 10px 20px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--white);
+    cursor: pointer;
+  } */
+  
+  /* .EventStatus.active {
+    background-color: var(--white);
+    color: var(--black);
+  } */
+.rectangleButtonsContainer {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-bottom: 16px; /* Add some margin to space it from other elements */
+  }

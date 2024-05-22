@@ -1,8 +1,8 @@
 import React from "react";
-import "./Table.Module.css";
+import styles from "./Table.module.css";
 
 const Table = ({ data, headings }) => (
-  <div className="table-container">
+  <div className={styles["table-container"]}>
     <table>
       <thead>
         <tr>

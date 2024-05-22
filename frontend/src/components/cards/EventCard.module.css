@@ -7,7 +7,6 @@
   display: flex;
   align-items: center;
   cursor: pointer;
-  display: flex;
   justify-content: center;
 }
 
@@ -99,12 +98,15 @@
 .upcoming {
   color: rgb(255, 153, 36);
 }
+
 .due {
   color: rgb(255, 38, 38);
 }
+
 .happening {
   color: rgb(34, 139, 34);
 }
+
 .tba {
   color: rgb(0, 255, 255);
 }
@@ -113,7 +115,6 @@
   background-color: var(--neutral800);
   color: var(--white);
 }
-
 
 @media only screen and (max-width: 767px) {
   .event-card {

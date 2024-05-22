@@ -25,7 +25,6 @@
   background: none;
   padding-left: 20px;
   font-size: 18px;
-  background-color: var(--black);
   color: var(--white);
 }
 
@@ -78,7 +77,6 @@
   padding-left: 15px;
   font-size: 14px;
   color: var(--white);
-  background-color: var(--black);
 }
 
 .small-box .search-button {
@@ -99,7 +97,7 @@
   background: var(--primary-color);
 }
 
-@media (min-width:768px) and (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 992px) {
   .box .search-box {
     height: 35px;
   }
@@ -120,7 +118,6 @@
     font-size: 12px;
   }
 }
-
 
 @media screen and (max-width: 767px) {
   .box .search-box {
@@ -151,8 +148,3 @@
     width: 10%;
   }
 }
-
-
-
-
-

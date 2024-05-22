@@ -27,9 +27,10 @@
   line-height: 150%;
   gap: 18px;
   cursor: pointer;
+  text-decoration: none;
 }
 
-.button {
+/* .button {
   width: 94px;
   height: 48px;
   border: none;
@@ -41,7 +42,7 @@
   font-size: 14px;
   border-radius: 100px;
   cursor: pointer;
-}
+} */
 
 .sidebarIcon {
   display: none;
@@ -79,6 +80,8 @@
     margin-top: 20px;
     line-height: 100%;
     text-align: left;
+    text-decoration: none;
+
   }
 
   .headerMenuRep {
@@ -154,13 +157,6 @@
     padding-top: 3px;
     right: 40px;
   }
-
-  /* .hamburgerIcon div {
-    width: 25px;
-    height: 3px;
-    background-color: var(--white);
-    margin: 3px 0;
-  } */
 
   .sidebar {
     position: fixed;
