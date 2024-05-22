@@ -1,9 +1,8 @@
-
-import React from 'react';
-import EventMenus from './EventMenus';
+import React from "react";
+import EventMenus from "./EventMenus";
 
 export default {
-  title: 'Layouts/StudentEvents',
+  title: "Layouts/StudentEvents",
   component: EventMenus,
 };
 
