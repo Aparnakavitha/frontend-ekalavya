@@ -1,0 +1,237 @@
+/*Student profile layout css begins here*/
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  align-items: first baseline;
+}
+
+.title1 {
+  color: var(--primary-color);
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-right: auto;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-section {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.basic-info {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.student-id {
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.college {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.dob {
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.profile-picture {
+  margin-right: 1.5rem;
+  display: flex;
+}
+
+.info-text {
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--white);
+  margin-left: 3rem;
+}
+
+.email {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.phone {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.social-links {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.social-links:hover {
+  color: var(--primary-color);
+}
+
+.linkedin {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.github {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.address {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.qualification {
+  display: flex;
+  flex-direction: row;
+}
+
+.qualification-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.qualification-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.qualification-mod-buttons {
+  display: flex;
+}
+
+.qualification-button {
+  margin: 0.5rem;
+}
+
+.title2 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.qualifications-list {
+  display: flex;
+}
+
+.qualifications-list * {
+  color: var(--white);
+  margin-left: 0.4rem;
+}
+
+.education {
+  margin-bottom: 1rem;
+}
+
+/*Student profile layout css ends here*/
+
+/*Upcoming events layout css begins here*/
+
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap");
+
+.outer {
+  width: 358px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.head-container {
+  width: 350px;
+  display: flex;
+  position: inherit;
+  justify-content: center;
+  align-items: center;
+}
+
+.head {
+  font-size: medium;
+  font-family: "Urbanist", "Sans-serif";
+  margin-left: 12px;
+  margin-right: auto;
+}
+
+.link {
+  font-size: 13px;
+  font-family: "Urbanist", "Sans-serif";
+  margin: 12px;
+  cursor: pointer;
+}
+
+.link a {
+  text-decoration: none;
+  color: white;
+}
+
+.event-cards-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dark {
+  background-color: rgb(56, 56, 56, 0.7);
+  color: white;
+}
+
+@media only screen and (max-width: 1024px) {
+  .outer {
+    width: max-content;
+    height: max-content;
+    border-radius: calc(5px * 0.8);
+  }
+
+  .head-container {
+    width: 100%;
+  }
+
+  .head {
+    font-size: calc(medium * 0.6);
+  }
+
+  .link {
+    font-size: calc(medium * 0.5);
+    margin: calc(12px * 0.8);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .outer {
+    width: max-content;
+    height: max-content;
+  }
+}
