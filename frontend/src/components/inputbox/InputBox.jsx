@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import styles from "./InputBox.module.css";
 
-const Input = ({ size, label, placeholders, ...rest }) => {
+const Input = ({
+  size,
+  label,
+  placeholders,
+  value,
+  onChange,
+  onBlur,
+  ...rest
+}) => {
   const [clicked, setClicked] = useState(false);
 
   const handleFocus = () => {
     setClicked(true);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (event) => {
     setClicked(false);
+    if (onBlur) {
+      onBlur(event);
+    }
   };
 
   return (
@@ -23,19 +34,25 @@ const Input = ({ size, label, placeholders, ...rest }) => {
         <React.Fragment key={index}>
           {size === "tall" ? (
             <textarea
-              className={`${styles.input} ${styles["tall-size"]}`}
-              placeholder={placeholder}
+              {...rest}
+              value={value}
+              onChange={onChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              className={`${styles.input} ${styles["tall-size"]}`}
+              placeholder={placeholder}
             />
           ) : (
             <input
+              {...rest}
+              value={value}
+              onChange={onChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
               className={`${styles.input} ${
                 size === "normal" ? styles["normal-size"] : ""
               } ${size === "small" ? styles["small-size"] : ""}`}
               placeholder={placeholder}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
             />
           )}
         </React.Fragment>
