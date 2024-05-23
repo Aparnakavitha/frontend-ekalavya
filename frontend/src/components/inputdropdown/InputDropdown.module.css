@@ -15,9 +15,10 @@
 }
 
 label {
+  letter-spacing: 0%;
   font-weight: 400;
   font-size: 16px;
   color: var(--white);
-  letter-spacing: 0%;
   word-wrap: break-word;
 }
+
