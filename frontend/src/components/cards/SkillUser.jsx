@@ -5,7 +5,7 @@ import { FaPlus } from "react-icons/fa6";
 
 
 
-const Card = (props) => {
+const SkillUser = (props) => {
   const {
     miniHeading,
     mainHeading,
@@ -103,4 +103,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default SkillUser;

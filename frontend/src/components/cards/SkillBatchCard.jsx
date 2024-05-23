@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./SkillBatchCard.module.css";
 import { FaTrash } from "react-icons/fa6";
 
-const SBCards = (props) => {
+const SkillBatchCard = (props) => {
   const {
     miniHeading,
     mainHeading,
@@ -73,4 +73,4 @@ const SBCards = (props) => {
   );
 };
 
-export default SBCards;
+export default SkillBatchCard;
