@@ -1,5 +1,6 @@
 import React from "react";
 import Table from "./Table";
+import PrimaryButton from "../buttons/PrimaryButton"
 
 export default {
   title: "components/Table",
@@ -15,7 +16,7 @@ const data = [
   ["Meera", "Davis", 23],
   ["boby", "Smith", 25],
   ["Amala", "Jayadev", 27],
-  ["Amal", "Wilson", 24],
+  ["Amal", "dfvbg", 24],
 ];
 
 const headings = ["First Name", "Last Name", "Age"];
