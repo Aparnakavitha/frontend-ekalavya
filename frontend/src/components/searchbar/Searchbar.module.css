@@ -145,9 +145,9 @@
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-    .box .search-box {
-      height: 40px;
-    }
+    /* .box .search-box {
+      height: 45px;
+    } */
 
   .small-box {
     width: 100%;
@@ -158,18 +158,18 @@
   }
 
     .small-box .search-box {
-      height: 40px;
+      /* height: 40px; */
       width: 100%;
   }
 
     .custom-box .search-box {
-      height: 40px;
+      /* height: 40px; */
       width: 100%;
   }
 
-    .search-box {
+    /* .search-box {
       height: 40px;
-  }
+  } */
 
     .search-box input {
       font-size: 12px;
@@ -183,7 +183,7 @@
 
 @media screen and (max-width: 767px) {
   .box .search-box {
-    height: 35px;
+    /* height: 35px; */
     width: 125%;
   }
 
@@ -191,13 +191,13 @@
     width: 50%;
   }
 
-  .small-box .search-box {
+  /* .small-box .search-box {
     height: 35px;
-  }
+  } */
 
-  .custom-box .search-box {
+  /* .custom-box .search-box {
     height: 35px;
-  }
+  } */
 
   .search-box input {
     font-size: 10px;
