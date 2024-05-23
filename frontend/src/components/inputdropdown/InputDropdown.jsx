@@ -85,12 +85,12 @@ function InputDropdown({
           indicatorSeparator: () => ({ display: "none" }),
           input: (provided) => ({
             ...provided,
-            paddingLeft: "17px",
+            paddingLeft: "15px",
             color: "var(--neutral400)",
           }),
           placeholder: (provided) => ({
             ...provided,
-            paddingLeft: "17px",
+            paddingLeft: "15px",
             color: "var(--neutral400)",
           }),
         }}
