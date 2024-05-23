@@ -3,7 +3,7 @@ import ProfileNotificationBox from "./ProfileNotificationBox";
 import image from "../../assets/DP.png"
 
 export default {
-  title: "Components/ProfileNotificationBox/ProfileNotificationBox",
+  title: "Components/ProfileNotificationBox",
   component: ProfileNotificationBox,
 };
 
