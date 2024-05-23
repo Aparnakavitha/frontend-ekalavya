@@ -22,7 +22,7 @@ const Layout = () => {
   return (
     <div className={styles.boxcontainer}>
       <div className={styles.layoutcontainer}>
-        <h1>Create New Skill</h1>
+        <p>Create New Skill</p>
         <div className={styles.inputbox}>
           <Input
             size="normal"
