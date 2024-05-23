@@ -7,31 +7,49 @@ import { FaPlus } from "react-icons/fa6";
 import TextButton from "../../../components/buttons/TextButton";
 
 const BdAdd = () => {
-  const { handleSubmit, control, getValues } = useForm();
+  const { handleSubmit, control, setValue, setError, formState: { errors } } = useForm();
+  const [fileError, setFileError] = useState("");
 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
   };
+
   const handleTextButtonClick = () => {
     console.log("Add profile link clicked!");
   };
+
+  const validateImageFile = (file) => {
+    const validImageTypes = ["image/jpeg", "image/png", "image/gif", "image/bmp", "image/webp"];
+    if (file && !validImageTypes.includes(file.type)) {
+      setFileError("Invalid file type. Please upload an image file.");
+      setError("profilePhoto", {
+        type: "manual",
+        message: "Invalid file type. Please upload an image file."
+      });
+      return false;
+    }
+    setFileError(""); 
+    return true;
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.containerOne}>
         <div className={styles.containerInput}>
           <header className={styles.head}>Edit Basic Details</header>
-            <Controller
-          name="dob"
-          control={control}
-          render={({ field }) => (
-            <Input
-              {...field}
-              label="Date of Birth"
-              size="normal"
-              placeholders={["yyyy-mm-dd"]}
-              isDatePicker
-            />)}
-            />
+          <Controller
+            name="dob"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                label="Date of Birth"
+                size="normal"
+                placeholders={["yyyy-mm-dd"]}
+                isDatePicker
+              />
+            )}
+          />
           <Controller
             name="phoneNumber"
             control={control}
@@ -52,10 +70,21 @@ const BdAdd = () => {
                 {...field}
                 label="Profile Photo"
                 placeholders={["profile photo"]}
-                size="tall"
+                size="normal"
+                isFileInput="true"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (validateImageFile(file)) {
+                    setValue("profilePhoto", file);
+                  } else {
+                    setValue("profilePhoto", null); // Reset the field if invalid file
+                  }
+                }}
               />
             )}
           />
+          {fileError && <p className={styles.error}>{fileError}</p>}
 
           <div className={styles.iconText}>
             <TextButton
@@ -107,7 +136,6 @@ const BdAdd = () => {
             <Input {...field} placeholders={["Country"]} size="normal" />
           )}
         />
-
         <div className={styles.containerInput3}>
           <Controller
             name="aboutMe"
@@ -121,7 +149,6 @@ const BdAdd = () => {
               />
             )}
           />
-
           <div className={styles.buttonContainer}>
             <PrimaryButton variant="primary" content="Save" width="full" />
           </div>

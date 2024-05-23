@@ -3,7 +3,7 @@ import styles from "./SkillBatchCard.module.css";
 import { FaTrash } from "react-icons/fa6";
 import { MdModeEdit } from "react-icons/md";
 
-const SBCards = (props) => {
+const SkillBatchCard = (props) => {
   const {
     miniHeading,
     mainHeading,
@@ -36,7 +36,7 @@ const SBCards = (props) => {
 
   const handleEditIconClick = (event) => {
     event.stopPropagation();
-    handleEditClick(); 
+    handleEditClick();
   };
   let formattedCount;
 
@@ -95,4 +95,4 @@ const SBCards = (props) => {
   );
 };
 
-export default SBCards;
+export default SkillBatchCard;

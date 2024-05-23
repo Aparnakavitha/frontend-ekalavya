@@ -4,10 +4,10 @@
   height: 57px;
   border-radius: 9px;
   fill: var(--neutral600);
-  font-weight: lighter;
+  font-weight: light;
   background: transparent;
   transition: border-color 0.3s;
-  margin-top: 13px;
+  margin-top: 9px;
 }
 
 .selectField:focus {
@@ -15,9 +15,9 @@
 }
 
 label {
+  letter-spacing: 0%;
   font-weight: 400;
   font-size: 16px;
   color: var(--white);
-  letter-spacing: 0%;
   word-wrap: break-word;
 }

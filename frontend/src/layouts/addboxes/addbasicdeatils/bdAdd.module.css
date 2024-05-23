@@ -115,12 +115,8 @@
 
   /* background-color: aqua; */
 }
-
-/* @media (max-width: 768px) {
-  .form {
-    width: 100%;
-  }
-  .buttonContainer {
-    width: 20px;
-  }
-} */
+.error {
+  color: var(--primary-color);
+  margin-top: 5px;
+  font-size: 0.875rem;
+}
