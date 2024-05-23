@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Styles from "../StudentEvents.module.css";
 import Button from "../../../components/buttons/PrimaryButton";
 import RectangleButton from "../../../components/buttons/RectangleButton";
-const EventMenus = ({ explore }) => {
-  const [activeStatus, setActiveStatus] = useState("Upcoming");
+
+const EventMenus = ({ explore, statuses, title }) => {
+  const [activeStatus, setActiveStatus] = useState(statuses[0].name);
 
   const handleButtonClick = (status) => {
     setActiveStatus(status);
@@ -12,27 +13,23 @@ const EventMenus = ({ explore }) => {
   return (
     <div className={Styles.eventContainer}>
       <div className={Styles.eventHead}>
-        <h1 className={Styles.eventTitle}>Events</h1>
+        <h1 className={Styles.eventTitle}>{title}</h1>
         <div className={Styles.exploreButton}>
           <Button {...explore} />
         </div>
       </div>
       <div className={Styles.rectangleButtonsContainer}>
-        <RectangleButton
-          status="Upcoming"
-          isActive={activeStatus === "Upcoming"}
-          onClick={() => handleButtonClick("Upcoming")}
-        />
-        <RectangleButton
-          status="Enrolled"
-          isActive={activeStatus === "Enrolled"}
-          onClick={() => handleButtonClick("Enrolled")}
-        />
-        <RectangleButton
-          status="Completed"
-          isActive={activeStatus === "Completed"}
-          onClick={() => handleButtonClick("Completed")}
-        />
+        {statuses.map((status) => (
+          <RectangleButton
+            key={status.name}
+            status={status.name}
+            isActive={activeStatus === status.name}
+            onClick={() => {
+              handleButtonClick(status.name);
+              status.onClick();
+            }}
+          />
+        ))}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import RectangleButton from "./RectangleButton";
 
 export default {
-  title: "Components/RectangleButton",
+  title: "Components/Buttons/RectangleButton",
   component: RectangleButton,
   argTypes: {
     status: { control: "text" },
