@@ -19,7 +19,7 @@
   font-size: 16px;
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
+/* @media (min-width: 768px) and (max-width: 992px) {
   .icon{
     font-size: 14px;
   }
@@ -35,4 +35,4 @@
   .text {
     font-size: 14px;
   }
-}
+} */
