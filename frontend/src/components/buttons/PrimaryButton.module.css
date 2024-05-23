@@ -49,3 +49,10 @@
 .half {
   width: 60%;
 }
+
+@media (max-width: 767px) {
+  .button{
+    font-size: 10px;
+  }
+  
+}

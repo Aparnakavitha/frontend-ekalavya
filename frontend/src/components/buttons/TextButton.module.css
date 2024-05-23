@@ -17,3 +17,11 @@
 .icon {
   margin-top: 2px;
 }
+
+@media (max-width: 767px) {
+
+  .text{
+    font-size: 12px;
+  }
+
+}

@@ -19,3 +19,9 @@
   color: var(--white);
   font-family: Urbanist;
 }
+
+@media (max-width: 767px) {
+  .backArrow{
+    font-size: 12px;
+  }
+}
