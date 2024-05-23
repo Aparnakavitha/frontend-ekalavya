@@ -1,19 +1,24 @@
 import EventsTable from "./EventsTable";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
-import AttendenceButton from "../../components/buttons/AttendenceButton";
-
+import AttendanceButton from "../../components/buttons/AttendanceButton";
 export default {
     title : "EventsTable",
     component : EventsTable,
 }
 
 
-const createFlexDiv = (present,absent,clicked) => (
-    <div style={{ display: 'flex', width: 'auto' }}>
-      <AttendenceButton content="Present" isPresent={true} onClick={clicked} />
-      <AttendenceButton content="absent" isPresent={false}  onClick={clicked}/>
+const createFlexDiv = () => (
+    <div style={{ display: 'flex', width: '50px', gap:'2px' }}>
+      <AttendanceButton content="Present" isPresent={true} onClick={(r) => {
+      console.log("clicked");
+    }}/>
+      <AttendanceButton content="absent" isPresent={false} onClick={(r) => {
+      console.log("clicked");
+    }}/>
     </div>
   );
+
+  
   
   const data = [
     ["studentid", "Samual", "samual@gmail.com", createFlexDiv("Present", "Absent")],
