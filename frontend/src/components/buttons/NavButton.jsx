@@ -4,13 +4,13 @@ import styles from "./NavButton.module.css";
 
 const NavButton = ({ pageName, onClick }) => {
   const goBack = () => {
-    onClick();
+    window.history.back(); 
   };
 
   return (
-    <div className={styles.navButton} onClick={goBack}>
-      <IoIosArrowBack className={styles.backArrow} />{" "}
-      <span className={styles.pageName}> {pageName} </span>{" "}
+    <div className={styles.navButton}>
+      <IoIosArrowBack className={styles.backArrow}  onClick={goBack} />
+      <span className={styles.pageName} onClick={onClick}> {pageName} </span>
     </div>
   );
 };

@@ -15,7 +15,28 @@
 }
 
 .pageName {
+  font-size: 18px;
   margin-left: 1px;
   color: var(--white);
-  font-family: Urbanist;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .backArrow {
+    font-size: 20px;
+  }
+  .pageName {
+    padding-top: 1px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .backArrow {
+    font-size: 16px;
+  }
+  .pageName {
+    padding-top: 4px;
+    font-size: 14px;
+  }
 }

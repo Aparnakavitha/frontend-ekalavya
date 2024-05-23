@@ -4,17 +4,18 @@
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
-  font-weight: 700;
-  font-size: 16px;
-  padding: 10px 20px; 
-  border-radius: 20px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 14px;
+  padding: 14px 28px;
+  border-radius: 100px;
   color: var(--black);
   width: auto;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
 }
 
 .primary {
-  
   background-color: var(--primary-color);
 }
 
@@ -28,7 +29,7 @@
 
 .secondary:hover {
   color: var(--black);
-  background-color: var(--primary-color); 
+  background-color: var(--primary-color);
 }
 
 .tertiary {
@@ -38,14 +39,33 @@
 }
 
 .tertiary:hover {
-  background-color: var(--primary-color); 
-  color: var(--black); 
+  background-color: var(--primary-color);
+  color: var(--black);
 }
 
 .full {
   width: 100%;
+  min-width: 90px;
 }
 
 .half {
   width: 60%;
+  min-width: 90px;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+
+  .button{
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+
+@media (max-width: 767px){
+  .button{
+    font-size: 10px;
+    line-height: 10px;
+    width: 100%;
+  }
 }
