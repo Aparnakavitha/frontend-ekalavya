@@ -1,0 +1,65 @@
+.boxcontainer {
+    background-color: var(--background);
+    border-radius: 40px;
+    height: 300px;
+    width: 46.4%;
+    display: flex;
+    justify-content: center;   
+  }
+  
+  .layoutcontainer {
+    align-items: center;
+    width:100%;
+    height: 100%;
+ }
+  
+  .layoutcontainer h1 {
+    color: var(--white);
+    font-size: 21px;
+    margin:45px 57px;
+    margin-bottom: 14px;
+   } 
+  
+  .inputbox{
+    margin:13px 57px;
+    margin-bottom: 0px;
+    }
+  
+  .buttonrow {
+    display: flex;
+    gap:20px;
+    justify-content: space-between;
+    margin:0px 57px;
+    margin-top: 25px; 
+}
+  
+  @media (max-width: 768px) {
+    .boxcontainer {
+       justify-content:center;   
+
+      }
+
+      .layoutcontainer h1 {
+        color: var(--white);
+        font-size: 21px;
+        margin:45px 10px;
+        margin-bottom: 14px;
+       } 
+
+       .inputbox{
+        margin:13px 10px;
+        margin-bottom: 0px;
+        }
+
+        .buttonrow {
+          gap:10px;
+          justify-content: space-between;
+          margin:0px 10px;
+          margin-top: 25px; 
+      }
+
+      .buttonrow .PrimaryButton {
+        flex: 1;
+    }
+
+}

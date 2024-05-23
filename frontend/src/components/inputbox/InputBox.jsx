@@ -1,41 +1,69 @@
+// src/InputBox.jsx
 import React, { useState } from "react";
 import styles from "./InputBox.module.css";
-
-const Input = ({ size, label, placeholders, ...rest }) => {
+ 
+const Input = ({ size, label, placeholders, value, onChange, onBlur, isDatePicker, isTimePicker, ...rest }) => {
   const [clicked, setClicked] = useState(false);
-
+ 
   const handleFocus = () => {
     setClicked(true);
   };
-
-  const handleBlur = () => {
+ 
+  const handleBlur = (event) => {
     setClicked(false);
+    if (onBlur) {
+      onBlur(event);
+    }
   };
-
+ 
   return (
-    <div
-      className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}
-    >
+    <div className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}>
       <label htmlFor={rest.id} className={styles["input-label"]}>
         {label}
       </label>
       {placeholders.map((placeholder, index) => (
         <React.Fragment key={index}>
-          {size === "tall" ? (
-            <textarea
-              className={`${styles.input} ${styles["tall-size"]}`}
-              placeholder={placeholder}
+          {isDatePicker ? (
+            <input
+              type="date"
+              {...rest}
+              value={value}
+              onChange={onChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              className={`${styles.input} ${size === "normal" ? styles["normal-size"] : ""} ${size === "small" ? styles["small-size"] : ""}`}
+              placeholder={placeholder}
+            />
+          ) : isTimePicker ? (
+            <input
+              type="time"
+              {...rest}
+              value={value}
+              onChange={onChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className={`${styles.input} ${size === "normal" ? styles["normal-size"] : ""} ${size === "small" ? styles["small-size"] : ""}`}
+              placeholder={placeholder}
+            />
+          ) : size === "tall" ? (
+            <textarea
+              {...rest}
+              value={value}
+              onChange={onChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className={`${styles.input} ${styles["tall-size"]}`}
+              placeholder={placeholder}
             />
           ) : (
             <input
-              className={`${styles.input} ${
-                size === "normal" ? styles["normal-size"] : ""
-              } ${size === "small" ? styles["small-size"] : ""}`}
-              placeholder={placeholder}
+              {...rest}
+              value={value}
+              onChange={onChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
+              className={`${styles.input} ${size === "normal" ? styles["normal-size"] : ""} ${size === "small" ? styles["small-size"] : ""}`}
+              placeholder={placeholder}
             />
           )}
         </React.Fragment>
@@ -43,5 +71,5 @@ const Input = ({ size, label, placeholders, ...rest }) => {
     </div>
   );
 };
-
+ 
 export default Input;
