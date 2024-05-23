@@ -53,19 +53,12 @@
   min-width: 90px;
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
-
-  .button{
-    font-size: 12px;
-    line-height: 12px;
-  }
-}
-
 
 @media (max-width: 767px){
   .button{
-    font-size: 10px;
-    line-height: 10px;
+    width: 100%;
+  }
+  .half {
     width: 100%;
   }
 }
