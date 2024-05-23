@@ -79,6 +79,29 @@ textarea:focus::-webkit-scrollbar-thumb {
   background: var(--primary-color);
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  width: 25px;
+  height: 25px;
+  filter: invert(50%);
+}
+ 
+.input[type="file"]::-webkit-file-upload-button {
+  background-color: var(--neutral600);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;  
+}
+ 
+.inputfile{
+    padding: 17px;
+}
+
+
+
+
+
+
 @media screen and (max-width: 768px) {
   .tall-size,
   .normal-size,
