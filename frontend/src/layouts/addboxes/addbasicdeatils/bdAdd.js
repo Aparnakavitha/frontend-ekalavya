@@ -1,0 +1,135 @@
+import React, { useState } from "react";
+import styles from "./bdAdd.module.css";
+import { useForm, Controller } from "react-hook-form";
+import Input from "../../../components/inputbox/InputBox";
+import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import { FaPlus } from "react-icons/fa6";
+import TextButton from "../../../components/buttons/TextButton";
+
+const BdAdd = () => {
+  const { handleSubmit, control, getValues } = useForm();
+
+  const onSubmit = (data) => {
+    console.log("Form Data:", data);
+  };
+  const handleTextButtonClick = () => {
+    console.log("Add profile link clicked!");
+  };
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <div className={styles.containerOne}>
+        <div className={styles.containerInput}>
+          <header className={styles.head}>Edit Basic Details</header>
+
+          <Controller
+            name="dob"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                label="Date of Birth"
+                placeholders={["date of birth"]}
+                size="normal"
+              />
+            )}
+          />
+          <Controller
+            name="phoneNumber"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                label="Phone Number"
+                placeholders={["phone number"]}
+                size="normal"
+              />
+            )}
+          />
+          <Controller
+            name="profilePhoto"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                label="Profile Photo"
+                placeholders={["profile photo"]}
+                size="tall"
+              />
+            )}
+          />
+
+          <div className={styles.iconText}>
+            <TextButton
+              icon={<FaPlus />}
+              text="Add Profile Links"
+              onClick={handleTextButtonClick}
+            />
+          </div>
+        </div>
+      </div>
+      <div className={styles.containerInput2}>
+        <Controller
+          name="houseName"
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Address"
+              placeholders={["House Name"]}
+              size="normal"
+            />
+          )}
+        />
+        <Controller
+          name="city"
+          control={control}
+          render={({ field }) => (
+            <Input {...field} placeholders={["City"]} size="normal" />
+          )}
+        />
+        <Controller
+          name="pinCode"
+          control={control}
+          render={({ field }) => (
+            <Input {...field} placeholders={["Pincode"]} size="normal" />
+          )}
+        />
+        <Controller
+          name="state"
+          control={control}
+          render={({ field }) => (
+            <Input {...field} placeholders={["State"]} size="normal" />
+          )}
+        />
+        <Controller
+          name="country"
+          control={control}
+          render={({ field }) => (
+            <Input {...field} placeholders={["Country"]} size="normal" />
+          )}
+        />
+
+        <div className={styles.containerInput3}>
+          <Controller
+            name="aboutMe"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                label="About Me"
+                placeholders={["about me"]}
+                size="tall"
+              />
+            )}
+          />
+
+          <div className={styles.buttonContainer}>
+            <PrimaryButton variant="primary" content="Save" width="full" />
+          </div>
+        </div>
+      </div>
+    </form>
+  );
+};
+
+export default BdAdd;

@@ -9,16 +9,19 @@ const batch = {
   miniHeading: "B301",
   mainHeading: "Batch 1",
   Count: 28,
-  cardType: "Batch",
+  cardType: "batch",
   handleClick: action("Card clicked!"),
+  canEdit: false,
 };
 const skill = {
   miniHeading: "SKILL4785",
   mainHeading: "Java",
   Count: 53,
-  cardType: "Skill",
+  cardType: "skill",
   handleClick: action("Card clicked!"),
   handleDeleteClick: action("Delete Icon Clicked!"),
+  handleEditClick: action("Edit button clicked!"),
+  canEdit: false,
 };
 
 export const BatchCard = {

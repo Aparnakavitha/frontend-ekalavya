@@ -1,0 +1,130 @@
+.form {
+  /* position: absolute;
+      left: calc(50% - 704px / 2 + 0.5px);
+      top: calc(50% - 747px / 2 + 5.5px); */
+
+      width: 100%;
+  height: 1258px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: #2e2d2d;
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: white;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center; /* Center items horizontally */
+  align-items: center;
+  padding: 50px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--white);
+}
+
+.input {
+  border: 1px solid grey;
+  width: 100%;
+  height: 47px;
+  padding: 10px;
+  margin: 10px 0 20px 0;
+  border-radius: 9px;
+  background-color: #333;
+  color: white;
+  font-size: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.input:hover {
+  border: 1px solid var(--primary-color);
+}
+.select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px 0;
+  border-radius: 5px;
+  border: none;
+  background-color: #2e2d2d;
+  color: #808080;
+  font-size: 14px;
+  line-height: 21px;
+  box-sizing: border-box;
+}
+
+.head {
+  width: 100%;
+  height: 47px;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  /* margin-bottom: 15px; */
+  line-height: 32px;
+  color: #ffffff;
+  /* top: 61px; */
+}
+
+.containerOne {
+  /* gap: 6px; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* background-color: rgb(122, 250, 2); */
+}
+
+.containerInput {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* background-color: rgb(122, 250, 2); */
+}
+.containerInput2 {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* background-color: aqua; */
+}
+.containerInput3 {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+  width: 100%;
+  /* background-color: aqua; */
+}
+.iconText {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 12px;
+  width: 100%;
+}
+
+.buttonContainer {
+  /* height: 500px; */
+  /* width: 100%; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Optional: if you want to center vertically as well */
+  margin-top: 75px;
+  /* background-color: aqua; */
+}
+
+/* @media (max-width: 768px) {
+  .form {
+    width: 100%;
+  }
+  .buttonContainer {
+    width: 20px;
+  }
+} */

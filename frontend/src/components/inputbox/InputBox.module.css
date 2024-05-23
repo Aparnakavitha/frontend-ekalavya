@@ -1,16 +1,16 @@
 .tall-size {
   height: 126px;
-  width: 589px;
+  width: 100%;
 }
 
 .normal-size {
   height: 57px;
-  width: 589px;
+  width: 100%;
 }
 
 .small-size {
   height: 57px;
-  width: 287px;
+  width: 48.75%;
 }
 
 .input-container {
