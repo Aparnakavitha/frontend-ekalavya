@@ -1,10 +1,5 @@
 .form {
-  /* position: absolute;
-      left: calc(50% - 704px / 2 + 0.5px);
-      top: calc(50% - 747px / 2 + 5.5px); */
-
-      width: 100%;
-  height: 1258px;
+  width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
   background: #2e2d2d;
@@ -15,7 +10,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  justify-content: center; /* Center items horizontally */
+  justify-content: center;
   align-items: center;
   padding: 50px;
 }
@@ -60,11 +55,11 @@
 
 .head {
   width: 100%;
-  height: 47px;
+  /* height: 47px; */
   left: 57px;
   font-style: normal;
   font-weight: 400;
-  font-size: 21px;
+  font-size: 24px;
   /* margin-bottom: 15px; */
   line-height: 32px;
   color: #ffffff;
@@ -116,7 +111,8 @@
   display: flex;
   justify-content: center;
   align-items: center; /* Optional: if you want to center vertically as well */
-  margin-top: 75px;
+  margin-top: 17px;
+
   /* background-color: aqua; */
 }
 

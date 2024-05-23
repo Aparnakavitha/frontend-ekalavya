@@ -20,19 +20,18 @@ const BdAdd = () => {
       <div className={styles.containerOne}>
         <div className={styles.containerInput}>
           <header className={styles.head}>Edit Basic Details</header>
-
-          <Controller
-            name="dob"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                label="Date of Birth"
-                placeholders={["date of birth"]}
-                size="normal"
-              />
-            )}
-          />
+            <Controller
+          name="dob"
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Date of Birth"
+              size="normal"
+              placeholders={["yyyy-mm-dd"]}
+              isDatePicker
+            />)}
+            />
           <Controller
             name="phoneNumber"
             control={control}
