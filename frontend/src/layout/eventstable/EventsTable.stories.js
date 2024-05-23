@@ -18,6 +18,19 @@ const createFlexDiv = () => (
     </div>
   );
 
+  const createFlexDiv2 = () => (
+    <div style={{ display: 'flex', width: 'auto', gap:'4px' }}>
+      <a>Status</a>
+      <AttendanceButton content="Present" isPresent={true} onClick={(r) => {
+      console.log("clicked");
+    }}/>
+      <AttendanceButton content="absent" isPresent={false} onClick={(r) => {
+      console.log("clicked");
+    }}/>
+    
+    </div>
+  );
+
   
   
   const data = [
@@ -30,7 +43,7 @@ const createFlexDiv = () => (
     ["studentid", "Wilson", "wilson@gmail.com", createFlexDiv("Present", "Absent")],
   ];
   
-  const headings = ["Student Id", "Student Name", "emailid","Status"];
+  const headings = ["Student Id", "Student Name", "emailid",createFlexDiv2("Present", "Absent")];
   
 
 export const eventTable = {

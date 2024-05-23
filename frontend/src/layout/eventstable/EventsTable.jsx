@@ -10,8 +10,9 @@ const EventsTable = (props) => {
       <div className={styles.topleft}>
         <h2>Mark Attendance</h2>
       </div>
-
-      <Table data={props.data} headings={props.headings} />
+      <div className={styles.table}>
+        <Table data={props.data} headings={props.headings} />
+      </div>
     </div>
   );
 };
