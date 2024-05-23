@@ -2,9 +2,9 @@ import React from "react";
 import styles from "../StudentProfile.module.css";
 import ProfilePicture from "../../../components/profilepicture/ProfilePicture";
 import TextButton from "../../../components/buttons/TextButton";
+import { MdEdit } from "react-icons/md";
+import { IoMdMail } from "react-icons/io";
 import { FaPhone, FaGithub, FaLinkedin } from "react-icons/fa";
-import { MdEdit, MdDelete } from "react-icons/md";
-import { IoMdAdd } from "react-icons/io";
 
 const StudentProfile = (props) => {
   const {
@@ -63,7 +63,9 @@ const StudentProfile = (props) => {
           </div>
 
           <div className={styles["bio"]}>
-            <h4 className={styles["email"]}>{email}</h4>
+            <h4 className={styles["email"]}>
+              <IoMdMail /> {email}
+            </h4>
             <h4 className={styles["phone"]}>
               <FaPhone /> {phone}
             </h4>
@@ -91,51 +93,7 @@ const StudentProfile = (props) => {
           </div>
         </div>
 
-        <div className={`${styles["lower"]}`}>
-          <div className={styles["qualification"]}>
-            <div className={`${styles["qualification-content"]}`}>
-              <div className={`${styles["title"]}`}>
-                <h2 className={styles["title2"]}>Educational Qualification</h2>
-              </div>
-              <div className={styles["qualifications-list"]}>
-                <ol type="1">
-                  {qualifications.map((qualification, index) => (
-                    <li key={index} className={`${styles["education"]}`}>
-                      <h3 className={styles["qualification-name"]}>
-                        {qualification.name}
-                      </h3>
-                      <p>{qualification.university}</p>
-                      <p>CGPA: {qualification.cgpa}</p>
-                      <p>
-                        {qualification.start} - {qualification.end}
-                      </p>
-                      <p>Specialization: {qualification.specialization}</p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-
-            <div className={`${styles["qualification-buttons"]}`}>
-              <div className={`${"qualification-add-button"}`}>
-                <div className={`${styles["qualification-button"]}`}>
-                  <TextButton
-                    icon={<IoMdAdd />}
-                    text="Add Educational Qualification"
-                  />
-                </div>
-              </div>
-              <div className={`${styles["qualification-mod-buttons"]}`}>
-                <div className={`${styles["qualification-button"]}`}>
-                  <TextButton icon={<MdEdit />} text="Edit" />
-                </div>
-                <div className={`${styles["qualification-button"]}`}>
-                  <TextButton icon={<MdDelete />} text="Delete" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   );

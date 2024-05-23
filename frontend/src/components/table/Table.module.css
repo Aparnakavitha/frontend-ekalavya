@@ -2,8 +2,6 @@
   position: relative;
   width: 100%;
   display: inline-flex;
-  margin-top: 57px;
-  background-color: var(--background);
 }
 
 .table-container table {
