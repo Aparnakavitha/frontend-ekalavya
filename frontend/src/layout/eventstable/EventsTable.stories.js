@@ -1,5 +1,6 @@
 import EventsTable from "./EventsTable";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
+import AttendenceButton from "../../components/buttons/AttendenceButton";
 
 export default {
     title : "EventsTable",
@@ -7,10 +8,10 @@ export default {
 }
 
 
-const createFlexDiv = (presentText, absentText) => (
+const createFlexDiv = (present,absent,clicked) => (
     <div style={{ display: 'flex', width: 'auto' }}>
-      <PrimaryButton content={presentText} variant="primary" />
-      <PrimaryButton content={absentText} />
+      <AttendenceButton content="Present" isPresent={true} onClick={clicked} />
+      <AttendenceButton content="absent" isPresent={false}  onClick={clicked}/>
     </div>
   );
   
@@ -31,5 +32,6 @@ export const eventTable = {
     args :{
         data,
         headings,
+       
     }
 }
