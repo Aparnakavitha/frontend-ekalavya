@@ -1,14 +1,14 @@
-import AttendenceButton from "./AttendenceButton";
+import AttendanceButton from "./AttendanceButton";
 
 export default {
-    title: "Components/Buttons/Attendence Button",
-    component: AttendenceButton,
+    title: "Components/Buttons/Attendance Button",
+    component: AttendanceButton,
     argTypes: {
         onClick: { action: "clicked" },
     },
 };
 
-const Template = (args) => <AttendenceButton {...args} />;
+const Template = (args) => <AttendanceButton {...args} />;
 
 export const PresentButton = Template.bind({});
 PresentButton.args = {
