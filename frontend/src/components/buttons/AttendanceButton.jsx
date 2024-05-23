@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from "./AttendenceButton.module.css";
+import styles from "./AttendanceButton.module.css";
 
 const AttendenceButton = (props) => {
     const [isPresent, setIsPresent] = useState(props.IsPresent);
