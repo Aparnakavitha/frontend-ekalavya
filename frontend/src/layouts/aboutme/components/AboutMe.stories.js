@@ -1,4 +1,3 @@
-// CustomComponent.stories.js
 import React from 'react';
 import AboutMe from './AboutMe';
 
