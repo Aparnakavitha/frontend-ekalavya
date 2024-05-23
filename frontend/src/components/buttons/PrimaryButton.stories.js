@@ -27,3 +27,14 @@ export const SecondarybuttonHalf = {
     width: "half",
   },
 };
+
+export const TertiarybuttonHalf = {
+  args: {
+    content: "Submit",
+    variant: "tertiary",
+    onclick: (r) => {
+      console.log("clicked");
+    },
+    width: "half",
+  },
+};

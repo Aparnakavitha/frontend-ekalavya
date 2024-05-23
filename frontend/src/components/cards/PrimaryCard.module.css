@@ -39,6 +39,7 @@
 }
 
 .cardsminiheading {
+  text-align: start;
   font-size: 13px;
   font-style: normal;
   font-weight: 500;
@@ -47,6 +48,7 @@
 }
 
 .cardsmainheading {
+  text-align: start;
   width: 185px;
   height: 48px;
   font-size: 24px;
@@ -64,6 +66,7 @@
   letter-spacing: -0.408px;
 }
 .cardsdiscription {
+  text-align: start;
   width: 240px;
   font-size: 13px;
   font-style: normal;
