@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./SkillBatchCard.module.css";
 import { FaTrash } from "react-icons/fa6";
 import { MdModeEdit } from "react-icons/md";
- 
-const SBCards = (props) => {
+
+const SkillBatchCard = (props) => {
   const {
     miniHeading,
     mainHeading,
@@ -14,7 +14,7 @@ const SBCards = (props) => {
     handleEditClick,
     canEdit,
   } = props;
- 
+
   const transformMainHeading = (heading, cardType) => {
     let maxLength;
     if (cardType === "skill") {
@@ -22,24 +22,24 @@ const SBCards = (props) => {
     } else {
       maxLength = 33;
     }
- 
+
     if (heading.length > maxLength) {
       return heading.slice(0, maxLength - 2) + "...";
     }
     return heading;
   };
- 
+
   const handleDeleteIconClick = (event) => {
     event.stopPropagation();
     handleDeleteClick();
   };
- 
+
   const handleEditIconClick = (event) => {
     event.stopPropagation();
     handleEditClick();
   };
   let formattedCount;
- 
+
   if (cardType === "skill" && canEdit) {
     const level = Count !== undefined ? Math.min(Math.max(Count, 1), 5) : 1;
     formattedCount = `Level ${level}`;
@@ -53,7 +53,7 @@ const SBCards = (props) => {
       formattedCount = "0 Students";
     }
   }
- 
+
   return (
     <div className="row">
       <div className={`col-lg-2 col-md-3 col-sm-4 col-xs-6 ${styles.cards}`}>
@@ -94,6 +94,5 @@ const SBCards = (props) => {
     </div>
   );
 };
- 
-export default SBCards;
- 
+
+export default SkillBatchCard;

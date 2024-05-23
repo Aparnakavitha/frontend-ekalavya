@@ -4,7 +4,7 @@ export default {
   title: "components/cards/SkillBatch Card",
   component: skillBatchCard,
 };
- 
+
 const batch = {
   miniHeading: "B301",
   mainHeading: "Batch 1",
@@ -23,7 +23,7 @@ const skill = {
   handleEditClick: action("Edit button clicked!"),
   canEdit: false,
 };
- 
+
 export const BatchCard = {
   args: {
     ...batch,
@@ -34,4 +34,3 @@ export const skillCard = {
     ...skill,
   },
 };
- 

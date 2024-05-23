@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import styles from "./SkillCard.module.css";
 
-const Card = ({ title, subtitle, showCloseIcon, onClose }) => {
+const SkillCard = ({ title, subtitle, showCloseIcon, onClose }) => {
   const handleClose = () => {
     if (typeof onClose === "function") {
       onClose();
@@ -31,4 +31,4 @@ const Card = ({ title, subtitle, showCloseIcon, onClose }) => {
   );
 };
 
-export default Card;
+export default SkillCard;

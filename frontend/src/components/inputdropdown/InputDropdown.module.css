@@ -4,7 +4,7 @@
   height: 57px;
   border-radius: 9px;
   fill: var(--neutral600);
-  font-weight: lighter;
+  font-weight: light;
   background: transparent;
   transition: border-color 0.3s;
   margin-top: 13px;
@@ -21,4 +21,3 @@ label {
   color: var(--white);
   word-wrap: break-word;
 }
-
