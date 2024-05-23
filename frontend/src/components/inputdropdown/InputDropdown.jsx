@@ -66,7 +66,7 @@ function InputDropdown({
           singleValue: (provided) => ({
             ...provided,
             paddingLeft: "17px",
-            color: "var(--white)",
+            color: "var(--neutral400)",
           }),
           menu: (provided) => ({
             ...provided,
@@ -86,9 +86,13 @@ function InputDropdown({
           input: (provided) => ({
             ...provided,
             paddingLeft: "17px",
-            color: "var(--white)",
+            color: "var(--neutral400)",
           }),
-          placeholder: (provided) => ({ ...provided, paddingLeft: "17px" }),
+          placeholder: (provided) => ({
+            ...provided,
+            paddingLeft: "17px",
+            color: "var(--neutral400)",
+          }),
         }}
       />
     </div>

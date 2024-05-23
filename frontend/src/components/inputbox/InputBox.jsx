@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaRegImage } from "react-icons/fa";
 import styles from "./InputBox.module.css";
 
 const Input = ({
@@ -8,9 +9,15 @@ const Input = ({
   value,
   onChange,
   onBlur,
+  isDatePicker,
+  isTimePicker,
+  isFileInput,
+  isDropdown,
+  options,
   ...rest
 }) => {
   const [clicked, setClicked] = useState(false);
+  const [fileName, setFileName] = useState("");
 
   const handleFocus = () => {
     setClicked(true);
@@ -23,6 +30,21 @@ const Input = ({
     }
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFileName(file.name);
+    }
+    if (onChange) {
+      onChange(event);
+    }
+  };
+
+  const handleSelectChange = (event) => {
+    onChange(event);
+    setClicked(false);
+  };
+
   return (
     <div
       className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}
@@ -32,7 +54,61 @@ const Input = ({
       </label>
       {placeholders.map((placeholder, index) => (
         <React.Fragment key={index}>
-          {size === "tall" ? (
+          {isDatePicker ? (
+            <input
+              type="date"
+              {...rest}
+              value={value}
+              onChange={onChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className={`${styles.input} ${size === "normal" ? styles["normal-size"] : ""} ${size === "small" ? styles["small-size"] : ""}`}
+              placeholder={placeholder}
+            />
+          ) : isTimePicker ? (
+            <input
+              type="time"
+              {...rest}
+              value={value}
+              onChange={onChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className={`${styles.input} ${size === "normal" ? styles["normal-size"] : ""} ${size === "small" ? styles["small-size"] : ""}`}
+              placeholder={placeholder}
+            />
+          ) : isFileInput ? (
+            <div className={styles["file-input-wrapper"]}>
+              <FaRegImage
+                className={`${styles["file-input-icon"]} ${fileName ? styles["file-input-icon-uploaded"] : ""}`}
+              />
+              <span className={styles["file-input-label"]}>
+                {fileName || placeholder}
+              </span>
+              <input
+                type="file"
+                {...rest}
+                onChange={handleFileChange}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                className={`${styles.input} ${styles["tall-size"]} ${styles["file-input"]}`}
+              />
+            </div>
+          ) : isDropdown ? (
+            <select
+              {...rest}
+              value={value}
+              onChange={handleSelectChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className={`${styles.input} ${size === "normal" ? styles["normal-size"] : ""} ${size === "small" ? styles["small-size"] : ""}`}
+            >
+              {options.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          ) : size === "tall" ? (
             <textarea
               {...rest}
               value={value}
@@ -49,9 +125,7 @@ const Input = ({
               onChange={onChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
-              className={`${styles.input} ${
-                size === "normal" ? styles["normal-size"] : ""
-              } ${size === "small" ? styles["small-size"] : ""}`}
+              className={`${styles.input} ${size === "normal" ? styles["normal-size"] : ""} ${size === "small" ? styles["small-size"] : ""}`}
               placeholder={placeholder}
             />
           )}
