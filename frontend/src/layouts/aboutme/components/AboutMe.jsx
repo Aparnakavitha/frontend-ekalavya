@@ -4,10 +4,10 @@ import styles from '../AboutMe.module.css';
 
 const AboutMe = ({ description }) => {
   return (
-      <div className={styles.aboutSection}>
-        <div className={styles.aboutTitle}>About Me</div>
-        <div className={styles.aboutText}>{description}</div>
-      </div>
+    <div className={styles.aboutSection}>
+      <div className={styles.aboutTitle}>About Me</div>
+      <div className={styles.aboutText}>{description}</div>
+    </div>
   );
 };
 
