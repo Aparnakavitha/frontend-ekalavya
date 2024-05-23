@@ -27,10 +27,10 @@ SmallSize.args = {
   placeholders: ["Enter text"],
 };
 
-export const TallSize = Template.bind({});
-TallSize.args = {
-  size: "tall",
-  label: "Tall Input",
+export const LargeSize = Template.bind({});
+LargeSize.args = {
+  size: "large",
+  label: "Large Input",
   placeholders: ["Enter text"],
 };
 

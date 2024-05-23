@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./RectangleButton.module.css";
+import styles from "./TabButton.module.css";
 
-const RectangleButton = ({ status, onClick, isActive }) => {
+const TabButton = ({ status, onClick, isActive }) => {
   return (
     <div>
       <h1
@@ -14,4 +14,4 @@ const RectangleButton = ({ status, onClick, isActive }) => {
   );
 };
 
-export default RectangleButton;
+export default TabButton;

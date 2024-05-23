@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Select from "react-select";
 import styles from "./InputDropdown.module.css";
 
-function InputDropdown({
+const InputDropdown = ({
   label,
   placeholder,
   options,
   value,
   onChange,
   onBlur,
-}) {
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const getControlStyles = (provided) => ({
@@ -97,6 +97,6 @@ function InputDropdown({
       />
     </div>
   );
-}
+};
 
 export default InputDropdown;

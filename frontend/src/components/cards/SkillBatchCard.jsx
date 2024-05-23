@@ -17,6 +17,7 @@ const SkillBatchCard = (props) => {
 
   const transformMainHeading = (heading, cardType) => {
     let maxLength;
+
     if (cardType === "skill") {
       maxLength = 30;
     } else {
@@ -38,6 +39,7 @@ const SkillBatchCard = (props) => {
     event.stopPropagation();
     handleEditClick();
   };
+
   let formattedCount;
 
   if (cardType === "skill" && canEdit) {

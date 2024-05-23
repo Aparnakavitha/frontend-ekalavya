@@ -30,9 +30,7 @@ const SkillUser = (props) => {
   };
 
   const [showAllSkills, setShowAllSkills] = useState(false);
-
   const cardsClass = styles.CardOutline;
-
   const displayedSkills = showAllSkills ? skills : skills.slice(0, 4);
 
   return (

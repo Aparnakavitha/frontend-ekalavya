@@ -29,8 +29,8 @@ const Template = ({ initialHeading, Content }) => {
   );
 };
  
-export const Default = Template.bind({});
-Default.args = {
+export const filter = Template.bind({});
+filter.args = {
   initialHeading: "Batch",
   Content: ["Batch 1", "Batch 2", "Batch 3"],
 };

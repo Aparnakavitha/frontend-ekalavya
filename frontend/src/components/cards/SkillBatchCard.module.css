@@ -73,6 +73,7 @@
   border: 1px solid var(--white);
   background: var(--white);
 }
+
 .deleteIcon,
 .editIcon {
   color: var(--primary-color);
