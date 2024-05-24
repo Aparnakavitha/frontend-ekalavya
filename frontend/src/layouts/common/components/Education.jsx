@@ -2,7 +2,7 @@ import React from 'react'
 import TextButton from "../../../components/buttons/TextButton";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
-import styles from '../StudentProfile.module.css'
+import styles from '../Common.module.css'
 
 
 

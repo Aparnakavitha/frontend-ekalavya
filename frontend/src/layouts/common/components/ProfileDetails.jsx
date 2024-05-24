@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../StudentProfile.module.css";
+import styles from "../Common.module.css";
 import ProfilePicture from "../../../components/profilepicture/ProfilePicture";
 import TextButton from "../../../components/buttons/TextButton";
 import { MdEdit } from "react-icons/md";
@@ -92,8 +92,6 @@ const StudentProfile = (props) => {
             <h4 className={styles["address"]}>{address}</h4>
           </div>
         </div>
-
-        
       </div>
     </div>
   );

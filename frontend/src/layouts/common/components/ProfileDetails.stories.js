@@ -1,7 +1,7 @@
-import StudentProfile from "./StudentProfile";
+import StudentProfile from "./ProfileDetails";
 
 export default {
-  title: "Layouts/StudentProfile",
+  title: "Layouts/ProfileDetails",
   component: StudentProfile,
 };
 
@@ -15,7 +15,7 @@ const sample = {
   bio: "Experienced software engineer with a focus on backend development and a passion for mentoring aspiring developers.",
 };
 
-export const StudentProfileDark = {
+export const ProfileDetailsDark = {
   args: {
     ...sample,
   },
