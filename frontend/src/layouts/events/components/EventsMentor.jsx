@@ -78,23 +78,11 @@ const EventsMentor = (props) => {
               <>
                 <div>
                   <div className={styles.primarydiv}>
-                    
-                      
-                        <PrimaryButton content={large} variant="secondary" />
-                      
-                    
+                    <PrimaryButton content={large} variant="secondary" />
 
-                   
-                      
-                        <PrimaryButton content={medium} variant="secondary" />
-                      
-                    
+                    <PrimaryButton content={medium} variant="secondary" />
 
-                   
-                      
-                        <PrimaryButton content={small} variant="secondary" />
-                      
-                    
+                    <PrimaryButton content={small} variant="secondary" />
                   </div>
                 </div>
               </>
@@ -141,22 +129,17 @@ const EventsMentor = (props) => {
             </div>
           </div>
 
-
           {type === "public" && (
-              <>
-                <div>
+            <>
+              <div>
                 <h3>Organizer</h3>
-                
-                  
-                    <div>
-                    <a className={styles.speaker}>{speaker}</a>
-                      
-                   
-                  </div>
-                </div>
-              </>
-            )}
 
+                <div>
+                  <a className={styles.speaker}>{speaker}</a>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
