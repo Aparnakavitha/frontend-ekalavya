@@ -1,5 +1,6 @@
 import skillBatchCard from "./SkillBatchCard";
 import { action } from "@storybook/addon-actions";
+
 export default {
   title: "components/cards/SkillBatch Card",
   component: skillBatchCard,
@@ -13,6 +14,7 @@ const batch = {
   handleClick: action("Card clicked!"),
   canEdit: false,
 };
+
 const skill = {
   miniHeading: "SKILL4785",
   mainHeading: "Java",
@@ -29,6 +31,7 @@ export const BatchCard = {
     ...batch,
   },
 };
+
 export const skillCard = {
   args: {
     ...skill,

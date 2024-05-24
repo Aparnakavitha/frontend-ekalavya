@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import Input from "./InputBox";
+import InputBox from "./InputBox";
 
 export default {
-  title: "Components/Input",
-  component: Input,
+  title: "Components/InputBox",
+  component: InputBox,
 };
 
 const Template = (args) => {
   const [value, setValue] = useState("");
   return (
-    <Input {...args} value={value} onChange={(e) => setValue(e.target.value)} />
+    <InputBox {...args} value={value} onChange={(e) => setValue(e.target.value)} />
   );
 };
 
@@ -27,10 +27,10 @@ SmallSize.args = {
   placeholders: ["Enter text"],
 };
 
-export const TallSize = Template.bind({});
-TallSize.args = {
-  size: "tall",
-  label: "Tall Input",
+export const LargeSize = Template.bind({});
+LargeSize.args = {
+  size: "large",
+  label: "Large Input",
   placeholders: ["Enter text"],
 };
 

@@ -26,6 +26,7 @@ const Template = (args) => {
 };
 
 export const InputDropDown = Template.bind({});
+
 InputDropDown.args = {
   label: "Select Your Degree:",
   placeholder: "Select Your Degree",
