@@ -14,10 +14,6 @@ const Filter = ({
   const [selectedOption, setSelectedOption] = useState(initialHeading);
   const headingRef = useRef(null);
   const dropRef = useRef(null);
-  const toggleDropdown = (newIsOpen) => {
-    const toggleFn = onToggle || setInternalIsOpen;
-    toggleFn(newIsOpen);
-  };
 
   const toggleDropdown = (newIsOpen) => {
     const toggleFn = onToggle || setInternalIsOpen;
