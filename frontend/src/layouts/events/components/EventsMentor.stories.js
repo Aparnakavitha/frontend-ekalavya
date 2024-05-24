@@ -5,6 +5,7 @@ export default {
     component : EventsMentor,
 }
 
+
 export const eventMentor = {
     args :{
         text: "Type : Techtalks",

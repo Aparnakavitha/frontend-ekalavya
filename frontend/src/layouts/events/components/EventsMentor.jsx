@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./EventsMentor.module.css";
-import NavButton from "../../components/buttons/NavButton";
-import PrimaryButton from "../../components/buttons/PrimaryButton";
+import styles from "../EventsMentor.module.css";
+import NavButton from "../../../components/buttons/NavButton";
+import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
 const EventsMentor = (props) => {
   const {
@@ -55,7 +55,7 @@ const EventsMentor = (props) => {
                 <div className={styles.primarydiv}>
                   <div className={styles.primarybutton}>
                     <div>
-                      <PrimaryButton content={smaller} />
+                      <PrimaryButton content={smaller} variant="secondary" />
                     </div>
                   </div>
                 </div>
@@ -67,7 +67,7 @@ const EventsMentor = (props) => {
                 <div className={styles.primarydiv}>
                   <div className={styles.primarybutton}>
                     <div>
-                      <PrimaryButton content={small} />
+                      <PrimaryButton content={small} variant="secondary" />
                     </div>
                   </div>
                 </div>
@@ -78,23 +78,23 @@ const EventsMentor = (props) => {
               <>
                 <div>
                   <div className={styles.primarydiv}>
-                    <div>
-                      <div>
-                        <PrimaryButton content={large} />
-                      </div>
-                    </div>
+                    
+                      
+                        <PrimaryButton content={large} variant="secondary" />
+                      
+                    
 
-                    <div>
-                      <div>
-                        <PrimaryButton content={medium} />
-                      </div>
-                    </div>
+                   
+                      
+                        <PrimaryButton content={medium} variant="secondary" />
+                      
+                    
 
-                    <div >
-                      <div>
-                        <PrimaryButton content={small} />
-                      </div>
-                    </div>
+                   
+                      
+                        <PrimaryButton content={small} variant="secondary" />
+                      
+                    
                   </div>
                 </div>
               </>

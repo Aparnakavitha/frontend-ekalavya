@@ -1,6 +1,6 @@
 import react from "react";
-import styles from "./EventsTable.module.css";
-import Table from "../../components/table/Table";
+import styles from "../EventsMentor.module.css";
+import Table from "../../../components/table/Table";
 
 const EventsTable = (props) => {
   const {} = props;
@@ -8,7 +8,7 @@ const EventsTable = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.topleft}>
-        <h2>Mark Attendance</h2>
+        <h2><u>Mark Attendance</u></h2>
       </div>
       <div className={styles.table}>
         <Table data={props.data} headings={props.headings} />

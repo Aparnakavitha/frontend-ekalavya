@@ -1,6 +1,5 @@
 import EventsTable from "./EventsTable";
-import PrimaryButton from "../../components/buttons/PrimaryButton";
-import AttendanceButton from "../../components/buttons/AttendanceButton";
+import AttendanceButton from "../../../components/buttons/AttendanceButton";
 export default {
     title : "EventsTable",
     component : EventsTable,
