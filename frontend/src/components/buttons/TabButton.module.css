@@ -21,12 +21,6 @@
   background-color: var(--white);
   color: var(--black);
 }
-.rectangleButtonsContainer {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin-bottom: 16px;
-}
 @media (max-width: 767px) {
   .EventStatus {
     font-size: 14px;
