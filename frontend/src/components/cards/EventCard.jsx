@@ -19,6 +19,7 @@ const EventCard = (props) => {
     }
     return text;
   };
+
   return (
     <div
       className={`${styles["event-card"]} ${styles[mode]}`}

@@ -13,8 +13,8 @@ export default {
 
 const Template = (args) => <TabButton {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Tabbutton = Template.bind({});
+Tabbutton.args = {
   status: "Upcoming",
   isActive: false,
   onClick: () => {
