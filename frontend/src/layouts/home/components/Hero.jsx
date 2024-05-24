@@ -26,11 +26,11 @@ const Hero = (props) => {
           <div className={styles.statidiv}>
             {props.number.map((num, index) => (
               <div
-              key={index}
-              className={`${styles.statiunit} ${
-                index < 2 ? styles.firstTwo : ""
-              }`}
-            >
+                key={index}
+                className={`${styles.statiunit} ${
+                  index < 2 ? styles.firstTwo : ""
+                }`}
+              >
                 <h1 className={styles.numbers}>{num}</h1>
                 <h1 className={styles.title}>{props.title[index]}</h1>
               </div>
