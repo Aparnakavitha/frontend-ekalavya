@@ -4,12 +4,14 @@
 }
 
 .search-box {
+.search-box {
   position: relative;
   height: 45px;
   border-radius: 25px;
   display: flex;
   justify-content: center;
   border: 2px solid var(--white);
+  width: 100%;
   width: 100%;
 }
 
@@ -23,14 +25,23 @@
   font-size: 16px;
   letter-spacing: -0.41px;
   font-weight: 600;
+  padding-left: 15px;
+  font-size: 16px;
+  letter-spacing: -0.41px;
+  font-weight: 600;
   color: var(--white);
 }
 
 .search-button {
+.search-button {
   border: none;
+  border-radius: 0 18px 18px 0;
   border-radius: 0 18px 18px 0;
   background-color: var(--white);
   color: var(--black);
+  font-size: 16px;
+  letter-spacing: -0.41px;
+  font-weight: 600;
   font-size: 16px;
   letter-spacing: -0.41px;
   font-weight: 600;
@@ -39,8 +50,10 @@
   justify-content: center;
   align-items: center;
   padding: 8px 16px;
+  padding: 8px 16px;
 }
 
+.search-button:hover {
 .search-button:hover {
   background: var(--primary-color);
 }
@@ -62,14 +75,21 @@
 .small-box .search-box,
 .custom-box .search-box {
   border-radius: 25px;
+.small-box .search-box,
+.custom-box .search-box {
+  border-radius: 25px;
 }
 
+.small-box input,
+.custom-box input {
 .small-box input,
 .custom-box input {
   border-radius: 20px 0 0 20px;
   padding-left: 15px;
 }
 
+.small-box .search-button,
+.custom-box .search-button {
 .small-box .search-button,
 .custom-box .search-button {
   border-radius: 0 18px 18px 0;
@@ -79,8 +99,14 @@
   .small-box,
   .custom-box {
     width: 100%;
+  .small-box,
+  .custom-box {
+    width: 100%;
   }
 
+  .small-box .search-box,
+  .custom-box .search-box {
+    width: 100%;
   .small-box .search-box,
   .custom-box .search-box {
     width: 100%;
@@ -89,6 +115,7 @@
 
 @media screen and (max-width: 767px) {
   .box .search-box {
+    width: 125%;
     width: 125%;
   }
 
@@ -105,3 +132,4 @@
     width: 100%;
   }
 }
+

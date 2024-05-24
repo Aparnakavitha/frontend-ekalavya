@@ -19,6 +19,11 @@ const Filter = ({
     toggleFn(newIsOpen);
   };
 
+  const toggleDropdown = (newIsOpen) => {
+    const toggleFn = onToggle || setInternalIsOpen;
+    toggleFn(newIsOpen);
+  };
+
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     toggleDropdown(false);
