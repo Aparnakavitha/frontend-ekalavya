@@ -1,9 +1,9 @@
 import React from "react";
-import RectangleButton from "./RectangleButton";
+import TabButton from "./TabButton";
 
 export default {
-  title: "Components/Buttons/RectangleButton",
-  component: RectangleButton,
+  title: "Components/Buttons/TabButton",
+  component: TabButton,
   argTypes: {
     status: { control: "text" },
     onClick: { action: "clicked" },
@@ -11,7 +11,7 @@ export default {
   },
 };
 
-const Template = (args) => <RectangleButton {...args} />;
+const Template = (args) => <TabButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
