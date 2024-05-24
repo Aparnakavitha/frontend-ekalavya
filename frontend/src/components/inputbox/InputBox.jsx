@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaRegImage } from "react-icons/fa";
 import styles from "./InputBox.module.css";
 
-const Input = ({
+const InputBox = ({
   size,
   label,
   placeholders,
@@ -135,4 +135,4 @@ const Input = ({
   );
 };
 
-export default Input;
+export default InputBox;
