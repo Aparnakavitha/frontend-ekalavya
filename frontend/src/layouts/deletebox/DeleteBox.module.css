@@ -1,0 +1,43 @@
+.box { 
+  max-width: 100%;
+  border-radius: 40px;
+  background: var(--background); 
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  padding: 60px;
+  gap: 10px;
+}
+
+.title { 
+  color: var(--white);
+  width: 100%;
+  font-weight: 500;
+  font-size: 21px; 
+  text-align: center; 
+  padding-bottom: 10px;
+}
+.content{
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  color: var(--white);
+  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.button {
+  width: 100%;
+  max-width: 375px;
+  text-align: center;  
+  display: flex;
+  gap: 8px; 
+  justify-content: center;
+}
