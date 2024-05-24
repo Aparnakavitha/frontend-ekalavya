@@ -14,11 +14,12 @@ const EventCard = (props) => {
   } = props;
 
   const formatText = (text) => {
-    if (text.length > 15) {
-      text = text.slice(0, 15) + "... ";
+    if (text.length > 20) {
+      text = text.slice(0, 20) + "... ";
     }
     return text;
   };
+
   return (
     <div
       className={`${styles["event-card"]} ${styles[mode]}`}
@@ -42,7 +43,6 @@ const EventCard = (props) => {
 
           <div className={`${styles["details-bottom"]}`}>
             <h4 className={`${styles.sub}`}>
-              Meeting link:
               <u>
                 <a href={`${sub}`}>{formatText(sub)}</a>
               </u>

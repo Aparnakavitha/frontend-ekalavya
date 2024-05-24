@@ -10,7 +10,7 @@ const courseelement = {
   mainHeading: "Health Management",
   startDate: "Jan 15, 2030  ",
   endDate: "Mar 15, 2030",
-  Description:
+  Desicription:
     "Unlock the power of data with our comprehensive Introduction to Data ",
   cardType: "Course",
   handleClick: (e) => {
