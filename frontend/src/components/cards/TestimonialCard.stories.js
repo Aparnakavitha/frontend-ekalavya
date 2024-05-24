@@ -1,8 +1,8 @@
 import React from "react";
 import TestimonialCard from "./TestimonialCard";
-import image from "../../assets/DP.png";
+import image from "../../assets/DP.png"
 
-export default {
+export default { 
   title: "Components/Cards/Testimonial Card",
   component: TestimonialCard,
   argTypes: {

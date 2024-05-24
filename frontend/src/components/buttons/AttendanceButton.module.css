@@ -21,7 +21,8 @@
 }
 
 @media (max-width: 767px) {
-  .button {
-    font-size: 10px;
+    .button{
+        font-size: 10px;
+    }
   }
-}
+  

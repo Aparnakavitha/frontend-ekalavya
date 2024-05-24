@@ -10,7 +10,7 @@ const PrimaryButton = (props) => {
   } else if (width === "half") {
     widthSize = styles.half;
   } else {
-    widthSize = "";
+    widthSize = ""; 
   }
 
   return (

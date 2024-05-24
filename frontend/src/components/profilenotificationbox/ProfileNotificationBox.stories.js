@@ -1,6 +1,6 @@
 import React from "react";
 import ProfileNotificationBox from "./ProfileNotificationBox";
-import image from "../../assets/DP.png";
+import image from "../../assets/DP.png"
 
 export default {
   title: "Components/ProfileNotificationBox",

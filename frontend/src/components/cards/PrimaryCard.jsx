@@ -1,32 +1,34 @@
 import React, { useState } from "react";
-import styles from "./StudentCard.module.css"; 
-import { GoArrowUpRight } from "react-icons/go";
+import styles from "./PrimaryCard.module.css";
+import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
+import { format } from "date-fns";
 
-const StudentCard = (props) => {
+const PrimaryCard = (props) => {
   const {
-    studentImage = "./image.jpeg",
-    studentName,
-    studentId,
-    studentCollege,
-    studentMail,
-    studentPhoneNumber,
-    cardType,
+    miniHeading,
+    mainHeading,
+    startDate,
+    endDate,
+    Description,
     handleClick,
   } = props;
 
-  const transformMainName = (studentName) => {
-    if (studentName.length > 16) {
-      return studentName.slice(0, 15) + "...";
+  const transformMainHeading = (heading) => {
+    if (heading && heading.length > 24) {
+      return heading.slice(0, 20) + "...";
     }
-    return studentName;
+    return heading;
   };
 
-  const transformMainMail = (studentMail) => {
-    if (studentMail.length > 19) {
-      return studentMail.slice(0, 19) + "...";
+  const transformMainDescription = (description) => {
+    if (description && description.length > 34) {
+      return description.slice(0, 70) + "...";
     }
-    return studentMail;
+    return description;
   };
+
+  const formattedStartDate = format(new Date(startDate), "MM/dd/yyyy hh:mm a");
+  const formattedEndDate = format(new Date(endDate), "MM/dd/yyyy hh:mm a");
 
   const [isHover, setIsHover] = useState(false);
 
@@ -49,27 +51,26 @@ const StudentCard = (props) => {
 
   return (
     <div
-      className={styles.cards}
+      className={`${styles.cards}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className={cardsClass} onClick={handleClick}>
-        <img
-          src={studentImage}
-          alt="profile Picture"
-          className={styles.studentImage}
-        />
-        <div className={styles.maincontent}>
-          <a className={styles.studentname}>{transformMainName(studentName)}</a>
-          <a className={styles.studentid}>{studentId}</a>
-          <a className={styles.studentcollege}>{studentCollege}</a>
+        <a className={styles.cardsminiheading}>{miniHeading}</a>
+        <a className={styles.cardsmainheading}>
+          {transformMainHeading(mainHeading)}
+        </a>
+        <div className={styles.dateRow}>
+          <a className={styles.cardsdate}>{formattedStartDate}</a>
+          <div>
+            <GoArrowRight />
+          </div>
+          <a className={styles.cardsdate}>{formattedEndDate}</a>
         </div>
-        <div className={styles.maincontent}>
-          <a className={styles.studentmail}>{transformMainMail(studentMail)}</a>
-          <a className={styles.studentphonenumber}>{studentPhoneNumber}</a>
-        </div>
+        <a className={styles.cardsdiscription}>
+          {transformMainDescription(Description)}
+        </a>
       </div>
-
       <div className={styles.CardsOutline}>
         <div className={leftCardClass}></div>
         <div className={rightCardClass}></div>
@@ -85,4 +86,4 @@ const StudentCard = (props) => {
   );
 };
 
-export default StudentCard;
+export default PrimaryCard;
