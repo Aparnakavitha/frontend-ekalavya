@@ -48,5 +48,5 @@ const testimonials = [
 
 const Template = (args) => <Testimonials {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {testimonials, heading: 'Testimonials'};
+export const TestimonialCarousel = Template.bind({});
+TestimonialCarousel.args = {testimonials, heading: 'Testimonials'};

@@ -67,5 +67,5 @@ const studentProfiles = [
   
 const Template = (args) => <StarPerformer {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {studentProfiles,heading: 'Star Performers',};
+export const StudentCarousel = Template.bind({});
+StudentCarousel.args = {studentProfiles,heading: 'Star Performers',};

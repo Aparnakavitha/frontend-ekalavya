@@ -77,5 +77,5 @@ const projects = [
 
 const Template = (args) => <Project {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {projects, heading2: 'Equipping Budding Professionals for the future ....', heading1: 'See What you can learn with Us'};
+export const ProjectCarousel = Template.bind({});
+ProjectCarousel.args = {projects, heading2: 'Equipping Budding Professionals for the future ....', heading1: 'See What you can learn with Us'};
