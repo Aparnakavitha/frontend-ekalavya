@@ -10,8 +10,12 @@ const Footer = (props) => {
     isLeftALigned,
   } = props;
   const logoBoxClass = isLeftALigned ? styles.logoBoxLeft : styles.logoBox;
-  const containerClass = isLeftALigned ? styles.containerLeft : styles.container;
-  const copyrightClass = isLeftALigned ? styles.copyrightLeft : styles.copyright;
+  const containerClass = isLeftALigned
+    ? styles.containerLeft
+    : styles.container;
+  const copyrightClass = isLeftALigned
+    ? styles.copyrightLeft
+    : styles.copyright;
   return (
     <div className={styles.footer}>
       <div className={containerClass}>

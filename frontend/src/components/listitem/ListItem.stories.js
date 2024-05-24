@@ -13,12 +13,12 @@ export const Default = Template.bind({});
 Default.args = {
   icon: <BsHouse />,
   name: "Home",
-  viewIcon: true
+  viewIcon: true,
 };
 
 export const iconless = Template.bind({});
 iconless.args = {
   icon: <BsHouse />,
   name: "Home",
-  viewIcon: false
+  viewIcon: false,
 };
