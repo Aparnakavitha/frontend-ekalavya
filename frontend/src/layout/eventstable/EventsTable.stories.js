@@ -20,7 +20,7 @@ const createFlexDiv = () => (
 
   const createFlexDiv2 = () => (
     <div style={{ display: 'flex', width: 'auto', gap:'4px' }}>
-      <a>Status</a>
+      <span>Status</span>
       <AttendanceButton content="Present" isPresent={true} onClick={(r) => {
       console.log("clicked");
     }}/>

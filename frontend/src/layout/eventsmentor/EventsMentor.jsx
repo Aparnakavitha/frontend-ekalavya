@@ -78,19 +78,19 @@ const EventsMentor = (props) => {
               <>
                 <div>
                   <div className={styles.primarydiv}>
-                    <div className={styles.primarybutton}>
+                    <div>
                       <div>
                         <PrimaryButton content={large} />
                       </div>
                     </div>
 
-                    <div className={styles.primarybutton}>
+                    <div>
                       <div>
                         <PrimaryButton content={medium} />
                       </div>
                     </div>
 
-                    <div className={styles.primarybutton}>
+                    <div >
                       <div>
                         <PrimaryButton content={small} />
                       </div>
