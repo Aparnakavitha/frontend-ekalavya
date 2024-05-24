@@ -1,3 +1,5 @@
+/*--------------------batchaction.css starts here---------------------*/
+
 .content {
   width: 100%;
   display: flex;
@@ -13,6 +15,11 @@
   align-items: flex-end;
 }
 
+.textbutton {
+  display: flex;
+  gap: 10px;
+}
+
 .bottom {
   width: 100%;
   display: flex;
@@ -20,6 +27,7 @@
   justify-content: space-between;
   align-items: flex-end;
 }
+
 .right {
   display: flex;
   flex-direction: row;
@@ -37,71 +45,55 @@
   flex-direction: row;
 }
 
-.search.large {
-  width: 75.8%;
-}
-
-.search.medium {
-    width: 75.8%;
-  }
-
-.search.small{
-    width: 100%;
+.search {
+  width: 80%;
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-    .top{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
+  .top {
+    flex-direction: column;
+    gap: 5px;
+  }
 
-    }
-
-    .bottom {
+  .heading {
     display: flex;
+    width: 100%;
+  }
+
+  .textbutton {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .bottom {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
 
-  .heading {
-    font-size: 18px;
-  }
-
-  .search.large{
-    width: 100%;
-  }
-
-  .search.medium {
-    width: 100%;
-  }
-
-    .search.small{
-        width: 100%;
-    }
-
-  .buttons{
-    width: 100%;
-  }
-
   .right {
-    display: flex;
-    flex-direction: row;
     width: 100%;
     justify-content: space-between;
   }
-}
-   
-@media (max-width: 767px) {
-    .top{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
 
-    .bottom {
+  .search {
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .bottom {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -115,7 +107,7 @@
     width: 100%;
   }
 
-  .buttons{
+  .button {
     width: 100%;
   }
 
@@ -123,6 +115,8 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 }
+
+/*--------------------batchaction.css ends here---------------------*/

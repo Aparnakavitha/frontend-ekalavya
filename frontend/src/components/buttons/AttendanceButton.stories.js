@@ -8,7 +8,7 @@ export default {
     },
 };
 
-const Template = (args) => <AttendenceButton {...args} />;
+const Template = (args) => <AttendanceButton {...args} />;
 
 export const PresentButton = Template.bind({});
 PresentButton.args = {

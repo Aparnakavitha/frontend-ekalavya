@@ -3,14 +3,14 @@
   width: 80%;
 }
 
-.box .search-box {
+.search-box {
   position: relative;
   height: 45px;
-  width: 100%;
   border-radius: 25px;
   display: flex;
   justify-content: center;
   border: 2px solid var(--white);
+  width: 100%;
 }
 
 .search-box input {
@@ -19,17 +19,16 @@
   outline: none;
   border: none;
   background: none;
-  padding-left: 20px;
+  padding-left: 15px;
   font-size: 16px;
   letter-spacing: -0.41px;
   font-weight: 600;
   color: var(--white);
 }
 
-.search-box .search-button {
-  width: 10%;
+.search-button {
   border: none;
-  border-radius: 0 25px 25px 0;
+  border-radius: 0 18px 18px 0;
   background-color: var(--white);
   color: var(--black);
   font-size: 16px;
@@ -39,10 +38,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 60px;
+  padding: 8px 16px;
 }
 
-.search-box .search-button:hover {
+.search-button:hover {
   background: var(--primary-color);
 }
 
@@ -50,140 +49,51 @@
   display: none;
 }
 
+.small-box,
+.custom-box {
+  width: 100%;
+}
+
 .small-box {
   max-width: 400px;
-  width: 100%;
 }
 
 .custom-box {
   width: 50%;
 }
 
+.small-box .search-box,
 .custom-box .search-box {
-  position: relative;
-  height: 45px;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  border: 2px solid var(--white);
+  border-radius: 25px;
 }
 
-.small-box .search-box {
-  position: relative;
-  height: 45px;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  border: 2px solid var(--white);
-}
-
-.small-box input {
-  flex: 1;
-  border-radius: 20px 0 0 20px;
-  outline: none;
-  border: none;
-  background: none;
-  padding-left: 15px;
-  font-size: 16px;
-  letter-spacing: -0.41px;
-  font-weight: 600;
-  color: var(--white);
-}
-
-
+.small-box input,
 .custom-box input {
-  flex: 1;
   border-radius: 20px 0 0 20px;
-  outline: none;
-  border: none;
-  background: none;
   padding-left: 15px;
-  font-size: 16px;
-  letter-spacing: -0.41px;
-  font-weight: 600;
-  color: var(--white);
 }
 
+.small-box .search-button,
 .custom-box .search-button {
-  width: 90px;
-  border: none;
   border-radius: 0 18px 18px 0;
-  background: var(--white);
-  color: var(--black);
-  font-size: 16px;
-  letter-spacing: -0.41px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 8px;
 }
 
-.small-box .search-button {
-  width: 70px;
-  border: none;
-  border-radius: 0 18px 18px 0;
-  background: var(--white);
-  color: var(--black);
-  font-size: 16px;
-  letter-spacing: -0.41px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 8px;
-}
-
-.custom-box .search-button:hover {
-  background: var(--primary-color);
-}
-
-.small-box .search-button:hover {
-  background: var(--primary-color);
-}
 
 @media (min-width: 768px) and (max-width: 992px) {
-    /* .box .search-box {
-      height: 45px;
-    } */
-
-  .small-box {
+  .small-box,
+  .custom-box {
     width: 100%;
   }
 
-    .custom-box{
-      width: 100%;
+  .small-box .search-box,
+  .custom-box .search-box {
+    width: 100%;
   }
-
-    .small-box .search-box {
-      /* height: 40px; */
-      width: 100%;
-  }
-
-    .custom-box .search-box {
-      /* height: 40px; */
-      width: 100%;
-  }
-
-    /* .search-box {
-      height: 40px;
-  } */
-
-    .search-box input {
-      font-size: 12px;
-  }
-
-    .search-box .search-button {
-      font-size: 12px;
-  }
-
 }
+
 
 @media screen and (max-width: 767px) {
   .box .search-box {
-    /* height: 35px; */
     width: 125%;
   }
 
@@ -191,32 +101,8 @@
     width: 50%;
   }
 
-  /* .small-box .search-box {
-    height: 35px;
-  } */
-
-  /* .custom-box .search-box {
-    height: 35px;
-  } */
-
-  .search-box input {
-    font-size: 10px;
-  }
-
-  .search-box .search-button {
-    font-size: 10px;
-  }
-
-  .small-box .search-box {
-    width: 200%;
-  }
-
+  .small-box .search-box,
   .custom-box .search-box {
     width: 200%;
   }
-
-  .custom-box .search-button {
-    width: 70px;
-  }
-
 }

@@ -1,0 +1,161 @@
+/*------------------------greeting.css starts here----------------------*/
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: white;
+}
+
+.welcome {
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.41px;
+}
+
+.header {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.59px;
+  display: flex;
+  gap: 100px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.greenlink {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 25px;
+  padding-right: 25px;
+}
+
+.greenlink a {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+/*------------------------greeting.css ends here----------------------*/
+
+/*------------------------action.css starts here----------------------*/
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.right {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.heading {
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  align-items: flex-end;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+}
+
+.search.large {
+  width: 75.8%;
+}
+
+.search.medium {
+  width: 75.8%;
+}
+
+.search.small {
+  width: 100%;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .heading {
+    font-size: 18px;
+  }
+
+  .search.large,
+  .search.medium,
+  .search.small {
+    width: 100%;
+  }
+
+  .buttons {
+    width: 100%;
+  }
+
+  .right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 767px) {
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .heading {
+    font-size: 18px;
+  }
+
+  .search.large,
+  .search.medium,
+  .search.small {
+    width: 100%;
+  }
+
+  .buttons {
+    width: 100%;
+  }
+
+  .right {
+    width: 100%;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+/*--------------------action.css ends here---------------------*/
