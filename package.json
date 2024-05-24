@@ -1,8 +1,0 @@
-{
-  "name": "ekalavya-ui",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@git.idc.tarento.com:nxt/project-ekalavya/ekalavya-ui.git",
-  "author": "jithinthottoli <jithin.thottoli@tarento.com>",
-  "license": "MIT"
-}
