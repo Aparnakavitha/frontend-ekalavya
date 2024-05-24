@@ -20,7 +20,6 @@ const Footer = (props) => {
           <span className={styles.quote}>{quoteContent}</span>
         </div>
       </div>
-
       <div className={styles.bottombox}>
         <div className={copyrightClass}>
           <span className={styles.copyrightContent}>{copyrightContent}</span>
