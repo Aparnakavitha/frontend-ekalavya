@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaRegImage } from "react-icons/fa";
 import styles from "./InputBox.module.css";
-
-const InputBox = ({
+ 
+const Input = ({
   size,
   label,
   placeholders,
@@ -86,21 +86,6 @@ const InputBox = ({
                 className={`${styles.input} ${styles["large-size"]} ${styles["file-input"]}`}
               />
             </div>
-          ) : isDropdown ? (
-            <select
-              {...rest}
-              value={value}
-              onChange={handleSelectChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              className={`${styles.input} ${size === "normal" ? styles["normal-size"] : ""} ${size === "small" ? styles["small-size"] : ""}`}
-            >
-              {options.map((option, index) => (
-                <option key={index} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
           ) : size === "large" ? (
             <textarea
               {...rest}
@@ -127,5 +112,5 @@ const InputBox = ({
     </div>
   );
 };
-
-export default InputBox;
+ 
+export default Input;
