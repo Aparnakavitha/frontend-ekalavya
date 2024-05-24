@@ -41,7 +41,3 @@ const Footer = (props) => {
 };
 
 export default Footer;
-
-// fsdgjamkl
-// vfsdaklm;
-// fsadnklm
