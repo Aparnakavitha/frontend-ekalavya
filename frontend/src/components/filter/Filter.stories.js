@@ -6,9 +6,9 @@ export default {
   component: Filter,
 };
 
-const Template = ({ initialHeading, Content }) => {
+const Template = (args) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(initialHeading);
+  const [selectedOption, setSelectedOption] = useState(args.initialHeading);
 
   const handleToggle = (state) => {
     setIsOpen(state !== undefined ? state : !isOpen);
@@ -20,8 +20,8 @@ const Template = ({ initialHeading, Content }) => {
 
   return (
     <Filter
-      initialHeading={initialHeading}
-      Content={Content}
+      {...args}
+      initialHeading={selectedOption}
       isOpen={isOpen}
       onToggle={handleToggle}
       onOptionClick={handleOptionClick}

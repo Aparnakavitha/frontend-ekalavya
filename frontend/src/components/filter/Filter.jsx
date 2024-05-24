@@ -12,6 +12,7 @@ const Filter = ({
 }) => {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(initialHeading);
+  const headingRef = useRef(null);
   const dropRef = useRef(null);
 
   const toggleDropdown = (newIsOpen) => {
@@ -47,29 +48,25 @@ const Filter = ({
   }, [isOpen, internalIsOpen]);
 
   const currentIsOpen = isOpen !== undefined ? isOpen : internalIsOpen;
-  const longestOptionLength = Content.reduce(
-    (max, option) => Math.max(max, option.length),
-    0
-  );
-  const dropdownWidth = Math.max(
-    styles.filterClass.minWidth,
-    longestOptionLength * styles.characterWidth
-  );
+
+  const dropdownWidth = headingRef.current
+    ? headingRef.current.offsetWidth
+    : "auto";
 
   return (
     <div className={styles.filter} ref={dropRef}>
       <div
         className={styles.filterClass}
         onClick={() => toggleDropdown(!currentIsOpen)}
-        style={{ width: dropdownWidth }}
+        ref={headingRef}
       >
-        <a>{selectedOption}</a>
+        <span className={styles.selectedOption}>{selectedOption}</span>
         <div className={styles.iconAngleDown}>
           <FaAngleDown />
         </div>
       </div>
       {currentIsOpen && (
-        <div className={styles.drop}>
+        <div className={styles.drop} style={{ minWidth: dropdownWidth }}>
           {Content.map((content, index) => (
             <div
               className={styles.dropcontent}
