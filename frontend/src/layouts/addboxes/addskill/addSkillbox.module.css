@@ -1,27 +1,25 @@
 .form {
-  /* position: absolute;
-      left: calc(50% - 704px / 2 + 0.5px);
-      top: calc(50% - 747px / 2 + 5.5px); */
-
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
-  background: #2e2d2d;
+  background: var(--background);
   background-blend-mode: lighten;
   border-radius: 40px;
-  color: white;
+  color: var(--white);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 25px;
-  justify-content: center; /* Center items horizontally */
+  justify-content: center;
   align-items: center;
   padding: 50px;
 }
-.text{
-    font-size: 12px;
-    left: 57px;
+
+.text {
+  font-size: 12px;
+  left: 57px;
 }
+
 .head {
   width: 100%;
   height: 47px;
@@ -29,10 +27,8 @@
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
-  /* margin-bottom: 15px; */
   line-height: 32px;
-  color: #ffffff;
-  /* top: 61px; */
+  color: var(--white);
 }
 
 .containerOne {
@@ -41,7 +37,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* background-color: rgb(122, 250, 2); */
 }
 
 .containerInput {
@@ -49,7 +44,6 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  /* background-color: rgb(122, 250, 2); */
 }
 
 .buttonContainer {

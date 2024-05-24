@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./addProfilelink.module.css";
 import { useForm, Controller } from "react-hook-form";
 import Input from "../../../components/inputbox/InputBox";
@@ -7,14 +7,17 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 
 const AddProfilelink = () => {
   const { handleSubmit, control, getValues } = useForm();
+
   const onSubmit = (data) => {
     console.log("Form Data:", data);
   };
+
   const options = [
     { value: "abc", label: "ABC" },
     { value: "xyz", label: "XYZ" },
     { value: "pqr", label: "PQR" },
   ];
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.containerOne}>

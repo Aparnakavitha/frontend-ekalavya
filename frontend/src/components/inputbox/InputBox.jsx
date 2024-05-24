@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaRegImage } from "react-icons/fa";
 import styles from "./InputBox.module.css";
-
+ 
 const Input = ({
   size,
   label,
@@ -12,13 +12,11 @@ const Input = ({
   isDatePicker,
   isTimePicker,
   isFileInput,
-  isDropdown,
-  options,
   ...rest
 }) => {
   const [clicked, setClicked] = useState(false);
   const [fileName, setFileName] = useState("");
-
+ 
   const handleFocus = () => {
     setClicked(true);
   };
@@ -29,7 +27,7 @@ const Input = ({
       onBlur(event);
     }
   };
-
+ 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -39,14 +37,11 @@ const Input = ({
       onChange(event);
     }
   };
-
-  const handleSelectChange = (event) => {
-    onChange(event);
-    setClicked(false);
-  };
-
+ 
   return (
-    <div className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}>
+    <div
+      className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}
+    >
       <label htmlFor={rest.id} className={styles["input-label"]}>
         {label}
       </label>
@@ -88,32 +83,17 @@ const Input = ({
                 onChange={handleFileChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                className={`${styles.input} ${styles["tall-size"]} ${styles["file-input"]}`}
+                className={`${styles.input} ${styles["large-size"]} ${styles["file-input"]}`}
               />
             </div>
-          ) : isDropdown ? (
-            <select
-              {...rest}
-              value={value}
-              onChange={handleSelectChange}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              className={`${styles.input} ${size === "normal" ? styles["normal-size"] : ""} ${size === "small" ? styles["small-size"] : ""}`}
-            >
-              {options.map((option, index) => (
-                <option key={index} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          ) : size === "tall" ? (
+          ) : size === "large" ? (
             <textarea
               {...rest}
               value={value}
               onChange={onChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
-              className={`${styles.input} ${styles["tall-size"]}`}
+              className={`${styles.input} ${styles["large-size"]}`}
               placeholder={placeholder}
             />
           ) : (
@@ -134,3 +114,4 @@ const Input = ({
 };
  
 export default Input;
+ 

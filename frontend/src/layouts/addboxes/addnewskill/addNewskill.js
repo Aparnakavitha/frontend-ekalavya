@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./addNewskill.module.css";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
@@ -6,14 +6,17 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 
 const AddNewskill = () => {
   const { handleSubmit, control, getValues } = useForm();
+
   const onSubmit = (data) => {
     console.log("Form Data:", data);
   };
+
   const options = [
     { value: "abc", label: "ABC" },
     { value: "xyz", label: "XYZ" },
     { value: "pqr", label: "PQR" },
   ];
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.containerOne}>

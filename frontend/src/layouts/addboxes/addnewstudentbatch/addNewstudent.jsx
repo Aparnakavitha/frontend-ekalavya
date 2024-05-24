@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./addNewstudent.module.css";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Input from "../../../components/inputbox/InputBox";
+
 const Addnewstudent = () => {
   const { handleSubmit, control, getValues } = useForm();
+
   const onSubmit = (data) => {
     console.log("Form Data:", data);
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.containerOne}>
         <header className={styles.head}>Add Student</header>
         <div className={styles.containerInput}>
-        <Controller
+          <Controller
             name="studentId"
             control={control}
             render={({ field }) => (

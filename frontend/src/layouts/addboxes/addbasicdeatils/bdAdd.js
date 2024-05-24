@@ -7,10 +7,20 @@ import { FaPlus } from "react-icons/fa6";
 import TextButton from "../../../components/buttons/TextButton";
 
 const BdAdd = () => {
-  const { handleSubmit, control, setValue, setError, formState: { errors } } = useForm();
+  const {
+    handleSubmit,
+    control,
+    setValue,
+    setError,
+    formState: { errors },
+  } = useForm();
   const [fileError, setFileError] = useState("");
 
   const onSubmit = (data) => {
+    if (fileError) {
+      console.error("Form contains errors. Please fix them before submitting.");
+      return;
+    }
     console.log("Form Data:", data);
   };
 
@@ -19,16 +29,22 @@ const BdAdd = () => {
   };
 
   const validateImageFile = (file) => {
-    const validImageTypes = ["image/jpeg", "image/png", "image/gif", "image/bmp", "image/webp"];
+    const validImageTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/gif",
+      "image/bmp",
+      "image/webp",
+    ];
     if (file && !validImageTypes.includes(file.type)) {
       setFileError("Invalid file type. Please upload an image file.");
       setError("profilePhoto", {
         type: "manual",
-        message: "Invalid file type. Please upload an image file."
+        message: "Invalid file type. Please upload an image file.",
       });
       return false;
     }
-    setFileError(""); 
+    setFileError("");
     return true;
   };
 
@@ -78,7 +94,7 @@ const BdAdd = () => {
                   if (validateImageFile(file)) {
                     setValue("profilePhoto", file);
                   } else {
-                    setValue("profilePhoto", null); // Reset the field if invalid file
+                    setValue("profilePhoto", null);
                   }
                 }}
               />
@@ -145,7 +161,7 @@ const BdAdd = () => {
                 {...field}
                 label="About Me"
                 placeholders={["about me"]}
-                size="tall"
+                size="large"
               />
             )}
           />
