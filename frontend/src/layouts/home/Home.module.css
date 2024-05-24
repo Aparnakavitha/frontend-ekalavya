@@ -1,0 +1,99 @@
+/* ----------------------------------------carousel.css------------------------------------------------ */
+
+
+.carouselHeader {
+    text-align: center;
+  }
+  .starPerformer .carouselHeader,
+  .testimonials .carouselHeader{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .chunk {
+    display: flex;
+    justify-content: center;
+  }
+
+  .projects .chunk{
+    max-width: 916px;
+    gap: 320px;
+    margin-right: 280px;
+    margin-top: 10px;
+    margin-bottom: 25%;
+  }
+  .starPerformer .chunk{
+    margin-right: 60px;
+    gap: 80px;
+    margin-bottom: 60px;
+  }
+  .testimonials .chunk{
+    gap: 15px;
+    margin-bottom: 60px;
+  }
+  
+  .carouselHeading{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    font-size: 24px;
+  }
+  .carouselHeading2{
+    color: var(--white);
+    font-weight: 400;
+  }
+  .carouselHeading1{
+    color: var(--primary-color);
+    font-weight: 600;
+    line-height: 90%;
+    margin-bottom: 25px;
+  }
+  
+  
+  .carouselWrapper {
+    margin: 0 auto;
+  }
+  .projects .carouselWrapper{
+    max-width: 1028px; 
+  }
+  .starPerformer .carouselWrapper{
+    max-width: 1051px; 
+  }
+  .testimonials .carouselWrapper{
+    max-width: 1148px; 
+  }
+
+
+  @media(max-width: 767px) {
+    .testimonials .carouselWrapper,
+    .starPerformer .carouselWrapper {
+      width: 302px;
+    }
+    .carouselHeading{
+        font-size: 20px;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 992px) {
+    .starPerformer .carouselWrapper{
+        width: 600px;
+    }
+    .projects .chunk {
+        margin-bottom: 32%;
+      }
+  }
+  @media (min-width: 414px) and (max-width: 767px) {
+    .projects .chunk {
+      max-width: 302px;
+      margin-bottom: 65%;
+    }
+  }
+  
+  @media(max-width: 413px) {
+    .projects .chunk {
+      margin-right: 100%;
+      margin-bottom: 85%;
+    }
+  }
+  
+  /* ----------------------------------------carousel.css ends here------------------------------------------------ */
