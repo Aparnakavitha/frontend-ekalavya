@@ -1,6 +1,6 @@
 import React from "react";
-import ProfilePicture from "./ProfilePicture"; 
-import profilepic from "../../assets/pic.png"
+import ProfilePicture from "./ProfilePicture";
+import profilepic from "../../assets/pic.png";
 
 export default {
   title: "components/ProfilePicture",
