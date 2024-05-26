@@ -36,7 +36,7 @@ const DataView = ({
 
   const getComponentName = (item) => {
     let cardName = CardComponent.name.toLowerCase();
-    if (cardName === "sbcards") {
+    if (cardName === "skillbatchcard") {
       if (item.cardType.toLowerCase() === "skill") {
         cardName = "skillbatchcardskill";
       } else if (item.cardType.toLowerCase() === "batch") {

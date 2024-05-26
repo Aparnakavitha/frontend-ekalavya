@@ -22,7 +22,8 @@ export default {
     },
     tableColumns: {
       control: { type: "object" },
-      description: "Array of column definitions with key and displayName",
+      description:
+        "Values in data that shows up in table view (Array of key and displayName)",
     },
     toggle: {
       control: { type: "boolean" },
@@ -61,10 +62,154 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
   ],
   tableColumns: [
     { key: "miniHeading", displayName: "Mini Heading" },
-    { key: "mainHeading", displayName: "Main Heading" },
+    { key: "mainHeading", displayName: "Title" },
     { key: "startDate", displayName: "Start Date" },
     { key: "endDate", displayName: "End Date" },
     { key: "description", displayName: "Description" },
@@ -75,6 +220,198 @@ const primaryCardData = {
 
 const eventCardData = {
   data: [
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
+    {
+      main: "All hands meeting",
+      sub: "http://www.zoom.com",
+      start: "10:30am",
+      end: "11:30am",
+      status: "due",
+      mode: "dark",
+      date: 17,
+      onclick: (e) => {
+        console.log("Event card clicked!");
+      },
+    },
     {
       main: "All hands meeting",
       sub: "http://www.zoom.com",
@@ -141,6 +478,168 @@ const studentCardData = {
       studentPhoneNumber: 9865321234,
       cardType: "student",
     },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "Jane Doe",
+      studentId: "124",
+      studentCollege: "IIT Bombay",
+      studentMail: "janedoe@gmail.com",
+      studentPhoneNumber: 9865321235,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "Jane Doe",
+      studentId: "124",
+      studentCollege: "IIT Bombay",
+      studentMail: "janedoe@gmail.com",
+      studentPhoneNumber: 9865321235,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "Jane Doe",
+      studentId: "124",
+      studentCollege: "IIT Bombay",
+      studentMail: "janedoe@gmail.com",
+      studentPhoneNumber: 9865321235,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "Jane Doe",
+      studentId: "124",
+      studentCollege: "IIT Bombay",
+      studentMail: "janedoe@gmail.com",
+      studentPhoneNumber: 9865321235,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "Jane Doe",
+      studentId: "124",
+      studentCollege: "IIT Bombay",
+      studentMail: "janedoe@gmail.com",
+      studentPhoneNumber: 9865321235,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "Jane Doe",
+      studentId: "124",
+      studentCollege: "IIT Bombay",
+      studentMail: "janedoe@gmail.com",
+      studentPhoneNumber: 9865321235,
+      cardType: "student",
+    },
+    {
+      studentImage: image,
+      studentName: "John Doe",
+      studentId: "123",
+      studentCollege: "IIT Bombay",
+      studentMail: "johndoe@gmail.com",
+      studentPhoneNumber: 9865321234,
+      cardType: "student",
+    },
   ],
   tableColumns: [
     { key: "studentId", displayName: "ID" },
@@ -156,6 +655,111 @@ const studentCardData = {
 
 const profileCardData = {
   data: [
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
+    {
+      profileImage: image,
+      title2: "Senior Software Engineer",
+      title3: "San Francisco, USA",
+      email: "johndoe@email.com",
+      phone: "(555) 555-5555",
+    },
     {
       profileImage: image,
       title2: "Senior Software Engineer",
@@ -193,6 +797,155 @@ const skillCardData = {
       handleClick: action("Card clicked!"),
       handleDeleteClick: action("Delete Icon Clicked!"),
     },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+    {
+      miniHeading: "SKILL4785",
+      mainHeading: "Java",
+      Count: 53,
+      cardType: "Skill",
+      handleClick: action("Card clicked!"),
+      handleDeleteClick: action("Delete Icon Clicked!"),
+    },
+  ],
+  tableColumns: [
+    { key: "miniHeading", displayName: "Skill ID" },
+    { key: "mainHeading", displayName: "Skill Name" },
+    { key: "Count", displayName: "Count" },
   ],
   toggle: true,
   itemsPerPage: 11,
@@ -214,6 +967,137 @@ const batchCardData = {
       cardType: "Batch",
       handleClick: action("Card clicked!"),
     },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+    {
+      miniHeading: "B301",
+      mainHeading: "Batch 1",
+      Count: 28,
+      cardType: "Batch",
+      handleClick: action("Card clicked!"),
+    },
+  ],
+  tableColumns: [
+    { key: "miniHeading", displayName: "Batch ID" },
+    { key: "mainHeading", displayName: "Batch Name" },
+    { key: "Count", displayName: "Count" },
   ],
   toggle: true,
   itemsPerPage: 11,
@@ -229,6 +1113,130 @@ const skillsCardData = {
         console.log("Close button clicked");
       },
     },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+    {
+      title: "Java",
+      subtitle: "Level 1",
+      showCloseIcon: true,
+      onClose: () => {
+        console.log("Close button clicked");
+      },
+    },
+  ],
+  tableColumns: [
+    { key: "title", displayName: "Skill Name" },
+    { key: "subtitle", displayName: "Skill Level" },
   ],
   toggle: true,
   itemsPerPage: 11,
@@ -252,6 +1260,141 @@ const testimonialCardData = {
         "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
       profilePicture: image,
     },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+    {
+      name: "John Doe",
+      info: "Senior Software Engineer",
+      place: "Sans-Francisco, USA",
+      description:
+        "As a marketing professional with no prior background in data science, this course provided me with a solid foundation to make a career transition. The hands-on projects and expert guidance from Dr. Rodriguez made complex concepts accessible. I now feel confident applying data science techniques to enhance my decision-making processes in marketing.",
+      profilePicture: image,
+    },
+  ],
+  tableColumns: [
+    { key: "name", displayName: "Name" },
+    { key: "info", displayName: "Role" },
+    { key: "place", displayName: "Location" },
+    { key: "description", displayName: "Testimony" },
+    { key: "profilePicture", displayName: "Profile Photo" },
   ],
   toggle: true,
   itemsPerPage: 11,
@@ -259,6 +1402,312 @@ const testimonialCardData = {
 
 const skillUserData = {
   data: [
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
+    {
+      miniHeading: "Student",
+      mainHeading: "John Doe",
+      skills: ["Java", "HTML"],
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+      profilepic: image,
+    },
     {
       miniHeading: "Student",
       mainHeading: "John Doe",
