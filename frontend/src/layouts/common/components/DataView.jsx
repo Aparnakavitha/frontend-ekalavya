@@ -38,11 +38,13 @@ const DataView = ({
     let cardName = CardComponent.name.toLowerCase();
     if (cardName === "skillbatchcard") {
       if (item.cardType.toLowerCase() === "skill") {
-        cardName = "skillbatchcardskill";
+        cardName = "dataview-skillbatchcardskill";
       } else if (item.cardType.toLowerCase() === "batch") {
-        cardName = "skillbatchcardbatch";
+        cardName = "dataview-skillbatchcardbatch";
       }
     }
+    cardName = "dataview-" + cardName;
+    console.log(cardName);
     return cardName;
   };
 
@@ -56,24 +58,24 @@ const DataView = ({
   return (
     <div>
       {toggle && (
-        <div className={styles.toggleContainer}>
+        <div className={`${styles["dataview-toggleContainer"]}`}>
           <button
-            className={`${styles.toggleButton} ${isCardView ? styles.selected : ""}`}
+            className={`${styles["dataview-toggleButton"]} ${isCardView ? styles.selected : ""}`}
             onClick={showCardView}
           >
-            <PiCards className={styles.icons} />
+            <PiCards className={`${styles["dataview-icons"]}`} />
           </button>
           <button
-            className={`${styles.toggleButton} ${!isCardView ? styles.selected : ""}`}
+            className={`${styles["dataview-toggleButton"]} ${!isCardView ? styles.selected : ""}`}
             onClick={showTableView}
           >
-            <PiListBullets className={styles.icons} />
+            <PiListBullets className={`${styles["dataview-icons"]}`} />
           </button>
         </div>
       )}
 
       {isCardView ? (
-        <div className={styles.cardscontainer}>
+        <div className={`${styles["dataview-cardscontainer"]}`}>
           {currentData.map((item, index) => (
             <div key={index} className={`${styles[getComponentName(item)]}`}>
               <CardComponent {...item} />
@@ -81,13 +83,13 @@ const DataView = ({
           ))}
         </div>
       ) : (
-        <div className={styles.tablecontainer}>
+        <div className={`${styles["dataview-tablecontainer"]}`}>
           <Table data={filteredTableData} headings={tableHeadings} />
         </div>
       )}
 
       {data.length > itemsPerPage && (
-        <div className={styles.pagination}>
+        <div className={`${styles["dataview-pagination"]}`}>
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}

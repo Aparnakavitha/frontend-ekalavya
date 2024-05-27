@@ -13,7 +13,7 @@ import TestimonialCard from "../../../components/cards/TestimonialCard";
 import image from "../../../assets/DP.png";
 
 export default {
-  title: "layouts/DataView",
+  title: "layouts/common/DataView",
   component: DataView,
   argTypes: {
     data: {

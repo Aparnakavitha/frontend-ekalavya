@@ -1,10 +1,12 @@
-.toggleContainer {
+/*----------Start-----------Data View Layout---------------------------*/
+
+.dataview-toggleContainer {
   display: flex;
   justify-content: end;
   margin-bottom: 24px;
 }
 
-.toggleButton {
+.dataview-toggleButton {
   color: var(--white);
   background-color: rgba(255, 255, 255, 0);
   border: none;
@@ -15,78 +17,80 @@
   justify-content: center;
 }
 
-.toggleButton:hover {
+.dataview-toggleButton:hover {
   color: var(--primary-color);
 }
 
-.toggleButton.selected {
+.dataview-toggleButton.selected {
   color: var(--primary-color);
 }
 
-.icons {
+.dataview-icons {
   font-size: 24px;
 }
 
-.cardscontainer {
+.dataview-cardscontainer {
   display: flex;
   flex-wrap: wrap;
   gap: 21px;
   justify-content: center;
 }
 
-.tablecontainer {
+.dataview-tablecontainer {
   width: 100%;
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--neutral600) #ffffff00;
 }
 
-.pagination {
+.dataview-pagination {
   margin-top: 24px;
 }
 
 /*Dynamic card components for flex box sizing*/
-.eventcard {
+.dataview-eventcard {
   flex-basis: 336px;
   height: 75px;
 }
 
-.primarycard {
+.dataview-primarycard {
   flex-basis: 287px;
   height: 193px;
 }
 
-.profilecard {
+.dataview-profilecard {
   flex-basis: 279px;
   height: 228px;
 }
 
-.skillbatchcardskill {
+.dataview-skillbatchcardskill {
   flex-basis: 282px;
   height: 168px;
 }
 
-.skillbatchcardbatch {
+.dataview-skillbatchcardbatch {
   flex-basis: 282px;
   height: 168px;
 }
 
-.skillcard {
+.dataview-skillcard {
   flex-basis: 274px;
   height: 74px;
 }
 
-.skilluser {
+.dataview-skilluser {
   flex-basis: 263px;
   height: 168px;
 }
 
-.studentcard {
+.dataview-studentcard {
   flex-basis: 230px;
   height: 230px;
 }
 
-.testimonialcard {
+.dataview-testimonialcard {
   flex-basis: 253px;
   height: 321px;
 }
+
+/*----------End-----------Data View Layout---------------------------*/
