@@ -22,3 +22,11 @@ export const SearchbarSmall = {
     onSearch: action("searched"),
   },
 };
+
+export const SearchbarCustom = {
+  args: {
+    variant: "custom",
+    placeholder: "Search...",
+    onSearch: action("searched"),
+  },
+};
