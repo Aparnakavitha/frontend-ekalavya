@@ -3,7 +3,7 @@ import Testimonials from "./Testimonials";
 import image from "../../../assets/DP.png";
 
 export default {
-  title: "Layouts/Testimonials",
+  title: "layouts/Home/Components/Testimonials",
   component: Testimonials,
 };
 

@@ -299,3 +299,33 @@
 }
 
 /* ----------------------------------------carousel.css ends here------------------------------------------------ */
+/* -------------------------------partners.css------------------------------- */
+
+.Partners-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.Partners-title {
+  font-size: 13px;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.Partners-Icons {
+  display: flex;
+  gap: 75px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.Partners.profileImage{
+  width: 200px;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}

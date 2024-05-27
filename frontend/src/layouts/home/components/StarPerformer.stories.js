@@ -3,7 +3,7 @@ import StarPerformer from "./StarPerformer";
 import image from "../../../assets/DP.png";
 
 export default {
-  title: "Layouts/StarPerformer",
+  title: "layouts/Home/Components/StarPerformer",
   component: StarPerformer,
 };
 

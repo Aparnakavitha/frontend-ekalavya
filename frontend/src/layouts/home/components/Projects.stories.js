@@ -2,7 +2,7 @@ import React from "react";
 import Project from "./Projects";
 
 export default {
-  title: "Layouts/Project",
+  title: "layouts/Home/Components/Project",
   component: Project,
 };
 
