@@ -15,7 +15,7 @@ const data = [
   ["Meera", "Davis", 23],
   ["boby", "Smith", 25],
   ["Amala", "Jayadev", 27],
-  ["Amal", "dfvbg", 24],
+  ["Amal", "wilson", 24],
 ];
 
 const headings = ["First Name", "Last Name", "Age"];
