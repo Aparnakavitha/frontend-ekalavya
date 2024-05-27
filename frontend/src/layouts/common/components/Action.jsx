@@ -25,20 +25,20 @@ const ActionComponent = ({
   };
 
   return (
-    <div className={styles.content}>
-      <div className={styles.top}>
-        <div className={styles.heading}>{heading}</div>
-        <div className={styles.buttons}>
+    <div className={`${styles["common-content"]}`}>
+      <div className={`${styles["common-top"]}`}>
+        <div className={`${styles["common-heading"]}`}>{heading}</div>
+        <div className={`${styles["common-buttons"]}`}>
           <PrimaryButton {...buttonProps} />
         </div>
       </div>
-      <div className={styles.bottom}>
-        <div className={`${styles.search} ${styles[searchWidth]}`}>
+      <div className={`${styles["common-bottom"]}`}>
+        <div className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}>
           <Searchbar {...searchbarProps} />
         </div>
         {showFiltersAndReset && (
-          <div className={styles.right}>
-            <div className={styles.filter}>
+          <div className={`${styles["common-right"]}`}>
+            <div className={`${styles["common-filter"]}`}>
               {filterProps.map((props, index) => (
                 <Filter
                   key={index}
@@ -50,7 +50,7 @@ const ActionComponent = ({
                 />
               ))}
             </div>
-            <div className={styles.reset}>
+            <div className={`${styles["common-reset"]}`}>
               <PrimaryButton {...resetProps} />
             </div>
           </div>

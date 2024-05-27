@@ -1,7 +1,7 @@
-import ActionComponent from "./action";
+import ActionComponent from "./Action";
 
 export default {
-  title: "layouts/Action",
+  title: "layouts/Common/Components/Action",
   component: ActionComponent,
 };
 

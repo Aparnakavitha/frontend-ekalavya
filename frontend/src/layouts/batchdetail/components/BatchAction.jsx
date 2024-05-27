@@ -4,7 +4,7 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
 import NavButton from "../../../components/buttons/NavButton";
-import TabButton from "../../../components/buttons/TabButton";
+import TextButton from "../../../components/buttons/TextButton";
 
 const Action = ({
   textbuttonProps,
@@ -16,33 +16,33 @@ const Action = ({
   showFiltersAndReset,
 }) => {
   return (
-    <div className={styles.content}>
-      <div className={styles.top}>
-        <div className={styles.heading}>
+    <div className={`${styles["batchdetail-content"]}`}>
+      <div className={`${styles["batchdetail-top"]}`}>
+        <div className={`${styles["batchdetail-heading"]}`}>
           <NavButton {...navbuttonProps} />
         </div>
-        <div className={styles.textbutton}>
+        <div className={`${styles["batchdetail-textbutton"]}`}>
           <div>
-            <TabButton {...textbuttonProps} />
+            <TextButton {...textbuttonProps} />
           </div>
           <div>
-            <TabButton {...textbuttonProps2} />
+            <TextButton {...textbuttonProps2} />
           </div>
         </div>
       </div>
-      <div className={styles.bottom}>
-        <div className={styles.search}>
+      <div className={`${styles["batchdetail-bottom"]}`}>
+        <div className={`${styles["batchdetail-search"]}`}>
           <Searchbar {...searchbarProps} />
         </div>
-        <div className={styles.right}>
+        <div className={`${styles["batchdetail-right"]}`}>
           {showFiltersAndReset && (
-            <div className={styles.filter}>
+            <div className={`${styles["batchdetail-filter"]}`}>
               {filterProps.map((props, index) => (
                 <Filter key={index} {...props} />
               ))}
             </div>
           )}
-          <div className={styles.button}>
+          <div className={`${styles["batchdetail-button"]}`}>
             <PrimaryButton {...buttonProps} />
           </div>
         </div>

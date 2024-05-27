@@ -1,5 +1,6 @@
 /*------------------------greeting.css starts here----------------------*/
-.content {
+
+.common-content {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -7,13 +8,13 @@
   color: white;
 }
 
-.welcome {
+.common-welcome {
   font-weight: 500;
   font-size: 28px;
   letter-spacing: -0.41px;
 }
 
-.header {
+.common-header {
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 0.59px;
@@ -23,31 +24,31 @@
   justify-content: space-between;
 }
 
-.greenlink {
+.common-greenlink {
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 25px;
   padding-right: 25px;
 }
 
-.greenlink a {
+.common-greenlink a {
   text-decoration: underline;
   color: var(--primary-color);
 }
 
 @media (max-width: 767px) {
-  .welcome {
+  .common-welcome {
     font-size: 18px;
   }
 
-  .header {
+  .common-header {
     display: flex;
     flex-direction: column;
     gap: 10px;
     font-size: 10px;
   }
 
-  .greenlink {
+  .common-greenlink {
     display: flex;
     justify-content: space-between;
     padding-right: 0;
@@ -57,7 +58,8 @@
 /*------------------------greeting.css ends here----------------------*/
 
 /*------------------------action.css starts here----------------------*/
-.content {
+
+.common-content {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -65,14 +67,14 @@
   padding: 10px;
 }
 
-.top {
+.common-top {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.bottom {
+.common-bottom {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -80,99 +82,91 @@
   align-items: flex-end;
 }
 
-.right {
+.common-right {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.heading {
+.common-heading {
   color: white;
   font-size: 24px;
   font-weight: 500;
   align-items: flex-end;
 }
 
-.filter {
+.common-filter {
   display: flex;
   flex-direction: row;
 }
 
-.search {
+.common-search {
   width: 33%;
 }
 
-/* .search.medium {
-  width: 50%;
-}
-
-.search.small {
-  width: 50%;
-} */
-
 @media (min-width: 768px) and (max-width: 992px) {
-  .top {
+  .common-top {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
   }
 
-  .bottom {
+  .common-bottom {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
 
-  .heading {
+  .common-heading {
     font-size: 18px;
   }
 
-  .search.large,
-  .search.medium,
-  .search.small {
+  .common-search.common-large,
+  .common-search.common-medium,
+  .common-search.common-small {
     width: 100%;
   }
 
-  .buttons {
+  .common-buttons {
     width: 100%;
   }
 
-  .right {
+  .common-right {
     width: 100%;
     justify-content: space-between;
   }
 }
 
 @media (max-width: 767px) {
-  .content{
+  .common-content {
     padding: 0;
   }
-  
-  .top {
+
+  .common-top {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
   }
 
-  .bottom {
+  .common-bottom {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
 
-  .heading {
+  .common-heading {
     font-size: 18px;
   }
 
-  .search {
+  .common-search {
     width: 100%;
   }
 
-  .buttons {
+  .common-buttons {
     width: 100%;
   }
 
-  .right {
+  .common-right {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -180,11 +174,11 @@
     justify-content: space-between;
   }
 
-  .reset{
+  .common-reset {
     width: 100%;
   }
 
-  .filter{
+  .common-filter {
     display: flex;
     align-items: space-between;
   }

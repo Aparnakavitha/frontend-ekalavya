@@ -5,17 +5,17 @@ const Greeting = (props) => {
   const { welcome, name, info, profile, showButtons, handleClick } = props;
 
   return (
-    <div className={styles.content}>
-      <div className={styles.body}>
-        <div className={styles.welcome}>
+    <div className={`${styles["common-content"]}`}>
+      <div className={`${styles["common-body"]}`}>
+        <div className={`${styles["common-welcome"]}`}>
           {welcome} {name}
         </div>
-        <div className={styles.header}>
-          <div className={styles.info}>
+        <div className={`${styles["common-header"]}`}>
+          <div className={`${styles["common-info"]}`}>
             {info} {profile}
           </div>
           {showButtons ? (
-            <div className={styles.greenlink}>
+            <div className={`${styles["common-greenlink"]}`}>
               <a href="#" onClick={handleClick}>
                 View Colleges
               </a>

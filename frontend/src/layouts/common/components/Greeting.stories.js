@@ -1,7 +1,7 @@
-import Greeting from "./greeting";
+import Greeting from "./Greeting";
 
 export default {
-  title: "layouts/Greeting",
+  title: "layouts/Common/Components/Greeting",
   component: Greeting,
 };
 
