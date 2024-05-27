@@ -1,4 +1,4 @@
-.box { 
+.deletebox-box { 
   max-width: 100%;
   border-radius: 40px;
   background: var(--background); 
@@ -11,7 +11,12 @@
   gap: 10px;
 }
 
-.title { 
+.deletebox-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.deletebox-title { 
   color: var(--white);
   width: 100%;
   font-weight: 500;
@@ -19,12 +24,8 @@
   text-align: center; 
   padding-bottom: 10px;
 }
-.content{
-  display: flex;
-  flex-direction: column;
-}
 
-.message {
+.deletebox-message {
   color: var(--white);
   width: 100%;
   font-weight: 400;
@@ -33,7 +34,7 @@
   margin-bottom: 14px;
 }
 
-.button {
+.deletebox-button {
   width: 100%;
   max-width: 375px;
   text-align: center;  
