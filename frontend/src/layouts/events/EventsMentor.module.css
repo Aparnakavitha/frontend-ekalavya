@@ -1,0 +1,226 @@
+/* EventsMentor css  */
+.EventsMentor-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.EventsMentor-topleft {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.EventsMentor-backbutton {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.EventsMentor-backbutton:hover {
+    background-color: #0056b3;
+}
+
+.EventsMentor-content{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.EventsMentor-texted{
+    display: flex;
+    flex-direction: column;
+}
+
+.EventsMentor-text{
+    color: var(--white);
+}
+
+.EventsMentor-texts{
+    color: var(--white);   
+}
+
+h2{
+    color: var(--primary-color);
+    text-decoration: none; 
+}
+
+h3{
+    color: var(--primary-color);
+}
+
+.EventsMentor-description{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.EventsMentor-desc{
+    color: var(--white);
+}
+
+.EventsMentor-date{
+    color: var(--white);
+}
+
+.EventsMentor-gap{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.EventsMentor-time{
+    color: var(--white);
+}
+
+.EventsMentor-timer{
+    display: flex;
+    flex-direction: column;
+}
+
+.EventsMentor-venue{
+    color: var(--white);
+}
+
+.EventsMentor-address{
+    color: var(--white);
+}
+
+.EventsMentor-align{
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.EventsMentor-speaker{
+    color: var(--white);
+}
+
+.EventsMentor-navbutton{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.EventsMentor-primarybutton{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+}
+
+.EventsMentor-buttondiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.EventsMentor-primarydiv{
+    display: flex;
+    justify-content:right;
+    gap: 20px;
+    top: 20px;
+    left: 20px;   
+}
+
+.EventsMentor-buttondiv2{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 480px) { /* Small Mobile */
+   
+    .EventsMentor-topleft {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .EventsMentor-align {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .EventsMentor-primarydiv {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .EventsMentor-buttondiv2{
+        flex-direction: column;
+    } 
+}
+
+@media (min-width: 601px) and (max-width: 768px) { /* Large Mobile */
+   
+    .EventsMentor-topleft {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .EventsMentor-align {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .EventsMentor-primarydiv {
+        position: static;
+        justify-content: center;
+        margin-top: 20px;
+        flex-direction: column;
+        gap:10px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) { /* Tablet */
+   
+    .EventsMentor-topleft {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .EventsMentor-align {
+        flex-direction: row;
+        gap: 50px;
+    }
+
+    .EventsMentor-primarydiv {
+        position: static;
+        justify-content: flex-end;
+    }
+}
+
+/* EventsTable css */
+
+.EventsTable-container{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-x: hidden;
+}
+
+.EventsTable-topleft {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.EventsTable-font{
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.EventsTable-table{
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--neutral600) #ffffff00;
+}

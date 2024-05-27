@@ -37,13 +37,13 @@
 
 .studentImage {
   z-index: 1;
-  width: 42px;
-  height: 42px;
+  max-width: 53px;
+  height: 53px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 82px;
-  border: 5px solid var(--neutral800);
+  border: 3px solid var(--neutral800);
   background: var(--white);
 }
 
@@ -51,7 +51,7 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
-  line-height: 21px; 
+  line-height: 21px;
   letter-spacing: -0.41px;
 }
 
@@ -59,7 +59,7 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 22px; 
+  line-height: 22px;
   letter-spacing: -0.41px;
 }
 
@@ -67,7 +67,7 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 15px; 
+  line-height: 15px;
   letter-spacing: -0.41px;
 }
 
@@ -86,7 +86,6 @@
   line-height: normal;
   letter-spacing: -0.16px;
 }
-
 
 .leftCard {
   position: absolute;

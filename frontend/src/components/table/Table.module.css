@@ -2,8 +2,6 @@
   position: relative;
   width: 100%;
   display: inline-flex;
-  margin-top: 57px;
-  background-color: var(--background);
 }
 
 .table-container table {
@@ -16,7 +14,6 @@
   text-align: left;
   padding-left: calc(1% + 10px);
   padding-right: calc(1% + 10px);
-  font-size: calc(1% + 12px);
 }
 
 .table-container th {
@@ -54,7 +51,7 @@
   width: 100%;
 }
 
-@media screen and (min-width:768px) and (max-width: 992px) {
+@media screen and (min-width: 768px) and (max-width: 992px) {
   .table-container th,
   .table-container td {
     padding-left: 10px;

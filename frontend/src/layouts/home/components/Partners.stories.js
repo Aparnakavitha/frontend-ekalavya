@@ -7,13 +7,13 @@ import image4 from "../../../assets/Stack-over-flow-dark-mode-by-night-eye-1200x
 import image5 from "../../../assets/coursera__1_-removebg-preview.png";
 
 export default {
-  title: "layouts/home/Home",
+  title: "layouts/Home/Components/Partners",
   component: Partners,
 };
 
-export const HomeIcons = (args) => <Partners {...args} />;
+export const Partner = (args) => <Partners {...args} />;
 
-HomeIcons.args = {
+Partner.args = {
   title: "Academic Partners",
   Images: [image1, image2, image3, image4, image5],
 };

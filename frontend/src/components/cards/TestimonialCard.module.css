@@ -3,7 +3,6 @@
   min-height: 273px;
   border-radius: 19px;
   padding: 25px;
-  position: absolute;
   background-color: var(--neutral800);
   color: var(--neutral200);
   display: flex;
@@ -26,7 +25,8 @@
 }
 
 .profile {
-  width: 53px;
+  background-color: var(--white);
+  max-width: 53px;
   height: 53px;
   border-radius: 82%;
 }

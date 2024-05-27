@@ -9,7 +9,7 @@ const PrimaryCard = (props) => {
     mainHeading,
     startDate,
     endDate,
-    Desicription,
+    Description,
     handleClick,
   } = props;
 
@@ -68,7 +68,7 @@ const PrimaryCard = (props) => {
           <a className={styles.cardsdate}>{formattedEndDate}</a>
         </div>
         <a className={styles.cardsdiscription}>
-          {transformMainDescription(Desicription)}
+          {transformMainDescription(Description)}
         </a>
       </div>
       <div className={styles.CardsOutline}>
