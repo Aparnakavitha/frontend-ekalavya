@@ -53,11 +53,11 @@
   min-width: 90px;
 }
 
-
-@media (max-width: 767px){
-  .button{
+@media (max-width: 767px) {
+  .button {
     width: 100%;
   }
+  
   .half {
     width: 100%;
   }
