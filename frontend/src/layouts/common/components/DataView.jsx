@@ -35,20 +35,20 @@ const DataView = ({
   );
 
   const getComponentName = (item) => {
-    let cardName = CardComponent.name.toLowerCase();
+    let cardName = String(CardComponent.name).toLowerCase();
     if (cardName === "skillbatchcard") {
-      if (item.cardType.toLowerCase() === "skill") {
+      if (String(item.cardType).toLowerCase() === "skill") {
         cardName = "dataview-skillbatchcardskill";
-      } else if (item.cardType.toLowerCase() === "batch") {
+      } else if (String(item.cardType).toLowerCase() === "batch") {
         cardName = "dataview-skillbatchcardbatch";
       }
+    } else {
+      cardName = "dataview-" + cardName;
+      console.log(cardName);
     }
-    cardName = "dataview-" + cardName;
-    console.log(cardName);
     return cardName;
   };
 
-  // Map data to table columns
   const filteredTableData = currentData.map((item) =>
     tableColumns.map((column) => item[column.key])
   );
