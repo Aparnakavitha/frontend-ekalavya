@@ -9,7 +9,11 @@ export default {
 const Template = (args) => {
   const [value, setValue] = useState("");
   return (
-    <InputBox {...args} value={value} onChange={(e) => setValue(e.target.value)} />
+    <InputBox
+      {...args}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
   );
 };
 

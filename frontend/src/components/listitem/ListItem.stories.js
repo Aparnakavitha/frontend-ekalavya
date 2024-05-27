@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <ListItem {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Listitem = Template.bind({});
+Listitem.args = {
   icon: <BsHouse />,
   name: "Home",
   viewIcon: true,

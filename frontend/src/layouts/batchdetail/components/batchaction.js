@@ -4,7 +4,7 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
 import NavButton from "../../../components/buttons/NavButton";
-import TextButton from "../../../components/buttons/TextButton";
+import TabButton from "../../../components/buttons/TabButton";
 
 const Action = ({
   textbuttonProps,
@@ -23,10 +23,10 @@ const Action = ({
         </div>
         <div className={styles.textbutton}>
           <div>
-            <TextButton {...textbuttonProps} />
+            <TabButton {...textbuttonProps} />
           </div>
           <div>
-            <TextButton {...textbuttonProps2} />
+            <TabButton {...textbuttonProps2} />
           </div>
         </div>
       </div>

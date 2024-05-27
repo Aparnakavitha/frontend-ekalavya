@@ -97,27 +97,16 @@
     width: 125%;
   }
 
-  .small-box .search-box {
-    height: 25px;
+  .small-box {
+    width: 100%;
   }
 
-  .search-box {
-    height: 25px;
+  .custom-box {
+    width: 100%;
   }
 
-  .search-box input {
-    font-size: 6px;
-  }
-
-  .search-box .search-button {
-    font-size: 6px;
-  }
-
-  .small-box .search-box {
-    width: 80%;
-  }
-
-  .small-box .search-button {
-    width: 10%;
+  .small-box .search-box,
+  .custom-box .search-box {
+    width: 100%;
   }
 }
