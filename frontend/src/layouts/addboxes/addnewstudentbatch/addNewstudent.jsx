@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Input from "../../../components/inputbox/InputBox";
 
-const Addnewstudent = () => {
+const Addnewstudent = ({mainHeading}) => {
   const { handleSubmit, control, getValues } = useForm();
 
   const onSubmit = (data) => {
@@ -14,7 +14,7 @@ const Addnewstudent = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.containerOne}>
-        <header className={styles.head}>Add Student</header>
+        <header className={styles.head}>{mainHeading}</header>
         <div className={styles.containerInput}>
           <Controller
             name="studentId"

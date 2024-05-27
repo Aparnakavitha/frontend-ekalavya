@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styles from "./bdAdd.module.css";
 import { useForm, Controller } from "react-hook-form";
 import Input from "../../../components/inputbox/InputBox";
@@ -6,16 +6,25 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { FaPlus } from "react-icons/fa6";
 import TextButton from "../../../components/buttons/TextButton";
 
-const BdAdd = () => {
+const BdAdd = ({mainHeading, initialData }) => {
   const {
     handleSubmit,
     control,
     setValue,
     setError,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: initialData
+  });
   const [fileError, setFileError] = useState("");
 
+  const [profilePhotoName, setProfilePhotoName] = useState("");
+
+  useEffect(() => {
+    if (initialData?.profilePhoto) {
+      setProfilePhotoName(initialData.profilePhoto.name);
+    }
+  }, [initialData]);
   const onSubmit = (data) => {
     if (fileError) {
       console.error("Form contains errors. Please fix them before submitting.");
@@ -51,8 +60,9 @@ const BdAdd = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.containerOne}>
+        <header className={styles.head}>{mainHeading}</header>
         <div className={styles.containerInput}>
-          <header className={styles.head}>Edit Basic Details</header>
+          
           <Controller
             name="dob"
             control={control}
@@ -78,7 +88,7 @@ const BdAdd = () => {
               />
             )}
           />
-          <Controller
+          {/* <Controller
             name="profilePhoto"
             control={control}
             render={({ field }) => (
@@ -98,6 +108,32 @@ const BdAdd = () => {
                   }
                 }}
               />
+              
+            )}
+          />
+          {fileError && <p className={styles.error}>{fileError}</p>} */}
+      <Controller
+            name="profilePhoto"
+            control={control}
+            render={({ field }) => (
+                <Input
+                  {...field}
+                  label="Profile Photo"
+                  placeholders={[profilePhotoName || "profile photo"]}
+                  size="normal"
+                  isFileInput="true"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (validateImageFile(file)) {
+                      setValue("profilePhoto", file);
+                      setProfilePhotoName(file.name);
+                    } else {
+                      setValue("profilePhoto", null);
+                      setProfilePhotoName("");
+                    }
+                  }}
+                /> 
             )}
           />
           {fileError && <p className={styles.error}>{fileError}</p>}

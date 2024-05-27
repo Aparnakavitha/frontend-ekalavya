@@ -1,11 +1,10 @@
 import React from "react";
-import styles from "./addProfilelink.module.css";
+import styles from "./editSkill.module.css";
 import { useForm, Controller } from "react-hook-form";
-import Input from "../../../components/inputbox/InputBox";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 
-const AddProfilelink = ({mainHeading}) => {
+const Editskill = ({ message, skillName,mainHeading }) => {
   const { handleSubmit, control, getValues } = useForm();
 
   const onSubmit = (data) => {
@@ -21,39 +20,35 @@ const AddProfilelink = ({mainHeading}) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.containerOne}>
+        <div className={styles.allHeading}>
         <header className={styles.head}>{mainHeading}</header>
+        {message && skillName && (
+          <p className={styles.message}>
+            {message} <span className={styles.skillName}>{skillName}</span>
+          </p>
+          
+        )}
+        </div>
         <div className={styles.containerInput}>
           <Controller
-            name="selectedType"
+            name="selecedtLevel"
             control={control}
             render={({ field }) => (
               <InputDropdown
                 {...field}
-                label="Select Type"
-                placeholder="Select type"
+                label="Level"
+                placeholder="Select level"
                 options={options}
-              />
-            )}
-          />
-          <Controller
-            name="url"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                label="URL"
-                placeholders={["Enter the url"]}
-                size="normal"
               />
             )}
           />
         </div>
       </div>
       <div className={styles.buttonContainer}>
-        <PrimaryButton variant="primary" content="Add" width="full" />
+        <PrimaryButton variant="primary" content="Save" width="full" />
       </div>
     </form>
   );
 };
 
-export default AddProfilelink;
+export default Editskill;

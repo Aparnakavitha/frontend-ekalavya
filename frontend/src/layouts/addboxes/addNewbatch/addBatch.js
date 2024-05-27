@@ -6,8 +6,10 @@ import { FaPlus } from "react-icons/fa6";
 import TextButton from "../../../components/buttons/TextButton";
 import { useForm, Controller } from "react-hook-form";
 
-const Addbatch = () => {
-  const { handleSubmit, control, getValues } = useForm();
+const Addbatch = ({mainHeading,initialdata}) => {
+  const { handleSubmit, control, getValues } = useForm({
+    defaultValues:initialdata
+  });
 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
@@ -17,10 +19,26 @@ const Addbatch = () => {
     console.log("Add Studnets clicked!");
   };
 
+
+  const studentIdLabel = (
+    <div className={styles.iconLabelContainerInput}>
+      <div className={styles.iconLabelContainer}>
+        <div> Student ID</div>
+        <TextButton
+          icon={<FaPlus />}
+          text="Add students"
+          onClick={handleTextButtonClick}
+        />
+      </div>
+    </div>
+  );
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <div className={styles.containerOne}>
+      <header className={styles.head}>{mainHeading}</header>
       <div className={styles.containerInput}>
-        <header className={styles.head}>Create Batch</header>
+        
         <Controller
           name="batchName"
           control={control}
@@ -33,24 +51,15 @@ const Addbatch = () => {
             />
           )}
         />
-        <div className={styles.iconLabelContainerInput}>
-          <div className={styles.iconLabelContainer}>
-            <div className={styles.labeling}> Student ID</div>
-            <TextButton
-              icon={<FaPlus />}
-              text="Add students"
-              onCli
-              onClick={handleTextButtonClick}
-            />
-          </div>
           <Controller
             name="studentId"
             control={control}
             render={({ field }) => (
-              <Input {...field} placeholders={["Student ID"]} size="normal" />
+
+              <Input {...field}  label={studentIdLabel}  placeholders={["Student ID"]} size="normal" />
             )}
           />
-        </div>
+      </div>
       </div>
       <div className={styles.buttonContainer}>
         <PrimaryButton variant="primary" content="Create Batch" width="full" />

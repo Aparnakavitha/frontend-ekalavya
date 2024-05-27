@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 
-const Addevent = () => {
+const Addevent = ({mainHeading}) => {
   const { handleSubmit, control, getValues } = useForm();
 
   const onSubmit = (data) => {
@@ -20,7 +20,7 @@ const Addevent = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.containerOne}>
-        <header className={styles.head}>Add Profile links</header>
+        <header className={styles.head}>{mainHeading}</header>
         <div className={styles.containerInput}>
           <Controller
             name="selectedEventId"

@@ -9,4 +9,6 @@ export default {
 const Template = (args) => <AddNewskill {...args} />;
 
 export const AddNewSkill = Template.bind({});
-AddNewSkill.args = {};
+AddNewSkill.args = {
+  mainHeading:"Add New Skill"
+};

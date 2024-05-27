@@ -9,4 +9,6 @@ export default {
 const Template = (args) => <Addevent {...args} />;
 
 export const AddEvent = Template.bind({});
-AddEvent.args = {};
+AddEvent.args = {
+  mainHeading:"Add Profile links"
+};

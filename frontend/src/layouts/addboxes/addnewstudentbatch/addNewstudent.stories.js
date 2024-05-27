@@ -9,4 +9,6 @@ export default {
 const Template = (args) => <Addnewstudent {...args} />;
 
 export const AddNewStudent = Template.bind({});
-AddNewStudent.args = {};
+AddNewStudent.args = {  
+  mainHeading:"Add Student"
+};

@@ -3,7 +3,7 @@ import styles from "./addSkillbox.module.css";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
-const Addskill = () => {
+const Addskill = ({mainHeading}) => {
   const { handleSubmit, control, getValues } = useForm();
 
   const onSubmit = (data) => {
@@ -19,7 +19,7 @@ const Addskill = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.containerOne}>
-        <header className={styles.head}>Add New Skill</header>
+        <header className={styles.head}>{mainHeading}</header>
         <div className={styles.containerInput}>
           <Controller
             name="skill"
@@ -33,10 +33,11 @@ const Addskill = () => {
               />
             )}
           />
-        </div>
-        <div className={styles.text}>
+          <div className={styles.text}>
           This skill is only to be placed at level 4
         </div>
+        </div>
+        
       </div>
       <div className={styles.buttonContainer}>
         <PrimaryButton variant="primary" content="Add" width="full" />

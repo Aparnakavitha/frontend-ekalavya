@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 
-const AddNewskill = () => {
+const AddNewskill = ({mainHeading}) => {
   const { handleSubmit, control, getValues } = useForm();
 
   const onSubmit = (data) => {
@@ -20,7 +20,7 @@ const AddNewskill = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.containerOne}>
-        <header className={styles.head}>Add New Skill</header>
+        <header className={styles.head}>{mainHeading}</header>
         <div className={styles.containerInput}>
           <Controller
             name="selectedSkills"

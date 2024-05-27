@@ -9,4 +9,6 @@ export default {
 const Template = (args) => <AddProfilelink {...args} />;
 
 export const AddProfileLink = Template.bind({});
-AddProfileLink.args = {};
+AddProfileLink.args = {
+  mainHeading:"Add Profile links"
+};
