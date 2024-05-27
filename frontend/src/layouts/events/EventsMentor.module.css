@@ -1,19 +1,17 @@
 /* EventsMentor css  */
-.container {
+.EventsMentor-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* padding: 20px; */
-    /* background-color: var(--background); */
 }
 
-.topleft {
+.EventsMentor-topleft {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.backbutton {
+.EventsMentor-backbutton {
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
@@ -22,27 +20,27 @@
     cursor: pointer;
 }
 
-.backbutton:hover {
+.EventsMentor-backbutton:hover {
     background-color: #0056b3;
 }
 
-.content{
+.EventsMentor-content{
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
 
-.texted{
+.EventsMentor-texted{
     display: flex;
     flex-direction: column;
     /* gap: 20px; */
 }
 
-.text{
+.EventsMentor-text{
     color: var(--white);
 }
 
-.texts{
+.EventsMentor-texts{
     color: var(--white);   
 }
 
@@ -55,101 +53,101 @@ h3{
     color: var(--primary-color);
 }
 
-.description{
+.EventsMentor-description{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.desc{
+.EventsMentor-desc{
     color: var(--white);
 }
 
-.date{
+.EventsMentor-date{
     color: var(--white);
 }
 
-.gap{
+.EventsMentor-gap{
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.time{
+.EventsMentor-time{
     color: var(--white);
 }
 
-.timer{
+.EventsMentor-timer{
     display: flex;
     flex-direction: column;
 }
 
-.venue{
+.EventsMentor-venue{
     color: var(--white);
 }
 
-.address{
+.EventsMentor-address{
     color: var(--white);
 }
 
-.align{
+.EventsMentor-align{
     display: flex;
     flex-direction: row;
     gap: 100px;
 }
 
-.speaker{
+.EventsMentor-speaker{
     color: var(--white);
 }
 
-.navbutton{
+.EventsMentor-navbutton{
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-.primarybutton{
+.EventsMentor-primarybutton{
     display: flex;
     flex-direction: row-reverse;
     gap: 20px;
 }
 
-.buttondiv{
+.EventsMentor-buttondiv{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
 }
 
-.primarydiv{
+.EventsMentor-primarydiv{
     display: flex;
     justify-content:right;
     gap: 20px;
     top: 20px;
     left: 20px;   
 }
-.buttondiv2{
+.EventsMentor-buttondiv2{
     display: flex;
     justify-content: space-between;
 }
 
 @media only screen and (max-width: 480px) { /* Small Mobile */
-    .container {
+    .EventsMentor-container {
         /* padding: 10px; */
     }
 
-    .topleft {
+    .EventsMentor-topleft {
         flex-direction: column;
         align-items: center;
         gap: 10px;
     }
 
-    .align {
+    .EventsMentor-align {
         flex-direction: column;
         gap: 20px;
     }
     
-    .primarydiv {
+    .EventsMentor-primarydiv {
         display: flex;
         justify-content: center;
         gap: 10px;
@@ -158,7 +156,7 @@ h3{
         align-items: flex-start;
     }
 
-    .buttondiv2{
+    .EventsMentor-buttondiv2{
         flex-direction: column;
     }
   
@@ -166,22 +164,22 @@ h3{
 }
 
 @media (min-width: 601px) and (max-width: 768px) { /* Large Mobile */
-    .container {
+    .EventsMentor-container {
         /* padding: 15px; */
     }
 
-    .topleft {
+    .EventsMentor-topleft {
         flex-direction: column;
         align-items: center;
         gap: 10px;
     }
 
-    .align {
+    .EventsMentor-align {
         flex-direction: column;
         gap: 20px;
     }
 
-    .primarydiv {
+    .EventsMentor-primarydiv {
         position: static;
         justify-content: center;
         margin-top: 20px;
@@ -191,21 +189,21 @@ h3{
 }
 
 @media (min-width: 769px) and (max-width: 1024px) { /* Tablet */
-    .container {
+    .EventsMentor-container {
         /* padding: 20px; */
     }
 
-    .topleft {
+    .EventsMentor-topleft {
         flex-direction: row;
         justify-content: space-between;
     }
 
-    .align {
+    .EventsMentor-align {
         flex-direction: row;
         gap: 50px;
     }
 
-    .primarydiv {
+    .EventsMentor-primarydiv {
         position: static;
         justify-content: flex-end;
     }
@@ -214,24 +212,24 @@ h3{
 
 /* EventsTable css */
 
-.container{
+.EventsTable-container{
     display:flex;
     flex-direction: column;
     align-items: flex-start;
     overflow-x: hidden;
 }
 
-.topleft {
+.EventsTable-topleft {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.font{
+.EventsTable-font{
     color: var(--primary-color);
     text-decoration: underline;
 }
-.table{
+.EventsTable-table{
     width: 100%;
     overflow-x: auto;
     scrollbar-width: thin;
