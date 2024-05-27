@@ -1,0 +1,260 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--neutral800);
+  width: 100%;
+  max-width: 1050px;
+  margin: auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.title1 {
+  color: var(--primary-color);
+  font-size: 28px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+}
+
+.details-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.basic-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.student-id,
+.college,
+.dob {
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.profile-picture {
+  margin-right: 1rem;
+}
+
+.info-text {
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--white);
+  margin: 3rem;
+}
+
+.email,
+.phone,
+.linkedin,
+.github,
+.address {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 10px;
+}
+
+.about-section {
+  margin-top: 20px;
+}
+
+.about {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--white);
+  margin-bottom: 30px;
+}
+
+.qualification {
+  display: flex;
+  flex-direction: column;
+}
+
+.title2 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.qualifications-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.qualifications-list * {
+  color: var(--white);
+}
+
+/* Small devices (phones, 600px and down) */
+@media (max-width: 767px) {
+  .details-section {
+    flex-direction: column;
+    align-items: center;
+   margin-top:10px ; 
+   /* margin: 0rem; */
+    padding: 0;
+  }
+
+  .basic-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-picture {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .info-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .bio {
+    margin: 0rem 0rem;
+    text-align: center;
+    
+  }
+
+  .email,
+  .phone,
+  .linkedin,
+  .github,
+  .address {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 10px;
+  }
+
+  .about {
+    margin: 1rem;
+    text-align: center;
+  }
+
+  .qualification {
+    align-items: center;
+  }
+
+  .title2 {
+    text-align: center;
+  }
+
+  .qualifications-list {
+    align-items: center;
+  }
+}
+
+/* Medium devices (tablets, 600px to 992px) */
+@media (min-width: 600px) and (max-width: 992px) {
+  .details-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .basic-info {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .profile-picture {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+
+  .info-text {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .bio {
+    margin: 2rem 3rem;
+    text-align: left;
+  }
+
+  .email,
+  .phone,
+  .linkedin,
+  .github,
+  .address {
+    text-align: left;
+  }
+
+  .about {
+    margin: 1rem;
+  }
+
+  .qualification {
+    align-items: flex-start;
+  }
+
+  .title2 {
+    text-align: left;
+  }
+
+  .qualifications-list {
+    align-items: flex-start;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .main {
+    flex-direction: row;
+    padding: 2rem;
+  }
+
+  .details-section {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .bio {
+    margin: 3rem;
+    text-align: left;
+  }
+
+  .info-text {
+    align-items: flex-start;
+  }
+
+  .qualification {
+    
+    justify-content: space-between;
+  }
+
+  .qualifications-list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
