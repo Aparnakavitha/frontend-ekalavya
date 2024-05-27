@@ -1,7 +1,7 @@
 import EventsTable from "./EventsTable";
 import AttendanceButton from "../../../components/buttons/AttendanceButton";
 export default {
-    title : "EventsTable",
+    title : "layouts/mentor-events/components/EventsTable",
     component : EventsTable,
 }
 
