@@ -33,7 +33,7 @@
 .EventsMentor-texted{
     display: flex;
     flex-direction: column;
-    /* gap: 20px; */
+  
 }
 
 .EventsMentor-text{
@@ -132,10 +132,7 @@ h3{
 }
 
 @media only screen and (max-width: 480px) { /* Small Mobile */
-    .EventsMentor-container {
-        /* padding: 10px; */
-    }
-
+   
     .EventsMentor-topleft {
         flex-direction: column;
         align-items: center;
@@ -164,10 +161,7 @@ h3{
 }
 
 @media (min-width: 601px) and (max-width: 768px) { /* Large Mobile */
-    .EventsMentor-container {
-        /* padding: 15px; */
-    }
-
+   
     .EventsMentor-topleft {
         flex-direction: column;
         align-items: center;
@@ -189,10 +183,7 @@ h3{
 }
 
 @media (min-width: 769px) and (max-width: 1024px) { /* Tablet */
-    .EventsMentor-container {
-        /* padding: 20px; */
-    }
-
+   
     .EventsMentor-topleft {
         flex-direction: row;
         justify-content: space-between;
