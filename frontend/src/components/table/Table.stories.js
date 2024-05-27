@@ -1,6 +1,5 @@
 import React from "react";
 import Table from "./Table";
-import PrimaryButton from "../buttons/PrimaryButton"
 
 export default {
   title: "components/Table",
