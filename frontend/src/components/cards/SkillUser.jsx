@@ -3,9 +3,7 @@ import styles from "./SkillUser.module.css";
 import { ImCross } from "react-icons/im";
 import { FaPlus } from "react-icons/fa6";
 
-
-
-const Card = (props) => {
+const SkillUser = (props) => {
   const {
     miniHeading,
     mainHeading,
@@ -17,14 +15,13 @@ const Card = (props) => {
     deleteSkill,
   } = props;
 
-
   const transformMainHeading = (heading) => {
     if (heading.length > 12) {
       return heading.slice(0, 10) + "...";
     }
     return heading;
   };
-  
+
   const transformMiniHeading = (heading) => {
     if (heading.length > 17) {
       return heading.slice(0, 15) + "...";
@@ -33,9 +30,7 @@ const Card = (props) => {
   };
 
   const [showAllSkills, setShowAllSkills] = useState(false);
-
   const cardsClass = styles.CardOutline;
-
   const displayedSkills = showAllSkills ? skills : skills.slice(0, 4);
 
   return (
@@ -103,4 +98,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default SkillUser;
