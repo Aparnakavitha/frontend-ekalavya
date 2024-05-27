@@ -13,14 +13,17 @@
     background-color 0.3s,
     color 0.3s;
 }
+
 .event-status:hover {
   background-color: var(--primary-color);
   color: black;
 }
+
 .event-status:active {
   background-color: var(--white);
   color: var(--black);
 }
+
 @media (max-width: 767px) {
   .event-status {
     font-size: 14px;
