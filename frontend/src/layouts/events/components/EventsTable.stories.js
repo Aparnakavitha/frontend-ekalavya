@@ -5,7 +5,6 @@ export default {
     component : EventsTable,
 }
 
-
 const createFlexDiv = () => (
     <div style={{ display: 'flex', width: '50px', gap:'2px' }}>
       <AttendanceButton content="Present" isPresent={true} onClick={(r) => {
@@ -30,8 +29,6 @@ const createFlexDiv = () => (
     </div>
   );
 
-  
-  
   const data = [
     ["studentid", "Samual", "samual@gmail.com", createFlexDiv("Present", "Absent")],
     ["studentid", "Smith", "smith@gmail.com", createFlexDiv("Present", "Absent")],
@@ -44,7 +41,6 @@ const createFlexDiv = () => (
   
   const headings = ["Student Id", "Student Name", "emailid",createFlexDiv2("Present", "Absent")];
   
-
 export const eventTable = {
     args :{
         data,
