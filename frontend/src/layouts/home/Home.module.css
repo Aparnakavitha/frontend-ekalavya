@@ -1,99 +1,301 @@
-/* ----------------------------------------carousel.css------------------------------------------------ */
+/* hero section styles */
 
+.mainContent {
+  font-weight: 900;
+  color: var(--white);
+  font-size: 96px;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  line-height: 86.875%;
+}
 
-.carouselHeader {
-    text-align: center;
-  }
-  .starPerformer .carouselHeader,
-  .testimonials .carouselHeader{
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
-  
-  .chunk {
-    display: flex;
-    justify-content: center;
+.textColumn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mainContent2 {
+  font-weight: 900;
+  color: var(--primary-color);
+  font-size: 96px;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  line-height: 86.875%;
+}
+
+.semiContent {
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  color: var(--white);
+}
+
+.contentColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttondiv {
+  width: 25%;
+}
+
+.contentbuttondiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 70px;
+}
+
+.statiunit {
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.firstTwo {
+  border-right: 2px solid var(--white);
+  padding-right: 25px;
+}
+
+.numbers {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--primary-color);
+  line-height: 90%;
+}
+
+.statidiv {
+  display: flex;
+  gap: 30px;
+}
+
+.statistics {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .mainContent,
+  .mainContent2 {
+    font-size: 64px;
   }
 
-  .projects .chunk{
-    max-width: 916px;
-    gap: 320px;
-    margin-right: 280px;
-    margin-top: 10px;
-    margin-bottom: 25%;
-  }
-  .starPerformer .chunk{
-    margin-right: 60px;
-    gap: 80px;
-    margin-bottom: 60px;
-  }
-  .testimonials .chunk{
-    gap: 15px;
-    margin-bottom: 60px;
-  }
-  
-  .carouselHeading{
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
+  .semiContent {
     font-size: 24px;
   }
-  .carouselHeading2{
-    color: var(--white);
-    font-weight: 400;
-  }
-  .carouselHeading1{
-    color: var(--primary-color);
-    font-weight: 600;
-    line-height: 90%;
-    margin-bottom: 25px;
-  }
-  
-  
-  .carouselWrapper {
-    margin: 0 auto;
-  }
-  .projects .carouselWrapper{
-    max-width: 1028px; 
-  }
-  .starPerformer .carouselWrapper{
-    max-width: 1051px; 
-  }
-  .testimonials .carouselWrapper{
-    max-width: 1148px; 
+
+  .contentbuttondiv {
+    gap: 40px;
   }
 
+  .numbers {
+    font-size: 24px;
+  }
 
-  @media(max-width: 767px) {
-    .testimonials .carouselWrapper,
-    .starPerformer .carouselWrapper {
-      width: 302px;
-    }
-    .carouselHeading{
-        font-size: 20px;
-    }
+  .title {
+    font-size: 16px;
   }
-  @media (min-width: 768px) and (max-width: 992px) {
-    .starPerformer .carouselWrapper{
-        width: 600px;
-    }
-    .projects .chunk {
-        margin-bottom: 32%;
-      }
+}
+
+@media (max-width: 767px) and (min-width: 426px) {
+  .mainContent,
+  .mainContent2 {
+    font-size: 64px;
   }
-  @media (min-width: 414px) and (max-width: 767px) {
-    .projects .chunk {
-      max-width: 302px;
-      margin-bottom: 65%;
-    }
+
+  .semiContent {
+    font-size: 24px;
   }
-  
-  @media(max-width: 413px) {
-    .projects .chunk {
-      margin-right: 100%;
-      margin-bottom: 85%;
-    }
+
+  .contentbuttondiv {
+    gap: 24px;
   }
-  
-  /* ----------------------------------------carousel.css ends here------------------------------------------------ */
+
+  .numbers {
+    font-size: 28px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 425px) {
+  .mainContent,
+  .mainContent2 {
+    font-size: 56px;
+  }
+
+  .semiContent {
+    font-size: 22px;
+  }
+
+  .contentbuttondiv {
+    gap: 24px;
+  }
+
+  .semiContent {
+    text-align: start;
+  }
+
+  .numbers {
+    font-size: 24px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .textColumn {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contentColumn {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .contentbuttondiv {
+    align-items: flex-start;
+  }
+
+  .statidiv {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .firstTwo {
+    border-right: none;
+    padding-right: none;
+  }
+
+  .statiunit {
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .statidiv {
+    gap: 10px;
+  }
+}
+
+/* ----------------------------------------carousel.css starts here------------------------------------------------ */
+
+.carouselHeader {
+  text-align: center;
+}
+
+.starPerformer .carouselHeader,
+.testimonials .carouselHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.chunk {
+  display: flex;
+  justify-content: center;
+}
+
+.projects .chunk {
+  max-width: 916px;
+  gap: 320px;
+  margin-right: 280px;
+  margin-top: 10px;
+  margin-bottom: 25%;
+}
+
+.starPerformer .chunk {
+  margin-right: 60px;
+  gap: 80px;
+  margin-bottom: 60px;
+}
+
+.testimonials .chunk {
+  gap: 15px;
+  margin-bottom: 60px;
+}
+
+.carouselHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  font-size: 24px;
+}
+
+.carouselHeading2 {
+  color: var(--white);
+  font-weight: 400;
+}
+
+.carouselHeading1 {
+  color: var(--primary-color);
+  font-weight: 600;
+  line-height: 90%;
+  margin-bottom: 25px;
+}
+
+.carouselWrapper {
+  margin: 0 auto;
+}
+
+.projects .carouselWrapper {
+  max-width: 1028px;
+}
+
+.starPerformer .carouselWrapper {
+  max-width: 1051px;
+}
+
+.testimonials .carouselWrapper {
+  max-width: 1148px;
+}
+
+@media (max-width: 767px) {
+  .testimonials .carouselWrapper,
+  .starPerformer .carouselWrapper {
+    width: 302px;
+  }
+
+  .carouselHeading {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .starPerformer .carouselWrapper {
+    width: 600px;
+  }
+
+  .projects .chunk {
+    margin-bottom: 32%;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .projects .chunk {
+    max-width: 302px;
+    margin-bottom: 65%;
+  }
+}
+
+@media (max-width: 413px) {
+  .projects .chunk {
+    margin-right: 100%;
+    margin-bottom: 85%;
+  }
+}
+
+/* ----------------------------------------carousel.css ends here------------------------------------------------ */
