@@ -107,7 +107,8 @@
     font-size: 10px;
   }
 
-  .copyright ,.copyrightLeft{
+  .copyright,
+  .copyrightLeft {
     flex-direction: column;
     align-items: center;
   }
