@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Table from "../../../components/table/Table";
 import Pagination from "../../../components/pagination/Pagination";
-import styles from "../index.module.css";
+import styles from "../Common.module.css";
 
 import { PiCards, PiListBullets } from "react-icons/pi";
 

@@ -47,7 +47,7 @@
   margin-top: 24px;
 }
 
-/*Dynamic card components for flex box sizing*/
+/*Card components & their flexbox sizes*/
 .dataview-eventcard {
   flex-basis: 336px;
   height: 75px;
