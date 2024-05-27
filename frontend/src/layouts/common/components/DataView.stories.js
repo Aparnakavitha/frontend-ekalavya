@@ -208,7 +208,7 @@ const primaryCardData = {
     },
   ],
   tableColumns: [
-    { key: "miniHeading", displayName: "Mini Heading" },
+    { key: "miniHeading", displayName: "Type" },
     { key: "mainHeading", displayName: "Title" },
     { key: "startDate", displayName: "Start Date" },
     { key: "endDate", displayName: "End Date" },
