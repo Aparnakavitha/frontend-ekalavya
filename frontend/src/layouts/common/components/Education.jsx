@@ -45,13 +45,13 @@ const Education = (props) => {
         </div>
         <div className={styles["qualifications-list"]}>
           <div>
-            <ol type="1">
+            <ol type="1" className={`${styles["list-box"]}`}>
               {qualifications.map((qualification, index) => (
                 <div
                   key={index}
                   className={`${styles["qualification-instance"]}`}
                 >
-                  <div key={index} vclassName={styles.maindiv}>
+                  <div key={index} className={styles.maindiv}>
                     <li key={index} className={`${styles["education"]}`}>
                       <h3 className={styles["qualification-name"]}>
                         {qualification.name}

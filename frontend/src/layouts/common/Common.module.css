@@ -112,6 +112,10 @@
   flex-direction: column;
 }
 
+.qualification-button {
+  margin: 0.3rem;
+}
+
 .qualification-head {
   display: flex;
   align-items: center;
@@ -142,7 +146,7 @@
   margin-bottom: 1rem;
 }
 
-.qualifications-list * {
+.qualifications-list {
   color: var(--white);
   margin-left: 0.2rem;
 }
@@ -150,6 +154,12 @@
 .education {
   margin-bottom: 1rem;
   margin-right: auto;
+  margin-left: 0.2rem;
+  color: var(--white);
+}
+
+.list-box {
+  margin-left: 0.2rem;
 }
 
 /*---------------------------------------------------User profile layout css ends here--------------------------------------------------------------------------*/
