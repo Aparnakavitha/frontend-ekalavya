@@ -14,6 +14,8 @@ const SearchBar = ({ variant = "large", placeholder, onSearch }) => {
     boxClassName = styles.box;
   } else if (variant === "small") {
     boxClassName = styles["small-box"];
+  } else if (variant === "custom") {
+    boxClassName = styles["custom-box"];
   } else {
     boxClassName = styles.none;
   }

@@ -74,17 +74,26 @@
   background: var(--white);
 }
 
-.deleteIcon {
+.deleteIcon,
+.editIcon {
   color: var(--primary-color);
   height: 18px;
   width: 18px;
   position: absolute;
-  top: 20%;
   right: 20px;
   cursor: pointer;
   transform: translateY(-50%);
 }
 
-.rightCard:hover .deleteIcon {
+.deleteIcon {
+  top: 20%;
+}
+
+.editIcon {
+  top: 79%;
+}
+
+.rightCard:hover .deleteIcon,
+.rightCard:hover .editIcon {
   color: var(--black);
 }
