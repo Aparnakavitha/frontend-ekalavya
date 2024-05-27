@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
-import styles from "./Layout.module.css";
+import styles from "../AdminSkill.module.css";
 import Input from "../../../components/inputbox/InputBox";
-const Layout = () => {
-  const [skill, setSkill] = useState(""); 
-  const [isVisible, setIsVisible] = useState(true); 
+
+const AddSkill = () => {
+  const [skill, setSkill] = useState("");
+  const [isVisible, setIsVisible] = useState(true);
 
   const handleInputChange = (event) => {
     setSkill(event.target.value);
   };
 
   const handleAddSkill = () => {
-    console.log(skill); 
+    console.log(skill);
+    setIsVisible(false);
   };
 
   const handleCancel = () => {
@@ -20,10 +22,10 @@ const Layout = () => {
 
   if (!isVisible) return null;
   return (
-    <div className={styles.boxcontainer}>
-      <div className={styles.layoutcontainer}>
+    <div className={`${styles["addskill-boxcontainer"]}`}>
+      <div className={`${styles["addskill-layoutcontainer"]}`}>
         <p>Create New Skill</p>
-        <div className={styles.inputbox}>
+        <div className={`${styles["addskill-inputbox"]}`}>
           <Input
             size="normal"
             label="Create Skills"
@@ -33,7 +35,7 @@ const Layout = () => {
             id="normal-input"
           />
         </div>
-        <div className={styles.buttonrow}>
+        <div className={`${styles["addskill-buttonrow"]}`}>
           <PrimaryButton
             variant="primary"
             content="Cancel"
@@ -52,4 +54,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default AddSkill;
