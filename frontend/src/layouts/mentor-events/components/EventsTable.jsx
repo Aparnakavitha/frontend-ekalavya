@@ -1,5 +1,5 @@
 import react from "react";
-import styles from "../EventsMentor.module.css";
+import styles from "../MentorEvents.module.css";
 import Table from "../../../components/table/Table";
 
 const EventsTable = (props) => {
