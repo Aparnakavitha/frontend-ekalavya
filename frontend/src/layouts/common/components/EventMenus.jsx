@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styles from "../Common.module.css";
+import styles from "../Common.module.css";
 import Button from "../../../components/buttons/PrimaryButton";
 import RectangleButton from "../../../components/buttons/TabButton";
 
@@ -11,14 +11,14 @@ const EventMenus = ({ explore, statuses, title }) => {
   };
 
   return (
-    <div className={Styles.eventContainer}>
-      <div className={Styles.eventHead}>
-        <h1 className={Styles.eventTitle}>{title}</h1>
-        <div className={Styles.exploreButton}>
+    <div className={`${styles["eventmenus-container"]}`}>
+      <div className={`${styles["eventmenus-head"]}`} >
+        <h1 className={`${styles["eventmenus-title"]}`} >{title}</h1>
+        <div className={`${styles["eventmenus-exploreButton"]}`}>
           <Button {...explore} />
         </div>
       </div>
-      <div className={Styles.rectangleButtonsContainer}>
+      <div className={`${styles["eventmenus-tabbutton"]}`}>
         {statuses.map((status) => (
           <RectangleButton
             key={status.name}

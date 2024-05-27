@@ -1,6 +1,6 @@
-/* Header layout css begins here */
+/* ------------------------------- Header.css starts here ------------------------------- */
 
-.headerContainer {
+.header-container {
   height: 80px;
   width: 100%;
   display: flex;
@@ -11,11 +11,11 @@
   box-shadow: 10px 11px 30px 0px rgba(89, 89, 89, 0.16);
 }
 
-.headerTitle {
+.header-title {
   width: 130px;
 }
 
-.headerMenu {
+.header-menu {
   display: flex;
   flex-direction: row;
   gap: 16px;
@@ -24,7 +24,7 @@
   justify-content: center;
 }
 
-.menuItem {
+.header-menuItem {
   color: var(--neutral200);
   font-size: 15px;
   line-height: 150%;
@@ -33,15 +33,15 @@
   text-decoration: none;
 }
 
-.sidebarIcon {
+.header-sidebaricon {
   display: none;
 }
 
-.menuItemResp {
+.header-menuitemresponsive {
   display: none;
 }
 
-.sidebar {
+.header-sidebar {
   display: none;
 }
 
@@ -50,18 +50,18 @@
 }
 
 @media (max-width: 768px) {
-  .headerContainer {
+  .header-container {
     position: absolute;
     width: 100%;
     padding: 0 5%;
     left: 0;
   }
 
-  .headerMenu {
+  .header-menu {
     display: none;
   }
 
-  .menuItemResp {
+  .header-menuitemresponsive {
     cursor: pointer;
     display: block;
     color: var(--neutral200);
@@ -72,21 +72,21 @@
     text-decoration: none;
   }
 
-  .headerMenuRep {
+  .header-menuresponsive {
     position: fixed;
     top: 80px;
     padding-left: 30px;
     height: 100vh;
   }
 
-  .headerTitle {
+  .header-title {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
   }
 
-  .headerTitleResp {
+  .header-titleresponsive {
     display: flex;
     width: 100%;
     align-items: start;
@@ -109,7 +109,7 @@
     cursor: pointer;
   }
 
-  .headerButton {
+  .header-button {
     position: absolute;
     bottom: 136px;
   }
@@ -118,7 +118,7 @@
     display: none;
   }
 
-  .sidebarIcon {
+  .header-sidebaricon {
     display: block;
     margin-left: 10px;
     font-size: 24px;
@@ -126,7 +126,7 @@
     color: var(--neutral200);
   }
 
-  .hamburger {
+  .header-hamburger {
     cursor: pointer;
     font-size: 25px;
     top: 40px;
@@ -136,7 +136,7 @@
     transition: left 0.5s ease-out;
   }
 
-  .crossIcon {
+  .header-crossIcon {
     cursor: pointer;
     font-size: 25px;
     color: var(--white);
@@ -146,7 +146,7 @@
     right: 40px;
   }
 
-  .sidebar {
+  .header-sidebar {
     position: fixed;
     top: 16px;
     right: -800px;
@@ -161,21 +161,21 @@
     transition: left 0.5s ease;
   }
 
-  .image {
+  .header-image {
     width: 100px;
     padding-bottom: 0px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .headerMenu {
+  .header-menu {
     width: 95%;
   }
 
-  .image {
+  .header-image {
     width: 120px;
     padding-bottom: 0px;
   }
 }
+/* ------------------------------- Header.css ends here ------------------------------- */
 
-/* Header layout css ends here */
