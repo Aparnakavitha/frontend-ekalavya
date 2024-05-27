@@ -33,7 +33,6 @@
 .EventsMentor-texted{
     display: flex;
     flex-direction: column;
-  
 }
 
 .EventsMentor-text{
@@ -200,7 +199,6 @@ h3{
     }
 }
 
-
 /* EventsTable css */
 
 .EventsTable-container{
@@ -220,6 +218,7 @@ h3{
     color: var(--primary-color);
     text-decoration: underline;
 }
+
 .EventsTable-table{
     width: 100%;
     overflow-x: auto;
