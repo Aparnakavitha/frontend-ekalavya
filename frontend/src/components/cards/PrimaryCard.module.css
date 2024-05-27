@@ -1,6 +1,7 @@
 .cards {
   position: relative;
 }
+
 .dateRow {
   display: flex;
   flex-direction: row;
@@ -65,6 +66,7 @@
   line-height: 22px;
   letter-spacing: -0.408px;
 }
+
 .cardsdiscription {
   text-align: start;
   width: 240px;
@@ -74,8 +76,6 @@
   line-height: 14px;
   letter-spacing: -0.408px;
 }
-
-/* ///////////////////////////// */
 
 .leftCard {
   position: absolute;

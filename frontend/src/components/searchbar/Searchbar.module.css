@@ -49,17 +49,14 @@
   display: none;
 }
 
-.small-box,
 .custom-box {
   width: 100%;
+  max-width: 800px;
 }
 
 .small-box {
+  width: 100%;
   max-width: 400px;
-}
-
-.custom-box {
-  width: 50%;
 }
 
 .small-box .search-box,
@@ -96,11 +93,15 @@
   }
 
   .small-box {
-    width: 50%;
+    width: 100%;
+  }
+
+  .custom-box {
+    width: 100%;
   }
 
   .small-box .search-box,
   .custom-box .search-box {
-    width: 200%;
+    width: 100%;
   }
 }
