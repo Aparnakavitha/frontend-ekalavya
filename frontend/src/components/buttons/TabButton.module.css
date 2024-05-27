@@ -1,4 +1,4 @@
-.EventStatus {
+.event-status {
   width: 102px;
   height: 35px;
   color: var(--white);
@@ -13,16 +13,16 @@
     background-color 0.3s,
     color 0.3s;
 }
-.EventStatus:hover {
+.event-status:hover {
   background-color: var(--primary-color);
   color: black;
 }
-.EventStatus.active {
+.event-status:active {
   background-color: var(--white);
   color: var(--black);
 }
 @media (max-width: 767px) {
-  .EventStatus {
+  .event-status {
     font-size: 14px;
     width: 100px;
   }

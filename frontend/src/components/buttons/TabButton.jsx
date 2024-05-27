@@ -11,7 +11,7 @@ const TabButton = ({ status, onClick, isActive }) => {
   return (
     <div>
       <h1
-        className={`${styles.EventStatus} ${isActive ? styles.active : ""}`}
+        className={`${styles["event-status"]} ${isActive ? styles.active : ""}`}
         onClick={onClick}
       >
         {transformStatus(status)}
