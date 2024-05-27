@@ -23,10 +23,6 @@ export const eventMentor = {
         type : "public",
         type : "mentor",
         type : "admin",
-        
-        smaller :"Register"
-                    
+        smaller :"Register"               
     }
-
-
 }

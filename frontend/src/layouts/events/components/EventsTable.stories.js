@@ -44,7 +44,6 @@ const createFlexDiv = () => (
 export const eventTable = {
     args :{
         data,
-        headings,
-       
+        headings,   
     }
 }
