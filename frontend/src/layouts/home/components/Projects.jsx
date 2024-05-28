@@ -30,6 +30,13 @@ const Project = ({ projects, heading1, heading2 }) => {
     projectChunks.push(projects.slice(i, i + chunkSizeProject));
   }
 
+  const handleArrow = () => {
+    const arrows = document.querySelectorAll(".carousel .control-arrow");
+    arrows.forEach((arrow) => {
+      arrow.style.background = "none";
+    });
+  };
+
   const handleDots = () => {
     const dots = document.querySelectorAll(".carousel .control-dots .dot");
     dots.forEach((dot, idx) => {
@@ -40,6 +47,7 @@ const Project = ({ projects, heading1, heading2 }) => {
   };
 
   useEffect(() => {
+    handleArrow();
     handleDots();
   }, [projects, chunkSizeProject]);
 
