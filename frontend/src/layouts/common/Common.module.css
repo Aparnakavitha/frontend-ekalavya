@@ -30,7 +30,7 @@
 }
 
 @media (max-width: 767px) {
-  .eventmenus-head  {
+  .eventmenus-head {
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 5px;
@@ -41,7 +41,7 @@
     text-align: left;
   }
 
-  .eventmenus-exploreButton  {
+  .eventmenus-exploreButton {
     width: 53%;
   }
 
@@ -52,9 +52,8 @@
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
-  .eventmenus-exploreButton  {
+  .eventmenus-exploreButton {
     width: 33%;
   }
 }
 /* ------------------------------- EventMenus.css ends here ------------------------------- */
-

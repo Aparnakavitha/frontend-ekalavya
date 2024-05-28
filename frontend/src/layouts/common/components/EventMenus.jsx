@@ -12,8 +12,8 @@ const EventMenus = ({ explore, statuses, title }) => {
 
   return (
     <div className={`${styles["eventmenus-container"]}`}>
-      <div className={`${styles["eventmenus-head"]}`} >
-        <h1 className={`${styles["eventmenus-title"]}`} >{title}</h1>
+      <div className={`${styles["eventmenus-head"]}`}>
+        <h1 className={`${styles["eventmenus-title"]}`}>{title}</h1>
         <div className={`${styles["eventmenus-exploreButton"]}`}>
           <Button {...explore} />
         </div>

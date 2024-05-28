@@ -12,7 +12,9 @@ const Header = ({ menuItems, imageSrc, button, type }) => {
 
   return (
     <div className={`${styles["header-container"]}`}>
-      <div className={`${styles["header-sidebar"]} ${showSidebar ? styles.show : ""}`}>
+      <div
+        className={`${styles["header-sidebar"]} ${showSidebar ? styles.show : ""}`}
+      >
         <div className={`${styles["header-menuresponsive"]}`}>
           {menuItems.map((item, index) => (
             <a
@@ -27,20 +29,31 @@ const Header = ({ menuItems, imageSrc, button, type }) => {
           <div className={`${styles["header-button"]}`}>{button}</div>
         </div>
 
-        <div className={`${styles["header-sidebaricon"]}`} onClick={toggleSidebar}>
+        <div
+          className={`${styles["header-sidebaricon"]}`}
+          onClick={toggleSidebar}
+        >
           <div className={`${styles["header-titleresponsive"]}`}>
-            <img src={imageSrc} className={`${styles["header-image"]}`} alt="Icon" />
+            <img
+              src={imageSrc}
+              className={`${styles["header-image"]}`}
+              alt="Icon"
+            />
           </div>
           {showSidebar ? (
-            <BsX className={`${styles["header-crossIcon"]}`}/>
+            <BsX className={`${styles["header-crossIcon"]}`} />
           ) : (
-            <BsList className={`${styles["header-hamburger"]}`}/>
+            <BsList className={`${styles["header-hamburger"]}`} />
           )}
         </div>
       </div>
 
       <div className={`${styles["header-title"]}`}>
-        <img src={imageSrc} className={`${styles["header-image"]}`} alt="Icon" />
+        <img
+          src={imageSrc}
+          className={`${styles["header-image"]}`}
+          alt="Icon"
+        />
       </div>
 
       <div className={`${styles["header-menu"]}`}>
