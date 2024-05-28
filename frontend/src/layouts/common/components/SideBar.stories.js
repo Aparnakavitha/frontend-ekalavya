@@ -14,7 +14,7 @@ import {
 import Button from "../../../components/buttons/PrimaryButton";
 
 const sample = {
-  content: "Submit",
+  content: "Logout",
   variant: "primary",
   onclick: (r) => {
     console.log("clicked");
@@ -28,10 +28,10 @@ export default {
   args: {
     button: <Button {...sample} />,
     listItems: [
-      { icon: <BsHouseFill />, name: "Home", viewIcon: false },
-      { icon: <BsFillCheckCircleFill />, name:"Profile", viewIcon: false },
-      { icon: <BsFillCheckCircleFill />, name: "Task", viewIcon: false },
-      { icon: <BsFillCheckCircleFill />, name: "Skills", viewIcon: true },
+      { icon: <BsHouseFill />, name: "Home", viewIcon: true },
+      { icon: <BsPersonCircle />, name: "Profile", viewIcon: true },
+      { icon: <BsFillCheckCircleFill />, name: "Task", viewIcon: true },
+      { icon: <BsFillMotherboardFill />, name: "Skills", viewIcon: true },
       { icon: <BsFillCalendarCheckFill />, name: "Events", viewIcon: true },
       { icon: <BsBookmarkCheckFill />, name: "Wishlist", viewIcon: true },
     ],
@@ -42,4 +42,17 @@ export default {
     },
   },
 };
-export const Default = (args) => <SideBar {...args} />;
+export const withIcon = (args) => <SideBar {...args} />;
+
+export const withoutIcon = (args) => (
+  <SideBar
+    {...args}
+    listItems={[
+      { icon: <BsHouseFill />, name: "Home", viewIcon: false },
+      { icon: <BsFillCheckCircleFill />, name: "Profile", viewIcon: false },
+      { icon: <BsFillCheckCircleFill />, name: "Task", viewIcon: false },
+      { icon: <BsFillCalendarCheckFill />, name: "Events", viewIcon: false },
+      { icon: <BsBookmarkCheckFill />, name: "Wishlist", viewIcon: false },
+    ]}
+  />
+);
