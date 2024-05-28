@@ -11,15 +11,16 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background-color: var(--neutral600);
+  background-color: var(--neutral700);
+  padding-bottom: 0.2rem;
 }
 
 .upcoming-head-container {
   width: 350px;
   display: flex;
-  position: inherit;
   justify-content: center;
   align-items: center;
+  height: min-content;
 }
 
 .upcoming-head {

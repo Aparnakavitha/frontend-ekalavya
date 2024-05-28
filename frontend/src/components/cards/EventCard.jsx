@@ -14,8 +14,8 @@ const EventCard = (props) => {
   } = props;
 
   const formatText = (text) => {
-    if (text.length > 20) {
-      text = text.slice(0, 20) + "... ";
+    if (text.length > 17) {
+      text = text.slice(0, 17) + "... ";
     }
     return text;
   };
@@ -30,8 +30,17 @@ const EventCard = (props) => {
           <h3 className={`${styles.date}`}>{date}</h3>
         </div>
         <div className={`${styles["event-details"]}`}>
-          <div className={`${styles["details-top"]}`}>
+          <div className={`${styles["details-left"]}`}>
             <h1 className={`${styles.main}`}>{formatText(main)}</h1>
+
+            <h4 className={`${styles.sub}`}>
+              <u>
+                <a href={`${sub}`}>{formatText(sub)}</a>
+              </u>
+            </h4>
+          </div>
+
+          <div className={`${styles["details-right"]}`}>
             <ul>
               <li className={styles.hello}>
                 <span
@@ -39,14 +48,7 @@ const EventCard = (props) => {
                 >{`${start} - ${end}`}</span>
               </li>
             </ul>
-          </div>
 
-          <div className={`${styles["details-bottom"]}`}>
-            <h4 className={`${styles.sub}`}>
-              <u>
-                <a href={`${sub}`}>{formatText(sub)}</a>
-              </u>
-            </h4>
             <h4 className={`${styles.status} ${styles[status]}`}>
               {status === "upcoming"
                 ? "Upcoming"

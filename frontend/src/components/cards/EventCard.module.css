@@ -6,14 +6,17 @@
   border-radius: 5px;
   display: flex;
   align-items: center;
-  gap: 0.2rem;
+  justify-content: space-around;
   cursor: pointer;
-  justify-content: center space-evenly;
 }
 
 .card-contents {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
 }
 
 .event-date {
@@ -36,31 +39,30 @@
 
 .event-details {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-grow: 1;
 }
 
-.details-top {
+.details-left {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   max-width: 100%;
   max-height: 36px;
   height: max-content;
   justify-content: space-between;
-  gap: 2rem;
-  align-items: center;
+  gap: 0.2rem;
+  align-items: flex-start;
+  margin-right: auto;
 }
 
-.details-top ul li {
+.details-right ul li {
   margin: 0;
   text-decoration: none;
 }
 
 .main {
-  margin-right: auto;
   font-size: 15px;
   font-family: "Urbanist", "Sans-serif";
-  padding-right: 10px;
+  padding-right: 0.5rem;
 }
 
 .duration {
@@ -69,13 +71,15 @@
   font-weight: 600;
 }
 
-.details-bottom {
+.details-right {
   display: flex;
+  flex-direction: column;
   max-width: 100%;
   max-height: 36px;
   height: fit-content;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
+  gap: 0.2rem;
 }
 
 .sub {

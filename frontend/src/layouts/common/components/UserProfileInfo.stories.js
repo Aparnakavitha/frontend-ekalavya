@@ -1,7 +1,7 @@
 import UserProfileInfo from "./UserProfileInfo";
 
 export default {
-  title: "Layouts/UserProfileInfo",
+  title: "Layouts/Common/Components/UserProfileInfo",
   component: UserProfileInfo,
 };
 

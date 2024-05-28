@@ -1,7 +1,7 @@
 import Education from "./Education";
 
 export default {
-  title: "Layouts/Education",
+  title: "Layouts/Common/Components/Education",
   component: Education,
 };
 
