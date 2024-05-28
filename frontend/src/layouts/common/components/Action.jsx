@@ -33,7 +33,9 @@ const ActionComponent = ({
         </div>
       </div>
       <div className={`${styles["common-bottom"]}`}>
-        <div className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}>
+        <div
+          className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}
+        >
           <Searchbar {...searchbarProps} />
         </div>
         {showFiltersAndReset && (
