@@ -3,7 +3,7 @@ import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
 
 export default {
-  title: "layouts/BatchAction/Components/Action",
+  title: "Layouts/AdminBatches/Components/Action",
   component: BatchActionComponent,
 };
 
