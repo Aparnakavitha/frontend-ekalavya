@@ -1,0 +1,121 @@
+/* ------------------------------- AddStudent.css starts here --------------------------------- */
+
+.addStudent-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.addStudent-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.addStudent-containerOne {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.addStudent-containerInput {
+  gap: 10px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.addStudent-buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ------------------------------- AddStudent.css ends here --------------------------------- */
+/* ------------------------------- BatchOperation.css starts here -------------------------------- */
+
+.batchOperations-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  gap: 25px;
+}
+
+.batchOperations-head {
+  width: 100%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+}
+
+.batchOperations-buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.batchOperations-containerOne {
+  gap: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.batchOperations-containerInput {
+  width: 100%;
+  gap: 9px;
+  display: flex;
+  flex-direction: column;
+}
+
+.batchOperations-iconLabelContainerInput {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.batchOperations-iconLabelContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-direction: row;
+}
+
+/* ------------------------------- BatchOperation.css ends here -------------------------------- */
