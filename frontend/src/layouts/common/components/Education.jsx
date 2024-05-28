@@ -29,13 +29,15 @@ const Education = (props) => {
 
   return (
     <div className={`${styles["education-container"]}`}>
-      <div className={styles["qualification"]}>
-        <div className={`${styles["qualification-content"]}`}>
-          <div className={`${styles["title"]}`}>
-            <h2 className={styles["title2"]}>Educational Qualification</h2>
+      <div className={`${styles["education-qualification"]}`}>
+        <div className={`${styles["education-qualification-content"]}`}>
+          <div className={`${styles["education-title"]}`}>
+            <h2 className={`${styles["education-title2"]}`}>
+              Educational Qualification
+            </h2>
           </div>
-          <div className={`${"qualification-add-button"}`}>
-            <div className={`${styles["qualification-button"]}`}>
+          <div className={`${"education-qualification-add-button"}`}>
+            <div className={`${styles["education-qualification-button"]}`}>
               <TextButton
                 icon={<IoMdAdd />}
                 text="Add Educational Qualification"
@@ -43,17 +45,22 @@ const Education = (props) => {
             </div>
           </div>
         </div>
-        <div className={styles["qualifications-list"]}>
+        <div className={`${styles["education-qualifications-list"]}`}>
           <div>
-            <ol type="1" className={`${styles["list-box"]}`}>
+            <ol type="1" className={`${styles["education-list-box"]}`}>
               {qualifications.map((qualification, index) => (
                 <div
                   key={index}
-                  className={`${styles["qualification-instance"]}`}
+                  className={`${styles["education-qualification-instance"]}`}
                 >
-                  <div key={index} className={styles.maindiv}>
-                    <li key={index} className={`${styles["education"]}`}>
-                      <h3 className={styles["qualification-name"]}>
+                  <div key={index} className={`${styles["education-maindiv"]}`}>
+                    <li
+                      key={index}
+                      className={`${styles["education-education"]}`}
+                    >
+                      <h3
+                        className={`${styles["education-qualification-name"]}`}
+                      >
                         {qualification.name}
                       </h3>
 
@@ -65,11 +72,17 @@ const Education = (props) => {
                       <p>Specialization: {qualification.specialization}</p>
                     </li>
                   </div>
-                  <div className={`${styles["qualification-mod-buttons"]}`}>
-                    <div className={`${styles["qualification-button"]}`}>
+                  <div
+                    className={`${styles["education-qualification-mod-buttons"]}`}
+                  >
+                    <div
+                      className={`${styles["education-qualification-button"]}`}
+                    >
                       <TextButton icon={<MdEdit />} text="Edit" />
                     </div>
-                    <div className={`${styles["qualification-button"]}`}>
+                    <div
+                      className={`${styles["education-qualification-button"]}`}
+                    >
                       <TextButton icon={<MdDelete />} text="Delete" />
                     </div>
                   </div>

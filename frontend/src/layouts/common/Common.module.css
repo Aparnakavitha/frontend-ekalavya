@@ -1,70 +1,70 @@
 /*-----------------------------------------------------User profile layout css begins here------------------------------------------------------------------------*/
-.main {
+.userprofile-main {
   display: flex;
   flex-direction: column;
 }
 
-.title {
+.userprofile-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.title1 {
+.userprofile-title1 {
   color: var(--primary-color);
   font-size: 28px;
   font-weight: 600;
 }
 
-.user-details {
+.userprofile-user-details {
   display: flex;
   flex-direction: column;
 }
 
-.details-section {
+.userprofile-details-section {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 1.5rem;
 }
 
-.basic-info {
+.userprofile-basic-info {
   display: flex;
   align-items: center;
 }
 
-.name {
+.userprofile-name {
   font-weight: 600;
   font-size: 20px;
 }
 
-.student-id {
+.userprofile-student-id {
   font-weight: 400;
   font-size: 15px;
 }
 
-.college {
+.userprofile-college {
   font-weight: 400;
   font-size: 16px;
 }
 
-.dob {
+.userprofile-dob {
   font-weight: 400;
   font-size: 13px;
 }
 
-.profile-picture {
+.userprofile-profile-picture {
   margin-right: 1.5rem;
   display: flex;
 }
 
-.info-text {
+.userprofile-info-text {
   color: var(--white);
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.bio {
+.userprofile-bio {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,125 +73,129 @@
   gap: 0.2rem;
 }
 
-.email {
+.userprofile-email {
   font-weight: 300;
   font-size: 15px;
 }
 
-.phone {
+.userprofile-phone {
   font-weight: 300;
   font-size: 15px;
 }
 
-.social-links {
+.userprofile-social-links {
   text-decoration: none;
   color: var(--white);
 }
 
-.social-links:hover {
+.userprofile-social-links:hover {
   color: var(--primary-color);
 }
 
-.linkedin {
+.userprofile-linkedin {
   font-weight: 300;
   font-size: 15px;
 }
 
-.github {
+.userprofile-github {
   font-weight: 300;
   font-size: 15px;
 }
 
-.address {
+.userprofile-address {
   font-weight: 300;
   font-size: 15px;
 }
 
-.qualification {
+/*----------------------------------------------------------User profile layout css ends here----------------------------------------------------------------*/
+
+/*-----------------------------------------------------------Education layout css begins here----------------------------------------------------------------*/
+
+.education-qualification {
   display: flex;
   flex-direction: column;
 }
 
-.qualification-button {
+.education-qualification-button {
   margin: 0.3rem;
 }
 
-.qualification-head {
+.education-qualification-head {
   display: flex;
   align-items: center;
 }
 
-.qualification-name {
+.education-qualification-name {
   margin-right: auto;
 }
 
-.qualification-content {
+.education-qualification-content {
   display: flex;
   justify-content: space-between;
 }
 
-.qualification-instance {
+.education-qualification-instance {
   display: flex;
   justify-content: space-between;
 }
 
-.qualification-mod-buttons {
+.education-qualification-mod-buttons {
   display: flex;
 }
 
-.title2 {
+.education-title2 {
   color: var(--primary-color);
   font-weight: 600;
   margin-right: auto;
   margin-bottom: 1rem;
 }
 
-.qualifications-list {
+.education-qualifications-list {
   color: var(--white);
   margin-left: 0.2rem;
 }
 
-.education {
+.education-education {
   margin-bottom: 1rem;
   margin-right: auto;
   margin-left: 0.2rem;
   color: var(--white);
 }
 
-.list-box {
+.education-list-box {
   margin-left: 0.2rem;
 }
 
-/*---------------------------------------------------User profile layout css ends here--------------------------------------------------------------------------*/
+/*---------------------------------------------------Education layout css ends here--------------------------------------------------------------------------*/
 
 @media only screen and (max-width: 767px) {
   /*-------------------------------------------------Media queries for user profile starts here--------------------------------------------------------------------*/
 
-  .basic-info {
+  .userprofile-basic-info {
     flex-direction: column;
     align-items: center;
     margin-bottom: 1rem;
   }
 
-  .details-section {
+  .userprofile-details-section {
     flex-direction: column;
   }
 
-  .bio {
+  .userprofile-bio {
     align-items: flex-start;
     margin: 0;
   }
 
-  .title {
+  .userprofile-title {
     margin-bottom: 1rem;
   }
 
-  .profile-picture {
+  .userprofile-profile-picture {
     margin: 0;
     margin-bottom: 1rem;
   }
 
-  .basic-info {
+  .userprofile-basic-info {
     align-items: flex-start;
   }
 
@@ -199,15 +203,15 @@
 
   /*---------------------------------------------------------Media queries for education starts here--------------------------------------------------------------*/
 
-  .title2 {
+  .education-title2 {
     margin: 0;
   }
 
-  .qualification-content {
+  .education-qualification-content {
     flex-direction: column;
   }
 
-  .qualification-instance {
+  .education-qualification-instance {
     margin-top: 1rem;
     flex-direction: column;
   }

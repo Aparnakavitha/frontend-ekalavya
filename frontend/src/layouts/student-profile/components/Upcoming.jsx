@@ -41,14 +41,14 @@ const Upcoming = (props) => {
   ];
 
   return (
-    <div className={`${styles.outer} ${styles[mode]}`}>
-      <div className={`${styles["head-container"]}`}>
-        <h1 className={`${styles.head}`}>Upcoming events</h1>
-        <h1 className={`${styles.link}`}>
+    <div className={`${styles["upcoming-outer"]} ${styles[mode]}`}>
+      <div className={`${styles["upcoming-head-container"]}`}>
+        <h1 className={`${styles["upcoming-head"]}`}>Upcoming events</h1>
+        <h1 className={`${styles["upcoming-link"]}`}>
           <a href="">See all</a>
         </h1>
       </div>
-      <div className={`${styles["event-cards-container"]}`}>
+      <div className={`${styles["upcoming-event-cards-container"]}`}>
         {events.map((event, index) => (
           <EventCard key={index} {...event} mode={mode} />
         ))}
