@@ -9,6 +9,7 @@
   background-color: var(--background);
   padding: 0 10%;
   box-shadow: 10px 11px 30px 0px rgba(89, 89, 89, 0.16);
+  position: fixed;
 }
 
 .header-title {
