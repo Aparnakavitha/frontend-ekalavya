@@ -5,7 +5,7 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddStudent = () => {
+const AddStudent = ({options}) => {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
@@ -69,11 +69,7 @@ const AddStudent = () => {
               label="Select College"
               size="normal"
               placeholders={["Select College"]}
-              options={[
-                { value: "option1", label: "Option 1" },
-                { value: "option2", label: "Option 2" },
-                { value: "option3", label: "Option 3" },
-              ]}
+              options={options}
             />
           )}
         />
