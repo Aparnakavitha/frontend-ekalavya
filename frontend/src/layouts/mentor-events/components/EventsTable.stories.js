@@ -1,49 +1,26 @@
 import EventsTable from "./EventsTable";
-import AttendanceButton from "../../../components/buttons/AttendanceButton";
+ 
 export default {
-    title : "layouts/mentor-events/components/EventsTable",
-    component : EventsTable,
-}
-
-const createFlexDiv = () => (
-    <div style={{ display: 'flex', width: '50px', gap:'2px' }}>
-      <AttendanceButton content="Present" isPresent={true} onClick={(r) => {
-      console.log("clicked");
-    }}/>
-      <AttendanceButton content="absent" isPresent={false} onClick={(r) => {
-      console.log("clicked");
-    }}/>
-    </div>
-  );
-
-  const createFlexDiv2 = () => (
-    <div style={{ display: 'flex', width: 'auto', gap:'4px' }}>
-      <span>Status</span>
-      <AttendanceButton content="Present" isPresent={true} onClick={(r) => {
-      console.log("clicked");
-    }}/>
-      <AttendanceButton content="absent" isPresent={false} onClick={(r) => {
-      console.log("clicked");
-    }}/>
-    
-    </div>
-  );
-
-  const data = [
-    ["studentid", "Samual", "samual@gmail.com", createFlexDiv("Present", "Absent")],
-    ["studentid", "Smith", "smith@gmail.com", createFlexDiv("Present", "Absent")],
-    ["studentid", "Mary", "mary@gmail.com", createFlexDiv("Present", "Absent")],
-    ["studentid", "Davis", "davis@gmail.com", createFlexDiv("Present", "Absent")],
-    ["studentid", "Smith", "simth@gmail.com", createFlexDiv("Present", "Absent")],
-    ["studentid", "Jayadev", "jayadev@gmail.com", createFlexDiv("Present", "Absent")],
-    ["studentid", "Wilson", "wilson@gmail.com", createFlexDiv("Present", "Absent")],
-  ];
-  
-  const headings = ["Student Id", "Student Name", "emailid",createFlexDiv2("Present", "Absent")];
-  
+  title: "layouts/Mentor-events/components/EventsTable",
+  component: EventsTable,
+};
+ 
+const headings = ["Student Id", "Student Name", "Email", "Status"];
+ 
+const data = [
+  ["studentid1", "Samuel", "samuel@gmail.com"],
+  ["studentid2", "Smith", "smith@gmail.com"],
+  ["studentid3", "Mary", "mary@gmail.com"],
+  ["studentid4", "Davis", "davis@gmail.com"],
+  ["studentid5", "Smith", "smith@gmail.com"],
+  ["studentid6", "Jayadev", "jayadev@gmail.com"],
+  ["studentid7", "Wilson", "wilson@gmail.com"],
+];
+ 
 export const eventTable = {
-    args :{
-        data,
-        headings,   
-    }
-}
+  args: {
+    data,
+    headings,
+    logAttendance: (attendance) => console.log("Attendance:", attendance),
+  },
+};
