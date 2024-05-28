@@ -15,7 +15,8 @@
 }
 
 .pageName {
+  font-size: 18px;
   margin-left: 1px;
   color: var(--white);
-  font-family: Urbanist;
+  cursor: pointer;
 }

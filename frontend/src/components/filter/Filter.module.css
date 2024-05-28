@@ -1,14 +1,12 @@
 .filter {
   color: var(--white);
   position: relative;
-  width: 100%;
   min-width: 75px;
   width: fit-content;
   max-width: 450px;
-  height: 100%;
 }
 
-.filter :hover {
+.filterClass:hover {
   background-color: var(--primary-color);
   color: var(--black);
 }
@@ -16,7 +14,8 @@
 .filterClass {
   display: inline-flex;
   flex-direction: row;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   padding: 8px 14px;
   gap: 7px;
   cursor: pointer;
@@ -24,14 +23,12 @@
   border-bottom: 1px solid var(--neutral500) !important;
   min-width: 75px;
   max-width: 450px;
-  flex: 1;
   overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
   text-align: left;
 }
 
-.filterClass a {
+.selectedOption {
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -43,29 +40,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .drop {
-  min-width: 91px;
-  width: fit-content;
   display: inline-flex;
   flex-direction: column;
   position: absolute;
   top: 100%;
-  left: 0%;
+  left: 0;
   text-align: left;
+  background-color: var(--white);
+  border: 1px solid var(--neutral500);
+  cursor: pointer;
+}
+
+.dropcontent:hover {
+  background-color: var(--primary-color);
 }
 
 .dropcontent {
-  max-width: 300px;
+  width: 100%;
   padding: 10px;
   background-color: var(--white);
   color: var(--black);
-  border-bottom: 1px solid var(--neutral500) !important;
-  flex: 1;
+  border-bottom: 1px solid var(--neutral500);
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+}
+
+.dropcontent:last-child {
+  border-bottom: none;
 }
 
 .dropcontent a {

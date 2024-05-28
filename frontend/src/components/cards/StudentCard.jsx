@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./StudentCard.module.css"; 
+import styles from "./StudentCard.module.css";
 import { GoArrowUpRight } from "react-icons/go";
 
 const StudentCard = (props) => {
