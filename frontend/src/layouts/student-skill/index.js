@@ -1,1 +1,1 @@
-export {default as Layout} from './SkillLayout';
+export {default as Layout} from './components/SkillLayout';
