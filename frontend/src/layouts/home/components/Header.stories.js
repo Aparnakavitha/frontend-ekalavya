@@ -13,7 +13,7 @@ const sample = {
 };
 
 export default {
-  title: "layouts/Home/Components/Header",
+  title: "Layouts/Home/Components/Header",
   component: Header,
   args: {
     menuItems: [

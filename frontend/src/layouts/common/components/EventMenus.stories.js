@@ -3,7 +3,7 @@ import EventMenus from "./EventMenus";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
 export default {
-  title: "layouts/common/Components/common",
+  title: "Layouts/Common/Components/EventMenus",
   component: EventMenus,
   argTypes: {
     statuses: { control: "object" },
