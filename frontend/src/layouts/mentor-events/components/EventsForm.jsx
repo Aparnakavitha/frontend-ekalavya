@@ -74,13 +74,6 @@ const EventForm = () => {
                 placeholder="Event Mode"
                 options={options}
                 className={`${styles["eventform-eventMode"]}`}
-                value={options.find(
-                  (option) => option.value === selectedEventMode
-                )}
-                onChange={(option) => {
-                  field.onChange(option.value);
-                  handleEventModeChange(option);
-                }}
               />
             )}
           />
