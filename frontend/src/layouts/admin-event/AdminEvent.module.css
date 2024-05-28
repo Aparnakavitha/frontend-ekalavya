@@ -1,0 +1,113 @@
+/* ------------------------------- AddEvent.css starts here ------------------------------- */
+
+.addEvent-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2%;
+  background-color: transparent;
+  color: var(--white);
+  gap: 17px;
+  background-color: var(--background);
+  padding: 40px;
+  border-radius: 40px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+}
+
+.addEvent-eventTitleDiv {
+  width: 80%;
+}
+
+.addEvent-eventModeDiv {
+  width: 20%;
+}
+
+.addEvent-eventTitleMode {
+  display: flex;
+  justify-content: space-between;
+  gap: 2%;
+}
+
+.addEvent-dateTimeContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 2%;
+}
+
+.addEvent-dateTimeContainer .input-container {
+  flex: 1;
+}
+
+.addEvent-dateTime {
+  width: 100%;
+}
+
+.addEvent-eventTitle,
+.addEvent-eventMode,
+.addEvent-eventType,
+.addEvent-description,
+.addEvent-location,
+.addEvent-speaker,
+.addEvent-organizer {
+  margin-bottom: 2%;
+}
+
+@media (min-width: 769) and (max-width: 992px) {
+  .addEvent-dateTimeContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .addEvent-dateTimeContainer .input-container {
+    flex: 1 1 48%;
+  }
+
+  .addEvent-eventTitleMode {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .addEvent-eventTitleMode .input-container {
+    flex: 1 1 48%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .addEvent-form {
+    width: 100%;
+  }
+
+  .addEvent-dateTimeContainer {
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  .addEvent-dateTimeContainer .input-container {
+    width: 100%;
+  }
+
+  .addEvent-eventTitleMode {
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  .addEvent-eventTitleMode .input-container {
+    width: 100%;
+  }
+
+  .addEvent-eventTitleDiv {
+    width: 100%;
+  }
+
+  .addEvent-eventModeDiv {
+    width: 100%;
+  }
+
+  .addEvent-buttonContainer {
+    width: 100%;
+  }
+}
+
+/* ------------------------------- AddEvents.css ends here ------------------------------- */
