@@ -5,7 +5,7 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddStudent = ({ options, viewCollege, heading }) => {
+const AddUser = ({ options, viewCollege, heading }) => {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
@@ -13,14 +13,14 @@ const AddStudent = ({ options, viewCollege, heading }) => {
   };
 
   return (
-    <div className={`${styles["addStudent-container"]}`}>
-      <div className={`${styles["addStudent-head"]}`}>{heading}</div>
+    <div className={`${styles["adduser-container"]}`}>
+      <div className={`${styles["adduser-head"]}`}>{heading}</div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={`${styles["addStudent-form"]}`}
+        className={`${styles["adduser-form"]}`}
       >
-        <div className={`${styles["addStudent-field"]}`}>
-          <div className={`${styles["addStudent-name"]}`}>
+        <div className={`${styles["adduser-field"]}`}>
+          <div className={`${styles["adduser-name"]}`}>
             <Controller
               name="firstName"
               control={control}
@@ -34,7 +34,7 @@ const AddStudent = ({ options, viewCollege, heading }) => {
               )}
             />
           </div>
-          <div className={`${styles["addStudent-name"]}`}>
+          <div className={`${styles["adduser-name"]}`}>
             <Controller
               name="secondName"
               control={control}
@@ -86,4 +86,4 @@ const AddStudent = ({ options, viewCollege, heading }) => {
   );
 };
 
-export default AddStudent;
+export default AddUser;

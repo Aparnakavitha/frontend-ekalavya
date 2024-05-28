@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "../AdminBatches.module.css";
+import styles from "../Common.module.css";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Input from "../../../components/inputbox/InputBox";
 
-const Addnewstudent = ({ mainHeading, initialData }) => {
+const UpdateSingleField = ({ mainHeading, labelTitle, placeHolder, buttonTitle,initialData }) => {
   const { handleSubmit, control, getValues } = useForm({
     defaultValues: initialData,
   });
@@ -24,13 +24,13 @@ const Addnewstudent = ({ mainHeading, initialData }) => {
         </header>
         <div className={`${styles["addStudent-containerInput"]}`}>
           <Controller
-            name="studentId"
+            name="inputData"
             control={control}
             render={({ field }) => (
               <Input
                 {...field}
-                label="Add student ID"
-                placeholders={["Student ID"]}
+                label={labelTitle}
+                placeholders={[placeHolder]}
                 size="normal"
               />
             )}
@@ -38,10 +38,10 @@ const Addnewstudent = ({ mainHeading, initialData }) => {
         </div>
       </div>
       <div className={`${styles["addStudent-buttonContainer"]}`}>
-        <PrimaryButton variant="primary" content="Add" width="full" />
+        <PrimaryButton variant="primary" content={buttonTitle} width="full" />
       </div>
     </form>
   );
 };
 
-export default Addnewstudent;
+export default UpdateSingleField;
