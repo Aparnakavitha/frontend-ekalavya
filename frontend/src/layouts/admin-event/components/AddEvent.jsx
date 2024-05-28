@@ -5,20 +5,8 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../AdminEvent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddEvent = ({ defaultValues = {} }) => {
-  const initialDefaultValues = {
-    eventTitle: "",
-    eventMode: "Offline",
-    eventType: "",
-    description: "",
-    startDate: "",
-    endDate: "",
-    startTime: "",
-    endTime: "",
-    location: "",
-    speaker: "",
-    organizer: "",
-  };
+const AddEvent = ({ defaultValues }) => {
+  const initialDefaultValues = defaultValues;
 
   const mergedDefaultValues = { ...initialDefaultValues, ...defaultValues };
 
@@ -100,13 +88,6 @@ const AddEvent = ({ defaultValues = {} }) => {
                 placeholder="Event Mode"
                 options={options}
                 className={`${styles["addEvent-eventMode"]}`}
-                value={options.find(
-                  (option) => option.value === selectedEventMode
-                )}
-                onChange={(option) => {
-                  field.onChange(option.value);
-                  handleEventModeChange(option);
-                }}
               />
             )}
           />
