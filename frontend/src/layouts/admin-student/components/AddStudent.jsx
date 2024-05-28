@@ -5,7 +5,7 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddStudent = ({options}) => {
+const AddStudent = ({ options }) => {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
