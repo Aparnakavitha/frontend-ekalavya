@@ -77,23 +77,6 @@ const AddStudent = () => {
             />
           )}
         />
-        <Controller
-          name="track"
-          control={control}
-          render={({ field }) => (
-            <InputDropdown
-              {...field}
-              label="Select Track"
-              size="normal"
-              placeholders={["Select Track"]}
-              options={[
-                { value: "option1", label: "Option 1" },
-                { value: "option2", label: "Option 2" },
-                { value: "option3", label: "Option 3" },
-              ]}
-            />
-          )}
-        />
         <PrimaryButton
           type="submit"
           content="Add"
