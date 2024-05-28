@@ -18,10 +18,12 @@ const QualificationForm = ({ heading, options, initialValues }) => {
 
   return (
     <form
-      className={styles[`QualificationForm-form`]}
+      className={`${styles["qualification-form-form"]}`}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <header className={styles[`QualificationForm-head`]}>{heading}</header>
+      <header className={`${styles["qualification-form-head"]}`}>
+        {heading}
+      </header>
       <Controller
         name="degree"
         control={control}
@@ -70,8 +72,8 @@ const QualificationForm = ({ heading, options, initialValues }) => {
           />
         )}
       />
-      <div className={styles[`QualificationForm-startDateEndDate`]}>
-        <div className={styles[`QualificationForm-datebox`]}>
+      <div className={`${styles["qualification-form-startDateEndDate"]}`}>
+        <div className={`${styles["qualification-form-datebox"]}`}>
           <Controller
             name="startDate"
             control={control}
@@ -86,7 +88,7 @@ const QualificationForm = ({ heading, options, initialValues }) => {
             )}
           />
         </div>
-        <div className={styles[`QualificationForm-datebox`]}>
+        <div className={`${styles["qualification-form-datebox"]}`}>
           <Controller
             name="endDate"
             control={control}
@@ -102,7 +104,7 @@ const QualificationForm = ({ heading, options, initialValues }) => {
           />
         </div>
       </div>
-      <div className={styles[`QualificationForm-button`]}>
+      <div className={`${styles["qualification-form-button"]}`}>
         <PrimaryButton variant="primary" content="Save" width="full" />
       </div>
     </form>

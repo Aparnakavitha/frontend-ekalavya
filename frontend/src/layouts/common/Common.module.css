@@ -60,7 +60,7 @@
 
 /* ------------------------------- QualificationForm.css starts here ------------------------------- */
 
-.QualificationForm-form {
+.qualification-form-form {
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
@@ -75,34 +75,38 @@
   gap: 10px;
 }
 
-.QualificationForm-datebox {
+.qualification-form-datebox {
   width: 48.75%;
 }
 
-.QualificationForm-startDateEndDate {
+.qualification-form-startDateEndDate {
   display: flex;
   gap: 20px;
   justify-content: space-between;
 }
 
-.QualificationForm-head {
+.qualification-form-head {
   font-style: normal;
   font-weight: 400;
   font-size: 21px;
   margin-bottom: 15px;
 }
-.QualificationForm-button {
+
+.qualification-form-button {
   padding-top: 10px;
 }
+
 @media screen and (max-width: 500px) {
-  .QualificationForm-startDateEndDate {
+  .qualification-form-startDateEndDate {
     flex-direction: column;
     gap: 17px;
   }
-  .QualificationForm-datebox {
+
+  .qualification-form-datebox {
     width: 100%;
   }
 }
+
 /* ------------------------------- QualificationForm.css ends here ------------------------------- */
 
 /*-----------------------------------------------------User profile layout css begins here------------------------------------------------------------------------*/
