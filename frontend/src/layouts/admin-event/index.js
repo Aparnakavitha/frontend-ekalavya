@@ -1,1 +1,1 @@
-export{default as AddEvent} from "./components/AddEvent"
+export { default as AddEvent } from "./components/AddEvent";

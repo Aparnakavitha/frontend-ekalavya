@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import Input from '../../../components/inputbox/InputBox';
-import InputDropdown from '../../../components/inputdropdown/InputDropdown';
-// import styles from './AddEvent.module.css';
-import styles from '../AdminEvent.module.css';
-import PrimaryButton from '../../../components/buttons/PrimaryButton';
- 
+import React, { useState, useEffect } from "react";
+import { useForm, Controller } from "react-hook-form";
+import Input from "../../../components/inputbox/InputBox";
+import InputDropdown from "../../../components/inputdropdown/InputDropdown";
+import styles from "../AdminEvent.module.css";
+import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
 const AddEvent = ({ defaultValues = {} }) => {
   const initialDefaultValues = {
@@ -21,15 +19,15 @@ const AddEvent = ({ defaultValues = {} }) => {
     speaker: "",
     organizer: "",
   };
- 
+
   const mergedDefaultValues = { ...initialDefaultValues, ...defaultValues };
- 
+
   const { handleSubmit, control, watch, setValue } = useForm({
     defaultValues: mergedDefaultValues,
   });
- 
+
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
- 
+
   const onSubmit = (data) => {
     if (data.eventMode === "Online") {
       if (!data.location) {
@@ -41,26 +39,26 @@ const AddEvent = ({ defaultValues = {} }) => {
     }
     console.log("Form Data:", data);
   };
- 
+
   const options = [
     { value: "Online", label: "Online" },
     { value: "Offline", label: "Offline" },
   ];
- 
+
   const selectedEventMode = watch("eventMode", eventMode);
- 
+
   const handleEventModeChange = (selectedOption) => {
     const newValue = selectedOption.value;
     setEventMode(newValue);
     setValue("eventMode", newValue);
- 
+
     if (newValue === "Online") {
       setValue("location", mergedDefaultValues.link || "");
     } else {
       setValue("location", mergedDefaultValues.location || "");
     }
   };
- 
+
   useEffect(() => {
     if (selectedEventMode === "Online") {
       setValue("location", mergedDefaultValues.link || "");
@@ -68,11 +66,14 @@ const AddEvent = ({ defaultValues = {} }) => {
       setValue("location", mergedDefaultValues.location || "");
     }
   }, [selectedEventMode, setValue, mergedDefaultValues]);
- 
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={`${styles['addEvent-form']}`}>
-      <div className={`${styles['addEvent-eventTitleMode']}`}>
-        <div className={`${styles['addEvent-eventTitleDiv']}`}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={`${styles["addEvent-form"]}`}
+    >
+      <div className={`${styles["addEvent-eventTitleMode"]}`}>
+        <div className={`${styles["addEvent-eventTitleDiv"]}`}>
           <Controller
             name="eventTitle"
             control={control}
@@ -82,13 +83,13 @@ const AddEvent = ({ defaultValues = {} }) => {
                 label="Event Title"
                 size="normal"
                 placeholders={["Event Title"]}
-                className={`${styles['addEvent-eventTitle']}`}
+                className={`${styles["addEvent-eventTitle"]}`}
               />
             )}
           />
         </div>
- 
-        <div className={`${styles['addEvent-eventModeDiv']}`}>
+
+        <div className={`${styles["addEvent-eventModeDiv"]}`}>
           <Controller
             name="eventMode"
             control={control}
@@ -98,7 +99,7 @@ const AddEvent = ({ defaultValues = {} }) => {
                 label="Event Mode"
                 placeholder="Event Mode"
                 options={options}
-                className={`${styles['addEvent-eventMode']}`}
+                className={`${styles["addEvent-eventMode"]}`}
                 value={options.find(
                   (option) => option.value === selectedEventMode
                 )}
@@ -111,7 +112,7 @@ const AddEvent = ({ defaultValues = {} }) => {
           />
         </div>
       </div>
- 
+
       <Controller
         name="eventType"
         control={control}
@@ -121,11 +122,11 @@ const AddEvent = ({ defaultValues = {} }) => {
             label="Event Type"
             size="normal"
             placeholders={["Event Type"]}
-            className= {`${styles['addEvent-eventType']}`}
+            className={`${styles["addEvent-eventType"]}`}
           />
         )}
       />
- 
+
       <Controller
         name="description"
         control={control}
@@ -135,13 +136,13 @@ const AddEvent = ({ defaultValues = {} }) => {
             label="Description"
             size="large"
             placeholders={["Description"]}
-            className={`${styles['addEvent-description']}`}
+            className={`${styles["addEvent-description"]}`}
           />
         )}
       />
- 
-      <div className={`${styles['addEvent-dateTimeContainer']}`}>
-        <div className={`${styles['addEvent-dateTime']}`}>
+
+      <div className={`${styles["addEvent-dateTimeContainer"]}`}>
+        <div className={`${styles["addEvent-dateTime"]}`}>
           <Controller
             name="startDate"
             control={control}
@@ -151,14 +152,14 @@ const AddEvent = ({ defaultValues = {} }) => {
                 label="Start Date"
                 size="normal"
                 placeholders={["dd/mm/yyyy"]}
-                className={`${styles['addEvent-startDate']}`}
+                className={`${styles["addEvent-startDate"]}`}
                 isDatePicker
               />
             )}
           />
         </div>
- 
-        <div className={`${styles['addEvent-dateTime']}`}>
+
+        <div className={`${styles["addEvent-dateTime"]}`}>
           <Controller
             name="endDate"
             control={control}
@@ -168,13 +169,13 @@ const AddEvent = ({ defaultValues = {} }) => {
                 label="End Date"
                 size="normal"
                 placeholders={["dd/mm/yyyy"]}
-                className={`${styles['addEvent-endDate']}`}
+                className={`${styles["addEvent-endDate"]}`}
                 isDatePicker
               />
             )}
           />
         </div>
- 
+
         <div className={styles.dateTime}>
           <Controller
             name="startTime"
@@ -185,14 +186,14 @@ const AddEvent = ({ defaultValues = {} }) => {
                 label="Start Time"
                 size="normal"
                 placeholders={["hh:mm:ss"]}
-                className={`${styles['addEvent-startTime']}`}
+                className={`${styles["addEvent-startTime"]}`}
                 isTimePicker
               />
             )}
           />
         </div>
- 
-        <div className={`${styles['addEvent-dateTime']}`}>
+
+        <div className={`${styles["addEvent-dateTime"]}`}>
           <Controller
             name="endTime"
             control={control}
@@ -202,14 +203,14 @@ const AddEvent = ({ defaultValues = {} }) => {
                 label="End Time"
                 size="normal"
                 placeholders={["hh:mm:ss"]}
-                className={`${styles['addEvent-endTime']}`}
+                className={`${styles["addEvent-endTime"]}`}
                 isTimePicker
               />
             )}
           />
         </div>
       </div>
- 
+
       <Controller
         name="location"
         control={control}
@@ -221,11 +222,11 @@ const AddEvent = ({ defaultValues = {} }) => {
             placeholders={[
               selectedEventMode === "Online" ? "Link" : "Location",
             ]}
-            className={`${styles['addEvent-location']}`}
+            className={`${styles["addEvent-location"]}`}
           />
         )}
       />
- 
+
       <Controller
         name="speaker"
         control={control}
@@ -235,12 +236,11 @@ const AddEvent = ({ defaultValues = {} }) => {
             label="Speaker"
             size="normal"
             placeholders={["Speaker"]}
-            className={`${styles['addEvent-speaker']}`}
-
+            className={`${styles["addEvent-speaker"]}`}
           />
         )}
       />
- 
+
       <Controller
         name="organizer"
         control={control}
@@ -250,20 +250,19 @@ const AddEvent = ({ defaultValues = {} }) => {
             label="Organizer"
             size="normal"
             placeholders={["Organizer"]}
-            className={`${styles['addEvent-organizer']}`}
-
+            className={`${styles["addEvent-organizer"]}`}
           />
         )}
       />
- 
-          <PrimaryButton
-            content="Submit"
-            variant="primary"
-            width="full"
-            className={`${styles['addEvent-submitButton']}`}
-          />
+
+      <PrimaryButton
+        content="Submit"
+        variant="primary"
+        width="full"
+        className={`${styles["addEvent-submitButton"]}`}
+      />
     </form>
   );
 };
 
-export default AddEvent
+export default AddEvent;

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-// import styles from "./AddCollege.module.css";
 import styles from "../AdminStudent.module.css";
 
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
@@ -10,14 +9,17 @@ const AddCollege = () => {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Form Data:", data); 
+    console.log("Form Data:", data);
   };
 
   return (
-    <div className={`${styles['addCollege-container']}`}>
-      <form onSubmit={handleSubmit(onSubmit)} className={`${styles['addCollege-form']}`}>
-        <div className={`${styles['addCollege-formgroup']}`}>
-          <div className={`${styles['addCollege-head']}`}>Add College</div>
+    <div className={`${styles["addCollege-container"]}`}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={`${styles["addCollege-form"]}`}
+      >
+        <div className={`${styles["addCollege-formgroup"]}`}>
+          <div className={`${styles["addCollege-head"]}`}>Add College</div>
           <div className={styles.field}>
             <Controller
               name="collegename"

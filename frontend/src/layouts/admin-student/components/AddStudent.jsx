@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-// import styles from "./AddStudent.module.css";
 import styles from "../AdminStudent.module.css";
 import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
@@ -14,11 +13,14 @@ const AddStudent = () => {
   };
 
   return (
-    <div className={`${styles['addStudent-container']}`}>
-      <div className={`${styles['addStudent-head']}`}> Add New Student</div>
-      <form onSubmit={handleSubmit(onSubmit)} className={`${styles['addStudent-form']}`}>
-        <div className={`${styles['addStudent-field']}`}>
-          <div className={`${styles['addStudent-name']}`}>
+    <div className={`${styles["addStudent-container"]}`}>
+      <div className={`${styles["addStudent-head"]}`}> Add New Student</div>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={`${styles["addStudent-form"]}`}
+      >
+        <div className={`${styles["addStudent-field"]}`}>
+          <div className={`${styles["addStudent-name"]}`}>
             <Controller
               name="firstName"
               control={control}
@@ -32,7 +34,7 @@ const AddStudent = () => {
               )}
             />
           </div>
-          <div className={`${styles['addStudent-name']}`}>
+          <div className={`${styles["addStudent-name"]}`}>
             <Controller
               name="secondName"
               control={control}
