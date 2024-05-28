@@ -7,7 +7,6 @@ export default {
   component: Layout,
   argTypes: {
     onAddSkill: { action: 'clicked' },
-    
   },
 };
 

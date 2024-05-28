@@ -1,3 +1,4 @@
+/* ------------------------------- StudentSkill.module.css starts here ------------------------------- */
 .skilllayout-layoutContainer {
   display: flex;
   flex-wrap: wrap;
@@ -5,9 +6,10 @@
   justify-content: flex-start;
   flex-direction: row;
   width: 100%;
-  height:73px;
+  height: 73px;
   gap: 10px;
 }
+
 .skilllayout-skillTitle {
   display: flex;
   flex-direction: column;
@@ -21,10 +23,11 @@
   color: var(--primary-color);
   padding-left: 10px;
 }
+
 .skilllayout-plusIcon {
   cursor: pointer;
   font-size: 28px;
-  width:28px;
+  width: 28px;
   height: 28px;
   display: flex;
   align-items: center;
@@ -40,16 +43,27 @@
     align-items: center;
     display: flex;
   }
-  .skilllayout-skillContainer{
+
+  .skilllayout-skillContainer {
     display: flex;
     justify-content: center;
     width: 100%;
   }
-  .skilllayout-plusIcon{
+
+  .skilllayout-plusIcon {
     display: block;
   }
+
+  .skilllayout-addButton{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+  }
+
   .layoutContainer {
     display: flex;
     justify-content: center;
   }
 }
+
+/* ------------------------------- StudentSkill.module.css ends here ------------------------------- */
