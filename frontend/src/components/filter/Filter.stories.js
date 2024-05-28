@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
+import { action } from '@storybook/addon-actions';
 import Filter from "./Filter";
 
 export default {
@@ -29,8 +30,8 @@ const Template = (args) => {
   );
 };
 
-export const filter = Template.bind({});
-filter.args = {
+export const Default = Template.bind({});
+Default.args = {
   initialHeading: "Batch",
   Content: ["Batch 1", "Batch 2", "Batch 3"],
 };
