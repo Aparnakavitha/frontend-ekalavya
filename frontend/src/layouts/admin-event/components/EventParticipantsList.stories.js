@@ -1,5 +1,6 @@
 import React from "react";
 import EventParticipantsList from "./EventParticipantsList";
+
 export default {
   title: "layouts/AdminEvent/Components/EventParticipantsList",
   component: EventParticipantsList,

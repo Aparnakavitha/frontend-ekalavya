@@ -4,7 +4,13 @@ import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Input from "../../../components/inputbox/InputBox";
 
-const UpdateSingleField = ({ mainHeading, labelTitle, placeHolder, buttonTitle,initialData }) => {
+const UpdateSingleField = ({
+  mainHeading,
+  labelTitle,
+  placeHolder,
+  buttonTitle,
+  initialData,
+}) => {
   const { handleSubmit, control, getValues } = useForm({
     defaultValues: initialData,
   });
