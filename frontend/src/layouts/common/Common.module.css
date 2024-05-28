@@ -149,7 +149,7 @@
     padding-top: 26px;
 }
 
-.footer-conatinerLeft {
+.footer-containerLeft {
     display: flex;
     flex-direction: column;
     gap: 40px;
