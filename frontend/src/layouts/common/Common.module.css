@@ -8,7 +8,7 @@
   background-blend-mode: lighten;
   padding: 50px;
   border-radius: 40px;
-  color:var(--white);
+  color: var(--white);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@
   font-size: 21px;
   margin-bottom: 15px;
 }
-.QualificationForm-button{
+.QualificationForm-button {
   padding-top: 10px;
 }
 @media screen and (max-width: 500px) {
@@ -44,4 +44,3 @@
   }
 }
 /* ------------------------------- QualificationForm.css ends here ------------------------------- */
-
