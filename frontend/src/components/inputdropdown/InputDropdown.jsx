@@ -45,10 +45,8 @@ function InputDropdown({
     <div>
       {label && <label className={styles.label}>{label}</label>}
       <Select
-        value={value}
-        onChange={(selectedOption) => {
-          onChange(selectedOption);
-        }}
+        value={options.find(option => option.value === value) || null}
+        onChange={(selectedOption) => onChange(selectedOption?.value)}
         options={options}
         placeholder={placeholder}
         className={styles.selectField}
