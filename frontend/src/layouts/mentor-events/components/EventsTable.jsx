@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../mentorevents.module.css";
+import styles from "../MentorEvents.module.css";
 import Table from "../../../components/table/Table";
 import AttendanceButton from "../../../components/buttons/AttendanceButton";
  

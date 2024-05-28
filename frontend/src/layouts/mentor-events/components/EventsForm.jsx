@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
-import styles from "../mentorevents.module.css";
+import styles from "../MentorEvents.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
  
 const EventForm = () => {
