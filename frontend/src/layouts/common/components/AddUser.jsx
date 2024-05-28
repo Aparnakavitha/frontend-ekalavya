@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import styles from "../AdminStudent.module.css";
+import styles from "../Common.module.css";
 import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddStudent = ({ options }) => {
+const AddUser = ({ options, viewCollege, heading }) => {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
@@ -13,14 +13,14 @@ const AddStudent = ({ options }) => {
   };
 
   return (
-    <div className={`${styles["addStudent-container"]}`}>
-      <div className={`${styles["addStudent-head"]}`}> Add New Student</div>
+    <div className={`${styles["adduser-container"]}`}>
+      <div className={`${styles["adduser-head"]}`}>{heading}</div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={`${styles["addStudent-form"]}`}
+        className={`${styles["adduser-form"]}`}
       >
-        <div className={`${styles["addStudent-field"]}`}>
-          <div className={`${styles["addStudent-name"]}`}>
+        <div className={`${styles["adduser-field"]}`}>
+          <div className={`${styles["adduser-name"]}`}>
             <Controller
               name="firstName"
               control={control}
@@ -34,7 +34,7 @@ const AddStudent = ({ options }) => {
               )}
             />
           </div>
-          <div className={`${styles["addStudent-name"]}`}>
+          <div className={`${styles["adduser-name"]}`}>
             <Controller
               name="secondName"
               control={control}
@@ -56,23 +56,25 @@ const AddStudent = ({ options }) => {
               {...field}
               label="Enter email address"
               size="normal"
-              placeholders={["Second name"]}
+              placeholders={["Email address"]}
             />
           )}
         />
-        <Controller
-          name="college"
-          control={control}
-          render={({ field }) => (
-            <InputDropdown
-              {...field}
-              label="Select College"
-              size="normal"
-              placeholders={["Select College"]}
-              options={options}
-            />
-          )}
-        />
+        {viewCollege && (
+          <Controller
+            name="college"
+            control={control}
+            render={({ field }) => (
+              <InputDropdown
+                {...field}
+                label="Select College"
+                size="normal"
+                placeholders={["Select College"]}
+                options={options}
+              />
+            )}
+          />
+        )}
         <PrimaryButton
           type="submit"
           content="Add"
@@ -84,4 +86,4 @@ const AddStudent = ({ options }) => {
   );
 };
 
-export default AddStudent;
+export default AddUser;

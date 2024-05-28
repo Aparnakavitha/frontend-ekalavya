@@ -544,7 +544,6 @@
   margin-top: 24px;
 }
 
-/*Card components & their flexbox sizes*/
 .dataview-eventcard {
   flex-basis: 336px;
   height: 75px;
@@ -645,3 +644,76 @@
 }
 
 /* ------------------------------- AddStudent.css ends here --------------------------------- */
+/* ------------------------------- AddUser.css starts here ------------------------------- */
+
+.adduser-head {
+  font-size: 21px;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.adduser-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  border-radius: 40px;
+  padding: 45px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+}
+
+.adduser-field {
+  padding: 0%;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  justify-content: space-between;
+}
+
+.adduser-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.adduser-name {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .adduser-container {
+    padding: 20px;
+    border-radius: 20px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .adduser-head {
+    font-size: 18px;
+  }
+
+  .adduser-form {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .adduser-container {
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .adduser-head {
+    font-size: 16px;
+  }
+
+  .adduser-form {
+    gap: 15px;
+  }
+}
+
+/* -------------------------------- AddUser.css ends here -------------------------------- */
