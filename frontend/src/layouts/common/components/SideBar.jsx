@@ -19,28 +19,28 @@ const SideBar = ({ button, listItems, profileBox }) => {
   };
 
   return (
-    <div className={`${styles["sidebar-Container"]}`}>
-      <div className={`${styles["sidebar-HeaderResp"]}`}>
-        <div className={`${styles["sidebar-HeaderContainer"]}`}>
-          <div className={`${styles["sidebar-ToggleOut"]}`} onClick={toggleSidebar}>
-            <BsList className={`${styles["sidebar-Hamburger"]}`} />
+    <div className={`${styles["sidebar-container"]}`}>
+      <div className={`${styles["sidebar-headerResp"]}`}>
+        <div className={`${styles["sidebar-headerContainer"]}`}>
+          <div className={`${styles["sidebar-toggleOut"]}`} onClick={toggleSidebar}>
+            <BsList className={`${styles["sidebar-hamburger"]}`} />
           </div>
-          <div className={`${styles["sidebar-HeadingOut"]}`}>
+          <div className={`${styles["sidebar-headingOut"]}`}>
             <img src={Logo} alt="EduNexa" />
           </div>
         </div>
       </div>
       <div className={`${styles["sidebar"]} ${showSidebar ? styles["show"] : ""}`}>
-        <div className={`${styles["sidebar-HeaderContainer"]}`}>
-          <div className={`${styles["sidebar-HeadingIn"]}`}>
+        <div className={`${styles["sidebar-headerContainer"]}`}>
+          <div className={`${styles["sidebar-headingIn"]}`}>
             <img src={Logo} alt="EduNexa" />
           </div>
-          <div className={`${styles["sidebar-Toggle"]}`}>
-            <BsX className={`${styles["sidebar-CrossIcon"]}`} onClick={toggleSidebar} />
+          <div className={`${styles["sidebar-toggle"]}`}>
+            <BsX className={`${styles["sidebar-crossIcon"]}`} onClick={toggleSidebar} />
           </div>
         </div>
-        <div className={`${styles["sidebar-Content"]}`}>
-          <div className={`${styles["sidebar-List"]}`}>
+        <div className={`${styles["sidebar-content"]}`}>
+          <div className={`${styles["sidebar-list"]}`}>
             {listItems.map((item, index) => (
               <ListItem
                 key={index}
@@ -54,9 +54,9 @@ const SideBar = ({ button, listItems, profileBox }) => {
               />
             ))}
           </div>
-          <div className={`${styles["sidebar-Bottom"]}`}>
-            <div className={`${styles["sidebar-HeaderButton"]}`}>{button}</div>
-            <div className={`${styles["sidebar-Card"]}`}>
+          <div className={`${styles["sidebar-bottom"]}`}>
+            <div className={`${styles["sidebar-headerButton"]}`}>{button}</div>
+            <div className={`${styles["sidebar-card"]}`}>
               <ProfileBox {...profileBox} />
             </div>
           </div>

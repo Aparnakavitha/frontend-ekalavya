@@ -10,33 +10,33 @@
     transition: left 0.8s ease-in-out;
 }
 
-.sidebar-HeadingIn img {
+.sidebar-headingIn img {
     font-size: 32px;
     line-height: 35px;
     padding-top: 30px;
     padding-left: 14px;
 }
 
-.sidebar-List {
+.sidebar-list {
     display: flex;
     flex-direction: column;
     padding-top: 50px;
 }
 
-.sidebar-Toggle {
+.sidebar-toggle {
     display: none;
 }
 
-.sidebar-HeaderButton {
+.sidebar-headerButton {
     position: absolute;
     left: 32px;
 }
 
-.sidebar-Card {
+.sidebar-card {
     display: none;
 }
 
-.sidebar-Content {
+.sidebar-content {
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -48,8 +48,7 @@
         left: -820px;
         width: 100%;
     }
-
-    .sidebar-HeadingIn img {
+    .sidebar-headingIn img {
         display: flex;
         line-height: 0px;
         padding-top: 0px;
@@ -58,8 +57,7 @@
         height: auto;
         align-items: center;
     }
-
-    .sidebar-HeadingOut img {
+    .sidebar-headingOut img {
         display: flex;
         justify-content: center;
         line-height: 0px;
@@ -67,8 +65,7 @@
         height: auto;
         align-items: center;
     }
-
-    .sidebar-HeaderResp {
+    .sidebar-headerResp {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -76,8 +73,7 @@
         height: 65px;
         padding: 10px;
     }
-
-    .sidebar-HeaderContainer {
+    .sidebar-headerContainer {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -85,56 +81,48 @@
         width: 100%;
         padding: 10px;
     }
-
-    .sidebar-HeaderContainerOut {
+    .sidebar-headerContainerOut {
         display: flex;
         flex-direction: row;
     }
-
-    .sidebar-Toggle {
+    .sidebar-toggle {
         display: flex;
         cursor: pointer;
     }
-
-    .sidebar-List {
+    .sidebar-list {
         padding-top: 40px;
         display: flex;
         flex-direction: column;
         padding-left: 0px;
         gap: 0px;
     }
-
-    .sidebar-Hamburger {
+    .sidebar-hamburger {
         cursor: pointer;
         font-size: 25px;
         color: white;
     }
-
-    .sidebar-CrossIcon {
+    .sidebar-crossIcon {
         cursor: pointer;
         font-size: 30px;
         color: white;
     }
-
     .sidebar.show {
         left: 0;
     }
-
-    .sidebar-Card {
+    .sidebar-card {
         display: flex;
         position: absolute;
         bottom: 30px;
         justify-content: center;
         padding-left: 10px;
     }
-
-    .sidebar-HeaderButton {
+    .sidebar-headerButton {
         position: absolute;
         bottom: 120px;
         left: 34px;
     }
-
 }
+
 
 /* ------------------------------- SideBar.css ends here ------------------------------- */
 
@@ -149,7 +137,7 @@
     padding-top: 26px;
 }
 
-.footer-conatinerLeft {
+.footer-containerLeft {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -245,37 +233,31 @@
         font-size: 10px;
         font-weight: 400;
     }
-
     .footer-copyrightContent2 {
         font-size: 10px;
     }
-
     .footer-copyright,
     .footer-copyrightLeft {
         flex-direction: column;
         align-items: center;
     }
-
     .footer-quote {
         padding: 10px;
         font-size: 24px;
     }
-
     .footer-conatinerLeft {
         padding-left: 0px;
         align-items: center;
     }
-
     .footer-logoBoxLeft {
         padding-left: 0px;
         align-items: center;
     }
-
     .footer-copyrightLeft {
         padding-left: 0px;
         justify-content: center;
     }
-
 }
+
 
 /* ------------------------------- SideBar.css ends here ------------------------------- */
