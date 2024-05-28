@@ -1,4 +1,3 @@
-// src/InputBox.jsx
 import React, { useState } from "react";
 import { FaRegImage } from "react-icons/fa";
 import styles from "./InputBox.module.css";
@@ -44,13 +43,12 @@ const InputBox = ({
   const handleSelectChange = (event) => {
     onChange(event);
     setClicked(false);
-    if (onBlur) {
-      onBlur(event);
-    }
   };
- 
+
   return (
-    <div className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}>
+    <div
+      className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}
+    >
       <label htmlFor={rest.id} className={styles["input-label"]}>
         {label}
       </label>

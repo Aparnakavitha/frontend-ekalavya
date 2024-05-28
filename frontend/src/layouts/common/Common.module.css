@@ -1,3 +1,266 @@
+/* ------------------------------- QualificationForm.css starts here ------------------------------- */
+
+.QualificationForm-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  padding: 50px;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.QualificationForm-datebox {
+  width: 48.75%;
+}
+
+.QualificationForm-startDateEndDate {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.QualificationForm-head {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  margin-bottom: 15px;
+}
+
+.QualificationForm-button {
+  padding-top: 10px;
+}
+
+@media screen and (max-width: 500px) {
+  .QualificationForm-startDateEndDate {
+    flex-direction: column;
+    gap: 17px;
+  }
+  .QualificationForm-datebox {
+    width: 100%;
+  }
+}
+
+/* ------------------------------- QualificationForm.css ends here ------------------------------- */
+/* ------------------------------- BasicDetails.css starts here ---------------------------------- */
+
+.basicDetails-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.basicDetails-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.basicDetails-containerOne {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.basicDetails-containerInput-out {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.basicDetails-containerInput-inter {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.basicDetails-containerInput-in {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+  width: 100%;
+}
+.basicDetails-iconText {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 12px;
+  width: 100%;
+}
+
+.basicDetails-buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 17px;
+}
+
+.basicDetails-error {
+  color: var(--primary-color);
+  margin-top: 5px;
+  font-size: 0.875rem;
+}
+
+/* ------------------------------- BasicDetails.css ends here ------------------------------------ */
+/* ------------------------------- CombinedSkillForm.css starts here --------------------------- */
+
+.combinedSkillForm-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.combinedSkillForm-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.combinedSkillForm-containerOne {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.combinedSkillForm-containerInput {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.combinedSkillForm-buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.combinedSkillForm-message {
+  font-size: 14px;
+  color: var(--white);
+}
+
+.combinedSkillForm-skillName {
+  color: var(--primary-color);
+  margin-left: 5px;
+}
+
+.combinedSkillForm-allHeading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.combinedSkillForm-text {
+  font-size: 12px;
+  left: 57px;
+}
+
+/* ------------------------------- CombinedSkillForm.css ends here --------------------------- */
+/* ------------------------------- AddProfilelink.css starts here ---------------------------- */
+
+.addProfilelink-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.addProfilelink-containerOne {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.addProfilelink-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.addProfilelink-containerInput {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.addProfilelink-buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ------------------------------- AddProfilelink.css ends here ---------------------------- */
 /* -------------------------------- Greeting.css starts here -------------------------------- */
 
 .common-content {
