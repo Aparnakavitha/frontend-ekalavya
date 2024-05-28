@@ -1,10 +1,10 @@
-import BatchActionComponent from "./BatchAction";
+import BatchSearch from "./BatchSearch";
 import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
 
 export default {
-  title: "Layouts/AdminBatches/Components/Action",
-  component: BatchActionComponent,
+  title: "Layouts/AdminBatches/Components/BatchSearch",
+  component: BatchSearch,
 };
 
 const batchDetails = {
@@ -41,7 +41,7 @@ const batchDetails = {
   },
 };
 
-export const batchDetail = {
+export const Batchsearch = {
   args: {
     ...batchDetails,
   },

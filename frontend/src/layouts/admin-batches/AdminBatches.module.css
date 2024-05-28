@@ -1,6 +1,6 @@
-/*--------------------batchaction.css starts here---------------------*/
+/*--------------------batchsearch.css starts here---------------------*/
 
-.batchdetail-content {
+.batchsearch-content {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -8,19 +8,19 @@
   padding: 10px;
 }
 
-.batchdetail-top {
+.batchsearch-top {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.batchdetail-textbutton {
+.batchsearch-textbutton {
   display: flex;
   gap: 10px;
 }
 
-.batchdetail-bottom {
+.batchsearch-bottom {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -28,106 +28,106 @@
   align-items: flex-end;
 }
 
-.batchdetail-right {
+.batchsearch-right {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.batchdetail-heading {
+.batchsearch-heading {
   color: white;
   font-size: 24px;
   font-weight: 500;
   align-items: flex-end;
 }
 
-.batchdetail-filter {
+.batchsearch-filter {
   display: flex;
   flex-direction: row;
 }
 
-.batchdetail-search {
+.batchsearch-search {
   width: 33%;
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .batchdetail-top {
+  .batchsearch-top {
     flex-direction: column;
     gap: 5px;
   }
 
-  .batchdetail-heading {
+  .batchsearch-heading {
     display: flex;
     width: 100%;
   }
 
-  .batchdetail-textbutton {
+  .batchsearch-textbutton {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
   }
 
-  .batchdetail-bottom {
+  .batchsearch-bottom {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
 
-  .batchdetail-right {
+  .batchsearch-right {
     width: 100%;
     justify-content: space-between;
   }
 
-  .batchdetail-search {
+  .batchsearch-search {
     width: 100%;
   }
 
-  .batchdetail-button {
+  .batchsearch-button {
     width: 100%;
   }
 }
 
 @media (max-width: 767px) {
-  .batchdetail-content {
+  .batchsearch-content {
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 0;
   }
 
-  .batchdetail-top {
+  .batchsearch-top {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
   }
 
-  .batchdetail-textbutton {
+  .batchsearch-textbutton {
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0px 7px;
   }
 
-  .batchdetail-bottom {
+  .batchsearch-bottom {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
 
-  .batchdetail-heading {
+  .batchsearch-heading {
     font-size: 18px;
   }
 
-  .batchdetail-search {
+  .batchsearch-search {
     width: 100%;
   }
 
-  .batchdetail-button {
+  .batchsearch-button {
     width: 100%;
   }
 
-  .batchdetail-right {
+  .batchsearch-right {
     display: flex;
     flex-direction: row;
     width: 100%;
