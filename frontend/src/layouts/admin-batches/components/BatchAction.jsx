@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../BatchDetail.module.css";
+import styles from "../AdminBatches.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";

@@ -11,6 +11,7 @@ const batchDetails = {
   navbuttonProps: {
     pageName: "Batch Name",
   },
+
   textbuttonProps: {
     icon: <MdEdit />,
     text: "Edit Batch Name",
@@ -18,6 +19,7 @@ const batchDetails = {
       console.log("clicked");
     },
   },
+
   textbuttonProps2: {
     icon: <GoTrash />,
     text: "Delete",
@@ -25,10 +27,12 @@ const batchDetails = {
       console.log("clicked");
     },
   },
+
   searchbarProps: {
     variant: "custom",
     placeholder: "Student Name",
   },
+
   showFiltersAndReset: false,
   buttonProps: {
     variant: "tertiary",
