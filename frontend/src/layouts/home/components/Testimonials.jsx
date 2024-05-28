@@ -30,6 +30,13 @@ const Testimonials = ({ testimonials, heading }) => {
     testimonialChunks.push(testimonials.slice(i, i + chunkSizeTestimonial));
   }
 
+  const handleArrow = () => {
+    const arrows = document.querySelectorAll(".carousel .control-arrow");
+    arrows.forEach((arrow) => {
+      arrow.style.background = "none";
+    });
+  };
+
   const handleDots = () => {
     const dots = document.querySelectorAll(".carousel .control-dots .dot");
     dots.forEach((dot, idx) => {
@@ -40,6 +47,7 @@ const Testimonials = ({ testimonials, heading }) => {
   };
 
   useEffect(() => {
+    handleArrow();
     handleDots();
   }, [testimonials, chunkSizeTestimonial]);
 
