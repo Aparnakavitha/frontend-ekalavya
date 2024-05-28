@@ -1,6 +1,6 @@
 import React from "react";
 // import styles from "./CollegeList.module.css";
-import styles from "../admin-student.module.css";
+import styles from "../AdminStudent.module.css";
 import Table from "../../../components/table/Table";
 
 const CollegeList = ({ data, headings }) => {

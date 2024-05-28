@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 // import styles from "./AddStudent.module.css";
-import styles from "../admin-student.module.css";
+import styles from "../AdminStudent.module.css";
 import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";

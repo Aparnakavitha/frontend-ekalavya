@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import Input from '../../../components/inputbox/InputBox';
 import InputDropdown from '../../../components/inputdropdown/InputDropdown';
 // import styles from './AddEvent.module.css';
-import styles from '../admin-event.module.css';
+import styles from '../AdminEvent.module.css';
 import PrimaryButton from '../../../components/buttons/PrimaryButton';
  
 
