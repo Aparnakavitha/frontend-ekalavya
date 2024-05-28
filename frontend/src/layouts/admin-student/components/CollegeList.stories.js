@@ -73,4 +73,4 @@ export default {
   },
 };
 
-export const Template = (args) => <CollegeList {...args} />;
+export const Collegelist = (args) => <CollegeList {...args} />;

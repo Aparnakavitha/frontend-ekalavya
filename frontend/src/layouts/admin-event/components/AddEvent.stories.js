@@ -2,15 +2,15 @@ import AddEvent from "./AddEvent";
 import React from "react";
 
 export default {
-  title: "layouts/admin-event/components/AddEvent",
+  title: "layouts/AdminEvent/Components/AddEvent",
   component: AddEvent,
 };
-const Template = (args) => <AddEvent {...args} />;
+const AddeventForm = (args) => <AddEvent {...args} />;
 
-export const EventCreateForm = Template.bind({});
+export const EventCreateForm = AddeventForm.bind({});
 EventCreateForm.args = {};
 
-export const EventEditForm = Template.bind({});
+export const EventEditForm = AddeventForm.bind({});
 EventEditForm.args = {
   defaultValues: {
     eventTitle: "Mock Event Title",

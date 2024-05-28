@@ -6,4 +6,4 @@ export default {
   component: AddStudent,
 };
 
-export const Template = () => <AddStudent />;
+export const AddstudentForm = () => <AddStudent />;

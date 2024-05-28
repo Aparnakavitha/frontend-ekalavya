@@ -6,4 +6,4 @@ export default {
   component: AddCollege,
 };
 
-export const Template = (args) => <AddCollege />;
+export const AddcollegeForm = (args) => <AddCollege />;
