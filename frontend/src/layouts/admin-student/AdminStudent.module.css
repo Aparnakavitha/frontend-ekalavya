@@ -52,3 +52,209 @@
 }
 
 /* ------------------------------- AddEvent.css ends here ---------------------------------------- */
+/* ------------------------------- AddStudent.css starts here ------------------------------- */
+
+.addStudent-head {
+  font-size: 21px;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.addStudent-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  border-radius: 40px;
+  padding: 45px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+}
+
+.addStudent-field {
+  padding: 0%;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  justify-content: space-between;
+}
+
+.addStudent-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.addStudent-name {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .addStudent-container {
+    padding: 20px;
+    border-radius: 20px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .addStudent-head {
+    font-size: 18px;
+  }
+
+  .addStudent-form {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .addStudent-container {
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .addStudent-head {
+    font-size: 16px;
+  }
+
+  .addStudent-form {
+    gap: 15px;
+  }
+}
+
+/* -------------------------------- AddStudent.css ends here -------------------------------- */
+/* ------------------------------- AddCollege.css starts here ------------------------------- */
+
+.addCollege-container {
+  width: 100%;
+  height: 753px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  border-radius: 40px;
+  padding: 45px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+}
+
+.addCollege-formgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.addCollege-head {
+  font-size: 21px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .addCollege-container {
+    padding: 20px;
+    border-radius: 20px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .addCollege-head {
+    font-size: 18px;
+  }
+
+  .addCollege-formgroup {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .addCollege-container {
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .addCollege-head {
+    font-size: 16px;
+  }
+
+  .addCollege-formgroup {
+    gap: 15px;
+  }
+}
+
+/* --------------------------------- AddCollege.css ends here -------------------------------- */
+/* ------------------------------- CollegeList.css starts here ------------------------------- */
+
+.collegeList-container {
+  width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  padding: 40px;
+  border-radius: 40px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+}
+
+.collegeList-college {
+  font-size: 21px;
+  color: white;
+}
+
+.collegeList-table {
+  padding: 0%;
+}
+
+.collegeList-container::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+.collegeList-container::-webkit-scrollbar-thumb {
+  background: var(--neutral800);
+  border-radius: 50px;
+}
+
+.collegeList-container::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral700);
+}
+
+.collegeList-container::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.collegeList-container:hover {
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .collegeList-container {
+    padding: 20px;
+    border-radius: 20px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .collegeList-college {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .collegeList-container {
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .collegeList-college {
+    font-size: 16px;
+  }
+}
+
+/* ------------------------------- CollegeList.css ends here ------------------------------- */

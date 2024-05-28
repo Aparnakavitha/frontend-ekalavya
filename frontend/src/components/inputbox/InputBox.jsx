@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaRegImage } from "react-icons/fa";
 import styles from "./InputBox.module.css";
- 
+
 const Input = ({
   size,
   label,
@@ -16,18 +16,18 @@ const Input = ({
 }) => {
   const [clicked, setClicked] = useState(false);
   const [fileName, setFileName] = useState("");
- 
+
   const handleFocus = () => {
     setClicked(true);
   };
- 
+
   const handleBlur = (event) => {
     setClicked(false);
     if (onBlur) {
       onBlur(event);
     }
   };
- 
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -37,7 +37,15 @@ const Input = ({
       onChange(event);
     }
   };
- 
+
+  const handleSelectChange = (event) => {
+    onChange(event);
+    setClicked(false);
+    if (onBlur) {
+      onBlur(event);
+    }
+  };
+
   return (
     <div
       className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}
@@ -112,5 +120,5 @@ const Input = ({
     </div>
   );
 };
- 
+
 export default Input;

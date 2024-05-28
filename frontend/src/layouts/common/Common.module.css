@@ -261,3 +261,333 @@
 }
 
 /* ------------------------------- AddProfilelink.css ends here ---------------------------- */
+/* -------------------------------- Greeting.css starts here -------------------------------- */
+
+.common-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: white;
+}
+
+.common-welcome {
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.41px;
+}
+
+.common-header {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.59px;
+  display: flex;
+  gap: 100px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.common-greenlink {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 25px;
+  padding-right: 25px;
+}
+
+.common-greenlink a {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+@media (max-width: 767px) {
+  .common-welcome {
+    font-size: 18px;
+  }
+
+  .common-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 10px;
+  }
+
+  .common-greenlink {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 0;
+  }
+}
+
+/* -------------------------------- Greeting.css ends here -------------------------------- */
+/* -------------------------------- Action.css starts here -------------------------------- */
+
+.common-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.common-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.common-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.common-right {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.common-heading {
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  align-items: flex-end;
+}
+
+.common-filter {
+  display: flex;
+  flex-direction: row;
+}
+
+.common-search {
+  width: 33%;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .common-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .common-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .common-heading {
+    font-size: 18px;
+  }
+
+  .common-search.common-large,
+  .common-search.common-medium,
+  .common-search.common-small {
+    width: 100%;
+  }
+
+  .common-buttons {
+    width: 100%;
+  }
+
+  .common-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 767px) {
+  .common-content {
+    padding: 0;
+  }
+
+  .common-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .common-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .common-heading {
+    font-size: 18px;
+  }
+
+  .common-search {
+    width: 100%;
+  }
+
+  .common-buttons {
+    width: 100%;
+  }
+
+  .common-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .common-reset {
+    width: 100%;
+  }
+
+  .common-filter {
+    display: flex;
+    align-items: space-between;
+  }
+}
+
+/* --------------------------------- Action.css ends here --------------------------------- */
+/* ------------------------------- DeleteBox.css starts here ------------------------------- */
+
+.deletebox-box {
+  max-width: 100%;
+  border-radius: 40px;
+  background: var(--background);
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px;
+  gap: 10px;
+}
+
+.deletebox-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.deletebox-title {
+  color: var(--white);
+  width: 100%;
+  font-weight: 500;
+  font-size: 21px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.deletebox-message {
+  color: var(--white);
+  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.deletebox-button {
+  width: 100%;
+  max-width: 375px;
+  text-align: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* ------------------------------- DeleteBox.css ends here ------------------------------- */
+/* ------------------------------- DataView.css starts here ------------------------------- */
+
+.dataview-toggleContainer {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 24px;
+}
+
+.dataview-toggleButton {
+  color: var(--white);
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  cursor: pointer;
+  margin: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dataview-toggleButton:hover {
+  color: var(--primary-color);
+}
+
+.dataview-toggleButton.selected {
+  color: var(--primary-color);
+}
+
+.dataview-icons {
+  font-size: 24px;
+}
+
+.dataview-cardscontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+  justify-content: center;
+}
+
+.dataview-tablecontainer {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral600) #ffffff00;
+}
+
+.dataview-pagination {
+  margin-top: 24px;
+}
+
+/*Card components & their flexbox sizes*/
+.dataview-eventcard {
+  flex-basis: 336px;
+  height: 75px;
+}
+
+.dataview-primarycard {
+  flex-basis: 287px;
+  height: 193px;
+}
+
+.dataview-profilecard {
+  flex-basis: 279px;
+  height: 228px;
+}
+
+.dataview-skillbatchcardskill {
+  flex-basis: 232px;
+  height: 151px;
+}
+
+.dataview-skillbatchcardbatch {
+  flex-basis: 282px;
+  height: 168px;
+}
+
+.dataview-skillcard {
+  flex-basis: 274px;
+  height: 74px;
+}
+
+.dataview-skilluser {
+  flex-basis: 263px;
+  height: 168px;
+}
+
+.dataview-studentcard {
+  flex-basis: 230px;
+  height: 230px;
+}
+
+.dataview-testimonialcard {
+  flex-basis: 253px;
+  height: 321px;
+}
+
+/* ------------------------------- DataView.css ends here ------------------------------- */
