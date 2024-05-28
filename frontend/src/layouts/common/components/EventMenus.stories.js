@@ -6,8 +6,8 @@ export default {
   title: "layouts/common/Components/common",
   component: EventMenus,
   argTypes: {
-    statuses: { control: "object" }, // Allow the statuses prop to be controlled
-    title: { control: "text" }, // Allow the title prop to be controlled
+    statuses: { control: "object" },
+    title: { control: "text" },
   },
 };
 
