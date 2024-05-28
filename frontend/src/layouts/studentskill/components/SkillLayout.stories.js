@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import Layout from './SkillLayout';
 
 export default {
-  title: 'Components/SkillLayout',
+  title: 'Layouts/Student-skill/SkillLayout',
   component: Layout,
   argTypes: {
     onAddSkill: { action: 'clicked' },
@@ -12,8 +12,8 @@ export default {
 
 const Template = (args) => <Layout {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
+export const SkillLayoutDark = Template.bind({});
+SkillLayoutDark.args = {
   initialSkills: [
     { Level: "Level 1", mainHeading: "JavaScript", isTrue: true },
     { Level: "Level 1", mainHeading: "React", isTrue: true },
