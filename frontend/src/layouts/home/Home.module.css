@@ -1,0 +1,337 @@
+/* ------------------------------- Hero.css starts here ------------------------------- */
+
+.hero-mainContent {
+  font-weight: 900;
+  color: var(--white);
+  font-size: 96px;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  line-height: 86.875%;
+}
+
+.hero-textColumn {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.hero-mainContent2 {
+  font-weight: 900;
+  color: var(--primary-color);
+  font-size: 96px;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  line-height: 86.875%;
+}
+
+.hero-semiContent {
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  color: var(--white);
+}
+
+.hero-contentColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-buttondiv {
+  width: 25%;
+}
+
+.hero-contentbuttondiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 70px;
+}
+
+.hero-statiunit {
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-firstTwo {
+  border-right: 2px solid var(--white);
+  padding-right: 25px;
+}
+
+.hero-numbers {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.hero-title {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--primary-color);
+  line-height: 90%;
+}
+
+.hero-statidiv {
+  display: flex;
+  gap: 30px;
+}
+
+.hero-statistics {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .hero-mainContent,
+  .hero-mainContent2 {
+    font-size: 64px;
+  }
+
+  .hero-semiContent {
+    font-size: 24px;
+  }
+
+  .hero-contentbuttondiv {
+    gap: 40px;
+  }
+
+  .hero-numbers {
+    font-size: 24px;
+  }
+
+  .hero-title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 426px) {
+  .hero-mainContent,
+  .hero-mainContent2 {
+    font-size: 64px;
+  }
+
+  .hero-semiContent {
+    font-size: 24px;
+  }
+
+  .hero-contentbuttondiv {
+    gap: 24px;
+  }
+
+  .hero-numbers {
+    font-size: 28px;
+  }
+
+  .hero-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 425px) {
+  .hero-mainContent,
+  .hero-mainContent2 {
+    font-size: 56px;
+  }
+
+  .hero-semiContent {
+    font-size: 22px;
+  }
+
+  .hero-contentbuttondiv {
+    gap: 24px;
+  }
+
+  .hero-semiContent {
+    text-align: start;
+  }
+
+  .hero-numbers {
+    font-size: 24px;
+  }
+
+  .hero-title {
+    font-size: 20px;
+  }
+
+  .hero-textColumn {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-contentColumn {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .hero-contentbuttondiv {
+    align-items: flex-start;
+  }
+
+  .hero-statidiv {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-firstTwo {
+    border-right: none;
+    padding-right: none;
+  }
+
+  .hero-statiunit {
+    align-items: flex-start;
+    gap: 3px;
+  }
+
+  .hero-statidiv {
+    gap: 10px;
+  }
+}
+
+/* ------------------------------- Hero.css ends here ------------------------------- */
+
+/* --------------------------------carousel.css starts here----------------------------- */
+
+.carouselHeader {
+  text-align: center;
+}
+
+.starPerformer .carouselHeader,
+.testimonials .carouselHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.chunk {
+  display: flex;
+  justify-content: center;
+}
+
+.projects .chunk {
+  max-width: 916px;
+  gap: 320px;
+  margin-right: 280px;
+  margin-top: 10px;
+  margin-bottom: 25%;
+}
+
+.starPerformer .chunk {
+  margin-right: 60px;
+  gap: 80px;
+  margin-bottom: 60px;
+}
+
+.testimonials .chunk {
+  gap: 15px;
+  margin-bottom: 60px;
+}
+
+.carouselHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  font-size: 24px;
+}
+
+.carouselHeading2 {
+  color: var(--white);
+  font-weight: 400;
+}
+
+.carouselHeading1 {
+  color: var(--primary-color);
+  font-weight: 600;
+  line-height: 90%;
+  margin-bottom: 25px;
+}
+
+.carouselWrapper {
+  margin: 0 auto;
+}
+
+.projects .carouselWrapper {
+  max-width: 1028px;
+}
+
+.starPerformer .carouselWrapper {
+  max-width: 1051px;
+}
+
+.testimonials .carouselWrapper {
+  max-width: 1148px;
+}
+
+@media (max-width: 767px) {
+  .testimonials .carouselWrapper,
+  .starPerformer .carouselWrapper {
+    width: 302px;
+  }
+
+  .carouselHeading {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .starPerformer .carouselWrapper {
+    width: 600px;
+  }
+
+  .projects .chunk {
+    margin-bottom: 32%;
+  }
+}
+
+@media (min-width: 414px) and (max-width: 767px) {
+  .projects .chunk {
+    max-width: 302px;
+    margin-bottom: 65%;
+  }
+}
+
+@media (max-width: 413px) {
+  .projects .chunk {
+    margin-right: 100%;
+    margin-bottom: 85%;
+  }
+}
+
+/* ------------------------------- carousel.css ends here---------------------------------- */
+
+/* ------------------------------- Partners.css starts here ------------------------------- */
+
+.Partners-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.Partners-title {
+  font-size: 13px;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.Partners-Icons {
+  display: flex;
+  gap: 75px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.Partners.profileImage{
+  width: 200px;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
+
+/* ------------------------------- Partners.css ends here ------------------------------- */

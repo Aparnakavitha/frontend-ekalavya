@@ -1,4 +1,4 @@
-.tall-size {
+.large-size {
   height: 126px;
   width: 100%;
 }
@@ -19,7 +19,6 @@
 }
 
 .input {
-  display: flex;
   padding: 25px;
   border-radius: 9px;
   border-color: var(--neutral600);
@@ -117,6 +116,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 .file-input-label {
   font-size: 16px;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0%;
+  word-break: break-word;
+  text-align: left;
 }
 
 .file-input {
@@ -140,7 +144,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 @media screen and (max-width: 768px) {
-  .tall-size,
+  .large-size,
   .normal-size,
   .small-size {
     width: 100%;
