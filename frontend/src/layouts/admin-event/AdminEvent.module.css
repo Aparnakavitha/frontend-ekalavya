@@ -111,3 +111,37 @@
 }
 
 /* ------------------------------- AddEvents.css ends here ------------------------------- */
+/* ------------------------ EventParticipantsList.css starts here ------------------------ */
+
+.eventparticipantslist-container {
+  width: 100%;
+}
+
+.eventparticipantslist-navbuttons {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 0px;
+}
+
+.eventparticipantslist-table {
+  margin-top: 0px;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral600) #ffffff00;
+}
+
+@media screen and (max-width: 768px) {
+  .eventparticipantslist-container {
+    width: 100%;
+  }
+  .eventparticipantslist-table {
+    width: 100%;
+  }
+
+  .eventparticipantslist-navbuttons > *:not(:last-child) {
+    display: none;
+  }
+}
+
+/* ------------------------ EventParticipantsList.css ends here ------------------------ */
