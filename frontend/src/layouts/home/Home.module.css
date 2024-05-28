@@ -119,6 +119,7 @@
   }
 
   .contentbuttondiv {
+    padding-left: 6vw;
     gap: 24px;
   }
 
@@ -142,6 +143,7 @@
   }
 
   .contentbuttondiv {
+    padding-left: 6vw;
     gap: 24px;
   }
 
@@ -269,6 +271,11 @@
     width: 302px;
   }
 
+  .carouselHeader{
+    text-align: left;
+    padding-left: 6vw;
+  }
+
   .carouselHeading {
     font-size: 20px;
   }
@@ -284,14 +291,14 @@
   }
 }
 
-@media (min-width: 414px) and (max-width: 767px) {
+@media (min-width: 426px) and (max-width: 767px) {
   .projects .chunk {
     max-width: 302px;
     margin-bottom: 65%;
   }
 }
 
-@media (max-width: 413px) {
+@media (max-width: 425px) {
   .projects .chunk {
     margin-right: 100%;
     margin-bottom: 85%;
@@ -328,4 +335,11 @@
   width: 200px;
   aspect-ratio: 3/2;
   object-fit: contain;
+}
+
+@media (max-width: 767px){
+    .Partners-container{
+        padding-left: 6vw;
+    }
+    
 }
