@@ -1,4 +1,5 @@
-/* EventsMentor css  */
+/* ------------------------------- EventsMentor.css starts here ------------------------------- */
+
 .EventsMentor-container {
     display: flex;
     flex-direction: column;
@@ -131,8 +132,7 @@ h3{
     justify-content: space-between;
 }
 
-@media only screen and (max-width: 480px) { /* Small Mobile */
-   
+@media only screen and (max-width: 480px) {  
     .EventsMentor-topleft {
         flex-direction: column;
         align-items: center;
@@ -158,8 +158,7 @@ h3{
     } 
 }
 
-@media (min-width: 601px) and (max-width: 768px) { /* Large Mobile */
-   
+@media (min-width: 601px) and (max-width: 768px) {  
     .EventsMentor-topleft {
         flex-direction: column;
         align-items: center;
@@ -180,8 +179,7 @@ h3{
     }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) { /* Tablet */
-   
+@media (min-width: 769px) and (max-width: 1024px) { 
     .EventsMentor-topleft {
         flex-direction: row;
         justify-content: space-between;
@@ -198,7 +196,9 @@ h3{
     }
 }
 
-/* EventsTable css */
+/* ------------------------------- EventsMentor.css ends here ------------------------------- */
+
+/* ------------------------------- EventsTable.css starts here ------------------------------- */
 
 .EventsTable-container{
     display:flex;
@@ -225,8 +225,10 @@ h3{
     scrollbar-color: var(--neutral600) #ffffff00;
 }
 
-/* ................................... EventForm.css ......................................*/
- 
+/* ------------------------------- EventsTable.css ends here ------------------------------- */
+
+/* ------------------------------- EventsForm.css starts here ------------------------------- */
+
 .eventform-form {
     display: flex;
     flex-direction: column;
@@ -343,4 +345,4 @@ h3{
     }
   }
    
-  /* ................................... EventForm.css ends here  ......................................*/
+  /* ------------------------------- EventsForm.css starts here ------------------------------- */

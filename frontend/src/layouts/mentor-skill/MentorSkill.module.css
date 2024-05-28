@@ -24,7 +24,6 @@
 }
 
 @media (max-width: 767px) {
-
     .skillsHeading {
         font-size: 24px;
     }
@@ -35,7 +34,6 @@
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-
     .skillsHeading {
         font-size: 26px;
     }
@@ -46,7 +44,6 @@
 }
 
 @media (min-width: 992px) {
-
     .skillsHeading {
         font-size: 28px;
     }
