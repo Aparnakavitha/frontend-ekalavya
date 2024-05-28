@@ -1,6 +1,6 @@
-/* hero section styles */
+/* ------------------------------- Hero.css starts here ------------------------------- */
 
-.mainContent {
+.hero-mainContent {
   font-weight: 900;
   color: var(--white);
   font-size: 96px;
@@ -9,14 +9,14 @@
   line-height: 86.875%;
 }
 
-.textColumn {
+.hero-textColumn {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
 }
 
-.mainContent2 {
+.hero-mainContent2 {
   font-weight: 900;
   color: var(--primary-color);
   font-size: 96px;
@@ -25,7 +25,7 @@
   line-height: 86.875%;
 }
 
-.semiContent {
+.hero-semiContent {
   font-size: 32px;
   font-weight: 500;
   text-align: center;
@@ -34,164 +34,166 @@
   color: var(--white);
 }
 
-.contentColumn {
+.hero-contentColumn {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.buttondiv {
+.hero-buttondiv {
   width: 25%;
 }
 
-.contentbuttondiv {
+.hero-contentbuttondiv {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 70px;
 }
 
-.statiunit {
+.hero-statiunit {
   color: var(--white);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.firstTwo {
+.hero-firstTwo {
   border-right: 2px solid var(--white);
   padding-right: 25px;
 }
 
-.numbers {
+.hero-numbers {
   font-size: 32px;
   font-weight: 600;
 }
 
-.title {
+.hero-title {
   font-size: 20px;
   font-weight: 500;
   color: var(--primary-color);
   line-height: 90%;
 }
 
-.statidiv {
+.hero-statidiv {
   display: flex;
   gap: 30px;
 }
 
-.statistics {
+.hero-statistics {
   display: flex;
   justify-content: center;
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .mainContent,
-  .mainContent2 {
+  .hero-mainContent,
+  .hero-mainContent2 {
     font-size: 64px;
   }
 
-  .semiContent {
+  .hero-semiContent {
     font-size: 24px;
   }
 
-  .contentbuttondiv {
+  .hero-contentbuttondiv {
     gap: 40px;
   }
 
-  .numbers {
+  .hero-numbers {
     font-size: 24px;
   }
 
-  .title {
+  .hero-title {
     font-size: 16px;
   }
 }
 
 @media (max-width: 767px) and (min-width: 426px) {
-  .mainContent,
-  .mainContent2 {
+  .hero-mainContent,
+  .hero-mainContent2 {
     font-size: 64px;
   }
 
-  .semiContent {
+  .hero-semiContent {
     font-size: 24px;
   }
 
-  .contentbuttondiv {
+  .hero-contentbuttondiv {
     gap: 24px;
   }
 
-  .numbers {
+  .hero-numbers {
     font-size: 28px;
   }
 
-  .title {
+  .hero-title {
     font-size: 20px;
   }
 }
 
 @media (max-width: 425px) {
-  .mainContent,
-  .mainContent2 {
+  .hero-mainContent,
+  .hero-mainContent2 {
     font-size: 56px;
   }
 
-  .semiContent {
+  .hero-semiContent {
     font-size: 22px;
   }
 
-  .contentbuttondiv {
+  .hero-contentbuttondiv {
     gap: 24px;
   }
 
-  .semiContent {
+  .hero-semiContent {
     text-align: start;
   }
 
-  .numbers {
+  .hero-numbers {
     font-size: 24px;
   }
 
-  .title {
+  .hero-title {
     font-size: 20px;
   }
 
-  .textColumn {
+  .hero-textColumn {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .contentColumn {
+  .hero-contentColumn {
     align-items: flex-start;
     gap: 10px;
   }
 
-  .contentbuttondiv {
+  .hero-contentbuttondiv {
     align-items: flex-start;
   }
 
-  .statidiv {
+  .hero-statidiv {
     display: flex;
     flex-direction: column;
   }
 
-  .firstTwo {
+  .hero-firstTwo {
     border-right: none;
     padding-right: none;
   }
 
-  .statiunit {
+  .hero-statiunit {
     align-items: flex-start;
     gap: 3px;
   }
 
-  .statidiv {
+  .hero-statidiv {
     gap: 10px;
   }
 }
 
-/* ----------------------------------------carousel.css starts here------------------------------------------------ */
+/* ------------------------------- Hero.css ends here ------------------------------- */
+
+/* --------------------------------carousel.css starts here----------------------------- */
 
 .carouselHeader {
   text-align: center;
@@ -298,8 +300,9 @@
   }
 }
 
-/* ----------------------------------------carousel.css ends here------------------------------------------------ */
-/* -------------------------------partners.css------------------------------- */
+/* ------------------------------- carousel.css ends here---------------------------------- */
+
+/* ------------------------------- Partners.css starts here ------------------------------- */
 
 .Partners-container {
   display: flex;
@@ -329,3 +332,5 @@
   aspect-ratio: 3/2;
   object-fit: contain;
 }
+
+/* ------------------------------- Partners.css ends here ------------------------------- */
