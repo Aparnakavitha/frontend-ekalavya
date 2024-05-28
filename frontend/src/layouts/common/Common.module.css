@@ -1,4 +1,4 @@
-/*------------------------greeting.css starts here----------------------*/
+/* -------------------------------- Greeting.css starts here -------------------------------- */
 
 .common-content {
   width: 100%;
@@ -55,9 +55,9 @@
   }
 }
 
-/*------------------------greeting.css ends here----------------------*/
+/* -------------------------------- Greeting.css ends here -------------------------------- */
 
-/*------------------------action.css starts here----------------------*/
+/* -------------------------------- Action.css starts here -------------------------------- */
 
 .common-content {
   width: 100%;
@@ -184,4 +184,100 @@
   }
 }
 
-/*--------------------action.css ends here---------------------*/
+/* --------------------------------- Action.css ends here --------------------------------- */
+/* ------------------------------- DataView.css starts here ------------------------------- */
+
+.dataview-toggleContainer {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 24px;
+}
+
+.dataview-toggleButton {
+  color: var(--white);
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  cursor: pointer;
+  margin: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dataview-toggleButton:hover {
+  color: var(--primary-color);
+}
+
+.dataview-toggleButton.selected {
+  color: var(--primary-color);
+}
+
+.dataview-icons {
+  font-size: 24px;
+}
+
+.dataview-cardscontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+  justify-content: center;
+}
+
+.dataview-tablecontainer {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral600) #ffffff00;
+}
+
+.dataview-pagination {
+  margin-top: 24px;
+}
+
+/*Card components & their flexbox sizes*/
+.dataview-eventcard {
+  flex-basis: 336px;
+  height: 75px;
+}
+
+.dataview-primarycard {
+  flex-basis: 287px;
+  height: 193px;
+}
+
+.dataview-profilecard {
+  flex-basis: 279px;
+  height: 228px;
+}
+
+.dataview-skillbatchcardskill {
+  flex-basis: 232px;
+  height: 151px;
+}
+
+.dataview-skillbatchcardbatch {
+  flex-basis: 282px;
+  height: 168px;
+}
+
+.dataview-skillcard {
+  flex-basis: 274px;
+  height: 74px;
+}
+
+.dataview-skilluser {
+  flex-basis: 263px;
+  height: 168px;
+}
+
+.dataview-studentcard {
+  flex-basis: 230px;
+  height: 230px;
+}
+
+.dataview-testimonialcard {
+  flex-basis: 253px;
+  height: 321px;
+}
+
+/* ------------------------------- DataView.css ends here ------------------------------- */
