@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import styles from "./InputDropdown.module.css";
-
+ 
 function InputDropdown({
   label,
   placeholder,
@@ -11,7 +11,7 @@ function InputDropdown({
   onBlur,
 }) {
   const [isFocused, setIsFocused] = useState(false);
-
+ 
   const getControlStyles = (provided) => ({
     ...provided,
     height: 57,
@@ -23,7 +23,7 @@ function InputDropdown({
     boxShadow: isFocused ? "0 0 0 0.2px var(--primary-color)" : "none",
     "&:hover": { borderColor: "var(--primary-color)" },
   });
-
+ 
   const getOptionStyles = (provided, state) => ({
     ...provided,
     color: "var(--white)",
@@ -40,15 +40,13 @@ function InputDropdown({
       color: "var(--black)",
     },
   });
-
+ 
   return (
     <div>
       {label && <label className={styles.label}>{label}</label>}
       <Select
-        value={value}
-        onChange={(selectedOption) => {
-          onChange(selectedOption);
-        }}
+        value={options.find(option => option.value === value) || null}
+        onChange={(selectedOption) => onChange(selectedOption?.value)}
         options={options}
         placeholder={placeholder}
         className={styles.selectField}
@@ -98,5 +96,5 @@ function InputDropdown({
     </div>
   );
 }
-
+ 
 export default InputDropdown;
