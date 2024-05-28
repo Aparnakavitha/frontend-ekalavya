@@ -1,4 +1,5 @@
 /* ------------------------------- AddEvent.css starts here ------------------------------- */
+
 .addEvent-form {
   display: flex;
   flex-direction: column;
@@ -108,4 +109,5 @@
     width: 100%;
   }
 }
+
 /* ------------------------------- AddEvents.css ends here ------------------------------- */

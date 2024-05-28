@@ -2,7 +2,8 @@ import AddCollege from "./AddCollege";
 import React from "react";
 
 export default {
-  title: "layouts/admin-student/components/AddCollege",
+  title: "layouts/AdminStudent/Components/AddCollege",
   component: AddCollege,
 };
+
 export const Template = (args) => <AddCollege />;

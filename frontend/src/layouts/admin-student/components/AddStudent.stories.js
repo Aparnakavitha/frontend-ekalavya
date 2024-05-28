@@ -2,7 +2,8 @@ import AddStudent from "./AddStudent";
 import React from "react";
 
 export default {
-  title: "layouts/admin-student/components/AddStudent",
+  title: "layouts/AdminStudent/Components/AddStudent",
   component: AddStudent,
 };
+
 export const Template = () => <AddStudent />;

@@ -2,7 +2,7 @@ import React from "react";
 import CollegeList from "./CollegeList";
 
 export default {
-  title: "layouts/admin-student/components/CollegeList",
+  title: "layouts/AdminStudent/Components/CollegeList",
   component: CollegeList,
   args: {
     data: [
