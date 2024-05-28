@@ -1,5 +1,6 @@
 import React from "react";
 import AdminSkillParticipants from "./AdminSkillParticipants";
+
 export default {
   title: "layouts/AdminSkill/Components/AdminSkillParticipants",
   component: AdminSkillParticipants,
@@ -7,6 +8,7 @@ export default {
     onClick: { action: "clicked" },
   },
 };
+
 const data = [
   ["STD001", "John Jacob", "john123@gmail.com"],
   ["STD002", "Emy Davis", "davis211@gmail.com"],
@@ -18,6 +20,7 @@ const data = [
 const headings = ["StudentID", "StudentName", "email ID"];
 const pageName = ["Skill Name"];
 const Template = (args) => <AdminSkillParticipants {...args} />;
+
 export const AdminSkillParticipantsList = Template.bind({});
 AdminSkillParticipantsList.args = {
   data,
