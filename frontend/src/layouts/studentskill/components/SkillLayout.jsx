@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../../../components/cards/SkillCard";
 import { GoPlus } from "react-icons/go";
-import styles from "./../StudentSkill.module.css";
+import styles from "../StudentSkill.module.css";
 
 const Layout = ({ initialSkills, onAddSkill }) => {
 
