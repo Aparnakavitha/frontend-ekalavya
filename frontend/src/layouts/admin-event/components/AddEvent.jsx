@@ -88,13 +88,6 @@ const AddEvent = ({ defaultValues }) => {
                 placeholder="Event Mode"
                 options={options}
                 className={`${styles["addEvent-eventMode"]}`}
-                value={options.find(
-                  (option) => option.value === selectedEventMode
-                )}
-                onChange={(option) => {
-                  field.onChange(option.value);
-                  handleEventModeChange(option);
-                }}
               />
             )}
           />
