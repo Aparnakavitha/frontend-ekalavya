@@ -9,29 +9,37 @@ const Footer = (props) => {
     copyrightContent2,
     isLeftALigned,
   } = props;
-  const logoBoxClass = isLeftALigned ? styles.logoBoxLeft : styles.logoBox;
-  const containerClass = isLeftALigned ? styles.containerLeft : styles.container;
-  const copyrightClass = isLeftALigned ? styles.copyrightLeft : styles.copyright;
+  const logoBoxClass = isLeftALigned
+    ? styles["footer-logoBoxLeft"]
+    : styles["footer-logoBox"];
+  const containerClass = isLeftALigned
+    ? styles["footer-containerLeft"]
+    : styles["footer-container"];
+  const copyrightClass = isLeftALigned
+    ? styles["footer-copyrightLeft"]
+    : styles["footer-copyright"];
   return (
-    <div className={`${styles["Footer-footer"]}`}>
+    <div className={styles["footer-footer"]}>
       <div className={containerClass}>
         <div className={logoBoxClass}>
-          <img src={Logo} alt="Logo" className={`${styles["Footer-img"]}`} />
-          <span className={styles.quote}>{quoteContent}</span>
+          <img src={Logo} alt="Logo" className={styles["footer-img"]} />
+          <span className={styles["footer-quote"]}>{quoteContent}</span>
         </div>
       </div>
 
-      <div className={`${styles["Footer-bottombox"]}`}>
+      <div className={styles["footer-bottombox"]}>
         <div className={copyrightClass}>
-          <span className={`${styles["Footer-copyrightContent"]}`}>{copyrightContent}</span>
+          <span className={styles["footer-copyrightContent"]}>
+            {copyrightContent}
+          </span>
           <a
             href="https://www.tarento.com/privacy-policy/"
-            className={`${styles["Footer-copyrightContent2"]}`}
+            className={styles["footer-copyrightContent2"]}
           >
             {copyrightContent2}
           </a>
         </div>
-        <div className={`${styles["Footer-footerbox"]}`}></div>
+        <div className={styles["footer-footerbox"]}></div>
       </div>
     </div>
   );
