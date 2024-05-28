@@ -1,0 +1,1 @@
+export{default as EventParticipantsList} from "./components/EventParticipantsList"
