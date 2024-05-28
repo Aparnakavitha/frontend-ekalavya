@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../AdminStudent.module.css"
+import styles from "../AdminStudent.module.css";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";

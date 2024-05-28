@@ -9,7 +9,6 @@ export default {
 const Template = (args) => <Batchoperations {...args} />;
 
 export const Addbatch = Template.bind({});
-
 Addbatch.args = {
   mainHeading: "Create Batch",
 };

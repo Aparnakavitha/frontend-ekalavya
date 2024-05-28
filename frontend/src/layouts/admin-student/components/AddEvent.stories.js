@@ -1,5 +1,5 @@
 import React from "react";
-import AddEventComponent from "./AddEvent"
+import AddEventComponent from "./AddEvent";
 
 export default {
   title: "Layouts/AdminStudent/Components/Add Event ",
@@ -15,7 +15,6 @@ const options = [
 const Template = (args) => <AddEventComponent {...args} />;
 
 export const Addevent = Template.bind({});
-
 Addevent.args = {
   mainHeading: "Add Event",
   options,
