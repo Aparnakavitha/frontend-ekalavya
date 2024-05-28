@@ -29,8 +29,8 @@ export default {
     button: <Button {...sample} />,
     listItems: [
       { icon: <BsHouseFill />, name: "Home", viewIcon: false },
-      { name: "Profile" },
-      { name: "Task" },
+      { icon: <BsFillCheckCircleFill />, name:"Profile", viewIcon: false },
+      { icon: <BsFillCheckCircleFill />, name: "Task", viewIcon: false },
       { icon: <BsFillCheckCircleFill />, name: "Skills", viewIcon: true },
       { icon: <BsFillCalendarCheckFill />, name: "Events", viewIcon: true },
       { icon: <BsBookmarkCheckFill />, name: "Wishlist", viewIcon: true },
