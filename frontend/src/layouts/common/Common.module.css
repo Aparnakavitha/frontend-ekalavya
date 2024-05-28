@@ -104,3 +104,224 @@
   }
 }
 /* ------------------------------- QualificationForm.css ends here ------------------------------- */
+
+/*-----------------------------------------------------User profile layout css begins here------------------------------------------------------------------------*/
+.userprofile-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.userprofile-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userprofile-title1 {
+  color: var(--primary-color);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.userprofile-user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.userprofile-details-section {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.userprofile-basic-info {
+  display: flex;
+  align-items: center;
+}
+
+.userprofile-name {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.userprofile-student-id {
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.userprofile-college {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.userprofile-dob {
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.userprofile-profile-picture {
+  margin-right: 1.5rem;
+  display: flex;
+}
+
+.userprofile-info-text {
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.userprofile-bio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--white);
+  margin-left: 3rem;
+  gap: 0.2rem;
+}
+
+.userprofile-email {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.userprofile-phone {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.userprofile-social-links {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.userprofile-social-links:hover {
+  color: var(--primary-color);
+}
+
+.userprofile-linkedin {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.userprofile-github {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.userprofile-address {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+/*----------------------------------------------------------User profile layout css ends here----------------------------------------------------------------*/
+
+/*-----------------------------------------------------------Education layout css begins here----------------------------------------------------------------*/
+
+.education-qualification {
+  display: flex;
+  flex-direction: column;
+}
+
+.education-qualification-button {
+  margin: 0.3rem;
+}
+
+.education-qualification-head {
+  display: flex;
+  align-items: center;
+}
+
+.education-qualification-name {
+  margin-right: auto;
+}
+
+.education-qualification-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.education-qualification-instance {
+  display: flex;
+  justify-content: space-between;
+}
+
+.education-qualification-mod-buttons {
+  display: flex;
+}
+
+.education-title2 {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.education-qualifications-list {
+  color: var(--white);
+  margin-left: 0.2rem;
+}
+
+.education-education {
+  margin-bottom: 1rem;
+  margin-right: auto;
+  margin-left: 0.2rem;
+  color: var(--white);
+}
+
+.education-list-box {
+  margin-left: 0.2rem;
+}
+
+/*---------------------------------------------------Education layout css ends here--------------------------------------------------------------------------*/
+
+@media only screen and (max-width: 767px) {
+  /*-------------------------------------------------Media queries for user profile starts here--------------------------------------------------------------------*/
+
+  .userprofile-basic-info {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .userprofile-details-section {
+    flex-direction: column;
+  }
+
+  .userprofile-bio {
+    align-items: flex-start;
+    margin: 0;
+  }
+
+  .userprofile-title {
+    margin-bottom: 1rem;
+  }
+
+  .userprofile-profile-picture {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
+
+  .userprofile-basic-info {
+    align-items: flex-start;
+  }
+
+  /*---------------------------------------------------------Media queries for User profile ends here-------------------------------------------------------------*/
+
+  /*---------------------------------------------------------Media queries for education starts here--------------------------------------------------------------*/
+
+  .education-title2 {
+    margin: 0;
+  }
+
+  .education-qualification-content {
+    flex-direction: column;
+  }
+
+  .education-qualification-instance {
+    margin-top: 1rem;
+    flex-direction: column;
+  }
+
+  /*---------------------------------------------------------Media queries for education ends here-----------------------------------------------------------------*/
+}
