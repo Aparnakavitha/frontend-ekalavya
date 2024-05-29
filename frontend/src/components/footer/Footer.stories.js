@@ -25,4 +25,3 @@ export const FooterLeftAligned = {
     isLeftALigned: true,
   },
 };
-

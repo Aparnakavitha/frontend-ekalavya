@@ -33,3 +33,37 @@
 }
 
 /* ------------------------------- AddSkill.css ends here ------------------------------- */
+/* ------------------------ AdminSkillParticipants.css starts here ------------------------ */
+
+.adminskillparticipants-container {
+  width: 100%;
+}
+
+.adminskillparticipants-navbuttons {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 0px;
+}
+
+.adminskillparticipants-table {
+  margin-top: 0px;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral600) #ffffff00;
+}
+
+@media screen and (max-width: 768px) {
+  .adminskillparticipants-container {
+    width: 100%;
+  }
+  .adminskillparticipants-table {
+    width: 100%;
+  }
+
+  .adminskillparticipants-navbuttons > *:not(:last-child) {
+    display: none;
+  }
+}
+
+/* ------------------------ AdminSkillParticipants.css ends here ------------------------ */
