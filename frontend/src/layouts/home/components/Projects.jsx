@@ -54,7 +54,6 @@ const Project = ({ projects, heading1, heading2 }) => {
   return (
     <div className={`${styles.carouselHeader} ${styles.projects}`}>
       <div className={styles.carouselHeading}>
-        {" "}
         <a className={styles.carouselHeading2}>{heading2}</a>
         <a className={styles.carouselHeading1}>{heading1}</a>
       </div>

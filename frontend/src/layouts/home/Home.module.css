@@ -198,6 +198,7 @@
   }
 
   .hero-contentbuttondiv {
+    padding-left: 6vw;
     gap: 24px;
   }
 
@@ -247,6 +248,8 @@
   }
 
   .hero-contentbuttondiv {
+    padding-left: 6vw;
+    padding-bottom: 5vw;
     gap: 24px;
   }
 
@@ -405,6 +408,11 @@
   }
 
   .carouselHeading {
+    text-align: left;
+    padding-left: 6vw;
+  }
+
+  .carouselHeading {
     font-size: 20px;
   }
 }
@@ -437,22 +445,21 @@
 
 /* ------------------------------- Partners.css starts here ------------------------------- */
 
-.Partners-container {
+.partners-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
-.Partners-title {
+.partners-title {
   font-size: 13px;
   color: var(--primary-color);
   margin-bottom: 10px;
   text-align: center;
 }
 
-.Partners-Icons {
+.partners-Icons {
   display: flex;
   gap: 75px;
   justify-content: center;
@@ -460,10 +467,27 @@
   flex-wrap: wrap;
 }
 
-.Partners.profileImage{
+.partners.profileImage {
   width: 200px;
   aspect-ratio: 3/2;
   object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .partners-container {
+    text-align: left;
+    padding-left: 6vw;
+    align-items: flex-start;
+    padding-bottom: 5vw;
+  }
+
+  .partners-Icons {
+    display: flex;
+    gap: 75px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
 }
 
 /* ------------------------------- Partners.css ends here ------------------------------- */
