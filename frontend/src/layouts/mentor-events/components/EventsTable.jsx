@@ -23,7 +23,9 @@ const EventsTable = (props) => {
   const handleGlobalAttendanceClick = (isPresent) => {
     setAttendance((prev) => {
       const newAttendance = {};
-      const shouldDeselect = Object.values(prev).every((value) => value === isPresent);
+      const shouldDeselect = Object.values(prev).every(
+        (value) => value === isPresent
+      );
       for (const id in prev) {
         newAttendance[id] = shouldDeselect ? null : isPresent;
       }
@@ -37,50 +39,53 @@ const EventsTable = (props) => {
     id,
     name,
     email,
-<div style={{ display: "flex", width: "50px", gap: "2px" }} key={id}>
-<AttendanceButton
+    <div style={{ display: "flex", width: "50px", gap: "2px" }} key={id}>
+      <AttendanceButton
         content="Present"
         IsPresent={attendance[id] === true}
         onClick={() => handleAttendanceClick(id, true)}
         disabled={attendance[id] === false}
       />
-<AttendanceButton
+      <AttendanceButton
         content="Absent"
         IsPresent={attendance[id] === false}
         onClick={() => handleAttendanceClick(id, false)}
         disabled={attendance[id] === true}
       />
-</div>,
+    </div>,
   ]);
   const globalAttendanceButtons = (
-<div className={styles["global-attendance-buttons-container"]}>
-<span className={styles["select-all-text"]}>Select All:</span>
-<div className={styles["global-attendance-buttons"]}>
-<AttendanceButton
+    <div className={styles["global-attendance-buttons-container"]}>
+      <span className={styles["select-all-text"]}>Select All:</span>
+      <div className={styles["global-attendance-buttons"]}>
+        <AttendanceButton
           content="Present"
           IsPresent={allPresent}
           onClick={() => handleGlobalAttendanceClick(true)}
         />
-<AttendanceButton
+        <AttendanceButton
           content="Absent"
           IsPresent={allAbsent}
           onClick={() => handleGlobalAttendanceClick(false)}
         />
-</div>
-</div>
+      </div>
+    </div>
   );
   return (
-<div className={styles["eventstable-container"]}>
-<div className={styles["eventstable-topleft"]}>
-<h2>
-<u>Mark Attendance</u>
-</h2>
-</div>
-<div className={styles["eventstable-table"]}>
+    <div className={styles["eventstable-container"]}>
+      <div className={styles["eventstable-topleft"]}>
+        <h2>
+          <u>Mark Attendance</u>
+        </h2>
+      </div>
+      <div className={styles["eventstable-table"]}>
         {globalAttendanceButtons}
-<Table data={tableData} headings={headings.slice(0, 3).concat("Status")} />
-</div>
-</div>
+        <Table
+          data={tableData}
+          headings={headings.slice(0, 3).concat("Status")}
+        />
+      </div>
+    </div>
   );
 };
 export default EventsTable;
