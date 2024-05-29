@@ -20,23 +20,23 @@ const SideBar = ({ button, listItems, profileBox }) => {
 
   return (
     <div className={`${styles["sidebar-container"]}`}>
-      <div className={`${styles["sidebar-headerResp"]}`}>
-        <div className={`${styles["sidebar-headerContainer"]}`}>
-          <div className={`${styles["sidebar-toggleOut"]}`} onClick={toggleSidebar}>
+      <div className={`${styles["sidebar-header-resp"]}`}>
+        <div className={`${styles["sidebar-header-container"]}`}>
+          <div className={`${styles["sidebar-toggleout"]}`} onClick={toggleSidebar}>
             <BsList className={`${styles["sidebar-hamburger"]}`} />
           </div>
-          <div className={`${styles["sidebar-headingOut"]}`}>
+          <div className={`${styles["sidebar-headingout"]}`}>
             <img src={Logo} alt="EduNexa" />
           </div>
         </div>
       </div>
       <div className={`${styles["sidebar"]} ${showSidebar ? styles["show"] : ""}`}>
-        <div className={`${styles["sidebar-headerContainer"]}`}>
-          <div className={`${styles["sidebar-headingIn"]}`}>
+        <div className={`${styles["sidebar-header-container"]}`}>
+          <div className={`${styles["sidebar-headingin"]}`}>
             <img src={Logo} alt="EduNexa" />
           </div>
           <div className={`${styles["sidebar-toggle"]}`}>
-            <BsX className={`${styles["sidebar-crossIcon"]}`} onClick={toggleSidebar} />
+            <BsX className={`${styles["sidebar-cross-icon"]}`} onClick={toggleSidebar} />
           </div>
         </div>
         <div className={`${styles["sidebar-content"]}`}>
@@ -55,7 +55,7 @@ const SideBar = ({ button, listItems, profileBox }) => {
             ))}
           </div>
           <div className={`${styles["sidebar-bottom"]}`}>
-            <div className={`${styles["sidebar-headerButton"]}`}>{button}</div>
+            <div className={`${styles["sidebar-header-button"]}`}>{button}</div>
             <div className={`${styles["sidebar-card"]}`}>
               <ProfileBox {...profileBox} />
             </div>
