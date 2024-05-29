@@ -2,7 +2,7 @@
 
 .addskill-boxcontainer {
   background-color: var(--background);
-  border-radius: 40px;
+  border-radius: 30px;
   width: 100%;
   padding: 50px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
@@ -24,6 +24,12 @@
 .addskill-buttonrow {
   display: flex;
   gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .addskill-boxcontainer {
+    padding: 30px;
+  }
 }
 
 /* ------------------------------- AddSkill.css ends here ------------------------------- */
