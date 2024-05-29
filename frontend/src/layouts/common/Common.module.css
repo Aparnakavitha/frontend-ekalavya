@@ -105,6 +105,11 @@
   .qualification-form-datebox {
     width: 100%;
   }
+
+  .qualification-form-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
 }
 
 /* ------------------------------- QualificationForm.css ends here ------------------------------- */
