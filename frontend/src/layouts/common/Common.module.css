@@ -10,7 +10,7 @@
     transition: left 0.8s ease-in-out;
 }
 
-.sidebar-headingIn img {
+.sidebar-headingin img {
     font-size: 32px;
     line-height: 35px;
     padding-top: 30px;
@@ -27,7 +27,7 @@
     display: none;
 }
 
-.sidebar-headerButton {
+.sidebar-headerbutton {
     position: absolute;
     left: 32px;
 }
@@ -48,7 +48,7 @@
         left: -820px;
         width: 100%;
     }
-    .sidebar-headingIn img {
+    .sidebar-headingin img {
         display: flex;
         line-height: 0px;
         padding-top: 0px;
@@ -57,7 +57,7 @@
         height: auto;
         align-items: center;
     }
-    .sidebar-headingOut img {
+    .sidebar-headingout img {
         display: flex;
         justify-content: center;
         line-height: 0px;
@@ -65,7 +65,7 @@
         height: auto;
         align-items: center;
     }
-    .sidebar-headerResp {
+    .sidebar-headerresp {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -73,7 +73,7 @@
         height: 65px;
         padding: 10px;
     }
-    .sidebar-headerContainer {
+    .sidebar-headercontainer {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -81,7 +81,7 @@
         width: 100%;
         padding: 10px;
     }
-    .sidebar-headerContainerOut {
+    .sidebar-headercontainerout {
         display: flex;
         flex-direction: row;
     }
@@ -101,7 +101,7 @@
         font-size: 25px;
         color: white;
     }
-    .sidebar-crossIcon {
+    .sidebar-crossicon {
         cursor: pointer;
         font-size: 30px;
         color: white;
@@ -116,7 +116,7 @@
         justify-content: center;
         padding-left: 10px;
     }
-    .sidebar-headerButton {
+    .sidebar-headerbutton {
         position: absolute;
         bottom: 120px;
         left: 34px;
@@ -137,7 +137,7 @@
     padding-top: 26px;
 }
 
-.footer-containerLeft {
+.footer-containerleft {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -151,14 +151,14 @@
     background-color: var(--background);
 }
 
-.footer-logoBox {
+.footer-logobox {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
 }
 
-.footer-logoBoxLeft {
+.footer-logoboxleft {
     padding-top: 26px;
     padding-left: 57px;
     display: flex;
@@ -194,7 +194,7 @@
     text-align: center;
 }
 
-.footer-copyrightContent {
+.footer-copyrightcontent {
     font-family: Urbanist;
     color: var(--white);
     font-size: 16px;
@@ -202,7 +202,7 @@
     padding-bottom: 10px;
 }
 
-.footer-copyrightContent2 {
+.footer-copyrightcontent2 {
     font-family: Urbanist;
     color: var(--white);
     font-size: 16px;
@@ -218,7 +218,7 @@
     color: var(--white);
 }
 
-.footer-copyrightLeft {
+.footer-copyrightleft {
     padding-left: 57px;
     display: flex;
     justify-content: flex-start;
@@ -227,17 +227,17 @@
 }
 
 @media (max-width: 767px) {
-    .footer-copyrightContent {
+    .footer-copyrightcontent {
         font-family: Urbanist;
         color: var(--white);
         font-size: 10px;
         font-weight: 400;
     }
-    .footer-copyrightContent2 {
+    .footer-copyrightcontent2 {
         font-size: 10px;
     }
     .footer-copyright,
-    .footer-copyrightLeft {
+    .footer-copyrightleft {
         flex-direction: column;
         align-items: center;
     }
@@ -245,19 +245,19 @@
         padding: 10px;
         font-size: 24px;
     }
-    .footer-conatinerLeft {
+    .footer-conatinerleft {
         padding-left: 0px;
         align-items: center;
     }
-    .footer-logoBoxLeft {
+    .footer-logoboxleft {
         padding-left: 0px;
         align-items: center;
     }
-    .footer-copyrightLeft {
+    .footer-copyrightleft {
         padding-left: 0px;
         justify-content: center;
     }
 }
 
 
-/* ------------------------------- SideBar.css ends here ------------------------------- */
+/* ------------------------------- Footer.css ends here ------------------------------- */

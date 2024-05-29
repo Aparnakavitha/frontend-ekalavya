@@ -8,7 +8,7 @@
   padding: 30px;
 }
 
-.card .cardContent {
+.card .card-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +18,7 @@
   width: 169px;
 }
 
-.imageIcon{
+.image-icon{
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -27,21 +27,21 @@
 
 }
 
-.deleteIcon{
+.delete-icon{
   color: var(--primary-color);
   cursor: pointer;
   height: 25px;
   width: 25px;
 }
 
-.card .studentImage {
+.card .student-image {
   background-color: var(--white);
   width: 53px;
   height: 53px;
   border-radius: 50%;
 }
 
-.titlesWrapper {
+.titles-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -74,7 +74,7 @@
   letter-spacing: -0.41px;
 }
 
-.contactInfo {
+.contact-info {
   display: flex;
   flex-direction: column;
   width: 187px;
@@ -100,11 +100,11 @@
   color: var(--neutral600);
 }
 
-.card:hover .contactInfo,
-.card:hover .deleteIcon {
+.card:hover .contact-info,
+.card:hover .delete-icon {
   color: var(--neutral800)
 }
 
-.card:hover .studentImage {
+.card:hover .student-image {
   background-color: var(--neutral800)
 }

@@ -44,8 +44,8 @@ const EventForm = () => {
  
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={`${styles["eventform-form"]}`}>
-      <div className={`${styles["eventform-eventTitleMode"]}`}>
-        <div className={`${styles["eventform-eventTitleDiv"]}`}>
+      <div className={`${styles["eventform-eventtitlemode"]}`}>
+        <div className={`${styles["eventform-eventtitlediv"]}`}>
           <Controller
             name="eventTitle"
             control={control}
@@ -55,13 +55,13 @@ const EventForm = () => {
                 label="Event Title"
                 size="normal"
                 placeholders={["Event Title"]}
-                className={`${styles["eventform-eventTitle"]}`}
+                className={`${styles["eventform-eventtitle"]}`}
               />
             )}
           />
         </div>
  
-        <div className={`${styles["eventform-eventModeDiv"]}`}>
+        <div className={`${styles["eventform-eventmodediv"]}`}>
           <Controller
             name="eventMode"
             control={control}
@@ -71,7 +71,7 @@ const EventForm = () => {
                 label="Event Mode"
                 placeholder="Event Mode"
                 options={options}
-                className={`${styles["eventform-eventMode"]}`}
+                className={`${styles["eventform-eventmode"]}`}
               />
             )}
           />
@@ -87,7 +87,7 @@ const EventForm = () => {
             label="Event Type"
             size="normal"
             placeholders={["Event Type"]}
-            className={`${styles["eventform-eventType"]}`}
+            className={`${styles["eventform-eventtype"]}`}
           />
         )}
       />
@@ -106,8 +106,8 @@ const EventForm = () => {
         )}
       />
  
-      <div className={`${styles["eventform-dateTimeContainer"]}`}>
-        <div className={`${styles["eventform-dateTime"]}`}>
+      <div className={`${styles["eventform-datetimecontainer"]}`}>
+        <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="startDate"
             control={control}
@@ -117,14 +117,14 @@ const EventForm = () => {
                 label="Start Date"
                 size="normal"
                 placeholders={["dd/mm/yyyy"]}
-                className={`${styles["eventform-startDate"]}`}
+                className={`${styles["eventform-startdate"]}`}
                 isDatePicker
               />
             )}
           />
         </div>
  
-        <div className={`${styles["eventform-dateTime"]}`}>
+        <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="endDate"
             control={control}
@@ -134,14 +134,14 @@ const EventForm = () => {
                 label="End Date"
                 size="normal"
                 placeholders={["dd/mm/yyyy"]}
-                className={`${styles["eventform-endDate"]}`}
+                className={`${styles["eventform-enddate"]}`}
                 isDatePicker
               />
             )}
           />
         </div>
  
-        <div className={`${styles["eventform-dateTime"]}`}>
+        <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="startTime"
             control={control}
@@ -151,14 +151,14 @@ const EventForm = () => {
                 label="Start Time"
                 size="normal"
                 placeholders={["hh:mm:ss"]}
-                className={`${styles["eventform-startTime"]}`}
+                className={`${styles["eventform-starttime"]}`}
                 isTimePicker
               />
             )}
           />
         </div>
  
-        <div className={`${styles["eventform-dateTime"]}`}>
+        <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="endTime"
             control={control}
@@ -168,7 +168,7 @@ const EventForm = () => {
                 label="End Time"
                 size="normal"
                 placeholders={["hh:mm:ss"]}
-                className={`${styles["eventform-endTime"]}`}
+                className={`${styles["eventform-endtime"]}`}
                 isTimePicker
               />
             )}
@@ -220,13 +220,13 @@ const EventForm = () => {
         )}
       />
  
-      <div className={`${styles["eventform-buttonDiv"]}`}>
-        <div className={`${styles["eventform-buttonContainer"]}`}>
+      <div className={`${styles["eventform-buttondiv"]}`}>
+        <div className={`${styles["eventform-buttoncontainer"]}`}>
           <PrimaryButton
             content="Submit"
             variant="primary"
             width="full"
-            className={`${styles["eventform-submitButton"]}`}
+            className={`${styles["eventform-submitbutton"]}`}
           />
         </div>
       </div>

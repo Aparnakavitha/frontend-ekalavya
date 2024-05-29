@@ -10,13 +10,13 @@ const Footer = (props) => {
     isLeftALigned,
   } = props;
   const logoBoxClass = isLeftALigned
-    ? styles["footer-logoBoxLeft"]
-    : styles["footer-logoBox"];
+    ? styles["footer-logoboxleft"]
+    : styles["footer-logobox"];
   const containerClass = isLeftALigned
-    ? styles["footer-containerLeft"]
+    ? styles["footer-containerleft"]
     : styles["footer-container"];
   const copyrightClass = isLeftALigned
-    ? styles["footer-copyrightLeft"]
+    ? styles["footer-copyrightleft"]
     : styles["footer-copyright"];
   return (
     <div className={styles["footer-footer"]}>
@@ -29,12 +29,12 @@ const Footer = (props) => {
 
       <div className={styles["footer-bottombox"]}>
         <div className={copyrightClass}>
-          <span className={styles["footer-copyrightContent"]}>
+          <span className={styles["footer-copyrightcontent"]}>
             {copyrightContent}
           </span>
           <a
             href="https://www.tarento.com/privacy-policy/"
-            className={styles["footer-copyrightContent2"]}
+            className={styles["footer-copyrightcontent2"]}
           >
             {copyrightContent2}
           </a>
