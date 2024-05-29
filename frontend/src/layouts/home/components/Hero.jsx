@@ -11,13 +11,13 @@ const Hero = (props) => {
   return (
     <div className={styles["hero-container"]}>
       <div className={styles["hero-contentbuttondiv"]}>
-        <div className={styles["hero-contentColumn"]}>
-          <div className={styles["hero-textColumn"]}>
+        <div className={styles["hero-content-column"]}>
+          <div className={styles["hero-text-column"]}>
             <div className={styles["hero-container-section"]}>
               <div className={styles["hero-image1"]}>
                 <img src={star} alt="" />
               </div>
-              <h1 className={styles["hero-mainContent"]}>
+              <h1 className={styles["hero-main-content"]}>
                 {props.mainContent[0]}
               </h1>
             </div>
@@ -25,7 +25,7 @@ const Hero = (props) => {
               <div className={styles["hero-image2"]}>
                 <img src={star2} alt="" />
               </div>
-              <h1 className={styles["hero-mainContent2"]}>
+              <h1 className={styles["hero-main-content2"]}>
                 {props.mainContent[1]}
               </h1>
             </div>
@@ -39,12 +39,12 @@ const Hero = (props) => {
               <div className={styles["hero-image5"]}>
                 <img src={star4} alt="" />
               </div>
-              <h1 className={styles["hero-mainContent"]}>
+              <h1 className={styles["hero-main-content"]}>
                 {props.mainContent[2]}
               </h1>
             </div>
           </div>
-          <h2 className={styles["hero-semiContent"]}>{props.semiContent}</h2>
+          <h2 className={styles["hero-semi-content"]}>{props.semiContent}</h2>
         </div>
         <div className={styles["hero-buttondiv"]}>
           <PrimaryButton
@@ -60,7 +60,7 @@ const Hero = (props) => {
               <div
                 key={index}
                 className={`${styles["hero-statiunit"]} ${
-                  index < 2 ? styles["hero-firstTwo"] : ""
+                  index < 2 ? styles["hero-first-two"] : ""
                 }`}
               >
                 <h1 className={styles["hero-numbers"]}>{num}</h1>
