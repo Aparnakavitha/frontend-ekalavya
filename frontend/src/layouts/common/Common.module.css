@@ -1,6 +1,6 @@
-/* ------------------------------- QualificationForm.css starts here ------------------------------- */
+/* ------------------------------- qualificationform.css starts here ------------------------------- */
 
-.QualificationForm-form {
+.qualificationform-form {
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
@@ -15,41 +15,41 @@
   gap: 10px;
 }
 
-.QualificationForm-datebox {
+.qualificationform-datebox {
   width: 48.75%;
 }
 
-.QualificationForm-startDateEndDate {
+.qualificationform-startdateenddate {
   display: flex;
   gap: 20px;
   justify-content: space-between;
 }
 
-.QualificationForm-head {
+.qualificationform-head {
   font-style: normal;
   font-weight: 400;
   font-size: 21px;
   margin-bottom: 15px;
 }
 
-.QualificationForm-button {
+.qualificationform-button {
   padding-top: 10px;
 }
 
 @media screen and (max-width: 500px) {
-  .QualificationForm-startDateEndDate {
+  .qualificationform-startdateenddate {
     flex-direction: column;
     gap: 17px;
   }
-  .QualificationForm-datebox {
+  .qualificationform-datebox {
     width: 100%;
   }
 }
 
-/* ------------------------------- QualificationForm.css ends here ------------------------------- */
-/* ------------------------------- BasicDetails.css starts here ---------------------------------- */
+/* ------------------------------- qualificationform.css ends here ------------------------------- */
+/* ------------------------------- basicdetails.css starts here ---------------------------------- */
 
-.basicDetails-form {
+.basicdetails-form {
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
@@ -66,7 +66,7 @@
   padding: 50px;
 }
 
-.basicDetails-head {
+.basicdetails-head {
   width: 100%;
   left: 57px;
   font-style: normal;
@@ -78,7 +78,7 @@
   word-break: break-word;
 }
 
-.basicDetails-containerOne {
+.basicdetails-containerone {
   width: 100%;
   gap: 20px;
   display: flex;
@@ -86,35 +86,35 @@
   align-items: flex-start;
 }
 
-.basicDetails-containerInput-out {
+.basicdetails-containerinput-out {
   gap: 6px;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.basicDetails-containerInput-inter {
+.basicdetails-containerinput-inter {
   gap: 6px;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.basicDetails-containerInput-in {
+.basicdetails-containerinput-in {
   gap: 6px;
   display: flex;
   flex-direction: column;
   margin-top: 7px;
   width: 100%;
 }
-.basicDetails-iconText {
+.basicdetails-icontext {
   text-align: center;
   padding-top: 10px;
   font-size: 12px;
   width: 100%;
 }
 
-.basicDetails-buttonContainer {
+.basicdetails-buttoncontainer {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -122,16 +122,16 @@
   margin-top: 17px;
 }
 
-.basicDetails-error {
+.basicdetails-error {
   color: var(--primary-color);
   margin-top: 5px;
   font-size: 0.875rem;
 }
 
-/* ------------------------------- BasicDetails.css ends here ------------------------------------ */
-/* ------------------------------- CombinedSkillForm.css starts here --------------------------- */
+/* ------------------------------- basicdetails.css ends here ------------------------------------ */
+/* ------------------------------- combinedskillform.css starts here --------------------------- */
 
-.combinedSkillForm-form {
+.combinedskillform-form {
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
@@ -148,7 +148,7 @@
   padding: 50px;
 }
 
-.combinedSkillForm-head {
+.combinedskillform-head {
   width: 100%;
   left: 57px;
   font-style: normal;
@@ -160,7 +160,7 @@
   word-break: break-word;
 }
 
-.combinedSkillForm-containerOne {
+.combinedskillform-containerone {
   width: 100%;
   gap: 20px;
   display: flex;
@@ -168,31 +168,31 @@
   align-items: flex-start;
 }
 
-.combinedSkillForm-containerInput {
+.combinedskillform-containerinput {
   width: 100%;
   gap: 10px;
   display: flex;
   flex-direction: column;
 }
 
-.combinedSkillForm-buttonContainer {
+.combinedskillform-buttoncontainer {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.combinedSkillForm-message {
+.combinedskillform-message {
   font-size: 14px;
   color: var(--white);
 }
 
-.combinedSkillForm-skillName {
+.combinedskillform-skillname {
   color: var(--primary-color);
   margin-left: 5px;
 }
 
-.combinedSkillForm-allHeading {
+.combinedskillform-allheading {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -201,15 +201,15 @@
   word-break: break-word;
 }
 
-.combinedSkillForm-text {
+.combinedskillform-text {
   font-size: 12px;
   left: 57px;
 }
 
-/* ------------------------------- CombinedSkillForm.css ends here --------------------------- */
-/* ------------------------------- AddProfilelink.css starts here ---------------------------- */
+/* ------------------------------- combinedskillform.css ends here --------------------------- */
+/* ------------------------------- addprofilelink.css starts here ---------------------------- */
 
-.addProfilelink-form {
+.addprofilelink-form {
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
@@ -226,7 +226,7 @@
   padding: 50px;
 }
 
-.addProfilelink-containerOne {
+.addprofilelink-containerone {
   width: 100%;
   gap: 20px;
   display: flex;
@@ -234,7 +234,7 @@
   align-items: flex-start;
 }
 
-.addProfilelink-head {
+.addprofilelink-head {
   width: 100%;
   left: 57px;
   font-style: normal;
@@ -246,21 +246,21 @@
   word-break: break-word;
 }
 
-.addProfilelink-containerInput {
+.addprofilelink-containerinput {
   width: 100%;
   gap: 10px;
   display: flex;
   flex-direction: column;
 }
 
-.addProfilelink-buttonContainer {
+.addprofilelink-buttoncontainer {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* ------------------------------- AddProfilelink.css ends here ---------------------------- */
+/* ------------------------------- addprofilelink.css ends here ---------------------------- */
 /* -------------------------------- Greeting.css starts here -------------------------------- */
 
 .common-content {
@@ -497,13 +497,13 @@
 /* ------------------------------- DeleteBox.css ends here ------------------------------- */
 /* ------------------------------- DataView.css starts here ------------------------------- */
 
-.dataview-toggleContainer {
+.dataview-togglecontainer {
   display: flex;
   justify-content: end;
   margin-bottom: 24px;
 }
 
-.dataview-toggleButton {
+.dataview-togglebutton {
   color: var(--white);
   background-color: rgba(255, 255, 255, 0);
   border: none;
@@ -514,11 +514,11 @@
   justify-content: center;
 }
 
-.dataview-toggleButton:hover {
+.dataview-togglebutton:hover {
   color: var(--primary-color);
 }
 
-.dataview-toggleButton.selected {
+.dataview-togglebutton.selected {
   color: var(--primary-color);
 }
 
@@ -590,9 +590,9 @@
 }
 
 /* ------------------------------- DataView.css ends here ------------------------------- */
-/* ------------------------------- AddStudent.css starts here --------------------------------- */
+/* ------------------------------- addstudent.css starts here --------------------------------- */
 
-.addStudent-form {
+.addstudent-form {
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
@@ -609,7 +609,7 @@
   padding: 50px;
 }
 
-.addStudent-head {
+.addstudent-head {
   width: 100%;
   left: 57px;
   font-style: normal;
@@ -621,7 +621,7 @@
   word-break: break-word;
 }
 
-.addStudent-containerOne {
+.addstudent-containerone {
   width: 100%;
   gap: 20px;
   display: flex;
@@ -629,21 +629,21 @@
   align-items: flex-start;
 }
 
-.addStudent-containerInput {
+.addstudent-containerinput {
   gap: 10px;
   display: flex;
   width: 100%;
   flex-direction: column;
 }
 
-.addStudent-buttonContainer {
+.addstudent-buttoncontainer {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* ------------------------------- AddStudent.css ends here --------------------------------- */
+/* ------------------------------- addstudent.css ends here --------------------------------- */
 /* ------------------------------- AddUser.css starts here ------------------------------- */
 
 .adduser-head {

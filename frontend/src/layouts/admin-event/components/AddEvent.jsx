@@ -58,10 +58,10 @@ const AddEvent = ({ defaultValues }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${styles["addEvent-form"]}`}
+      className={`${styles["addevent-form"]}`}
     >
-      <div className={`${styles["addEvent-eventTitleMode"]}`}>
-        <div className={`${styles["addEvent-eventTitleDiv"]}`}>
+      <div className={`${styles["addevent-eventtitlemode"]}`}>
+        <div className={`${styles["addevent-eventtitlediv"]}`}>
           <Controller
             name="eventTitle"
             control={control}
@@ -71,13 +71,13 @@ const AddEvent = ({ defaultValues }) => {
                 label="Event Title"
                 size="normal"
                 placeholders={["Event Title"]}
-                className={`${styles["addEvent-eventTitle"]}`}
+                className={`${styles["addevent-eventtitle"]}`}
               />
             )}
           />
         </div>
 
-        <div className={`${styles["addEvent-eventModeDiv"]}`}>
+        <div className={`${styles["addevent-eventmodediv"]}`}>
           <Controller
             name="eventMode"
             control={control}
@@ -87,7 +87,7 @@ const AddEvent = ({ defaultValues }) => {
                 label="Event Mode"
                 placeholder="Event Mode"
                 options={options}
-                className={`${styles["addEvent-eventMode"]}`}
+                className={`${styles["addevent-eventmode"]}`}
               />
             )}
           />
@@ -103,7 +103,7 @@ const AddEvent = ({ defaultValues }) => {
             label="Event Type"
             size="normal"
             placeholders={["Event Type"]}
-            className={`${styles["addEvent-eventType"]}`}
+            className={`${styles["addevent-eventtype"]}`}
           />
         )}
       />
@@ -117,13 +117,13 @@ const AddEvent = ({ defaultValues }) => {
             label="Description"
             size="large"
             placeholders={["Description"]}
-            className={`${styles["addEvent-description"]}`}
+            className={`${styles["addevent-description"]}`}
           />
         )}
       />
 
-      <div className={`${styles["addEvent-dateTimeContainer"]}`}>
-        <div className={`${styles["addEvent-dateTime"]}`}>
+      <div className={`${styles["addevent-datetimecontainer"]}`}>
+        <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="startDate"
             control={control}
@@ -133,14 +133,14 @@ const AddEvent = ({ defaultValues }) => {
                 label="Start Date"
                 size="normal"
                 placeholders={["dd/mm/yyyy"]}
-                className={`${styles["addEvent-startDate"]}`}
+                className={`${styles["addevent-startdate"]}`}
                 isDatePicker
               />
             )}
           />
         </div>
 
-        <div className={`${styles["addEvent-dateTime"]}`}>
+        <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="endDate"
             control={control}
@@ -150,7 +150,7 @@ const AddEvent = ({ defaultValues }) => {
                 label="End Date"
                 size="normal"
                 placeholders={["dd/mm/yyyy"]}
-                className={`${styles["addEvent-endDate"]}`}
+                className={`${styles["addevent-enddate"]}`}
                 isDatePicker
               />
             )}
@@ -167,14 +167,14 @@ const AddEvent = ({ defaultValues }) => {
                 label="Start Time"
                 size="normal"
                 placeholders={["hh:mm:ss"]}
-                className={`${styles["addEvent-startTime"]}`}
+                className={`${styles["addevent-starttime"]}`}
                 isTimePicker
               />
             )}
           />
         </div>
 
-        <div className={`${styles["addEvent-dateTime"]}`}>
+        <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="endTime"
             control={control}
@@ -184,7 +184,7 @@ const AddEvent = ({ defaultValues }) => {
                 label="End Time"
                 size="normal"
                 placeholders={["hh:mm:ss"]}
-                className={`${styles["addEvent-endTime"]}`}
+                className={`${styles["addevent-endtime"]}`}
                 isTimePicker
               />
             )}
@@ -203,7 +203,7 @@ const AddEvent = ({ defaultValues }) => {
             placeholders={[
               selectedEventMode === "Online" ? "Link" : "Location",
             ]}
-            className={`${styles["addEvent-location"]}`}
+            className={`${styles["addevent-location"]}`}
           />
         )}
       />
@@ -217,7 +217,7 @@ const AddEvent = ({ defaultValues }) => {
             label="Speaker"
             size="normal"
             placeholders={["Speaker"]}
-            className={`${styles["addEvent-speaker"]}`}
+            className={`${styles["addevent-speaker"]}`}
           />
         )}
       />
@@ -231,7 +231,7 @@ const AddEvent = ({ defaultValues }) => {
             label="Organizer"
             size="normal"
             placeholders={["Organizer"]}
-            className={`${styles["addEvent-organizer"]}`}
+            className={`${styles["addevent-organizer"]}`}
           />
         )}
       />
@@ -240,7 +240,7 @@ const AddEvent = ({ defaultValues }) => {
         content="Submit"
         variant="primary"
         width="full"
-        className={`${styles["addEvent-submitButton"]}`}
+        className={`${styles["addevent-submitbutton"]}`}
       />
     </form>
   );

@@ -1,6 +1,6 @@
 /* ------------------------------- AddEvent.css starts here ------------------------------- */
 
-.addEvent-form {
+.addevent-form {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -16,101 +16,101 @@
   backdrop-filter: blur(45px);
 }
 
-.addEvent-eventTitleDiv {
+.addevent-eventtitlediv {
   width: 80%;
 }
 
-.addEvent-eventModeDiv {
+.addevent-eventmodediv {
   width: 20%;
 }
 
-.addEvent-eventTitleMode {
+.addevent-eventtitlemode {
   display: flex;
   justify-content: space-between;
   gap: 2%;
 }
 
-.addEvent-dateTimeContainer {
+.addevent-datetimecontainer {
   display: flex;
   justify-content: space-between;
   gap: 2%;
 }
 
-.addEvent-dateTimeContainer .input-container {
+.addevent-datetimecontainer .input-container {
   flex: 1;
 }
 
-.addEvent-dateTime {
+.addevent-datetime {
   width: 100%;
 }
 
-.addEvent-eventTitle,
-.addEvent-eventMode,
-.addEvent-eventType,
-.addEvent-description,
-.addEvent-location,
-.addEvent-speaker,
-.addEvent-organizer {
+.addevent-eventtitle,
+.addevent-eventmode,
+.addevent-eventtype,
+.addevent-description,
+.addevent-location,
+.addevent-speaker,
+.addevent-organizer {
   margin-bottom: 2%;
 }
 
 @media (min-width: 769) and (max-width: 992px) {
-  .addEvent-dateTimeContainer {
+  .addevent-datetimecontainer {
     flex-direction: row;
     flex-wrap: wrap;
   }
 
-  .addEvent-dateTimeContainer .input-container {
+  .addevent-datetimecontainer .input-container {
     flex: 1 1 48%;
   }
 
-  .addEvent-eventTitleMode {
+  .addevent-eventtitlemode {
     flex-direction: row;
     flex-wrap: wrap;
   }
 
-  .addEvent-eventTitleMode .input-container {
+  .addevent-eventtitlemode .input-container {
     flex: 1 1 48%;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .addEvent-form {
+  .addevent-form {
     width: 100%;
   }
 
-  .addEvent-dateTimeContainer {
+  .addevent-datetimecontainer {
     flex-direction: column;
     gap: 17px;
   }
 
-  .addEvent-dateTimeContainer .input-container {
+  .addevent-datetimecontainer .input-container {
     width: 100%;
   }
 
-  .addEvent-eventTitleMode {
+  .addevent-eventtitlemode {
     flex-direction: column;
     gap: 17px;
   }
 
-  .addEvent-eventTitleMode .input-container {
+  .addevent-eventtitlemode .input-container {
     width: 100%;
   }
 
-  .addEvent-eventTitleDiv {
+  .addevent-eventtitlediv {
     width: 100%;
   }
 
-  .addEvent-eventModeDiv {
+  .addevent-eventmodediv {
     width: 100%;
   }
 
-  .addEvent-buttonContainer {
+  .addevent-buttoncontainer {
     width: 100%;
   }
 }
 
-/* ------------------------------- AddEvents.css ends here ------------------------------- */
+/* ------------------------------- AddEvent.css ends here ------------------------------- */
 /* ------------------------ EventParticipantsList.css starts here ------------------------ */
 
 .eventparticipantslist-container {
