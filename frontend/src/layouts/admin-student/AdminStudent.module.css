@@ -61,7 +61,7 @@
   flex-direction: column;
   background-color: var(--background);
   border-radius: 40px;
-  padding: 45px;
+  padding: 50px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
 }
@@ -80,8 +80,8 @@
 
 @media (max-width: 768px) {
   .addcollege-container {
-    padding: 20px;
-    border-radius: 20px;
+    padding: 30px;
+    border-radius: 30px;
     width: 100%;
     height: fit-content;
   }
@@ -97,8 +97,8 @@
 
 @media (max-width: 480px) {
   .addcollege-container {
-    padding: 15px;
-    border-radius: 15px;
+    padding: 30px;
+    border-radius: 30px;
     width: 100%;
     height: fit-content;
   }
@@ -121,10 +121,11 @@
   display: flex;
   flex-direction: column;
   background-color: var(--background);
-  padding: 40px;
+  padding: 50px;
   border-radius: 40px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
+  overflow: scroll;
 }
 
 .collegelist-college {
@@ -137,18 +138,14 @@
 }
 
 .collegelist-container::-webkit-scrollbar {
-  width: 5px;
+  width: 2px;
   background-color: transparent;
 }
 
 .collegelist-container::-webkit-scrollbar-thumb {
-  background: var(--neutral800);
   border-radius: 50px;
 }
 
-.collegelist-container::-webkit-scrollbar-thumb:hover {
-  background: var(--neutral700);
-}
 
 .collegelist-container::-webkit-scrollbar-corner {
   background: transparent;
@@ -160,8 +157,8 @@
 
 @media (max-width: 768px) {
   .collegelist-container {
-    padding: 20px;
-    border-radius: 20px;
+    padding: 30px;
+    border-radius: 30px;
     width: 100%;
     height: fit-content;
   }
@@ -173,8 +170,8 @@
 
 @media (max-width: 480px) {
   .collegelist-container {
-    padding: 15px;
-    border-radius: 15px;
+    padding: 30px;
+    border-radius: 30px;
     width: 100%;
     height: fit-content;
   }

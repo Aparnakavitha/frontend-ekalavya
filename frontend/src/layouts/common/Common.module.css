@@ -659,7 +659,7 @@
   flex-direction: column;
   background-color: var(--background);
   border-radius: 40px;
-  padding: 45px;
+  padding: 50px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
 }
@@ -684,8 +684,8 @@
 
 @media (max-width: 768px) {
   .adduser-container {
-    padding: 20px;
-    border-radius: 20px;
+    padding: 30px;
+    border-radius: 30px;
     width: 100%;
     height: fit-content;
   }
@@ -701,8 +701,8 @@
 
 @media (max-width: 480px) {
   .adduser-container {
-    padding: 15px;
-    border-radius: 15px;
+    padding: 30px;
+    border-radius: 30px;
     width: 100%;
     height: fit-content;
   }
@@ -714,6 +714,18 @@
   .adduser-form {
     gap: 15px;
   }
+
+  .adduser-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .adduser-name {
+    width: 100%;
+  }
+  
+
 }
 
 /* -------------------------------- AddUser.css ends here -------------------------------- */
