@@ -4,9 +4,9 @@ import styles from "../AboutMe.module.css";
 
 const AboutMe = ({ title, description }) => {
   return (
-    <div className={`${styles["aboutme-aboutSection"]}`}>
-      <div className={`${styles["aboutme-aboutTitle"]}`}>{title}</div>
-      <div className={`${styles["aboutme-aboutText"]}`}>{description}</div>
+    <div className={`${styles["aboutme-aboutsection"]}`}>
+      <div className={`${styles["aboutme-abouttitle"]}`}>{title}</div>
+      <div className={`${styles["aboutme-abouttext"]}`}>{description}</div>
     </div>
   );
 };

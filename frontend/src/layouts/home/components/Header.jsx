@@ -41,7 +41,7 @@ const Header = ({ menuItems, imageSrc, button, type }) => {
             />
           </div>
           {showSidebar ? (
-            <BsX className={`${styles["header-crossIcon"]}`} />
+            <BsX className={`${styles["header-crossicon"]}`} />
           ) : (
             <BsList className={`${styles["header-hamburger"]}`} />
           )}
@@ -61,7 +61,7 @@ const Header = ({ menuItems, imageSrc, button, type }) => {
           type === "link" ? (
             <Link
               key={index}
-              className={`${styles["header-menuItem"]}`}
+              className={`${styles["header-menuitem"]}`}
               to={item.link}
               onClick={() => item.onClick(item.name)}
             >
@@ -70,7 +70,7 @@ const Header = ({ menuItems, imageSrc, button, type }) => {
           ) : (
             <a
               key={index}
-              className={`${styles["header-menuItem"]}`}
+              className={`${styles["header-menuitem"]}`}
               href={item.atag}
               onClick={() => item.onClick(item.name)}
             >

@@ -3,7 +3,7 @@ import { action } from '@storybook/addon-actions';
 import Layout from './SkillLayout';
 
 export default {
-  title: 'Layouts/Student-skill/SkillLayout',
+  title: 'Layouts/Student-skill/Components/SkillLayout',
   component: Layout,
   argTypes: {
     onAddSkill: { action: 'clicked' },

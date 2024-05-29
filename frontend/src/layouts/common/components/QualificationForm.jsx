@@ -72,7 +72,7 @@ const QualificationForm = ({ heading, options, initialValues }) => {
           />
         )}
       />
-      <div className={`${styles["qualification-form-startDateEndDate"]}`}>
+      <div className={`${styles["qualification-form-startdate-enddate"]}`}>
         <div className={`${styles["qualification-form-datebox"]}`}>
           <Controller
             name="startDate"
