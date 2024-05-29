@@ -1,13 +1,13 @@
 /* ------------------------------- AboutMe.module.css starts here ------------------------------- */
 
-.aboutme-aboutSection {
+.aboutme-aboutsection {
   width: 100%;
   gap: 6px;
   display: flex;
   flex-direction: column;
 }
 
-.aboutme-aboutTitle {
+.aboutme-abouttitle {
   font-style: normal;
   font-weight: 600;
   font-size: 24px;
@@ -16,7 +16,7 @@
   color: var(--primary-color);
 }
 
-.aboutme-aboutText {
+.aboutme-abouttext {
   width: 99%;
   font-style: normal;
   font-weight: 500;
@@ -29,23 +29,23 @@
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .aboutme-aboutSection {
+  /* .aboutme-aboutsection {
     padding: 15px;
     gap: 8px;
-  }
+  } */
 
-  .aboutme-aboutText {
+  .aboutme-abouttext {
     padding-left: 8px;
   }
 }
 
 @media (max-width: 767px) {
-  .aboutme-aboutSection {
+  /* .aboutme-aboutsection {
     padding: 10px;
     gap: 10px;
-  }
+  } */
 
-  .aboutme-aboutText {
+  .aboutme-abouttext {
     padding-left: 5px;
   }
 }

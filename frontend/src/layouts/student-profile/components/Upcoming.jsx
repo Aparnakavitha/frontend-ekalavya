@@ -23,10 +23,10 @@ const Upcoming = (props) => {
       date: 16,
     },
     {
-      main: "Ted Talk: Microservices",
+      main: "Ted Talk: Microservices Architecture",
       sub: "http://www.zoom.com",
-      start: "10am",
-      end: "12pm",
+      start: "10:30am",
+      end: "12:30pm",
       status: "happening",
       date: 21,
     },
