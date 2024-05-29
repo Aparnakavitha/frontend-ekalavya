@@ -1,6 +1,61 @@
 /* ------------------------------- Hero.css starts here ------------------------------- */
 
-.hero-mainContent {
+.hero-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-container-section {
+  position: relative;
+}
+
+.hero-image-container {
+  position: relative;
+}
+
+.hero-image1 {
+  position: absolute;
+  left: 30px;
+  top: -200px;
+}
+
+.hero-image2 {
+  position: absolute;
+  top: -10px;
+  left: -14px;
+}
+
+.hero-image3 {
+  position: absolute;
+  top: -60px;
+  left: 20px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-image4 {
+  position: absolute;
+  top: -22px;
+  left: 295px;
+  animation: spin 4s linear infinite;
+}
+
+.hero-image5 {
+  position: absolute;
+  top: 90px;
+  left: 200px;
+}
+
+.hero-main-content {
   font-weight: 900;
   color: var(--white);
   font-size: 96px;
@@ -9,14 +64,14 @@
   line-height: 86.875%;
 }
 
-.hero-textColumn {
+.hero-text-column {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
 }
 
-.hero-mainContent2 {
+.hero-main-content2 {
   font-weight: 900;
   color: var(--primary-color);
   font-size: 96px;
@@ -25,7 +80,7 @@
   line-height: 86.875%;
 }
 
-.hero-semiContent {
+.hero-semi-content {
   font-size: 32px;
   font-weight: 500;
   text-align: center;
@@ -34,7 +89,7 @@
   color: var(--white);
 }
 
-.hero-contentColumn {
+.hero-content-column {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,9 +97,12 @@
 
 .hero-buttondiv {
   width: 25%;
+  min-width: 140px;
 }
 
 .hero-contentbuttondiv {
+  padding-top: 20vh;
+  justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +116,7 @@
   align-items: center;
 }
 
-.hero-firstTwo {
+.hero-first-two {
   border-right: 2px solid var(--white);
   padding-right: 25px;
 }
@@ -85,13 +143,22 @@
   justify-content: center;
 }
 
+@media (max-width: 1132px) and (min-width: 993px) {
+  .hero-image3 {
+    display: none;
+  }
+
+  .hero-image5 {
+    display: none;
+  }
+}
 @media (min-width: 768px) and (max-width: 992px) {
-  .hero-mainContent,
-  .hero-mainContent2 {
+  .hero-main-content,
+  .hero-main-content2 {
     font-size: 64px;
   }
 
-  .hero-semiContent {
+  .hero-semi-content {
     font-size: 24px;
   }
 
@@ -106,19 +173,32 @@
   .hero-title {
     font-size: 16px;
   }
+
+  .hero-image4 {
+    position: absolute;
+    top: -22px;
+    left: 190px;
+  }
+
+  .hero-image5 {
+    position: absolute;
+    top: 60px;
+    left: 120px;
+  }
 }
 
 @media (max-width: 767px) and (min-width: 426px) {
-  .hero-mainContent,
-  .hero-mainContent2 {
+  .hero-main-content,
+  .hero-main-content2 {
     font-size: 64px;
   }
 
-  .hero-semiContent {
+  .hero-semi-content {
     font-size: 24px;
   }
 
   .hero-contentbuttondiv {
+    padding-left: 6vw;
     gap: 24px;
   }
 
@@ -129,23 +209,55 @@
   .hero-title {
     font-size: 20px;
   }
+
+  .hero-image1 {
+    left: 20px;
+    top: -180px;
+    transform: scale(0.7);
+  }
+
+  .hero-image2 {
+    top: -12px;
+    transform: scale(0.8);
+  }
+
+  .hero-image3 {
+    display: none;
+  }
+
+  .hero-image5 {
+    display: none;
+  }
+
+  .hero-image4 {
+    position: absolute;
+    top: -22px;
+    left: 190px;
+    transform: scale(0.7);
+  }
 }
 
 @media (max-width: 425px) {
-  .hero-mainContent,
-  .hero-mainContent2 {
+  .hero-main-content,
+  .hero-main-content2 {
     font-size: 56px;
   }
 
-  .hero-semiContent {
+  .hero-container{
+    overflow: hidden;
+  }
+
+  .hero-semi-content {
     font-size: 22px;
   }
 
   .hero-contentbuttondiv {
+    padding-left: 6vw;
+    padding-bottom: 5vw;
     gap: 24px;
   }
 
-  .hero-semiContent {
+  .hero-semi-content {
     text-align: start;
   }
 
@@ -157,18 +269,20 @@
     font-size: 20px;
   }
 
-  .hero-textColumn {
+  .hero-text-column {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .hero-contentColumn {
+  .hero-content-column {
     align-items: flex-start;
     gap: 10px;
   }
 
   .hero-contentbuttondiv {
     align-items: flex-start;
+    padding-top: 0;
+    padding-left: 6vw;
   }
 
   .hero-statidiv {
@@ -176,7 +290,7 @@
     flex-direction: column;
   }
 
-  .hero-firstTwo {
+  .hero-first-two {
     border-right: none;
     padding-right: none;
   }
@@ -189,11 +303,39 @@
   .hero-statidiv {
     gap: 10px;
   }
+
+  .hero-image2,
+  .hero-image3,
+  .hero-image5 {
+    display: none;
+  }
+
+  .hero-image4 {
+    top: -200px;
+    left: 0px;
+    transform: scale(5);
+    animation: spin 6s linear infinite;
+  }
+
+  .hero-image4 img {
+    top: -200px;
+    left: 0px;
+    transform: scale(5);
+    animation: spin 6s linear infinite;
+  }
+
+  .hero-image1 {
+    overflow: hidden;
+    top: 360px;
+    left: 180px;
+    transform: rotate(60deg) scale(1.5);
+  }
+  
 }
 
 /* ------------------------------- Hero.css ends here ------------------------------- */
 
-/* ----------------------------------------carousel.css starts here------------------------------------------------ */
+/* --------------------------------carousel.css starts here----------------------------- */
 
 .carouselHeader {
   text-align: center;
@@ -272,6 +414,11 @@
   }
 
   .carouselHeading {
+    text-align: left;
+    padding-left: 6vw;
+  }
+
+  .carouselHeading {
     font-size: 20px;
   }
 }
@@ -300,26 +447,25 @@
   }
 }
 
-/* ----------------------------------------carousel.css ends here------------------------------------------------ */
+/* ------------------------------- carousel.css ends here---------------------------------- */
 
 /* ------------------------------- Partners.css starts here ------------------------------- */
 
-.Partners-container {
+.partners-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
-.Partners-title {
+.partners-title {
   font-size: 13px;
   color: var(--primary-color);
   margin-bottom: 10px;
   text-align: center;
 }
 
-.Partners-Icons {
+.partners-Icons {
   display: flex;
   gap: 75px;
   justify-content: center;
@@ -327,10 +473,27 @@
   flex-wrap: wrap;
 }
 
-.Partners.profileImage{
+.partners.profileImage {
   width: 200px;
   aspect-ratio: 3/2;
   object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .partners-container {
+    text-align: left;
+    padding-left: 6vw;
+    align-items: flex-start;
+    padding-bottom: 5vw;
+  }
+
+  .partners-Icons {
+    display: flex;
+    gap: 75px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
 }
 
 /* ------------------------------- Partners.css ends here ------------------------------- */

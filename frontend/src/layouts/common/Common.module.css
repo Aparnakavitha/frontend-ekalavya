@@ -137,7 +137,11 @@
     padding-top: 26px;
 }
 
+<<<<<<< HEAD
 .footer-container-left {
+=======
+.footer-containerLeft {
+>>>>>>> 13f45fbe2dadce431463de8e2596cd859c944dbf
     display: flex;
     flex-direction: column;
     gap: 40px;

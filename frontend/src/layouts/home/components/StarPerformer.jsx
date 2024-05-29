@@ -30,6 +30,13 @@ const StarPerformer = ({ studentProfiles, heading }) => {
     studentChunks.push(studentProfiles.slice(i, i + chunkSizeStudent));
   }
 
+  const handleArrow = () => {
+    const arrows = document.querySelectorAll(".carousel .control-arrow");
+    arrows.forEach((arrow) => {
+      arrow.style.background = "none";
+    });
+  };
+
   const handleDots = () => {
     const dots = document.querySelectorAll(".carousel .control-dots .dot");
     dots.forEach((dot, idx) => {
@@ -40,6 +47,7 @@ const StarPerformer = ({ studentProfiles, heading }) => {
   };
 
   useEffect(() => {
+    handleArrow();
     handleDots();
   }, [studentProfiles, chunkSizeStudent]);
 

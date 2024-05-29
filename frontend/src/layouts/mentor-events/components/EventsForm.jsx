@@ -7,17 +7,15 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
  
 const EventForm = () => {
   const { handleSubmit, control, watch, setValue } = useForm({
-    defaultValues: {
-      eventMode: "Offline",
-      location: "",
-    },
   });
  
   const [eventMode, setEventMode] = useState("Offline");
  
   const onSubmit = (data) => {
     if (data.eventMode === "Online") {
-      if (data.location) {
+      if (!data.location) {
+        data.link = "";
+      } else {
         data.link = data.location;
       }
       delete data.location;
@@ -74,13 +72,6 @@ const EventForm = () => {
                 placeholder="Event Mode"
                 options={options}
                 className={`${styles["eventform-eventMode"]}`}
-                value={options.find(
-                  (option) => option.value === selectedEventMode
-                )}
-                onChange={(option) => {
-                  field.onChange(option.value);
-                  handleEventModeChange(option);
-                }}
               />
             )}
           />
