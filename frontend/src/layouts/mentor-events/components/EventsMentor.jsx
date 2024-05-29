@@ -25,8 +25,6 @@ const EventsMentor = (props) => {
   return (
     <div className={`${styles["EventsMentor-container"]}`}>
       <div className={`${styles["EventsMentor-topleft"]}`}>
-        {/* <button className={styles.backbutton}>Back</button>
-        <button className={styles.backbutton}>Back</button> */}
         <div className={`${styles["EventsMentor-navbutton"]}`}>
           <div>
             <NavButton pageName={button} />
@@ -79,9 +77,7 @@ const EventsMentor = (props) => {
                 <div>
                   <div className={`${styles["EventsMentor-primarydiv"]}`}>
                     <PrimaryButton content={large} variant="secondary" />
-
                     <PrimaryButton content={medium} variant="secondary" />
-
                     <PrimaryButton content={small} variant="secondary" />
                   </div>
                 </div>
@@ -104,8 +100,8 @@ const EventsMentor = (props) => {
                 <h3>Date and Time</h3>
               </div>
               <div className={`${styles["EventsMentor-timer"]}`}>
-                <a className={`${styles["EventsMentor-date"]}`}>{date}</a>
-                <a className={`${styles["EventsMentor-time"]}`}>{time}</a>
+                <a className={`${styles["EventsMentor-date"]}`}>• <b>Date :</b>{date}</a>
+                <a className={`${styles["EventsMentor-time"]}`}>• <b>Time :</b>{time}</a>
               </div>
             </div>
 
@@ -114,8 +110,8 @@ const EventsMentor = (props) => {
                 <h3>Location</h3>
               </div>
               <div className={`${styles["EventsMentor-timer"]}`}>
-                <a className={`${styles["EventsMentor-venue"]}`}>{venue}</a>
-                <a className={`${styles["EventsMentor-address"]}`}>{address}</a>
+                <a className={`${styles["EventsMentor-venue"]}`}>• <b>Venue :</b> {venue}</a>
+                <a className={`${styles["EventsMentor-address"]}`}>• <b>Address :</b> {address}</a>
               </div>
             </div>
           </div>
@@ -125,7 +121,7 @@ const EventsMentor = (props) => {
               <h3>Speakers</h3>
             </div>
             <div>
-              <a className={`${styles["EventsMentor-speaker"]}`}>{speaker}</a>
+              <a className={`${styles["EventsMentor-speaker"]}`}>• {speaker}</a>
             </div>
           </div>
 
@@ -133,9 +129,8 @@ const EventsMentor = (props) => {
             <>
               <div>
                 <h3>Organizer</h3>
-
                 <div>
-                  <a className={`${styles["EventsMentor-speaker"]}`}>{speaker}</a>
+                  <a className={`${styles["EventsMentor-speaker"]}`}>• {speaker}</a>
                 </div>
               </div>
             </>
