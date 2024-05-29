@@ -241,47 +241,47 @@ h3{
     gap: 17px;
   }
    
-  .eventform-eventTitleDiv {
+  .eventform-eventtitlediv {
     width: 80%;
   }
    
-  .eventform-eventModeDiv {
+  .eventform-eventmodediv {
     width: 20%;
   }
    
-  .eventform-eventTitleMode {
+  .eventform-eventtitlemode {
     display: flex;
     justify-content: space-between;
     gap: 2%;
   }
    
-  .eventform-dateTimeContainer {
+  .eventform-datetimecontainer {
     display: flex;
     justify-content: space-between;
     gap: 2%;
   }
    
-  .eventform-dateTimeContainer .input-container {
+  .eventform-datetimecontainer .input-container {
     flex: 1;
   }
    
-  .eventform-dateTime {
+  .eventform-datetime {
     width: 100%;
   }
    
-  .eventform-buttonContainer {
+  .eventform-buttoncontainer {
     display: flex;
     width: 24%;
   }
    
-  .eventform-buttonDiv {
+  .eventform-buttondiv {
     display: flex;
     justify-content: flex-end;
   }
    
-  .eventform-eventTitle,
-  .eventform-eventMode,
-  .eventform-eventType,
+  .eventform-eventtitle,
+  .eventform-eventmode,
+  .eventform-eventtype,
   .eventform-description,
   .eventform-location,
   .eventform-speaker,
@@ -290,21 +290,21 @@ h3{
   }
    
   @media (min-width: 769) and (max-width: 992px) {
-    .eventform-dateTimeContainer {
+    .eventform-datetimecontainer {
       flex-direction: row;
       flex-wrap: wrap;
     }
    
-    .eventform-dateTimeContainer .input-container {
+    .eventform-datetimecontainer .input-container {
       flex: 1 1 48%;
     }
    
-    .eventform-eventTitleMode {
+    .eventform-eventtitlemode {
       flex-direction: row;
       flex-wrap: wrap;
     }
    
-    .eventform-eventTitleMode .input-container {
+    .eventform-eventtitlemode .input-container {
       flex: 1 1 48%;
     }
   }
@@ -314,33 +314,33 @@ h3{
       width: 100%;
     }
    
-    .eventform-dateTimeContainer {
+    .eventform-datetimecontainer {
       flex-direction: column;
       gap: 17px;
     }
    
-    .eventform-dateTimeContainer .input-container {
+    .eventform-datetimecontainer .input-container {
       width: 100%;
     }
    
-    .eventform-eventTitleMode {
+    .eventform-eventtitlemode {
       flex-direction: column;
       gap: 17px;
     }
    
-    .eventform-eventTitleMode .input-container {
+    .eventform-eventtitlemode .input-container {
       width: 100%;
     }
    
-    .eventform-eventTitleDiv {
+    .eventform-eventtitlediv {
       width: 100%;
     }
    
-    .eventform-eventModeDiv {
+    .eventform-eventmodediv {
       width: 100%;
     }
    
-    .eventform-buttonContainer {
+    .eventform-buttoncontainer {
       width: 100%;
     }
   }
