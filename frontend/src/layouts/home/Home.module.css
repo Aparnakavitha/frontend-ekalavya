@@ -320,10 +320,10 @@
     animation: spin 6s linear infinite;
   }
 
-  .hero-image1{
+  .hero-image1 {
     top: 360px;
-  left: 180px;
-  transform: rotate(60deg) scale(1.5);
+    left: 180px;
+    transform: rotate(60deg) scale(1.5);
   }
 }
 
@@ -331,23 +331,23 @@
 
 /* --------------------------------carousel.css starts here----------------------------- */
 
-.carouselHeader {
+.carousel-header {
   text-align: center;
 }
 
-.starPerformer .carouselHeader,
-.testimonials .carouselHeader {
+.starperformer .carousel-header,
+.testimonials .carousel-header {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.chunk {
+.carousel-chunk {
   display: flex;
   justify-content: center;
 }
 
-.projects .chunk {
+.projects .carousel-chunk {
   max-width: 916px;
   gap: 320px;
   margin-right: 280px;
@@ -355,88 +355,101 @@
   margin-bottom: 25%;
 }
 
-.starPerformer .chunk {
+.starperformer .carousel-chunk {
   margin-right: 60px;
   gap: 80px;
   margin-bottom: 60px;
 }
 
-.testimonials .chunk {
+.testimonials .carousel-chunk {
   gap: 15px;
   margin-bottom: 60px;
 }
 
-.carouselHeading {
+.carousel-heading {
   display: flex;
   flex-direction: column;
   gap: 0px;
   font-size: 24px;
 }
 
-.carouselHeading2 {
+.carousel-heading2 {
   color: var(--white);
   font-weight: 400;
 }
 
-.carouselHeading1 {
+.carousel-heading1 {
   color: var(--primary-color);
   font-weight: 600;
   line-height: 90%;
   margin-bottom: 25px;
 }
 
-.carouselWrapper {
+.carousel-wrapper {
   margin: 0 auto;
 }
 
-.projects .carouselWrapper {
+.projects .carousel-wrapper {
   max-width: 1028px;
 }
 
-.starPerformer .carouselWrapper {
+.starperformer .carousel-wrapper {
   max-width: 1051px;
 }
 
-.testimonials .carouselWrapper {
+.testimonials .carousel-wrapper {
   max-width: 1148px;
 }
 
 @media (max-width: 767px) {
-  .testimonials .carouselWrapper,
-  .starPerformer .carouselWrapper {
+  .testimonials .carousel-wrapper {
+    width: 320px;
+  }
+
+  .starperformer .carousel-wrapper {
     width: 302px;
   }
 
-  .carouselHeading {
+  .carousel-heading {
     text-align: left;
     padding-left: 6vw;
-  }
-
-  .carouselHeading {
     font-size: 20px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .starPerformer .carouselWrapper {
+  .testimonials .carousel-wrapper {
+    width: 650px;
+  }
+
+  .starperformer .carousel-wrapper {
     width: 600px;
   }
 
-  .projects .chunk {
+  .projects .carousel-wrapper {
+    width: 750px;
+  }
+
+  .projects .carousel-chunk {
     margin-bottom: 32%;
   }
 }
 
 @media (min-width: 414px) and (max-width: 767px) {
-  .projects .chunk {
+  .projects .carousel-chunk {
     max-width: 302px;
     margin-bottom: 65%;
   }
 }
 
 @media (max-width: 413px) {
-  .projects .chunk {
-    margin-right: 100%;
+  .testimonials .carousel-wrapper {
+    margin-left: -16px;
+  }
+
+  .projects .carousel-chunk {
+    max-width: 302px;
+    margin-right: 290px;
     margin-bottom: 85%;
   }
 }

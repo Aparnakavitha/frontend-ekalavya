@@ -6,16 +6,20 @@ import styles from "../Home.module.css";
 
 const StarPerformer = ({ studentProfiles, heading }) => {
   const [chunkSizeStudent, setChunkSizeStudent] = useState(3);
+  const [showArrows, setShowArrows] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       if (windowWidth <= 767) {
         setChunkSizeStudent(1);
+        setShowArrows(false);
       } else if (windowWidth >= 768 && windowWidth <= 992) {
         setChunkSizeStudent(2);
+        setShowArrows(true);
       } else {
         setChunkSizeStudent(4);
+        setShowArrows(true);
       }
     };
 
@@ -34,6 +38,12 @@ const StarPerformer = ({ studentProfiles, heading }) => {
     const arrows = document.querySelectorAll(".carousel .control-arrow");
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
+      arrow.style.bottom = "17%";
+      if (!showArrows) {
+        arrow.style.display = "none";
+      } else {
+        arrow.style.display = "block";
+      }
     });
   };
 
@@ -52,21 +62,22 @@ const StarPerformer = ({ studentProfiles, heading }) => {
   }, [studentProfiles, chunkSizeStudent]);
 
   return (
-    <div className={`${styles.carouselHeader} ${styles.starPerformer}`}>
-      <div className={styles.carouselHeading}>
-        <a className={styles.carouselHeading1}>{heading}</a>
+    <div className={`${styles["carousel-header"]} ${styles["starperformer"]}`}>
+      <div className={`${styles["carousel-heading"]}`}>
+        <a className={`${styles["carousel-heading1"]}`}>{heading}</a>
       </div>
-      <div className={styles.carouselWrapper}>
+      <div className={`${styles["carousel-wrapper"]}`}>
         <Carousel
           showThumbs={false}
           infiniteLoop
           useKeyboardArrows
+          swipeable
           showStatus={false}
           onChange={handleDots}
           onInitialized={handleDots}
         >
           {studentChunks.map((chunk, chunkIndex) => (
-            <div key={chunkIndex} className={styles.chunk}>
+            <div key={chunkIndex} className={`${styles["carousel-chunk"]}`}>
               {chunk.map((student, index) => (
                 <StudentCard
                   key={index}

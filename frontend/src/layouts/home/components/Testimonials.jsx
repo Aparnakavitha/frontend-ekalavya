@@ -6,16 +6,20 @@ import styles from "../Home.module.css";
 
 const Testimonials = ({ testimonials, heading }) => {
   const [chunkSizeTestimonial, setChunkSizeTestimonial] = useState(4);
+  const [showArrows, setShowArrows] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       if (windowWidth <= 767) {
         setChunkSizeTestimonial(1);
+        setShowArrows(false);
       } else if (windowWidth >= 768 && windowWidth <= 992) {
         setChunkSizeTestimonial(2);
+        setShowArrows(true);
       } else {
         setChunkSizeTestimonial(4);
+        setShowArrows(true);
       }
     };
 
@@ -34,6 +38,12 @@ const Testimonials = ({ testimonials, heading }) => {
     const arrows = document.querySelectorAll(".carousel .control-arrow");
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
+      arrow.style.bottom = "25%";
+      if (!showArrows) {
+        arrow.style.display = "none";
+      } else {
+        arrow.style.display = "block";
+      }
     });
   };
 
@@ -52,21 +62,22 @@ const Testimonials = ({ testimonials, heading }) => {
   }, [testimonials, chunkSizeTestimonial]);
 
   return (
-    <div className={`${styles.carouselHeader} ${styles.testimonials}`}>
-      <div className={styles.carouselHeading}>
-        <a className={styles.carouselHeading1}>{heading}</a>
+    <div className={`${styles["carousel-header"]} ${styles["testimonials"]}`}>
+      <div className={`${styles["carousel-heading"]}`}>
+        <a className={`${styles["carousel-heading1"]}`}>{heading}</a>
       </div>
-      <div className={styles.carouselWrapper}>
+      <div className={`${styles["carousel-wrapper"]}`}>
         <Carousel
           showThumbs={false}
           infiniteLoop
           useKeyboardArrows
+          swipeable
           showStatus={false}
           onChange={handleDots}
           onInitialized={handleDots}
         >
           {testimonialChunks.map((chunk, chunkIndex) => (
-            <div key={chunkIndex} className={styles.chunk}>
+            <div key={chunkIndex} className={`${styles["carousel-chunk"]}`}>
               {chunk.map((testimonial, index) => (
                 <TestimonialCard
                   key={index}
