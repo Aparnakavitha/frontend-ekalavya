@@ -1,23 +1,23 @@
 /* --------------------------mentorskillsearch.css---------------------------------------- */
 
-.skillsHeading {
+.skillsearch-skillsheading {
     font-size: 28px;
     color: var(--primary-color);
 }
 
-.subHeading {
+.skillsearch-subheading {
     font-size: 18px;
     color: var(--white);
     margin-bottom: 20px;
 }
 
-.skillsSearch {
+.skillsearch-skillssearch {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.cardContainer {
+.skillsearch-cardcontainer {
     margin-top: 20px;
     width: 100%;
 
@@ -25,33 +25,33 @@
 
 @media (max-width: 767px) {
 
-    .skillsHeading {
+    .skillsearch-skillsheading {
         font-size: 24px;
     }
 
-    .subHeading {
+    .skillsearch-subheading {
         font-size: 16px;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
 
-    .skillsHeading {
+    .skillsearch-skillsheading {
         font-size: 26px;
     }
 
-    .subHeading {
+    .skillsearch-subheading {
         font-size: 17px;
     }
 }
 
 @media (min-width: 992px) {
 
-    .skillsHeading {
+    .skillsearch-skillsheading {
         font-size: 28px;
     }
 
-    .subHeading {
+    .skillsearch-subheading {
         font-size: 18px;
     }
 }
