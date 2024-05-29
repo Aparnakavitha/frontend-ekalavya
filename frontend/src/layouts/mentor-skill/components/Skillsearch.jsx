@@ -16,12 +16,12 @@ const Skillsearch = () => {
     };
 
     return (
-        <div className={styles.skillsSearch}>
-            <h1 className={styles.skillsHeading}>Skills</h1>
-            <p className={styles.subHeading}>add skills to students</p>
-            <div className={styles.searchbar}><SearchBar placeholder="Student Name/Student ID" onSearch={(query) => console.log(query)} /></div>
+        <div className={`${styles["skillsearch-skillssearch"]}`}>
+            <h1 className={`${styles["skillsearch-skillsheading"]}`}>Skills</h1>
+            <p className={`${styles["skillsearch-subheading"]}`}>add skills to students</p>
+            <div className={`${styles["skillsearch-searchbar"]}`}><SearchBar placeholder="Student Name/Student ID" onSearch={(query) => console.log(query)} /></div>
 
-            <div className={styles.cardContainer}>
+            <div className={`${styles["skillsearch-cardcontainer"]}`}>
                 <Card {...skillcard} />
             </div>
         </div>
