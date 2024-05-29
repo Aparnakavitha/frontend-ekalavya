@@ -22,13 +22,13 @@ const UpdateSingleField = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${styles["addStudent-form"]}`}
+      className={`${styles["addstudent-form"]}`}
     >
-      <div className={`${styles["addStudent-containerOne"]}`}>
-        <header className={`${styles["addStudent-head"]}`}>
+      <div className={`${styles["addstudent-containerone"]}`}>
+        <header className={`${styles["addstudent-head"]}`}>
           {mainHeading}
         </header>
-        <div className={`${styles["addStudent-containerInput"]}`}>
+        <div className={`${styles["addstudent-containerinput"]}`}>
           <Controller
             name="inputData"
             control={control}
@@ -43,7 +43,7 @@ const UpdateSingleField = ({
           />
         </div>
       </div>
-      <div className={`${styles["addStudent-buttonContainer"]}`}>
+      <div className={`${styles["addstudent-buttoncontainer"]}`}>
         <PrimaryButton variant="primary" content={buttonTitle} width="full" />
       </div>
     </form>

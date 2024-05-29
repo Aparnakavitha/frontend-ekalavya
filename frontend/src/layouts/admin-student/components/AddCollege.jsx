@@ -12,13 +12,13 @@ const AddCollege = () => {
   };
 
   return (
-    <div className={`${styles["addCollege-container"]}`}>
+    <div className={`${styles["addcollege-container"]}`}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={`${styles["addCollege-form"]}`}
+        className={`${styles["addcollege-form"]}`}
       >
-        <div className={`${styles["addCollege-formgroup"]}`}>
-          <div className={`${styles["addCollege-head"]}`}>Add College</div>
+        <div className={`${styles["addcollege-formgroup"]}`}>
+          <div className={`${styles["addcollege-head"]}`}>Add College</div>
           <div className={styles.field}>
             <Controller
               name="collegename"

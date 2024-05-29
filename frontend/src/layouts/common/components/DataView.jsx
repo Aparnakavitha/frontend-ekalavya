@@ -58,15 +58,15 @@ const DataView = ({
   return (
     <div>
       {toggle && (
-        <div className={`${styles["dataview-toggleContainer"]}`}>
+        <div className={`${styles["dataview-togglecontainer"]}`}>
           <button
-            className={`${styles["dataview-toggleButton"]} ${isCardView ? styles.selected : ""}`}
+            className={`${styles["dataview-togglebutton"]} ${isCardView ? styles.selected : ""}`}
             onClick={showCardView}
           >
             <PiCards className={`${styles["dataview-icons"]}`} />
           </button>
           <button
-            className={`${styles["dataview-toggleButton"]} ${!isCardView ? styles.selected : ""}`}
+            className={`${styles["dataview-togglebutton"]} ${!isCardView ? styles.selected : ""}`}
             onClick={showTableView}
           >
             <PiListBullets className={`${styles["dataview-icons"]}`} />
