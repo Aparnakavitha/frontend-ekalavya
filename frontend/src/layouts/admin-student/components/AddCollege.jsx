@@ -28,7 +28,7 @@ const AddCollege = () => {
                   {...field}
                   label="College Name"
                   size="normal"
-                  placeholders={["college name"]}
+                  placeholders={["College name"]}
                 />
               )}
             />
@@ -42,7 +42,7 @@ const AddCollege = () => {
                   {...field}
                   label="Place"
                   size="normal"
-                  placeholders={["place"]}
+                  placeholders={["Place"]}
                 />
               )}
             />
@@ -56,7 +56,7 @@ const AddCollege = () => {
                   {...field}
                   label="District"
                   size="normal"
-                  placeholders={["district"]}
+                  placeholders={["District"]}
                 />
               )}
             />
@@ -70,7 +70,7 @@ const AddCollege = () => {
                   {...field}
                   label="State"
                   size="normal"
-                  placeholders={["state"]}
+                  placeholders={["State"]}
                 />
               )}
             />
@@ -84,7 +84,7 @@ const AddCollege = () => {
                   {...field}
                   label="Country"
                   size="normal"
-                  placeholders={["country"]}
+                  placeholders={["Country"]}
                 />
               )}
             />

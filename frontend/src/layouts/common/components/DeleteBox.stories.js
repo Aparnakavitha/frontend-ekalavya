@@ -1,15 +1,15 @@
 import React from "react";
-import Deletebox from "./DeleteBox";
+import DeleteBox from "./DeleteBox";
 
 export default {
   title: "Layouts/Common/Components/DeleteBox",
-  component: Deletebox,
+  component: DeleteBox,
 };
 
-const Template = (args) => <Deletebox {...args} />;
+const Template = (args) => <DeleteBox {...args} />;
 
-export const DeleteBox = Template.bind({});
-DeleteBox.args = {
+export const Deletebox = Template.bind({});
+Deletebox.args = {
   title: "Confirmation Required",
   message: "Are you sure you want to remove this skill?",
   buttonText: "Confirm",
