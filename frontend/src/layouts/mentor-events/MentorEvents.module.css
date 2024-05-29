@@ -1,18 +1,18 @@
 /* ------------------------------- EventsMentor.css starts here ------------------------------- */
 
-.EventsMentor-container {
+.eventsmentor-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.EventsMentor-topleft {
+.eventsmentor-topleft {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.EventsMentor-backbutton {
+.eventsmentor-backbutton {
     padding: 10px 20px;
     background-color: #007BFF;
     color: white;
@@ -21,26 +21,26 @@
     cursor: pointer;
 }
 
-.EventsMentor-backbutton:hover {
+.eventsmentor-backbutton:hover {
     background-color: #0056b3;
 }
 
-.EventsMentor-content{
+.eventsmentor-content{
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
 
-.EventsMentor-texted{
+.eventsmentor-texted{
     display: flex;
     flex-direction: column;
 }
 
-.EventsMentor-text{
+.eventsmentor-text{
     color: var(--white);
 }
 
-.EventsMentor-texts{
+.eventsmentor-texts{
     color: var(--white);   
 }
 
@@ -53,73 +53,73 @@ h3{
     color: var(--primary-color);
 }
 
-.EventsMentor-description{
+.eventsmentor-description{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.EventsMentor-desc{
+.eventsmentor-desc{
     color: var(--white);
 }
 
-.EventsMentor-date{
+.eventsmentor-date{
     color: var(--white);
 }
 
-.EventsMentor-gap{
+.eventsmentor-gap{
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.EventsMentor-time{
+.eventsmentor-time{
     color: var(--white);
 }
 
-.EventsMentor-timer{
+.eventsmentor-timer{
     display: flex;
     flex-direction: column;
 }
 
-.EventsMentor-venue{
+.eventsmentor-venue{
     color: var(--white);
 }
 
-.EventsMentor-address{
+.eventsmentor-address{
     color: var(--white);
 }
 
-.EventsMentor-align{
+.eventsmentor-align{
     display: flex;
     flex-direction: row;
     gap: 100px;
 }
 
-.EventsMentor-speaker{
+.eventsmentor-speaker{
     color: var(--white);
 }
 
-.EventsMentor-navbutton{
+.eventsmentor-navbutton{
     display: flex;
     flex-direction: row;
     gap: 20px;
 }
 
-.EventsMentor-primarybutton{
+.eventsmentor-primarybutton{
     display: flex;
     flex-direction: row-reverse;
     gap: 20px;
 }
 
-.EventsMentor-buttondiv{
+.eventsmentor-buttondiv{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
 }
 
-.EventsMentor-primarydiv{
+.eventsmentor-primarydiv{
     display: flex;
     justify-content:right;
     gap: 20px;
@@ -127,24 +127,24 @@ h3{
     left: 20px;   
 }
 
-.EventsMentor-buttondiv2{
+.eventsmentor-buttondiv2{
     display: flex;
     justify-content: space-between;
 }
 
 @media only screen and (max-width: 480px) {  
-    .EventsMentor-topleft {
+    .eventsmentor-topleft {
         flex-direction: column;
         align-items: center;
         gap: 10px;
     }
 
-    .EventsMentor-align {
+    .eventsmentor-align {
         flex-direction: column;
         gap: 20px;
     }
     
-    .EventsMentor-primarydiv {
+    .eventsmentor-primarydiv {
         display: flex;
         justify-content: center;
         gap: 10px;
@@ -153,24 +153,24 @@ h3{
         align-items: flex-start;
     }
 
-    .EventsMentor-buttondiv2{
+    .eventsmentor-buttondiv2{
         flex-direction: column;
     } 
 }
 
 @media (min-width: 601px) and (max-width: 768px) {  
-    .EventsMentor-topleft {
+    .eventsmentor-topleft {
         flex-direction: column;
         align-items: center;
         gap: 10px;
     }
 
-    .EventsMentor-align {
+    .eventsmentor-align {
         flex-direction: column;
         gap: 20px;
     }
 
-    .EventsMentor-primarydiv {
+    .eventsmentor-primarydiv {
         position: static;
         justify-content: center;
         margin-top: 20px;
@@ -180,17 +180,17 @@ h3{
 }
 
 @media (min-width: 769px) and (max-width: 1024px) { 
-    .EventsMentor-topleft {
+    .eventsmentor-topleft {
         flex-direction: row;
         justify-content: space-between;
     }
 
-    .EventsMentor-align {
+    .eventsmentor-align {
         flex-direction: row;
         gap: 50px;
     }
 
-    .EventsMentor-primarydiv {
+    .eventsmentor-primarydiv {
         position: static;
         justify-content: flex-end;
     }
@@ -200,29 +200,52 @@ h3{
 
 /* ------------------------------- EventsTable.css starts here ------------------------------- */
 
-.EventsTable-container{
+.eventstable-container{
     display:flex;
     flex-direction: column;
     align-items: flex-start;
     overflow-x: hidden;
 }
 
-.EventsTable-topleft {
+.eventstable-topleft {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.EventsTable-font{
+.eventstable-font{
     color: var(--primary-color);
     text-decoration: underline;
 }
 
-.EventsTable-table{
+.eventstable-table{
     width: 100%;
     overflow-x: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--neutral600) #ffffff00;
+}
+
+.eventstable-table {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align items to the right */
+}
+
+.global-attendance-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Move content to the right */
+  gap: 8px;
+}
+
+.select-all-text {
+  font-weight: bold;
+  color: var(--white);
+}
+
+.global-attendance-buttons {
+  display: flex;
+  gap: 4px;
 }
 
 /* ------------------------------- EventsTable.css ends here ------------------------------- */

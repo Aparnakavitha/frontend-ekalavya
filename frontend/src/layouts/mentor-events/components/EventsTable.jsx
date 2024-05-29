@@ -2,17 +2,14 @@ import React, { useState } from "react";
 import styles from "../MentorEvents.module.css";
 import Table from "../../../components/table/Table";
 import AttendanceButton from "../../../components/buttons/AttendanceButton";
- 
 const EventsTable = (props) => {
   const { data, headings, logAttendance } = props;
- 
   const [attendance, setAttendance] = useState(
     data.reduce((acc, [id, name, email]) => {
       acc[id] = null;
       return acc;
     }, {})
   );
- 
   const handleAttendanceClick = (id, isPresent) => {
     setAttendance((prev) => {
       const updatedAttendance = {
@@ -23,24 +20,26 @@ const EventsTable = (props) => {
       return updatedAttendance;
     });
   };
- 
   const handleGlobalAttendanceClick = (isPresent) => {
-    const newAttendance = {};
-    for (const id in attendance) {
-      newAttendance[id] = isPresent;
-    }
-    setAttendance(newAttendance);
-    logAttendance(newAttendance);
+    setAttendance((prev) => {
+      const newAttendance = {};
+      const shouldDeselect = Object.values(prev).every(
+        (value) => value === isPresent
+      );
+      for (const id in prev) {
+        newAttendance[id] = shouldDeselect ? null : isPresent;
+      }
+      logAttendance(newAttendance);
+      return newAttendance;
+    });
   };
- 
   const allPresent = Object.values(attendance).every((value) => value === true);
   const allAbsent = Object.values(attendance).every((value) => value === false);
- 
   const tableData = data.map(([id, name, email]) => [
     id,
     name,
     email,
-    <div style={{ display: "flex", width: "50px", gap: "2px" }}>
+    <div style={{ display: "flex", width: "50px", gap: "2px" }} key={id}>
       <AttendanceButton
         content="Present"
         IsPresent={attendance[id] === true}
@@ -55,40 +54,38 @@ const EventsTable = (props) => {
       />
     </div>,
   ]);
- 
   const globalAttendanceButtons = (
-    <div style={{ display: "flex", width: "auto", gap: "4px" }}>
-      <span>Status</span>
-      <AttendanceButton
-        content="Present"
-        IsPresent={allPresent}
-        onClick={() => handleGlobalAttendanceClick(true)}
-        disabled={allPresent}
-      />
-      <AttendanceButton
-        content="Absent"
-        IsPresent={allAbsent}
-        onClick={() => handleGlobalAttendanceClick(false)}
-        disabled={allAbsent}
-      />
+    <div className={styles["global-attendance-buttons-container"]}>
+      <span className={styles["select-all-text"]}>Select All:</span>
+      <div className={styles["global-attendance-buttons"]}>
+        <AttendanceButton
+          content="Present"
+          IsPresent={allPresent}
+          onClick={() => handleGlobalAttendanceClick(true)}
+        />
+        <AttendanceButton
+          content="Absent"
+          IsPresent={allAbsent}
+          onClick={() => handleGlobalAttendanceClick(false)}
+        />
+      </div>
     </div>
   );
- 
   return (
-    <div className={styles["EventsTable-container"]}>
-      <div className={styles["EventsTable-topleft"]}>
+    <div className={styles["eventstable-container"]}>
+      <div className={styles["eventstable-topleft"]}>
         <h2>
           <u>Mark Attendance</u>
         </h2>
       </div>
-      <div className={styles["EventsTable-table"]}>
+      <div className={styles["eventstable-table"]}>
+        {globalAttendanceButtons}
         <Table
           data={tableData}
-          headings={[...headings.slice(0, 3), globalAttendanceButtons]}
+          headings={headings.slice(0, 3).concat("Status")}
         />
       </div>
     </div>
   );
 };
- 
 export default EventsTable;

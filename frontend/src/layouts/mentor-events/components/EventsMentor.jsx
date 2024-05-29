@@ -23,9 +23,9 @@ const EventsMentor = (props) => {
   } = props;
 
   return (
-    <div className={`${styles["EventsMentor-container"]}`}>
-      <div className={`${styles["EventsMentor-topleft"]}`}>
-        <div className={`${styles["EventsMentor-navbutton"]}`}>
+    <div className={`${styles["eventsmentor-container"]}`}>
+      <div className={`${styles["eventsmentor-topleft"]}`}>
+        <div className={`${styles["eventsmentor-navbutton"]}`}>
           <div>
             <NavButton pageName={button} />
           </div>
@@ -35,23 +35,23 @@ const EventsMentor = (props) => {
         </div>
       </div>
 
-      <div className={`${styles["EventsMentor-description"]}`}>
-        <div className={`${styles["EventsMentor-buttondiv"]}`}>
-          <div className={`${styles["EventsMentor-buttondiv2"]}`}>
-            <div className={`${styles["EventsMentor-content"]}`}>
+      <div className={`${styles["eventsmentor-description"]}`}>
+        <div className={`${styles["eventsmentor-buttondiv"]}`}>
+          <div className={`${styles["eventsmentor-buttondiv2"]}`}>
+            <div className={`${styles["eventsmentor-content"]}`}>
               <div>
                 <h2>Exploring Future Technologies</h2>
               </div>
-              <div className={`${styles["EventsMentor-texted"]}`}>
-                <a className={`${styles["EventsMentor-text"]}`}> {text} </a>
-                <a className={`${styles["EventsMentor-texts"]}`}>{texts}</a>
+              <div className={`${styles["eventsmentor-texted"]}`}>
+                <a className={`${styles["eventsmentor-text"]}`}> {text} </a>
+                <a className={`${styles["eventsmentor-texts"]}`}>{texts}</a>
               </div>
             </div>
 
             {type === "public" && (
               <>
-                <div className={`${styles["EventsMentor-primarydiv"]}`}>
-                  <div className={`${styles["EventsMentor-primarybutton"]}`}>
+                <div className={`${styles["eventsmentor-primarydiv"]}`}>
+                  <div className={`${styles["eventsmentor-primarybutton"]}`}>
                     <div>
                       <PrimaryButton content={smaller} variant="secondary" />
                     </div>
@@ -62,8 +62,8 @@ const EventsMentor = (props) => {
 
             {type === "mentor" && (
               <>
-                <div className={`${styles["EventsMentor-primarydiv"]}`}>
-                  <div className={`${styles["EventsMentor-primarybutton"]}`}>
+                <div className={`${styles["eventsmentor-primarydiv"]}`}>
+                  <div className={`${styles["eventsmentor-primarybutton"]}`}>
                     <div>
                       <PrimaryButton content={small} variant="secondary" />
                     </div>
@@ -75,7 +75,7 @@ const EventsMentor = (props) => {
             {type == "admin" && (
               <>
                 <div>
-                  <div className={`${styles["EventsMentor-primarydiv"]}`}>
+                  <div className={`${styles["eventsmentor-primarydiv"]}`}>
                     <PrimaryButton content={large} variant="secondary" />
                     <PrimaryButton content={medium} variant="secondary" />
                     <PrimaryButton content={small} variant="secondary" />
@@ -85,43 +85,43 @@ const EventsMentor = (props) => {
             )}
           </div>
 
-          <div className={`${styles["EventsMentor-gap"]}`}>
+          <div className={`${styles["eventsmentor-gap"]}`}>
             <div>
               <h3>Description</h3>
             </div>
-            <div className={`${styles["EventsMentor-desc"]}`}>
+            <div className={`${styles["eventsmentor-desc"]}`}>
               <p>{desc}</p>
             </div>
           </div>
 
-          <div className={`${styles["EventsMentor-align"]}`}>
-            <div className={`${styles["EventsMentor-gap"]}`}>
+          <div className={`${styles["eventsmentor-align"]}`}>
+            <div className={`${styles["eventsmentor-gap"]}`}>
               <div>
                 <h3>Date and Time</h3>
               </div>
-              <div className={`${styles["EventsMentor-timer"]}`}>
-                <a className={`${styles["EventsMentor-date"]}`}>• <b>Date :</b>{date}</a>
-                <a className={`${styles["EventsMentor-time"]}`}>• <b>Time :</b>{time}</a>
+              <div className={`${styles["eventsmentor-timer"]}`}>
+                <a className={`${styles["eventsmentor-date"]}`}>• <b>Date :</b>{date}</a>
+                <a className={`${styles["eventsmentor-time"]}`}>• <b>Time :</b>{time}</a>
               </div>
             </div>
 
-            <div className={`${styles["EventsMentor-gap"]}`}>
+            <div className={`${styles["eventsmentor-gap"]}`}>
               <div>
                 <h3>Location</h3>
               </div>
-              <div className={`${styles["EventsMentor-timer"]}`}>
-                <a className={`${styles["EventsMentor-venue"]}`}>• <b>Venue :</b> {venue}</a>
-                <a className={`${styles["EventsMentor-address"]}`}>• <b>Address :</b> {address}</a>
+              <div className={`${styles["eventsmentor-timer"]}`}>
+                <a className={`${styles["eventsmentor-venue"]}`}>• <b>Venue :</b> {venue}</a>
+                <a className={`${styles["eventsmentor-address"]}`}>• <b>Address :</b> {address}</a>
               </div>
             </div>
           </div>
 
-          <div className={`${styles["EventsMentor-gap"]}`}>
+          <div className={`${styles["eventsmentor-gap"]}`}>
             <div>
               <h3>Speakers</h3>
             </div>
             <div>
-              <a className={`${styles["EventsMentor-speaker"]}`}>• {speaker}</a>
+              <a className={`${styles["eventsmentor-speaker"]}`}>• {speaker}</a>
             </div>
           </div>
 
@@ -130,7 +130,7 @@ const EventsMentor = (props) => {
               <div>
                 <h3>Organizer</h3>
                 <div>
-                  <a className={`${styles["EventsMentor-speaker"]}`}>• {speaker}</a>
+                  <a className={`${styles["eventsmentor-speaker"]}`}>• {speaker}</a>
                 </div>
               </div>
             </>
