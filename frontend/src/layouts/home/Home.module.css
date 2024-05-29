@@ -144,6 +144,7 @@
 
   .contentbuttondiv {
     padding-left: 6vw;
+    padding-bottom: 5vw;
     gap: 24px;
   }
 
@@ -271,8 +272,7 @@
     width: 302px;
   }
 
-  .carouselHeader {
-    padding-bottom: 5vw;
+  .carouselHeading {
     text-align: left;
     padding-left: 6vw;
   }
@@ -292,14 +292,14 @@
   }
 }
 
-@media (min-width: 426px) and (max-width: 767px) {
+@media (min-width: 414px) and (max-width: 767px) {
   .projects .chunk {
     max-width: 302px;
     margin-bottom: 65%;
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 413px) {
   .projects .chunk {
     margin-right: 100%;
     margin-bottom: 85%;
