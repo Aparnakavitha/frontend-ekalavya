@@ -7,8 +7,9 @@ export default {
 
 export const eventMentor = {
   args: {
-    text: "Type: Techtalks",
-    texts: "Event Mode: Offline",
+    heading: "Exploring Future Technologies",
+    text: "Techtalks",
+    texts: "Offline",
     desc: "TechTalks 2024 is a full-day event dedicated to exploring emerging technologies and their impact on various industries. Join us for insightful talks, engaging discussions, and networking opportunities with experts in the field.",
     date: "April 10th, 2024",
     time: "10:00 AM - 4:00 PM",
@@ -20,7 +21,7 @@ export const eventMentor = {
     small: "edit",
     medium: "delete",
     large: "view participants",
-    type: "public", // Adjust the type as needed
+    type: "public",
     smaller: "Register"
   }
 };

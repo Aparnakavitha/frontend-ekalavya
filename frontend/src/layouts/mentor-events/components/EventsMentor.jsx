@@ -5,6 +5,7 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
 const EventsMentor = (props) => {
   const {
+    heading,
     text,
     texts,
     desc,
@@ -40,11 +41,18 @@ const EventsMentor = (props) => {
           <div className={`${styles["eventsmentor-buttondiv2"]}`}>
             <div className={`${styles["eventsmentor-content"]}`}>
               <div>
-                <h2>Exploring Future Technologies</h2>
+                <h2 className={`${styles["eventsmentor-contentheading"]}`}>
+                  {heading}
+                </h2>
               </div>
               <div className={`${styles["eventsmentor-texted"]}`}>
-                <a className={`${styles["eventsmentor-text"]}`}> {text} </a>
-                <a className={`${styles["eventsmentor-texts"]}`}>{texts}</a>
+                <a className={`${styles["eventsmentor-text"]}`}>
+                  <b> Type : </b>
+                  {text}
+                </a>
+                <a className={`${styles["eventsmentor-texts"]}`}>
+                  Event Mode : {texts}
+                </a>
               </div>
             </div>
 
@@ -86,7 +94,7 @@ const EventsMentor = (props) => {
           </div>
 
           <div className={`${styles["eventsmentor-gap"]}`}>
-            <div>
+            <div className={`${styles["eventsmentor-headingcontent"]}`}>
               <h3>Description</h3>
             </div>
             <div className={`${styles["eventsmentor-desc"]}`}>
@@ -96,7 +104,7 @@ const EventsMentor = (props) => {
 
           <div className={`${styles["eventsmentor-align"]}`}>
             <div className={`${styles["eventsmentor-gap"]}`}>
-              <div>
+              <div className={`${styles["eventsmentor-headingcontent"]}`}>
                 <h3>Date and Time</h3>
               </div>
               <div className={`${styles["eventsmentor-timer"]}`}>
@@ -112,7 +120,7 @@ const EventsMentor = (props) => {
             </div>
 
             <div className={`${styles["eventsmentor-gap"]}`}>
-              <div>
+              <div className={`${styles["eventsmentor-headingcontent"]}`}>
                 <h3>Location</h3>
               </div>
               <div className={`${styles["eventsmentor-timer"]}`}>
@@ -127,7 +135,7 @@ const EventsMentor = (props) => {
           </div>
 
           <div className={`${styles["eventsmentor-gap"]}`}>
-            <div>
+            <div className={`${styles["eventsmentor-headingcontent"]}`}>
               <h3>Speakers</h3>
             </div>
             <div>
@@ -138,7 +146,10 @@ const EventsMentor = (props) => {
           {type === "public" && (
             <>
               <div>
-                <h3>Organizer</h3>
+                <div className={`${styles["eventsmentor-headingcontent"]}`}>
+                  <h3>Organizer</h3>
+                </div>
+
                 <div>
                   <a className={`${styles["eventsmentor-speaker"]}`}>
                     • {speaker}

@@ -31,6 +31,15 @@
   gap: 3px;
 }
 
+.eventsmentor-headingcontent h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.eventsmentor-contentheading {
+  font-size: 36px;
+}
+
 .eventsmentor-texted {
   display: flex;
   flex-direction: column;
@@ -38,6 +47,7 @@
 
 .eventsmentor-text {
   color: var(--white);
+  font-size: 20px;
 }
 
 .eventsmentor-texts {
@@ -236,7 +246,7 @@ h3 {
 .global-attendance-buttons-container {
   display: flex;
   align-items: center;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   gap: 8px;
 }
 
