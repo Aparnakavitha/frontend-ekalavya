@@ -22,6 +22,6 @@ export const eventMentor = {
     medium: "delete",
     large: "view participants",
     type: "public",
-    smaller: "Register"
-  }
+    smaller: "Register",
+  },
 };

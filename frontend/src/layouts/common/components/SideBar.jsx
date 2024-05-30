@@ -22,7 +22,10 @@ const SideBar = ({ button, listItems, profileBox }) => {
     <div className={`${styles["sidebarcontainer"]}`}>
       <div className={`${styles["sidebar-headerresp"]}`}>
         <div className={`${styles["sidebar-headercontainer"]}`}>
-          <div className={`${styles["sidebar-toggleout"]}`} onClick={toggleSidebar}>
+          <div
+            className={`${styles["sidebar-toggleout"]}`}
+            onClick={toggleSidebar}
+          >
             <BsList className={`${styles["sidebar-hamburger"]}`} />
           </div>
           <div className={`${styles["sidebar-headingout"]}`}>
@@ -30,13 +33,18 @@ const SideBar = ({ button, listItems, profileBox }) => {
           </div>
         </div>
       </div>
-      <div className={`${styles["sidebar"]} ${showSidebar ? styles["show"] : ""}`}>
+      <div
+        className={`${styles["sidebar"]} ${showSidebar ? styles["show"] : ""}`}
+      >
         <div className={`${styles["sidebar-headercontainer"]}`}>
           <div className={`${styles["sidebar-headingin"]}`}>
             <img src={Logo} alt="EduNexa" />
           </div>
           <div className={`${styles["sidebar-toggle"]}`}>
-            <BsX className={`${styles["sidebar-crossicon"]}`} onClick={toggleSidebar} />
+            <BsX
+              className={`${styles["sidebar-crossicon"]}`}
+              onClick={toggleSidebar}
+            />
           </div>
         </div>
         <div className={`${styles["sidebar-content"]}`}>
