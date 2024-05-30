@@ -26,12 +26,6 @@
   gap: 20px;
 }
 
-@media (max-width: 768px) {
-  .addskill-boxcontainer {
-    padding: 30px;
-  }
-}
-
 /* ------------------------------- AddSkill.css ends here ------------------------------- */
 /* ------------------------ AdminSkillParticipants.css starts here ------------------------ */
 
