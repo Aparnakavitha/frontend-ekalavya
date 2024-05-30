@@ -2,34 +2,23 @@ import React from "react";
 import SearchBar from "../../../components/searchbar/Searchbar";
 import Card from "../../../components/cards/SkillUser";
 import styles from "../MentorSkill.module.css";
-import profilePic from "../../../assets/SkillUser.png";
 
-const Skillsearch = () => {
-  const skillcard = {
-    miniHeading: "Student",
-    mainHeading: "John Doe",
-    skills: ["Java", "HTML"],
-    handleClick: (e) => {
-      console.log("clicked");
-    },
-    profilepic: profilePic,
-  };
-
+const Skillsearch = ({ heading, subheading, searchBarPlaceholder, skillcard, onSearch }) => {
   return (
     <div className={`${styles["skillsearch-skillssearch"]}`}>
-      <h1 className={`${styles["skillsearch-skillsheading"]}`}>Skills</h1>
-      <p className={`${styles["skillsearch-subheading"]}`}>
-        add skills to students
-      </p>
+      <h1 className={`${styles["skillsearch-skillsheading"]}`}>{heading}</h1>
+      <p className={`${styles["skillsearch-subheading"]}`}>{subheading}</p>
       <div className={`${styles["skillsearch-searchbar"]}`}>
         <SearchBar
-          placeholder="Student Name/Student ID"
-          onSearch={(query) => console.log(query)}
+          placeholder={searchBarPlaceholder}
+          onSearch={onSearch}
         />
       </div>
 
       <div className={`${styles["skillsearch-cardcontainer"]}`}>
-        <Card {...skillcard} />
+        {skillcard.map((card, index) => (
+          <Card key={index} {...card} />
+        ))}
       </div>
     </div>
   );
