@@ -11,25 +11,25 @@ const Hero = (props) => {
   return (
     <div className={styles["hero-container"]}>
       <div className={styles["hero-contentbuttondiv"]}>
-        <div className={styles["hero-content-column"]}>
-          <div className={styles["hero-text-column"]}>
-            <div className={styles["hero-container-section"]}>
+        <div className={styles["hero-contentcolumn"]}>
+          <div className={styles["hero-textcolumn"]}>
+            <div className={styles["hero-containersection"]}>
               <div className={styles["hero-image1"]}>
                 <img src={star} alt="" />
               </div>
-              <h1 className={styles["hero-main-content"]}>
+              <h1 className={styles["hero-maincontent"]}>
                 {props.mainContent[0]}
               </h1>
             </div>
-            <div className={styles["hero-container-section"]}>
+            <div className={styles["hero-containersection"]}>
               <div className={styles["hero-image2"]}>
                 <img src={star2} alt="" />
               </div>
-              <h1 className={styles["hero-main-content2"]}>
+              <h1 className={styles["hero-maincontent2"]}>
                 {props.mainContent[1]}
               </h1>
             </div>
-            <div className={styles["hero-container-section"]}>
+            <div className={styles["hero-containersection"]}>
               <div className={styles["hero-image3"]}>
                 <img src={star3} alt="" />
               </div>
@@ -39,12 +39,12 @@ const Hero = (props) => {
               <div className={styles["hero-image5"]}>
                 <img src={star4} alt="" />
               </div>
-              <h1 className={styles["hero-main-content"]}>
+              <h1 className={styles["hero-maincontent"]}>
                 {props.mainContent[2]}
               </h1>
             </div>
           </div>
-          <h2 className={styles["hero-semi-content"]}>{props.semiContent}</h2>
+          <h2 className={styles["hero-semicontent"]}>{props.semiContent}</h2>
         </div>
         <div className={styles["hero-buttondiv"]}>
           <PrimaryButton
@@ -60,7 +60,7 @@ const Hero = (props) => {
               <div
                 key={index}
                 className={`${styles["hero-statiunit"]} ${
-                  index < 2 ? styles["hero-first-two"] : ""
+                  index < 2 ? styles["hero-firsttwo"] : ""
                 }`}
               >
                 <h1 className={styles["hero-numbers"]}>{num}</h1>

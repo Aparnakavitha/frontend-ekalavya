@@ -7,11 +7,11 @@
   align-items: center;
 }
 
-.hero-container-section {
+.hero-containersection {
   position: relative;
 }
 
-.hero-image-container {
+.hero-imagecontainer {
   position: relative;
 }
 
@@ -37,6 +37,7 @@
   from {
     transform: rotate(0deg);
   }
+  
   to {
     transform: rotate(360deg);
   }
@@ -55,7 +56,7 @@
   left: 200px;
 }
 
-.hero-main-content {
+.hero-maincontent {
   font-weight: 900;
   color: var(--white);
   font-size: 96px;
@@ -64,14 +65,14 @@
   line-height: 86.875%;
 }
 
-.hero-text-column {
+.hero-textcolumn {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
 }
 
-.hero-main-content2 {
+.hero-maincontent2 {
   font-weight: 900;
   color: var(--primary-color);
   font-size: 96px;
@@ -80,7 +81,7 @@
   line-height: 86.875%;
 }
 
-.hero-semi-content {
+.hero-semicontent {
   font-size: 32px;
   font-weight: 500;
   text-align: center;
@@ -89,7 +90,7 @@
   color: var(--white);
 }
 
-.hero-content-column {
+.hero-contentcolumn {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -116,7 +117,7 @@
   align-items: center;
 }
 
-.hero-first-two {
+.hero-firsttwo {
   border-right: 2px solid var(--white);
   padding-right: 25px;
 }
@@ -153,12 +154,12 @@
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
-  .hero-main-content,
-  .hero-main-content2 {
+  .hero-maincontent,
+  .hero-maincontent2 {
     font-size: 64px;
   }
 
-  .hero-semi-content {
+  .hero-semicontent {
     font-size: 24px;
   }
 
@@ -188,12 +189,12 @@
 }
 
 @media (max-width: 767px) and (min-width: 426px) {
-  .hero-main-content,
-  .hero-main-content2 {
+  .hero-maincontent,
+  .hero-maincontent2 {
     font-size: 64px;
   }
 
-  .hero-semi-content {
+  .hero-semicontent {
     font-size: 24px;
   }
 
@@ -238,16 +239,16 @@
 }
 
 @media (max-width: 425px) {
-  .hero-main-content,
-  .hero-main-content2 {
+  .hero-maincontent,
+  .hero-maincontent2 {
     font-size: 56px;
   }
 
-  .hero-container{
+  .hero-container {
     overflow: hidden;
   }
 
-  .hero-semi-content {
+  .hero-semicontent {
     font-size: 22px;
   }
 
@@ -257,7 +258,7 @@
     gap: 24px;
   }
 
-  .hero-semi-content {
+  .hero-semicontent {
     text-align: start;
   }
 
@@ -269,12 +270,12 @@
     font-size: 20px;
   }
 
-  .hero-text-column {
+  .hero-textcolumn {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .hero-content-column {
+  .hero-contentcolumn {
     align-items: flex-start;
     gap: 10px;
   }
@@ -290,7 +291,7 @@
     flex-direction: column;
   }
 
-  .hero-first-two {
+  .hero-firsttwo {
     border-right: none;
     padding-right: none;
   }
@@ -330,7 +331,6 @@
     left: 180px;
     transform: rotate(60deg) scale(1.5);
   }
-  
 }
 
 /* ------------------------------- Hero.css ends here ------------------------------- */
@@ -469,32 +469,32 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px; 
+  padding: 20px;
 }
 
 .partners-title {
-  font-size: 16px; 
+  font-size: 16px;
   color: var(--primary-color);
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
   text-align: center;
 }
 
 .partners-icons {
   display: flex;
-  gap: 75px; 
+  gap: 75px;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 10px; 
+  padding: 10px;
 }
 
 .partners-profileimage {
-  width: 150px; 
-  height: 150px; 
+  width: 150px;
+  height: 150px;
   object-fit: contain;
   padding: 10px;
-  margin: 5px; 
-  box-sizing: border-box; 
+  margin: 5px;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 768px) {

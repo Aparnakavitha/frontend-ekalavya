@@ -4,13 +4,12 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../MentorEvents.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
- 
+
 const EventForm = () => {
-  const { handleSubmit, control, watch, setValue } = useForm({
-  });
- 
+  const { handleSubmit, control, watch, setValue } = useForm({});
+
   const [eventMode, setEventMode] = useState("Offline");
- 
+
   const onSubmit = (data) => {
     if (data.eventMode === "Online") {
       if (!data.location) {
@@ -22,28 +21,31 @@ const EventForm = () => {
     }
     console.log("Form Data:", data);
   };
- 
+
   const options = [
     { value: "Online", label: "Online" },
     { value: "Offline", label: "Offline" },
   ];
- 
+
   const selectedEventMode = watch("eventMode", eventMode);
- 
+
   const handleEventModeChange = (selectedOption) => {
     const newValue = selectedOption.value;
     setEventMode(newValue);
     setValue("eventMode", newValue);
   };
- 
+
   useEffect(() => {
     if (selectedEventMode === "Online") {
       setValue("location", "");
     }
   }, [selectedEventMode, setValue]);
- 
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={`${styles["eventform-form"]}`}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={`${styles["eventform-form"]}`}
+    >
       <div className={`${styles["eventform-eventtitlemode"]}`}>
         <div className={`${styles["eventform-eventtitlediv"]}`}>
           <Controller
@@ -60,7 +62,7 @@ const EventForm = () => {
             )}
           />
         </div>
- 
+
         <div className={`${styles["eventform-eventmodediv"]}`}>
           <Controller
             name="eventMode"
@@ -77,7 +79,7 @@ const EventForm = () => {
           />
         </div>
       </div>
- 
+
       <Controller
         name="eventType"
         control={control}
@@ -91,7 +93,7 @@ const EventForm = () => {
           />
         )}
       />
- 
+
       <Controller
         name="description"
         control={control}
@@ -105,7 +107,7 @@ const EventForm = () => {
           />
         )}
       />
- 
+
       <div className={`${styles["eventform-datetimecontainer"]}`}>
         <div className={`${styles["eventform-datetime"]}`}>
           <Controller
@@ -123,7 +125,7 @@ const EventForm = () => {
             )}
           />
         </div>
- 
+
         <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="endDate"
@@ -140,7 +142,7 @@ const EventForm = () => {
             )}
           />
         </div>
- 
+
         <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="startTime"
@@ -157,7 +159,7 @@ const EventForm = () => {
             )}
           />
         </div>
- 
+
         <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="endTime"
@@ -175,7 +177,7 @@ const EventForm = () => {
           />
         </div>
       </div>
- 
+
       <Controller
         name="location"
         control={control}
@@ -191,7 +193,7 @@ const EventForm = () => {
           />
         )}
       />
- 
+
       <Controller
         name="speaker"
         control={control}
@@ -205,7 +207,7 @@ const EventForm = () => {
           />
         )}
       />
- 
+
       <Controller
         name="organizer"
         control={control}
@@ -219,7 +221,7 @@ const EventForm = () => {
           />
         )}
       />
- 
+
       <div className={`${styles["eventform-buttondiv"]}`}>
         <div className={`${styles["eventform-buttoncontainer"]}`}>
           <PrimaryButton
@@ -233,6 +235,5 @@ const EventForm = () => {
     </form>
   );
 };
- 
-export default EventForm;
 
+export default EventForm;
