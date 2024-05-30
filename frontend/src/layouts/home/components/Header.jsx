@@ -21,7 +21,10 @@ const Header = ({ menuItems, imageSrc, button, type }) => {
               key={index}
               className={`${styles["header-menuitemresponsive"]}`}
               href="#"
-              onClick={() => item.onClick(item.name)}
+              onClick={() => {
+                item.onClick(item.name);
+                toggleSidebar();
+              }}
             >
               {item.name}
             </a>
