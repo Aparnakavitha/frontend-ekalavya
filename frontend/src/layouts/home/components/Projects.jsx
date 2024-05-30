@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
-import StudentCard from "../../../components/cards/StudentCard";
+import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styles from "../Home.module.css";
 
-const StarPerformer = ({ studentProfiles, heading }) => {
-  const [chunkSizeStudent, setChunkSizeStudent] = useState(3);
+const Project = ({ projects, heading1, heading2 }) => {
+  const [chunkSizeProject, setChunkSizeProject] = useState(3);
   const [showArrows, setShowArrows] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       if (windowWidth <= 767) {
-        setChunkSizeStudent(1);
+        setChunkSizeProject(1);
         setShowArrows(false);
       } else if (windowWidth >= 768 && windowWidth <= 992) {
-        setChunkSizeStudent(2);
+        setChunkSizeProject(2);
         setShowArrows(true);
       } else {
-        setChunkSizeStudent(4);
+        setChunkSizeProject(3);
         setShowArrows(true);
       }
     };
@@ -29,13 +29,13 @@ const StarPerformer = ({ studentProfiles, heading }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const studentChunks = [];
-  for (let i = 0; i < studentProfiles.length; i += chunkSizeStudent) {
-    studentChunks.push(studentProfiles.slice(i, i + chunkSizeStudent));
+  const projectChunks = [];
+  for (let i = 0; i < projects.length; i += chunkSizeProject) {
+    projectChunks.push(projects.slice(i, i + chunkSizeProject));
   }
 
   const handleArrow = () => {
-    const arrows = document.querySelectorAll(".starperformer-carousel .control-arrow");
+    const arrows = document.querySelectorAll(".projects-carousel .control-arrow");
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
       arrow.style.bottom = "17%";
@@ -48,7 +48,7 @@ const StarPerformer = ({ studentProfiles, heading }) => {
   };
 
   const handleDots = () => {
-    const dots = document.querySelectorAll(".starperformer-carousel .control-dots .dot");
+    const dots = document.querySelectorAll(".projects-carousel .control-dots .dot");
     dots.forEach((dot, idx) => {
       if (idx >= 3) {
         dot.style.display = "none";
@@ -59,16 +59,17 @@ const StarPerformer = ({ studentProfiles, heading }) => {
   useEffect(() => {
     handleArrow();
     handleDots();
-  }, [studentProfiles, chunkSizeStudent]);
+  }, [projects, chunkSizeProject]);
 
   return (
-    <div className={`${styles["carousel-header"]} ${styles["starperformer"]}`}>
+    <div className={`${styles["carousel-header"]} ${styles["projects"]}`}>
       <div className={`${styles["carousel-heading"]}`}>
-        <a className={`${styles["carousel-heading1"]}`}>{heading}</a>
+        <a className={`${styles["carousel-heading2"]}`}>{heading2}</a>
+        <a className={`${styles["carousel-heading1"]}`}>{heading1}</a>
       </div>
       <div className={`${styles["carousel-wrapper"]}`}>
         <Carousel
-        className="starperformer-carousel"
+        className="projects-carousel"
           showThumbs={false}
           infiniteLoop
           useKeyboardArrows
@@ -77,18 +78,17 @@ const StarPerformer = ({ studentProfiles, heading }) => {
           onChange={handleDots}
           onInitialized={handleDots}
         >
-          {studentChunks.map((chunk, chunkIndex) => (
+          {projectChunks.map((chunk, chunkIndex) => (
             <div key={chunkIndex} className={`${styles["carousel-chunk"]}`}>
-              {chunk.map((student, index) => (
-                <StudentCard
+              {chunk.map((project, index) => (
+                <PrimaryCard
                   key={index}
-                  studentImage={student.studentImage}
-                  studentName={student.studentName}
-                  studentId={student.studentId}
-                  studentCollege={student.studentCollege}
-                  studentMail={student.studentMail}
-                  studentPhoneNumber={student.studentPhoneNumber}
-                  handleClick={student.handleClick}
+                  miniHeading={project.miniHeading}
+                  mainHeading={project.mainHeading}
+                  startDate={project.startDate}
+                  endDate={project.endDate}
+                  Description={project.Description}
+                  handleClick={project.handleClick}
                 />
               ))}
             </div>
@@ -99,4 +99,4 @@ const StarPerformer = ({ studentProfiles, heading }) => {
   );
 };
 
-export default StarPerformer;
+export default Project;
