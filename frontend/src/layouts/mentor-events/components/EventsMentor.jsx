@@ -27,7 +27,7 @@ const EventsMentor = (props) => {
     <div className={`${styles["eventsmentor-container"]}`}>
       <div className={`${styles["eventsmentor-topleft"]}`}>
         <div className={`${styles["eventsmentor-navbutton"]}`}>
-          <div>
+          <div className={`${styles["eventsmentor-hiddenbutton"]}`}>
             <NavButton pageName={button} />
           </div>
           <div>
