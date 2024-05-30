@@ -407,6 +407,10 @@
   max-width: 1148px;
 }
 
+.projects{
+  padding-top: 5vw;
+}
+
 @media (max-width: 767px) {
   .testimonials .carousel-wrapper {
     width: 320px;
