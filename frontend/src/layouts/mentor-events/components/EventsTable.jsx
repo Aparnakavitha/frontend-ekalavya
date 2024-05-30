@@ -79,11 +79,13 @@ const EventsTable = (props) => {
         </h2>
       </div>
       <div className={styles["eventstable-table"]}>
-        {globalAttendanceButtons}
-        <Table
-          data={tableData}
-          headings={headings.slice(0, 3).concat("Status")}
-        />
+        <div>{globalAttendanceButtons}</div>
+        <div className={styles["eventstable-tablecontent"]}>
+          <Table
+            data={tableData}
+            headings={headings.slice(0, 3).concat("Status")}
+          />
+        </div>
       </div>
     </div>
   );
