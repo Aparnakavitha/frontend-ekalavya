@@ -10,7 +10,8 @@
   background-color: var(--background);
   padding: 0 10%;
   box-shadow: 10px 11px 30px 0px rgba(89, 89, 89, 0.16);
-  z-index: 5px;
+  position: fixed;
+  z-index: 5;
 }
 
 .header-title {
@@ -26,7 +27,7 @@
   justify-content: center;
 }
 
-.header-menuItem {
+.header-menuitem {
   color: var(--neutral200);
   font-size: 15px;
   line-height: 150%;
@@ -98,7 +99,7 @@
     margin-top: 28px;
   }
 
-  .buttonResp {
+  .button-resp {
     width: 94px;
     height: 48px;
     border: none;
@@ -139,7 +140,7 @@
     transition: left 0.5s ease-out;
   }
 
-  .header-crossIcon {
+  .header-crossicon {
     cursor: pointer;
     font-size: 25px;
     color: var(--white);

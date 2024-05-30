@@ -8,6 +8,7 @@
   padding: 8px 14px;
   border-bottom: 2px solid var(--neutral700);
   font-size: 16px;
+  flex-wrap: wrap;
   cursor: pointer;
   transition:
     background-color 0.3s,
