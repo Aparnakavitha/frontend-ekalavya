@@ -1,12 +1,12 @@
-import React from 'react';
-import { action } from '@storybook/addon-actions';
-import Layout from './SkillLayout';
+import React from "react";
+import { action } from "@storybook/addon-actions";
+import Layout from "./SkillLayout";
 
 export default {
-  title: 'Layouts/Student-skill/Components/SkillLayout',
+  title: "Layouts/Student-skill/Components/SkillLayout",
   component: Layout,
   argTypes: {
-    onAddSkill: { action: 'clicked' },
+    onAddSkill: { action: "clicked" },
   },
 };
 
@@ -19,8 +19,7 @@ SkillLayoutDark.args = {
     { Level: "Level 1", mainHeading: "React", isTrue: true },
     { Level: "Level 1", mainHeading: "CSS", isTrue: true },
     { Level: "Level 1", mainHeading: "HTML", isTrue: true },
-    { Level: "Level 1", mainHeading: "SQL", isTrue: true }
+    { Level: "Level 1", mainHeading: "SQL", isTrue: true },
   ],
-  onAddSkill: action('Add Skill clicked'),
-
+  onAddSkill: action("Add Skill clicked"),
 };

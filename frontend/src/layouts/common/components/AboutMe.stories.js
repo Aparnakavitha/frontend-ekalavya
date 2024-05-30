@@ -2,7 +2,7 @@ import React from "react";
 import AboutMe from "./AboutMe";
 
 export default {
-  title: "Layouts/AboutMe",
+  title: "Layouts/Common/Components/AboutMe",
   component: AboutMe,
 };
 
