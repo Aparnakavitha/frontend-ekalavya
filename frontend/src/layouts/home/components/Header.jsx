@@ -18,16 +18,16 @@ const Header = ({ menuItems, imageSrc, button, type }) => {
         <div className={`${styles["header-menuresponsive"]}`}>
           {menuItems.map((item, index) => (
             <a
-            key={index}
-            className={`${styles["header-menuitemresponsive"]}`}
-            href="#"
-            onClick={() => {
-              item.onClick(item.name);
-              toggleSidebar();
-            }}
-          >
-            {item.name}
-          </a>
+              key={index}
+              className={`${styles["header-menuitemresponsive"]}`}
+              href="#"
+              onClick={() => {
+                item.onClick(item.name);
+                toggleSidebar();
+              }}
+            >
+              {item.name}
+            </a>
           ))}
           <div className={`${styles["header-button"]}`}>{button}</div>
         </div>
