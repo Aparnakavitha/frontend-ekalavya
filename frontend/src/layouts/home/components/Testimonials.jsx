@@ -38,7 +38,7 @@ const Testimonials = ({ testimonials, heading }) => {
     const arrows = document.querySelectorAll(".carousel .control-arrow");
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
-      arrow.style.bottom = "25%";
+      arrow.style.bottom = "17%";
       if (!showArrows) {
         arrow.style.display = "none";
       } else {
