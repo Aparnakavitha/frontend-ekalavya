@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from "react";
-import PrimaryCard from "../../../components/cards/PrimaryCard";
+import StudentCard from "../../../components/cards/StudentCard";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styles from "../Home.module.css";
 
-const Project = ({ projects, heading1, heading2 }) => {
-  const [chunkSizeProject, setChunkSizeProject] = useState(3);
+const StarPerformer = ({ studentProfiles, heading }) => {
+  const [chunkSizeStudent, setChunkSizeStudent] = useState(3);
   const [showArrows, setShowArrows] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       if (windowWidth <= 767) {
-        setChunkSizeProject(1);
+        setChunkSizeStudent(1);
         setShowArrows(false);
       } else if (windowWidth >= 768 && windowWidth <= 992) {
-        setChunkSizeProject(2);
+        setChunkSizeStudent(2);
         setShowArrows(true);
       } else {
-        setChunkSizeProject(3);
+        setChunkSizeStudent(4);
         setShowArrows(true);
       }
     };
@@ -29,13 +29,13 @@ const Project = ({ projects, heading1, heading2 }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const projectChunks = [];
-  for (let i = 0; i < projects.length; i += chunkSizeProject) {
-    projectChunks.push(projects.slice(i, i + chunkSizeProject));
+  const studentChunks = [];
+  for (let i = 0; i < studentProfiles.length; i += chunkSizeStudent) {
+    studentChunks.push(studentProfiles.slice(i, i + chunkSizeStudent));
   }
 
   const handleArrow = () => {
-    const arrows = document.querySelectorAll(".carousel .control-arrow");
+    const arrows = document.querySelectorAll(".starperformer-carousel .control-arrow");
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
       arrow.style.bottom = "17%";
@@ -48,7 +48,7 @@ const Project = ({ projects, heading1, heading2 }) => {
   };
 
   const handleDots = () => {
-    const dots = document.querySelectorAll(".carousel .control-dots .dot");
+    const dots = document.querySelectorAll(".starperformer-carousel .control-dots .dot");
     dots.forEach((dot, idx) => {
       if (idx >= 3) {
         dot.style.display = "none";
@@ -59,16 +59,16 @@ const Project = ({ projects, heading1, heading2 }) => {
   useEffect(() => {
     handleArrow();
     handleDots();
-  }, [projects, chunkSizeProject]);
+  }, [studentProfiles, chunkSizeStudent]);
 
   return (
-    <div className={`${styles["carousel-header"]} ${styles["projects"]}`}>
+    <div className={`${styles["carousel-header"]} ${styles["starperformer"]}`}>
       <div className={`${styles["carousel-heading"]}`}>
-        <a className={`${styles["carousel-heading2"]}`}>{heading2}</a>
-        <a className={`${styles["carousel-heading1"]}`}>{heading1}</a>
+        <a className={`${styles["carousel-heading1"]}`}>{heading}</a>
       </div>
       <div className={`${styles["carousel-wrapper"]}`}>
         <Carousel
+        className="starperformer-carousel"
           showThumbs={false}
           infiniteLoop
           useKeyboardArrows
@@ -77,17 +77,18 @@ const Project = ({ projects, heading1, heading2 }) => {
           onChange={handleDots}
           onInitialized={handleDots}
         >
-          {projectChunks.map((chunk, chunkIndex) => (
+          {studentChunks.map((chunk, chunkIndex) => (
             <div key={chunkIndex} className={`${styles["carousel-chunk"]}`}>
-              {chunk.map((project, index) => (
-                <PrimaryCard
+              {chunk.map((student, index) => (
+                <StudentCard
                   key={index}
-                  miniHeading={project.miniHeading}
-                  mainHeading={project.mainHeading}
-                  startDate={project.startDate}
-                  endDate={project.endDate}
-                  Description={project.Description}
-                  handleClick={project.handleClick}
+                  studentImage={student.studentImage}
+                  studentName={student.studentName}
+                  studentId={student.studentId}
+                  studentCollege={student.studentCollege}
+                  studentMail={student.studentMail}
+                  studentPhoneNumber={student.studentPhoneNumber}
+                  handleClick={student.handleClick}
                 />
               ))}
             </div>
@@ -98,4 +99,4 @@ const Project = ({ projects, heading1, heading2 }) => {
   );
 };
 
-export default Project;
+export default StarPerformer;
