@@ -135,6 +135,18 @@
   }
 }
 
+  @media (max-width: 1113px) and (min-width: 768px) {
+    .sidebar {
+      width: 190px;
+    }
+
+    .sidebar-headingin img {
+      width: 120px;
+      height: auto;
+    }
+  }
+
+
 /* ------------------------------- SideBar.css ends here ------------------------------- */
 
 /* ------------------------------- Footer.css starts here ------------------------------- */
@@ -268,7 +280,7 @@
     padding-left: 0px;
     align-items: center;
   }
-  
+
   .footer-copyrightleft {
     padding-left: 0px;
     justify-content: center;
