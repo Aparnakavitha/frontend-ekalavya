@@ -128,6 +128,13 @@
   font-size: 0.875rem;
 }
 
+@media (max-width: 767px) {
+  .basicdetails-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+}
+
 /* ------------------------------- basicdetails.css ends here ------------------------------------ */
 /* ------------------------------- combinedskillform.css starts here --------------------------- */
 
@@ -206,6 +213,13 @@
   left: 57px;
 }
 
+@media (max-width: 767px) {
+  .combinedskillform-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+}
+
 /* ------------------------------- combinedskillform.css ends here --------------------------- */
 /* ------------------------------- addprofilelink.css starts here ---------------------------- */
 
@@ -258,6 +272,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 767px) {
+  .addprofilelink-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
 }
 
 /* ------------------------------- addprofilelink.css ends here ---------------------------- */
@@ -458,7 +479,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 60px;
+  padding: 40px;
   gap: 10px;
 }
 
@@ -492,6 +513,13 @@
   display: flex;
   gap: 8px;
   justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .deletebox-box {
+    padding: 35px;
+    border-radius: 30px;
+  }
 }
 
 /* ------------------------------- DeleteBox.css ends here ------------------------------- */
@@ -530,7 +558,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 21px;
-  justify-content: center;
 }
 
 .dataview-tablecontainer {
@@ -589,6 +616,12 @@
   height: 321px;
 }
 
+@media (max-width: 767px) {
+  .dataview-cardscontainer {
+    justify-content: center;
+  }
+}
+
 /* ------------------------------- DataView.css ends here ------------------------------- */
 /* ------------------------------- addstudent.css starts here --------------------------------- */
 
@@ -643,6 +676,13 @@
   align-items: center;
 }
 
+@media (max-width: 767px) {
+  .addstudent-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+}
+
 /* ------------------------------- addstudent.css ends here --------------------------------- */
 /* ------------------------------- AddUser.css starts here ------------------------------- */
 
@@ -659,7 +699,7 @@
   flex-direction: column;
   background-color: var(--background);
   border-radius: 40px;
-  padding: 45px;
+  padding: 50px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
 }
@@ -684,8 +724,8 @@
 
 @media (max-width: 768px) {
   .adduser-container {
-    padding: 20px;
-    border-radius: 20px;
+    padding: 30px;
+    border-radius: 30px;
     width: 100%;
     height: fit-content;
   }
@@ -701,7 +741,7 @@
 
 @media (max-width: 480px) {
   .adduser-container {
-    padding: 15px;
+    padding: 30px;
     border-radius: 15px;
     width: 100%;
     height: fit-content;
@@ -713,6 +753,16 @@
 
   .adduser-form {
     gap: 15px;
+  }
+
+  .adduser-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .adduser-name {
+    width: 100%;
   }
 }
 
