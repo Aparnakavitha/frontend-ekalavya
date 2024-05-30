@@ -96,12 +96,15 @@
   padding-top: 10px;
 }
 
-@media screen and (max-width: 500px) {
-  .qualification-form-startDateEndDate {
+@media screen and (max-width: 767px) {
+  .qualification-form-startdate-enddate {
     flex-direction: column;
     gap: 17px;
   }
-
+  .qualification-form-form{
+    padding: 30px;
+    border-radius: 40px;
+  }
   .qualification-form-datebox {
     width: 100%;
   }
