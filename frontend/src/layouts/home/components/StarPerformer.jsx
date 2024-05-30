@@ -35,7 +35,7 @@ const StarPerformer = ({ studentProfiles, heading }) => {
   }
 
   const handleArrow = () => {
-    const arrows = document.querySelectorAll(".carousel .control-arrow");
+    const arrows = document.querySelectorAll(".starperformer-carousel .control-arrow");
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
       arrow.style.bottom = "17%";
@@ -48,7 +48,7 @@ const StarPerformer = ({ studentProfiles, heading }) => {
   };
 
   const handleDots = () => {
-    const dots = document.querySelectorAll(".carousel .control-dots .dot");
+    const dots = document.querySelectorAll(".starperformer-carousel .control-dots .dot");
     dots.forEach((dot, idx) => {
       if (idx >= 3) {
         dot.style.display = "none";
@@ -68,6 +68,7 @@ const StarPerformer = ({ studentProfiles, heading }) => {
       </div>
       <div className={`${styles["carousel-wrapper"]}`}>
         <Carousel
+        className="starperformer-carousel"
           showThumbs={false}
           infiniteLoop
           useKeyboardArrows

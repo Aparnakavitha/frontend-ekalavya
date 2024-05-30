@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 3vw;
 }
 
 .hero-containersection {
@@ -253,13 +254,8 @@
   }
 
   .hero-contentbuttondiv {
-    padding-left: 6vw;
-    padding-bottom: 5vw;
+    padding: 6vw;
     gap: 24px;
-  }
-
-  .hero-semicontent {
-    text-align: start;
   }
 
   .hero-numbers {
@@ -270,19 +266,12 @@
     font-size: 20px;
   }
 
-  .hero-textcolumn {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .hero-contentcolumn {
-    align-items: flex-start;
     gap: 10px;
   }
 
   .hero-contentbuttondiv {
-    align-items: flex-start;
-    padding-top: 0;
+    padding-top: 20vh;
     padding-left: 6vw;
   }
 
@@ -293,11 +282,10 @@
 
   .hero-firsttwo {
     border-right: none;
-    padding-right: none;
+    padding-right: 0px;
   }
 
   .hero-statiunit {
-    align-items: flex-start;
     gap: 3px;
   }
 
@@ -312,20 +300,14 @@
   }
 
   .hero-image4 {
+    position: absolute;
     top: -200px;
-    left: 0px;
-    transform: scale(5);
-    animation: spin 6s linear infinite;
-  }
-
-  .hero-image4 img {
-    top: -200px;
-    left: 0px;
-    transform: scale(5);
-    animation: spin 6s linear infinite;
+    left: 30%;
+    transform: translateX(-50%) scale(5);
   }
 
   .hero-image1 {
+    display: none;
     overflow: hidden;
     top: 360px;
     left: 180px;
@@ -407,22 +389,20 @@
   max-width: 1148px;
 }
 
-.projects{
+.projects {
   padding-top: 5vw;
 }
 
-@media (max-width: 767px) {
-  .testimonials .carousel-wrapper {
-    width: 320px;
-  }
+.carousel-header{
+  padding: 3vw;
+}
 
+@media (max-width: 767px) {
   .starperformer .carousel-wrapper {
     width: 302px;
   }
 
   .carousel-heading {
-    text-align: left;
-    padding-left: 6vw;
     font-size: 20px;
   }
 }
@@ -445,25 +425,16 @@
   }
 }
 
-@media (min-width: 414px) and (max-width: 767px) {
+@media (min-width: 426px) and (max-width: 767px) {
   .projects .carousel-chunk {
     max-width: 302px;
-    margin-bottom: 65%;
+    margin-bottom: 30vh;
   }
 }
 
-@media (max-width: 413px) {
-  .testimonials .carousel-wrapper {
-    margin-left: -16px;
-  }
-
-  .starperformer .carousel-wrapper{
-    margin-left: -8px;
-  }
-
+@media (max-width: 425px) {
   .projects .carousel-chunk {
     max-width: 302px;
-    margin-right: 290px;
     margin-bottom: 85%;
   }
 }
@@ -477,7 +448,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 4vw;
 }
 
 .partners-title {
@@ -507,17 +478,15 @@
 
 @media screen and (max-width: 768px) {
   .partners-icons {
-    gap: 20px;
-    justify-content: left;
+    gap: 0px;
   }
 
-  .partners-title {
-    justify-content: left;
-    text-align: left;
+  .partners-profileimage{
+    height: 80px;
   }
 
-  .partners-container {
-    align-items: flex-start;
+  .partners-title h1{
+    font-size: 24px;
   }
 }
 
