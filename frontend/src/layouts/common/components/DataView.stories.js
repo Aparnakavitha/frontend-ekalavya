@@ -1,8 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-
 import DataView from "../components/DataView";
-import EventCard from "../../../components/cards/EventCard";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import SkillBatchCard from "../../../components/cards/SkillBatchCard";
@@ -62,6 +60,78 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
+    {
+      miniHeading: "Capstone",
+      mainHeading: "Health Management",
+      startDate: "Jan 15, 2030",
+      endDate: "Mar 15, 2030",
+      description:
+        "Unlock the power of data with our comprehensive Introduction to Data",
+      cardType: "Course",
+      handleClick: (e) => {
+        console.log("clicked");
+      },
+    },
   ],
   tableColumns: [
     { key: "miniHeading", displayName: "Type" },
@@ -69,45 +139,6 @@ const primaryCardData = {
     { key: "startDate", displayName: "Start Date" },
     { key: "endDate", displayName: "End Date" },
     { key: "description", displayName: "Description" },
-  ],
-  toggle: true,
-  itemsPerPage: 11,
-};
-
-const eventCardData = {
-  data: [
-    {
-      main: "All hands meeting",
-      sub: "http://www.zoom.com",
-      start: "10:30am",
-      end: "11:30am",
-      status: "due",
-      mode: "dark",
-      date: 17,
-      onclick: (e) => {
-        console.log("Event card clicked!");
-      },
-    },
-    {
-      main: "All hands meeting",
-      sub: "http://www.zoom.com",
-      start: "10:30am",
-      end: "11:30am",
-      status: "due",
-      mode: "dark",
-      date: 17,
-      onclick: (e) => {
-        console.log("Event card clicked!");
-      },
-    },
-  ],
-  tableColumns: [
-    { key: "main", displayName: "Title" },
-    { key: "sub", displayName: "Link" },
-    { key: "start", displayName: "Start Time" },
-    { key: "end", displayName: "End Time" },
-    { key: "status", displayName: "Status" },
-    { key: "date", displayName: "Date" },
   ],
   toggle: true,
   itemsPerPage: 11,
@@ -319,11 +350,6 @@ const skillUserData = {
   toggle: true,
   itemsPerPage: 11,
 };
-
-export const EventCardView = (args) => (
-  <DataView CardComponent={EventCard} {...args} />
-);
-EventCardView.args = eventCardData;
 
 export const PrimaryCardView = (args) => (
   <DataView CardComponent={PrimaryCard} {...args} />
