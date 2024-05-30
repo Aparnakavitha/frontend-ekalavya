@@ -35,7 +35,7 @@ const EventCard = (props) => {
 
             <h4 className={`${styles.sub}`}>
               <u>
-                <a href={`${sub}`}>{formatText(sub)}</a>
+                <a href={`${sub}`} onClick={(e)=>{e.stopPropagation();}}>{formatText(sub)}</a>
               </u>
             </h4>
           </div>
