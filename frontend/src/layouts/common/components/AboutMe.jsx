@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "../AboutMe.module.css";
+import styles from "../Common.module.css";
 
 const AboutMe = ({ title, description }) => {
   return (
