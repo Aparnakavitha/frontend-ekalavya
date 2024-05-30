@@ -332,3 +332,46 @@
 
   /*---------------------------------------------------------Media queries for education ends here-----------------------------------------------------------------*/
 }
+
+/* ------------------------------- AboutMe.module.css starts here ------------------------------- */
+
+.aboutme-aboutsection {
+  width: 100%;
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutme-abouttitle {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 22px;
+  letter-spacing: -0.41px;
+  color: var(--primary-color);
+}
+
+.aboutme-abouttext {
+  width: 99%;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 112%;
+  letter-spacing: 0.59px;
+  text-align: justify;
+  color: var(--white);
+  padding-left: 10px;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .aboutme-abouttext {
+    padding-left: 8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .aboutme-abouttext {
+    padding-left: 5px;
+  }
+}
+/* ------------------------------- AboutMe.module.css ends here ------------------------------- */
