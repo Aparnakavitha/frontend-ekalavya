@@ -234,6 +234,13 @@ h3 {
 
 .eventstable-table {
   width: 100%;
+  overflow-x: auto;
+}
+
+.eventstable-table td div {
+  display: flex;
+  gap: 5px;
+  flex-wrap: nowrap; 
 }
 
 .eventstable-tablecontent {

@@ -39,7 +39,7 @@ const EventsTable = (props) => {
     id,
     name,
     email,
-    <div style={{ display: "flex", width: "50px", gap: "2px" }} key={id}>
+    <div style={{ display: "flex", width: "120px", gap: "2px" }} key={id}>
       <AttendanceButton
         content="Present"
         IsPresent={attendance[id] === true}
