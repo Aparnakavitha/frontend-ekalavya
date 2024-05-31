@@ -1,7 +1,7 @@
 import EventsMentor from "./EventsMentor";
 
 export default {
-  title: "layouts/Mentor-events/components/EventsMentor",
+  title: "layouts/Common/components/EventsMentor",
   component: EventsMentor,
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../MentorEvents.module.css";
+import styles from "../Common.module.css";
 import NavButton from "../../../components/buttons/NavButton";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
