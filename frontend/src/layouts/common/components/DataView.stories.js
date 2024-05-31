@@ -141,7 +141,7 @@ const primaryCardData = {
     { key: "description", displayName: "Description" },
   ],
   toggle: true,
-  itemsPerPage: 11,
+  itemsPerPage: 5,
 };
 
 const studentCardData = {
