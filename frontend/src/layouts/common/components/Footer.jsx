@@ -18,12 +18,15 @@ const Footer = (props) => {
   const copyrightClass = isLeftALigned
     ? styles["footer-copyrightleft"]
     : styles["footer-copyright"];
+  const quoteclass = isLeftALigned
+    ? styles["footer-quoteleft"]
+    : styles["footer-quote"];
   return (
     <div className={styles["footer-footer"]}>
       <div className={containerClass}>
         <div className={logoBoxClass}>
           <img src={Logo} alt="Logo" className={styles["footer-img"]} />
-          <span className={styles["footer-quote"]}>{quoteContent}</span>
+          <span className={quoteclass}>{quoteContent}</span>
         </div>
       </div>
 
