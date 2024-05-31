@@ -1,6 +1,6 @@
 /* ------------------------------- AddEvent.css starts here ------------------------------- */
 
-.addEvent-form {
+.addevent-form {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -16,37 +16,37 @@
   backdrop-filter: blur(45px);
 }
 
-.addEvent-eventTitleDiv {
+.addevent-eventtitlediv {
   width: 80%;
 }
 
-.addEvent-eventModeDiv {
+.addevent-eventmodediv {
   width: 20%;
 }
 
-.addEvent-eventTitleMode {
+.addevent-eventtitlemode {
   display: flex;
   justify-content: space-between;
   gap: 2%;
 }
 
-.addEvent-dateTimeContainer {
+.addevent-datetimecontainer {
   display: flex;
   justify-content: space-between;
   gap: 2%;
 }
 
-.addEvent-dateTimeContainer .input-container {
+.addevent-datetimecontainer .inputcontainer {
   flex: 1;
 }
 
-.addEvent-dateTime {
+.addevent-datetime {
   width: 100%;
 }
 
-.addEvent-eventTitle,
-.addEvent-eventMode,
-.addEvent-eventType,
+.addevent-eventtitle,
+.addevent-eventmode,
+.addevent-eventtype,
 .addEvent-description,
 .addEvent-location,
 .addEvent-speaker,
