@@ -20,8 +20,8 @@ const Batchoperations = ({ mainHeading, initialdata }) => {
   };
 
   const studentIdLabel = (
-    <div className={`${styles["batchOperations-iconLabelContainerInput"]}`}>
-      <div className={`${styles["batchOperations-iconLabelContainer"]}`}>
+    <div className={`${styles["batchoperations-iconlabelcontainerinput"]}`}>
+      <div className={`${styles["batchoperations-iconlabelcontainer"]}`}>
         <div> Student ID</div>
         <TextButton
           icon={<FaPlus />}
@@ -35,13 +35,13 @@ const Batchoperations = ({ mainHeading, initialdata }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${styles["batchOperations-form"]}`}
+      className={`${styles["batchoperations-form"]}`}
     >
-      <div className={`${styles["batchOperations-containerOne"]}`}>
-        <header className={`${styles["batchOperations-head"]}`}>
+      <div className={`${styles["batchoperations-containerone"]}`}>
+        <header className={`${styles["batchoperations-head"]}`}>
           {mainHeading}
         </header>
-        <div className={`${styles["batchOperations-containerInput"]}`}>
+        <div className={`${styles["batchoperations-containerinput"]}`}>
           <Controller
             name="batchName"
             control={control}
@@ -68,7 +68,7 @@ const Batchoperations = ({ mainHeading, initialdata }) => {
           />
         </div>
       </div>
-      <div className={`${styles["batchOperations-buttonContainer"]}`}>
+      <div className={`${styles["batchoperations-buttoncontainer"]}`}>
         <PrimaryButton variant="primary" content="Create Batch" width="full" />
       </div>
     </form>

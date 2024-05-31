@@ -14,11 +14,11 @@ const Addevent = ({ mainHeading, options }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${styles["addEvent-form"]}`}
+      className={`${styles["addevent-form"]}`}
     >
-      <div className={`${styles["addEvent-containerOne"]}`}>
-        <header className={`${styles["addEvent-head"]}`}>{mainHeading}</header>
-        <div className={`${styles["addEvent-containerInput"]}`}>
+      <div className={`${styles["addevent-containerone"]}`}>
+        <header className={`${styles["addevent-head"]}`}>{mainHeading}</header>
+        <div className={`${styles["addevent-containerinput"]}`}>
           <Controller
             name="selectedEventId"
             control={control}
@@ -33,7 +33,7 @@ const Addevent = ({ mainHeading, options }) => {
           />
         </div>
       </div>
-      <div className={`${styles["addEvent-buttonContainer"]}`}>
+      <div className={`${styles["addevent-buttoncontainer"]}`}>
         <PrimaryButton variant="primary" content="Add" width="full" />
       </div>
     </form>

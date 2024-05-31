@@ -8,5 +8,5 @@ export default {
 
 const Template = (args) => <AddSkill {...args} />;
 
-export const Addskill = Template.bind({});
-Addskill.args = {};
+export const addskill = Template.bind({});
+addskill.args = {};

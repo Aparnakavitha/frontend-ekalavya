@@ -15,13 +15,13 @@ const AddProfilelink = ({ mainHeading, options }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${styles["addProfilelink-form"]}`}
+      className={`${styles["addprofilelink-form"]}`}
     >
-      <div className={`${styles["addProfilelink-containerOne"]}`}>
-        <header className={`${styles["addProfilelink-head"]}`}>
+      <div className={`${styles["addprofilelink-containerone"]}`}>
+        <header className={`${styles["addprofilelink-head"]}`}>
           {mainHeading}
         </header>
-        <div className={`${styles["addProfilelink-containerInput"]}`}>
+        <div className={`${styles["addprofilelink-containerinput"]}`}>
           <Controller
             name="selectedType"
             control={control}
@@ -48,7 +48,7 @@ const AddProfilelink = ({ mainHeading, options }) => {
           />
         </div>
       </div>
-      <div className={`${styles["addProfilelink-buttonContainer"]}`}>
+      <div className={`${styles["addprofilelink-buttoncontainer"]}`}>
         <PrimaryButton variant="primary" content="Add" width="full" />
       </div>
     </form>

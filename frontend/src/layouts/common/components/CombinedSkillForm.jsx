@@ -26,23 +26,23 @@ const CombinedSkillForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${styles["combinedSkillForm-form"]}`}
+      className={`${styles["combinedskillform-form"]}`}
     >
-      <div className={`${styles["combinedSkillForm-containerOne"]}`}>
-        <div className={`${styles["combinedSkillForm-allHeading"]}`}>
-          <header className={`${styles["combinedSkillForm-head"]}`}>
+      <div className={`${styles["combinedskillform-containerone"]}`}>
+        <div className={`${styles["combinedskillform-allheading"]}`}>
+          <header className={`${styles["combinedskillform-head"]}`}>
             {mainHeading}
           </header>
           {isEditlevel && !isSelect && message && skillName && (
-            <p className={`${styles["combinedSkillForm-message"]}`}>
+            <p className={`${styles["combinedskillform-message"]}`}>
               {message}{" "}
-              <span className={`${styles["combinedSkillForm-skillName"]}`}>
+              <span className={`${styles["combinedskillform-skillname"]}`}>
                 {skillName}
               </span>
             </p>
           )}
         </div>
-        <div className={`${styles["combinedSkillForm-containerInput"]}`}>
+        <div className={`${styles["combinedskillform-containerinput"]}`}>
           {isSelect ? (
             <>
               <Controller
@@ -57,7 +57,7 @@ const CombinedSkillForm = ({
                   />
                 )}
               />
-              <div className={`${styles["combinedSkillForm-text"]}`}>
+              <div className={`${styles["combinedskillform-text"]}`}>
                 {displaytext}
               </div>
             </>
@@ -104,7 +104,7 @@ const CombinedSkillForm = ({
           )}
         </div>
       </div>
-      <div className={`${styles["combinedSkillForm-buttonContainer"]}`}>
+      <div className={`${styles["combinedskillform-buttoncontainer"]}`}>
         <PrimaryButton variant="primary" content={buttonTilte} width="full" />
       </div>
     </form>

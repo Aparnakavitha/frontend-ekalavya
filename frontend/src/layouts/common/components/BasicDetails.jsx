@@ -47,13 +47,13 @@ const BasicDetails = ({ mainHeading, initialData }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${styles["basicDetails-form"]}`}
+      className={`${styles["basicdetails-form"]}`}
     >
-      <div className={`${styles["basicDetails-containerOne"]}`}>
-        <header className={`${styles["basicDetails-head"]}`}>
+      <div className={`${styles["basicdetails-containerone"]}`}>
+        <header className={`${styles["basicdetails-head"]}`}>
           {mainHeading}
         </header>
-        <div className={`${styles["basicDetails-containerInput-out"]}`}>
+        <div className={`${styles["basicdetails-containerinput-out"]}`}>
           <Controller
             name="dob"
             control={control}
@@ -102,10 +102,10 @@ const BasicDetails = ({ mainHeading, initialData }) => {
             )}
           />
           {fileError && (
-            <p className={`${styles["basicDetails-error"]}`}>{fileError}</p>
+            <p className={`${styles["basicdetails-error"]}`}>{fileError}</p>
           )}
 
-          <div className={`${styles["basicDetails-iconText"]}`}>
+          <div className={`${styles["basicdetails-icontext"]}`}>
             <TextButton
               icon={<FaPlus />}
               text="Add Profile Links"
@@ -114,7 +114,7 @@ const BasicDetails = ({ mainHeading, initialData }) => {
           </div>
         </div>
       </div>
-      <div className={`${styles["basicDetails-containerInput-inter"]}`}>
+      <div className={`${styles["basicdetails-containerinput-inter"]}`}>
         <Controller
           name="houseName"
           control={control}
@@ -155,7 +155,7 @@ const BasicDetails = ({ mainHeading, initialData }) => {
             <Input {...field} placeholders={["Country"]} size="normal" />
           )}
         />
-        <div className={`${styles["basicDetails-containerInput-in"]}`}>
+        <div className={`${styles["basicdetails-containerinput-in"]}`}>
           <Controller
             name="aboutMe"
             control={control}
@@ -168,7 +168,7 @@ const BasicDetails = ({ mainHeading, initialData }) => {
               />
             )}
           />
-          <div className={`${styles["basicDetails-buttonContainer"]}`}>
+          <div className={`${styles["basicdetails-buttoncontainer"]}`}>
             <PrimaryButton variant="primary" content="Save" width="full" />
           </div>
         </div>

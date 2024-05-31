@@ -44,7 +44,7 @@ const AddSkill = () => {
           />
           <PrimaryButton
             variant="primary"
-            content="Add Skill"
+            content="Add"
             onClick={handleAddSkill}
             width="full"
           />
