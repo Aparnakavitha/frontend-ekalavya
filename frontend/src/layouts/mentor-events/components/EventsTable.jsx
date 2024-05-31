@@ -75,7 +75,7 @@ const EventsTable = (props) => {
     <div className={styles["eventstable-container"]}>
       <div className={styles["eventstable-topleft"]}>
         <h2>
-          <u>Mark Attendance</u>
+          Mark Attendance
         </h2>
       </div>
       <div className={styles["eventstable-table"]}>
