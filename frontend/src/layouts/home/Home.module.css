@@ -187,6 +187,10 @@
     top: 60px;
     left: 120px;
   }
+
+  .hero-image3 {
+    display: none;
+  }
 }
 
 @media (max-width: 767px) and (min-width: 426px) {
@@ -223,7 +227,7 @@
     transform: scale(0.8);
   }
 
-  .hero-image3 {
+  .hero-image3 img{
     display: none;
   }
 
