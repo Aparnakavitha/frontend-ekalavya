@@ -325,19 +325,19 @@
 
 /* ------------------------------- EventsDescription.css starts here ------------------------------- */
 
-.eventsmentor-container {
+.eventsdescription-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.eventsmentor-topleft {
+.eventsdescription-topleft {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.eventsmentor-backbutton {
+.eventsdescription-backbutton {
   padding: 10px 20px;
   background-color: #007bff;
   color: white;
@@ -346,115 +346,115 @@
   cursor: pointer;
 }
 
-.eventsmentor-backbutton:hover {
+.eventsdescription-backbutton:hover {
   background-color: #0056b3;
 }
 
-.eventsmentor-content {
+.eventsdescription-content {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
 
-.eventsmentor-headingcontent h3 {
+.eventsdescription-headingcontent h3 {
   font-size: 24px;
   font-weight: 600;
 }
 
-.eventsmentor-contentheading {
+.eventsdescription-contentheading {
   font-size: 36px;
 }
 
-.eventsmentor-texted {
+.eventsdescription-texted {
   display: flex;
   flex-direction: column;
 }
 
-.eventsmentor-text {
+.eventsdescription-text {
   color: var(--white);
   font-size: 20px;
 }
 
-.eventsmentor-texts {
+.eventsdescription-texts {
   color: var(--white);
 }
 
-h2 {
+.eventsdescription-container h2 {
   color: var(--primary-color);
   text-decoration: none;
 }
 
-h3 {
+.eventsdescription-container h3 {
   color: var(--primary-color);
 }
 
-.eventsmentor-description {
+.eventsdescription-description {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.eventsmentor-desc {
+.eventsdescription-desc {
   color: var(--white);
 }
 
-.eventsmentor-date {
+.eventsdescription-date {
   color: var(--white);
 }
 
-.eventsmentor-gap {
+.eventsdescription-gap {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.eventsmentor-time {
+.eventsdescription-time {
   color: var(--white);
 }
 
-.eventsmentor-timer {
+.eventsdescription-timer {
   display: flex;
   flex-direction: column;
 }
 
-.eventsmentor-venue {
+.eventsdescription-venue {
   color: var(--white);
 }
 
-.eventsmentor-address {
+.eventsdescription-address {
   color: var(--white);
 }
 
-.eventsmentor-align {
+.eventsdescription-align {
   display: flex;
   flex-direction: row;
   gap: 100px;
 }
 
-.eventsmentor-speaker {
+.eventsdescription-speaker {
   color: var(--white);
 }
 
-.eventsmentor-navbutton {
+.eventsdescription-navbutton {
   display: flex;
   flex-direction: row;
   gap: 20px;
 }
 
-.eventsmentor-primarybutton {
+.eventsdescription-primarybutton {
   display: flex;
   flex-direction: row-reverse;
   gap: 20px;
 }
 
-.eventsmentor-buttondiv {
+.eventsdescription-buttondiv {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
 }
 
-.eventsmentor-primarydiv {
+.eventsdescription-primarydiv {
   display: flex;
   justify-content: right;
   gap: 20px;
@@ -462,28 +462,28 @@ h3 {
   left: 20px;
 }
 
-.eventsmentor-buttondiv2 {
+.eventsdescription-buttondiv2 {
   display: flex;
   justify-content: space-between;
 }
 
 @media only screen and (max-width: 480px) {
-  .eventsmentor-hiddenbutton {
+  .eventsdescription-hiddenbutton {
     display: none;
   }
 
-  .eventsmentor-topleft {
+  .eventsdescription-topleft {
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
 
-  .eventsmentor-align {
+  .eventsdescription-align {
     flex-direction: column;
     gap: 20px;
   }
 
-  .eventsmentor-primarydiv {
+  .eventsdescription-primarydiv {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -492,24 +492,24 @@ h3 {
     align-items: flex-start;
   }
 
-  .eventsmentor-buttondiv2 {
+  .eventsdescription-buttondiv2 {
     flex-direction: column;
   }
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
-  .eventsmentor-topleft {
+  .eventsdescription-topleft {
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
 
-  .eventsmentor-align {
+  .eventsdescription-align {
     flex-direction: column;
     gap: 20px;
   }
 
-  .eventsmentor-primarydiv {
+  .eventsdescription-primarydiv {
     position: static;
     justify-content: center;
     margin-top: 20px;
@@ -519,17 +519,17 @@ h3 {
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .eventsmentor-topleft {
+  .eventsdescription-topleft {
     flex-direction: row;
     justify-content: space-between;
   }
 
-  .eventsmentor-align {
+  .eventsdescription-align {
     flex-direction: row;
     gap: 50px;
   }
 
-  .eventsmentor-primarydiv {
+  .eventsdescription-primarydiv {
     position: static;
     justify-content: flex-end;
   }

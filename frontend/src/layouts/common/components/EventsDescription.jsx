@@ -24,10 +24,10 @@ const EventsDescription = (props) => {
   } = props;
 
   return (
-    <div className={`${styles["eventsmentor-container"]}`}>
-      <div className={`${styles["eventsmentor-topleft"]}`}>
-        <div className={`${styles["eventsmentor-navbutton"]}`}>
-          <div className={`${styles["eventsmentor-hiddenbutton"]}`}>
+    <div className={`${styles["eventsdescription-container"]}`}>
+      <div className={`${styles["eventsdescription-topleft"]}`}>
+        <div className={`${styles["eventsdescription-navbutton"]}`}>
+          <div className={`${styles["eventsdescription-hiddenbutton"]}`}>
             <NavButton pageName={button} />
           </div>
           <div>
@@ -36,21 +36,21 @@ const EventsDescription = (props) => {
         </div>
       </div>
 
-      <div className={`${styles["eventsmentor-description"]}`}>
-        <div className={`${styles["eventsmentor-buttondiv"]}`}>
-          <div className={`${styles["eventsmentor-buttondiv2"]}`}>
-            <div className={`${styles["eventsmentor-content"]}`}>
+      <div className={`${styles["eventsdescription-description"]}`}>
+        <div className={`${styles["eventsdescription-buttondiv"]}`}>
+          <div className={`${styles["eventsdescription-buttondiv2"]}`}>
+            <div className={`${styles["eventsdescription-content"]}`}>
               <div>
-                <h2 className={`${styles["eventsmentor-contentheading"]}`}>
+                <h2 className={`${styles["eventsdescription-contentheading"]}`}>
                   {heading}
                 </h2>
               </div>
-              <div className={`${styles["eventsmentor-texted"]}`}>
-                <a className={`${styles["eventsmentor-text"]}`}>
+              <div className={`${styles["eventsdescription-texted"]}`}>
+                <a className={`${styles["eventsdescription-text"]}`}>
                   <b> Type : </b>
                   {text}
                 </a>
-                <a className={`${styles["eventsmentor-texts"]}`}>
+                <a className={`${styles["eventsdescription-texts"]}`}>
                   Event Mode : {texts}
                 </a>
               </div>
@@ -58,8 +58,8 @@ const EventsDescription = (props) => {
 
             {type === "public" && (
               <>
-                <div className={`${styles["eventsmentor-primarydiv"]}`}>
-                  <div className={`${styles["eventsmentor-primarybutton"]}`}>
+                <div className={`${styles["eventsdescription-primarydiv"]}`}>
+                  <div className={`${styles["eventsdescription-primarybutton"]}`}>
                     <div>
                       <PrimaryButton content={smaller} variant="secondary" />
                     </div>
@@ -70,8 +70,8 @@ const EventsDescription = (props) => {
 
             {type === "mentor" && (
               <>
-                <div className={`${styles["eventsmentor-primarydiv"]}`}>
-                  <div className={`${styles["eventsmentor-primarybutton"]}`}>
+                <div className={`${styles["eventsdescription-primarydiv"]}`}>
+                  <div className={`${styles["eventsdescription-primarybutton"]}`}>
                     <div>
                       <PrimaryButton content={small} variant="secondary" />
                     </div>
@@ -83,7 +83,7 @@ const EventsDescription = (props) => {
             {type == "admin" && (
               <>
                 <div>
-                  <div className={`${styles["eventsmentor-primarydiv"]}`}>
+                  <div className={`${styles["eventsdescription-primarydiv"]}`}>
                     <PrimaryButton content={large} variant="secondary" />
                     <PrimaryButton content={medium} variant="secondary" />
                     <PrimaryButton content={small} variant="secondary" />
@@ -93,65 +93,65 @@ const EventsDescription = (props) => {
             )}
           </div>
 
-          <div className={`${styles["eventsmentor-gap"]}`}>
-            <div className={`${styles["eventsmentor-headingcontent"]}`}>
+          <div className={`${styles["eventsdescription-gap"]}`}>
+            <div className={`${styles["eventsdescription-headingcontent"]}`}>
               <h3>Description</h3>
             </div>
-            <div className={`${styles["eventsmentor-desc"]}`}>
+            <div className={`${styles["eventsdescription-desc"]}`}>
               <p>{desc}</p>
             </div>
           </div>
 
-          <div className={`${styles["eventsmentor-align"]}`}>
-            <div className={`${styles["eventsmentor-gap"]}`}>
-              <div className={`${styles["eventsmentor-headingcontent"]}`}>
+          <div className={`${styles["eventsdescription-align"]}`}>
+            <div className={`${styles["eventsdescription-gap"]}`}>
+              <div className={`${styles["eventsdescription-headingcontent"]}`}>
                 <h3>Date and Time</h3>
               </div>
-              <div className={`${styles["eventsmentor-timer"]}`}>
-                <a className={`${styles["eventsmentor-date"]}`}>
+              <div className={`${styles["eventsdescription-timer"]}`}>
+                <a className={`${styles["eventsdescription-date"]}`}>
                   • <b>Date :</b>
                   {date}
                 </a>
-                <a className={`${styles["eventsmentor-time"]}`}>
+                <a className={`${styles["eventsdescription-time"]}`}>
                   • <b>Time :</b>
                   {time}
                 </a>
               </div>
             </div>
 
-            <div className={`${styles["eventsmentor-gap"]}`}>
-              <div className={`${styles["eventsmentor-headingcontent"]}`}>
+            <div className={`${styles["eventsdescription-gap"]}`}>
+              <div className={`${styles["eventsdescription-headingcontent"]}`}>
                 <h3>Location</h3>
               </div>
-              <div className={`${styles["eventsmentor-timer"]}`}>
-                <a className={`${styles["eventsmentor-venue"]}`}>
+              <div className={`${styles["eventsdescription-timer"]}`}>
+                <a className={`${styles["eventsdescription-venue"]}`}>
                   • <b>Venue :</b> {venue}
                 </a>
-                <a className={`${styles["eventsmentor-address"]}`}>
+                <a className={`${styles["eventsdescription-address"]}`}>
                   • <b>Address :</b> {address}
                 </a>
               </div>
             </div>
           </div>
 
-          <div className={`${styles["eventsmentor-gap"]}`}>
-            <div className={`${styles["eventsmentor-headingcontent"]}`}>
+          <div className={`${styles["eventsdescription-gap"]}`}>
+            <div className={`${styles["eventsdescription-headingcontent"]}`}>
               <h3>Speakers</h3>
             </div>
             <div>
-              <a className={`${styles["eventsmentor-speaker"]}`}>• {speaker}</a>
+              <a className={`${styles["eventsdescription-speaker"]}`}>• {speaker}</a>
             </div>
           </div>
 
-          {type === "public" && (
+          {(type === "public" || type === "admin") && (
             <>
               <div>
-                <div className={`${styles["eventsmentor-headingcontent"]}`}>
+                <div className={`${styles["eventsdescription-headingcontent"]}`}>
                   <h3>Organizer</h3>
                 </div>
 
                 <div>
-                  <a className={`${styles["eventsmentor-speaker"]}`}>
+                  <a className={`${styles["eventsdescription-speaker"]}`}>
                     • {speaker}
                   </a>
                 </div>
