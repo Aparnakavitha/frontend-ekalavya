@@ -1,4 +1,4 @@
-import EventsMentor from "./EventsMentor";
+import EventsMentor from "./EventsDescription";
 
 export default {
   title: "layouts/Common/components/EventsMentor",

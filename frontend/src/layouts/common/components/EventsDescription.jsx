@@ -3,7 +3,7 @@ import styles from "../Common.module.css";
 import NavButton from "../../../components/buttons/NavButton";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const EventsMentor = (props) => {
+const EventsDescription = (props) => {
   const {
     heading,
     text,
@@ -164,4 +164,4 @@ const EventsMentor = (props) => {
   );
 };
 
-export default EventsMentor;
+export default EventsDescription;

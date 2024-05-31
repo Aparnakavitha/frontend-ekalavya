@@ -145,7 +145,7 @@
   justify-content: center;
 }
 
-@media (max-width: 1132px) and (min-width: 993px) {
+@media (max-width: 1238px) and (min-width: 993px) {
   .hero-image3 {
     display: none;
   }
