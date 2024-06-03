@@ -4,6 +4,7 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../MentorEvents.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import NavButton from "../../../components/buttons/NavButton";
 
 const EventForm = () => {
   const { handleSubmit, control, watch, setValue } = useForm({});
@@ -55,6 +56,7 @@ const EventForm = () => {
       onSubmit={handleSubmit(onSubmit)}
       className={`${styles["eventform-form"]}`}
     >
+      <NavButton pageName="Create Event" onClick={() => {}} />
       <div className={`${styles["eventform-eventtitlemode"]}`}>
         <div className={`${styles["eventform-eventtitlediv"]}`}>
           <Controller
