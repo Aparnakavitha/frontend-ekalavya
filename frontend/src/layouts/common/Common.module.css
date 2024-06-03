@@ -146,6 +146,8 @@
 .userprofile-name {
   font-weight: 600;
   font-size: 20px;
+  max-width: 9rem;
+  text-wrap: wrap;
 }
 
 .userprofile-student-id {
@@ -156,6 +158,8 @@
 .userprofile-college {
   font-weight: 400;
   font-size: 16px;
+  max-width: 9rem;
+  text-wrap: wrap;
 }
 
 .userprofile-dob {
@@ -166,6 +170,15 @@
 .userprofile-profile-picture {
   margin-right: 1.5rem;
   display: flex;
+}
+
+.userprofile-controlbuttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.userprofile-controlbutton {
+  margin: 0.3rem;
 }
 
 .userprofile-info-text {

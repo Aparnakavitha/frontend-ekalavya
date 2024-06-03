@@ -2,14 +2,15 @@ import React from "react";
 import styles from "../Common.module.css";
 import ProfilePicture from "../../../components/profilepicture/ProfilePicture";
 import TextButton from "../../../components/buttons/TextButton";
-import { MdEdit } from "react-icons/md";
+import { MdEdit, MdDelete } from "react-icons/md";
 import { IoMdMail } from "react-icons/io";
 import { FaPhone, FaGithub, FaLinkedin } from "react-icons/fa";
 
 const UserProfileInfo = (props) => {
   const {
+    role = "student",
     name = "Emma Watson",
-    studentId = "STD1537",
+    userId = "STD1537",
     college = "Christ University",
     dob = "Jan 21 2001",
     email = "emmawatson@gmail.com",
@@ -17,25 +18,8 @@ const UserProfileInfo = (props) => {
     linkedin = "linkedin/emmawatson",
     github = "github.com/emmawatson153",
     address = "Bengaluru, 685789, Karnataka, India",
-    qualifications = [
-      {
-        name: "Master of Business Administration (MBA)",
-        university: "Christ University",
-        cgpa: 7.2,
-        start: "May 2022",
-        end: "April 2024",
-        specialization: "Marketing",
-      },
+    hasDelete = false,
 
-      {
-        name: "Bachelor of Technology (B.Tech)",
-        university: "Christ University",
-        cgpa: 7.2,
-        start: "May 2022",
-        end: "April 2024",
-        specialization: "Marketing",
-      },
-    ],
     ...rest
   } = props;
 
@@ -44,7 +28,16 @@ const UserProfileInfo = (props) => {
       <div className={`${styles["userprofile-user-details"]}`}>
         <div className={`${styles["userprofile-title"]}`}>
           <h2 className={`${styles["userprofile-title1"]}`}>Details</h2>
-          <TextButton icon={<MdEdit />} text="Update" />
+          <div className={`${styles["userprofile-controlbuttons"]}`}>
+            <div className={`${styles["userprofile-controlbutton"]}`}>
+              <TextButton icon={<MdEdit />} text="Update" />
+            </div>
+            {hasDelete && (
+              <div className={`${styles["userprofile-controlbutton"]}`}>
+                <TextButton icon={<MdDelete />} text="Delete" />
+              </div>
+            )}
+          </div>
         </div>
 
         <div className={`${styles["userprofile-details-section"]}`}>
@@ -55,9 +48,14 @@ const UserProfileInfo = (props) => {
             <div className={`${styles["userprofile-info-text"]}`}>
               <h3 className={`${styles["userprofile-name"]}`}>{name}</h3>
               <h4 className={`${styles["userprofile-student-id"]}`}>
-                <b>Student Id:</b> {studentId}
+                <b>{role.charAt(0).toUpperCase() + role.slice(1)} Id:</b>{" "}
+                {userId}
               </h4>
-              <h4 className={`${styles["userprofile-college"]}`}>{college}</h4>
+              {role == "student" && (
+                <h4 className={`${styles["userprofile-college"]}`}>
+                  {college}
+                </h4>
+              )}
               <h4 className={`${styles["userprofile-dob"]}`}>DOB: {dob}</h4>
             </div>
           </div>
