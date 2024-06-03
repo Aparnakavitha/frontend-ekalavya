@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import styles from "./InputDropdown.module.css";
- 
+
 function InputDropdown({
   label,
   placeholder,
@@ -12,7 +12,7 @@ function InputDropdown({
   isMulti = false,
 }) {
   const [isFocused, setIsFocused] = useState(false);
- 
+
   const getControlStyles = (provided) => ({
     ...provided,
     minHeight: "57px",
@@ -24,7 +24,7 @@ function InputDropdown({
     boxShadow: isFocused ? "0 0 0 0.2px var(--primary-color)" : "none",
     "&:hover": { borderColor: "var(--primary-color)" },
   });
- 
+
   const getOptionStyles = (provided, state) => ({
     ...provided,
     color: "var(--white)",
@@ -41,7 +41,7 @@ function InputDropdown({
       color: "var(--black)",
     },
   });
- 
+
   const getMultiValueStyles = (provided) => ({
     ...provided,
     backgroundColor: "var(--neutral800)",
@@ -55,12 +55,12 @@ function InputDropdown({
       backgroundColor: "var(--neutral700)",
     },
   });
- 
+
   const getMultiValueLabelStyles = (provided) => ({
     ...provided,
     color: "var(--white)",
   });
- 
+
   const getMultiValueRemoveStyles = (provided) => ({
     ...provided,
     color: "var(--white)",
@@ -70,7 +70,7 @@ function InputDropdown({
       color: "var(--primary-color)",
     },
   });
- 
+
   return (
     <div>
       {label && <label className={styles.label}>{label}</label>}
@@ -155,5 +155,5 @@ function InputDropdown({
     </div>
   );
 }
- 
+
 export default InputDropdown;
