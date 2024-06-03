@@ -21,6 +21,9 @@ const EventsDescription = (props) => {
     large,
     type,
     smaller,
+    onclick1,
+    onclick2,
+    onclick3
   } = props;
 
   return (
@@ -31,7 +34,7 @@ const EventsDescription = (props) => {
             <NavButton pageName={button} />
           </div>
           <div>
-            <NavButton pageName={buttons} />
+            <NavButton pageName={buttons} onClick={onclick1}/>
           </div>
         </div>
       </div>
@@ -61,7 +64,7 @@ const EventsDescription = (props) => {
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div className={`${styles["eventsdescription-primarybutton"]}`}>
                     <div>
-                      <PrimaryButton content={smaller} variant="secondary" />
+                      <PrimaryButton content={smaller} variant="secondary" onClick={onclick1}/>
                     </div>
                   </div>
                 </div>
@@ -73,7 +76,7 @@ const EventsDescription = (props) => {
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div className={`${styles["eventsdescription-primarybutton"]}`}>
                     <div>
-                      <PrimaryButton content={small} variant="secondary" />
+                      <PrimaryButton content={small} variant="secondary" onClick={onclick1}/>
                     </div>
                   </div>
                 </div>
@@ -84,9 +87,9 @@ const EventsDescription = (props) => {
               <>
                 <div>
                   <div className={`${styles["eventsdescription-primarydiv"]}`}>
-                    <PrimaryButton content={large} variant="secondary" />
-                    <PrimaryButton content={medium} variant="secondary" />
-                    <PrimaryButton content={small} variant="secondary" />
+                    <PrimaryButton content={large} variant="secondary" onClick={onclick1} />
+                    <PrimaryButton content={medium} variant="secondary" onClick={onclick2}/>
+                    <PrimaryButton content={small} variant="secondary" onClick={onclick3}/>
                   </div>
                 </div>
               </>
