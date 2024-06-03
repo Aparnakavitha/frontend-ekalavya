@@ -1,8 +1,8 @@
-import EventsMentor from "./EventsDescription";
+import EventsDescription from "./EventsDescription";
 
 export default {
-  title: "layouts/Common/components/EventsMentor",
-  component: EventsMentor,
+  title: "layouts/Common/components/EventsDescription",
+  component: EventsDescription,
 };
 
 export const eventPublic = {

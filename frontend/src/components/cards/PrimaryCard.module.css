@@ -11,8 +11,8 @@
 
 .cardOutline {
   position: absolute;
-  max-width: 280px;
-  max-height: 189px;
+  max-width: 288px;
+  max-height: 194px;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -26,8 +26,8 @@
 .cardOutlineHover {
   z-index: 1;
   position: absolute;
-  max-width: 280px;
-  max-height: 189px;
+  max-width: 288px;
+  max-height: 194px;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -123,6 +123,8 @@
   height: 40px;
   border-bottom: 1px solid var(--primary-color);
   border-left: 1px solid var(--primary-color);
+  border-top: 0px solid var(--primary-color);
+  border-right: 0px solid var(--primary-color);
   border-radius: 0 0 0 90%;
   left: 231px;
   top: 18px;
