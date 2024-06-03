@@ -1,4 +1,6 @@
 import ActionComponent from "./Action";
+import React, { useState } from "react";
+import AddUser from "./AddUser";
 
 export default {
   title: "layouts/Common/Components/Action",
@@ -30,6 +32,15 @@ const studentAct = {
     content: "Reset",
     width: "full",
   },
+  adduserprops: {
+    options: [
+      { value: "option1", label: "Option 1" },
+      { value: "option2", label: "Option 2" },
+      { value: "option3", label: "Option 3" },
+    ],
+    viewCollege: true,
+    heading: "Add New Student",
+  },
 };
 
 const mentorAct = {
@@ -45,6 +56,10 @@ const mentorAct = {
     placeholder: "Mentor Name",
   },
   showFiltersAndReset: false,
+  adduserprops: {
+    viewCollege: false,
+    heading: "Add New Mentor",
+  },
 };
 
 const eventsAct = {

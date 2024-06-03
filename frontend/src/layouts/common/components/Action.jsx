@@ -3,6 +3,8 @@ import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
+import Modal from "../../../layouts/common/components/Modal";
+import AddUser from "../components/AddUser";
 
 const ActionComponent = ({
   buttonProps,
@@ -12,8 +14,10 @@ const ActionComponent = ({
   resetProps,
   showFiltersAndReset,
   searchWidth = "full",
+  adduserprops
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToggle = (index) => {
     setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -23,24 +27,21 @@ const ActionComponent = ({
     console.log(`Selected option: ${option}`);
     setOpenDropdownIndex(null);
   };
-
   return (
-    <div className={`${styles["common-content"]}`}>
-      <div className={`${styles["common-top"]}`}>
-        <div className={`${styles["common-heading"]}`}>{heading}</div>
-        <div className={`${styles["common-buttons"]}`}>
+    <div className={styles["common-content"]}>
+      <div className={styles["common-top"]}>
+        <div className={styles["common-heading"]}>{heading}</div>
+        <div className={styles["common-buttons"]}>
           <PrimaryButton {...buttonProps} />
         </div>
       </div>
-      <div className={`${styles["common-bottom"]}`}>
-        <div
-          className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}
-        >
+      <div className={styles["common-bottom"]}>
+        <div className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}>
           <Searchbar {...searchbarProps} />
         </div>
         {showFiltersAndReset && (
-          <div className={`${styles["common-right"]}`}>
-            <div className={`${styles["common-filter"]}`}>
+          <div className={styles["common-right"]}>
+            <div className={styles["common-filter"]}>
               {filterProps.map((props, index) => (
                 <Filter
                   key={index}
@@ -52,7 +53,7 @@ const ActionComponent = ({
                 />
               ))}
             </div>
-            <div className={`${styles["common-reset"]}`}>
+            <div className={styles["common-reset"]}>
               <PrimaryButton {...resetProps} />
             </div>
           </div>
