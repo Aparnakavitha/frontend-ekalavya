@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import ActionComponent from "../../common/components/Action";
-import AddUser from "../../common/components/AddUser";
+import AddEvent from "./AddEvent";
 import Modal from "../../common/components/Modal";
-import AdminStudentActionData from "./SampleData";
+import AdminEventActionData from "./EventData";
 
-const AdminStudentAction = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const AdminEventAction = () => {
+    const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -21,24 +21,24 @@ const AdminStudentAction = () => {
   };
 
   const actionData = {
-    ...AdminStudentActionData,
+    ...AdminEventActionData,
     buttonProps: {
-      ...AdminStudentActionData.buttonProps,
+      ...AdminEventActionData.buttonProps,
       onClick: handleOpenModal,
     },
   };
 
   return (
     <div>
-      <ActionComponent {...actionData} />
+        <ActionComponent {...actionData} />
       <Modal isOpen={isOpen} onClose={handleCloseModal}>
-        <AddUser
-          {...AdminStudentActionData.adduserprops}
-          onSubmit={handleFormSubmit}
+        <AddEvent 
+        {...AdminEventActionData.addeventprops}
+        onSubmit={handleFormSubmit}
         />
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default AdminStudentAction;
+export default AdminEventAction;

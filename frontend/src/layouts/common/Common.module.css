@@ -738,7 +738,6 @@
 .modal-modalContent {
   border-radius: 50px;
   position: relative;
-  max-width: 700px;
-  width: 100%;
+  width: 70vw;
 }
 /* -------------------------------- Modal.css ends here ----------------------------------- */

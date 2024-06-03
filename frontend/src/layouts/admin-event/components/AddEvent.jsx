@@ -5,7 +5,7 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../AdminEvent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddEvent = ({ defaultValues }) => {
+const AddEvent = ({ defaultValues ,onSubmit}) => {
   const initialDefaultValues = defaultValues;
 
   const mergedDefaultValues = { ...initialDefaultValues, ...defaultValues };
@@ -16,7 +16,7 @@ const AddEvent = ({ defaultValues }) => {
 
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
 
-  const onSubmit = (data) => {
+  const handleFormSubmit = (data) => {
     if (data.eventMode === "Online") {
       if (!data.location) {
         data.link = "";
@@ -25,7 +25,7 @@ const AddEvent = ({ defaultValues }) => {
       }
       delete data.location;
     }
-    console.log("Form Data:", data);
+    onSubmit(data);
   };
 
   const options = [
@@ -57,7 +57,7 @@ const AddEvent = ({ defaultValues }) => {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["addevent-form"]}`}
     >
       <div className={`${styles["addevent-eventtitlemode"]}`}>

@@ -8,10 +8,6 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
   const { handleSubmit, control } = useForm();
 
-  // const onSubmit = (data) => {
-  //   console.log("Form Data:", data);
-  // };
-
   const handleFormSubmit = (data) => {
     onSubmit(data);
   };
