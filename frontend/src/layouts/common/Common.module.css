@@ -536,3 +536,26 @@
 }
 
 /* ------------------------------- EventsDescription.css ends here ------------------------------- */
+
+/* ------------------------------- Modal.css starts here ------------------------------- */
+
+.modal-modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+ 
+.modal-modalContent {
+  border-radius: 50px;
+  position: relative;
+  width: 70vw;
+}
+
+/* ------------------------------- Modal.css ends here ------------------------------- */

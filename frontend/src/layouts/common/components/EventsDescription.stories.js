@@ -23,6 +23,9 @@ export const eventPublic = {
     large: "view participants",
     type: "public",
     smaller: "Register",
+    onclick1:(e)=>{
+      console.log("Hello")
+    }
   },
 };
 
@@ -44,6 +47,9 @@ export const eventMentor = {
     large: "view participants",
     type: "mentor",
     smaller: "Register",
+    onclick1:(e)=>{
+      console.log("Hello")
+    }
   },
 };
 
@@ -65,5 +71,14 @@ export const eventAdmin = {
     large: "view participants",
     type: "admin",
     smaller: "Register",
+    onclick1:(e)=>{
+      console.log("Hello")
+    },
+    onclick2:(e)=>{
+      console.log("Hello")
+    }
+    ,onclick3:(e)=>{
+      console.log("Hello")
+    }
   },
 };
