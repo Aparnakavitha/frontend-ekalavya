@@ -1,0 +1,281 @@
+/* ------------------------------- SideBar.css starts here ------------------------------- */
+
+.sidebar {
+    background-color: #494949;
+    width: 250px;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    transition: left 0.8s ease-in-out;
+}
+
+.sidebar-HeadingIn img {
+    font-size: 32px;
+    line-height: 35px;
+    padding-top: 30px;
+    padding-left: 14px;
+}
+
+.sidebar-List {
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+}
+
+.sidebar-Toggle {
+    display: none;
+}
+
+.sidebar-HeaderButton {
+    position: absolute;
+    left: 32px;
+}
+
+.sidebar-Card {
+    display: none;
+}
+
+.sidebar-Content {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        left: -820px;
+        width: 100%;
+    }
+
+    .sidebar-HeadingIn img {
+        display: flex;
+        line-height: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        width: 120px;
+        height: auto;
+        align-items: center;
+    }
+
+    .sidebar-HeadingOut img {
+        display: flex;
+        justify-content: center;
+        line-height: 0px;
+        width: 120px;
+        height: auto;
+        align-items: center;
+    }
+
+    .sidebar-HeaderResp {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #494949;
+        height: 65px;
+        padding: 10px;
+    }
+
+    .sidebar-HeaderContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .sidebar-HeaderContainerOut {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .sidebar-Toggle {
+        display: flex;
+        cursor: pointer;
+    }
+
+    .sidebar-List {
+        padding-top: 40px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 0px;
+        gap: 0px;
+    }
+
+    .sidebar-Hamburger {
+        cursor: pointer;
+        font-size: 25px;
+        color: white;
+    }
+
+    .sidebar-CrossIcon {
+        cursor: pointer;
+        font-size: 30px;
+        color: white;
+    }
+
+    .sidebar.show {
+        left: 0;
+    }
+
+    .sidebar-Card {
+        display: flex;
+        position: absolute;
+        bottom: 30px;
+        justify-content: center;
+        padding-left: 10px;
+    }
+
+    .sidebar-HeaderButton {
+        position: absolute;
+        bottom: 120px;
+        left: 34px;
+    }
+
+}
+
+/* ------------------------------- SideBar.css ends here ------------------------------- */
+
+
+/* ------------------------------- Footer.css starts here ------------------------------- */
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    padding-top: 26px;
+}
+
+.footer-conatinerLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.footer-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background-color: var(--background);
+}
+
+.footer-logoBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-logoBoxLeft {
+    padding-top: 26px;
+    padding-left: 57px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.footer-img {
+    height: 40px;
+    width: 163px;
+}
+
+.footer-quote {
+    color: var(--white);
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.footer-footerbox {
+    width: 100%;
+    height: 8px;
+    background: var(--primary-color);
+}
+
+.footer-bottumbox {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+}
+
+.footer-copyrightContent {
+    font-family: Urbanist;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 400;
+    padding-bottom: 10px;
+}
+
+.footer-copyrightContent2 {
+    font-family: Urbanist;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration-line: underline;
+    padding-bottom: 10px;
+}
+
+.footer-copyright {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    color: var(--white);
+}
+
+.footer-copyrightLeft {
+    padding-left: 57px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    color: var(--white);
+}
+
+@media (max-width: 767px) {
+    .footer-copyrightContent {
+        font-family: Urbanist;
+        color: var(--white);
+        font-size: 10px;
+        font-weight: 400;
+    }
+
+    .footer-copyrightContent2 {
+        font-size: 10px;
+    }
+
+    .footer-copyright,
+    .footer-copyrightLeft {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-quote {
+        padding: 10px;
+        font-size: 24px;
+    }
+
+    .footer-conatinerLeft {
+        padding-left: 0px;
+        align-items: center;
+    }
+
+    .footer-logoBoxLeft {
+        padding-left: 0px;
+        align-items: center;
+    }
+
+    .footer-copyrightLeft {
+        padding-left: 0px;
+        justify-content: center;
+    }
+
+}
+
+/* ------------------------------- SideBar.css ends here ------------------------------- */
