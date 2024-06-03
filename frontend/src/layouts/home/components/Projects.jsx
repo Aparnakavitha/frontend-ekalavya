@@ -35,7 +35,9 @@ const Project = ({ projects, heading1, heading2 }) => {
   }
 
   const handleArrow = () => {
-    const arrows = document.querySelectorAll(".projects-carousel .control-arrow");
+    const arrows = document.querySelectorAll(
+      ".projects-carousel .control-arrow"
+    );
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
       arrow.style.bottom = "17%";
@@ -48,7 +50,9 @@ const Project = ({ projects, heading1, heading2 }) => {
   };
 
   const handleDots = () => {
-    const dots = document.querySelectorAll(".projects-carousel .control-dots .dot");
+    const dots = document.querySelectorAll(
+      ".projects-carousel .control-dots .dot"
+    );
     dots.forEach((dot, idx) => {
       if (idx >= 3) {
         dot.style.display = "none";
@@ -69,7 +73,7 @@ const Project = ({ projects, heading1, heading2 }) => {
       </div>
       <div className={`${styles["carousel-wrapper"]}`}>
         <Carousel
-        className="projects-carousel"
+          className="projects-carousel"
           showThumbs={false}
           infiniteLoop
           useKeyboardArrows

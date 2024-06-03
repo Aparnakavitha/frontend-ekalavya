@@ -35,7 +35,9 @@ const Testimonials = ({ testimonials, heading }) => {
   }
 
   const handleArrow = () => {
-    const arrows = document.querySelectorAll(".testimonials-carousel .control-arrow");
+    const arrows = document.querySelectorAll(
+      ".testimonials-carousel .control-arrow"
+    );
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
       arrow.style.bottom = "17%";
@@ -48,7 +50,9 @@ const Testimonials = ({ testimonials, heading }) => {
   };
 
   const handleDots = () => {
-    const dots = document.querySelectorAll(".testimonials-carousel .control-dots .dot");
+    const dots = document.querySelectorAll(
+      ".testimonials-carousel .control-dots .dot"
+    );
     dots.forEach((dot, idx) => {
       if (idx >= 3) {
         dot.style.display = "none";
@@ -68,7 +72,7 @@ const Testimonials = ({ testimonials, heading }) => {
       </div>
       <div className={`${styles["carousel-wrapper"]}`}>
         <Carousel
-        className="testimonials-carousel"
+          className="testimonials-carousel"
           showThumbs={false}
           infiniteLoop
           useKeyboardArrows
