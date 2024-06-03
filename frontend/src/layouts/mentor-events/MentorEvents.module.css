@@ -11,6 +11,7 @@
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  color: var(--primary-color);
 }
 
 .eventstable-font {
@@ -117,7 +118,7 @@
 .eventform-description,
 .eventform-location,
 .eventform-speaker,
-.eventform-organizer {
+.eventform-speakerdescription {
   margin-bottom: 2%;
 }
 

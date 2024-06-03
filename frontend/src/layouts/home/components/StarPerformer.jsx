@@ -35,7 +35,9 @@ const StarPerformer = ({ studentProfiles, heading }) => {
   }
 
   const handleArrow = () => {
-    const arrows = document.querySelectorAll(".starperformer-carousel .control-arrow");
+    const arrows = document.querySelectorAll(
+      ".starperformer-carousel .control-arrow"
+    );
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
       arrow.style.bottom = "17%";
@@ -47,10 +49,34 @@ const StarPerformer = ({ studentProfiles, heading }) => {
     });
   };
 
-  const handleDots = () => {
-    const dots = document.querySelectorAll(".starperformer-carousel .control-dots .dot");
+  const handleDots = (currentSlide) => {
+    const dots = document.querySelectorAll(
+      ".starperformer-carousel .control-dots .dot"
+    );
+    const visibleNormalDots = 3;
+    const visibleSmallDots = 2;
+    const visibleDots = visibleNormalDots + visibleSmallDots;
+
     dots.forEach((dot, idx) => {
-      if (idx >= 3) {
+      if (
+        idx >= currentSlide - Math.floor(visibleNormalDots / 2) &&
+        idx <= currentSlide + Math.floor(visibleNormalDots / 2)
+      ) {
+        dot.style.display = "inline-block";
+        dot.style.transform = "scale(1)"; // normal size
+      } else if (
+        idx >= currentSlide - Math.floor(visibleDots / 2) &&
+        idx < currentSlide - Math.floor(visibleNormalDots / 2)
+      ) {
+        dot.style.display = "inline-block";
+        dot.style.transform = "scale(0.6)"; // small size
+      } else if (
+        idx <= currentSlide + Math.floor(visibleDots / 2) &&
+        idx > currentSlide + Math.floor(visibleNormalDots / 2)
+      ) {
+        dot.style.display = "inline-block";
+        dot.style.transform = "scale(0.6)"; // small size
+      } else {
         dot.style.display = "none";
       }
     });
@@ -58,7 +84,7 @@ const StarPerformer = ({ studentProfiles, heading }) => {
 
   useEffect(() => {
     handleArrow();
-    handleDots();
+    handleDots(0);
   }, [studentProfiles, chunkSizeStudent]);
 
   return (
@@ -68,14 +94,14 @@ const StarPerformer = ({ studentProfiles, heading }) => {
       </div>
       <div className={`${styles["carousel-wrapper"]}`}>
         <Carousel
-        className="starperformer-carousel"
+          className="starperformer-carousel"
           showThumbs={false}
           infiniteLoop
           useKeyboardArrows
           swipeable
           showStatus={false}
           onChange={handleDots}
-          onInitialized={handleDots}
+          onInitialized={() => handleDots(0)}
         >
           {studentChunks.map((chunk, chunkIndex) => (
             <div key={chunkIndex} className={`${styles["carousel-chunk"]}`}>

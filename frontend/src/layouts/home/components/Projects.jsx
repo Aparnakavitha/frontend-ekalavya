@@ -35,7 +35,9 @@ const Project = ({ projects, heading1, heading2 }) => {
   }
 
   const handleArrow = () => {
-    const arrows = document.querySelectorAll(".projects-carousel .control-arrow");
+    const arrows = document.querySelectorAll(
+      ".projects-carousel .control-arrow"
+    );
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
       arrow.style.bottom = "17%";
@@ -47,10 +49,34 @@ const Project = ({ projects, heading1, heading2 }) => {
     });
   };
 
-  const handleDots = () => {
-    const dots = document.querySelectorAll(".projects-carousel .control-dots .dot");
+  const handleDots = (currentSlide) => {
+    const dots = document.querySelectorAll(
+      ".projects-carousel .control-dots .dot"
+    );
+    const visibleNormalDots = 3;
+    const visibleSmallDots = 2;
+    const visibleDots = visibleNormalDots + visibleSmallDots;
+
     dots.forEach((dot, idx) => {
-      if (idx >= 3) {
+      if (
+        idx >= currentSlide - Math.floor(visibleNormalDots / 2) &&
+        idx <= currentSlide + Math.floor(visibleNormalDots / 2)
+      ) {
+        dot.style.display = "inline-block";
+        dot.style.transform = "scale(1)"; // normal size
+      } else if (
+        idx >= currentSlide - Math.floor(visibleDots / 2) &&
+        idx < currentSlide - Math.floor(visibleNormalDots / 2)
+      ) {
+        dot.style.display = "inline-block";
+        dot.style.transform = "scale(0.6)"; // small size
+      } else if (
+        idx <= currentSlide + Math.floor(visibleDots / 2) &&
+        idx > currentSlide + Math.floor(visibleNormalDots / 2)
+      ) {
+        dot.style.display = "inline-block";
+        dot.style.transform = "scale(0.6)"; // small size
+      } else {
         dot.style.display = "none";
       }
     });
@@ -58,7 +84,7 @@ const Project = ({ projects, heading1, heading2 }) => {
 
   useEffect(() => {
     handleArrow();
-    handleDots();
+    handleDots(0);
   }, [projects, chunkSizeProject]);
 
   return (
@@ -69,14 +95,14 @@ const Project = ({ projects, heading1, heading2 }) => {
       </div>
       <div className={`${styles["carousel-wrapper"]}`}>
         <Carousel
-        className="projects-carousel"
+          className="projects-carousel"
           showThumbs={false}
           infiniteLoop
           useKeyboardArrows
           swipeable
           showStatus={false}
           onChange={handleDots}
-          onInitialized={handleDots}
+          onInitialized={() => handleDots(0)}
         >
           {projectChunks.map((chunk, chunkIndex) => (
             <div key={chunkIndex} className={`${styles["carousel-chunk"]}`}>
