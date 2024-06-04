@@ -5,7 +5,12 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 
 const Addevent = ({ mainHeading, options }) => {
-  const { handleSubmit, control, getValues } = useForm();
+  const { handleSubmit, control, getValues } = useForm({
+    defaultValues: {
+      // batchName: "",
+      selectedEventId: [],
+    },
+  });
 
   const onSubmit = (data) => {
     console.log("Form Data:", data);
@@ -25,9 +30,10 @@ const Addevent = ({ mainHeading, options }) => {
             render={({ field }) => (
               <InputDropdown
                 {...field}
-                label="Select Event ID"
+                label="Select Event(s)"
                 placeholder="Event ID"
                 options={options}
+                isMulti={true}
               />
             )}
           />

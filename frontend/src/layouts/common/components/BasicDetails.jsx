@@ -3,10 +3,10 @@ import styles from "../../common/Common.module.css";
 import { useForm, Controller } from "react-hook-form";
 import Input from "../../../components/inputbox/InputBox";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaMinus } from "react-icons/fa6";
 import TextButton from "../../../components/buttons/TextButton";
 
-const BasicDetails = ({ mainHeading, initialData }) => {
+const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
   const {
     handleSubmit,
     control,
@@ -18,6 +18,11 @@ const BasicDetails = ({ mainHeading, initialData }) => {
   });
 
   const [fileError, setFileError] = useState("");
+  const [showProfileLinks, setShowProfileLinks] = useState(isEdit); // Initialize with isEdit
+
+  useEffect(() => {
+    setShowProfileLinks(isEdit);
+  }, [isEdit]);
 
   const onSubmit = (data) => {
     if (fileError) {
@@ -28,7 +33,7 @@ const BasicDetails = ({ mainHeading, initialData }) => {
   };
 
   const handleTextButtonClick = () => {
-    console.log("Add profile link clicked!");
+    setShowProfileLinks(!showProfileLinks); // Toggle showProfileLinks
   };
 
   const validateImageFile = (file) => {
@@ -107,12 +112,60 @@ const BasicDetails = ({ mainHeading, initialData }) => {
 
           <div className={`${styles["basicdetails-icontext"]}`}>
             <TextButton
-              icon={<FaPlus />}
-              text="Add Profile Links"
+              icon={showProfileLinks ? <FaMinus /> : <FaPlus />}
+              text={
+                showProfileLinks ? "Close Profile Links" : "Add Profile Links"
+              }
               onClick={handleTextButtonClick}
             />
           </div>
         </div>
+        {showProfileLinks && (
+          <div className={`${styles["basicdetails-containerinput-links"]}`}>
+            <div className={`${styles["basicdetails-links"]}`}>
+              <Controller
+                name="githubLink"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="GitHub Link"
+                    placeholders={["link"]}
+                    size="normal"
+                  />
+                )}
+              />
+            </div>
+            <div className={`${styles["basicdetails-links"]}`}>
+              <Controller
+                name="linkedinLink"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="LinkedIn Link"
+                    placeholders={["link"]}
+                    size="normal"
+                  />
+                )}
+              />
+            </div>
+            <div className={`${styles["basicdetails-links"]}`}>
+              <Controller
+                name="otherLink"
+                control={control}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="Other Link"
+                    placeholders={["link"]}
+                    size="normal"
+                  />
+                )}
+              />
+            </div>
+          </div>
+        )}
       </div>
       <div className={`${styles["basicdetails-containerinput-inter"]}`}>
         <Controller
