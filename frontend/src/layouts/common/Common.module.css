@@ -38,14 +38,15 @@
 }
 
 .basicdetails-containerinput-out {
-  gap: 6px;
+  gap: 20px;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
 .basicdetails-containerinput-inter {
-  gap: 6px;
+  gap: 7px;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -79,10 +80,30 @@
   font-size: 0.875rem;
 }
 
+.basicdetails-links {
+  width: 32%;
+}
+
+.basicdetails-containerinput-links {
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
 @media (max-width: 767px) {
   .basicdetails-form {
     padding: 30px;
     border-radius: 30px;
+  }
+
+  .basicdetails-containerinput-links {
+    flex-direction: column;
+  }
+
+  .basicdetails-links {
+    width: 100%;
   }
 }
 
@@ -213,7 +234,7 @@
 
 .addprofilelink-containerinput {
   width: 100%;
-  gap: 10px;
+  gap: 20px;
   display: flex;
   flex-direction: column;
 }
