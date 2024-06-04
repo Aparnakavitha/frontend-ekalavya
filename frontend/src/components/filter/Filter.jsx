@@ -67,7 +67,9 @@ const Filter = ({
         onClick={() => toggleDropdown(!currentIsOpen)}
         ref={headingRef}
       >
-        <span className={styles.selectedOption}>{selectedOption}</span>
+        <span className={styles.selectedOption}>
+          {transformContent(selectedOption)}
+        </span>
         <div className={styles.iconAngleDown}>
           <FaAngleDown />
         </div>

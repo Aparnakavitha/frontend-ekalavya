@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactModal from 'react-modal';
-import styles from '../Common.module.css';
- 
+import React from "react";
+import ReactModal from "react-modal";
+import styles from "../Common.module.css";
+
 const Modal = ({ children, isOpen, onClose }) => {
   return (
     <ReactModal
@@ -15,5 +15,5 @@ const Modal = ({ children, isOpen, onClose }) => {
     </ReactModal>
   );
 };
- 
+
 export default Modal;
