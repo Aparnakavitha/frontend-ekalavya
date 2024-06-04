@@ -3,29 +3,27 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import styles from "../AdminSkill.module.css";
 import Input from "../../../components/inputbox/InputBox";
 
-const AddSkill = () => {
+const AddSkill = ({ onSubmit, onClose }) => {
   const [skill, setSkill] = useState("");
-  const [isVisible, setIsVisible] = useState(true);
 
   const handleInputChange = (event) => {
     setSkill(event.target.value);
   };
 
   const handleAddSkill = () => {
-    console.log(skill);
-    setIsVisible(false);
+    onSubmit(skill);
+    onClose();
   };
 
   const handleCancel = () => {
-    setIsVisible(false);
+    onClose();
   };
 
-  if (!isVisible) return null;
   return (
-    <div className={`${styles["addskill-boxcontainer"]}`}>
-      <div className={`${styles["addskill-layoutcontainer"]}`}>
+    <div className={styles["addskill-boxcontainer"]}>
+      <div className={styles["addskill-layoutcontainer"]}>
         <p>Create New Skill</p>
-        <div className={`${styles["addskill-inputbox"]}`}>
+        <div className={styles["addskill-inputbox"]}>
           <Input
             size="normal"
             label="Create Skills"
@@ -35,7 +33,7 @@ const AddSkill = () => {
             id="normal-input"
           />
         </div>
-        <div className={`${styles["addskill-buttonrow"]}`}>
+        <div className={styles["addskill-buttonrow"]}>
           <PrimaryButton
             variant="primary"
             content="Cancel"

@@ -4,17 +4,17 @@ import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Input from "../../../components/inputbox/InputBox";
 
-const AddCollege = () => {
+const AddCollege = ({ onSubmit }) => {
   const { handleSubmit, control } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
   };
 
   return (
     <div className={`${styles["addcollege-container"]}`}>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleFormSubmit)}
         className={`${styles["addcollege-form"]}`}
       >
         <div className={`${styles["addcollege-formgroup"]}`}>

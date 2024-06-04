@@ -1,3 +1,41 @@
+/* -------------------------------- Greeting.css starts here ----------------------------------- */
+
+.common-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: white;
+}
+.common-welcome {
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.41px;
+}
+
+.common-header {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.59px;
+  display: flex;
+  gap: 100px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.common-greenlink {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 25px;
+  padding-right: 25px;
+}
+
+.common-greenlink a {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+/* -------------------------------- Greeting.css ends here ----------------------------------- */
 /* ------------------------------- qualificationform.css starts here ------------------------------- */
 
 .qualificationform-form {
@@ -399,23 +437,22 @@
     order: 3;
   }
 
-    .common-reset {
-      width: 100%;
-    }
-
-    .common-buttons {
-      width: 100%;
-      order: 4;
-    }
-
-    .common-filter {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      width: 100%;
-    }
+  .common-reset {
+    width: 100%;
   }
 
+  .common-buttons {
+    width: 100%;
+    order: 4;
+  }
+
+  .common-filter {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+}
 
 /* --------------------------------- Action.css ends here --------------------------------- */
 /* ------------------------------- DeleteBox.css starts here ------------------------------- */
@@ -722,6 +759,7 @@
 
 /* -------------------------------- AddUser.css ends here -------------------------------- */
 /* -------------------------------- Modal.css starts here --------------------------------- */
+
 .modal-modalOverlay {
   position: fixed;
   top: 0;
@@ -730,14 +768,32 @@
   bottom: 0;
   display: flex;
   background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  overflow-y: auto;
 }
- 
+
 .modal-modalContent {
-  border-radius: 50px;
   position: relative;
-  width: 70vw;
+  max-height: 90%;
+  overflow-y: auto;
 }
+.modal-modalContent::-webkit-scrollbar {
+  width: 0px;
+}
+
+.modal-width-small {
+  width: 549px;
+}
+
+.modal-width-medium {
+  width: 704px;
+}
+
+.modal-width-large {
+  width: 914px;
+}
+
 /* -------------------------------- Modal.css ends here ----------------------------------- */

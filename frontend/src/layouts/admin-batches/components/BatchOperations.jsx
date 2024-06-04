@@ -6,13 +6,13 @@ import { FaPlus } from "react-icons/fa6";
 import TextButton from "../../../components/buttons/TextButton";
 import { useForm, Controller } from "react-hook-form";
 
-const Batchoperations = ({ mainHeading, initialdata }) => {
+const Batchoperations = ({ mainHeading, initialdata, onSubmit }) => {
   const { handleSubmit, control, getValues } = useForm({
     defaultValues: initialdata,
   });
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
   };
 
   const handleTextButtonClick = () => {
@@ -34,7 +34,7 @@ const Batchoperations = ({ mainHeading, initialdata }) => {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["batchoperations-form"]}`}
     >
       <div className={`${styles["batchoperations-containerone"]}`}>

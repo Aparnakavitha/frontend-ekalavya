@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ActionComponent from "../../common/components/Action";
-import AddEvent from "./AddEvent";
 import Modal from "../../common/components/Modal";
-import AdminEventActionData from "./EventData";
+import AdminBatchActionData from "./BatchActionData";
+import Batchoperations from "./BatchOperations";
 
-const AdminEventAction = () => {
+const AdminBatchAction = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -21,9 +21,9 @@ const AdminEventAction = () => {
   };
 
   const actionData = {
-    ...AdminEventActionData,
+    ...AdminBatchActionData,
     buttonProps: {
-      ...AdminEventActionData.buttonProps,
+      ...AdminBatchActionData.buttonProps,
       onClick: handleOpenModal,
     },
   };
@@ -31,9 +31,9 @@ const AdminEventAction = () => {
   return (
     <div>
       <ActionComponent {...actionData} />
-      <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
-        <AddEvent
-          {...AdminEventActionData.addeventprops}
+      <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
+        <Batchoperations
+          {...AdminBatchActionData.batchprops}
           onSubmit={handleFormSubmit}
         />
       </Modal>
@@ -41,4 +41,4 @@ const AdminEventAction = () => {
   );
 };
 
-export default AdminEventAction;
+export default AdminBatchAction;
