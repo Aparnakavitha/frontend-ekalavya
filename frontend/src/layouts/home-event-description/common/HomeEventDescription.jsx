@@ -1,9 +1,9 @@
-import React from "react";
-import { ToastContainer, toast, Slide } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { EventsDescription } from "../../common";
+import React from 'react';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { EventsDescription } from '../../common';
 
-const StudentEventDescription = () => {
+const HomeEventDescription = () => {
   const handleButtonClick = (message) => {
     toast.success(message, {
       position: "top-center",
@@ -16,7 +16,7 @@ const StudentEventDescription = () => {
     });
   };
 
-  const studentEvents = {
+  const homeEvents = {
     heading: "Exploring Future Technologies",
     text: "Techtalks",
     texts: "Offline",
@@ -38,7 +38,7 @@ const StudentEventDescription = () => {
 
   return (
     <div>
-      <EventsDescription {...studentEvents} />
+      <EventsDescription {...homeEvents} />
       <ToastContainer
         position="top-center"
         autoClose={5000}
@@ -56,4 +56,4 @@ const StudentEventDescription = () => {
   );
 };
 
-export default StudentEventDescription;
+export default HomeEventDescription;

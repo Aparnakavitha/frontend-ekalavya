@@ -1,14 +1,16 @@
-import React from 'react';
-import ReactModal from 'react-modal';
-import styles from '../Common.module.css';
- 
-const Modal = ({ children, isOpen, onClose }) => {
+import React from "react";
+import ReactModal from "react-modal";
+import styles from "../Common.module.css";
+
+const Modal = ({ children, isOpen, onClose, widthVariant = "914" }) => {
+  const modalClass = `${styles["modal-modalContent"]} ${styles[`modal-width-${widthVariant}`]}`;
+
   return (
     <ReactModal
       isOpen={isOpen}
       onRequestClose={onClose}
-      className={`${styles["modal-modalContent"]}`}
-      overlayClassName={`${styles["modal-modalOverlay"]}`}
+      className={modalClass}
+      overlayClassName={styles["modal-modalOverlay"]}
       closeTimeoutMS={200}
     >
       {children}

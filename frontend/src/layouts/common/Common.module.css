@@ -537,8 +537,8 @@
 
 /* ------------------------------- EventsDescription.css ends here ------------------------------- */
 
-/* ------------------------------- Modal.css starts here ------------------------------- */
-
+/* -------------------------------- Modal.css starts here --------------------------------- */
+ 
 .modal-modalOverlay {
   position: fixed;
   top: 0;
@@ -555,7 +555,18 @@
 .modal-modalContent {
   border-radius: 50px;
   position: relative;
-  width: 70vw;
 }
-
-/* ------------------------------- Modal.css ends here ------------------------------- */
+ 
+.modal-width-small {
+  width: 549px;
+}
+ 
+.modal-width-medium {
+  width: 704px;
+}
+ 
+.modal-width-large {
+  width: 914px;
+}
+ 
+/* -------------------------------- Modal.css ends here ----------------------------------- */
