@@ -49,12 +49,34 @@ const Testimonials = ({ testimonials, heading }) => {
     });
   };
 
-  const handleDots = () => {
+  const handleDots = (currentSlide) => {
     const dots = document.querySelectorAll(
       ".testimonials-carousel .control-dots .dot"
     );
+    const visibleNormalDots = 3;
+    const visibleSmallDots = 2;
+    const visibleDots = visibleNormalDots + visibleSmallDots;
+
     dots.forEach((dot, idx) => {
-      if (idx >= 3) {
+      if (
+        idx >= currentSlide - Math.floor(visibleNormalDots / 2) &&
+        idx <= currentSlide + Math.floor(visibleNormalDots / 2)
+      ) {
+        dot.style.display = "inline-block";
+        dot.style.transform = "scale(1)"; 
+      } else if (
+        idx >= currentSlide - Math.floor(visibleDots / 2) &&
+        idx < currentSlide - Math.floor(visibleNormalDots / 2)
+      ) {
+        dot.style.display = "inline-block";
+        dot.style.transform = "scale(0.6)"; 
+      } else if (
+        idx <= currentSlide + Math.floor(visibleDots / 2) &&
+        idx > currentSlide + Math.floor(visibleNormalDots / 2)
+      ) {
+        dot.style.display = "inline-block";
+        dot.style.transform = "scale(0.6)"; 
+      } else {
         dot.style.display = "none";
       }
     });
@@ -62,7 +84,7 @@ const Testimonials = ({ testimonials, heading }) => {
 
   useEffect(() => {
     handleArrow();
-    handleDots();
+    handleDots(0);
   }, [testimonials, chunkSizeTestimonial]);
 
   return (
@@ -79,7 +101,7 @@ const Testimonials = ({ testimonials, heading }) => {
           swipeable
           showStatus={false}
           onChange={handleDots}
-          onInitialized={handleDots}
+          onInitialized={() => handleDots(0)}
         >
           {testimonialChunks.map((chunk, chunkIndex) => (
             <div key={chunkIndex} className={`${styles["carousel-chunk"]}`}>

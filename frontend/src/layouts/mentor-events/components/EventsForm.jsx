@@ -4,6 +4,7 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../MentorEvents.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import NavButton from "../../../components/buttons/NavButton";
 
 const EventForm = () => {
   const { handleSubmit, control, watch, setValue } = useForm({});
@@ -41,11 +42,21 @@ const EventForm = () => {
     }
   }, [selectedEventMode, setValue]);
 
+  const typeoptions = [
+    { value: "Hackathon", label: "Hackathon" },
+    { value: "Workshop", label: "Workshop" },
+    { value: "Session", label: "Session" },
+    { value: "Conference", label: "Conference" },
+    { value: "Contest", label: "Contest" },
+    { value: "Webinar", label: "Webinar" },
+  ]
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className={`${styles["eventform-form"]}`}
     >
+      <NavButton pageName="Create Event" onClick={() => {}} />
       <div className={`${styles["eventform-eventtitlemode"]}`}>
         <div className={`${styles["eventform-eventtitlediv"]}`}>
           <Controller
@@ -84,11 +95,12 @@ const EventForm = () => {
         name="eventType"
         control={control}
         render={({ field }) => (
-          <Input
+          <InputDropdown
             {...field}
             label="Event Type"
             size="normal"
-            placeholders={["Event Type"]}
+            placeholder={["Event Type"]}
+            options={typeoptions}
             className={`${styles["eventform-eventtype"]}`}
           />
         )}
@@ -209,15 +221,15 @@ const EventForm = () => {
       />
 
       <Controller
-        name="organizer"
+        name="speakerdescription"
         control={control}
         render={({ field }) => (
           <Input
             {...field}
-            label="Organizer"
+            label="Speaker Description"
             size="normal"
-            placeholders={["Organizer"]}
-            className={`${styles["eventform-organizer"]}`}
+            placeholders={["Speaker Description"]}
+            className={`${styles["eventform-speakerdescription"]}`}
           />
         )}
       />
