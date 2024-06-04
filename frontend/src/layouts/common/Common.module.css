@@ -350,23 +350,22 @@
     order: 3;
   }
 
-    .common-reset {
-      width: 100%;
-    }
-
-    .common-buttons {
-      width: 100%;
-      order: 4;
-    }
-
-    .common-filter {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      width: 100%;
-    }
+  .common-reset {
+    width: 100%;
   }
 
+  .common-buttons {
+    width: 100%;
+    order: 4;
+  }
+
+  .common-filter {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+}
 
 /* --------------------------------- Action.css ends here --------------------------------- */
 /* ------------------------------- DeleteBox.css starts here ------------------------------- */
@@ -673,6 +672,7 @@
 
 /* -------------------------------- AddUser.css ends here -------------------------------- */
 /* -------------------------------- Modal.css starts here --------------------------------- */
+
 .modal-modalOverlay {
   position: fixed;
   top: 0;
@@ -685,10 +685,22 @@
   align-items: center;
   z-index: 1000;
 }
- 
+
 .modal-modalContent {
   border-radius: 50px;
   position: relative;
-  width: 70vw;
 }
+
+.modal-width-small {
+  width: 549px;
+}
+
+.modal-width-medium {
+  width: 704px;
+}
+
+.modal-width-large {
+  width: 914px;
+}
+
 /* -------------------------------- Modal.css ends here ----------------------------------- */
