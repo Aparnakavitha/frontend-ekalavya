@@ -15,6 +15,13 @@ const Filter = ({
   const headingRef = useRef(null);
   const dropRef = useRef(null);
 
+  const transformContent = (content) => {
+    if (content.length > 24) {
+      return content.slice(0, 20) + "...";
+    }
+    return content;
+  };
+
   const toggleDropdown = (newIsOpen) => {
     const toggleFn = onToggle || setInternalIsOpen;
     toggleFn(newIsOpen);
@@ -60,7 +67,9 @@ const Filter = ({
         onClick={() => toggleDropdown(!currentIsOpen)}
         ref={headingRef}
       >
-        <span className={styles.selectedOption}>{selectedOption}</span>
+        <span className={styles.selectedOption}>
+          {transformContent(selectedOption)}
+        </span>
         <div className={styles.iconAngleDown}>
           <FaAngleDown />
         </div>
@@ -73,7 +82,7 @@ const Filter = ({
               key={index}
               onClick={() => handleOptionClick(content)}
             >
-              <a>{content}</a>
+              <a>{transformContent(content)}</a>
             </div>
           ))}
         </div>

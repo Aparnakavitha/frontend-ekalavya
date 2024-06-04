@@ -17,6 +17,12 @@ const DataView = ({
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
   const showCardView = () => {
     setIsCardView(true);
   };
