@@ -31,3 +31,14 @@ body{
   background-color: var(--background);
 }
 
+.padding-side{
+  padding: 0vw 4vw;
+}
+
+.padding-top{
+  padding-top: 3vh;
+}
+
+.padding-bottum{
+  padding-bottom: 4vh;
+}
