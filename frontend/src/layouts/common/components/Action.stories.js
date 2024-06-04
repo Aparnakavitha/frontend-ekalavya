@@ -56,10 +56,6 @@ const mentorAct = {
     placeholder: "Mentor Name",
   },
   showFiltersAndReset: false,
-  adduserprops: {
-    viewCollege: false,
-    heading: "Add New Mentor",
-  },
 };
 
 const eventsAct = {
@@ -102,6 +98,21 @@ const batchesAct = {
   showFiltersAndReset: false,
 };
 
+const skillsAct = {
+  heading: "Skills List",
+  buttonProps: {
+    variant: "tertiary",
+    content: "+ Add new Skill",
+    width: "full",
+  },
+  searchWidth: "large",
+  searchbarProps: {
+    variant: "custom",
+    placeholder: "Skill",
+  },
+  showFiltersAndReset: false,
+};
+
 export const studentAction = {
   args: {
     ...studentAct,
@@ -123,5 +134,11 @@ export const eventsAction = {
 export const batchesAction = {
   args: {
     ...batchesAct,
+  },
+};
+
+export const skillAction = {
+  args: {
+    ...skillsAct,
   },
 };

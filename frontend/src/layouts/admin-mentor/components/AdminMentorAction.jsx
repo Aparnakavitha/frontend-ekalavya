@@ -19,6 +19,7 @@ const AdminMentorAction = () => {
     console.log("Form Submitted with data:", formData);
     handleCloseModal();
   };
+
   const actionData = {
     ...AdminMentorActionData,
     buttonProps: {
@@ -30,8 +31,7 @@ const AdminMentorAction = () => {
   return (
     <div>
       <ActionComponent {...actionData} />
-
-      <Modal isOpen={isOpen} onClose={handleCloseModal}>
+      <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddUser
           {...AdminMentorActionData.adduserprops}
           onSubmit={handleFormSubmit}

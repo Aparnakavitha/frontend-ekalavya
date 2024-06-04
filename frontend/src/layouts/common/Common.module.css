@@ -1,3 +1,41 @@
+/* -------------------------------- Greeting.css starts here ----------------------------------- */
+
+.common-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: white;
+}
+.common-welcome {
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.41px;
+}
+
+.common-header {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.59px;
+  display: flex;
+  gap: 100px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.common-greenlink {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 25px;
+  padding-right: 25px;
+}
+
+.common-greenlink a {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+/* -------------------------------- Greeting.css ends here ----------------------------------- */
 /* ------------------------------- basicdetails.css starts here ---------------------------------- */
 
 .basicdetails-form {
@@ -703,14 +741,20 @@
   bottom: 0;
   display: flex;
   background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  overflow-y: auto;
 }
 
 .modal-modalContent {
-  border-radius: 50px;
   position: relative;
+  max-height: 90%;
+  overflow-y: auto;
+}
+.modal-modalContent::-webkit-scrollbar {
+  width: 0px;
 }
 
 .modal-width-small {
@@ -723,6 +767,12 @@
 
 .modal-width-large {
   width: 914px;
+}
+
+@media (max-width: 480px) {
+  .modal-modalContent {
+    padding: 0 15px;
+  }
 }
 
 /* -------------------------------- Modal.css ends here ----------------------------------- */
