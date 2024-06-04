@@ -23,7 +23,7 @@ Editbasicdetails.args = {
     aboutMe: "This is a sample about me",
     linkedinLink: "https://linked.in",
     githubLink: "https://github.in",
-    otherLink:"https://other.in",
+    otherLink: "https://other.in",
   },
   isEdit: true,
 };
