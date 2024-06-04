@@ -10,7 +10,7 @@
   color: var(--white);
   gap: 17px;
   background-color: var(--background);
-  padding: 40px;
+  padding: 50px;
   border-radius: 40px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
@@ -55,6 +55,12 @@
 }
 
 @media (min-width: 769) and (max-width: 992px) {
+  .addevent-form {
+    width: 100%;
+    padding: 30px;
+    border-radius: 30px;
+  }
+
   .addevent-datetimecontainer {
     flex-direction: row;
     flex-wrap: wrap;
@@ -77,6 +83,8 @@
 @media screen and (max-width: 768px) {
   .addevent-form {
     width: 100%;
+    padding: 30px;
+    border-radius: 30px;
   }
 
   .addevent-datetimecontainer {

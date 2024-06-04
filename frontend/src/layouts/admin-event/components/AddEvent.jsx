@@ -157,7 +157,7 @@ const AddEvent = ({ defaultValues }) => {
           />
         </div>
 
-        <div className={styles.dateTime}>
+        <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="startTime"
             control={control}

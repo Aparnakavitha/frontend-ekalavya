@@ -64,8 +64,15 @@
   flex-direction: row;
 }
 
+@media (max-width: 767px) {
+  .batchoperations-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+}
+
 /* ------------------------------- BatchOperation.css ends here -------------------------------- */
-/*--------------------batchsearch.css starts here---------------------*/
+/*----------------------------------batchsearch.css starts here-----------------------------------*/
 
 .batchsearch-content {
   width: 100%;
@@ -202,4 +209,4 @@
   }
 }
 
-/*--------------------batchaction.css ends here---------------------*/
+/*---------------------------------batchaction.css ends here-----------------------------------*/

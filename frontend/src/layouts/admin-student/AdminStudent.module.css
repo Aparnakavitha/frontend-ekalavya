@@ -51,6 +51,13 @@
   align-items: center;
 }
 
+@media (max-width: 600px) {
+  .addevent-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+}
+
 /* ------------------------------- Addevent.css ends here ---------------------------------------- */
 /* ------------------------------- Addcollege.css starts here ------------------------------- */
 
@@ -135,6 +142,9 @@
 
 .collegelist-table {
   padding: 0%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral600) #ffffff00;
 }
 
 .collegelist-container::-webkit-scrollbar {
