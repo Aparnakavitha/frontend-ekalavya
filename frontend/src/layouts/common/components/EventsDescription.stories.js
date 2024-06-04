@@ -23,15 +23,9 @@ export const eventPublic = {
     large: "view participants",
     type: "public",
     smaller: "Register",
-<<<<<<< HEAD
-    onclick1:(e)=>{
-      console.log("Hello")
-    }
-=======
     onclick1: (e) => {
       console.log("Hello");
     },
->>>>>>> ff0cdc849aa928922c62ff68ffcb74194149210d
   },
 };
 
@@ -53,15 +47,9 @@ export const eventMentor = {
     large: "view participants",
     type: "mentor",
     smaller: "Register",
-<<<<<<< HEAD
-    onclick1:(e)=>{
-      console.log("Hello")
-    }
-=======
     onclick1: (e) => {
       console.log("Hello");
     },
->>>>>>> ff0cdc849aa928922c62ff68ffcb74194149210d
   },
 };
 
@@ -83,17 +71,6 @@ export const eventAdmin = {
     large: "view participants",
     type: "admin",
     smaller: "Register",
-<<<<<<< HEAD
-    onclick1:(e)=>{
-      console.log("Hello")
-    },
-    onclick2:(e)=>{
-      console.log("Hello")
-    }
-    ,onclick3:(e)=>{
-      console.log("Hello")
-    }
-=======
     onclick1: (e) => {
       console.log("Hello");
     },
@@ -103,6 +80,5 @@ export const eventAdmin = {
     onclick3: (e) => {
       console.log("Hello");
     },
->>>>>>> ff0cdc849aa928922c62ff68ffcb74194149210d
   },
 };
