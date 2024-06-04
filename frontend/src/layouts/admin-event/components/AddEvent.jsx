@@ -5,16 +5,29 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../AdminEvent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddEvent = ({ defaultValues ,onSubmit}) => {
+const AddEvent = ({ defaultValues, organizeroptions }) => {
   const initialDefaultValues = defaultValues;
 
   const mergedDefaultValues = { ...initialDefaultValues, ...defaultValues };
+
+  const eventtypeoptions = [
+    { value: "Hackathon", label: "Hackathon" },
+    { value: "Workshop", label: "Workshop" },
+    { value: "Session", label: "Session" },
+    { value: "Conference", label: "Conference" },
+    { value: "Contest", label: "Contest" },
+    { value: "Webinar", label: "Webinar" },
+  ];
 
   const { handleSubmit, control, watch, setValue } = useForm({
     defaultValues: mergedDefaultValues,
   });
 
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   const handleFormSubmit = (data) => {
     if (data.eventMode === "Online") {
@@ -98,11 +111,12 @@ const AddEvent = ({ defaultValues ,onSubmit}) => {
         name="eventType"
         control={control}
         render={({ field }) => (
-          <Input
+          <InputDropdown
             {...field}
             label="Event Type"
             size="normal"
             placeholders={["Event Type"]}
+            options={eventtypeoptions}
             className={`${styles["addevent-eventtype"]}`}
           />
         )}
@@ -221,16 +235,29 @@ const AddEvent = ({ defaultValues ,onSubmit}) => {
           />
         )}
       />
-
       <Controller
-        name="organizer"
+        name="speakerDescrition"
         control={control}
         render={({ field }) => (
           <Input
             {...field}
+            label="Speaker Descrition"
+            size="normal"
+            placeholders={["Speaker Description"]}
+            className={`${styles["addevent-speaker"]}`}
+          />
+        )}
+      />
+      <Controller
+        name="organizer"
+        control={control}
+        render={({ field }) => (
+          <InputDropdown
+            {...field}
             label="Organizer"
             size="normal"
             placeholders={["Organizer"]}
+            options={organizeroptions}
             className={`${styles["addevent-organizer"]}`}
           />
         )}
