@@ -2,3 +2,6 @@
 
 for tablet = minwidth : 768, maxwidth : 992
 for mobile = maxwidth : 767 */
+body{
+    background-color: var(--background);
+}
