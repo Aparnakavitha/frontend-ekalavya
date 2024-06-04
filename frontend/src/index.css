@@ -26,3 +26,7 @@
   --white: #ffffff;
   --black: #000000;
 }
+
+body{
+  background-color: var(--background);
+}
