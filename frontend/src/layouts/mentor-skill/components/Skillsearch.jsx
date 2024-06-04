@@ -1,25 +1,91 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBar from "../../../components/searchbar/Searchbar";
 import Card from "../../../components/cards/SkillUser";
 import styles from "../MentorSkill.module.css";
+import Modal from "../../common/components/Modal";
+import CombinedSkillForm from "../../common/components/CombinedSkillForm";
+import DeleteBox from "../../common/components/DeleteBox";
 
-const Skillsearch = ({ heading, subheading, searchBarPlaceholder, skillcard, onSearch }) => {
+const Skillsearch = ({
+  heading,
+  subheading,
+  searchBarPlaceholder,
+  skillcard,
+  onSearch,
+}) => {
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    type: "",
+    selectedIndex: null,
+  });
+
+  const openModal = (type, index = null) =>
+    setModalState({ isOpen: true, type, selectedIndex: index });
+  const closeModal = () =>
+    setModalState({ isOpen: false, type: "", selectedIndex: null });
+
+  const handleAddSkill = () => {
+    closeModal();
+  };
+
+  const handleDeleteSkill = () => {
+    console.log("Delete Skill");
+    closeModal();
+  };
+
+  const options = [
+    { value: "abc", label: "ABC" },
+    { value: "xyz", label: "XYZ" },
+    { value: "pqr", label: "PQR" },
+  ];
+
   return (
     <div className={`${styles["skillsearch-skillssearch"]}`}>
       <h1 className={`${styles["skillsearch-skillsheading"]}`}>{heading}</h1>
       <p className={`${styles["skillsearch-subheading"]}`}>{subheading}</p>
       <div className={`${styles["skillsearch-searchbar"]}`}>
-        <SearchBar
-          placeholder={searchBarPlaceholder}
-          onSearch={onSearch}
-        />
+        <SearchBar placeholder={searchBarPlaceholder} onSearch={onSearch} />
       </div>
 
       <div className={`${styles["skillsearch-cardcontainer"]}`}>
         {skillcard.map((card, index) => (
-          <Card key={index} {...card} />
+          <div key={index}>
+            <Card
+              {...card}
+              deleteSkill={() => openModal("delete", index)}
+              addSkill={() => openModal("add")}
+            />
+          </div>
         ))}
       </div>
+
+      {modalState.isOpen && (
+        <Modal
+          isOpen={modalState.isOpen}
+          widthVariant={modalState.type === "add" ? "large" : "small"}
+          onClose={closeModal}
+        >
+          {modalState.type === "add" ? (
+            <CombinedSkillForm
+              mainHeading="Add New Skill"
+              isSelect={true}
+              isEditlevel={false}
+              displaytext="This skill is only to be placed at level 1"
+              buttonTitle="Add Skill"
+              options={options}
+              onSubmit={handleAddSkill}
+            />
+          ) : (
+            <DeleteBox
+              title="Delete Skill"
+              message="Are you sure you want to delete this skill?"
+              buttonText="Delete"
+              onCancel={closeModal}
+              onConfirm={handleDeleteSkill}
+            />
+          )}
+        </Modal>
+      )}
     </div>
   );
 };
