@@ -91,14 +91,15 @@
 }
 
 .basicdetails-containerinput-out {
-  gap: 6px;
+  gap: 20px;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
 .basicdetails-containerinput-inter {
-  gap: 6px;
+  gap: 7px;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -111,6 +112,7 @@
   margin-top: 7px;
   width: 100%;
 }
+
 .basicdetails-icontext {
   text-align: center;
   padding-top: 10px;
@@ -132,10 +134,30 @@
   font-size: 0.875rem;
 }
 
+.basicdetails-links {
+  width: 32%;
+}
+
+.basicdetails-containerinput-links {
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
 @media (max-width: 767px) {
   .basicdetails-form {
     padding: 30px;
     border-radius: 30px;
+  }
+
+  .basicdetails-containerinput-links {
+    flex-direction: column;
+  }
+
+  .basicdetails-links {
+    width: 100%;
   }
 }
 
@@ -266,7 +288,7 @@
 
 .addprofilelink-containerinput {
   width: 100%;
-  gap: 10px;
+  gap: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -485,3 +507,48 @@
 }
 
 /* -------------------------------- AddUser.css ends here -------------------------------- */
+/* -------------------------------- Modal.css starts here --------------------------------- */
+
+.modal-modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.modal-modalContent {
+  position: relative;
+  max-height: 90%;
+  overflow-y: auto;
+}
+.modal-modalContent::-webkit-scrollbar {
+  width: 0px;
+}
+
+.modal-width-small {
+  width: 549px;
+}
+
+.modal-width-medium {
+  width: 704px;
+}
+
+.modal-width-large {
+  width: 914px;
+}
+
+@media (max-width: 480px) {
+  .modal-modalContent {
+    padding: 0 15px;
+  }
+}
+
+/* -------------------------------- Modal.css ends here ----------------------------------- */

@@ -51,7 +51,7 @@
   align-items: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .addevent-form {
     padding: 30px;
     border-radius: 30px;
@@ -148,17 +148,12 @@
 }
 
 .collegelist-container::-webkit-scrollbar {
-  width: 5px;
+  width: 2px;
   background-color: transparent;
 }
 
 .collegelist-container::-webkit-scrollbar-thumb {
-  background: var(--neutral800);
   border-radius: 50px;
-}
-
-.collegelist-container::-webkit-scrollbar-thumb:hover {
-  background: var(--neutral700);
 }
 
 .collegelist-container::-webkit-scrollbar-corner {
