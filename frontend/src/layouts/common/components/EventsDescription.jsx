@@ -14,6 +14,7 @@ const EventsDescription = (props) => {
     startTime,
     endTime,
     location,
+    link,
     speaker,
     speakerDescription,
     organizer,
@@ -34,7 +35,6 @@ const EventsDescription = (props) => {
     const month = date.toLocaleDateString("en-US", { month: "short" });
     const day = date.getDate();
     const year = date.getFullYear();
-
     return `${month} ${day}, ${year}`;
   }
 
@@ -44,6 +44,9 @@ const EventsDescription = (props) => {
     const amPm = hours < 12 ? "AM" : "PM";
     return `${convertedHours.toString().padStart(2, "0")}:${minutes} ${amPm}`;
   }
+
+  const locationLabel = eventMode === "Offline" ? "Location" : "Link";
+  const locationValue = eventMode === "Offline" ? location : link;
 
   return (
     <div className={`${styles["eventsdescription-container"]}`}>
@@ -114,7 +117,7 @@ const EventsDescription = (props) => {
               </>
             )}
 
-            {type == "admin" && (
+            {type === "admin" && (
               <>
                 <div>
                   <div className={`${styles["eventsdescription-primarydiv"]}`}>
@@ -167,11 +170,11 @@ const EventsDescription = (props) => {
 
             <div className={`${styles["eventsdescription-gap"]}`}>
               <div className={`${styles["eventsdescription-headingcontent"]}`}>
-                <h3>Location</h3>
+                <h3>{locationLabel}</h3>
               </div>
               <div className={`${styles["eventsdescription-timer"]}`}>
                 <a className={`${styles["eventsdescription-venue"]}`}>
-                  • <b>Venue :</b> {location}
+                  • <b>{locationLabel} :</b> {locationValue}
                 </a>
               </div>
             </div>
