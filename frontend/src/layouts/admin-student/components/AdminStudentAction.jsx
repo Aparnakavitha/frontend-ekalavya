@@ -31,7 +31,7 @@ const AdminStudentAction = () => {
   return (
     <div>
       <ActionComponent {...actionData} />
-      <Modal isOpen={isOpen} onClose={handleCloseModal}>
+      <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddUser
           {...AdminStudentActionData.adduserprops}
           onSubmit={handleFormSubmit}

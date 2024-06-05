@@ -2,7 +2,15 @@ import React from "react";
 import styles from "../Common.module.css";
 
 const Greeting = (props) => {
-  const { welcome, name, info, profile, showButtons, handleClick } = props;
+  const {
+    welcome,
+    name,
+    info,
+    profile,
+    showButtons,
+    handleClick,
+    handleClick2,
+  } = props;
 
   return (
     <div className={`${styles["common-content"]}`}>
@@ -19,7 +27,7 @@ const Greeting = (props) => {
               <a href="#" onClick={handleClick}>
                 View Colleges
               </a>
-              <a href="#" onClick={handleClick}>
+              <a href="#" onClick={handleClick2}>
                 +Add New College
               </a>
             </div>

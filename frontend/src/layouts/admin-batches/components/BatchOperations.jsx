@@ -5,20 +5,21 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { useForm, Controller } from "react-hook-form";
 
-const Batchoperations = ({ mainHeading, options }) => {
+const Batchoperations = ({ mainHeading, initialdata, onSubmit ,options}) => {
   const { handleSubmit, control, getValues } = useForm({
     defaultValues: {
       batchName: "",
       studentIds: [],
     },
   });
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
   };
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["batchoperations-form"]}`}
     >
       <div className={`${styles["batchoperations-containerone"]}`}>

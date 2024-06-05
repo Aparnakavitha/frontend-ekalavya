@@ -97,7 +97,7 @@ const skillCardData = {
     { key: "mainHeading", displayName: "Skill Name" },
     { key: "Count", displayName: "Count" },
   ],
-  toggle: true,
+  toggle: false,
   itemsPerPage: 12,
   deleteProps: {
     title: "Confirmation Required",

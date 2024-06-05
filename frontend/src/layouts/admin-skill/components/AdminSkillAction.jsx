@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import ActionComponent from "../../common/components/Action";
-import AddEvent from "./AddEvent";
 import Modal from "../../common/components/Modal";
-import AdminEventActionData from "./EventData";
+import AdminSkillActionData from "./SkillData";
+import AddSkill from "./AddSkill";
 
-const AdminEventAction = () => {
+const AdminSkillAction = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -15,15 +15,15 @@ const AdminEventAction = () => {
     setIsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form submitted with data:", formData);
+  const handleFormSubmit = (skill) => {
+    console.log("Form submitted with skill:", skill);
     handleCloseModal();
   };
 
   const actionData = {
-    ...AdminEventActionData,
+    ...AdminSkillActionData,
     buttonProps: {
-      ...AdminEventActionData.buttonProps,
+      ...AdminSkillActionData.buttonProps,
       onClick: handleOpenModal,
     },
   };
@@ -31,14 +31,11 @@ const AdminEventAction = () => {
   return (
     <div>
       <ActionComponent {...actionData} />
-      <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
-        <AddEvent
-          {...AdminEventActionData.addeventprops}
-          onSubmit={handleFormSubmit}
-        />
+      <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
+        <AddSkill onSubmit={handleFormSubmit} onClose={handleCloseModal} />
       </Modal>
     </div>
   );
 };
 
-export default AdminEventAction;
+export default AdminSkillAction;
