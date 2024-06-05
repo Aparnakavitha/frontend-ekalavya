@@ -19,7 +19,6 @@ const EventsDescription = (props) => {
     speakerDescription,
     organizer,
     button,
-    buttons,
     small,
     medium,
     large,
@@ -56,7 +55,7 @@ const EventsDescription = (props) => {
             <NavButton pageName={button} />
           </div>
           <div>
-            <NavButton pageName={buttons} onClick={onclick1} />
+            <NavButton pageName={eventTitle} onClick={onclick1} />
           </div>
         </div>
       </div>
