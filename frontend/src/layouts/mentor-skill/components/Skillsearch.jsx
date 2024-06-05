@@ -5,12 +5,13 @@ import styles from "../MentorSkill.module.css";
 import Modal from "../../common/components/Modal";
 import CombinedSkillForm from "../../common/components/CombinedSkillForm";
 import DeleteBox from "../../common/components/DeleteBox";
+import { options } from "./skillData";
 
 const Skillsearch = ({
   heading,
   subheading,
   searchBarPlaceholder,
-  skillcard,
+  skillcard = [],
   onSearch,
 }) => {
   const [modalState, setModalState] = useState({
@@ -32,12 +33,6 @@ const Skillsearch = ({
     console.log("Delete Skill");
     closeModal();
   };
-
-  const options = [
-    { value: "abc", label: "ABC" },
-    { value: "xyz", label: "XYZ" },
-    { value: "pqr", label: "PQR" },
-  ];
 
   return (
     <div className={`${styles["skillsearch-skillssearch"]}`}>
@@ -62,7 +57,7 @@ const Skillsearch = ({
       {modalState.isOpen && (
         <Modal
           isOpen={modalState.isOpen}
-          widthVariant={modalState.type === "add" ? "large" : "small"}
+          widthVariant={modalState.type === "add" ? "medium" : "small"}
           onClose={closeModal}
         >
           {modalState.type === "add" ? (
