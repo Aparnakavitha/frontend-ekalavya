@@ -244,7 +244,7 @@ const AddEvent = ({ defaultValues, organizeroptions, isOrganizer }) => {
         render={({ field }) => (
           <Input
             {...field}
-            label="Speaker Descrition"
+            label="Speaker Description"
             size="normal"
             placeholders={["Speaker Description"]}
             className={`${styles["addevent-speaker"]}`}
