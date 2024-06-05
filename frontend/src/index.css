@@ -27,6 +27,6 @@
   --black: #000000;
 }
 
-body{
+body {
   background-color: var(--background);
 }
