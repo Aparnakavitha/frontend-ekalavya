@@ -59,6 +59,7 @@
   margin-top: 7px;
   width: 100%;
 }
+
 .basicdetails-icontext {
   text-align: center;
   padding-top: 10px;
@@ -76,7 +77,6 @@
 
 .basicdetails-error {
   color: var(--primary-color);
-  margin-top: 5px;
   font-size: 0.875rem;
 }
 
@@ -90,6 +90,14 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+}
+
+.basicdetails-containerinput-links .basicdetails-error {
+  margin-top: 5px;
+}
+
+.basicdetails-containerinput-out .basicdetails-error {
+  margin-top: -15px;
 }
 
 @media (max-width: 767px) {
