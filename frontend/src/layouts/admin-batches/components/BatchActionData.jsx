@@ -13,6 +13,11 @@ const AdminBatchActionData = {
   showFiltersAndReset: false,
   batchprops: {
     mainHeading: "Create Batch",
+    options: [
+      { value: "abc", label: "ABC" },
+      { value: "xyz", label: "XYZ" },
+      { value: "pqr", label: "PQR" },
+    ],
   },
 };
 
