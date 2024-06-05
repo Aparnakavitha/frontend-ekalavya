@@ -21,7 +21,8 @@ const MentorEventDescription = () => {
   };
 
   const actionData = {
-    ...EventDescriptionData,
+    ...EventDescriptionData.defaultValues,
+    ...EventDescriptionData.buttonProps,
     onclick1: handleOpenModal,
   };
 
@@ -29,10 +30,7 @@ const MentorEventDescription = () => {
     <div>
       <EventsDescription {...actionData} />
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
-        <AddEvent
-          {...EventDescriptionData.addeventprops}
-          onSubmit={handleFormSubmit}
-        />
+        <AddEvent {...EventDescriptionData} onSubmit={handleFormSubmit} />
       </Modal>
     </div>
   );
