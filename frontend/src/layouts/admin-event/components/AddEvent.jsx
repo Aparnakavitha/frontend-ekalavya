@@ -5,10 +5,8 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../AdminEvent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddEvent = ({ defaultValues, organizeroptions , onSubmit}) => {
-  const initialDefaultValues = defaultValues;
-
-  const mergedDefaultValues = { ...initialDefaultValues, ...defaultValues };
+const AddEvent = ({ defaultValues, organizeroptions, onSubmit }) => {
+  const mergedDefaultValues = { ...defaultValues };
 
   const eventtypeoptions = [
     { value: "Hackathon", label: "Hackathon" },
@@ -24,8 +22,6 @@ const AddEvent = ({ defaultValues, organizeroptions , onSubmit}) => {
   });
 
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
-
-
 
   const handleFormSubmit = (data) => {
     if (data.eventMode === "Online") {
