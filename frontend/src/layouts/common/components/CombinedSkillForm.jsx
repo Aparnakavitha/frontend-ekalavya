@@ -11,7 +11,7 @@ const CombinedSkillForm = ({
   message,
   skillName,
   displaytext,
-  buttonTilte,
+  buttonTitle,
   options,
   initialData,
 }) => {
@@ -105,7 +105,7 @@ const CombinedSkillForm = ({
         </div>
       </div>
       <div className={`${styles["combinedskillform-buttoncontainer"]}`}>
-        <PrimaryButton variant="primary" content={buttonTilte} width="full" />
+        <PrimaryButton variant="primary" content={buttonTitle} width="full" />
       </div>
     </form>
   );

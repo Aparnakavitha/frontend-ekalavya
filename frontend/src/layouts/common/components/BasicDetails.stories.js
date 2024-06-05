@@ -21,5 +21,9 @@ Editbasicdetails.args = {
     state: "Sample State",
     country: "Sample Country",
     aboutMe: "This is a sample about me",
+    linkedinLink: "https://linked.in",
+    githubLink: "https://github.in",
+    otherLink: "https://other.in",
   },
+  isEdit: true,
 };

@@ -91,14 +91,15 @@
 }
 
 .basicdetails-containerinput-out {
-  gap: 6px;
+  gap: 20px;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
 .basicdetails-containerinput-inter {
-  gap: 6px;
+  gap: 7px;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -111,6 +112,7 @@
   margin-top: 7px;
   width: 100%;
 }
+
 .basicdetails-icontext {
   text-align: center;
   padding-top: 10px;
@@ -132,10 +134,30 @@
   font-size: 0.875rem;
 }
 
+.basicdetails-links {
+  width: 32%;
+}
+
+.basicdetails-containerinput-links {
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
 @media (max-width: 767px) {
   .basicdetails-form {
     padding: 30px;
     border-radius: 30px;
+  }
+
+  .basicdetails-containerinput-links {
+    flex-direction: column;
+  }
+
+  .basicdetails-links {
+    width: 100%;
   }
 }
 
@@ -266,7 +288,7 @@
 
 .addprofilelink-containerinput {
   width: 100%;
-  gap: 10px;
+  gap: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -485,548 +507,8 @@
 }
 
 /* -------------------------------- AddUser.css ends here -------------------------------- */
-/* ------------------------------- SideBar.css starts here ------------------------------- */
-
-.sidebar {
-  background-color: #494949;
-  width: 250px;
-  height: 100vh;
-  padding: 20px;
-  position: fixed;
-  top: 0;
-  transition: left 0.8s ease-in-out;
-}
-
-.sidebarcontainer{
-  width: 250px;
-  height: 100vh;
-}
-
-.sidebar-headerresp{
-  width: 250px;
-}
-
-.sidebar-headingin img {
-  font-size: 32px;
-  line-height: 35px;
-  padding-top: 30px;
-  padding-left: 14px;
-}
-
-.sidebar-list {
-  display: flex;
-  flex-direction: column;
-  padding-top: 50px;
-}
-
-.sidebar-toggle {
-  display: none;
-}
-
-.sidebar-headerbutton {
-  position: absolute;
-  left: 32px;
-}
-
-.sidebar-card {
-  display: none;
-}
-
-.sidebar-content {
-  height: 80vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-@media (max-width: 767px) {
-  .sidebar {
-    left: -820px;
-    width: 100%;
-  }
-
-  .sidebar-headingin img {
-    display: flex;
-    line-height: 0px;
-    padding-top: 0px;
-    padding-left: 0px;
-    width: 120px;
-    height: auto;
-    align-items: center;
-  }
-
-  .sidebar-headingout img {
-    display: flex;
-    justify-content: center;
-    line-height: 0px;
-    width: 120px;
-    height: auto;
-    align-items: center;
-  }
-
-  .sidebar-headerresp {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #494949;
-    height: 65px;
-    padding: 10px;
-    width: 100%;
-  }
-
-  .sidebar-headercontainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 10px;
-  }
-
-  .sidebar-headercontainerout {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .sidebar-toggle {
-    display: flex;
-    cursor: pointer;
-  }
-
-  .sidebar-list {
-    padding-top: 40px;
-    display: flex;
-    flex-direction: column;
-    padding-left: 0px;
-    gap: 0px;
-  }
-
-  .sidebar-hamburger {
-    cursor: pointer;
-    font-size: 25px;
-    color: white;
-  }
-
-  .sidebar-crossicon {
-    cursor: pointer;
-    font-size: 30px;
-    color: white;
-  }
-
-  .sidebar.show {
-    left: 0;
-  }
-
-  .sidebar-card {
-    display: flex;
-    position: absolute;
-    bottom: 30px;
-    justify-content: center;
-    padding-left: 10px;
-  }
-
-  .sidebar-headerbutton {
-    position: absolute;
-    bottom: 120px;
-    left: 34px;
-  }
-
-  .sidebarcontainer{
-    width: 100%;
-    height: 65px;
-  }
-}
-
-  @media (max-width: 1113px) and (min-width: 768px) {
-    .sidebar {
-      width: 190px;
-    }
-
-    .sidebar-headingin img {
-      width: 120px;
-      height: auto;
-    }
-
-    .sidebarcontainer{
-      width: 190px;
-    }
-  }
-
-/* ------------------------------- SideBar.css ends here ------------------------------- */
-
-/* ------------------------------- Footer.css starts here ------------------------------- */
-
-.footer-container {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  align-items: center;
-  padding-top: 26px;
-}
-
-.footer-containerleft {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  align-items: flex-start;
-}
-
-.footer-footer {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  background-color: var(--background);
-}
-
-.footer-logobox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-
-.footer-logoboxleft {
-  padding-top: 26px;
-  padding-left: 5vw;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.footer-img {
-  height: 40px;
-  width: 163px;
-}
-
-.footer-quote {
-  color: var(--white);
-  text-align: center;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-.footer-quoteleft{
-  color: var(--white);
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  text-align: left;
-}
-
-.footer-footerbox {
-  width: 100%;
-  height: 8px;
-  background: var(--primary-color);
-}
-
-.footer-bottumbox {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  text-align: center;
-}
-
-.footer-copyrightcontent {
-  font-family: Urbanist;
-  color: var(--white);
-  font-size: 16px;
-  font-weight: 400;
-  padding-bottom: 30px;
-}
-
-.footer-copyrightcontent2 {
-  font-family: Urbanist;
-  color: var(--white);
-  font-size: 16px;
-  font-weight: 400;
-  text-decoration-line: underline;
-  padding-bottom: 30px;
-}
-
-.footer-copyright {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  color: var(--white);
-}
-
-.footer-copyrightleft {
-  padding-left: 5vw;
-  display: flex;
-  justify-content: flex-start;
-  gap: 5px;
-  color: var(--white);
-}
-
-@media (max-width: 767px) {
-  .footer-copyrightcontent {
-    font-family: Urbanist;
-    color: var(--white);
-    font-size: 10px;
-    font-weight: 400;
-  }
-
-  .footer-copyrightcontent2 {
-    font-size: 10px;
-  }
-
-  .footer-copyright,
-  .footer-copyrightleft {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-quote {
-    padding: 10px;
-    font-size: 24px;
-  }
-
-  .footer-quoteleft {
-    padding: 10px;
-    font-size: 24px;
-    text-align: center;
-  }
-
-  .footer-containerleft {
-    padding-left: 0px;
-    align-items: center;
-  }
-
-  .footer-logoboxleft {
-    padding-left: 0px;
-    align-items: center;
-    padding: 0px 3vw;
-  }
-
-  .footer-copyrightleft {
-    padding-left: 0px;
-    justify-content: center;
-  }
-}
-
-/* ------------------------------- Footer.css ends here ------------------------------- */
-
-/* ------------------------------- EventsDescription.css starts here ------------------------------- */
-
-.eventsdescription-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.eventsdescription-topleft {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.eventsdescription-backbutton {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.eventsdescription-backbutton:hover {
-  background-color: #0056b3;
-}
-
-.eventsdescription-content {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.eventsdescription-headingcontent h3 {
-  font-size: 24px;
-  font-weight: 600;
-}
-
-.eventsdescription-contentheading {
-  font-size: 36px;
-}
-
-.eventsdescription-texted {
-  display: flex;
-  flex-direction: column;
-}
-
-.eventsdescription-text {
-  color: var(--white);
-  font-size: 20px;
-}
-
-.eventsdescription-texts {
-  color: var(--white);
-}
-
-.eventsdescription-container h2 {
-  color: var(--primary-color);
-  text-decoration: none;
-}
-
-.eventsdescription-container h3 {
-  color: var(--primary-color);
-}
-
-.eventsdescription-description {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-}
-
-.eventsdescription-desc {
-  color: var(--white);
-}
-
-.eventsdescription-date {
-  color: var(--white);
-}
-
-.eventsdescription-gap {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.eventsdescription-time {
-  color: var(--white);
-}
-
-.eventsdescription-timer {
-  display: flex;
-  flex-direction: column;
-}
-
-.eventsdescription-venue {
-  color: var(--white);
-}
-
-.eventsdescription-address {
-  color: var(--white);
-}
-
-.eventsdescription-align {
-  display: flex;
-  flex-direction: row;
-  gap: 100px;
-}
-
-.eventsdescription-speaker {
-  color: var(--white);
-}
-
-.eventsdescription-navbutton {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-
-.eventsdescription-primarybutton {
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 20px;
-}
-
-.eventsdescription-buttondiv {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.eventsdescription-primarydiv {
-  display: flex;
-  justify-content: right;
-  gap: 20px;
-  top: 20px;
-  left: 20px;
-}
-
-.eventsdescription-buttondiv2 {
-  display: flex;
-  justify-content: space-between;
-}
-
-@media only screen and (max-width: 480px) {
-  .eventsdescription-hiddenbutton {
-    display: none;
-  }
-
-  .eventsdescription-topleft {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .eventsdescription-align {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .eventsdescription-primarydiv {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .eventsdescription-buttondiv2 {
-    flex-direction: column;
-  }
-}
-
-@media (min-width: 601px) and (max-width: 768px) {
-  .eventsdescription-topleft {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .eventsdescription-align {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .eventsdescription-primarydiv {
-    position: static;
-    justify-content: center;
-    margin-top: 20px;
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .eventsdescription-topleft {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .eventsdescription-align {
-    flex-direction: row;
-    gap: 50px;
-  }
-
-  .eventsdescription-primarydiv {
-    position: static;
-    justify-content: flex-end;
-  }
-}
-
-/* ------------------------------- EventsDescription.css ends here ------------------------------- */
-
 /* -------------------------------- Modal.css starts here --------------------------------- */
- 
+
 .modal-modalOverlay {
   position: fixed;
   top: 0;
@@ -1035,26 +517,38 @@
   bottom: 0;
   display: flex;
   background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  overflow-y: auto;
 }
- 
+
 .modal-modalContent {
-  border-radius: 50px;
   position: relative;
+  max-height: 90%;
+  overflow-y: auto;
 }
- 
+.modal-modalContent::-webkit-scrollbar {
+  width: 0px;
+}
+
 .modal-width-small {
   width: 549px;
 }
- 
+
 .modal-width-medium {
   width: 704px;
 }
- 
+
 .modal-width-large {
   width: 914px;
 }
- 
+
+@media (max-width: 480px) {
+  .modal-modalContent {
+    padding: 0 15px;
+  }
+}
+
 /* -------------------------------- Modal.css ends here ----------------------------------- */

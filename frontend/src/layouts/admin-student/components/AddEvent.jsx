@@ -25,7 +25,7 @@ const Addevent = ({ mainHeading, options }) => {
             render={({ field }) => (
               <InputDropdown
                 {...field}
-                label="Select Event ID"
+                label="Select Event(s)"
                 placeholder="Event ID"
                 options={options}
               />
