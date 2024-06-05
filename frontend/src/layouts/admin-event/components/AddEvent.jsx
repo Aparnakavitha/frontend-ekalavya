@@ -5,7 +5,7 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../AdminEvent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddEvent = ({ defaultValues, organizeroptions, onSubmit }) => {
+const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) => {
   const mergedDefaultValues = { ...defaultValues };
 
   const eventtypeoptions = [
@@ -31,6 +31,9 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit }) => {
         data.link = data.location;
       }
       delete data.location;
+    }
+    if (!isOrganizer) {
+      data.organizer = null;
     }
     onSubmit(data);
   };
@@ -230,32 +233,34 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit }) => {
         )}
       />
       <Controller
-        name="speakerDescrition"
+        name="speakerDescription"
         control={control}
         render={({ field }) => (
           <Input
             {...field}
-            label="Speaker Descrition"
+            label="Speaker Description"
             size="normal"
             placeholders={["Speaker Description"]}
             className={`${styles["addevent-speaker"]}`}
           />
         )}
       />
-      <Controller
-        name="organizer"
-        control={control}
-        render={({ field }) => (
-          <InputDropdown
-            {...field}
-            label="Organizer"
-            size="normal"
-            placeholders={["Organizer"]}
-            options={organizeroptions}
-            className={`${styles["addevent-organizer"]}`}
-          />
-        )}
-      />
+      {isOrganizer && (
+        <Controller
+          name="organizer"
+          control={control}
+          render={({ field }) => (
+            <InputDropdown
+              {...field}
+              label="Organizer"
+              size="normal"
+              placeholders={["Organizer"]}
+              options={organizeroptions}
+              className={`${styles["addevent-organizer"]}`}
+            />
+          )}
+        />
+      )}
 
       <PrimaryButton
         content="Submit"
