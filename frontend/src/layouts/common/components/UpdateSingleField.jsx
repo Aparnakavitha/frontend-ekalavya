@@ -10,18 +10,19 @@ const UpdateSingleField = ({
   placeHolder,
   buttonTitle,
   initialData,
+  onSubmit,
 }) => {
   const { handleSubmit, control, getValues } = useForm({
     defaultValues: initialData,
   });
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
   };
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["addstudent-form"]}`}
     >
       <div className={`${styles["addstudent-containerone"]}`}>
