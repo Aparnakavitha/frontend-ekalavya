@@ -5,7 +5,7 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../AdminEvent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddEvent = ({ defaultValues, organizeroptions }) => {
+const AddEvent = ({ defaultValues, organizeroptions, isOrganizer }) => {
   const initialDefaultValues = defaultValues;
 
   const mergedDefaultValues = { ...initialDefaultValues, ...defaultValues };
@@ -37,6 +37,9 @@ const AddEvent = ({ defaultValues, organizeroptions }) => {
         data.link = data.location;
       }
       delete data.location;
+    }
+    if (!isOrganizer) {
+      data.organizer = null;
     }
     onSubmit(data);
   };
@@ -248,20 +251,22 @@ const AddEvent = ({ defaultValues, organizeroptions }) => {
           />
         )}
       />
-      <Controller
-        name="organizer"
-        control={control}
-        render={({ field }) => (
-          <InputDropdown
-            {...field}
-            label="Organizer"
-            size="normal"
-            placeholders={["Organizer"]}
-            options={organizeroptions}
-            className={`${styles["addevent-organizer"]}`}
-          />
-        )}
-      />
+      {isOrganizer && (
+        <Controller
+          name="organizer"
+          control={control}
+          render={({ field }) => (
+            <InputDropdown
+              {...field}
+              label="Organizer"
+              size="normal"
+              placeholders={["Organizer"]}
+              options={organizeroptions}
+              className={`${styles["addevent-organizer"]}`}
+            />
+          )}
+        />
+      )}
 
       <PrimaryButton
         content="Submit"
