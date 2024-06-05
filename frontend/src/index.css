@@ -27,6 +27,18 @@
   --black: #000000;
 }
 
-body{
+body {
   background-color: var(--background);
+}
+
+.padding {
+  padding: 2vh 4vw;
+}
+
+.padding-top {
+  padding-top: 3vh;
+}
+
+.padding-bottom {
+  padding-bottom: 4vh;
 }
