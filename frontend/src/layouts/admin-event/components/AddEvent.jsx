@@ -239,7 +239,7 @@ const AddEvent = ({ defaultValues, organizeroptions, isOrganizer }) => {
         )}
       />
       <Controller
-        name="speakerDescrition"
+        name="speakerDescription"
         control={control}
         render={({ field }) => (
           <Input
