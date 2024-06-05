@@ -9,11 +9,23 @@ export const validateEmail = (value) => {
 };
 
 export const validatePhone = (value) => {
-  return (
-    !value ||
-    (isMobilePhone(value) && /^\d{10}$/.test(value)) ||
-    "Invalid phone number. Please enter a valid phone number."
-  );
+  if (!value) {
+    return true;
+  }
+
+  if (!/^\d+$/.test(value)) {
+    return "Invalid phone number. The phone number must contain only digits.";
+  }
+
+  if (value.length !== 10) {
+    return "Invalid phone number. The phone number must contain exactly 10 digits.";
+  }
+
+  if (!isMobilePhone(value)) {
+    return "Invalid phone number. Please enter a valid phone number.";
+  }
+
+  return true;
 };
 
 export const validateURL = (value) => {
