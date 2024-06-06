@@ -3,8 +3,6 @@ import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
-import Modal from "../../../layouts/common/components/Modal";
-import AddUser from "../components/AddUser";
 
 const ActionComponent = ({
   buttonProps,
@@ -14,19 +12,31 @@ const ActionComponent = ({
   resetProps,
   showFiltersAndReset,
   searchWidth = "full",
-  adduserprops,
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filterStates, setFilterStates] = useState(
+    filterProps.map((filter) => filter.defaultOption || "")
+  );
 
   const handleToggle = (index) => {
     setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   const handleOptionClick = (index, option) => {
-    console.log(`Selected option: ${option}`);
+    const newFilterStates = [...filterStates];
+    newFilterStates[index] = option;
+    setFilterStates(newFilterStates);
     setOpenDropdownIndex(null);
   };
+
+  const handleReset = () => {
+    const defaultStates = filterProps.map(
+      (filter) => filter.defaultOption || ""
+    );
+    setFilterStates(defaultStates);
+  };
+
   return (
     <div className="padding">
       <div className={styles["common-content"]}>
@@ -53,11 +63,12 @@ const ActionComponent = ({
                     isOpen={openDropdownIndex === index}
                     onToggle={() => handleToggle(index)}
                     onOptionClick={(option) => handleOptionClick(index, option)}
+                    selectedOption={filterStates[index]}
                   />
                 ))}
               </div>
               <div className={styles["common-reset"]}>
-                <PrimaryButton {...resetProps} />
+                <PrimaryButton {...resetProps} onClick={handleReset} />
               </div>
             </div>
           )}

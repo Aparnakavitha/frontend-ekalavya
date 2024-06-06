@@ -1,14 +1,14 @@
 .cards {
   position: relative;
 }
-
+ 
 .dateRow {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 }
-
+ 
 .cardOutline {
   position: absolute;
   max-width: 280px;
@@ -22,7 +22,7 @@
   left: 0;
   color: var(--white);
 }
-
+ 
 .cardOutlineHover {
   z-index: 1;
   position: absolute;
@@ -38,7 +38,7 @@
   color: var(--black);
   cursor: pointer;
 }
-
+ 
 .cardsminiheading {
   text-align: start;
   font-size: 13px;
@@ -47,7 +47,7 @@
   line-height: 22px;
   letter-spacing: -0.408px;
 }
-
+ 
 .cardsmainheading {
   text-align: start;
   width: 185px;
@@ -58,7 +58,7 @@
   line-height: 22px;
   letter-spacing: -0.408px;
 }
-
+ 
 .cardsdate {
   font-size: 11px;
   font-style: normal;
@@ -66,7 +66,7 @@
   line-height: 22px;
   letter-spacing: -0.408px;
 }
-
+ 
 .cardsdiscription {
   text-align: start;
   width: 240px;
@@ -76,7 +76,7 @@
   line-height: 14px;
   letter-spacing: -0.408px;
 }
-
+ 
 .leftCard {
   position: absolute;
   width: 208px;
@@ -86,7 +86,7 @@
   border-radius: 20px 0 0 20px;
   left: 0;
 }
-
+ 
 .leftCardHover {
   position: absolute;
   width: 208px;
@@ -95,7 +95,7 @@
   background-color: var(--white);
   left: 0;
 }
-
+ 
 .rightCard {
   position: absolute;
   width: 288px;
@@ -106,7 +106,7 @@
   left: 0;
   top: 69px;
 }
-
+ 
 .rightCardHover {
   position: absolute;
   width: 288px;
@@ -116,7 +116,7 @@
   background-color: var(--white);
   top: 69px;
 }
-
+ 
 .mask {
   position: absolute;
   width: 40px;
@@ -127,7 +127,7 @@
   left: 231px;
   top: 18px;
 }
-
+ 
 .maskHover {
   position: absolute;
   width: 40px;
@@ -137,7 +137,7 @@
   top: 17px;
   box-shadow: -3px 3px 0 3px var(--white);
 }
-
+ 
 .mask2 {
   position: absolute;
   width: 24px;
@@ -148,7 +148,7 @@
   left: 208px;
   top: 0px;
 }
-
+ 
 .mask2Hover {
   position: absolute;
   width: 24px;
@@ -158,7 +158,7 @@
   top: 0px;
   background-color: var(--white);
 }
-
+ 
 .mask3 {
   position: absolute;
   width: 20px;
@@ -169,7 +169,7 @@
   left: 268px;
   top: 57px;
 }
-
+ 
 .mask3Hover {
   position: absolute;
   width: 20px;
@@ -179,7 +179,7 @@
   top: 57px;
   background-color: var(--white);
 }
-
+ 
 .mask4 {
   position: absolute;
   width: 20px;
@@ -188,7 +188,7 @@
   left: 268px;
   top: 57px;
 }
-
+ 
 .mask4Hover {
   position: absolute;
   width: 40px;
@@ -198,7 +198,7 @@
   top: 17px;
   box-shadow: -18px 18px 0 18px var(--white);
 }
-
+ 
 .arrow {
   position: absolute;
   width: 40px;
@@ -211,7 +211,7 @@
   align-items: center;
   color: var(--white);
 }
-
+ 
 .arrowHover {
   position: absolute;
   width: 40px;
