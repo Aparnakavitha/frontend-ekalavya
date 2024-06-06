@@ -6,35 +6,43 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import { IoMdMail } from "react-icons/io";
 import { FaPhone, FaGithub, FaLinkedin } from "react-icons/fa";
 
+
 const UserProfileInfo = (props) => {
   const {
-    role = "student",
-    name = "Emma Watson",
-    userId = "STD1537",
-    college = "Christ University",
-    dob = "Jan 21 2001",
-    email = "emmawatson@gmail.com",
-    phone = "(+91) 8337254637",
-    linkedin = "linkedin/emmawatson",
-    github = "github.com/emmawatson153",
-    address = "Bengaluru, 685789, Karnataka, India",
-    hasDelete = false,
-
+    role,
+    profilepic,
+    name,
+    userId,
+    college ,
+    dob ,
+    email,
+    phoneNumber ,
+    linkedin,
+    github,
+    houseName,
+    city,
+    pinCode,
+    state,
+    country,
+    aboutMe,
+    hasDelete ,
+    onClickEdit,
+    onClickDelete,
     ...rest
   } = props;
 
   return (
-    <div className={`${styles["userprofile-main"]}`}>
+    <div className={`${styles["userprofile-main"]} padding-top padding-bottom padding`}>
       <div className={`${styles["userprofile-user-details"]}`}>
         <div className={`${styles["userprofile-title"]}`}>
           <h2 className={`${styles["userprofile-title1"]}`}>Details</h2>
           <div className={`${styles["userprofile-controlbuttons"]}`}>
             <div className={`${styles["userprofile-controlbutton"]}`}>
-              <TextButton icon={<MdEdit />} text="Update" />
+              <TextButton icon={<MdEdit />} text="Update" onClick={onClickEdit} />
             </div>
             {hasDelete && (
               <div className={`${styles["userprofile-controlbutton"]}`}>
-                <TextButton icon={<MdDelete />} text="Delete" />
+                <TextButton icon={<MdDelete />} text="Delete" onClick={onClickDelete}/>
               </div>
             )}
           </div>
@@ -43,7 +51,7 @@ const UserProfileInfo = (props) => {
         <div className={`${styles["userprofile-details-section"]}`}>
           <div className={`${styles["userprofile-basic-info"]}`}>
             <div className={`${styles["userprofile-profile-picture"]}`}>
-              <ProfilePicture src="https://hips.hearstapps.com/hbz.h-cdn.co/assets/16/10/3200x2312/gallery-1457919704-gettyimages-480667731.jpg?resize=700:*" />
+              <ProfilePicture src={`${profilepic}`} />
             </div>
             <div className={`${styles["userprofile-info-text"]}`}>
               <h3 className={`${styles["userprofile-name"]}`}>{name}</h3>
@@ -65,7 +73,7 @@ const UserProfileInfo = (props) => {
               <IoMdMail /> {email}
             </h4>
             <h4 className={`${styles["userprofile-phone"]}`}>
-              <FaPhone /> {phone}
+              <FaPhone /> {phoneNumber}
             </h4>
             <h4 className={`${styles["userprofile-linkedin"]}`}>
               <a
@@ -87,7 +95,7 @@ const UserProfileInfo = (props) => {
             <h4 className={`${styles["userprofile-address"]}`}>
               <b>Address:</b>
             </h4>
-            <h4 className={`${styles["userprofile-address"]}`}>{address}</h4>
+            <h4 className={`${styles["userprofile-address"]}`}>{houseName},{city} - {pinCode},{state},{country}</h4>
           </div>
         </div>
       </div>
