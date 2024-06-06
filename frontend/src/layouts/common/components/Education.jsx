@@ -25,10 +25,13 @@ const Education = (props) => {
         specialization: "Marketing",
       },
     ],
+    onClickAdd,
+    onClickEdit,
+    onClickDelete,
   } = props;
 
   return (
-    <div className={`${styles["education-container"]}`}>
+    <div className={`${styles["education-container"]} padding-bottom padding`}>
       <div className={`${styles["education-qualification"]}`}>
         <div className={`${styles["education-qualification-content"]}`}>
           <div className={`${styles["education-title"]}`}>
@@ -41,6 +44,7 @@ const Education = (props) => {
               <TextButton
                 icon={<IoMdAdd />}
                 text="Add Educational Qualification"
+                onClick={onClickAdd}
               />
             </div>
           </div>
@@ -78,12 +82,20 @@ const Education = (props) => {
                     <div
                       className={`${styles["education-qualification-button"]}`}
                     >
-                      <TextButton icon={<MdEdit />} text="Edit" />
+                      <TextButton
+                        icon={<MdEdit />}
+                        text="Edit"
+                        onClick={onClickEdit}
+                      />
                     </div>
                     <div
                       className={`${styles["education-qualification-button"]}`}
                     >
-                      <TextButton icon={<MdDelete />} text="Delete" />
+                      <TextButton
+                        icon={<MdDelete />}
+                        text="Delete"
+                        onClick={onClickDelete}
+                      />
                     </div>
                   </div>
                 </div>

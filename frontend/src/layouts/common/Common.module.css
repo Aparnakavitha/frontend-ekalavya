@@ -1,3 +1,513 @@
+/* ------------------------------- QualificationForm.css starts here ------------------------------- */
+
+.qualification-form-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  padding: 50px;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.qualification-form-datebox {
+  width: 48.75%;
+}
+
+.qualification-form-startdate-enddate {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.qualification-form-head {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 21px;
+  margin-bottom: 15px;
+}
+
+.qualification-form-button {
+  padding-top: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .qualification-form-startdate-enddate {
+    flex-direction: column;
+    gap: 17px;
+  }
+  .qualification-form-form {
+    padding: 30px;
+    border-radius: 40px;
+  }
+  .qualification-form-datebox {
+    width: 100%;
+  }
+}
+
+/* ------------------------------- QualificationForm.css ends here ------------------------------- */
+
+/* ------------------------------- basicdetails.css starts here ---------------------------------- */
+
+.basicdetails-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.basicdetails-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.basicdetails-containerone {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.basicdetails-containerinput-out {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.basicdetails-containerinput-inter {
+  gap: 7px;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.basicdetails-containerinput-in {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+  width: 100%;
+}
+.basicdetails-icontext {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 12px;
+  width: 100%;
+}
+
+.basicdetails-buttoncontainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 17px;
+}
+
+.basicdetails-error {
+  color: var(--primary-color);
+  margin-top: 5px;
+  font-size: 0.875rem;
+}
+
+.basicdetails-links {
+  width: 32%;
+}
+
+.basicdetails-containerinput-links {
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+  .basicdetails-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+
+  .basicdetails-containerinput-links {
+    flex-direction: column;
+  }
+
+  .basicdetails-links {
+    width: 100%;
+  }
+}
+
+/* ------------------------------- basicdetails.css ends here ------------------------------------ */
+/* ------------------------------- combinedskillform.css starts here --------------------------- */
+
+.combinedskillform-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.combinedskillform-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.combinedskillform-containerone {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.combinedskillform-containerinput {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.combinedskillform-buttoncontainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.combinedskillform-message {
+  font-size: 14px;
+  color: var(--white);
+}
+
+.combinedskillform-skillname {
+  color: var(--primary-color);
+  margin-left: 5px;
+}
+
+.combinedskillform-allheading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.combinedskillform-text {
+  font-size: 12px;
+  left: 57px;
+}
+
+@media (max-width: 767px) {
+  .combinedskillform-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+}
+
+/* ------------------------------- combinedskillform.css ends here --------------------------- */
+/* ------------------------------- addprofilelink.css starts here ---------------------------- */
+
+.addprofilelink-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.addprofilelink-containerone {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.addprofilelink-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.addprofilelink-containerinput {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.addprofilelink-buttoncontainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .addprofilelink-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+}
+
+/* ------------------------------- addprofilelink.css ends here ---------------------------- */
+/* ------------------------------- DeleteBox.css starts here ------------------------------- */
+
+.deletebox-box {
+  max-width: 100%;
+  border-radius: 40px;
+  background: var(--background);
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  gap: 10px;
+}
+
+.deletebox-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.deletebox-title {
+  color: var(--white);
+  width: 100%;
+  font-weight: 500;
+  font-size: 21px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.deletebox-message {
+  color: var(--white);
+  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.deletebox-button {
+  width: 100%;
+  max-width: 375px;
+  text-align: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .deletebox-box {
+    padding: 35px;
+    border-radius: 30px;
+  }
+}
+
+/* ------------------------------- DeleteBox.css ends here ------------------------------- */
+/* ------------------------------- addstudent.css starts here --------------------------------- */
+
+.addstudent-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.addstudent-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.addstudent-containerone {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.addstudent-containerinput {
+  gap: 10px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.addstudent-buttoncontainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .addstudent-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+}
+
+/* ------------------------------- addstudent.css ends here --------------------------------- */
+/* ------------------------------- AddUser.css starts here ------------------------------- */
+
+.adduser-head {
+  font-size: 21px;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.adduser-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  border-radius: 40px;
+  padding: 50px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+}
+
+.adduser-field {
+  padding: 0%;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  justify-content: space-between;
+}
+
+.adduser-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.adduser-name {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .adduser-container {
+    padding: 30px;
+    border-radius: 30px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .adduser-head {
+    font-size: 18px;
+  }
+
+  .adduser-form {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .adduser-container {
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .adduser-head {
+    font-size: 16px;
+  }
+
+  .adduser-form {
+    gap: 15px;
+  }
+
+  .adduser-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .adduser-name {
+    width: 100%;
+  }
+}
+
+/* -------------------------------- AddUser.css ends here -------------------------------- */
+
 /* ------------------------------- EventMenus.css starts here ------------------------------- */
 .eventmenus-container {
   display: flex;
@@ -393,512 +903,55 @@
   }
 }
 /* ------------------------------- AboutMe.module.css ends here ------------------------------- */
-/* ------------------------------- QualificationForm.css starts here ------------------------------- */
 
-.qualification-form-form {
-  width: 100%;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
-  background-blend-mode: lighten;
-  padding: 50px;
-  border-radius: 40px;
-  color: var(--white);
-  box-sizing: border-box;
+/* -------------------------------- Modal.css starts here --------------------------------- */
+
+.modal-modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.qualification-form-datebox {
-  width: 48.75%;
-}
-
-.qualification-form-startdate-enddate {
-  display: flex;
-  gap: 20px;
-  justify-content: space-between;
-}
-
-.qualification-form-head {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 21px;
-  margin-bottom: 15px;
-}
-
-.qualification-form-button {
-  padding-top: 10px;
-}
-
-@media screen and (max-width: 767px) {
-  .qualification-form-startdate-enddate {
-    flex-direction: column;
-    gap: 17px;
-  }
-  .qualification-form-form {
-    padding: 30px;
-    border-radius: 40px;
-  }
-  .qualification-form-datebox {
-    width: 100%;
-  }
-}
-
-/* ------------------------------- QualificationForm.css ends here ------------------------------- */
-/* ------------------------------- basicdetails.css starts here ---------------------------------- */
-
-.basicdetails-form {
-  width: 100%;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
-  background-blend-mode: lighten;
-  border-radius: 40px;
-  color: var(--white);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
   justify-content: center;
   align-items: center;
-  padding: 50px;
+  z-index: 1000;
+  overflow-y: auto;
 }
 
-.basicdetails-head {
-  width: 100%;
-  left: 57px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  color: var(--white);
-  overflow: hidden;
-  word-break: break-word;
+.modal-modalContent {
+  position: relative;
+  max-height: 90%;
+  overflow-y: auto;
+}
+.modal-modalContent::-webkit-scrollbar {
+  width: 0px;
 }
 
-.basicdetails-containerone {
-  width: 100%;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.modal-width-small {
+  width: 549px;
 }
 
-.basicdetails-containerinput-out {
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.modal-width-medium {
+  width: 704px;
 }
 
-.basicdetails-containerinput-inter {
-  gap: 7px;
-  margin-top: 6px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.basicdetails-containerinput-in {
-  gap: 6px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 7px;
-  width: 100%;
-}
-
-.basicdetails-icontext {
-  text-align: center;
-  padding-top: 10px;
-  font-size: 12px;
-  width: 100%;
-}
-
-.basicdetails-buttoncontainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 17px;
-}
-
-.basicdetails-error {
-  color: var(--primary-color);
-  margin-top: 5px;
-  font-size: 0.875rem;
-}
-
-.basicdetails-links {
-  width: 32%;
-}
-
-.basicdetails-containerinput-links {
-  gap: 6px;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
-}
-
-@media (max-width: 767px) {
-  .basicdetails-form {
-    padding: 30px;
-    border-radius: 30px;
-  }
-
-  .basicdetails-containerinput-links {
-    flex-direction: column;
-  }
-
-  .basicdetails-links {
-    width: 100%;
-  }
-}
-
-/* ------------------------------- basicdetails.css ends here ------------------------------------ */
-/* ------------------------------- combinedskillform.css starts here --------------------------- */
-
-.combinedskillform-form {
-  width: 100%;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
-  background-blend-mode: lighten;
-  border-radius: 40px;
-  color: var(--white);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-}
-
-.combinedskillform-head {
-  width: 100%;
-  left: 57px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  color: var(--white);
-  overflow: hidden;
-  word-break: break-word;
-}
-
-.combinedskillform-containerone {
-  width: 100%;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.combinedskillform-containerinput {
-  width: 100%;
-  gap: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.combinedskillform-buttoncontainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.combinedskillform-message {
-  font-size: 14px;
-  color: var(--white);
-}
-
-.combinedskillform-skillname {
-  color: var(--primary-color);
-  margin-left: 5px;
-}
-
-.combinedskillform-allheading {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  overflow: hidden;
-  word-break: break-word;
-}
-
-.combinedskillform-text {
-  font-size: 12px;
-  left: 57px;
-}
-
-@media (max-width: 767px) {
-  .combinedskillform-form {
-    padding: 30px;
-    border-radius: 30px;
-  }
-}
-
-/* ------------------------------- combinedskillform.css ends here --------------------------- */
-/* ------------------------------- addprofilelink.css starts here ---------------------------- */
-
-.addprofilelink-form {
-  width: 100%;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
-  background-blend-mode: lighten;
-  border-radius: 40px;
-  color: var(--white);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-}
-
-.addprofilelink-containerone {
-  width: 100%;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.addprofilelink-head {
-  width: 100%;
-  left: 57px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  color: var(--white);
-  overflow: hidden;
-  word-break: break-word;
-}
-
-.addprofilelink-containerinput {
-  width: 100%;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.addprofilelink-buttoncontainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media (max-width: 767px) {
-  .addprofilelink-form {
-    padding: 30px;
-    border-radius: 30px;
-  }
-}
-
-/* ------------------------------- addprofilelink.css ends here ---------------------------- */
-/* ------------------------------- DeleteBox.css starts here ------------------------------- */
-
-.deletebox-box {
-  max-width: 100%;
-  border-radius: 40px;
-  background: var(--background);
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-  gap: 10px;
-}
-
-.deletebox-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.deletebox-title {
-  color: var(--white);
-  width: 100%;
-  font-weight: 500;
-  font-size: 21px;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
-.deletebox-message {
-  color: var(--white);
-  width: 100%;
-  font-weight: 400;
-  font-size: 16px;
-  text-align: center;
-  margin-bottom: 14px;
-}
-
-.deletebox-button {
-  width: 100%;
-  max-width: 375px;
-  text-align: center;
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-}
-
-@media (max-width: 767px) {
-  .deletebox-box {
-    padding: 35px;
-    border-radius: 30px;
-  }
-}
-
-/* ------------------------------- DeleteBox.css ends here ------------------------------- */
-/* ------------------------------- addstudent.css starts here --------------------------------- */
-
-.addstudent-form {
-  width: 100%;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
-  background-blend-mode: lighten;
-  border-radius: 40px;
-  color: var(--white);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-}
-
-.addstudent-head {
-  width: 100%;
-  left: 57px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  color: var(--white);
-  overflow: hidden;
-  word-break: break-word;
-}
-
-.addstudent-containerone {
-  width: 100%;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.addstudent-containerinput {
-  gap: 10px;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-}
-
-.addstudent-buttoncontainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media (max-width: 767px) {
-  .addstudent-form {
-    padding: 30px;
-    border-radius: 30px;
-  }
-}
-
-/* ------------------------------- addstudent.css ends here --------------------------------- */
-/* ------------------------------- AddUser.css starts here ------------------------------- */
-
-.adduser-head {
-  font-size: 21px;
-  color: white;
-  margin-bottom: 25px;
-}
-
-.adduser-container {
-  width: 100%;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background);
-  border-radius: 40px;
-  padding: 50px;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-}
-
-.adduser-field {
-  padding: 0%;
-  display: flex;
-  flex-direction: row;
-  gap: 25px;
-  justify-content: space-between;
-}
-
-.adduser-form {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.adduser-name {
-  width: 50%;
-}
-
-@media (max-width: 768px) {
-  .adduser-container {
-    padding: 30px;
-    border-radius: 30px;
-    width: 100%;
-    height: fit-content;
-  }
-
-  .adduser-head {
-    font-size: 18px;
-  }
-
-  .adduser-form {
-    gap: 20px;
-  }
+.modal-width-large {
+  width: 914px;
 }
 
 @media (max-width: 480px) {
-  .adduser-container {
-    padding: 30px;
-    border-radius: 15px;
-    width: 100%;
-    height: fit-content;
-  }
-
-  .adduser-head {
-    font-size: 16px;
-  }
-
-  .adduser-form {
-    gap: 15px;
-  }
-
-  .adduser-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-  }
-
-  .adduser-name {
-    width: 100%;
+  .modal-modalContent {
+    padding: 0 15px;
   }
 }
 
-/* -------------------------------- AddUser.css ends here -------------------------------- */
+@media (min-width: 481px) and (max-width: 980px) {
+  .modal-modalContent {
+    padding: 0 35px;
+  }
+}
+
+/* -------------------------------- Modal.css ends here ----------------------------------- */

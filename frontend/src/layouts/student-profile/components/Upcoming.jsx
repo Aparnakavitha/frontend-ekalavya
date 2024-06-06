@@ -3,7 +3,9 @@ import styles from "../StudentProfile.module.css";
 import EventCard from "../../../components/cards/EventCard";
 
 const Upcoming = (props) => {
-  const { mode = "dark", status } = props;
+  const { mode = "dark" } = props;
+
+  const handleClick=()=>{alert("View all events")}
 
   const events = [
     {
@@ -45,7 +47,7 @@ const Upcoming = (props) => {
       <div className={`${styles["upcoming-head-container"]}`}>
         <h1 className={`${styles["upcoming-head"]}`}>Upcoming events</h1>
         <h1 className={`${styles["upcoming-link"]}`}>
-          <a href="">See all</a>
+          <a onClick={handleClick}>See all</a>
         </h1>
       </div>
       <div className={`${styles["upcoming-event-cards-container"]}`}>

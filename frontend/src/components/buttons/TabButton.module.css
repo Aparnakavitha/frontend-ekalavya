@@ -27,8 +27,8 @@
 }
 
 .event-status.active {
-  background-color: var(--white); /* Active background color */
-  color: var(--black); /* Active text color */
+  background-color: var(--white); 
+  color: var(--black); 
 }
 
 @media (max-width: 767px) {

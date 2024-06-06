@@ -1,0 +1,15 @@
+.studentprofile-main{
+    display: flex;
+    flex-direction: column;
+}
+
+.studentprofile-topdeck{
+    display: flex;
+    gap: 3rem;
+}
+
+.studentprofile-studentinfo{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
