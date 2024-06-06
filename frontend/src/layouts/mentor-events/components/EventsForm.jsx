@@ -54,7 +54,7 @@ const EventForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className={`${styles["eventform-form"]}`}
+      className={`${styles["eventform-form"]} padding padding-top padding-bottom`}
     >
       <NavButton pageName="Create Event" onClick={() => {}} />
       <div className={`${styles["eventform-eventtitlemode"]}`}>

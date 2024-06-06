@@ -27,7 +27,7 @@ const MentorEventDescription = () => {
   };
 
   return (
-    <div>
+    <div className="padding padding-top">
       <EventsDescription {...actionData} />
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddEvent {...EventDescriptionData} onSubmit={handleFormSubmit} />
