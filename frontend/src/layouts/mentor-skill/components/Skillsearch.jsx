@@ -19,7 +19,8 @@ const Skillsearch = () => {
   const closeModal = () =>
     setModalState({ isOpen: false, type: "", selectedIndex: null });
 
-  const handleAddSkill = () => {
+  const handleAddSkill = (data) => {
+    console.log("Form submitted with data:", data);
     closeModal();
   };
 
@@ -30,10 +31,17 @@ const Skillsearch = () => {
 
   return (
     <div className={`${styles["skillsearch-skillssearch"]}`}>
-      <h1 className={`${styles["skillsearch-skillsheading"]}`}>{skillData.heading}</h1>
-      <p className={`${styles["skillsearch-subheading"]}`}>{skillData.subheading}</p>
+      <h1 className={`${styles["skillsearch-skillsheading"]}`}>
+        {skillData.heading}
+      </h1>
+      <p className={`${styles["skillsearch-subheading"]}`}>
+        {skillData.subheading}
+      </p>
       <div className={`${styles["skillsearch-searchbar"]}`}>
-        <SearchBar placeholder={skillData.searchBarPlaceholder} onSearch={skillData.onSearch} />
+        <SearchBar
+          placeholder={skillData.searchBarPlaceholder}
+          onSearch={skillData.onSearch}
+        />
       </div>
 
       <div className={`${styles["skillsearch-cardcontainer"]}`}>

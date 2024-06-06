@@ -1069,6 +1069,7 @@
   position: relative;
   max-height: 90%;
   overflow-y: auto;
+  outline: transparent;
 }
 .modal-modalContent::-webkit-scrollbar {
   width: 0px;
