@@ -5,9 +5,21 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../MentorEvents.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import NavButton from "../../../components/buttons/NavButton";
+import {
+  validateURL,
+  validateStartDate,
+  validateEndDate,
+  validateAndCleanInput,
+} from "../../common/components/validation";
 
 const EventForm = () => {
-  const { handleSubmit, control, watch, setValue } = useForm({});
+  const {
+    handleSubmit,
+    control,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm({});
 
   const [eventMode, setEventMode] = useState("Offline");
 
@@ -62,6 +74,10 @@ const EventForm = () => {
           <Controller
             name="eventTitle"
             control={control}
+            rules={{
+              required: "Event Title is required",
+              validate: validateAndCleanInput,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -72,12 +88,21 @@ const EventForm = () => {
               />
             )}
           />
+          {errors.eventTitle && (
+            <p className={`${styles["eventform-error"]}`}>
+              {errors.eventTitle.message}
+            </p>
+          )}
         </div>
 
         <div className={`${styles["eventform-eventmodediv"]}`}>
           <Controller
             name="eventMode"
             control={control}
+            rules={{
+              required: "Event Mode is required",
+              validate: validateAndCleanInput,
+            }}
             render={({ field }) => (
               <InputDropdown
                 {...field}
@@ -88,12 +113,21 @@ const EventForm = () => {
               />
             )}
           />
+          {errors.eventMode && (
+            <p className={`${styles["eventform-error"]}`}>
+              {errors.eventMode.message}
+            </p>
+          )}
         </div>
       </div>
 
       <Controller
         name="eventType"
         control={control}
+        rules={{
+          required: "Event Type is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <InputDropdown
             {...field}
@@ -105,10 +139,19 @@ const EventForm = () => {
           />
         )}
       />
+      {errors.eventType && (
+        <p className={`${styles["eventform-error"]}`}>
+          {errors.eventType.message}
+        </p>
+      )}
 
       <Controller
         name="description"
         control={control}
+        rules={{
+          required: "Description is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -119,12 +162,20 @@ const EventForm = () => {
           />
         )}
       />
+      {errors.description && (
+        <p className={`${styles["eventform-error"]}`}>
+          {errors.description.message}
+        </p>
+      )}
 
       <div className={`${styles["eventform-datetimecontainer"]}`}>
         <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="startDate"
             control={control}
+            rules={{
+              validate: validateStartDate,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -136,12 +187,20 @@ const EventForm = () => {
               />
             )}
           />
+          {errors.startDate && (
+            <p className={`${styles["eventform-error"]}`}>
+              {errors.startDate.message}
+            </p>
+          )}
         </div>
 
         <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="endDate"
             control={control}
+            rules={{
+              validate: validateEndDate,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -153,12 +212,20 @@ const EventForm = () => {
               />
             )}
           />
+          {errors.endDate && (
+            <p className={`${styles["eventform-error"]}`}>
+              {errors.endDate.message}
+            </p>
+          )}
         </div>
 
         <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="startTime"
             control={control}
+            rules={{
+              required: "Start Time is required",
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -170,12 +237,20 @@ const EventForm = () => {
               />
             )}
           />
+          {errors.startTime && (
+            <p className={`${styles["eventform-error"]}`}>
+              {errors.startTime.message}
+            </p>
+          )}
         </div>
 
         <div className={`${styles["eventform-datetime"]}`}>
           <Controller
             name="endTime"
             control={control}
+            rules={{
+              required: "End Time is required",
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -187,12 +262,27 @@ const EventForm = () => {
               />
             )}
           />
+          {errors.endTime && (
+            <p className={`${styles["eventform-error"]}`}>
+              {errors.endTime.message}
+            </p>
+          )}
         </div>
       </div>
 
       <Controller
         name="location"
         control={control}
+        rules={{
+          required:
+            selectedEventMode === "Online"
+              ? "Link is required"
+              : "Location is required",
+          validate:
+            selectedEventMode === "Online"
+              ? validateURL
+              : validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -205,10 +295,18 @@ const EventForm = () => {
           />
         )}
       />
-
+      {errors.location && (
+        <p className={`${styles["eventform-error"]}`}>
+          {errors.location.message}
+        </p>
+      )}
       <Controller
         name="speaker"
         control={control}
+        rules={{
+          required: "Speaker is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -219,10 +317,19 @@ const EventForm = () => {
           />
         )}
       />
+      {errors.speaker && (
+        <p className={`${styles["eventform-error"]}`}>
+          {errors.speaker.message}
+        </p>
+      )}
 
       <Controller
         name="speakerdescription"
         control={control}
+        rules={{
+          required: "Speaker Description is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -233,6 +340,11 @@ const EventForm = () => {
           />
         )}
       />
+      {errors.speakerdescription && (
+        <p className={`${styles["eventform-error"]}`}>
+          {errors.speakerdescription.message}
+        </p>
+      )}
 
       <div className={`${styles["eventform-buttondiv"]}`}>
         <div className={`${styles["eventform-buttoncontainer"]}`}>
