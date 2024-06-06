@@ -11,9 +11,9 @@ const HomeSidebar = () => {
   return (
     <SideBar
       listItems={[
-        { icon: <BsFillCheckCircleFill />, name: "Courses", viewIcon: false },
-        { icon: <BsFillMotherboardFill />, name: "Projects", viewIcon: false },
-        { icon: <BsFillCalendarCheckFill />, name: "Events", viewIcon: false },
+        { icon: <BsFillCheckCircleFill />, name: "Courses" },
+        { icon: <BsFillMotherboardFill />, name: "Projects" },
+        { icon: <BsFillCalendarCheckFill />, name: "Events" },
       ]}
       profileBox={{
         name: "Sana Parvin",
