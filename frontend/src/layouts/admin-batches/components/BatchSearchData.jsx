@@ -6,18 +6,20 @@ const AdminBatchSearchData = {
     pageName: "Batch Name",
   },
   showTextButton: true,
+  showAdd: true,
+  showReset: false,
   textbuttonProps: {
     icon: <MdEdit />,
     text: "Edit Batch Name",
     onClick: (e) => {
-      console.log("clicked");
+      console.log("Edit clicked");
     },
   },
   textbuttonProps2: {
     icon: <GoTrash />,
     text: "Delete",
     onClick: (e) => {
-      console.log("clicked");
+      console.log("Delete clicked");
     },
   },
   searchbarProps: {
@@ -25,7 +27,7 @@ const AdminBatchSearchData = {
     placeholder: "Student Name",
   },
   showFiltersAndReset: false,
-  buttonProps: {
+  addbuttonProps: {
     variant: "tertiary",
     content: "+ Add new Student",
     width: "full",

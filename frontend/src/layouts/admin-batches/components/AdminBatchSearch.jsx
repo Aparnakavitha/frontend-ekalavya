@@ -53,8 +53,8 @@ const AdminBatchSearch = () => {
 
   const actionData = {
     ...AdminBatchSearchData,
-    buttonProps: {
-      ...AdminBatchSearchData.buttonProps,
+    addbuttonProps: {
+      ...AdminBatchSearchData.addbuttonProps,
       onClick: handleOpenBatchOperations,
     },
     textbuttonProps: {
