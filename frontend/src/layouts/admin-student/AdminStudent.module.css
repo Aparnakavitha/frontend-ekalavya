@@ -59,6 +59,7 @@
 }
 
 /* ------------------------------- Addevent.css ends here ---------------------------------------- */
+
 /* ------------------------------- Addcollege.css starts here ------------------------------- */
 
 .addcollege-container {
@@ -120,6 +121,7 @@
 }
 
 /* --------------------------------- Addcollege.css ends here -------------------------------- */
+
 /* ------------------------------- Collegelist.css starts here ------------------------------- */
 
 .collegelist-container {
@@ -156,7 +158,6 @@
   border-radius: 50px;
 }
 
-
 .collegelist-container::-webkit-scrollbar-corner {
   background: transparent;
 }
@@ -192,6 +193,7 @@
 }
 
 /* ------------------------------- Collegelist.css ends here ------------------------------- */
+
 /* ------------------------------- Cardrow.css starts here ------------------------------- */
 .cardrow-skillcontainer {
   height: fit-content;
@@ -291,4 +293,3 @@
   }
 }
 /* ------------------------------- Cardrow.css ends here ------------------------------- */
-
