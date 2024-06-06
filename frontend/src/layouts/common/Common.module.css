@@ -807,7 +807,8 @@
 
 /* -------------------------------- Modal.css ends here ----------------------------------- */
 
-/* -------------------------------- Modal.css starts here --------------------------------- */
+/* -------------------------------- ShowCards.css starts here --------------------------------- */
+
 .showcards-total {
   width: 100%;
   display: flex;
@@ -821,6 +822,7 @@
 
   background-color: grey;
 }
+
 .showcards-container {
   display: flex;
   flex-direction: column;
@@ -868,7 +870,7 @@
   justify-content: flex-end;
 }
 
-/* -------------------------------- Modal.css ends here ----------------------------------- */
+/* -------------------------------- ShowCards.css ends here ----------------------------------- */
 
 /*----------------------------------batchsearch.css starts here-----------------------------------*/
 
@@ -877,7 +879,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 10px;
 }
 
 .batchsearch-top {

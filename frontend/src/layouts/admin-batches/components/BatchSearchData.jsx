@@ -5,6 +5,7 @@ const AdminBatchSearchData = {
   navbuttonProps: {
     pageName: "Batch Name",
   },
+  showTextButton: true,
   textbuttonProps: {
     icon: <MdEdit />,
     text: "Edit Batch Name",

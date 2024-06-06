@@ -1,5 +1,3 @@
-import image from "../../../assets/DP.png";
-
 const BatchListData = {
   greeting: {
     welcome: "Welcome Back",
