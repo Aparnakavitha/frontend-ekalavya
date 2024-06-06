@@ -17,6 +17,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -42,6 +43,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -54,6 +56,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -66,6 +69,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -78,6 +82,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -90,6 +95,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -102,6 +108,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -114,6 +121,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -126,6 +134,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -138,6 +147,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -150,6 +160,7 @@ const primaryCardData = {
         console.log("clicked");
       },
     },
+
     {
       miniHeading: "Capstone",
       mainHeading: "Health Management",
@@ -163,6 +174,7 @@ const primaryCardData = {
       },
     },
   ],
+
   tableColumns: [
     { key: "miniHeading", displayName: "Type" },
     { key: "mainHeading", displayName: "Title" },
@@ -170,6 +182,7 @@ const primaryCardData = {
     { key: "endDate", displayName: "End Date" },
     { key: "description", displayName: "Description" },
   ],
+
   toggle: false,
   itemsPerPage: 10,
 };

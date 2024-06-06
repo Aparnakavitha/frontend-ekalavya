@@ -6,18 +6,16 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import { IoMdMail } from "react-icons/io";
 import { FaPhone, FaGithub, FaLinkedin } from "react-icons/fa";
 
-
-
 const UserProfileInfo = (props) => {
   const {
     role,
     profilepic,
     name,
     userId,
-    college ,
-    dob ,
+    college,
+    dob,
     email,
-    phoneNumber ,
+    phoneNumber,
     linkedin,
     github,
     houseName,
@@ -26,24 +24,32 @@ const UserProfileInfo = (props) => {
     state,
     country,
     aboutMe,
-    hasDelete ,
+    hasDelete,
     onClickEdit,
     onClickDelete,
     ...rest
   } = props;
 
   return (
-    <div className={`${styles["userprofile-main"]} padding-top padding-bottom padding`}>
+    <div className={`${styles["userprofile-main"]} padding-top padding`}>
       <div className={`${styles["userprofile-user-details"]}`}>
         <div className={`${styles["userprofile-title"]}`}>
           <h2 className={`${styles["userprofile-title1"]}`}>Details</h2>
           <div className={`${styles["userprofile-controlbuttons"]}`}>
             <div className={`${styles["userprofile-controlbutton"]}`}>
-              <TextButton icon={<MdEdit />} text="Update" onClick={onClickEdit} />
+              <TextButton
+                icon={<MdEdit />}
+                text="Update"
+                onClick={onClickEdit}
+              />
             </div>
             {hasDelete && (
               <div className={`${styles["userprofile-controlbutton"]}`}>
-                <TextButton icon={<MdDelete />} text="Delete" onClick={onClickDelete}/>
+                <TextButton
+                  icon={<MdDelete />}
+                  text="Delete"
+                  onClick={onClickDelete}
+                />
               </div>
             )}
           </div>
@@ -96,7 +102,9 @@ const UserProfileInfo = (props) => {
             <h4 className={`${styles["userprofile-address"]}`}>
               <b>Address:</b>
             </h4>
-            <h4 className={`${styles["userprofile-address"]}`}>{houseName},{city} - {pinCode},{state},{country}</h4>
+            <h4 className={`${styles["userprofile-address"]}`}>
+              {houseName},{city} - {pinCode},{state},{country}
+            </h4>
           </div>
         </div>
       </div>

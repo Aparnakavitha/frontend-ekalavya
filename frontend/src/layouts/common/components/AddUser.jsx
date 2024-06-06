@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import styles from "../Common.module.css";
 import Input from "../../../components/inputbox/InputBox";

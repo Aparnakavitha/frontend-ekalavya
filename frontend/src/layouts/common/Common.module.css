@@ -162,6 +162,7 @@
 }
 
 /* ------------------------------- basicdetails.css ends here ------------------------------------ */
+
 /* ------------------------------- combinedskillform.css starts here --------------------------- */
 
 .combinedskillform-form {
@@ -247,6 +248,7 @@
 }
 
 /* ------------------------------- combinedskillform.css ends here --------------------------- */
+
 /* ------------------------------- addprofilelink.css starts here ---------------------------- */
 
 .addprofilelink-form {
@@ -308,6 +310,7 @@
 }
 
 /* ------------------------------- addprofilelink.css ends here ---------------------------- */
+
 /* ------------------------------- DeleteBox.css starts here ------------------------------- */
 
 .deletebox-box {
@@ -363,6 +366,7 @@
 }
 
 /* ------------------------------- DeleteBox.css ends here ------------------------------- */
+
 /* ------------------------------- addstudent.css starts here --------------------------------- */
 
 .addstudent-form {
@@ -424,6 +428,7 @@
 }
 
 /* ------------------------------- addstudent.css ends here --------------------------------- */
+
 /* ------------------------------- AddUser.css starts here ------------------------------- */
 
 .adduser-head {
@@ -617,7 +622,7 @@
   }
 }
 
-/* ------------------------------- QualificationForm.css ends here ------------------------------- */
+/* --------------------------------------------------- QualificationForm.css ends here ----------------------------------------------------------------------- */
 
 /*-----------------------------------------------------User profile layout css begins here------------------------------------------------------------------------*/
 .userprofile-main {
@@ -635,6 +640,7 @@
   color: var(--primary-color);
   font-size: 28px;
   font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 .userprofile-user-details {
@@ -741,9 +747,9 @@
   font-size: 15px;
 }
 
-/*----------------------------------------------------------User profile layout css ends here----------------------------------------------------------------*/
+/*----------------------------------------------------------User profile layout css ends here-----------------------------------------------------------------*/
 
-/*-----------------------------------------------------------Education layout css begins here----------------------------------------------------------------*/
+/*-----------------------------------------------------------Education layout css begins here-----------------------------------------------------------------*/
 
 .education-qualification {
   display: flex;
@@ -802,9 +808,9 @@
 
 /*---------------------------------------------------Education layout css ends here--------------------------------------------------------------------------*/
 
-@media only screen and (max-width: 767px) {
-  /*-------------------------------------------------Media queries for user profile starts here--------------------------------------------------------------------*/
+/*-------------------------------------------------Media queries for user profile starts here--------------------------------------------------------------------*/
 
+@media only screen and (max-width: 767px) {
   .userprofile-basic-info {
     flex-direction: column;
     align-items: center;
@@ -821,7 +827,7 @@
   }
 
   .userprofile-title {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .userprofile-profile-picture {

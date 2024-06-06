@@ -1,11 +1,8 @@
 import React from "react";
-import UserProfileInfo from "../../../layouts/common/components/UserProfileInfo";
-import Education from "../../../layouts/common/components/Education";
 import AboutMe from "../../../layouts/common/components/AboutMe";
 import Upcoming from "../../../layouts/student-profile/components/Upcoming";
 import StudentProfileInfo from "../../../layouts/student-profile/components/StudentProfileInfo";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
-// import styles from "../Student.module.css";
 
 const Profile = () => {
   const profile_props = {

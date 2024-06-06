@@ -5,7 +5,7 @@ import styles from "../StudentSkill.module.css";
 import Modal from "../../common/components/Modal";
 import DeleteBox from "../../common/components/DeleteBox";
 import CombinedSkillForm from "../../common/components/CombinedSkillForm";
-import { initialSkills, handleAddSkill } from "./skillData"; // Importing here
+import { initialSkills, handleAddSkill } from "./skillData";
 
 const Layout = () => {
   const [deleteModal, setDeleteModal] = useState({
@@ -17,7 +17,7 @@ const Layout = () => {
   const handleFormSubmit = (formData) => {
     console.log("Form Submitted with data:", formData);
     setIsOpen(false);
-    handleAddSkill(formData); // Directly using handleAddSkill
+    handleAddSkill(formData);
   };
 
   const handleDeleteSkill = () => {
