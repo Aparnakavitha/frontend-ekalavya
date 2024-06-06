@@ -21,13 +21,6 @@ const StudentCard = (props) => {
     return studentMail;
   };
 
-  // const transformMainMail = (studentMail) => {
-  //   if (studentMail.length > 19) {
-  //     return studentMail.slice(0, 19) + "...";
-  //   }
-  //   return studentMail;
-  // };
-
   const [isHover, setIsHover] = useState(false);
 
   const handleMouseEnter = () => {
