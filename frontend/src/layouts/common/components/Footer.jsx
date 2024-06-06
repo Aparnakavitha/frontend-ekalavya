@@ -21,6 +21,7 @@ const Footer = (props) => {
   const quoteclass = isLeftALigned
     ? styles["footer-quoteleft"]
     : styles["footer-quote"];
+
   return (
     <div className={styles["footer-footer"]}>
       <div className={containerClass}>

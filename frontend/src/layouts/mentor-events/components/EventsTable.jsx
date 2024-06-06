@@ -4,12 +4,14 @@ import Table from "../../../components/table/Table";
 import AttendanceButton from "../../../components/buttons/AttendanceButton";
 const EventsTable = (props) => {
   const { data, headings, logAttendance } = props;
+
   const [attendance, setAttendance] = useState(
     data.reduce((acc, [id, name, email]) => {
       acc[id] = null;
       return acc;
     }, {})
   );
+
   const handleAttendanceClick = (id, isPresent) => {
     setAttendance((prev) => {
       const updatedAttendance = {
@@ -20,6 +22,7 @@ const EventsTable = (props) => {
       return updatedAttendance;
     });
   };
+
   const handleGlobalAttendanceClick = (isPresent) => {
     setAttendance((prev) => {
       const newAttendance = {};
@@ -33,8 +36,11 @@ const EventsTable = (props) => {
       return newAttendance;
     });
   };
+
   const allPresent = Object.values(attendance).every((value) => value === true);
+
   const allAbsent = Object.values(attendance).every((value) => value === false);
+
   const tableData = data.map(([id, name, email]) => [
     id,
     name,
@@ -54,6 +60,7 @@ const EventsTable = (props) => {
       />
     </div>,
   ]);
+
   const globalAttendanceButtons = (
     <div className={styles["global-attendance-buttons-container"]}>
       <span className={styles["select-all-text"]}>Select All:</span>
@@ -71,6 +78,7 @@ const EventsTable = (props) => {
       </div>
     </div>
   );
+
   return (
     <div
       className={`${styles["eventstable-container"]} padding padding-top padding-bottom`}
@@ -90,4 +98,5 @@ const EventsTable = (props) => {
     </div>
   );
 };
+
 export default EventsTable;
