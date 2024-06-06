@@ -29,6 +29,7 @@ const AdminEventDescription = () => {
     console.log(formData);
     handleCloseModal();
   };
+
   const handleDeleteCancel = () => {
     console.log("Delete canceled");
     handleCloseDeleteModal();
@@ -38,12 +39,14 @@ const AdminEventDescription = () => {
     console.log("Delete confirmed");
     handleCloseDeleteModal();
   };
+
   const actionData = {
     ...EventsDescriptionData.defaultValues,
     ...EventsDescriptionData.buttonProps,
     onclick3: handleOpenModal,
     onclick2: handleOpenDeleteModal,
   };
+  
   const organizeroptions = [
     { value: "option1", label: "Option 1" },
     { value: "option2", label: "Option 2" },
