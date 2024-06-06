@@ -16,7 +16,7 @@ const skillcard = [
       console.log("clicked");
     },
     profilepic: profilePic,
-  }
+  },
 ];
 
 const Template = (args) => <Skillsearch {...args} />;

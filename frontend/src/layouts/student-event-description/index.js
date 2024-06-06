@@ -1,1 +1,1 @@
-export {default as StudentEventDescription} from "./components/StudentEventDescription"
+export { default as StudentEventDescription } from "./components/StudentEventDescription";

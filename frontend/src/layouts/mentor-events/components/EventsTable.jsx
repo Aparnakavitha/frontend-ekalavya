@@ -72,11 +72,11 @@ const EventsTable = (props) => {
     </div>
   );
   return (
-    <div className={`${styles["eventstable-container"]} padding padding-top padding-bottom`}>
+    <div
+      className={`${styles["eventstable-container"]} padding padding-top padding-bottom`}
+    >
       <div className={styles["eventstable-topleft"]}>
-        <h2>
-          Mark Attendance
-        </h2>
+        <h2>Mark Attendance</h2>
       </div>
       <div className={styles["eventstable-table"]}>
         <div>{globalAttendanceButtons}</div>

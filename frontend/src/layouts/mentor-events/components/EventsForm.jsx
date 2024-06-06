@@ -49,7 +49,7 @@ const EventForm = () => {
     { value: "Conference", label: "Conference" },
     { value: "Contest", label: "Contest" },
     { value: "Webinar", label: "Webinar" },
-  ]
+  ];
 
   return (
     <form
