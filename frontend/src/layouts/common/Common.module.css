@@ -27,7 +27,6 @@
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 25px;
-  padding-right: 25px;
 }
 
 .common-greenlink a {
@@ -35,7 +34,23 @@
   color: var(--primary-color);
 }
 
+@media (max-width: 767px) {
+  .common-header {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .common-greenlink {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+  }
+}
+
 /* -------------------------------- Greeting.css ends here ----------------------------------- */
+
 /* ------------------------------- basicdetails.css starts here ---------------------------------- */
 
 .basicdetails-form {
@@ -154,6 +169,7 @@
 }
 
 /* ------------------------------- basicdetails.css ends here ------------------------------------ */
+
 /* ------------------------------- combinedskillform.css starts here --------------------------- */
 
 .combinedskillform-form {
@@ -239,6 +255,7 @@
 }
 
 /* ------------------------------- combinedskillform.css ends here --------------------------- */
+
 /* ------------------------------- addprofilelink.css starts here ---------------------------- */
 
 .addprofilelink-form {
@@ -300,6 +317,7 @@
 }
 
 /* ------------------------------- addprofilelink.css ends here ---------------------------- */
+
 /* -------------------------------- Action.css starts here -------------------------------- */
 
 .common-content {
@@ -434,6 +452,7 @@
 }
 
 /* --------------------------------- Action.css ends here --------------------------------- */
+
 /* ------------------------------- DeleteBox.css starts here ------------------------------- */
 
 .deletebox-box {
@@ -489,6 +508,7 @@
 }
 
 /* ------------------------------- DeleteBox.css ends here ------------------------------- */
+
 /* ------------------------------- DataView.css starts here ------------------------------- */
 
 .dataview-togglecontainer {
@@ -593,6 +613,7 @@
 }
 
 /* ------------------------------- DataView.css ends here ------------------------------- */
+
 /* ------------------------------- addstudent.css starts here --------------------------------- */
 
 .addstudent-form {
@@ -654,6 +675,7 @@
 }
 
 /* ------------------------------- addstudent.css ends here --------------------------------- */
+
 /* ------------------------------- AddUser.css starts here ------------------------------- */
 
 .adduser-head {
@@ -737,6 +759,7 @@
 }
 
 /* -------------------------------- AddUser.css ends here -------------------------------- */
+
 /* -------------------------------- Modal.css starts here --------------------------------- */
 
 .modal-modalOverlay {
@@ -759,6 +782,7 @@
   overflow-y: auto;
   outline: transparent;
 }
+
 .modal-modalContent::-webkit-scrollbar {
   width: 0px;
 }
@@ -779,6 +803,69 @@
   .modal-modalContent {
     padding: 0 15px;
   }
+}
+
+/* -------------------------------- Modal.css ends here ----------------------------------- */
+
+/* -------------------------------- Modal.css starts here --------------------------------- */
+.showcards-total {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.showcards-sidebar {
+  width: 250px;
+  position: absolute;
+  left: 0;
+  height: 100%;
+
+  background-color: grey;
+}
+.showcards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.showcards-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.showcards-heading {
+  color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 22.4px;
+  letter-spacing: -0.41px;
+  align-items: flex-end;
+}
+
+.showcards-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.showcards-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(242px, 1fr));
+  max-width: 85vw;
+  gap: 21px;
+}
+
+.showcards-primarycard {
+  width: 100%;
+  margin-bottom: 192px;
+}
+
+.showcards-viewbutton a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* -------------------------------- Modal.css ends here ----------------------------------- */

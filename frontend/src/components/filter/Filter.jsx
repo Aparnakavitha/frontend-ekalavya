@@ -5,15 +5,21 @@ import { FaAngleDown } from "react-icons/fa";
 const Filter = ({
   initialHeading,
   Content,
-  handleDropClick,
   isOpen,
   onToggle,
   onOptionClick,
+  selectedOption,
 }) => {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(initialHeading);
+  const [localSelectedOption, setLocalSelectedOption] = useState(
+    selectedOption || initialHeading
+  );
   const headingRef = useRef(null);
   const dropRef = useRef(null);
+
+  useEffect(() => {
+    setLocalSelectedOption(selectedOption || initialHeading);
+  }, [selectedOption, initialHeading]);
 
   const transformContent = (content) => {
     if (content.length > 24) {
@@ -28,10 +34,9 @@ const Filter = ({
   };
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option);
+    setLocalSelectedOption(option);
     toggleDropdown(false);
     onOptionClick && onOptionClick(option);
-    handleDropClick && handleDropClick();
   };
 
   useEffect(() => {
@@ -68,7 +73,7 @@ const Filter = ({
         ref={headingRef}
       >
         <span className={styles.selectedOption}>
-          {transformContent(selectedOption)}
+          {transformContent(localSelectedOption)}
         </span>
         <div className={styles.iconAngleDown}>
           <FaAngleDown />
