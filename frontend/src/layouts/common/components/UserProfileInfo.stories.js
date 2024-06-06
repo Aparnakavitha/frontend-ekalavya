@@ -1,5 +1,5 @@
 import UserProfileInfo from "./UserProfileInfo";
-import image from "../../assets/DP.png";
+import image from "../../../assets/profilepic.jpg";
 
 export default {
   title: "Layouts/Common/Components/UserProfileInfo",
@@ -8,7 +8,7 @@ export default {
 
 const sample1 = {
   role: "student",
-  profilepicture: { image },
+  profilepicture: image,
   name: "Emma Watson",
   college: "Christ University",
   dob: "1990-01-01",
