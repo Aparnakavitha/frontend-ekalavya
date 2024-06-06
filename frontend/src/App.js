@@ -7,6 +7,8 @@ import AdminBatchAction from "./layouts/admin-batches/components/AdminBatchActio
 import AdminSkillAction from "./layouts/admin-skill/components/AdminSkillAction";
 import AdminStudentGreeting from "./layouts/admin-student/components/AdminStudentGreeting";
 import AdminStudentProfile from "./layouts/admin-student/components/AdminStudentProfile";
+import Mentor from "./pages/admin/Mentor/Mentor";
+import Event from "./pages/admin/Events/Event";
 
 function App() {
   return (
@@ -15,7 +17,13 @@ function App() {
         <header className="App-header">
           <h3>Hello Super21</h3>
           <h1>Lets start</h1>
+          {/* <div>
+            <Mentor/>
+          </div> */}
           <div>
+            <Event/>
+          </div>
+          {/* <div>
           <AdminStudentAction/>
           </div>
           <div>
@@ -38,7 +46,7 @@ function App() {
           </div>
           <div>
             <AdminStudentProfile/>
-            </div>
+            </div> */}
         </header>
       </div>
     </div>
