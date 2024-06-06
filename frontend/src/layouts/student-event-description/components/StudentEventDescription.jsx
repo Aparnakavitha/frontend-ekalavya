@@ -37,7 +37,7 @@ const StudentEventDescription = () => {
   };
 
   return (
-    <div>
+    <div className="padding padding-top padding-bottum">
       <EventsDescription {...studentEvents} />
       <ToastContainer
         position="top-center"

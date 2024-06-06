@@ -30,7 +30,7 @@ const Skillsearch = () => {
   };
 
   return (
-    <div className={`${styles["skillsearch-skillssearch"]}`}>
+    <div className={`${styles["skillsearch-skillssearch"]} padding padding-top padding-bottom`}>
       <h1 className={`${styles["skillsearch-skillsheading"]}`}>
         {skillData.heading}
       </h1>

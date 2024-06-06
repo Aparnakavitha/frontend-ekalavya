@@ -72,7 +72,7 @@ const EventsTable = (props) => {
     </div>
   );
   return (
-    <div className={styles["eventstable-container"]}>
+    <div className={`${styles["eventstable-container"]} padding padding-top padding-bottom`}>
       <div className={styles["eventstable-topleft"]}>
         <h2>
           Mark Attendance
