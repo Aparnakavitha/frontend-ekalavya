@@ -11,7 +11,9 @@ const Filter = ({
   selectedOption,
 }) => {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const [localSelectedOption, setLocalSelectedOption] = useState(selectedOption || initialHeading);
+  const [localSelectedOption, setLocalSelectedOption] = useState(
+    selectedOption || initialHeading
+  );
   const headingRef = useRef(null);
   const dropRef = useRef(null);
 
@@ -33,7 +35,7 @@ const Filter = ({
 
   const handleOptionClick = (option) => {
     setLocalSelectedOption(option);
-    toggleDropdown(false); // Close the dropdown after selecting an option
+    toggleDropdown(false);
     onOptionClick && onOptionClick(option);
   };
 

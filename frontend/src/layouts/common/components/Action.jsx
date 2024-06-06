@@ -3,8 +3,6 @@ import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
-import Modal from "../../../layouts/common/components/Modal";
-import AddUser from "../components/AddUser";
 
 const ActionComponent = ({
   buttonProps,
@@ -14,7 +12,6 @@ const ActionComponent = ({
   resetProps,
   showFiltersAndReset,
   searchWidth = "full",
-  adduserprops,
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -66,7 +63,7 @@ const ActionComponent = ({
                     isOpen={openDropdownIndex === index}
                     onToggle={() => handleToggle(index)}
                     onOptionClick={(option) => handleOptionClick(index, option)}
-                    selectedOption={filterStates[index]} // Pass selected option state
+                    selectedOption={filterStates[index]}
                   />
                 ))}
               </div>
