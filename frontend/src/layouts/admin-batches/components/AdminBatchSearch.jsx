@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import BatchSearch from "./BatchSearch";
+import BatchSearch from "../../common/components/BatchSearch";
 import Modal from "../../common/components/Modal";
 import AdminBatchSearchData from "./BatchSearchData";
 import UpdateSingleField from "../../common/components/UpdateSingleField";
