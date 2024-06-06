@@ -27,12 +27,26 @@
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 25px;
-  padding-right: 25px;
 }
 
 .common-greenlink a {
   text-decoration: underline;
   color: var(--primary-color);
+}
+
+@media (max-width: 767px) {
+  .common-header {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .common-greenlink {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+}
 }
 
 /* -------------------------------- Greeting.css ends here ----------------------------------- */
@@ -741,7 +755,6 @@
   bottom: 0;
   display: flex;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
   justify-content: center;
   align-items: center;
   z-index: 1000;
@@ -773,6 +786,68 @@
   .modal-modalContent {
     padding: 0 15px;
   }
+}
+
+/* -------------------------------- Modal.css ends here ----------------------------------- */
+/* -------------------------------- Modal.css starts here --------------------------------- */
+.showcards-total {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.showcards-sidebar {
+  width: 250px;
+  position: absolute;
+  left: 0;
+  height: 100%;
+
+  background-color: grey;
+}
+.showcards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.showcards-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.showcards-heading {
+  color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 22.4px;
+  letter-spacing: -0.41px;
+  align-items: flex-end;
+}
+
+.showcards-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.showcards-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(242px, 1fr));
+  max-width: 85vw;
+  gap: 21px;
+}
+
+.showcards-primarycard {
+  width: 100%;
+  margin-bottom: 192px;
+}
+
+.showcards-viewbutton a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* -------------------------------- Modal.css ends here ----------------------------------- */

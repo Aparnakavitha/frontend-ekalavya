@@ -6,18 +6,6 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 const DeleteBox = ({ title, message, buttonText, onCancel, onConfirm }) => {
   const [isVisible, setIsVisible] = useState(true);
 
-  const handleCancel = () => {
-    console.log("Cancel button clicked");
-    setIsVisible(false);
-    onCancel();
-  };
-
-  const handleConfirm = () => {
-    console.log("Button clicked");
-    setIsVisible(false);
-    onConfirm();
-  };
-
   if (!isVisible) {
     return null;
   }
@@ -35,13 +23,13 @@ const DeleteBox = ({ title, message, buttonText, onCancel, onConfirm }) => {
           content="Cancel"
           variant="primary"
           width="full"
-          onClick={handleCancel}
+          onClick={onCancel}
         />
         <PrimaryButton
           content={buttonText}
           variant="primary"
           width="full"
-          onClick={handleConfirm}
+          onClick={onConfirm}
         />
       </div>
     </div>
