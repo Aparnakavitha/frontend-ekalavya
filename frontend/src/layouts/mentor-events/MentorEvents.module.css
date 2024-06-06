@@ -27,7 +27,7 @@
 .eventstable-table td div {
   display: flex;
   gap: 5px;
-  flex-wrap: nowrap; 
+  flex-wrap: nowrap;
 }
 
 .eventstable-tablecontent {

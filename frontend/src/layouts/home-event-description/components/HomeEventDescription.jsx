@@ -1,7 +1,7 @@
-import React from 'react';
-import { ToastContainer, toast, Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { EventsDescription } from '../../common';
+import React from "react";
+import { ToastContainer, toast, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { EventsDescription } from "../../common";
 
 const HomeEventDescription = () => {
   const handleButtonClick = (message) => {
@@ -37,7 +37,7 @@ const HomeEventDescription = () => {
   };
 
   return (
-    <div className='padding padding-top padding-bottom'>
+    <div className="padding padding-top padding-bottom">
       <EventsDescription {...homeEvents} />
       <ToastContainer
         position="top-center"
