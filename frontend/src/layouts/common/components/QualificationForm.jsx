@@ -5,21 +5,22 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const QualificationForm = ({ heading, options, initialValues }) => {
+const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
   const { handleSubmit, control, setValue } = useForm({
     defaultValues: initialValues,
   });
 
-  const onSubmit = (data) => {
+  const handleFormSubmit = (data) => {
     console.log("Form Data:", data);
     console.log("Start Date:", data.startDate);
     console.log("End Date:", data.endDate);
+    onSubmit(data); // Invoke the onSubmit callback
   };
 
   return (
     <form
       className={`${styles["qualification-form-form"]}`}
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
     >
       <header className={`${styles["qualification-form-head"]}`}>
         {heading}

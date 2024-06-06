@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../Common.module.css";
 import Button from "../../../components/buttons/PrimaryButton";
-import RectangleButton from "../../../components/buttons/TabButton";
+import TabButton from "../../../components/buttons/TabButton";
 
 const EventMenus = ({ explore, statuses, title }) => {
   const [activeStatus, setActiveStatus] = useState(statuses[0].name);
@@ -11,7 +11,7 @@ const EventMenus = ({ explore, statuses, title }) => {
   };
 
   return (
-    <div className={`${styles["eventmenus-container"]}`}>
+    <div className={`${styles["eventmenus-container"]} padding-top padding`}>
       <div className={`${styles["eventmenus-head"]}`}>
         <h1 className={`${styles["eventmenus-title"]}`}>{title}</h1>
         <div className={`${styles["eventmenus-explorebutton"]}`}>
@@ -20,7 +20,7 @@ const EventMenus = ({ explore, statuses, title }) => {
       </div>
       <div className={`${styles["eventmenus-tabbutton"]}`}>
         {statuses.map((status) => (
-          <RectangleButton
+          <TabButton
             key={status.name}
             status={status.name}
             isActive={activeStatus === status.name}

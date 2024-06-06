@@ -1,4 +1,5 @@
 import UserProfileInfo from "./UserProfileInfo";
+import image from "../../../assets/profilepic.jpg";
 
 export default {
   title: "Layouts/Common/Components/UserProfileInfo",
@@ -7,35 +8,49 @@ export default {
 
 const sample1 = {
   role: "student",
+  profilepicture: image,
   name: "Emma Watson",
-  studentId: "Software engineer",
   college: "Christ University",
-  dob: "Jan 21 2001",
+  dob: "1990-01-01",
   email: "emmawatson@gmail.com",
-  phone: "(+91) 8337254637",
-  bio: "Experienced software engineer with a focus on backend development and a passion for mentoring aspiring developers.",
-  hasDelete: false,
+  phoneNumber: 8755383632,
+  houseName: "Sample House",
+  city: "Sample City",
+  pinCode: "123456",
+  state: "Sample State",
+  country: "Sample Country",
+  hasDelete: true,
+  // onClickEdit: () => {
+  //   handleOpenEditBasicDetails();
+  // },
+  // onClickDelete: () => {
+  //   handleOpenDeleteBasicDetails();
+  // },
 };
 
 const sample2 = {
-  role: "mentor",
+  role: "student",
+  profilepicture: { image },
   name: "Emma Watson",
-  studentId: "Software engineer",
   college: "Christ University",
-  dob: "Jan 21 2001",
+  dob: "1990-01-01",
   email: "emmawatson@gmail.com",
-  phone: "(+91) 8337254637",
-  bio: "Experienced software engineer with a focus on backend development and a passion for mentoring aspiring developers.",
+  phoneNumber: 8755383632,
+  houseName: "Sample House",
+  city: "Sample City",
+  pinCode: "123456",
+  state: "Sample State",
+  country: "Sample Country",
   hasDelete: true,
 };
 
-export const UserProfileUserView = {
+export const StudentProfile = {
   args: {
     ...sample1,
   },
 };
 
-export const UserProfileAdminView = {
+export const StudentProfileAdminView = {
   args: {
     ...sample2,
   },

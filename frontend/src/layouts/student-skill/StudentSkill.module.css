@@ -9,7 +9,7 @@
   height: 73px;
   gap: 10px;
 }
-
+ 
 .skilllayout-skilltitle {
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@
   color: var(--primary-color);
   padding-left: 10px;
 }
-
+ 
 .skilllayout-plusicon {
   cursor: pointer;
   font-size: 28px;
@@ -36,34 +36,27 @@
   border-radius: 50%;
   background-color: var(--neutral600);
 }
-
+ 
 @media (max-width: 768px) {
   .skilllayout-skilltitle {
     text-align: center;
-    align-items: center;
+    align-items: left;
     display: flex;
   }
-
+ 
   .skilllayout-skillcontainer {
     display: flex;
     justify-content: center;
     width: 100%;
   }
-
+ 
   .skilllayout-plusicon {
     display: block;
-  }
-
-  .skilllayout-addbutton {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .layoutcontainer {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    top: 20px;
+    right: 8%;
   }
 }
-
+ 
 /* ------------------------------- StudentSkill.module.css ends here ------------------------------- */
+ 

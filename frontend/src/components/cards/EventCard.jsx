@@ -10,7 +10,9 @@ const EventCard = (props) => {
     status = "due",
     mode = "dark",
     date = 17,
-    handleClick=()=>{alert("event card clicked!")},
+    handleClick = () => {
+      alert("event card clicked!");
+    },
   } = props;
 
   const formatText = (text) => {
@@ -35,7 +37,14 @@ const EventCard = (props) => {
 
             <h4 className={`${styles.sub}`}>
               <u>
-                <a href={`${sub}`} onClick={(e)=>{e.stopPropagation();}}>{formatText(sub)}</a>
+                <a
+                  href={`${sub}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  {formatText(sub)}
+                </a>
               </u>
             </h4>
           </div>
