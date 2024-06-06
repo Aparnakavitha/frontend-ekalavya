@@ -79,7 +79,7 @@ const DataView = ({
   }, []);
 
   return (
-    <div>
+    <div className="padding-top padding-bottom padding">
       {toggle && (
         <div className={styles["dataview-togglecontainer"]}>
           <button
