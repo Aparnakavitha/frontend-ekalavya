@@ -20,12 +20,12 @@ const sample1 = {
   state: "Sample State",
   country: "Sample Country",
   hasDelete: true,
-  onClickEdit: () => {
-    handleOpenEditBasicDetails();
-  },
-  onClickDelete: () => {
-    handleOpenDeleteBasicDetails();
-  },
+  // onClickEdit: () => {
+  //   handleOpenEditBasicDetails();
+  // },
+  // onClickDelete: () => {
+  //   handleOpenDeleteBasicDetails();
+  // },
 };
 
 const sample2 = {
@@ -42,12 +42,12 @@ const sample2 = {
   state: "Sample State",
   country: "Sample Country",
   hasDelete: true,
-  onClickEdit: () => {
-    handleOpenEditBasicDetails();
-  },
-  onClickDelete: () => {
-    handleOpenDeleteBasicDetails();
-  },
+  // onClickEdit: () => {
+  //   handleOpenEditBasicDetails();
+  // },
+  // onClickDelete: () => {
+  //   handleOpenDeleteBasicDetails();
+  // },
 };
 
 export const StudentProfile = {

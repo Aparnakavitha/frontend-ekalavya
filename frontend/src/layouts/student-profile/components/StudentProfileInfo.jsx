@@ -3,7 +3,7 @@ import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
 import DeleteBox from "../../common/components/DeleteBox";
-import image from "../../../assets/profilepic.jpg";
+import image from "../../../assets/pic.png";
 
 const StudentProfileInfo = (props) => {
   const sample = {

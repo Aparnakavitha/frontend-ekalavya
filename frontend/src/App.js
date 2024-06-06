@@ -1,7 +1,7 @@
 import "./App.css";
-import EducationalQualification from "./layouts/common/components/EducationalQualification";
-import StudentProfileInfo from "./layouts/student-profile/components/StudentProfileInfo";
-import Upcoming from "./layouts/student-profile/components/Upcoming"
+import Profile from "./pages/student/student-profile/Profile";
+import SkillLayout from "./layouts/student-skill/components/SkillLayout";
+import StudentEvent from "./pages/student/student-events/StudentEvents";
 
 function App() {
   return (
@@ -10,9 +10,9 @@ function App() {
         <header className="App-header">
           <h3>Hello Super21</h3>
           <h1>Lets start</h1>
-          <StudentProfileInfo />
-          <EducationalQualification />
-          <Upcoming />
+          <Profile />
+          <SkillLayout />
+          <StudentEvent />
         </header>
       </div>
     </div>

@@ -3,12 +3,12 @@ import UserProfileInfo from "../../../layouts/common/components/UserProfileInfo"
 import Education from "../../../layouts/common/components/Education";
 import AboutMe from "../../../layouts/common/components/AboutMe";
 import Upcoming from "../../../layouts/student-profile/components/Upcoming";
-import styles from "../Student.module.css";
-import profilepic from "../../../assets/profilepic"
+import StudentProfileInfo from "../../../layouts/student-profile/components/StudentProfileInfo";
+import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
+// import styles from "../Student.module.css";
 
 const Profile = () => {
   const profile_props = {
-    profilepicture:{profilepic},
     name: "Emma Watson",
     studentId: "STD1537",
     college: "Christ University",
@@ -40,21 +40,14 @@ const Profile = () => {
   };
 
   return (
-    <div className={`${styles["studentprofile-main"]}`}>
-      <div className={`${styles["studentprofile-topdeck"]}`}>
-        <div className={`${styles["studentprofile-studentinfo"]}`}>
-          <UserProfileInfo />
-          <Education />
-        </div>
-        <div className={`${styles["studentprofile-topnotification"]}`}>
-         <Upcoming />
-        </div>
-      </div>
-
+    <div>
+      <StudentProfileInfo />
+      <EducationalQualification />
       <AboutMe
         title="About me"
         description="blah blah blah I am a dedicated young professional blah blah, looking to learn and innovate blah blah."
       />
+      <Upcoming />
     </div>
   );
 };

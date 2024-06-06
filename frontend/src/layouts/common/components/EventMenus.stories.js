@@ -1,6 +1,5 @@
 import React from "react";
 import EventMenus from "./EventMenus";
-import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
 export default {
   title: "Layouts/Common/Components/EventMenus",

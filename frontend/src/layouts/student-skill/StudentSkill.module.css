@@ -40,7 +40,7 @@
 @media (max-width: 768px) {
   .skilllayout-skilltitle {
     text-align: center;
-    align-items: center;
+    align-items: left;
     display: flex;
   }
 
@@ -52,17 +52,9 @@
 
   .skilllayout-plusicon {
     display: block;
-  }
-
-  .skilllayout-addbutton {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .layoutcontainer {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    top: 20px;
+    right: 8%;
   }
 }
 

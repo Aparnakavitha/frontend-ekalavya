@@ -18,7 +18,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
   });
 
   const [fileError, setFileError] = useState("");
-  const [showProfileLinks, setShowProfileLinks] = useState(isEdit); // Initialize with isEdit
+  const [showProfileLinks, setShowProfileLinks] = useState(isEdit);
 
   useEffect(() => {
     setShowProfileLinks(isEdit);
@@ -33,7 +33,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
   };
 
   const handleTextButtonClick = () => {
-    setShowProfileLinks(!showProfileLinks); // Toggle showProfileLinks
+    setShowProfileLinks(!showProfileLinks);
   };
 
   const validateImageFile = (file) => {
