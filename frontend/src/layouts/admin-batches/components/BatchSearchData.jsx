@@ -44,7 +44,7 @@ const AdminBatchSearchData = {
   },
   deleteprops: {
     title: "Confirmation Required",
-    message: "Are you sure you want to remove this skill?",
+    message: "Are you sure you want to remove this batch?",
     buttonText: "Confirm",
   },
 };
