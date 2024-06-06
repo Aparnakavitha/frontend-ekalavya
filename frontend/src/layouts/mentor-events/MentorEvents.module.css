@@ -121,6 +121,20 @@
   margin-bottom: 2%;
 }
 
+.eventform-error {
+  margin-top: -12px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
+.eventform-eventtitlemode .eventform-error {
+  margin-top: 5px;
+}
+
+.eventform-datetimecontainer .eventform-error {
+  margin-top: 5px;
+}
+
 @media (min-width: 769) and (max-width: 992px) {
   .eventform-datetimecontainer {
     flex-direction: row;
