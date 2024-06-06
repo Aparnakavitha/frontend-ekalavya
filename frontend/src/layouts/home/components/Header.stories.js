@@ -46,3 +46,16 @@ export default {
 };
 
 export const HeaderComponent = (args) => <Header {...args} />;
+
+export const WithMenu = HeaderComponent.bind({});
+WithMenu.args = {
+  ...HeaderComponent.args,
+  showMenu: true,
+};
+
+export const WithoutMenu = HeaderComponent.bind({});
+WithoutMenu.args = {
+  ...HeaderComponent.args,
+  showMenu: false,
+  showResponsiveMenu: false,
+};

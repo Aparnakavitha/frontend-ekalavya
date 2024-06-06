@@ -1,7 +1,4 @@
 import "./App.css";
-import Profile from "./pages/student/student-profile/Profile";
-import SkillLayout from "./layouts/student-skill/components/SkillLayout";
-import StudentEvent from "./pages/student/student-events/StudentEvents";
 
 function App() {
   return (
