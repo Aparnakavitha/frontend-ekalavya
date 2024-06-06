@@ -14,16 +14,9 @@ const StudentCard = (props) => {
     handleClick,
   } = props;
 
-  const transformMainName = (studentName) => {
-    if (studentName.length > 16) {
-      return studentName.slice(0, 15) + "...";
-    }
-    return studentName;
-  };
-
   const transformMainMail = (studentMail) => {
-    if (studentMail.length > 19) {
-      return studentMail.slice(0, 19) + "...";
+    if (studentMail.length > 17) {
+      return studentMail.slice(0, 17) + "...";
     }
     return studentMail;
   };
@@ -60,13 +53,13 @@ const StudentCard = (props) => {
           className={styles.studentImage}
         />
         <div className={styles.maincontent}>
-          <a className={styles.studentname}>{transformMainName(studentName)}</a>
-          <a className={styles.studentid}>{studentId}</a>
-          <a className={styles.studentcollege}>{studentCollege}</a>
+          <a className={styles.studentname}>{transformMainMail(studentName)}</a>
+          <a className={styles.studentid}>{transformMainMail(studentId)}</a>
+          <a className={styles.studentcollege}>{transformMainMail(studentCollege)}</a>
         </div>
         <div className={styles.maincontent}>
           <a className={styles.studentmail}>{transformMainMail(studentMail)}</a>
-          <a className={styles.studentphonenumber}>{studentPhoneNumber}</a>
+          <a className={styles.studentphonenumber}>{transformMainMail(studentPhoneNumber)}</a>
         </div>
       </div>
 

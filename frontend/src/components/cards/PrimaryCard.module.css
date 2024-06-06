@@ -11,8 +11,8 @@
 
 .cardOutline {
   position: absolute;
-  max-width: 280px;
-  max-height: 189px;
+  max-width: 288px;
+  max-height: 194px;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -26,8 +26,8 @@
 .cardOutlineHover {
   z-index: 1;
   position: absolute;
-  max-width: 280px;
-  max-height: 189px;
+  max-width: 288px;
+  max-height: 194px;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -121,8 +121,9 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  border-bottom: 1px solid var(--primary-color);
   border-left: 1px solid var(--primary-color);
+  border-top: 0px solid var(--primary-color);
+  border-right: 0px solid var(--primary-color);
   border-radius: 0 0 0 90%;
   left: 231px;
   top: 18px;
@@ -135,38 +136,38 @@
   border-radius: 0 0 0 90%;
   left: 232px;
   top: 17px;
-  box-shadow: -3px 3px 0 3px var(--white);
+  box-shadow: -3px 3px 0 2px var(--white);
 }
 
 .mask2 {
   position: absolute;
-  width: 24px;
-  height: 20px;
+  width: 26px;
+  height: 22px;
   border-top: 1px solid var(--primary-color);
   border-right: 1px solid var(--primary-color);
   border-radius: 0 69% 0 0;
-  left: 208px;
+  left: 206px;
   top: 0px;
 }
 
 .mask2Hover {
   position: absolute;
-  width: 24px;
-  height: 20px;
+  width: 26px;
+  height: 22px;
   border-radius: 0 69% 0 0;
-  left: 208px;
+  left: 206px;
   top: 0px;
   background-color: var(--white);
 }
 
 .mask3 {
   position: absolute;
-  width: 20px;
+  width: 25px;
   height: 23px;
   border-top: 1px solid var(--primary-color);
   border-right: 1px solid var(--primary-color);
   border-radius: 0 69% 0 0;
-  left: 268px;
+  left: 263px;
   top: 57px;
 }
 
@@ -196,7 +197,7 @@
   border-radius: 0 0 0 90%;
   left: 232px;
   top: 17px;
-  box-shadow: -18px 18px 0 18px var(--white);
+  box-shadow: -18px 18px 0 17px var(--white);
 }
 
 .arrow {
@@ -227,4 +228,26 @@
   color: #000000;
   box-shadow: none;
   background-color: var(--primary-color);
+}
+
+.mask5 {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-bottom: 1px solid var(--primary-color);
+  border-top: 0px solid var(--primary-color);
+  border-right: 0px solid var(--primary-color);
+  border-radius: 0 0 0 90%;
+  left: 231px;
+  top: 18px;
+}
+
+.mask5Hover {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 0 0 0 90%;
+  left: 232px;
+  top: 17px;
+  box-shadow: -3px 3px 0 2px var(--white);
 }
