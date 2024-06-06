@@ -40,7 +40,7 @@ const BatchSearch = ({
   };
 
   return (
-    <div className="padding padding-top padding-bottom">
+    <div className="padding">
       <div className={`${styles["batchsearch-content"]}`}>
         <div className={`${styles["batchsearch-top"]}`}>
           <div className={`${styles["batchsearch-heading"]}`}>

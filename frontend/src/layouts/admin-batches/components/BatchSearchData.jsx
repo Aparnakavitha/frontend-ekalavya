@@ -5,6 +5,7 @@ const AdminBatchSearchData = {
   navbuttonProps: {
     pageName: "Batch Name",
   },
+  showTextButton: true,
   textbuttonProps: {
     icon: <MdEdit />,
     text: "Edit Batch Name",
@@ -44,7 +45,7 @@ const AdminBatchSearchData = {
   },
   deleteprops: {
     title: "Confirmation Required",
-    message: "Are you sure you want to remove this skill?",
+    message: "Are you sure you want to remove this batch?",
     buttonText: "Confirm",
   },
 };
