@@ -28,7 +28,7 @@ const ActionComponent = ({
     setOpenDropdownIndex(null);
   };
   return (
-    <div className="padding padding-top padding-bottom">
+    <div className="padding">
       <div className={styles["common-content"]}>
         <div className={styles["common-top"]}>
           <div className={styles["common-heading"]}>{heading}</div>
