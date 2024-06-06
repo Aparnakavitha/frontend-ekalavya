@@ -5,15 +5,9 @@ import styles from "../MentorSkill.module.css";
 import Modal from "../../common/components/Modal";
 import CombinedSkillForm from "../../common/components/CombinedSkillForm";
 import DeleteBox from "../../common/components/DeleteBox";
-import { options } from "./skillData";
+import { skillData } from "./skillData";
 
-const Skillsearch = ({
-  heading,
-  subheading,
-  searchBarPlaceholder,
-  skillcard = [],
-  onSearch,
-}) => {
+const Skillsearch = () => {
   const [modalState, setModalState] = useState({
     isOpen: false,
     type: "",
@@ -36,14 +30,14 @@ const Skillsearch = ({
 
   return (
     <div className={`${styles["skillsearch-skillssearch"]}`}>
-      <h1 className={`${styles["skillsearch-skillsheading"]}`}>{heading}</h1>
-      <p className={`${styles["skillsearch-subheading"]}`}>{subheading}</p>
+      <h1 className={`${styles["skillsearch-skillsheading"]}`}>{skillData.heading}</h1>
+      <p className={`${styles["skillsearch-subheading"]}`}>{skillData.subheading}</p>
       <div className={`${styles["skillsearch-searchbar"]}`}>
-        <SearchBar placeholder={searchBarPlaceholder} onSearch={onSearch} />
+        <SearchBar placeholder={skillData.searchBarPlaceholder} onSearch={skillData.onSearch} />
       </div>
 
       <div className={`${styles["skillsearch-cardcontainer"]}`}>
-        {skillcard.map((card, index) => (
+        {skillData.skillcard.map((card, index) => (
           <div key={index}>
             <Card
               {...card}
@@ -67,7 +61,7 @@ const Skillsearch = ({
               isEditlevel={false}
               displaytext="This skill is only to be placed at level 1"
               buttonTitle="Add Skill"
-              options={options}
+              options={skillData.options}
               onSubmit={handleAddSkill}
             />
           ) : (

@@ -17,3 +17,14 @@ export const options = [
   { value: "xyz", label: "XYZ" },
   { value: "pqr", label: "PQR" },
 ];
+
+export const skillData = {
+  heading: "Skills",
+  subheading: "Add skills to students",
+  searchBarPlaceholder: "Student Name/Student ID",
+  skillcard: skillcard,
+  options: options,
+  onSearch: (query) => {
+    console.log("Search query:", query);
+  },
+};
