@@ -40,8 +40,6 @@ DeleteBox.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  onConfirm: PropTypes.func.isRequired,
 };
 
 export default DeleteBox;
