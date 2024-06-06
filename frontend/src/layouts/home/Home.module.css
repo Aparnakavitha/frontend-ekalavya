@@ -1,7 +1,7 @@
 /* ------------------------------- Header.css starts here ------------------------------- */
 
 .header-container {
-   position: fixed;
+  position: fixed;
   height: 80px;
   width: 100%;
   display: flex;
@@ -58,7 +58,7 @@
     padding: 0 5%;
     left: 0;
     position: fixed;
-   z-index: 5px;
+    z-index: 5px;
   }
 
   .header-menu {
