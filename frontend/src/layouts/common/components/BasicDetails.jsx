@@ -5,7 +5,12 @@ import Input from "../../../components/inputbox/InputBox";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import TextButton from "../../../components/buttons/TextButton";
 import { FaPlus, FaMinus } from "react-icons/fa6";
-import { validateImageFile, validatePhone, validateURL } from "./validation";
+import {
+  validateImageFile,
+  validatePhone,
+  validateURL,
+  validateNumber,
+} from "./validation";
 
 const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
   const {
@@ -201,10 +206,16 @@ const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
         <Controller
           name="pinCode"
           control={control}
+          rules={{ validate: validateNumber("postalCode") }}
           render={({ field }) => (
             <Input {...field} placeholders={["Pincode"]} size="normal" />
           )}
         />
+        {errors.pinCode && (
+          <p className={`${styles["basicdetails-error"]}`}>
+            {errors.pinCode.message}
+          </p>
+        )}
         <Controller
           name="state"
           control={control}
