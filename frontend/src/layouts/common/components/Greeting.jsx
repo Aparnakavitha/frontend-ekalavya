@@ -14,7 +14,9 @@ const Greeting = (props) => {
 
   return (
     <div className={`${styles["common-content"]}`}>
-      <div className={`${styles["common-body"]}`}>
+      <div
+        className={`${styles["common-body"]} ${["padding"]} ${["padding-top"]} ${["padding-bottom"]}`}
+      >
         <div className={`${styles["common-welcome"]}`}>
           {welcome} {name}
         </div>
