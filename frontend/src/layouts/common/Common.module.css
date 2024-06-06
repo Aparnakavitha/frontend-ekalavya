@@ -805,6 +805,12 @@
   }
 }
 
+@media (min-width: 481px) and (max-width: 980px) {
+  .modal-modalContent {
+    padding: 0 35px;
+  }
+}
+
 /* -------------------------------- Modal.css ends here ----------------------------------- */
 
 /* -------------------------------- Modal.css starts here --------------------------------- */
