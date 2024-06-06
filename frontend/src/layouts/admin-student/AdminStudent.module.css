@@ -192,3 +192,103 @@
 }
 
 /* ------------------------------- Collegelist.css ends here ------------------------------- */
+/* ------------------------------- Cardrow.css starts here ------------------------------- */
+.cardrow-skillcontainer {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.cardrow-skillcard {
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 30px;
+  width: 70%;
+  flex-wrap: wrap;
+}
+.cardrow-viewnext {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media (max-width: 992px) {
+  .cardrow-skillcontainer {
+    display: flex;
+    flex-direction: column;
+    margin: 0%;
+    align-items: center;
+  }
+  .cardrow-skillcard {
+    padding: 20px;
+    height: fit-content;
+    margin-left: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .cardrow-skillcontainer {
+    flex-direction: column;
+    margin: 0%;
+    align-items: center;
+  }
+  .cardrow-skillcard {
+    flex-direction: column;
+    padding: 10px;
+    height: fit-content;
+    margin-left: 10px;
+  }
+}
+@media (max-width: 320px) {
+  .cardrow-skillcontainer {
+    flex-direction: column;
+    margin: 0%;
+    align-items: flex-start;
+  }
+  .cardrow-skillcard {
+    flex-direction: column;
+    padding: 10px;
+    height: fit-content;
+    margin-left: 10px;
+  }
+  .cardrow-viewnext {
+    margin-left: 70px;
+  }
+}
+
+.cardrow-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 905px;
+}
+
+.cardrow-pviewnext {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.cardrow-cardscontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+}
+
+.cardrow-primarycard {
+  flex-basis: 287px;
+  height: 193px;
+}
+@media (max-width: 992px) {
+  .cardrow-content {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .cardrow-cardscontainer {
+    justify-content: center;
+  }
+}
+/* ------------------------------- Cardrow.css ends here ------------------------------- */
+
