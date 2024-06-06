@@ -62,11 +62,6 @@ const EducationalQualification = () => {
     setIsDeleteQualificationOpen(false);
   };
 
-  // const handleFormSubmit = (formData) => {
-  //   console.log(formData, "Form submitted successfully");
-  //   handleCloseAddQualification();
-  // };
-
   const handleFormConfirm = (formData) => {
     console.log(formData, "Action Confirmed");
     handleCloseDeleteQualification();

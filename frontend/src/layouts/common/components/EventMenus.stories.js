@@ -1,6 +1,5 @@
 import React from "react";
 import EventMenus from "./EventMenus";
-import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
 export default {
   title: "Layouts/Common/Components/EventMenus",
@@ -19,6 +18,14 @@ const explore = {
   },
   width: "half",
 };
+const createEvent = {
+  content: "Create Event",
+  variant: "secondary",
+  onClick: () => {
+    console.log("Create Event clicked");
+  },
+  width: "half",
+};
 
 const statuses = [
   { name: "Upcoming", onClick: () => console.log("Upcoming clicked") },
@@ -28,9 +35,19 @@ const statuses = [
 
 const Template = (args) => <EventMenus {...args} />;
 
-export const Event = Template.bind({});
-Event.args = {
+export const StudentEvent = Template.bind({});
+StudentEvent.args = {
   explore: explore,
   statuses: statuses,
+  title: "Events",
+};
+
+export const MentorEvent = Template.bind({});
+MentorEvent.args = {
+  explore: createEvent,
+  statuses: [
+    { name: "Upcoming", onClick: () => console.log("Upcoming clicked") },
+    { name: "Completed", onClick: () => console.log("Completed clicked") },
+  ],
   title: "Events",
 };

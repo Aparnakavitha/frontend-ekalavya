@@ -32,6 +32,7 @@ const Layout = () => {
   ];
 
   return (
+    <div className={`${styles["skilllayout-container"]} padding-top padding`}>
     <div className={styles["skilllayout-skilltitle"]}>
       <h3>Skills </h3>
       <div className={styles["skilllayout-layoutcontainer"]}>
@@ -80,6 +81,7 @@ const Layout = () => {
           />
         </Modal>
       </div>
+    </div>
     </div>
   );
 };

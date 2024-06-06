@@ -7,6 +7,7 @@ import { IoMdMail } from "react-icons/io";
 import { FaPhone, FaGithub, FaLinkedin } from "react-icons/fa";
 
 
+
 const UserProfileInfo = (props) => {
   const {
     role,
@@ -51,7 +52,7 @@ const UserProfileInfo = (props) => {
         <div className={`${styles["userprofile-details-section"]}`}>
           <div className={`${styles["userprofile-basic-info"]}`}>
             <div className={`${styles["userprofile-profile-picture"]}`}>
-              <ProfilePicture src={`${profilepic}`} />
+              <ProfilePicture src={profilepic} />
             </div>
             <div className={`${styles["userprofile-info-text"]}`}>
               <h3 className={`${styles["userprofile-name"]}`}>{name}</h3>

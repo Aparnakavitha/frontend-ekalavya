@@ -3,12 +3,12 @@ import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
 import DeleteBox from "../../common/components/DeleteBox";
-import profilepic from "../../../assets/profilepic.jpg";
+import image from "../../../assets/pic.png";
 
 const StudentProfileInfo = (props) => {
   const sample = {
     role: "student",
-    profilepicture: { profilepic },
+    profilepicture: image,
     name: "Emma Watson",
     college: "Christ University",
     dob: "1990-01-01",
@@ -73,6 +73,14 @@ const StudentProfileInfo = (props) => {
     title: "Confirm deletion",
     message: "This action will delete the user. Are you sure?",
     buttonText: "Confirm",
+    onCancel: (formData) => {
+      console.log(formData, "Action cancelled");
+      handleCloseDeleteBasicDetails();
+    },
+    onConfirm: (formData) => {
+      console.log(formData, "Action Confirmed");
+      handleCloseDeleteBasicDetails();
+    },
   };
 
   return (
