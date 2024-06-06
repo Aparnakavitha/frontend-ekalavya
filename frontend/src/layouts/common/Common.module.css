@@ -392,6 +392,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
 }
 
 .eventsdescription-desc {
@@ -536,6 +537,7 @@
 }
 
 /* ------------------------------- EventsDescription.css ends here ------------------------------- */
+
 /* ------------------------------- QualificationForm.css starts here ------------------------------- */
 
 .qualification-form-form {
@@ -1045,8 +1047,9 @@
 }
 
 /* -------------------------------- AddUser.css ends here -------------------------------- */
-/* -------------------------------- Modal.css starts here --------------------------------- */
 
+/* -------------------------------- Modal.css starts here --------------------------------- */
+ 
 .modal-modalOverlay {
   position: fixed;
   top: 0;
@@ -1061,7 +1064,7 @@
   z-index: 1000;
   overflow-y: auto;
 }
-
+ 
 .modal-modalContent {
   position: relative;
   max-height: 90%;
@@ -1070,23 +1073,23 @@
 .modal-modalContent::-webkit-scrollbar {
   width: 0px;
 }
-
+ 
 .modal-width-small {
   width: 549px;
 }
-
+ 
 .modal-width-medium {
   width: 704px;
 }
-
+ 
 .modal-width-large {
   width: 914px;
 }
-
+ 
 @media (max-width: 480px) {
   .modal-modalContent {
     padding: 0 15px;
   }
 }
-
+ 
 /* -------------------------------- Modal.css ends here ----------------------------------- */

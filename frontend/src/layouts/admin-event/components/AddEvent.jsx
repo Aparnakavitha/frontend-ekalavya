@@ -25,7 +25,7 @@ const AddEvent = ({
   const { handleSubmit, control, watch, setValue } = useForm({
     defaultValues: mergedDefaultValues,
   });
-
+ 
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
 
   const handleFormSubmit = (data) => {
@@ -42,26 +42,26 @@ const AddEvent = ({
     }
     onSubmit(data);
   };
-
+ 
   const options = [
     { value: "Online", label: "Online" },
     { value: "Offline", label: "Offline" },
   ];
-
+ 
   const selectedEventMode = watch("eventMode", eventMode);
-
+ 
   const handleEventModeChange = (selectedOption) => {
     const newValue = selectedOption.value;
     setEventMode(newValue);
     setValue("eventMode", newValue);
-
+ 
     if (newValue === "Online") {
       setValue("location", mergedDefaultValues.link || "");
     } else {
       setValue("location", mergedDefaultValues.location || "");
     }
   };
-
+ 
   useEffect(() => {
     if (selectedEventMode === "Online") {
       setValue("location", mergedDefaultValues.link || "");
@@ -69,7 +69,7 @@ const AddEvent = ({
       setValue("location", mergedDefaultValues.location || "");
     }
   }, [selectedEventMode, setValue, mergedDefaultValues]);
-
+ 
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
@@ -91,7 +91,7 @@ const AddEvent = ({
             )}
           />
         </div>
-
+ 
         <div className={`${styles["addevent-eventmodediv"]}`}>
           <Controller
             name="eventMode"
@@ -108,7 +108,7 @@ const AddEvent = ({
           />
         </div>
       </div>
-
+ 
       <Controller
         name="eventType"
         control={control}
@@ -123,7 +123,7 @@ const AddEvent = ({
           />
         )}
       />
-
+ 
       <Controller
         name="description"
         control={control}
@@ -137,7 +137,7 @@ const AddEvent = ({
           />
         )}
       />
-
+ 
       <div className={`${styles["addevent-datetimecontainer"]}`}>
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
@@ -155,7 +155,7 @@ const AddEvent = ({
             )}
           />
         </div>
-
+ 
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="endDate"
@@ -172,7 +172,7 @@ const AddEvent = ({
             )}
           />
         </div>
-
+ 
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="startTime"
@@ -189,7 +189,7 @@ const AddEvent = ({
             )}
           />
         </div>
-
+ 
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="endTime"
@@ -207,7 +207,7 @@ const AddEvent = ({
           />
         </div>
       </div>
-
+ 
       <Controller
         name="location"
         control={control}
@@ -223,7 +223,7 @@ const AddEvent = ({
           />
         )}
       />
-
+ 
       <Controller
         name="speaker"
         control={control}
@@ -276,5 +276,5 @@ const AddEvent = ({
     </form>
   );
 };
-
+ 
 export default AddEvent;

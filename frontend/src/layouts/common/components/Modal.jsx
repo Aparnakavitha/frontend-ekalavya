@@ -36,8 +36,7 @@ const Modal = ({
       shouldCloseOnEsc={shouldCloseOnEsc}
       {...otherProps}
     >
-       <div className={styles["modal-contentScrollable"]}>{children}
-       </div>
+      <div className={styles["modal-contentScrollable"]}>{children}</div>
     </ReactModal>
   );
 };
@@ -55,4 +54,3 @@ Modal.propTypes = {
 };
 
 export default Modal;
-
