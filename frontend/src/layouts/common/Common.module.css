@@ -115,7 +115,6 @@
 
 .basicdetails-error {
   color: var(--primary-color);
-  margin-top: 5px;
   font-size: 0.875rem;
 }
 
@@ -129,6 +128,14 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
+}
+
+.basicdetails-containerinput-links .basicdetails-error {
+  margin-top: 5px;
+}
+
+.basicdetails-containerinput-out .basicdetails-error {
+  margin-top: -15px;
 }
 
 @media (max-width: 767px) {
@@ -741,7 +748,6 @@
   bottom: 0;
   display: flex;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(2px);
   justify-content: center;
   align-items: center;
   z-index: 1000;
