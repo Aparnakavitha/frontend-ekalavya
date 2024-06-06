@@ -26,6 +26,11 @@
   color: var(--black);
 }
 
+.event-status.active {
+  background-color: var(--white); /* Active background color */
+  color: var(--black); /* Active text color */
+}
+
 @media (max-width: 767px) {
   .event-status {
     font-size: 14px;
