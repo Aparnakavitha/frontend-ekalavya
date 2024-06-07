@@ -4,16 +4,16 @@ import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 
-const Addevent = ({ mainHeading, options }) => {
+const Addevent = ({ mainHeading, options, onSubmit }) => {
   const { handleSubmit, control, getValues } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
   };
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["addevent-form"]}`}
     >
       <div className={`${styles["addevent-containerone"]}`}>

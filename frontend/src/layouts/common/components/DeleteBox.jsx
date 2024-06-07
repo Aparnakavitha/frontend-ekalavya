@@ -4,12 +4,6 @@ import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
 const DeleteBox = ({ title, message, buttonText, onCancel, onConfirm }) => {
-  const [isVisible, setIsVisible] = useState(true);
-
-  if (!isVisible) {
-    return null;
-  }
-
   return (
     <div className={`${styles["deletebox-box"]}`}>
       <div className={`${styles["deletebox-content"]}`}>

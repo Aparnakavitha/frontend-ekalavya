@@ -831,12 +831,6 @@
 
 .showcards-container {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.showcards-top {
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
@@ -849,31 +843,6 @@
   line-height: 22.4px;
   letter-spacing: -0.41px;
   align-items: flex-end;
-}
-
-.showcards-bottom {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.showcards-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(242px, 1fr));
-  max-width: 85vw;
-  gap: 21px;
-}
-
-.showcards-primarycard {
-  width: 100%;
-  margin-bottom: 192px;
-}
-
-.showcards-viewbutton a {
-  color: var(--primary-color);
-  text-decoration: underline;
-  display: flex;
-  justify-content: flex-end;
 }
 
 /* -------------------------------- ShowCards.css ends here ----------------------------------- */
