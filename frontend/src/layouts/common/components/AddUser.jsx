@@ -4,9 +4,16 @@ import styles from "../Common.module.css";
 import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
-
+import {
+  validateAndCleanInput,
+  validateEmail,
+} from "../../common/components/validation";
 const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
-  const { handleSubmit, control } = useForm();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
 
   const handleFormSubmit = (data) => {
     onSubmit(data);
@@ -24,6 +31,10 @@ const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
             <Controller
               name="firstName"
               control={control}
+              rules={{
+                required: "First name is required",
+                validate: validateAndCleanInput,
+              }}
               render={({ field }) => (
                 <Input
                   {...field}
@@ -33,11 +44,20 @@ const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
                 />
               )}
             />
+            {errors.firstName && (
+              <p className={`${styles["adduser-error"]}`}>
+                {errors.firstName.message}
+              </p>
+            )}
           </div>
           <div className={`${styles["adduser-name"]}`}>
             <Controller
               name="secondName"
               control={control}
+              rules={{
+                required: "Second name is required",
+                validate: validateAndCleanInput,
+              }}
               render={({ field }) => (
                 <Input
                   {...field}
@@ -46,11 +66,20 @@ const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
                 />
               )}
             />
+            {errors.secondName && (
+              <p className={`${styles["adduser-error"]}`}>
+                {errors.secondName.message}
+              </p>
+            )}
           </div>
         </div>
         <Controller
           name="email"
           control={control}
+          rules={{
+            required: "Email is required",
+            validate: validateEmail,
+          }}
           render={({ field }) => (
             <Input
               {...field}
@@ -60,10 +89,16 @@ const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
             />
           )}
         />
+        {errors.email && (
+          <p className={`${styles["adduser-error"]}`}>{errors.email.message}</p>
+        )}
         {viewCollege && (
           <Controller
             name="college"
             control={control}
+            rules={{
+              required: "College name is required",
+            }}
             render={({ field }) => (
               <InputDropdown
                 {...field}
@@ -74,6 +109,11 @@ const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
               />
             )}
           />
+        )}
+        {errors.college && (
+          <p className={`${styles["adduser-error"]}`}>
+            {errors.college.message}
+          </p>
         )}
         <PrimaryButton
           type="submit"

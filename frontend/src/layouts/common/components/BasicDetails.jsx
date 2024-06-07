@@ -10,9 +10,12 @@ import {
   validatePhone,
   validateURL,
   validateNumber,
+  validateAndCleanInput,
+  validateCountry,
+  validateState,
 } from "./validation";
 
-const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
+const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
   const {
     handleSubmit,
     control,
@@ -30,12 +33,11 @@ const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
     setShowProfileLinks(isEdit);
   }, [isEdit]);
 
-  const onSubmit = (data) => {
+  const handleFormSubmit = (data) => {
     if (fileError) {
-      // console.error("Form contains errors. Please fix them before submitting.");
       return;
     }
-    console.log("Form Data:", data);
+    onSubmit(data);
   };
 
   const handleTextButtonClick = () => {
@@ -44,7 +46,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["basicdetails-form"]}`}
     >
       <div className={`${styles["basicdetails-containerone"]}`}>
@@ -186,6 +188,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
       <div className={`${styles["basicdetails-containerinput-inter"]}`}>
         <Controller
           name="houseName"
+          rules={{ validate: validateAndCleanInput }}
           control={control}
           render={({ field }) => (
             <Input
@@ -196,13 +199,24 @@ const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
             />
           )}
         />
+        {errors.houseName && (
+          <p className={`${styles["basicdetails-error"]}`}>
+            {errors.houseName.message}
+          </p>
+        )}
         <Controller
           name="city"
           control={control}
+          rules={{ validate: validateAndCleanInput }}
           render={({ field }) => (
             <Input {...field} placeholders={["City"]} size="normal" />
           )}
         />
+        {errors.city && (
+          <p className={`${styles["basicdetails-error"]}`}>
+            {errors.city.message}
+          </p>
+        )}
         <Controller
           name="pinCode"
           control={control}
@@ -218,18 +232,30 @@ const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
         )}
         <Controller
           name="state"
+          rules={{ validate: validateState }}
           control={control}
           render={({ field }) => (
             <Input {...field} placeholders={["State"]} size="normal" />
           )}
         />
+        {errors.state && (
+          <p className={`${styles["basicdetails-error"]}`}>
+            {errors.state.message}
+          </p>
+        )}
         <Controller
           name="country"
+          rules={{ validate: validateCountry }}
           control={control}
           render={({ field }) => (
             <Input {...field} placeholders={["Country"]} size="normal" />
           )}
         />
+        {errors.country && (
+          <p className={`${styles["basicdetails-error"]}`}>
+            {errors.country.message}
+          </p>
+        )}
         <div className={`${styles["basicdetails-containerinput-in"]}`}>
           <Controller
             name="aboutMe"
