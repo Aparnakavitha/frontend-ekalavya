@@ -3,14 +3,19 @@ import styles from "../AdminStudent.module.css";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
-
+ 
 const Addevent = ({ mainHeading, options, onSubmit }) => {
-  const { handleSubmit, control, getValues } = useForm();
-
+  const {
+    handleSubmit,
+    control,
+    getValues,
+    formState: { errors },
+  } = useForm();
+ 
   const handleFormSubmit = (data) => {
     onSubmit(data);
   };
-
+ 
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
@@ -22,6 +27,9 @@ const Addevent = ({ mainHeading, options, onSubmit }) => {
           <Controller
             name="selectedEventId"
             control={control}
+            rules={{
+              required: "Event ID is required",
+            }}
             render={({ field }) => (
               <InputDropdown
                 {...field}
@@ -31,6 +39,11 @@ const Addevent = ({ mainHeading, options, onSubmit }) => {
               />
             )}
           />
+          {errors.selectedEventId && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.selectedEventId.message}
+            </p>
+          )}
         </div>
       </div>
       <div className={`${styles["addevent-buttoncontainer"]}`}>
@@ -39,5 +52,5 @@ const Addevent = ({ mainHeading, options, onSubmit }) => {
     </form>
   );
 };
-
+ 
 export default Addevent;
