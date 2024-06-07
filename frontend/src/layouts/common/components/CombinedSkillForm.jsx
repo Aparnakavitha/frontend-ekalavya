@@ -14,18 +14,19 @@ const CombinedSkillForm = ({
   buttonTitle,
   options,
   initialData,
+  onSubmit,
 }) => {
   const { handleSubmit, control, getValues } = useForm({
     defaultValues: initialData,
   });
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
   };
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["combinedskillform-form"]}`}
     >
       <div className={`${styles["combinedskillform-containerone"]}`}>
