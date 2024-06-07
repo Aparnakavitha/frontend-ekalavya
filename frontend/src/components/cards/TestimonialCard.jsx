@@ -9,12 +9,6 @@ const TestimonialCard = ({
   description,
   profilePicture,
 }) => {
-  const truncateText = (text, limit) => {
-    if (text.length > limit) {
-      return text.substring(0, limit) + "...";
-    }
-    return text;
-  };
   return (
     <div className={styles.testimonialbox}>
       <div className={styles.testimonialcontent}>
@@ -25,7 +19,7 @@ const TestimonialCard = ({
           <div className={styles.place}>{place}</div>
         </div>
       </div>
-      <div className={styles.description}>{truncateText(description, 350)}</div>
+      <div className={styles.description}>{description}</div>
     </div>
   );
 };

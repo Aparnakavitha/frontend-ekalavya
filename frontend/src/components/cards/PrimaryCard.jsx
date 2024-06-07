@@ -46,7 +46,6 @@ const PrimaryCard = (props) => {
   const mask2Class = isHover ? styles.mask2Hover : styles.mask2;
   const mask3Class = isHover ? styles.mask3Hover : styles.mask3;
   const mask4Class = isHover ? styles.mask4Hover : styles.mask4;
-  const mask5Class = isHover ? styles.mask5Hover : styles.mask5;
   const arrowClass = isHover ? styles.arrowHover : styles.arrow;
   const cardsClass = isHover ? styles.cardOutlineHover : styles.cardOutline;
 
@@ -76,7 +75,6 @@ const PrimaryCard = (props) => {
         <div className={leftCardClass}></div>
         <div className={rightCardClass}></div>
         <div className={maskClass}></div>
-        <div className={mask5Class}></div>
         <div className={mask4Class}></div>
         <div className={mask2Class}></div>
         <div className={mask3Class}></div>

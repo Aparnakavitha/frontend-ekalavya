@@ -1,6 +1,6 @@
 .testimonialbox {
   width: 253px;
-  height: 320px;
+  min-height: 273px;
   border-radius: 19px;
   padding: 25px;
   background-color: var(--neutral800);
