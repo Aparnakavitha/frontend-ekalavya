@@ -6,12 +6,32 @@ import Input from "../../../components/inputbox/InputBox";
 const AddSkill = () => {
   const [skill, setSkill] = useState("");
   const [isVisible, setIsVisible] = useState(true);
+  const [error, setError] = useState("");
 
   const handleInputChange = (event) => {
     setSkill(event.target.value);
+    setError(""); // Reset error message on input change
+  };
+
+  const validateSkill = (skill) => {
+    if (!skill.trim()) {
+      return "Skill cannot be empty.";
+    }
+    if (/^\s/.test(skill)) {
+      return "Skill cannot start with a space.";
+    }
+    if (!/[a-zA-Z]/.test(skill)) {
+      return "Skill must contain at least one letter.";
+    }
+    return "";
   };
 
   const handleAddSkill = () => {
+    const validationError = validateSkill(skill);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
     console.log(skill);
     setIsVisible(false);
   };
@@ -35,6 +55,7 @@ const AddSkill = () => {
             id="normal-input"
           />
         </div>
+        {error && <div className={`${styles["error-message"]}`}>{error}</div>}
         <div className={`${styles["addskill-buttonrow"]}`}>
           <PrimaryButton
             variant="primary"
