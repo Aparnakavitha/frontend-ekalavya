@@ -5,13 +5,14 @@ import { BsList, BsX } from "react-icons/bs";
 import Logo from "../../../assets/EduNexa.png";
 import ProfileBox from "../../../components/profilenotificationbox/ProfileNotificationBox";
 
-const SideBar = ({ button, listItems, profileBox }) => {
+const SideBar = ({ button, listItems, profileBox , onItemClick }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [showSidebar, setShowSidebar] = useState(false);
 
-  const handleItemClick = (index) => {
+  const handleItemClick = (index, page) => {
     setActiveIndex(index);
     setShowSidebar(false);
+    onItemClick(page);
   };
 
   const toggleSidebar = () => {
@@ -56,9 +57,7 @@ const SideBar = ({ button, listItems, profileBox }) => {
                 name={item.name}
                 viewIcon={item.viewIcon}
                 active={activeIndex === index}
-                onClick={() => {
-                  handleItemClick(index);
-                }}
+                onClick={() => handleItemClick(index, item.page)}
               />
             ))}
           </div>
