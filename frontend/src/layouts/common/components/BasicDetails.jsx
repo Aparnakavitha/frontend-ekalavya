@@ -10,9 +10,12 @@ import {
   validatePhone,
   validateURL,
   validateNumber,
+  validateAndCleanInput,
+  validateCountry,
+  validateState,
 } from "./validation";
 
-const BasicDetails = ({ mainHeading, initialData, isEdit,onSubmit }) => {
+const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
   const {
     handleSubmit,
     control,
@@ -185,6 +188,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit,onSubmit }) => {
       <div className={`${styles["basicdetails-containerinput-inter"]}`}>
         <Controller
           name="houseName"
+          rules={{ validate: validateAndCleanInput }}
           control={control}
           render={({ field }) => (
             <Input
@@ -195,13 +199,24 @@ const BasicDetails = ({ mainHeading, initialData, isEdit,onSubmit }) => {
             />
           )}
         />
+        {errors.houseName && (
+          <p className={`${styles["basicdetails-error"]}`}>
+            {errors.houseName.message}
+          </p>
+        )}
         <Controller
           name="city"
           control={control}
+          rules={{ validate: validateAndCleanInput }}
           render={({ field }) => (
             <Input {...field} placeholders={["City"]} size="normal" />
           )}
         />
+        {errors.city && (
+          <p className={`${styles["basicdetails-error"]}`}>
+            {errors.city.message}
+          </p>
+        )}
         <Controller
           name="pinCode"
           control={control}
@@ -217,18 +232,30 @@ const BasicDetails = ({ mainHeading, initialData, isEdit,onSubmit }) => {
         )}
         <Controller
           name="state"
+          rules={{ validate: validateState }}
           control={control}
           render={({ field }) => (
             <Input {...field} placeholders={["State"]} size="normal" />
           )}
         />
+        {errors.state && (
+          <p className={`${styles["basicdetails-error"]}`}>
+            {errors.state.message}
+          </p>
+        )}
         <Controller
           name="country"
+          rules={{ validate: validateCountry }}
           control={control}
           render={({ field }) => (
             <Input {...field} placeholders={["Country"]} size="normal" />
           )}
         />
+        {errors.country && (
+          <p className={`${styles["basicdetails-error"]}`}>
+            {errors.country.message}
+          </p>
+        )}
         <div className={`${styles["basicdetails-containerinput-in"]}`}>
           <Controller
             name="aboutMe"

@@ -1,4 +1,5 @@
 import { isEmail, isURL, isMobilePhone, isNumeric, isBefore } from "validator";
+import { countries } from "countries-list";
 
 //Email Validation
 export const validateEmail = (value) => {
@@ -117,4 +118,27 @@ export const validateAndCleanInput = (value) => {
     return "Invalid entry: the field should not start with white spaces or symbols.";
   }
   return true;
+};
+
+//Country Name Validation
+export const validateCountry = (value) => {
+  const countryNames = Object.values(countries).map((country) => country.name);
+  return (
+    !value ||
+    countryNames.includes(value) ||
+    "Invalid country name. Please enter a valid country."
+  );
+};
+
+// State Validation
+export const validateState = (value) => {
+  if (!value) {
+    return true;
+  }
+
+  if (/^[a-zA-Z\s]+$/.test(value)) {
+    return true;
+  } else {
+    return "Invalid state name. Please enter a valid state without numbers or symbols.";
+  }
 };
