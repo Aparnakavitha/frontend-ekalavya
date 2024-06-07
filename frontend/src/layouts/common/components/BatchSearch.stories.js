@@ -13,6 +13,8 @@ const batchDetails = {
     pageName: "Batch Name",
   },
   showTextButton: true,
+  showAdd: true,
+  showReset: false,
   textbuttonProps: {
     icon: <MdEdit />,
     text: "Edit Batch Name",
@@ -32,7 +34,7 @@ const batchDetails = {
     placeholder: "Student Name",
   },
   showFiltersAndReset: false,
-  buttonProps: {
+  addbuttonProps: {
     variant: "tertiary",
     content: "+ Add new Student",
     width: "full",
@@ -44,6 +46,8 @@ const homeEvents = {
     pageName: "Events",
   },
   showTextButton: false,
+  showAdd: false,
+  showReset: true,
   searchbarProps: {
     variant: "custom",
     placeholder: "Event",
@@ -53,7 +57,7 @@ const homeEvents = {
     { Heading: "Type", Content: ["Workshop", "Hackathon", "Contest"] },
     { Heading: "Mode", Content: ["Online", "Offline"] },
   ],
-  buttonProps: {
+  resetProps: {
     variant: "secondary",
     content: "Reset",
     width: "full",

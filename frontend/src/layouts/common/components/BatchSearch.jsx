@@ -10,11 +10,14 @@ const BatchSearch = ({
   textbuttonProps,
   textbuttonProps2,
   navbuttonProps,
+  addbuttonProps,
   searchbarProps,
   filterProps = [],
-  buttonProps,
+  resetProps,
   showFiltersAndReset,
   showTextButton,
+  showReset,
+  showAdd,
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [filterStates, setFilterStates] = useState(
@@ -77,9 +80,16 @@ const BatchSearch = ({
                 ))}
               </div>
             )}
-            <div className={`${styles["batchsearch-reset"]}`}>
-              <PrimaryButton {...buttonProps} onClick={handleReset} />
-            </div>
+            {showAdd && (
+              <div className={`${styles["batchsearch-addbutton"]}`}>
+                <PrimaryButton {...addbuttonProps} />
+              </div>
+            )}
+            {showReset && (
+              <div className={`${styles["batchsearch-addbutton"]}`}>
+                <PrimaryButton {...resetProps} onClick={handleReset} />
+              </div>
+            )}
           </div>
         </div>
       </div>
