@@ -1,6 +1,12 @@
 import React from "react";
 import UpdateSingleFieldComponent from "./UpdateSingleField";
 
+const options = [
+  { value: "abc", label: "ABC" },
+  { value: "xyz", label: "XYZ" },
+  { value: "pqr", label: "PQR" },
+];
+
 export default {
   title: "Layouts/Common/Components/Single Filed",
   component: UpdateSingleFieldComponent,
@@ -15,6 +21,8 @@ Addnewstudent.args = {
   labelTitle: "Add student ID",
   placeHolder: "Student ID",
   buttonTitle: "Add",
+  isSelect:true,
+  options,
 };
 
 export const Editbatchname = Template.bind({});

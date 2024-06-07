@@ -51,6 +51,12 @@
   align-items: center;
 }
 
+.addevent-error {
+  margin-top: -5px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
 @media (max-width: 767px) {
   .addevent-form {
     padding: 30px;
@@ -64,7 +70,6 @@
 
 .addcollege-container {
   width: 100%;
-  height: 753px;
   display: flex;
   flex-direction: column;
   background-color: var(--background);
@@ -84,6 +89,12 @@
   font-size: 21px;
   color: white;
   margin-bottom: 10px;
+}
+
+.addcollege-error {
+  margin-top: 5px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
 }
 
 @media (max-width: 768px) {

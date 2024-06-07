@@ -4,8 +4,19 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../AdminEvent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import {
+  validateURL,
+  validateStartDate,
+  validateEndDate,
+  validateAndCleanInput,
+} from "../../common/components/validation";
 
-const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) => {
+const AddEvent = ({
+  defaultValues,
+  organizeroptions,
+  onSubmit,
+  isOrganizer,
+}) => {
   const mergedDefaultValues = { ...defaultValues };
 
   const eventtypeoptions = [
@@ -17,7 +28,13 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
     { value: "Webinar", label: "Webinar" },
   ];
 
-  const { handleSubmit, control, watch, setValue } = useForm({
+  const {
+    handleSubmit,
+    control,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm({
     defaultValues: mergedDefaultValues,
   });
 
@@ -75,6 +92,10 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
           <Controller
             name="eventTitle"
             control={control}
+            rules={{
+              required: "Event Title is required",
+              validate: validateAndCleanInput,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -85,12 +106,21 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
               />
             )}
           />
+          {errors.eventTitle && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.eventTitle.message}
+            </p>
+          )}
         </div>
 
         <div className={`${styles["addevent-eventmodediv"]}`}>
           <Controller
             name="eventMode"
             control={control}
+            rules={{
+              required: "Event Mode is required",
+              validate: validateAndCleanInput,
+            }}
             render={({ field }) => (
               <InputDropdown
                 {...field}
@@ -101,12 +131,21 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
               />
             )}
           />
+          {errors.eventMode && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.eventMode.message}
+            </p>
+          )}
         </div>
       </div>
 
       <Controller
         name="eventType"
         control={control}
+        rules={{
+          required: "Event Type is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <InputDropdown
             {...field}
@@ -118,10 +157,19 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
           />
         )}
       />
+      {errors.eventType && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.eventType.message}
+        </p>
+      )}
 
       <Controller
         name="description"
         control={control}
+        rules={{
+          required: "Description is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -132,12 +180,20 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
           />
         )}
       />
+      {errors.description && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.description.message}
+        </p>
+      )}
 
       <div className={`${styles["addevent-datetimecontainer"]}`}>
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="startDate"
             control={control}
+            rules={{
+              validate: validateStartDate,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -149,12 +205,20 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
               />
             )}
           />
+          {errors.startDate && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.startDate.message}
+            </p>
+          )}
         </div>
 
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="endDate"
             control={control}
+            rules={{
+              validate: validateEndDate,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -166,12 +230,20 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
               />
             )}
           />
+          {errors.endDate && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.endDate.message}
+            </p>
+          )}
         </div>
 
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="startTime"
             control={control}
+            rules={{
+              required: "Start Time is required",
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -183,12 +255,20 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
               />
             )}
           />
+          {errors.startTime && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.startTime.message}
+            </p>
+          )}
         </div>
 
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="endTime"
             control={control}
+            rules={{
+              required: "End Time is required",
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -200,12 +280,27 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
               />
             )}
           />
+          {errors.endTime && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.endTime.message}
+            </p>
+          )}
         </div>
       </div>
 
       <Controller
         name="location"
         control={control}
+        rules={{
+          required:
+            selectedEventMode === "Online"
+              ? "Link is required"
+              : "Location is required",
+          validate:
+            selectedEventMode === "Online"
+              ? validateURL
+              : validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -218,10 +313,19 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
           />
         )}
       />
+      {errors.location && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.location.message}
+        </p>
+      )}
 
       <Controller
         name="speaker"
         control={control}
+        rules={{
+          required: "Speaker is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -232,9 +336,19 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
           />
         )}
       />
+      {errors.speaker && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.speaker.message}
+        </p>
+      )}
+
       <Controller
         name="speakerDescription"
         control={control}
+        rules={{
+          required: "Speaker Description is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -245,10 +359,20 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
           />
         )}
       />
+      {errors.speakerDescription && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.speakerDescription.message}
+        </p>
+      )}
+
       {isOrganizer && (
         <Controller
           name="organizer"
           control={control}
+          rules={{
+            required: "Organizer is required",
+            validate: validateAndCleanInput,
+          }}
           render={({ field }) => (
             <InputDropdown
               {...field}
@@ -260,6 +384,11 @@ const AddEvent = ({ defaultValues, organizeroptions, onSubmit, isOrganizer }) =>
             />
           )}
         />
+      )}
+      {errors.organizer && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.organizer.message}
+        </p>
       )}
 
       <PrimaryButton
