@@ -1,7 +1,7 @@
 import EventsTable from "./EventsTable";
 
 export default {
-  title: "layouts/Mentor-events/components/EventsTable",
+  title: "layouts/Mentor-events/Components/EventsTable",
   component: EventsTable,
 };
 
