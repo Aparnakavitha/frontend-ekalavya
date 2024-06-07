@@ -74,7 +74,7 @@ export const validateStartDate = (value, allValues) => {
   const startDate = new Date(value);
 
   if (isNaN(startDate.getTime())) {
-    return "Start date is required.";
+    return "Start date is required";
   }
 
   const currentYear = currentDate.getFullYear();
@@ -104,7 +104,7 @@ export const validateStartDate = (value, allValues) => {
 export const validateEndDate = (value, allValues) => {
   const startDate = allValues.startDate;
   if (value === undefined) {
-    return "End date is required.";
+    return "End date is required";
   }
   if (startDate && isBefore(value, startDate)) {
     return "End date must be after start date.";
