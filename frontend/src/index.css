@@ -3,7 +3,7 @@
   src: url("../../frontend/public/Fonts/Urbanist-VariableFont_wght.ttf")
     format("truetype");
 }
-
+ 
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +11,7 @@
   font-family: "Urbanist", sans-serif;
   scroll-behavior: smooth;
 }
-
+ 
 :root {
   --primary-color: #baff66;
   --secondary-color: #1a1a1a;

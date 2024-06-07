@@ -4,18 +4,18 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddUser = ({ options, viewCollege, heading }) => {
+const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
   const { handleSubmit, control } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
   };
 
   return (
     <div className={`${styles["adduser-container"]}`}>
       <div className={`${styles["adduser-head"]}`}>{heading}</div>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleFormSubmit)}
         className={`${styles["adduser-form"]}`}
       >
         <div className={`${styles["adduser-field"]}`}>

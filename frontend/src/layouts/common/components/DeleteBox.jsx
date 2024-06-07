@@ -5,24 +5,26 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
 const DeleteBox = ({ title, message, buttonText, onCancel, onConfirm }) => {
   return (
-    <div className={`${styles["deletebox-box"]}`}>
-      <div className={`${styles["deletebox-content"]}`}>
-        <h2 className={`${styles["deletebox-title"]}`}>{title}</h2>
-        <div className={`${styles["deletebox-message"]}`}>
+    <div className={styles["deletebox-box"]}>
+      <div className={styles["deletebox-content"]}>
+        <h2 className={styles["deletebox-title"]}>{title}</h2>
+        <div className={styles["deletebox-message"]}>
           <p>{message}</p>
         </div>
       </div>
-      <div className={`${styles["deletebox-button"]}`}>
+      <div className={styles["deletebox-button"]}>
         <PrimaryButton
           content="Cancel"
           variant="primary"
           width="full"
+          onClick={onCancel}
           onClick={onCancel}
         />
         <PrimaryButton
           content={buttonText}
           variant="primary"
           width="full"
+          onClick={onConfirm}
           onClick={onConfirm}
         />
       </div>

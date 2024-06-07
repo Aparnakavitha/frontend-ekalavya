@@ -5,18 +5,30 @@ import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../AdminEvent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const AddEvent = ({ defaultValues }) => {
-  const initialDefaultValues = defaultValues;
+const AddEvent = ({
+  defaultValues,
+  organizeroptions,
+  onSubmit,
+  isOrganizer,
+}) => {
+  const mergedDefaultValues = { ...defaultValues };
 
-  const mergedDefaultValues = { ...initialDefaultValues, ...defaultValues };
+  const eventtypeoptions = [
+    { value: "Hackathon", label: "Hackathon" },
+    { value: "Workshop", label: "Workshop" },
+    { value: "Session", label: "Session" },
+    { value: "Conference", label: "Conference" },
+    { value: "Contest", label: "Contest" },
+    { value: "Webinar", label: "Webinar" },
+  ];
 
   const { handleSubmit, control, watch, setValue } = useForm({
     defaultValues: mergedDefaultValues,
   });
-
+ 
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
 
-  const onSubmit = (data) => {
+  const handleFormSubmit = (data) => {
     if (data.eventMode === "Online") {
       if (!data.location) {
         data.link = "";
@@ -25,28 +37,31 @@ const AddEvent = ({ defaultValues }) => {
       }
       delete data.location;
     }
-    console.log("Form Data:", data);
+    if (!isOrganizer) {
+      data.organizer = null;
+    }
+    onSubmit(data);
   };
-
+ 
   const options = [
     { value: "Online", label: "Online" },
     { value: "Offline", label: "Offline" },
   ];
-
+ 
   const selectedEventMode = watch("eventMode", eventMode);
-
+ 
   const handleEventModeChange = (selectedOption) => {
     const newValue = selectedOption.value;
     setEventMode(newValue);
     setValue("eventMode", newValue);
-
+ 
     if (newValue === "Online") {
       setValue("location", mergedDefaultValues.link || "");
     } else {
       setValue("location", mergedDefaultValues.location || "");
     }
   };
-
+ 
   useEffect(() => {
     if (selectedEventMode === "Online") {
       setValue("location", mergedDefaultValues.link || "");
@@ -54,10 +69,10 @@ const AddEvent = ({ defaultValues }) => {
       setValue("location", mergedDefaultValues.location || "");
     }
   }, [selectedEventMode, setValue, mergedDefaultValues]);
-
+ 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["addevent-form"]}`}
     >
       <div className={`${styles["addevent-eventtitlemode"]}`}>
@@ -76,7 +91,7 @@ const AddEvent = ({ defaultValues }) => {
             )}
           />
         </div>
-
+ 
         <div className={`${styles["addevent-eventmodediv"]}`}>
           <Controller
             name="eventMode"
@@ -93,21 +108,22 @@ const AddEvent = ({ defaultValues }) => {
           />
         </div>
       </div>
-
+ 
       <Controller
         name="eventType"
         control={control}
         render={({ field }) => (
-          <Input
+          <InputDropdown
             {...field}
             label="Event Type"
             size="normal"
             placeholders={["Event Type"]}
+            options={eventtypeoptions}
             className={`${styles["addevent-eventtype"]}`}
           />
         )}
       />
-
+ 
       <Controller
         name="description"
         control={control}
@@ -121,7 +137,7 @@ const AddEvent = ({ defaultValues }) => {
           />
         )}
       />
-
+ 
       <div className={`${styles["addevent-datetimecontainer"]}`}>
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
@@ -139,7 +155,7 @@ const AddEvent = ({ defaultValues }) => {
             )}
           />
         </div>
-
+ 
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="endDate"
@@ -156,7 +172,7 @@ const AddEvent = ({ defaultValues }) => {
             )}
           />
         </div>
-
+ 
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="startTime"
@@ -173,7 +189,7 @@ const AddEvent = ({ defaultValues }) => {
             )}
           />
         </div>
-
+ 
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="endTime"
@@ -191,7 +207,7 @@ const AddEvent = ({ defaultValues }) => {
           />
         </div>
       </div>
-
+ 
       <Controller
         name="location"
         control={control}
@@ -207,7 +223,7 @@ const AddEvent = ({ defaultValues }) => {
           />
         )}
       />
-
+ 
       <Controller
         name="speaker"
         control={control}
@@ -221,20 +237,35 @@ const AddEvent = ({ defaultValues }) => {
           />
         )}
       />
-
       <Controller
-        name="organizer"
+        name="speakerDescription"
         control={control}
         render={({ field }) => (
           <Input
             {...field}
-            label="Organizer"
+            label="Speaker Description"
             size="normal"
-            placeholders={["Organizer"]}
-            className={`${styles["addevent-organizer"]}`}
+            placeholders={["Speaker Description"]}
+            className={`${styles["addevent-speaker"]}`}
           />
         )}
       />
+      {isOrganizer && (
+        <Controller
+          name="organizer"
+          control={control}
+          render={({ field }) => (
+            <InputDropdown
+              {...field}
+              label="Organizer"
+              size="normal"
+              placeholders={["Organizer"]}
+              options={organizeroptions}
+              className={`${styles["addevent-organizer"]}`}
+            />
+          )}
+        />
+      )}
 
       <PrimaryButton
         content="Submit"
@@ -245,5 +276,5 @@ const AddEvent = ({ defaultValues }) => {
     </form>
   );
 };
-
+ 
 export default AddEvent;
