@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import styles from "../AdminSkill.module.css";
 import Input from "../../../components/inputbox/InputBox";
-
+ 
 const AddSkill = () => {
   const [skill, setSkill] = useState("");
   const [isVisible, setIsVisible] = useState(true);
   const [error, setError] = useState("");
-
+ 
   const handleInputChange = (event) => {
     setSkill(event.target.value);
     setError(""); // Reset error message on input change
   };
-
+ 
   const validateSkill = (skill) => {
     if (!skill.trim()) {
       return "Skill cannot be empty.";
@@ -25,7 +25,7 @@ const AddSkill = () => {
     }
     return "";
   };
-
+ 
   const handleAddSkill = () => {
     const validationError = validateSkill(skill);
     if (validationError) {
@@ -35,11 +35,11 @@ const AddSkill = () => {
     console.log(skill);
     setIsVisible(false);
   };
-
+ 
   const handleCancel = () => {
     setIsVisible(false);
   };
-
+ 
   if (!isVisible) return null;
   return (
     <div className={`${styles["addskill-boxcontainer"]}`}>
@@ -74,5 +74,6 @@ const AddSkill = () => {
     </div>
   );
 };
-
+ 
 export default AddSkill;
+ 

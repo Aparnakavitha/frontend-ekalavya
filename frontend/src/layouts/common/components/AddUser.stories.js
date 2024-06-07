@@ -16,6 +16,7 @@ const student = {
   heading: "Add New Student",
 };
 
+
 const mentor = {
   viewCollege: false,
   heading: "Add New Mentor",

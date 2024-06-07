@@ -3,10 +3,16 @@ import styles from "../../common/Common.module.css";
 import { useForm, Controller } from "react-hook-form";
 import Input from "../../../components/inputbox/InputBox";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
-import { FaPlus } from "react-icons/fa6";
 import TextButton from "../../../components/buttons/TextButton";
+import { FaPlus, FaMinus } from "react-icons/fa6";
+import {
+  validateImageFile,
+  validatePhone,
+  validateURL,
+  validateNumber,
+} from "./validation";
 
-const BasicDetails = ({ mainHeading, initialData }) => {
+const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
   const {
     handleSubmit,
     control,
@@ -18,30 +24,22 @@ const BasicDetails = ({ mainHeading, initialData }) => {
   });
 
   const [fileError, setFileError] = useState("");
+  const [showProfileLinks, setShowProfileLinks] = useState(isEdit);
+
+  useEffect(() => {
+    setShowProfileLinks(isEdit);
+  }, [isEdit]);
 
   const onSubmit = (data) => {
     if (fileError) {
-      console.error("Form contains errors. Please fix them before submitting.");
+      // console.error("Form contains errors. Please fix them before submitting.");
       return;
     }
     console.log("Form Data:", data);
   };
 
   const handleTextButtonClick = () => {
-    console.log("Add profile link clicked!");
-  };
-
-  const validateImageFile = (file) => {
-    if (file && !file.type.startsWith("image/")) {
-      setFileError("Invalid file type. Please upload an image file.");
-      setError("profilePhoto", {
-        type: "manual",
-        message: "Invalid file type. Please upload an image file.",
-      });
-      return false;
-    }
-    setFileError("");
-    return true;
+    setShowProfileLinks(!showProfileLinks);
   };
 
   return (
@@ -70,6 +68,7 @@ const BasicDetails = ({ mainHeading, initialData }) => {
           <Controller
             name="phoneNumber"
             control={control}
+            rules={{ validate: validatePhone }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -79,6 +78,11 @@ const BasicDetails = ({ mainHeading, initialData }) => {
               />
             )}
           />
+          {errors.phoneNumber && (
+            <p className={`${styles["basicdetails-error"]}`}>
+              {errors.phoneNumber.message}
+            </p>
+          )}
           <Controller
             name="profilePhoto"
             control={control}
@@ -92,7 +96,7 @@ const BasicDetails = ({ mainHeading, initialData }) => {
                 accept="image/*"
                 onChange={(e) => {
                   const file = e.target.files[0];
-                  if (validateImageFile(file)) {
+                  if (validateImageFile(file, setFileError, setError)) {
                     setValue("profilePhoto", file);
                   } else {
                     setValue("profilePhoto", null);
@@ -104,15 +108,80 @@ const BasicDetails = ({ mainHeading, initialData }) => {
           {fileError && (
             <p className={`${styles["basicdetails-error"]}`}>{fileError}</p>
           )}
-
           <div className={`${styles["basicdetails-icontext"]}`}>
             <TextButton
-              icon={<FaPlus />}
-              text="Add Profile Links"
+              icon={showProfileLinks ? <FaMinus /> : <FaPlus />}
+              text={
+                showProfileLinks ? "Close Profile Links" : "Add Profile Links"
+              }
               onClick={handleTextButtonClick}
             />
           </div>
         </div>
+        {showProfileLinks && (
+          <div className={`${styles["basicdetails-containerinput-links"]}`}>
+            <div className={`${styles["basicdetails-links"]}`}>
+              <Controller
+                name="githubLink"
+                control={control}
+                rules={{ validate: validateURL }}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="GitHub Link"
+                    placeholders={["link"]}
+                    size="normal"
+                  />
+                )}
+              />
+              {errors.githubLink && (
+                <p className={`${styles["basicdetails-error"]}`}>
+                  {errors.githubLink.message}
+                </p>
+              )}
+            </div>
+            <div className={`${styles["basicdetails-links"]}`}>
+              <Controller
+                name="linkedinLink"
+                control={control}
+                rules={{ validate: validateURL }}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="LinkedIn Link"
+                    placeholders={["link"]}
+                    size="normal"
+                  />
+                )}
+              />
+              {errors.linkedinLink && (
+                <p className={`${styles["basicdetails-error"]}`}>
+                  {errors.linkedinLink.message}
+                </p>
+              )}
+            </div>
+            <div className={`${styles["basicdetails-links"]}`}>
+              <Controller
+                name="otherLink"
+                control={control}
+                rules={{ validate: validateURL }}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label="Other Link"
+                    placeholders={["link"]}
+                    size="normal"
+                  />
+                )}
+              />
+              {errors.otherLink && (
+                <p className={`${styles["basicdetails-error"]}`}>
+                  {errors.otherLink.message}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
       </div>
       <div className={`${styles["basicdetails-containerinput-inter"]}`}>
         <Controller
@@ -137,10 +206,16 @@ const BasicDetails = ({ mainHeading, initialData }) => {
         <Controller
           name="pinCode"
           control={control}
+          rules={{ validate: validateNumber("postalCode") }}
           render={({ field }) => (
             <Input {...field} placeholders={["Pincode"]} size="normal" />
           )}
         />
+        {errors.pinCode && (
+          <p className={`${styles["basicdetails-error"]}`}>
+            {errors.pinCode.message}
+          </p>
+        )}
         <Controller
           name="state"
           control={control}

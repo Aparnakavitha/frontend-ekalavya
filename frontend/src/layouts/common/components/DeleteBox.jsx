@@ -3,17 +3,8 @@ import PropTypes from "prop-types";
 import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
-const DeleteBox = ({ title, message, buttonText }) => {
+const DeleteBox = ({ title, message, buttonText, onCancel, onConfirm }) => {
   const [isVisible, setIsVisible] = useState(true);
-  const handleCancel = () => {
-    console.log("Cancel button clicked");
-    setIsVisible(false);
-  };
-
-  const handleConfirm = () => {
-    console.log("Button clicked");
-    setIsVisible(false);
-  };
 
   if (!isVisible) {
     return null;
@@ -32,13 +23,13 @@ const DeleteBox = ({ title, message, buttonText }) => {
           content="Cancel"
           variant="primary"
           width="full"
-          onClick={handleCancel}
+          onClick={onCancel}
         />
         <PrimaryButton
           content={buttonText}
           variant="primary"
           width="full"
-          onClick={handleConfirm}
+          onClick={onConfirm}
         />
       </div>
     </div>

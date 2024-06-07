@@ -1,40 +1,25 @@
 import React from "react";
 import styles from "../AdminBatches.module.css";
 import Input from "../../../components/inputbox/InputBox";
+import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
-import { FaPlus } from "react-icons/fa6";
-import TextButton from "../../../components/buttons/TextButton";
 import { useForm, Controller } from "react-hook-form";
 
-const Batchoperations = ({ mainHeading, initialdata }) => {
+const Batchoperations = ({ mainHeading, initialdata, onSubmit ,options}) => {
   const { handleSubmit, control, getValues } = useForm({
-    defaultValues: initialdata,
+    defaultValues: {
+      batchName: "",
+      studentIds: [],
+    },
   });
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
   };
-
-  const handleTextButtonClick = () => {
-    console.log("Add Studnets clicked!");
-  };
-
-  const studentIdLabel = (
-    <div className={`${styles["batchoperations-iconlabelcontainerinput"]}`}>
-      <div className={`${styles["batchoperations-iconlabelcontainer"]}`}>
-        <div> Student ID</div>
-        <TextButton
-          icon={<FaPlus />}
-          text="Add students"
-          onClick={handleTextButtonClick}
-        />
-      </div>
-    </div>
-  );
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["batchoperations-form"]}`}
     >
       <div className={`${styles["batchoperations-containerone"]}`}>
@@ -55,14 +40,15 @@ const Batchoperations = ({ mainHeading, initialdata }) => {
             )}
           />
           <Controller
-            name="studentId"
+            name="studentIds"
             control={control}
             render={({ field }) => (
-              <Input
+              <InputDropdown
+                label="Student ID(s)"
+                placeholder="Student ID"
+                options={options}
+                isMulti={true}
                 {...field}
-                label={studentIdLabel}
-                placeholders={["Student ID"]}
-                size="normal"
               />
             )}
           />

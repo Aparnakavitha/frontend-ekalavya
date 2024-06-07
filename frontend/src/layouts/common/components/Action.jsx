@@ -14,49 +14,65 @@ const ActionComponent = ({
   searchWidth = "full",
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filterStates, setFilterStates] = useState(
+    filterProps.map((filter) => filter.defaultOption || "")
+  );
 
   const handleToggle = (index) => {
     setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   const handleOptionClick = (index, option) => {
-    console.log(`Selected option: ${option}`);
+    const newFilterStates = [...filterStates];
+    newFilterStates[index] = option;
+    setFilterStates(newFilterStates);
     setOpenDropdownIndex(null);
   };
 
+  const handleReset = () => {
+    const defaultStates = filterProps.map(
+      (filter) => filter.defaultOption || ""
+    );
+    setFilterStates(defaultStates);
+  };
+
   return (
-    <div className={`${styles["common-content"]}`}>
-      <div className={`${styles["common-top"]}`}>
-        <div className={`${styles["common-heading"]}`}>{heading}</div>
-        <div className={`${styles["common-buttons"]}`}>
-          <PrimaryButton {...buttonProps} />
-        </div>
-      </div>
-      <div className={`${styles["common-bottom"]}`}>
-        <div
-          className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}
-        >
-          <Searchbar {...searchbarProps} />
-        </div>
-        {showFiltersAndReset && (
-          <div className={`${styles["common-right"]}`}>
-            <div className={`${styles["common-filter"]}`}>
-              {filterProps.map((props, index) => (
-                <Filter
-                  key={index}
-                  initialHeading={props.Heading}
-                  Content={props.Content}
-                  isOpen={openDropdownIndex === index}
-                  onToggle={() => handleToggle(index)}
-                  onOptionClick={(option) => handleOptionClick(index, option)}
-                />
-              ))}
-            </div>
-            <div className={`${styles["common-reset"]}`}>
-              <PrimaryButton {...resetProps} />
-            </div>
+    <div className="padding">
+      <div className={styles["common-content"]}>
+        <div className={styles["common-top"]}>
+          <div className={styles["common-heading"]}>{heading}</div>
+          <div className={styles["common-buttons"]}>
+            <PrimaryButton {...buttonProps} />
           </div>
-        )}
+        </div>
+        <div className={styles["common-bottom"]}>
+          <div
+            className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}
+          >
+            <Searchbar {...searchbarProps} />
+          </div>
+          {showFiltersAndReset && (
+            <div className={styles["common-right"]}>
+              <div className={styles["common-filter"]}>
+                {filterProps.map((props, index) => (
+                  <Filter
+                    key={index}
+                    initialHeading={props.Heading}
+                    Content={props.Content}
+                    isOpen={openDropdownIndex === index}
+                    onToggle={() => handleToggle(index)}
+                    onOptionClick={(option) => handleOptionClick(index, option)}
+                    selectedOption={filterStates[index]}
+                  />
+                ))}
+              </div>
+              <div className={styles["common-reset"]}>
+                <PrimaryButton {...resetProps} onClick={handleReset} />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

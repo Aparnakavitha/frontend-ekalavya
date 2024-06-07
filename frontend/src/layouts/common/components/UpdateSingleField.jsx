@@ -10,25 +10,24 @@ const UpdateSingleField = ({
   placeHolder,
   buttonTitle,
   initialData,
+  onSubmit,
 }) => {
-  const { handleSubmit, control, getValues } = useForm({
+  const { handleSubmit, control } = useForm({
     defaultValues: initialData,
   });
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
   };
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={`${styles["addstudent-form"]}`}
+      onSubmit={handleSubmit(handleFormSubmit)}
+      className={styles["addstudent-form"]}
     >
-      <div className={`${styles["addstudent-containerone"]}`}>
-        <header className={`${styles["addstudent-head"]}`}>
-          {mainHeading}
-        </header>
-        <div className={`${styles["addstudent-containerinput"]}`}>
+      <div className={styles["addstudent-containerone"]}>
+        <header className={styles["addstudent-head"]}>{mainHeading}</header>
+        <div className={styles["addstudent-containerinput"]}>
           <Controller
             name="inputData"
             control={control}
@@ -43,7 +42,7 @@ const UpdateSingleField = ({
           />
         </div>
       </div>
-      <div className={`${styles["addstudent-buttoncontainer"]}`}>
+      <div className={styles["addstudent-buttoncontainer"]}>
         <PrimaryButton variant="primary" content={buttonTitle} width="full" />
       </div>
     </form>

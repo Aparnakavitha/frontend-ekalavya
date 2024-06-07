@@ -21,7 +21,7 @@ Addnewskillstudent.args = {
   isSelect: true,
   isEditlevel: false,
   displaytext: "This skill is only to be placed at level 1",
-  buttonTilte: "Add Skill",
+  buttonTitle: "Add Skill",
   options: options,
 };
 
@@ -32,7 +32,7 @@ Addnewskillmentor.args = {
   isSelect: true,
   isEditlevel: false,
   displaytext: "This skill is only to be placed at level 4",
-  buttonTilte: "Add Skill",
+  buttonTitle: "Add Skill",
   options: options,
 };
 
@@ -42,7 +42,7 @@ Addnewskilladmin.args = {
   mainHeading: "Add New Skill",
   isSelect: false,
   isEditlevel: false,
-  buttonTilte: "Add Skill",
+  buttonTitle: "Add Skill",
   options: options,
 };
 
@@ -54,7 +54,7 @@ Editskilladmin.args = {
   isEditlevel: true,
   message: "Please update your skill level.",
   skillName: "JavaScript",
-  buttonTilte: "Save",
+  buttonTitle: "Save",
   options: options,
   initialData: { selectedLevel: "abc" },
 };

@@ -1,35 +1,59 @@
 import React from "react";
 import styles from "./ProfileCard.module.css";
+import { MdDelete } from "react-icons/md";
 
 const ProfileCard = (props) => {
-  const { profileImage, title1, title2, title3, email, phone, onClick } = props;
+  const {
+    studentImage,
+    studentName,
+    studentId,
+    studentCollege,
+    studentMail,
+    studentPhoneNumber,
+    onClick,
+    canDelete,
+    handleDelete,
+  } = props;
 
   const transformMainMail = (studentMail) => {
-    if (studentMail.length > 24) {
-      return studentMail.slice(0, 24) + "...";
+    if (studentMail.length > 17) {
+      return studentMail.slice(0, 17) + "...";
     }
     return studentMail;
   };
 
+  const handleDeleteIcon = (event) => {
+    event.stopPropagation();
+    handleDelete();
+  };
+
   return (
     <div className={styles.card} onClick={onClick}>
-      <div className={styles.cardContent}>
-        <div className={styles.profile}>
+      <div className={styles["card-content"]}>
+        <div className={styles["image-icon"]}>
           <img
-            src={profileImage}
+            src={studentImage}
             alt="Profile"
-            className={styles.profileImage}
+            className={styles["student-image"]}
           />
+          {canDelete && (
+            <MdDelete
+              className={styles["delete-icon"]}
+              title="Delete"
+              onClick={handleDeleteIcon}
+            />
+          )}
         </div>
-        <div className={styles.content}>
-          <div className={styles.titlesWrapper}>
-            <h2 className={`${styles.title} ${styles.title1}`}>{title1}</h2>
-            <h3 className={`${styles.title} ${styles.title2}`}>{title2}</h3>
-            <h4 className={`${styles.title} ${styles.title3}`}>{title3}</h4>
-          </div>
-          <div className={styles.contactInfo}>
-            <p>{transformMainMail(email)}</p>
-            <p>{phone}</p>
+        <div className={styles["titles-wrapper"]}>
+          <h1 className={styles.title1}>{transformMainMail(studentName)}</h1>
+          <h2 className={styles.title2}>{transformMainMail(studentId)}</h2>
+          <h3 className={styles.title3}>{transformMainMail(studentCollege)}</h3>
+        </div>
+
+        <div className={styles["contact-info"]}>
+          <div className={styles.email}>{transformMainMail(studentMail)}</div>
+          <div className={styles.phone}>
+            {transformMainMail(studentPhoneNumber)}
           </div>
         </div>
       </div>

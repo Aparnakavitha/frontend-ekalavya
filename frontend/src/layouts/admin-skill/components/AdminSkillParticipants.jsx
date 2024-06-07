@@ -5,7 +5,9 @@ import NavButton from "../../../components/buttons/NavButton";
 
 const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
   return (
-    <div className={`${styles["adminskillparticipants-container"]}`}>
+    <div
+      className={`${styles["adminskillparticipants-container"]} ${["padding"]} ${["padding-top"]} ${["padding-bottom"]}`}
+    >
       <div className={`${styles["adminskillparticipants-navbuttons"]}`}>
         {" "}
         {pageName.map((name, index) => (
