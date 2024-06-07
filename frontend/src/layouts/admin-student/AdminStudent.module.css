@@ -51,6 +51,12 @@
   align-items: center;
 }
 
+.addevent-error {
+  margin-top: -5px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
 @media (max-width: 767px) {
   .addevent-form {
     padding: 30px;
@@ -59,11 +65,11 @@
 }
 
 /* ------------------------------- Addevent.css ends here ---------------------------------------- */
+
 /* ------------------------------- Addcollege.css starts here ------------------------------- */
 
 .addcollege-container {
   width: 100%;
-  height: 753px;
   display: flex;
   flex-direction: column;
   background-color: var(--background);
@@ -83,6 +89,12 @@
   font-size: 21px;
   color: white;
   margin-bottom: 10px;
+}
+
+.addcollege-error {
+  margin-top: 5px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
 }
 
 @media (max-width: 768px) {
@@ -120,6 +132,7 @@
 }
 
 /* --------------------------------- Addcollege.css ends here -------------------------------- */
+
 /* ------------------------------- Collegelist.css starts here ------------------------------- */
 
 .collegelist-container {
@@ -155,7 +168,6 @@
 .collegelist-container::-webkit-scrollbar-thumb {
   border-radius: 50px;
 }
-
 
 .collegelist-container::-webkit-scrollbar-corner {
   background: transparent;

@@ -7,6 +7,7 @@
   text-align: left;
   color: white;
 }
+
 .common-welcome {
   font-weight: 500;
   font-size: 28px;
@@ -36,6 +37,7 @@
 }
 
 /* -------------------------------- Greeting.css ends here ----------------------------------- */
+
 /* ------------------------------- basicdetails.css starts here ---------------------------------- */
 
 .basicdetails-form {
@@ -154,6 +156,7 @@
 }
 
 /* ------------------------------- basicdetails.css ends here ------------------------------------ */
+
 /* ------------------------------- combinedskillform.css starts here --------------------------- */
 
 .combinedskillform-form {
@@ -238,68 +241,14 @@
   }
 }
 
+.combinedskillform-error {
+  margin-top: -5px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
 /* ------------------------------- combinedskillform.css ends here --------------------------- */
-/* ------------------------------- addprofilelink.css starts here ---------------------------- */
 
-.addprofilelink-form {
-  width: 100%;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
-  background-blend-mode: lighten;
-  border-radius: 40px;
-  color: var(--white);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-}
-
-.addprofilelink-containerone {
-  width: 100%;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.addprofilelink-head {
-  width: 100%;
-  left: 57px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  color: var(--white);
-  overflow: hidden;
-  word-break: break-word;
-}
-
-.addprofilelink-containerinput {
-  width: 100%;
-  gap: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.addprofilelink-buttoncontainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media (max-width: 767px) {
-  .addprofilelink-form {
-    padding: 30px;
-    border-radius: 30px;
-  }
-}
-
-/* ------------------------------- addprofilelink.css ends here ---------------------------- */
 /* -------------------------------- Action.css starts here -------------------------------- */
 
 .common-content {
@@ -435,6 +384,7 @@
 }
 
 /* --------------------------------- Action.css ends here --------------------------------- */
+
 /* ------------------------------- DeleteBox.css starts here ------------------------------- */
 
 .deletebox-box {
@@ -490,6 +440,7 @@
 }
 
 /* ------------------------------- DeleteBox.css ends here ------------------------------- */
+
 /* ------------------------------- DataView.css starts here ------------------------------- */
 
 .dataview-togglecontainer {
@@ -594,6 +545,7 @@
 }
 
 /* ------------------------------- DataView.css ends here ------------------------------- */
+
 /* ------------------------------- addstudent.css starts here --------------------------------- */
 
 .addstudent-form {
@@ -647,6 +599,12 @@
   align-items: center;
 }
 
+.addstudent-error {
+  margin-top: -5px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
 @media (max-width: 767px) {
   .addstudent-form {
     padding: 30px;
@@ -655,6 +613,7 @@
 }
 
 /* ------------------------------- addstudent.css ends here --------------------------------- */
+
 /* ------------------------------- AddUser.css starts here ------------------------------- */
 
 .adduser-head {
@@ -691,6 +650,19 @@
 
 .adduser-name {
   width: 50%;
+}
+
+.adduser-error {
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
+.adduser-form .adduser-error {
+  margin-top: -20px;
+}
+
+.adduser-name .adduser-error{
+  margin-top: 5px;
 }
 
 @media (max-width: 768px) {
@@ -738,6 +710,7 @@
 }
 
 /* -------------------------------- AddUser.css ends here -------------------------------- */
+
 /* -------------------------------- Modal.css starts here --------------------------------- */
 
 .modal-modalOverlay {

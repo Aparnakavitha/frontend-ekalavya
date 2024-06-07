@@ -64,6 +64,12 @@
   flex-direction: row;
 }
 
+.batchoperations-error {
+  margin-top: -15px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
 @media (max-width: 767px) {
   .batchoperations-form {
     padding: 30px;
@@ -72,6 +78,7 @@
 }
 
 /* ------------------------------- BatchOperation.css ends here -------------------------------- */
+
 /*----------------------------------batchsearch.css starts here-----------------------------------*/
 
 .batchsearch-content {
@@ -110,7 +117,7 @@
 }
 
 .batchsearch-heading {
-  color: white;
+  color: var(--white);
   font-size: 24px;
   font-weight: 500;
   align-items: flex-end;
