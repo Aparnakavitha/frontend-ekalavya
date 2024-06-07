@@ -3,18 +3,23 @@ import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
+import NavButton from "../../../components/buttons/NavButton";
+import TextButton from "../../../components/buttons/TextButton";
 
-const ActionComponent = ({
-  buttonProps,
-  heading,
+const BatchSearch = ({
+  textbuttonProps,
+  textbuttonProps2,
+  navbuttonProps,
+  addbuttonProps,
   searchbarProps,
   filterProps = [],
   resetProps,
   showFiltersAndReset,
-  searchWidth = "full",
+  showTextButton,
+  showReset,
+  showAdd,
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [filterStates, setFilterStates] = useState(
     filterProps.map((filter) => filter.defaultOption || "")
   );
@@ -39,22 +44,29 @@ const ActionComponent = ({
 
   return (
     <div className="padding">
-      <div className={styles["common-content"]}>
-        <div className={styles["common-top"]}>
-          <div className={styles["common-heading"]}>{heading}</div>
-          <div className={styles["common-buttons"]}>
-            <PrimaryButton {...buttonProps} />
+      <div className={`${styles["batchsearch-content"]}`}>
+        <div className={`${styles["batchsearch-top"]}`}>
+          <div className={`${styles["batchsearch-heading"]}`}>
+            <NavButton {...navbuttonProps} />
           </div>
+          {showTextButton && (
+            <div className={`${styles["batchsearch-textbutton"]}`}>
+              <div>
+                <TextButton {...textbuttonProps} />
+              </div>
+              <div>
+                <TextButton {...textbuttonProps2} />
+              </div>
+            </div>
+          )}
         </div>
-        <div className={styles["common-bottom"]}>
-          <div
-            className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}
-          >
+        <div className={`${styles["batchsearch-bottom"]}`}>
+          <div className={`${styles["batchsearch-search"]}`}>
             <Searchbar {...searchbarProps} />
           </div>
-          {showFiltersAndReset && (
-            <div className={styles["common-right"]}>
-              <div className={styles["common-filter"]}>
+          <div className={`${styles["batchsearch-right"]}`}>
+            {showFiltersAndReset && (
+              <div className={`${styles["batchsearch-filter"]}`}>
                 {filterProps.map((props, index) => (
                   <Filter
                     key={index}
@@ -67,15 +79,22 @@ const ActionComponent = ({
                   />
                 ))}
               </div>
-              <div className={styles["common-reset"]}>
+            )}
+            {showAdd && (
+              <div className={`${styles["batchsearch-addbutton"]}`}>
+                <PrimaryButton {...addbuttonProps} />
+              </div>
+            )}
+            {showReset && (
+              <div className={`${styles["batchsearch-addbutton"]}`}>
                 <PrimaryButton {...resetProps} onClick={handleReset} />
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default ActionComponent;
+export default BatchSearch;

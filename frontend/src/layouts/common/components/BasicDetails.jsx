@@ -12,7 +12,7 @@ import {
   validateNumber,
 } from "./validation";
 
-const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
+const BasicDetails = ({ mainHeading, initialData, isEdit,onSubmit }) => {
   const {
     handleSubmit,
     control,
@@ -30,12 +30,11 @@ const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
     setShowProfileLinks(isEdit);
   }, [isEdit]);
 
-  const onSubmit = (data) => {
+  const handleFormSubmit = (data) => {
     if (fileError) {
-      // console.error("Form contains errors. Please fix them before submitting.");
       return;
     }
-    console.log("Form Data:", data);
+    onSubmit(data);
   };
 
   const handleTextButtonClick = () => {
@@ -44,7 +43,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit }) => {
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["basicdetails-form"]}`}
     >
       <div className={`${styles["basicdetails-containerone"]}`}>

@@ -36,7 +36,7 @@ const UpdateSingleField = ({
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className={`${styles["addstudent-form"]}`}
+      className={styles["addstudent-form"]}
     >
       <div className={`${styles["addstudent-containerone"]}`}>
         <header className={`${styles["addstudent-head"]}`}>
@@ -92,7 +92,7 @@ const UpdateSingleField = ({
           )}
         </div>
       </div>
-      <div className={`${styles["addstudent-buttoncontainer"]}`}>
+      <div className={styles["addstudent-buttoncontainer"]}>
         <PrimaryButton variant="primary" content={buttonTitle} width="full" />
       </div>
     </form>
