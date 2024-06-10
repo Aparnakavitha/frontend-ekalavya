@@ -4,7 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styles from "../Home.module.css";
 
-const Project = ({ projects, heading1, heading2 }) => {
+const Project = ({ projects, heading1, heading2, carouselId }) => {
   const [chunkSizeProject, setChunkSizeProject] = useState(3);
   const [showArrows, setShowArrows] = useState(true);
 
@@ -36,7 +36,7 @@ const Project = ({ projects, heading1, heading2 }) => {
 
   const handleArrow = () => {
     const arrows = document.querySelectorAll(
-      ".projects-carousel .control-arrow"
+        `#${carouselId} .control-arrow`
     );
     arrows.forEach((arrow) => {
       arrow.style.background = "none";
@@ -51,7 +51,7 @@ const Project = ({ projects, heading1, heading2 }) => {
 
   const handleDots = (currentSlide) => {
     const dots = document.querySelectorAll(
-      ".projects-carousel .control-dots .dot"
+        `#${carouselId} .control-dots .dot`
     );
     const visibleNormalDots = 3;
     const visibleSmallDots = 2;
@@ -88,7 +88,7 @@ const Project = ({ projects, heading1, heading2 }) => {
   }, [projects, chunkSizeProject]);
 
   return (
-    <div className={`${styles["carousel-header"]} ${styles["projects"]}`}>
+    <div className={`${styles["carousel-header"]} ${styles["projects"]}`} id={carouselId}>
       <div className={`${styles["carousel-heading"]}`}>
         <a className={`${styles["carousel-heading2"]}`}>{heading2}</a>
         <a className={`${styles["carousel-heading1"]}`}>{heading1}</a>
