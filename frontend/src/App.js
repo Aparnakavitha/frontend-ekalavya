@@ -1,11 +1,12 @@
 import "./App.css";
 import Admin from "./pages/admin/Admin";
+
 function App() {
   return (
     <div>
       <div className="App">
         <header className="App-header">
-          <Admin/>
+          <Admin />
         </header>
       </div>
     </div>
