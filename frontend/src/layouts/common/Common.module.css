@@ -999,7 +999,7 @@
   margin-top: -20px;
 }
 
-.adduser-name .adduser-error{
+.adduser-name .adduser-error {
   margin-top: 5px;
 }
 
@@ -1182,6 +1182,7 @@
 .batchsearch-filter {
   display: flex;
   flex-direction: row;
+  gap: 8px;
 }
 
 .batchsearch-search {
