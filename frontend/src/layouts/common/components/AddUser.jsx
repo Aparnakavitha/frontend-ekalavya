@@ -8,6 +8,7 @@ import {
   validateAndCleanInput,
   validateEmail,
 } from "../../common/components/validation";
+
 const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
   const {
     handleSubmit,

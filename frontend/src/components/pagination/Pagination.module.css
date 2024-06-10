@@ -14,6 +14,7 @@
   cursor: pointer;
   transition: background-color 0.3s;
   margin-right: 5px;
+  min-width: 44px;
 }
 
 .button {

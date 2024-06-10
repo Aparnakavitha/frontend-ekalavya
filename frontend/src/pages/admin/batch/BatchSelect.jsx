@@ -1,14 +1,20 @@
 import React from "react";
-import { DataView, Greeting } from "../../../layouts/common";
-import ProfileCard from "../../../components/cards/ProfileCard";
-import BatchSelectData from "./BatchSelectData";
+import { Greeting } from "../../../layouts/common";
 import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBatchSearch";
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
+
+const greeting = {
+  welcome: "Welcome Back",
+  name: "John",
+  info: "Here is the information about",
+  profile: "Batches",
+  showButtons: false,
+};
 
 const BatchSelect = () => {
   return (
     <div>
-      <Greeting {...BatchSelectData.greeting} />
+      <Greeting {...greeting} />
       <AdminBatchSearch />
       <AdminBatchParticipants />
     </div>

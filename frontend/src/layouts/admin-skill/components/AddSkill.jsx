@@ -41,6 +41,7 @@ const AddSkill = () => {
   };
 
   if (!isVisible) return null;
+
   return (
     <div className={`${styles["addskill-boxcontainer"]}`}>
       <div className={`${styles["addskill-layoutcontainer"]}`}>
