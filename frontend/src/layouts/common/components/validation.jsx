@@ -15,16 +15,16 @@ export const validatePhone = (value) => {
   if (!value) {
     return true;
   }
-
-  if (!/^\d+$/.test(value)) {
+  const valueStr = value.toString();
+  if (!/^\d+$/.test(valueStr)) {
     return "Invalid phone number. The phone number must contain only digits.";
   }
-
-  if (value.length !== 10) {
+  console.log(valueStr.length);
+  if (valueStr.length !== 10) {
     return "Invalid phone number. The phone number must contain exactly 10 digits.";
   }
 
-  if (!isMobilePhone(value)) {
+  if (!isMobilePhone(valueStr)) {
     return "Invalid phone number. Please enter a valid phone number.";
   }
 
@@ -103,7 +103,7 @@ export const validateStartDate = (value, allValues) => {
 //End Date Validation
 export const validateEndDate = (value, allValues) => {
   const startDate = allValues.startDate;
-  if (value === undefined) {
+  if (value === undefined || !value) {
     return "End date is required";
   }
   if (startDate && isBefore(value, startDate)) {
