@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form";
 import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Input from "../../../components/inputbox/InputBox";
-import { validateAndCleanInput } from "../../common/components/validation";
+import { validateAndCleanInput,validateCountry,validateState } from "../../common/components/validation";
 
 const AddCollege = ({ onSubmit }) => {
   const {
@@ -99,7 +99,7 @@ const AddCollege = ({ onSubmit }) => {
               control={control}
               rules={{
                 required: "State is required",
-                validate: validateAndCleanInput,
+                validate: validateState,
               }}
               render={({ field }) => (
                 <Input
@@ -122,7 +122,7 @@ const AddCollege = ({ onSubmit }) => {
               control={control}
               rules={{
                 required: "Country is required",
-                validate: validateAndCleanInput,
+                validate: validateCountry,
               }}
               render={({ field }) => (
                 <Input
