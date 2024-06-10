@@ -3,7 +3,7 @@
   src: url("../../frontend/public/Fonts/Urbanist-VariableFont_wght.ttf")
     format("truetype");
 }
- 
+
 * {
   margin: 0;
   padding: 0;
@@ -11,7 +11,7 @@
   font-family: "Urbanist", sans-serif;
   scroll-behavior: smooth;
 }
- 
+
 :root {
   --primary-color: #baff66;
   --secondary-color: #1a1a1a;
@@ -36,9 +36,46 @@ body {
 }
 
 .padding-top {
-  padding-top: 3vh;
+  padding-top: 0vh;
 }
 
 .padding-bottom {
   padding-bottom: 4vh;
+}
+
+.flexStart {
+  display: flex;
+  min-height: 100vh;
+}
+
+.profilenotificationbox {
+  position: fixed;
+  right: 0;
+  z-index: 1000;
+  padding-top: 3vh;
+}
+
+.page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.statecontent {
+  padding-top: 13vh;
+}
+
+@media screen and (max-width: 767px) {
+  .flexStart {
+    flex-direction: column;
+  }
+
+  .statecontent {
+    padding-top: 5vh;
+  }
+
+  .profilenotificationbox {
+    display: none;
+  }
 }

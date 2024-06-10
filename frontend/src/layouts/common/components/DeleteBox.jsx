@@ -18,13 +18,11 @@ const DeleteBox = ({ title, message, buttonText, onCancel, onConfirm }) => {
           variant="primary"
           width="full"
           onClick={onCancel}
-          onClick={onCancel}
         />
         <PrimaryButton
           content={buttonText}
           variant="primary"
           width="full"
-          onClick={onConfirm}
           onClick={onConfirm}
         />
       </div>

@@ -49,6 +49,7 @@ const StudentProfileInfo = (props) => {
 
   const handleFormSubmit = (formData) => {
     console.log(formData, "Form submitted successfully");
+    handleCloseEditBasicDetails();
   };
 
   const editBox = {
@@ -67,6 +68,7 @@ const StudentProfileInfo = (props) => {
       aboutMe: "Mumble mumble mumble",
     },
     isEdit: true,
+    onSubmit:handleFormSubmit
   };
 
   const deleteBox = {
