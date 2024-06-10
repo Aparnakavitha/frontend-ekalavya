@@ -8,7 +8,7 @@ import image from "../../../assets/pic.png";
 const StudentProfileInfo = (props) => {
   const sample = {
     role: "student",
-    profilepicture: image,
+    profilepic: image,
     name: "Emma Watson",
     college: "Christ University",
     dob: "1990-01-01",
@@ -68,7 +68,7 @@ const StudentProfileInfo = (props) => {
       aboutMe: "Mumble mumble mumble",
     },
     isEdit: true,
-    onSubmit:handleFormSubmit
+    onSubmit: handleFormSubmit,
   };
 
   const deleteBox = {

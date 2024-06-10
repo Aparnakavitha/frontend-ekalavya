@@ -5,36 +5,36 @@ import StudentProfileInfo from "../../../layouts/student-profile/components/Stud
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
 
 const Profile = () => {
-  const profile_props = {
-    name: "Emma Watson",
-    studentId: "STD1537",
-    college: "Christ University",
-    dob: "Jan 21 2001",
-    email: "emmawatson@gmail.com",
-    phone: "(+91) 8337254637",
-    linkedin: "linkedin/emmawatson",
-    github: "github.com/emmawatson153",
-    address: "Bengaluru, 685789, Karnataka, India",
-    qualifications: [
-      {
-        name: "Master of Business Administration (MBA)",
-        university: "Christ University",
-        cgpa: 7.2,
-        start: "May 2022",
-        end: "April 2024",
-        specialization: "Marketing",
-      },
+  // const profile_props = {
+  //   name: "Emma Watson",
+  //   studentId: "STD1537",
+  //   college: "Christ University",
+  //   dob: "Jan 21 2001",
+  //   email: "emmawatson@gmail.com",
+  //   phone: "(+91) 8337254637",
+  //   linkedin: "linkedin/emmawatson",
+  //   github: "github.com/emmawatson153",
+  //   address: "Bengaluru, 685789, Karnataka, India",
+  //   qualifications: [
+  //     {
+  //       name: "Master of Business Administration (MBA)",
+  //       university: "Christ University",
+  //       cgpa: 7.2,
+  //       start: "May 2022",
+  //       end: "April 2024",
+  //       specialization: "Marketing",
+  //     },
 
-      {
-        name: "Bachelor of Technology (B.Tech)",
-        university: "Christ University",
-        cgpa: 7.2,
-        start: "May 2022",
-        end: "April 2024",
-        specialization: "Marketing",
-      },
-    ],
-  };
+  //     {
+  //       name: "Bachelor of Technology (B.Tech)",
+  //       university: "Christ University",
+  //       cgpa: 7.2,
+  //       start: "May 2022",
+  //       end: "April 2024",
+  //       specialization: "Marketing",
+  //     },
+  //   ],
+  // };
 
   return (
     <div>

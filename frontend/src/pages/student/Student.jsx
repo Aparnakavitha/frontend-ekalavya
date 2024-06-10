@@ -17,6 +17,7 @@ import Footer from "../../layouts/common/components/Footer";
 import Profile from "./student-profile/Profile";
 import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
 import StudentEventDescription from "../../layouts/student-event-description/components/StudentEventDescription";
+import StudentEvents from "../../pages/student/student-events/StudentEvents";
 
 const StudentContent = () => {
   const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
@@ -64,7 +65,7 @@ const StudentContent = () => {
   const renderContent = () => {
     switch (currentPage) {
       case "events":
-        return <StudentEventDescription />;
+        return <StudentEvents />;
       case "skills":
         return <SkillLayout />;
       default:
