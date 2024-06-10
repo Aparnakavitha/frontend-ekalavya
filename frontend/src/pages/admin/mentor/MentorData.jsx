@@ -163,7 +163,7 @@ const MentorData = {
       { key: "studentPhoneNumber", displayName: "Phone Number" },
     ],
     toggle: true,
-    itemsPerPage: 12,
+    itemsPerPage: 15,
   },
 };
 

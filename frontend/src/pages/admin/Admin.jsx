@@ -77,12 +77,12 @@ const AdminContent = () => {
         return <Student />;
       case "mentor":
         return <Mentor />;
-        case "events":
-          return <Event />;
-          case "batches":
-            return <BatchList />;
-            case "skills":
-              return <Skill />;
+      case "events":
+        return <Event />;
+      case "batches":
+        return <BatchList />;
+      case "skills":
+        return <Skill />;
       default:
         return <Student />;
     }

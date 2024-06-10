@@ -29,7 +29,7 @@ const SkillData = {
       { key: "Count", displayName: "Count" },
     ],
     toggle: true,
-    itemsPerPage: 12,
+    itemsPerPage: 15,
   },
 };
 

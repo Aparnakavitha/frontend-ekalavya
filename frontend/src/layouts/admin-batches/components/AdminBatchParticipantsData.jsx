@@ -218,7 +218,7 @@ const batchParticipantsData = {
     { key: "studentPhoneNumber", displayName: "Phone Number" },
   ],
   toggle: true,
-  itemsPerPage: 12,
+  itemsPerPage: 15,
   deleteProps: {
     title: "Confirmation Required",
     message: "Are you sure you want to remove this user?",
