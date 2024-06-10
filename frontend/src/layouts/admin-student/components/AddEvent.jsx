@@ -3,7 +3,7 @@ import styles from "../AdminStudent.module.css";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
-
+ 
 const Addevent = ({ mainHeading, options, onSubmit }) => {
   const {
     handleSubmit,
@@ -11,11 +11,11 @@ const Addevent = ({ mainHeading, options, onSubmit }) => {
     getValues,
     formState: { errors },
   } = useForm();
-
+ 
   const handleFormSubmit = (data) => {
     onSubmit(data);
   };
-
+ 
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
@@ -52,5 +52,5 @@ const Addevent = ({ mainHeading, options, onSubmit }) => {
     </form>
   );
 };
-
+ 
 export default Addevent;
