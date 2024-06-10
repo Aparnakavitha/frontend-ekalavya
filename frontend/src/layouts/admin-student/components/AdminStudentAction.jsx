@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ActionComponent from "../../common/components/Action";
 import AddUser from "../../common/components/AddUser";
 import Modal from "../../common/components/Modal";
-import AdminStudentActionData from "./SampleData";
+import AdminStudentActionData from "./StudentActionData";
 
 const AdminStudentAction = () => {
   const [isOpen, setIsOpen] = useState(false);
