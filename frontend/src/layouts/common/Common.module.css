@@ -1,0 +1,1300 @@
+/* ------------------------------- SideBar.css starts here ------------------------------- */
+
+.sidebar {
+  background-color: #494949;
+  width: 250px;
+  height: 100vh;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  z-index: 1500;
+  transition: left 0.8s ease-in-out;
+}
+
+.sidebarcontainer {
+  width: 250px;
+  height: 100vh;
+}
+
+.sidebar-headerresp {
+  width: 250px;
+}
+
+.sidebar-headingin img {
+  font-size: 32px;
+  line-height: 35px;
+  padding-top: 30px;
+  padding-left: 14px;
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.sidebar-toggle {
+  display: none;
+}
+
+.sidebar-headerbutton {
+  position: absolute;
+  left: 32px;
+}
+
+.sidebar-card {
+  display: none;
+}
+
+.sidebar-content {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    left: -820px;
+    width: 100%;
+  }
+
+  .sidebar-headingin img {
+    display: flex;
+    line-height: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    width: 120px;
+    height: auto;
+    align-items: center;
+  }
+
+  .sidebar-headingout img {
+    display: flex;
+    justify-content: center;
+    line-height: 0px;
+    width: 120px;
+    height: auto;
+    align-items: center;
+  }
+
+  .sidebar-headerresp {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #494949;
+    height: 65px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .sidebar-headercontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .sidebar-headercontainerout {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .sidebar-toggle {
+    display: flex;
+    cursor: pointer;
+  }
+
+  .sidebar-list {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0px;
+    gap: 0px;
+  }
+
+  .sidebar-hamburger {
+    cursor: pointer;
+    font-size: 25px;
+    color: white;
+  }
+
+  .sidebar-crossicon {
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+  }
+
+  .sidebar.show {
+    left: 0;
+  }
+
+  .sidebar-card {
+    display: flex;
+    position: absolute;
+    bottom: 30px;
+    justify-content: center;
+    padding-left: 10px;
+  }
+
+  .sidebar-headerbutton {
+    position: absolute;
+    bottom: 120px;
+    left: 34px;
+  }
+
+  .sidebarcontainer {
+    width: 100%;
+    height: 65px;
+  }
+}
+
+@media (max-width: 1113px) and (min-width: 768px) {
+  .sidebar {
+    width: 190px;
+  }
+
+  .sidebar-headingin img {
+    width: 120px;
+    height: auto;
+  }
+
+  .sidebarcontainer {
+    width: 190px;
+  }
+}
+
+/* ------------------------------- SideBar.css ends here ------------------------------- */
+
+/* ------------------------------- Footer.css starts here ------------------------------- */
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  padding-top: 26px;
+}
+
+.footer-containerleft {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.footer-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background-color: var(--background);
+}
+
+.footer-logobox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-logoboxleft {
+  padding-top: 26px;
+  padding-left: 5vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.footer-img {
+  height: 40px;
+  width: 163px;
+}
+
+.footer-quote {
+  color: var(--white);
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.footer-quoteleft {
+  color: var(--white);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: left;
+}
+
+.footer-footerbox {
+  width: 100%;
+  height: 8px;
+  background: var(--primary-color);
+}
+
+.footer-bottumbox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.footer-copyrightcontent {
+  font-family: Urbanist;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 400;
+  padding-bottom: 30px;
+}
+
+.footer-copyrightcontent2 {
+  font-family: Urbanist;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration-line: underline;
+  padding-bottom: 30px;
+}
+
+.footer-copyright {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  color: var(--white);
+}
+
+.footer-copyrightleft {
+  padding-left: 5vw;
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+  color: var(--white);
+}
+
+@media (max-width: 767px) {
+  .footer-copyrightcontent {
+    font-family: Urbanist;
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 400;
+  }
+
+  .footer-copyrightcontent2 {
+    font-size: 10px;
+  }
+
+  .footer-copyright,
+  .footer-copyrightleft {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-quote {
+    padding: 10px;
+    font-size: 24px;
+  }
+
+  .footer-quoteleft {
+    padding: 10px;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .footer-containerleft {
+    padding-left: 0px;
+    align-items: center;
+  }
+
+  .footer-logoboxleft {
+    padding-left: 0px;
+    align-items: center;
+    padding: 0px 3vw;
+  }
+
+  .footer-copyrightleft {
+    padding-left: 0px;
+    justify-content: center;
+  }
+}
+
+/* ------------------------------- Footer.css ends here ------------------------------- */
+
+/* -------------------------------- Greeting.css starts here ----------------------------------- */
+
+.common-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: white;
+}
+
+.common-welcome {
+  font-weight: 500;
+  font-size: 28px;
+  letter-spacing: -0.41px;
+}
+
+.common-header {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.59px;
+  display: flex;
+  gap: 100px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.common-greenlink {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 25px;
+}
+
+.common-greenlink a {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+@media (max-width: 767px) {
+  .common-header {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .common-greenlink {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+  }
+}
+
+/* -------------------------------- Greeting.css ends here ----------------------------------- */
+
+/* ------------------------------- basicdetails.css starts here ---------------------------------- */
+
+.basicdetails-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.basicdetails-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.basicdetails-containerone {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.basicdetails-containerinput-out {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.basicdetails-containerinput-inter {
+  gap: 7px;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.basicdetails-containerinput-in {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+  width: 100%;
+}
+
+.basicdetails-icontext {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 12px;
+  width: 100%;
+}
+
+.basicdetails-buttoncontainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 17px;
+}
+
+.basicdetails-error {
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
+.basicdetails-links {
+  width: 32%;
+}
+
+.basicdetails-containerinput-links {
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.basicdetails-containerinput-links .basicdetails-error {
+  margin-top: 5px;
+}
+
+.basicdetails-containerinput-out .basicdetails-error {
+  margin-top: -15px;
+}
+
+@media (max-width: 767px) {
+  .basicdetails-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+
+  .basicdetails-containerinput-links {
+    flex-direction: column;
+  }
+
+  .basicdetails-links {
+    width: 100%;
+  }
+}
+
+/* ------------------------------- basicdetails.css ends here ------------------------------------ */
+
+/* ------------------------------- combinedskillform.css starts here --------------------------- */
+
+.combinedskillform-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.combinedskillform-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.combinedskillform-containerone {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.combinedskillform-containerinput {
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.combinedskillform-buttoncontainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.combinedskillform-message {
+  font-size: 14px;
+  color: var(--white);
+}
+
+.combinedskillform-skillname {
+  color: var(--primary-color);
+  margin-left: 5px;
+}
+
+.combinedskillform-allheading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.combinedskillform-text {
+  font-size: 12px;
+  left: 57px;
+}
+
+@media (max-width: 767px) {
+  .combinedskillform-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+}
+
+.combinedskillform-error {
+  margin-top: -5px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
+/* ------------------------------- combinedskillform.css ends here --------------------------- */
+
+/* -------------------------------- Action.css starts here -------------------------------- */
+
+.common-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.common-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.common-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.common-right {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.common-heading {
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  align-items: flex-end;
+}
+
+.common-filter {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.common-search {
+  width: 33%;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .common-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .common-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .common-heading {
+    font-size: 18px;
+  }
+
+  .common-search.common-large,
+  .common-search.common-medium,
+  .common-search.common-small {
+    width: 100%;
+  }
+
+  .common-buttons {
+    width: 100%;
+  }
+
+  .common-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 767px) {
+  .common-content {
+    padding: 0;
+    gap: 20px;
+  }
+
+  .common-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .common-heading {
+    font-size: 18px;
+    order: 1;
+  }
+
+  .common-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .common-search {
+    width: 100%;
+    order: 2;
+  }
+
+  .common-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    order: 3;
+  }
+
+  .common-reset {
+    width: 100%;
+  }
+
+  .common-buttons {
+    width: 100%;
+    order: 4;
+  }
+
+  .common-filter {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+}
+
+/* --------------------------------- Action.css ends here --------------------------------- */
+
+/* ------------------------------- DeleteBox.css starts here ------------------------------- */
+
+.deletebox-box {
+  max-width: 100%;
+  border-radius: 40px;
+  background: var(--background);
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  gap: 10px;
+}
+
+.deletebox-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.deletebox-title {
+  color: var(--white);
+  width: 100%;
+  font-weight: 500;
+  font-size: 21px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.deletebox-message {
+  color: var(--white);
+  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.deletebox-button {
+  width: 100%;
+  max-width: 375px;
+  text-align: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .deletebox-box {
+    padding: 35px;
+    border-radius: 30px;
+  }
+}
+
+/* ------------------------------- DeleteBox.css ends here ------------------------------- */
+
+/* ------------------------------- DataView.css starts here ------------------------------- */
+
+.dataview-togglecontainer {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 24px;
+}
+
+.dataview-togglebutton {
+  color: var(--white);
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  cursor: pointer;
+  margin: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dataview-togglebutton:hover {
+  color: var(--primary-color);
+}
+
+.dataview-togglebutton.selected {
+  color: var(--primary-color);
+}
+
+.dataview-icons {
+  font-size: 24px;
+}
+
+.dataview-cardscontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 21px;
+}
+
+.dataview-tablecontainer {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral600) #ffffff00;
+}
+
+.dataview-pagination {
+  margin-top: 24px;
+}
+
+.dataview-invisible {
+  visibility: hidden;
+}
+
+.dataview-eventcard {
+  flex-basis: 336px;
+  height: 75px;
+}
+
+.dataview-primarycard {
+  flex-basis: 287px;
+  height: 193px;
+}
+
+.dataview-profilecard {
+  flex-basis: 227px;
+  height: 228px;
+}
+
+.dataview-skillbatchcardskill {
+  flex-basis: 232px;
+  height: 151px;
+}
+
+.dataview-skillbatchcardbatch {
+  flex-basis: 282px;
+  height: 168px;
+}
+
+.dataview-skillcard {
+  flex-basis: 274px;
+  height: 74px;
+}
+
+.dataview-skilluser {
+  flex-basis: 263px;
+  height: 168px;
+}
+
+.dataview-studentcard {
+  flex-basis: 230px;
+  height: 230px;
+}
+
+.dataview-testimonialcard {
+  flex-basis: 253px;
+  height: 321px;
+}
+
+@media (max-width: 767px) {
+  .dataview-cardscontainer {
+    justify-content: center;
+  }
+}
+
+/* ------------------------------- DataView.css ends here ------------------------------- */
+
+/* ------------------------------- addstudent.css starts here --------------------------------- */
+
+.addstudent-form {
+  width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: var(--background);
+  background-blend-mode: lighten;
+  border-radius: 40px;
+  color: var(--white);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+}
+
+.addstudent-head {
+  width: 100%;
+  left: 57px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--white);
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.addstudent-containerone {
+  width: 100%;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.addstudent-containerinput {
+  gap: 10px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.addstudent-buttoncontainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addstudent-error {
+  margin-top: -5px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
+.addstudent-allheading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.addstudent-message {
+  font-size: 14px;
+  color: var(--white);
+}
+
+.addstudent-skillname {
+  color: var(--primary-color);
+  margin-left: 5px;
+}
+
+@media (max-width: 767px) {
+  .addstudent-form {
+    padding: 30px;
+    border-radius: 30px;
+  }
+}
+
+/* ------------------------------- addstudent.css ends here --------------------------------- */
+
+/* ------------------------------- AddUser.css starts here ------------------------------- */
+
+.adduser-head {
+  font-size: 21px;
+  color: white;
+  margin-bottom: 25px;
+}
+
+.adduser-container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  border-radius: 40px;
+  padding: 50px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+}
+
+.adduser-field {
+  padding: 0%;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  justify-content: space-between;
+}
+
+.adduser-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.adduser-name {
+  width: 50%;
+}
+
+.adduser-error {
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
+.adduser-form .adduser-error {
+  margin-top: -20px;
+}
+
+.adduser-name .adduser-error {
+  margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .adduser-container {
+    padding: 30px;
+    border-radius: 30px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .adduser-head {
+    font-size: 18px;
+  }
+
+  .adduser-form {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .adduser-container {
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    height: fit-content;
+  }
+
+  .adduser-head {
+    font-size: 16px;
+  }
+
+  .adduser-form {
+    gap: 15px;
+  }
+
+  .adduser-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .adduser-name {
+    width: 100%;
+  }
+}
+
+/* -------------------------------- AddUser.css ends here -------------------------------- */
+
+/* -------------------------------- Modal.css starts here --------------------------------- */
+
+.modal-modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.modal-modalContent {
+  position: relative;
+  max-height: 90%;
+  overflow-y: auto;
+  outline: transparent;
+}
+
+.modal-modalContent::-webkit-scrollbar {
+  width: 0px;
+}
+
+.modal-width-small {
+  width: 549px;
+}
+
+.modal-width-medium {
+  width: 704px;
+}
+
+.modal-width-large {
+  width: 914px;
+}
+
+@media (max-width: 480px) {
+  .modal-modalContent {
+    padding: 0 15px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 980px) {
+  .modal-modalContent {
+    padding: 0 35px;
+  }
+}
+
+/* -------------------------------- Modal.css ends here ----------------------------------- */
+
+/* -------------------------------- ShowCards.css starts here --------------------------------- */
+
+.showcards-total {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.showcards-sidebar {
+  width: 250px;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  background-color: grey;
+}
+
+.showcards-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.showcards-heading {
+  color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 22.4px;
+  letter-spacing: -0.41px;
+  align-items: flex-end;
+}
+
+/* -------------------------------- ShowCards.css ends here ----------------------------------- */
+
+/*----------------------------------batchsearch.css starts here-----------------------------------*/
+
+.batchsearch-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.batchsearch-top {
+  display: flex;
+  padding-bottom: 16px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.batchsearch-textbutton {
+  display: flex;
+  gap: 10px;
+}
+
+.batchsearch-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.batchsearch-right {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.batchsearch-heading {
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  align-items: flex-end;
+}
+
+.batchsearch-filter {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.batchsearch-search {
+  width: 33%;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .batchsearch-top {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .batchsearch-heading {
+    display: flex;
+    width: 100%;
+  }
+
+  .batchsearch-textbutton {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .batchsearch-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .batchsearch-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .batchsearch-search {
+    width: 100%;
+  }
+
+  .batchsearch-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .batchsearch-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+  }
+
+  .batchsearch-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 0;
+  }
+
+  .batchsearch-textbutton {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0px 7px;
+  }
+
+  .batchsearch-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .batchsearch-heading {
+    font-size: 18px;
+  }
+
+  .batchsearch-search {
+    width: 100%;
+  }
+
+  .batchsearch-button {
+    width: 100%;
+  }
+
+  .batchsearch-right {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/*---------------------------------batchsearch.css ends here-----------------------------------*/
