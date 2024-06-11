@@ -114,7 +114,7 @@ const CombinedSkillForm = ({
                 name="selectedLevel"
                 control={control}
                 rules={{
-                  required: "Level name is required",
+                  required: "Level is required",
                 }}
                 render={({ field }) => (
                   <InputDropdown

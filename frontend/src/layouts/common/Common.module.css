@@ -944,6 +944,25 @@
   font-size: 0.875rem;
 }
 
+.addstudent-allheading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.addstudent-message {
+  font-size: 14px;
+  color: var(--white);
+}
+
+.addstudent-skillname {
+  color: var(--primary-color);
+  margin-left: 5px;
+}
+
 @media (max-width: 767px) {
   .addstudent-form {
     padding: 30px;
