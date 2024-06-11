@@ -293,7 +293,7 @@ const EventData = {
       { key: "description", displayName: "Description" },
     ],
     toggle: true,
-    itemsPerPage: 9,
+    itemsPerPage: 12,
   },
 };
 

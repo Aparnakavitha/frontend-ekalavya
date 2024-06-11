@@ -13,6 +13,7 @@ const SkillBatchCard = (props) => {
     handleDeleteClick,
     handleEditClick,
     canEdit,
+    canDelete,
   } = props;
 
   const transformMainHeading = (heading, cardType) => {
@@ -42,7 +43,7 @@ const SkillBatchCard = (props) => {
 
   let formattedCount;
 
-  if (cardType === "skill" && canEdit) {
+  if (cardType === "skill" && canEdit && canDelete) {
     const level = Count !== undefined ? Math.min(Math.max(Count, 1), 5) : 1;
     formattedCount = `Level ${level}`;
   } else {
@@ -77,12 +78,20 @@ const SkillBatchCard = (props) => {
           </div>
           {cardType === "skill" && (
             <>
-              <FaTrash
-                className={styles.deleteIcon}
-                onClick={handleDeleteIconClick}
-                title="Delete"
-              />
-              {canEdit && (
+              {canDelete ? (
+                <FaTrash
+                  className={styles.deleteIcon}
+                  onClick={handleDeleteIconClick}
+                  title="Delete"
+                />
+              ) : canEdit ? (
+                <MdModeEdit
+                  className={styles.deleteIcon}
+                  onClick={handleEditIconClick}
+                  title="Edit"
+                />
+              ) : null}
+              {canEdit && canDelete && (
                 <MdModeEdit
                   className={styles.editIcon}
                   onClick={handleEditIconClick}

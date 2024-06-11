@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import ActionComponent from "../../common/components/Action";
-import AddUser from "../../common/components/AddUser";
+import ShowCards from "../../common/components/ShowCards";
+import EventData from "./EventData";
 import Modal from "../../common/components/Modal";
-import AdminStudentActionData from "./StudentActionData";
+import CardRow from "./Cardrow";
+import Addevent from "./AddEvent";
 
-const AdminStudentAction = () => {
+const EventList = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -20,25 +21,23 @@ const AdminStudentAction = () => {
     handleCloseModal();
   };
 
-  const actionData = {
-    ...AdminStudentActionData,
-    buttonProps: {
-      ...AdminStudentActionData.buttonProps,
+  const heading = {
+    ...EventData.heading,
+    textbuttonprops: {
+      ...EventData.heading.textbuttonprops,
       onClick: handleOpenModal,
     },
   };
 
   return (
     <div>
-      <ActionComponent {...actionData} />
+      <ShowCards {...heading} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
-        <AddUser
-          {...AdminStudentActionData.adduserprops}
-          onSubmit={handleFormSubmit}
-        />
+        <Addevent {...EventData.addevent} onSubmit={handleFormSubmit} />
       </Modal>
+      <CardRow {...EventData.eventcards} />
     </div>
   );
 };
 
-export default AdminStudentAction;
+export default EventList;

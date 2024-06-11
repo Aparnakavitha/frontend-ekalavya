@@ -16,7 +16,12 @@ const CombinedSkillForm = ({
   initialData,
   onSubmit,
 }) => {
-  const { handleSubmit, control, getValues } = useForm({
+  const {
+    handleSubmit,
+    control,
+    getValues,
+    formState: { errors },
+  } = useForm({
     defaultValues: initialData,
   });
 
@@ -49,6 +54,9 @@ const CombinedSkillForm = ({
               <Controller
                 name="skill"
                 control={control}
+                rules={{
+                  required: "Skill name is required",
+                }}
                 render={({ field }) => (
                   <InputDropdown
                     {...field}
@@ -58,6 +66,11 @@ const CombinedSkillForm = ({
                   />
                 )}
               />
+              {errors.skill && (
+                <p className={`${styles["combinedskillform-error"]}`}>
+                  {errors.skill.message}
+                </p>
+              )}
               <div className={`${styles["combinedskillform-text"]}`}>
                 {displaytext}
               </div>
@@ -80,6 +93,9 @@ const CombinedSkillForm = ({
               <Controller
                 name="selectedSkills"
                 control={control}
+                rules={{
+                  required: "Skill name is required",
+                }}
                 render={({ field }) => (
                   <InputDropdown
                     {...field}
@@ -89,9 +105,17 @@ const CombinedSkillForm = ({
                   />
                 )}
               />
+              {errors.selectedSkills && (
+                <p className={`${styles["combinedskillform-error"]}`}>
+                  {errors.selectedSkills.message}
+                </p>
+              )}
               <Controller
                 name="selectedLevel"
                 control={control}
+                rules={{
+                  required: "Level is required",
+                }}
                 render={({ field }) => (
                   <InputDropdown
                     {...field}
@@ -101,6 +125,11 @@ const CombinedSkillForm = ({
                   />
                 )}
               />
+              {errors.selectedLevel && (
+                <p className={`${styles["combinedskillform-error"]}`}>
+                  {errors.selectedLevel.message}
+                </p>
+              )}
             </>
           )}
         </div>

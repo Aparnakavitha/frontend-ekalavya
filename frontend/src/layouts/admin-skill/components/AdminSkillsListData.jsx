@@ -91,6 +91,34 @@ const skillCardData = {
       cardType: "skill",
       canEdit: false,
     },
+    {
+      miniHeading: "SKILL478614",
+      mainHeading: "Python",
+      Count: 40,
+      cardType: "skill",
+      canEdit: false,
+    },
+    {
+      miniHeading: "SKILL478615",
+      mainHeading: "Python",
+      Count: 40,
+      cardType: "skill",
+      canEdit: false,
+    },
+    {
+      miniHeading: "SKILL4786116",
+      mainHeading: "Python",
+      Count: 40,
+      cardType: "skill",
+      canEdit: false,
+    },
+    {
+      miniHeading: "SKILL4786117",
+      mainHeading: "Python",
+      Count: 40,
+      cardType: "skill",
+      canEdit: false,
+    },
   ],
   tableColumns: [
     { key: "miniHeading", displayName: "Skill ID" },
@@ -98,7 +126,7 @@ const skillCardData = {
     { key: "Count", displayName: "Count" },
   ],
   toggle: false,
-  itemsPerPage: 12,
+  itemsPerPage: 15,
   deleteProps: {
     title: "Confirmation Required",
     message: "Are you sure you want to remove this skill?",

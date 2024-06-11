@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import ActionComponent from "../../common/components/Action";
-import AddUser from "../../common/components/AddUser";
+import ShowCards from "../../common/components/ShowCards";
+import SkillData from "./SkillData";
 import Modal from "../../common/components/Modal";
-import AdminStudentActionData from "./StudentActionData";
+import { CombinedSkillForm } from "../../common";
+import CardRow from "./Cardrow";
 
-const AdminStudentAction = () => {
+const SkillList = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -20,25 +21,26 @@ const AdminStudentAction = () => {
     handleCloseModal();
   };
 
-  const actionData = {
-    ...AdminStudentActionData,
-    buttonProps: {
-      ...AdminStudentActionData.buttonProps,
+  const heading = {
+    ...SkillData.heading,
+    textbuttonprops: {
+      ...SkillData.heading.textbuttonprops,
       onClick: handleOpenModal,
     },
   };
 
   return (
     <div>
-      <ActionComponent {...actionData} />
+      <ShowCards {...heading} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
-        <AddUser
-          {...AdminStudentActionData.adduserprops}
+        <CombinedSkillForm
+          {...SkillData.addSkill}
           onSubmit={handleFormSubmit}
         />
       </Modal>
+      <CardRow {...SkillData.skillcards} />
     </div>
   );
 };
 
-export default AdminStudentAction;
+export default SkillList;

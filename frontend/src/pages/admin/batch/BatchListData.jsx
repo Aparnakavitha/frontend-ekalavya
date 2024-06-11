@@ -195,7 +195,7 @@ const BatchListData = {
       { key: "Count", displayName: "Count" },
     ],
     toggle: true,
-    itemsPerPage: 9,
+    itemsPerPage: 12,
   },
 };
 
