@@ -15,6 +15,9 @@ const UpdateSingleField = ({
   onSubmit,
   isSelect,
   options,
+  message,
+  skillId,
+  isEdit,
 }) => {
   const {
     handleSubmit,
@@ -39,9 +42,19 @@ const UpdateSingleField = ({
       className={styles["addstudent-form"]}
     >
       <div className={`${styles["addstudent-containerone"]}`}>
-        <header className={`${styles["addstudent-head"]}`}>
-          {mainHeading}
-        </header>
+        <div className={`${styles["addstudent-allheading"]}`}>
+          <header className={`${styles["addstudent-head"]}`}>
+            {mainHeading}
+          </header>
+          {isEdit && message && skillId && (
+            <p className={`${styles["addstudent-message"]}`}>
+              {message}{" "}
+              <span className={`${styles["addstudent-skillname"]}`}>
+                {skillId}
+              </span>
+            </p>
+          )}
+        </div>
         <div className={`${styles["addstudent-containerinput"]}`}>
           {isSelect ? (
             <>
