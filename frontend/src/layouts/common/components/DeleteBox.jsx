@@ -15,7 +15,7 @@ const DeleteBox = ({ title, message, buttonText, onCancel, onConfirm }) => {
       <div className={`${styles["deletebox-button"]}`}>
         <PrimaryButton
           content="Cancel"
-          variant="primary"
+          variant="secondary"
           width="full"
           onClick={onCancel}
         />
