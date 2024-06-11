@@ -1,0 +1,130 @@
+import React, { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import styles from "../Common.module.css";
+import Input from "../../../components/inputbox/InputBox";
+import InputDropdown from "../../../components/inputdropdown/InputDropdown";
+import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import {
+  validateAndCleanInput,
+  validateEmail,
+} from "../../common/components/validation";
+
+const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const handleFormSubmit = (data) => {
+    onSubmit(data);
+  };
+
+  return (
+    <div className={`${styles["adduser-container"]}`}>
+      <div className={`${styles["adduser-head"]}`}>{heading}</div>
+      <form
+        onSubmit={handleSubmit(handleFormSubmit)}
+        className={`${styles["adduser-form"]}`}
+      >
+        <div className={`${styles["adduser-field"]}`}>
+          <div className={`${styles["adduser-name"]}`}>
+            <Controller
+              name="firstName"
+              control={control}
+              rules={{
+                required: "First name is required",
+                validate: validateAndCleanInput,
+              }}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  label="Enter Full Name"
+                  size="normal"
+                  placeholders={["First name"]}
+                />
+              )}
+            />
+            {errors.firstName && (
+              <p className={`${styles["adduser-error"]}`}>
+                {errors.firstName.message}
+              </p>
+            )}
+          </div>
+          <div className={`${styles["adduser-name"]}`}>
+            <Controller
+              name="secondName"
+              control={control}
+              rules={{
+                required: "Second name is required",
+                validate: validateAndCleanInput,
+              }}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  size="normal"
+                  placeholders={["Second name"]}
+                />
+              )}
+            />
+            {errors.secondName && (
+              <p className={`${styles["adduser-error"]}`}>
+                {errors.secondName.message}
+              </p>
+            )}
+          </div>
+        </div>
+        <Controller
+          name="email"
+          control={control}
+          rules={{
+            required: "Email is required",
+            validate: validateEmail,
+          }}
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Enter email address"
+              size="normal"
+              placeholders={["Email address"]}
+            />
+          )}
+        />
+        {errors.email && (
+          <p className={`${styles["adduser-error"]}`}>{errors.email.message}</p>
+        )}
+        {viewCollege && (
+          <Controller
+            name="college"
+            control={control}
+            rules={{
+              required: "College name is required",
+            }}
+            render={({ field }) => (
+              <InputDropdown
+                {...field}
+                label="Select College"
+                size="normal"
+                placeholders={["Select College"]}
+                options={options}
+              />
+            )}
+          />
+        )}
+        {errors.college && (
+          <p className={`${styles["adduser-error"]}`}>
+            {errors.college.message}
+          </p>
+        )}
+        <PrimaryButton
+          type="submit"
+          content="Add"
+          variant="primary"
+          width="full"
+        />
+      </form>
+    </div>
+  );
+};
+
+export default AddUser;
