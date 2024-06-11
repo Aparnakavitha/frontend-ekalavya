@@ -59,7 +59,7 @@ const AddSkill = () => {
         {error && <div className={`${styles["error-message"]}`}>{error}</div>}
         <div className={`${styles["addskill-buttonrow"]}`}>
           <PrimaryButton
-            variant="primary"
+            variant="secondary"
             content="Cancel"
             onClick={handleCancel}
             width="full"
