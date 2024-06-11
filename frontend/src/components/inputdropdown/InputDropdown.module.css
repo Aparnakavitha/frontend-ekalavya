@@ -1,3 +1,7 @@
+.container {
+  padding-bottom: 8px;
+}
+
 .selectField {
   display: block;
   width: 100%;

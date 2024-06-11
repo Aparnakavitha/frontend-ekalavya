@@ -23,7 +23,6 @@ const skill = {
   handleClick: action("Card clicked!"),
   handleDeleteClick: action("Delete Icon Clicked!"),
   handleEditClick: action("Edit button clicked!"),
-  canEdit: false,
 };
 
 export const BatchCard = {
@@ -32,8 +31,18 @@ export const BatchCard = {
   },
 };
 
-export const skillCard = {
+export const skillCardEditDelete = {
   args: {
     ...skill,
+    canEdit: true,
+    canDelete: true,
+  },
+};
+
+export const skillCardEdit = {
+  args: {
+    ...skill,
+    canEdit: true,
+    canDelete: false,
   },
 };

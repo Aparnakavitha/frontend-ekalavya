@@ -4,6 +4,12 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../AdminEvent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import {
+  validateURL,
+  validateStartDate,
+  validateEndDate,
+  validateAndCleanInput,
+} from "../../common/components/validation";
 
 const AddEvent = ({
   defaultValues,
@@ -22,10 +28,16 @@ const AddEvent = ({
     { value: "Webinar", label: "Webinar" },
   ];
 
-  const { handleSubmit, control, watch, setValue } = useForm({
+  const {
+    handleSubmit,
+    control,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm({
     defaultValues: mergedDefaultValues,
   });
- 
+
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
 
   const handleFormSubmit = (data) => {
@@ -42,26 +54,26 @@ const AddEvent = ({
     }
     onSubmit(data);
   };
- 
+
   const options = [
     { value: "Online", label: "Online" },
     { value: "Offline", label: "Offline" },
   ];
- 
+
   const selectedEventMode = watch("eventMode", eventMode);
- 
+
   const handleEventModeChange = (selectedOption) => {
     const newValue = selectedOption.value;
     setEventMode(newValue);
     setValue("eventMode", newValue);
- 
+
     if (newValue === "Online") {
       setValue("location", mergedDefaultValues.link || "");
     } else {
       setValue("location", mergedDefaultValues.location || "");
     }
   };
- 
+
   useEffect(() => {
     if (selectedEventMode === "Online") {
       setValue("location", mergedDefaultValues.link || "");
@@ -69,7 +81,7 @@ const AddEvent = ({
       setValue("location", mergedDefaultValues.location || "");
     }
   }, [selectedEventMode, setValue, mergedDefaultValues]);
- 
+
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
@@ -80,6 +92,10 @@ const AddEvent = ({
           <Controller
             name="eventTitle"
             control={control}
+            rules={{
+              required: "Event Title is required",
+              validate: validateAndCleanInput,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -90,12 +106,21 @@ const AddEvent = ({
               />
             )}
           />
+          {errors.eventTitle && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.eventTitle.message}
+            </p>
+          )}
         </div>
- 
+
         <div className={`${styles["addevent-eventmodediv"]}`}>
           <Controller
             name="eventMode"
             control={control}
+            rules={{
+              required: "Event Mode is required",
+              validate: validateAndCleanInput,
+            }}
             render={({ field }) => (
               <InputDropdown
                 {...field}
@@ -106,12 +131,21 @@ const AddEvent = ({
               />
             )}
           />
+          {errors.eventMode && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.eventMode.message}
+            </p>
+          )}
         </div>
       </div>
- 
+
       <Controller
         name="eventType"
         control={control}
+        rules={{
+          required: "Event Type is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <InputDropdown
             {...field}
@@ -123,10 +157,19 @@ const AddEvent = ({
           />
         )}
       />
- 
+      {errors.eventType && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.eventType.message}
+        </p>
+      )}
+
       <Controller
         name="description"
         control={control}
+        rules={{
+          required: "Description is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -137,12 +180,20 @@ const AddEvent = ({
           />
         )}
       />
- 
+      {errors.description && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.description.message}
+        </p>
+      )}
+
       <div className={`${styles["addevent-datetimecontainer"]}`}>
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="startDate"
             control={control}
+            rules={{
+              validate: validateStartDate,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -154,12 +205,20 @@ const AddEvent = ({
               />
             )}
           />
+          {errors.startDate && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.startDate.message}
+            </p>
+          )}
         </div>
- 
+
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="endDate"
             control={control}
+            rules={{
+              validate: validateEndDate,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -171,12 +230,20 @@ const AddEvent = ({
               />
             )}
           />
+          {errors.endDate && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.endDate.message}
+            </p>
+          )}
         </div>
- 
+
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="startTime"
             control={control}
+            rules={{
+              required: "Start Time is required",
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -188,12 +255,20 @@ const AddEvent = ({
               />
             )}
           />
+          {errors.startTime && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.startTime.message}
+            </p>
+          )}
         </div>
- 
+
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
             name="endTime"
             control={control}
+            rules={{
+              required: "End Time is required",
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -205,12 +280,27 @@ const AddEvent = ({
               />
             )}
           />
+          {errors.endTime && (
+            <p className={`${styles["addevent-error"]}`}>
+              {errors.endTime.message}
+            </p>
+          )}
         </div>
       </div>
- 
+
       <Controller
         name="location"
         control={control}
+        rules={{
+          required:
+            selectedEventMode === "Online"
+              ? "Link is required"
+              : "Location is required",
+          validate:
+            selectedEventMode === "Online"
+              ? validateURL
+              : validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -223,10 +313,19 @@ const AddEvent = ({
           />
         )}
       />
- 
+      {errors.location && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.location.message}
+        </p>
+      )}
+
       <Controller
         name="speaker"
         control={control}
+        rules={{
+          required: "Speaker is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -237,9 +336,19 @@ const AddEvent = ({
           />
         )}
       />
+      {errors.speaker && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.speaker.message}
+        </p>
+      )}
+
       <Controller
         name="speakerDescription"
         control={control}
+        rules={{
+          required: "Speaker Description is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -250,10 +359,20 @@ const AddEvent = ({
           />
         )}
       />
+      {errors.speakerDescription && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.speakerDescription.message}
+        </p>
+      )}
+
       {isOrganizer && (
         <Controller
           name="organizer"
           control={control}
+          rules={{
+            required: "Organizer is required",
+            validate: validateAndCleanInput,
+          }}
           render={({ field }) => (
             <InputDropdown
               {...field}
@@ -266,6 +385,11 @@ const AddEvent = ({
           )}
         />
       )}
+      {errors.organizer && (
+        <p className={`${styles["addevent-error"]}`}>
+          {errors.organizer.message}
+        </p>
+      )}
 
       <PrimaryButton
         content="Submit"
@@ -276,5 +400,5 @@ const AddEvent = ({
     </form>
   );
 };
- 
+
 export default AddEvent;

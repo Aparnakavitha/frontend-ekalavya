@@ -4,9 +4,15 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { useForm, Controller } from "react-hook-form";
+import { validateAndCleanInput } from "../../common/components/validation";
 
 const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
-  const { handleSubmit, control, getValues } = useForm({
+  const {
+    handleSubmit,
+    control,
+    getValues,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       batchName: "",
       studentIds: [],
@@ -30,6 +36,10 @@ const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
           <Controller
             name="batchName"
             control={control}
+            rules={{
+              required: "Batch Name is required",
+              validate: validateAndCleanInput,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -39,9 +49,15 @@ const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
               />
             )}
           />
+          {errors.batchName && (
+            <p className={`${styles["batchoperations-error"]}`}>
+              {errors.batchName.message}
+            </p>
+          )}
           <Controller
             name="studentIds"
             control={control}
+            rules={{ required: "Student ID is required" }}
             render={({ field }) => (
               <InputDropdown
                 label="Student ID(s)"
@@ -52,6 +68,11 @@ const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
               />
             )}
           />
+          {errors.studentIds && (
+            <p className={`${styles["batchoperations-error"]}`}>
+              {errors.studentIds.message}
+            </p>
+          )}
         </div>
       </div>
       <div className={`${styles["batchoperations-buttoncontainer"]}`}>
