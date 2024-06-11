@@ -5,6 +5,7 @@ const AdminStudentActionData = {
     content: "+ Add new Mentor",
     width: "full",
   },
+  showDelete:false,
   searchWidth: "large",
   searchbarProps: {
     variant: "custom",

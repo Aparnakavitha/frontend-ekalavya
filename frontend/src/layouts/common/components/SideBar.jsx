@@ -6,7 +6,7 @@ import Logo from "../../../assets/EduNexa.png";
 import ProfileBox from "../../../components/profilenotificationbox/ProfileNotificationBox";
 
 const SideBar = ({ button, listItems, profileBox , onItemClick }) => {
-  const [activeIndex, setActiveIndex] = useState();
+  const [activeIndex, setActiveIndex] = useState(0);
   const [showSidebar, setShowSidebar] = useState(false);
 
   const handleItemClick = (index, page) => {

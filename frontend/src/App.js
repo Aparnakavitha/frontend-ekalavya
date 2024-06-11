@@ -1,15 +1,15 @@
-import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Admin from "./pages/admin/Admin";
-function App() {
+
+const App = () => {
   return (
-    <div>
-      <div className="App">
-        <header className="App-header">
-          <Admin/>
-        </header>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/*" element={<Admin />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

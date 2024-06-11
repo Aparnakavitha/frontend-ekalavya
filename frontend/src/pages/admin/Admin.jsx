@@ -1,15 +1,12 @@
 import React from "react";
 import { RecoilRoot, useRecoilState } from "recoil";
+import { useNavigate, Routes, Route, useLocation } from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
-import { MdEvent } from "react-icons/md";
-import { MdViewQuilt } from "react-icons/md";
-import { MdAccountCircle } from "react-icons/md";
+import { MdEvent, MdViewQuilt, MdAccountCircle, MdPsychology } from "react-icons/md";
 import { RiContactsBook3Fill } from "react-icons/ri";
-import { RiTaskFill } from "react-icons/ri";
-import { MdPsychology } from "react-icons/md";
 import { currentPageState } from "./AdminAtoms";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
 import Footer from "../../layouts/common/components/Footer";
@@ -18,9 +15,37 @@ import Mentor from "./mentor/Mentor";
 import Event from "./event/Event";
 import BatchList from "./batch/BatchList";
 import Skill from "./skill/Skill";
+import BatchSelect from "./batch/BatchSelect";
 
 const AdminContent = () => {
   const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    switch (location.pathname) {
+      case "/student":
+        setCurrentPage("student");
+        break;
+      case "/mentor":
+        setCurrentPage("mentor");
+        break;
+      case "/events":
+        setCurrentPage("events");
+        break;
+      case "/batches":
+        setCurrentPage("batches");
+        break;
+      case "/skills":
+        setCurrentPage("skills");
+        break;
+      case "/batch-select":
+        setCurrentPage("batch-select");
+        break;
+      default:
+        setCurrentPage("student");
+    }
+  }, [location.pathname, setCurrentPage]);
 
   const sample = {
     content: "Logout",
@@ -69,6 +94,25 @@ const AdminContent = () => {
 
   const handleSidebarItemClick = (page) => {
     setCurrentPage(page);
+    switch (page) {
+      case "student":
+        navigate("/student");
+        break;
+      case "mentor":
+        navigate("/mentor");
+        break;
+      case "events":
+        navigate("/events");
+        break;
+      case "batches":
+        navigate("/batches");
+        break;
+      case "skills":
+        navigate("/skills");
+        break;
+      default:
+        navigate("/student");
+    }
   };
 
   const renderContent = () => {
@@ -77,12 +121,14 @@ const AdminContent = () => {
         return <Student />;
       case "mentor":
         return <Mentor />;
-        case "events":
-          return <Event />;
-          case "batches":
-            return <BatchList />;
-            case "skills":
-              return <Skill />;
+      case "events":
+        return <Event />;
+      case "batches":
+        return <BatchList />;
+      case "skills":
+        return <Skill />;
+      case "batch-select":
+        return <BatchSelect />;
       default:
         return <Student />;
     }
@@ -92,7 +138,7 @@ const AdminContent = () => {
     Logo: edunexa,
     quoteContent: "Embark on Your Learning Journey Today!",
     copyrightContent: "All rights reserved © 2024 Tarento Group.",
-    copyrightContent2: " | Privacy Policy",
+    copyrightContent2: " | Privacy Policy",
     isLeftALigned: true,
   };
 

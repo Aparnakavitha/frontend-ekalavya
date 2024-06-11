@@ -5,6 +5,7 @@ const AdminBatchActionData = {
     content: "+ Add new Batch",
     width: "full",
   },
+  showDelete:false,
   searchWidth: "large",
   searchbarProps: {
     variant: "custom",
