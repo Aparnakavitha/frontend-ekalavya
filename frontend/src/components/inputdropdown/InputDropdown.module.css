@@ -1,11 +1,7 @@
-.container {
-  padding-bottom: 8px;
-}
-
 .selectField {
   display: block;
   width: 100%;
-  min-height: 57px;
+  height: 57px;
   border-radius: 9px;
   fill: var(--neutral600);
   font-weight: light;

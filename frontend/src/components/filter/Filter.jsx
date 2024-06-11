@@ -5,28 +5,15 @@ import { FaAngleDown } from "react-icons/fa";
 const Filter = ({
   initialHeading,
   Content,
+  handleDropClick,
   isOpen,
   onToggle,
   onOptionClick,
-  selectedOption,
 }) => {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const [localSelectedOption, setLocalSelectedOption] = useState(
-    selectedOption || initialHeading
-  );
+  const [selectedOption, setSelectedOption] = useState(initialHeading);
   const headingRef = useRef(null);
   const dropRef = useRef(null);
-
-  useEffect(() => {
-    setLocalSelectedOption(selectedOption || initialHeading);
-  }, [selectedOption, initialHeading]);
-
-  const transformContent = (content) => {
-    if (content.length > 24) {
-      return content.slice(0, 20) + "...";
-    }
-    return content;
-  };
 
   const toggleDropdown = (newIsOpen) => {
     const toggleFn = onToggle || setInternalIsOpen;
@@ -34,9 +21,10 @@ const Filter = ({
   };
 
   const handleOptionClick = (option) => {
-    setLocalSelectedOption(option);
+    setSelectedOption(option);
     toggleDropdown(false);
     onOptionClick && onOptionClick(option);
+    handleDropClick && handleDropClick();
   };
 
   useEffect(() => {
@@ -72,9 +60,7 @@ const Filter = ({
         onClick={() => toggleDropdown(!currentIsOpen)}
         ref={headingRef}
       >
-        <span className={styles.selectedOption}>
-          {transformContent(localSelectedOption)}
-        </span>
+        <span className={styles.selectedOption}>{selectedOption}</span>
         <div className={styles.iconAngleDown}>
           <FaAngleDown />
         </div>
@@ -87,7 +73,7 @@ const Filter = ({
               key={index}
               onClick={() => handleOptionClick(content)}
             >
-              <a>{transformContent(content)}</a>
+              <a>{content}</a>
             </div>
           ))}
         </div>

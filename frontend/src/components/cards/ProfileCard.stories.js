@@ -8,29 +8,14 @@ export default {
   component: ProfileCard,
 };
 
-export const ProfilecardDelete = (args) => <ProfileCard {...args} />;
-
-ProfilecardDelete.args = {
-  studentImage: image,
-  studentName: "John Doe",
-  studentId: "STDID3456",
-  studentCollege: "St Christ College",
-  studentMail: "johndoe@email.com",
-  studentPhoneNumber: "(555) 555-5555",
-  canDelete: true,
-  handleDelete: action("Delete Icon Clicked !!!"),
-  onClick: action("Card clicked"),
-};
-
-export const Profilecard = (args) => <ProfileCard {...args} />;
+export const Profilecard = (args) => (
+  <ProfileCard {...args} onClick={action("clicked")} />
+);
 
 Profilecard.args = {
-  studentImage: image,
-  studentName: "John Doe",
-  studentId: "STDID3456",
-  studentCollege: "St Christ College",
-  studentMail: "johndoe@email.com",
-  studentPhoneNumber: "(555) 555-5555",
-  canDelete: false,
-  onClick: action("Card clicked"),
+  profileImage: image,
+  title2: "Senior Software Engineer",
+  title3: "San Francisco, USA",
+  email: "johndoe@email.com",
+  phone: "(555) 555-5555",
 };

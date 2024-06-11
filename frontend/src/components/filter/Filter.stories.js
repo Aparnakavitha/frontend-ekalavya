@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import { action } from '@storybook/addon-actions';
+import React, { useState } from "react";
 import Filter from "./Filter";
 
 export default {

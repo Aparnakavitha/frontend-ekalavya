@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./AttendanceButton.module.css";
 
-const AttendanceButton = (props) => {
+const AttendenceButton = (props) => {
   const [isPresent, setIsPresent] = useState(props.IsPresent);
 
   useEffect(() => {
@@ -24,4 +24,4 @@ const AttendanceButton = (props) => {
   );
 };
 
-export default AttendanceButton;
+export default AttendenceButton;
