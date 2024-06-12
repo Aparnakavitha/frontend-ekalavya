@@ -1,6 +1,6 @@
 import image from "../../../assets/DP.png";
 
-const StudentData = {
+const AdminStudentData = {
   greetingData: {
     welcome: "Welcome Back",
     name: "John",
@@ -331,4 +331,4 @@ const StudentData = {
   },
 };
 
-export default StudentData;
+export default AdminStudentData;

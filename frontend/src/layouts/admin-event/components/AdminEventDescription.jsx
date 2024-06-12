@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import EventsDescription from "../../common/components/EventsDescription";
 import Modal from "../../common/components/Modal";
 import DeleteBox from "../../common/components/DeleteBox";
@@ -6,8 +7,13 @@ import AddEvent from "../../admin-event/components/AddEvent";
 import EventsDescriptionData from "./EventDescriptionData";
 
 const AdminEventDescription = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+
+  const handleClick = () => {
+    navigate(`/admin/events/event-details/event-participants`);
+  };
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -45,6 +51,7 @@ const AdminEventDescription = () => {
     ...EventsDescriptionData.buttonProps,
     onclick3: handleOpenModal,
     onclick2: handleOpenDeleteModal,
+    onclick1: handleClick
   };
   
   const organizeroptions = [

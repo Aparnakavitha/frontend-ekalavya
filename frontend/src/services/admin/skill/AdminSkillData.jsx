@@ -1,4 +1,4 @@
-const SkillData = {
+const AdminSkillData = {
   greeting: {
     welcome: "Welcome Back",
     name: "John",
@@ -33,4 +33,4 @@ const SkillData = {
   },
 };
 
-export default SkillData;
+export default AdminSkillData;

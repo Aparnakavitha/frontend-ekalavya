@@ -6,6 +6,8 @@ import Filter from "../../../components/filter/Filter";
 
 const ActionComponent = ({
   buttonProps,
+  showDelete,
+  deleteProps,
   heading,
   searchbarProps,
   filterProps = [],
@@ -66,12 +68,19 @@ const ActionComponent = ({
                     selectedOption={filterStates[index]}
                   />
                 ))}
+                
               </div>
               <div className={styles["common-reset"]}>
                 <PrimaryButton {...resetProps} onClick={handleReset} />
               </div>
+              
             </div>
           )}
+          {showDelete && (
+              <div className={styles["common-deletebutton"]}>
+              <PrimaryButton {...deleteProps} />
+              </div>
+            )}
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import styles from "../AdminSkill.module.css";
 import Input from "../../../components/inputbox/InputBox";
 
-const AddSkill = ({ onSubmit, onCancel }) => {
+const DeleteSkill = ({ onSubmit, onCancel }) => {
   const [skill, setSkill] = useState("");
   const [error, setError] = useState("");
 
@@ -15,18 +15,18 @@ const AddSkill = ({ onSubmit, onCancel }) => {
 
   const validateSkill = (skill) => {
     if (!skill.trim()) {
-      return "Skill cannot be empty.";
+      return "Skill ID cannot be empty.";
     }
     if (/^\s/.test(skill)) {
-      return "Skill cannot start with a space.";
+      return "Skill ID cannot start with a space.";
     }
     if (!/[a-zA-Z]/.test(skill)) {
-      return "Skill must contain at least one letter.";
+      return "Skill ID must contain at least one letter.";
     }
     return "";
   };
 
-  const handleAddSkill = () => {
+  const handleDeleteSkill = () => {
     const validationError = validateSkill(skill);
     if (validationError) {
       setError(validationError);
@@ -36,31 +36,31 @@ const AddSkill = ({ onSubmit, onCancel }) => {
   };
 
   return (
-    <div className={`${styles["addskill-boxcontainer"]}`}>
-      <div className={`${styles["addskill-layoutcontainer"]}`}>
-        <p>Create New Skill</p>
-        <div className={`${styles["addskill-inputbox"]}`}>
+    <div className={`${styles["deleteskill-boxcontainer"]}`}>
+      <div className={`${styles["deleteskill-layoutcontainer"]}`}>
+        <p>Delete Skill</p>
+        <div className={`${styles["deleteskill-inputbox"]}`}>
           <Input
             size="normal"
-            label="Create Skills"
-            placeholders={["Skills"]}
+            label="Enter Skill ID"
+            placeholders={["Skill ID"]}
             value={skill}
             onChange={handleInputChange}
             id="normal-input"
           />
         </div>
         {error && <div className={`${styles["error-message"]}`}>{error}</div>}
-        <div className={`${styles["addskill-buttonrow"]}`}>
+        <div className={`${styles["deleteskill-buttonrow"]}`}>
           <PrimaryButton
-            variant="secondary"
+            variant="primary"
             content="Cancel"
             onClick={onCancel}
             width="full"
           />
           <PrimaryButton
             variant="primary"
-            content="Add"
-            onClick={handleAddSkill}
+            content="Delete"
+            onClick={handleDeleteSkill}
             width="full"
           />
         </div>
@@ -69,9 +69,9 @@ const AddSkill = ({ onSubmit, onCancel }) => {
   );
 };
 
-AddSkill.propTypes = {
+DeleteSkill.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };
 
-export default AddSkill;
+export default DeleteSkill;

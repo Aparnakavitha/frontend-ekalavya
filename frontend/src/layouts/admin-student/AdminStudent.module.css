@@ -219,7 +219,6 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
-  padding: 30px;
   width: 70%;
   flex-wrap: wrap;
 }
@@ -316,3 +315,13 @@
 }
 
 /* ------------------------------- Cardrow.css ends here ------------------------------- */
+/* ------------------------------- EventsList.css starts here ------------------------------- */
+
+.eventslist-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+/* ------------------------------- ventsList.css ends here ------------------------------- */
