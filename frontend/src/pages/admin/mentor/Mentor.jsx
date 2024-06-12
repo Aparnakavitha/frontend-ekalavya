@@ -1,6 +1,6 @@
 import React from "react";
 import { DataView, Greeting } from "../../../layouts/common";
-import MentorData from "./MentorData";
+import MentorData from "../../../services/admin/mentor/MentorData";
 import AdminMentorAction from "../../../layouts/admin-mentor/components/AdminMentorAction";
 import ProfileCard from "../../../components/cards/ProfileCard";
 

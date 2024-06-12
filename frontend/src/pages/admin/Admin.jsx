@@ -10,7 +10,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import { RiTaskFill } from "react-icons/ri";
 import { MdPsychology } from "react-icons/md";
-import { currentPageState } from "./AdminAtoms";
+import { currentPageState } from "../../states/Atoms";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
 import Footer from "../../layouts/common/components/Footer";
 import Student from "./student/Student";

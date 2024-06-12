@@ -3,7 +3,7 @@ import DataView from "../../common/components/DataView";
 import DeleteBox from "../../common/components/DeleteBox";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import Modal from "../../common/components/Modal";
-import batchParticipantsData from "./AdminBatchParticipantsData";
+import batchParticipantsData from "../../../services/admin/batch/AdminBatchParticipantsData";
 
 const AdminBatchParticipants = () => {
   const [isOpen, setIsOpen] = useState(false);
