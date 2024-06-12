@@ -7,7 +7,7 @@ import edunexa from "../../../src/assets/edunexa.png";
 import { MdEvent } from "react-icons/md";
 import { MdAccountCircle } from "react-icons/md";
 import { MdPsychology } from "react-icons/md";
-import { currentPageState } from "./MentorAtoms";
+import { currentPageState } from "../../states/Atoms";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
 import Footer from "../../layouts/common/components/Footer";
 import MentorProfile from "./mentor-profile/MentorProfile";

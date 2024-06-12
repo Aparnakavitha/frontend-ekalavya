@@ -30,10 +30,12 @@ const EventDescription = () => {
   return (
     <div>
       <Header {...headdata} />
-      <div className="padding public common">
-        <HomeEventDescription />
+      <div className="spacebtw">
+        <div className="padding public common">
+          <HomeEventDescription />
+        </div>
+        <Footer {...footerdata} />
       </div>
-      <Footer {...footerdata} />
     </div>
   );
 };

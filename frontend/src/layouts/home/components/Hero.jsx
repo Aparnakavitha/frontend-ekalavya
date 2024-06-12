@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from ".././Home.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import star from "../../../assets/Star 2.svg";
@@ -11,13 +11,38 @@ import CountUp from "react-countup";
 import { motion } from "framer-motion";
 
 const Hero = (props) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      { threshold: 0.5 } 
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current);
+      }
+    };
+  }, []);
   return (
-    <div className={styles["hero-container"]}>
+    <div className={styles["hero-container"]} ref={heroRef}>
       <div className={styles["hero-contentbuttondiv"]}>
         <motion.div
           className={styles["hero-contentcolumn"]}
           initial={{ y: "2rem", opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          animate={{ y: isVisible ? 0 : "2rem", opacity: isVisible ? 1 : 0 }}
           transition={{
             duration: 2,
             type: "spring",

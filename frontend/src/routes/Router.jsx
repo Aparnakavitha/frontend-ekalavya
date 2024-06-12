@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./index";
-import Explore from "./Explore";
-import EventDescription from "./EventDescription";
-import Mentor from "./mentor/Mentor";
+import Home from "../pages/index";
+import Explore from "../pages/Explore";
+import EventDescription from "../pages/EventDescription";
+import Mentor from "../pages/mentor/Mentor";
 
 const RouterComponent = () => {
   return (
