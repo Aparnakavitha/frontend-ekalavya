@@ -2,6 +2,7 @@ import React from "react";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { EventsDescription } from "../../common";
+import { useNavigate } from "react-router-dom";
 
 const StudentEventDescription = () => {
   const handleButtonClick = (message) => {

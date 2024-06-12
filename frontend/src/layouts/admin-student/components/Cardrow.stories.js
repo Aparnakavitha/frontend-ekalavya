@@ -1,12 +1,12 @@
 import React from "react";
 import CardRow from "./Cardrow";
 import { action } from "@storybook/addon-actions";
- 
+
 export default {
-  title: "layouts/AdminStudent/Components/Cardrow",
+  title: "layouts/Admin-student/Components/Cardrow",
   component: CardRow,
 };
- 
+
 const primaryCardsData = [
   {
     miniHeading: "Capstone 1",
@@ -28,7 +28,7 @@ const primaryCardsData = [
     handleClick: action("Card clicked!"),
   },
 ];
- 
+
 const skillCardsData = [
   {
     miniHeading: "Skill 1",
@@ -51,17 +51,17 @@ const skillCardsData = [
     canEdit: false,
   },
 ];
- 
+
 const Template = (args) => <CardRow {...args} />;
 const event = "event";
 const skill = "skill";
- 
+
 export const WithPrimaryCards = Template.bind({});
 WithPrimaryCards.args = {
   cardData: primaryCardsData,
   card: event,
 };
- 
+
 export const WithSkillCards = Template.bind({});
 WithSkillCards.args = {
   cardData: skillCardsData,

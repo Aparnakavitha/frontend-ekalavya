@@ -1,6 +1,28 @@
-const CardLayoutData = {
-  heading: "Popular Events",
-  Dataview: {
+import React from "react";
+import { EventMenus } from "../../../layouts/common";
+import DataView from "../../../layouts/common/components/DataView";
+import PrimaryCard from "../../../components/cards/PrimaryCard";
+
+const MentorEvents = (onclick) => {
+  const createEvent = {
+    content: "Create Event",
+    variant: "secondary",
+    width: "half",
+    onClick: () => {
+      onclick();
+    },
+  };
+
+  const EventAction = {
+    explore: createEvent,
+    statuses: [
+      { name: "Upcoming", onClick: () => console.log("Upcoming clicked") },
+      { name: "Completed", onClick: () => console.log("Completed clicked") },
+    ],
+    title: "Events",
+  };
+
+  const primaryCardData = {
     data: [
       {
         miniHeading: "Capstone",
@@ -12,7 +34,6 @@ const CardLayoutData = {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          window.location.href = '/explore/description';
         },
       },
       {
@@ -25,7 +46,6 @@ const CardLayoutData = {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          window.location.href = '/explore/description';
         },
       },
       {
@@ -109,8 +129,15 @@ const CardLayoutData = {
       { key: "description", displayName: "Description" },
     ],
     toggle: false,
-    itemsPerPage: 9,
-  },
+    itemsPerPage: 5,
+  };
+
+  return (
+    <div>
+      <EventMenus {...EventAction} />
+      <DataView CardComponent={PrimaryCard} {...primaryCardData} />
+    </div>
+  );
 };
 
-export default CardLayoutData;
+export default MentorEvents;

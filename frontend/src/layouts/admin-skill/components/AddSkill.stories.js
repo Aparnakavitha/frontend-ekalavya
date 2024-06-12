@@ -2,7 +2,7 @@ import React from "react";
 import AddSkill from "./AddSkill";
 
 export default {
-  title: "layouts/AdminSkill/Components/Add Skill",
+  title: "layouts/Admin-skill/Components/Add Skill",
   component: AddSkill,
 };
 
