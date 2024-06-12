@@ -1,6 +1,11 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const currentPageState = atom({
-  key: 'currentPageState',
-  default: 'profile',
+  key: "currentPageState",
+  default: "student",
+});
+
+export const adminPageState = atom({
+  key: "currentPageState",
+  default: "student",
 });

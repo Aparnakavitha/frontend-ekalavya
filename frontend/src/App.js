@@ -6,7 +6,7 @@ function App() {
     <div>
       <div className="App">
         <header className="App-header">
-          <RouterComponent/>
+          <RouterComponent />
         </header>
       </div>
     </div>
