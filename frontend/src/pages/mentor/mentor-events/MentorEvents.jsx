@@ -1,15 +1,19 @@
 import React from "react";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import { EventMenus } from "../../../layouts/common";
 import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 
-const MentorEvents = (onclick) => {
+const MentorEvents = () => {
+
+  const navigate = useNavigate();
+
   const createEvent = {
     content: "Create Event",
     variant: "secondary",
     width: "half",
     onClick: () => {
-      onclick();
+      navigate("/mentor/event-creation")
     },
   };
 
