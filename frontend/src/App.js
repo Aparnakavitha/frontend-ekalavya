@@ -1,7 +1,7 @@
 import "./App.css";
 import RouterComponent from "./routes/Router";
 
-function App() {
+const App = () => {
   return (
     <div>
       <div className="App">
@@ -10,6 +10,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

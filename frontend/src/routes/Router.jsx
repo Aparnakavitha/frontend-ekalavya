@@ -4,6 +4,7 @@ import Home from "../pages/index";
 import Explore from "../pages/Explore";
 import EventDescription from "../pages/EventDescription";
 import MentorContent from "../pages/mentor/Mentor";
+import AdminContent from "../pages/admin/Admin";
 import StudentContent from "../pages/student/Student";
 
 const RouterComponent = () => {
@@ -11,6 +12,11 @@ const RouterComponent = () => {
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="/explore/description" element={<EventDescription />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/*" element={<Home />} />
+          <Route path="/mentor/*" element={<MentorContent />} />
+          <Route path="/admin/*" element={<AdminContent />} />
           <Route
             exact
             path="/explore/description"
