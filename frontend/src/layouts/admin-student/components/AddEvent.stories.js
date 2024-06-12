@@ -2,7 +2,7 @@ import React from "react";
 import AddEventComponent from "./AddEvent";
 
 export default {
-  title: "Layouts/AdminStudent/Components/Add Event ",
+  title: "Layouts/Admin-student/Components/Add Event ",
   component: AddEventComponent,
 };
 

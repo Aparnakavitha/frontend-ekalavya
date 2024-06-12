@@ -2,7 +2,7 @@ import React from "react";
 import AdminSkillParticipants from "./AdminSkillParticipants";
 
 export default {
-  title: "layouts/AdminSkill/Components/AdminSkillParticipants",
+  title: "layouts/Admin-skill/Components/AdminSkillParticipants",
   component: AdminSkillParticipants,
   argTypes: {
     onClick: { action: "clicked" },
