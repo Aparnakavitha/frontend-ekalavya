@@ -5,7 +5,7 @@ import Modal from "../../common/components/Modal";
 import UpdateSingleField from "../../../layouts/common/components/UpdateSingleField";
 import skillCardData from "./AdminSkillsListData";
 
-const AdminSkillsList = () => {
+const AdminSkillsList = ({ handleClick }) => { // Receive handleClick as a prop
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [skills, setSkills] = useState(skillCardData.data);
@@ -42,6 +42,7 @@ const AdminSkillsList = () => {
     ...skillCardData,
     data: skills.map((skill) => ({
       ...skill,
+      handleClick: handleClick, // Use handleClick function here
       handleEditClick: () => handleOpenModal(skill),
     })),
   };
