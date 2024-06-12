@@ -6,6 +6,7 @@ const AdminEventActionData = {
       content: "+ Add new Event",
       width: "full",
     },
+    showDelete: false,
     searchWidth: "small",
     searchbarProps: {
       variant: "custom",
