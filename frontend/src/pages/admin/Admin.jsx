@@ -10,7 +10,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import { RiTaskFill } from "react-icons/ri";
 import { MdPsychology } from "react-icons/md";
-import { currentPageState } from "../../states/Atoms";
+import { adminPageState } from "../../states/Atoms";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
 import Footer from "../../layouts/common/components/Footer";
 import Student from "./student/Student";
@@ -20,7 +20,7 @@ import BatchList from "./batch/BatchList";
 import Skill from "./skill/Skill";
 
 const AdminContent = () => {
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const [currentPage, setCurrentPage] = useRecoilState(adminPageState);
 
   const sample = {
     content: "Logout",

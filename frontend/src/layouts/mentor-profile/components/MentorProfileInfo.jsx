@@ -3,12 +3,12 @@ import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
 import DeleteBox from "../../common/components/DeleteBox";
-import profilepic from "../../../assets/profilepic.jpg";
+import profilepic from "../../../assets/DP.png";
 
 const MentorProfileInfo = (props) => {
   const sample = {
     role: "mentor",
-    profilepicture: { profilepic },
+    profilepic:  profilepic ,
     name: "Emma Watson",
     college: "Christ University",
     dob: "1990-01-01",
@@ -55,7 +55,7 @@ const MentorProfileInfo = (props) => {
   const editBox = {
     mainHeading: "Edit Basic Details",
     initialData: {
-      profilepicture: sample.profilepicture,
+      profilepic: sample.profilepic,
       name: sample.name,
       dob: sample.dob,
       college: sample.college,

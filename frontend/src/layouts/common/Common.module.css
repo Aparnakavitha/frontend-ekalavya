@@ -1587,7 +1587,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
   margin-bottom: 20px;
 }
 
@@ -1612,7 +1611,6 @@
   .eventmenus-head {
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 5px;
   }
 
   .eventmenus-title {
@@ -1927,9 +1925,10 @@
     margin-top: 1rem;
     flex-direction: column;
   }
+}
 
   /*---------------------------------------------------------Media queries for education ends here-----------------------------------------------------------------*/
-}
+
 
 /* ------------------------------- AboutMe.module.css starts here ------------------------------- */
 
