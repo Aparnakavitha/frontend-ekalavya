@@ -6,12 +6,24 @@ import star2 from "../../../assets/Star 6.svg";
 import star3 from "../../../assets/Star 3.svg";
 import star4 from "../../../assets/Star 1.svg";
 import colorfilter from "../../../assets/colorfilter.svg";
+import { Link } from "react-router-dom";
+import CountUp from "react-countup";
+import { motion } from "framer-motion";
 
 const Hero = (props) => {
   return (
     <div className={styles["hero-container"]}>
       <div className={styles["hero-contentbuttondiv"]}>
-        <div className={styles["hero-contentcolumn"]}>
+        <motion.div
+          className={styles["hero-contentcolumn"]}
+          initial={{ y: "2rem", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 2,
+            type: "spring",
+          }}
+          viewport={{ once: true }}
+        >
           <div className={styles["hero-textcolumn"]}>
             <div className={styles["hero-containersection"]}>
               <div className={styles["hero-image1"]}>
@@ -45,14 +57,16 @@ const Hero = (props) => {
             </div>
           </div>
           <h2 className={styles["hero-semicontent"]}>{props.semiContent}</h2>
-        </div>
+        </motion.div>
         <div className={styles["hero-buttondiv"]}>
-          <PrimaryButton
-            content={props.buttonContent}
-            variant={props.buttonVariant}
-            width={props.buttonWidth}
-            onclick={props.onclick}
-          />
+          <Link to={props.link}>
+            <PrimaryButton
+              content={props.buttonContent}
+              variant={props.buttonVariant}
+              width={props.buttonWidth}
+              onclick={props.onclick}
+            />
+          </Link>
         </div>
         <div className={styles["hero-statistics"]}>
           <div className={styles["hero-statidiv"]}>
@@ -63,7 +77,9 @@ const Hero = (props) => {
                   index < 2 ? styles["hero-firsttwo"] : ""
                 }`}
               >
-                <h1 className={styles["hero-numbers"]}>{num}</h1>
+                <h1 className={styles["hero-numbers"]}>
+                  <CountUp start={100} end={num} duration={3} /> +{" "}
+                </h1>
                 <h1 className={styles["hero-title"]}>{props.title[index]}</h1>
               </div>
             ))}
