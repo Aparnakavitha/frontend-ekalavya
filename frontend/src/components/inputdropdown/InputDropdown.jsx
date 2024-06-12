@@ -135,20 +135,12 @@ function InputDropdown({
             paddingLeft: "15px",
             color: "var(--neutral400)",
           }),
-          dropdownIndicator: (provided, state) => ({
+          dropdownIndicator: (provided) => ({
             ...provided,
             cursor: "pointer",
-            color:
-              state.selectProps.menuIsOpen && options.length === 0
-                ? "yellow"
-                : isFocused
-                  ? "var(--neutral200)"
-                  : "var(--neutral600)",
+            color: isFocused ? "var(--neutral200)" : "var(--neutral600)",
             "&:hover": {
-              color:
-                state.selectProps.menuIsOpen && options.length === 0
-                  ? "yellow"
-                  : "var(--neutral200)",
+              color: "var(--neutral200)",
             },
           }),
           clearIndicator: (provided) => ({
