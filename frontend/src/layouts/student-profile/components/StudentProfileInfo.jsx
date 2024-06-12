@@ -54,19 +54,7 @@ const StudentProfileInfo = (props) => {
 
   const editBox = {
     mainHeading: "Edit Basic Details",
-    initialData: {
-      profilepicture: sample.profilepicture,
-      name: sample.name,
-      dob: sample.dob,
-      college: sample.college,
-      phoneNumber: sample.phoneNumber,
-      houseName: "Skyline villa",
-      city: "Bengaluru",
-      pinCode: "795432",
-      state: "Karnataka",
-      country: "India",
-      aboutMe: "Mumble mumble mumble",
-    },
+    initialData: { ...sample },
     isEdit: true,
     onSubmit: handleFormSubmit,
   };
