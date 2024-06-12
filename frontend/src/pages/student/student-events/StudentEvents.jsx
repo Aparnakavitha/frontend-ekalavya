@@ -6,6 +6,7 @@ import PrimaryCard from "../../../components/cards/PrimaryCard";
 const primaryCardData = {
   data: [
     {
+      id: 1,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -19,6 +20,7 @@ const primaryCardData = {
     },
 
     {
+      id: 2,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -32,6 +34,7 @@ const primaryCardData = {
     },
     ,
     {
+      id: 3,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -45,6 +48,7 @@ const primaryCardData = {
     },
 
     {
+      id: 4,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -58,6 +62,7 @@ const primaryCardData = {
     },
 
     {
+      id: 5,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -71,6 +76,7 @@ const primaryCardData = {
     },
 
     {
+      id: 6,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -84,6 +90,7 @@ const primaryCardData = {
     },
 
     {
+      id: 7,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -97,6 +104,7 @@ const primaryCardData = {
     },
 
     {
+      id: 8,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -110,6 +118,7 @@ const primaryCardData = {
     },
 
     {
+      id: 9,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -123,6 +132,7 @@ const primaryCardData = {
     },
 
     {
+      id: 10,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -136,6 +146,7 @@ const primaryCardData = {
     },
 
     {
+      id: 11,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -149,6 +160,7 @@ const primaryCardData = {
     },
 
     {
+      id: 12,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",
@@ -162,6 +174,7 @@ const primaryCardData = {
     },
 
     {
+      id: 13,
       miniHeading: "Capstone",
       mainHeading: "Health Management",
       startDate: "Jan 15, 2030",

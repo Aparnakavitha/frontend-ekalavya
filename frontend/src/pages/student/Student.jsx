@@ -12,7 +12,7 @@ import { IoHomeSharp } from "react-icons/io5";
 import { RiTaskFill } from "react-icons/ri";
 import { MdPsychology } from "react-icons/md";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
-import { currentPageState } from "./StudentAtoms";
+import { studentPageState } from "../../states/StudentAtoms";
 import Footer from "../../layouts/common/components/Footer";
 import Profile from "./student-profile/Profile";
 import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
@@ -20,7 +20,7 @@ import StudentEventDescription from "../../layouts/student-event-description/com
 import StudentEvents from "../../pages/student/student-events/StudentEvents";
 
 const StudentContent = () => {
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const [studentPage, setStudentPage] = useRecoilState(studentPageState);
 
   const sample = {
     content: "Logout",
@@ -34,14 +34,13 @@ const StudentContent = () => {
   const sidebarContent = {
     button: <Button {...sample} />,
     listItems: [
-     
       {
         icon: <MdAccountCircle />,
         name: "Profile",
         viewIcon: true,
         page: "profile",
       },
- 
+
       { icon: <MdEvent />, name: "Events", viewIcon: true, page: "events" },
 
       {
@@ -59,11 +58,11 @@ const StudentContent = () => {
   };
 
   const handleSidebarItemClick = (page) => {
-    setCurrentPage(page);
+    setStudentPage(page);
   };
 
   const renderContent = () => {
-    switch (currentPage) {
+    switch (studentPage) {
       case "events":
         return <StudentEvents />;
       case "skills":
