@@ -83,7 +83,10 @@ const StudentContent = () => {
               <Route path="/student">
                 <Route exact path="profile" element={<StudentProfile />} />
                 <Route exact path="events" element={<StudentEvent />} />
-                <Route path="events/:eventId" element={<StudentEventDescription />} />
+                <Route
+                  path="events/:eventId"
+                  element={<StudentEventDescription />}
+                />
                 <Route exact path="skills" element={<SkillLayout />} />
               </Route>
             </Routes>
