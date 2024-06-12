@@ -19,7 +19,7 @@ const MentorProfileInfo = (props) => {
     pinCode: "123456",
     state: "Sample State",
     country: "Sample Country",
-    hasDelete: true,
+    hasDelete: false,
     onClickEdit: () => {
       handleOpenEditBasicDetails();
     },
