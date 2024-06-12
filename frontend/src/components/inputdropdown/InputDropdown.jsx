@@ -72,7 +72,7 @@ function InputDropdown({
   });
 
   return (
-    <div className={styles.container}>
+    <div>
       {label && <label className={styles.label}>{label}</label>}
       <Select
         value={
@@ -97,6 +97,7 @@ function InputDropdown({
             onBlur(event);
           }
         }}
+        noOptionsMessage={() => null}
         styles={{
           control: getControlStyles,
           option: getOptionStyles,
