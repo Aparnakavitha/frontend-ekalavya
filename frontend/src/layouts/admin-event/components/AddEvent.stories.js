@@ -12,18 +12,18 @@ const organizeroptions = [
   { value: "option4", label: "Option 4" },
 ];
 
-const isOrganizer = false;
+const isOrganizer = false; 
 const AddeventForm = (args) => <AddEvent {...args} />;
 
 export const EventCreateForm = AddeventForm.bind({});
 EventCreateForm.args = {
-  organizeroptions: organizeroptions,
+  organizeroptions: organizeroptions, 
   isOrganizer: isOrganizer,
 };
 
 export const EventEditForm = AddeventForm.bind({});
 EventEditForm.args = {
-  organizeroptions: organizeroptions,
+  organizeroptions: organizeroptions, 
   isOrganizer: isOrganizer,
   defaultValues: {
     eventTitle: "Mock Event Title",

@@ -3,27 +3,50 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import styles from "../AdminSkill.module.css";
 import Input from "../../../components/inputbox/InputBox";
 
-const AddSkill = ({ onSubmit, onClose }) => {
+const AddSkill = () => {
   const [skill, setSkill] = useState("");
+  const [isVisible, setIsVisible] = useState(true);
+  const [error, setError] = useState("");
 
   const handleInputChange = (event) => {
     setSkill(event.target.value);
+    setError("");
+  };
+
+  const validateSkill = (skill) => {
+    if (!skill.trim()) {
+      return "Skill cannot be empty.";
+    }
+    if (/^\s/.test(skill)) {
+      return "Skill cannot start with a space.";
+    }
+    if (!/[a-zA-Z]/.test(skill)) {
+      return "Skill must contain at least one letter.";
+    }
+    return "";
   };
 
   const handleAddSkill = () => {
-    onSubmit(skill);
-    onClose();
+    const validationError = validateSkill(skill);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+    console.log(skill);
+    setIsVisible(false);
   };
 
   const handleCancel = () => {
-    onClose();
+    setIsVisible(false);
   };
 
+  if (!isVisible) return null;
+
   return (
-    <div className={styles["addskill-boxcontainer"]}>
-      <div className={styles["addskill-layoutcontainer"]}>
+    <div className={`${styles["addskill-boxcontainer"]}`}>
+      <div className={`${styles["addskill-layoutcontainer"]}`}>
         <p>Create New Skill</p>
-        <div className={styles["addskill-inputbox"]}>
+        <div className={`${styles["addskill-inputbox"]}`}>
           <Input
             size="normal"
             label="Create Skills"
@@ -33,9 +56,10 @@ const AddSkill = ({ onSubmit, onClose }) => {
             id="normal-input"
           />
         </div>
-        <div className={styles["addskill-buttonrow"]}>
+        {error && <div className={`${styles["error-message"]}`}>{error}</div>}
+        <div className={`${styles["addskill-buttonrow"]}`}>
           <PrimaryButton
-            variant="primary"
+            variant="secondary"
             content="Cancel"
             onClick={handleCancel}
             width="full"

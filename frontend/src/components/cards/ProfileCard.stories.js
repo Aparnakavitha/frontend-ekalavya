@@ -8,9 +8,7 @@ export default {
   component: ProfileCard,
 };
 
-export const ProfilecardDelete = (args) => (
-  <ProfileCard {...args}  />
-);
+export const ProfilecardDelete = (args) => <ProfileCard {...args} />;
 
 ProfilecardDelete.args = {
   studentImage: image,
@@ -24,9 +22,7 @@ ProfilecardDelete.args = {
   onClick: action("Card clicked"),
 };
 
-export const Profilecard = (args) => (
-  <ProfileCard {...args}  />
-);
+export const Profilecard = (args) => <ProfileCard {...args} />;
 
 Profilecard.args = {
   studentImage: image,

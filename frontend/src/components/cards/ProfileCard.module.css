@@ -18,16 +18,15 @@
   width: 169px;
 }
 
-.image-icon{
+.image-icon {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-
 }
 
-.delete-icon{
+.delete-icon {
   color: var(--primary-color);
   cursor: pointer;
   height: 25px;
@@ -56,7 +55,7 @@
   font-weight: 600;
   line-height: 21px;
   letter-spacing: -0.41px;
-  margin-bottom: -2px
+  margin-bottom: -2px;
 }
 
 .title2 {
@@ -64,7 +63,7 @@
   font-weight: 500;
   line-height: 22px;
   letter-spacing: -0.41px;
-  margin-bottom: -2px
+  margin-bottom: -2px;
 }
 
 .title3 {
@@ -98,6 +97,15 @@
 .card:hover .title2,
 .card:hover .title3 {
   color: var(--neutral600);
+}
+
+.card:hover .contact-info,
+.card:hover .delete-icon {
+  color: var(--neutral800);
+}
+
+.card:hover .student-image {
+  background-color: var(--neutral800);
 }
 
 .card:hover .contact-info,

@@ -37,8 +37,8 @@ function InputDropdown({
       ? "var(--neutral600)"
       : "var(--neutral800)",
     "&:hover": {
-      backgroundColor: "var(--primary-color)",
-      color: "var(--black)",
+      backgroundColor: "var(--neutral700)",
+      color: "var(--white)",
     },
   });
 
@@ -72,7 +72,7 @@ function InputDropdown({
   });
 
   return (
-    <div>
+    <div className={styles.container}>
       {label && <label className={styles.label}>{label}</label>}
       <Select
         value={

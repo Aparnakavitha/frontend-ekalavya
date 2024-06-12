@@ -54,6 +54,20 @@
   margin-bottom: 2%;
 }
 
+.addevent-error {
+  margin-top: -12px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+}
+
+.addevent-eventtitlemode .addevent-error {
+  margin-top: 5px;
+}
+
+.addevent-datetimecontainer .addevent-error {
+  margin-top: 5px;
+}
+
 @media (min-width: 769) and (max-width: 992px) {
   .addevent-form {
     width: 100%;
@@ -119,3 +133,39 @@
 }
 
 /* ------------------------------- AddEvent.css ends here ------------------------------- */
+
+/* ------------------------ EventParticipantsList.css starts here ------------------------ */
+
+.eventparticipantslist-container {
+  width: 100%;
+}
+
+.eventparticipantslist-navbuttons {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 0px;
+}
+
+.eventparticipantslist-table {
+  margin-top: 0px;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral600) #ffffff00;
+}
+
+@media screen and (max-width: 768px) {
+  .eventparticipantslist-container {
+    width: 100%;
+  }
+  
+  .eventparticipantslist-table {
+    width: 100%;
+  }
+
+  .eventparticipantslist-navbuttons > *:not(:last-child) {
+    display: none;
+  }
+}
+
+/* ------------------------ EventParticipantsList.css ends here ------------------------ */
