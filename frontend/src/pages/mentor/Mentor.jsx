@@ -1,22 +1,20 @@
-import React from "react";
-import { RecoilRoot, useRecoilState } from "recoil";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
-import { MdEvent } from "react-icons/md";
-import { MdAccountCircle } from "react-icons/md";
-import { MdPsychology } from "react-icons/md";
-import { currentPageState } from "../../states/Atoms";
+import { MdEvent, MdAccountCircle, MdPsychology } from "react-icons/md";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
 import Footer from "../../layouts/common/components/Footer";
 import MentorProfile from "./mentor-profile/MentorProfile";
 import MentorEvents from "./mentor-events/MentorEvents";
 import MentorSkills from "./mentor-skills/MentorSkills";
-import MentorCreateEvent from "./mentor-create-event/MentorCreateEvent";
+import MentorCreateEvent from "./mentor-events/MentorCreateEvent";
+import MentorEventDetails from "./mentor-events/MentorEventDetails";
 
 const MentorContent = () => {
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const navigate = useNavigate();
 
   const sample = {
     content: "Logout",
@@ -52,26 +50,7 @@ const MentorContent = () => {
   };
 
   const handleSidebarItemClick = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleClick = () => {
-    setCurrentPage("event-creation");
-  };
-
-  const renderContent = () => {
-    switch (currentPage) {
-      case "profile":
-        return <MentorProfile />;
-      case "events":
-        return <MentorEvents onclick = {handleClick}/>;
-      case "skills":
-        return <MentorSkills />;
-      case "event-creation":
-        return <MentorCreateEvent/>  
-      default:
-        return <MentorProfile />;
-    }
+    navigate(`/mentor/${page}`);
   };
 
   const footercontent = {
@@ -99,7 +78,15 @@ const MentorContent = () => {
               gmail={sidebarContent.profileBox.gmail}
             />
           </div>
-          <div className="statecontent">{renderContent()}</div>
+          <div className="statecontent">
+            <Routes>
+              <Route path="/profile" element={<MentorProfile />} />
+              <Route path="/events" element={<MentorEvents />} />
+              <Route path="/skills" element={<MentorSkills />} />
+              <Route path="/event-creation" element={<MentorCreateEvent />} />
+              <Route path="/event-details" element={<MentorEventDetails />} />
+            </Routes>
+          </div>
         </div>
         <div className="footer">
           <Footer {...footercontent} />
@@ -109,10 +96,4 @@ const MentorContent = () => {
   );
 };
 
-const Mentor = () => (
-  <RecoilRoot>
-    <MentorContent />
-  </RecoilRoot>
-);
-
-export default Mentor;
+export default MentorContent;

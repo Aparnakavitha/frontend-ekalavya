@@ -1,15 +1,19 @@
 import React from "react";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import { EventMenus } from "../../../layouts/common";
 import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 
-const MentorEvents = (onclick) => {
+const MentorEvents = () => {
+
+  const navigate = useNavigate();
+
   const createEvent = {
     content: "Create Event",
     variant: "secondary",
     width: "half",
     onClick: () => {
-      onclick();
+      navigate("/mentor/event-creation")
     },
   };
 
@@ -22,6 +26,11 @@ const MentorEvents = (onclick) => {
     title: "Events",
   };
 
+  const handleClick = (e) => {
+    console.log("Card clicked");
+    navigate("/mentor/event-details")
+  };
+  
   const primaryCardData = {
     data: [
       {
@@ -32,9 +41,7 @@ const MentorEvents = (onclick) => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -44,9 +51,7 @@ const MentorEvents = (onclick) => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -56,9 +61,7 @@ const MentorEvents = (onclick) => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -68,9 +71,7 @@ const MentorEvents = (onclick) => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -80,9 +81,7 @@ const MentorEvents = (onclick) => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -92,9 +91,7 @@ const MentorEvents = (onclick) => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -104,9 +101,7 @@ const MentorEvents = (onclick) => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -116,9 +111,7 @@ const MentorEvents = (onclick) => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
     ],
     tableColumns: [
@@ -129,7 +122,7 @@ const MentorEvents = (onclick) => {
       { key: "description", displayName: "Description" },
     ],
     toggle: false,
-    itemsPerPage: 5,
+    itemsPerPage: 9,
   };
 
   return (
