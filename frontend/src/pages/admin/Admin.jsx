@@ -13,11 +13,11 @@ import { MdPsychology } from "react-icons/md";
 import { adminPageState } from "../../states/Atoms";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
 import Footer from "../../layouts/common/components/Footer";
-import Student from "./student/Student";
-import Mentor from "./mentor/Mentor";
-import Event from "./event/Event";
-import BatchList from "./batch/BatchList";
-import Skill from "./skill/Skill";
+import Student from "./admin-student/Student";
+import Mentor from "./admin-mentor/Mentor";
+import Event from "./admin-events/Event";
+import BatchList from "./admin-batches/BatchList";
+import Skill from "./admin-skills/Skill";
 
 const AdminContent = () => {
   const [currentPage, setCurrentPage] = useRecoilState(adminPageState);
