@@ -1,12 +1,12 @@
-import React from 'react'
-import Skillsearch from "../../../layouts/mentor-skill/components/Skillsearch"
+import React from "react";
+import Skillsearch from "../../../layouts/mentor-skill/components/Skillsearch";
 
 const MentorSkills = () => {
   return (
     <div>
-<Skillsearch/>
+      <Skillsearch />
     </div>
-  )
-}
+  );
+};
 
-export default MentorSkills
+export default MentorSkills;

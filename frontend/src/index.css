@@ -79,3 +79,20 @@ body {
     display: none;
   }
 }
+
+.public {
+  padding-top: 5vh;
+}
+
+.common {
+  padding: 0 6vw;
+  padding-top: 14vh;
+}
+
+
+.spacebtw{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
