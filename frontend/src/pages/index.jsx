@@ -39,8 +39,9 @@ const Home = () => {
     onclick: (e) => {
       console.log("nfsjkd");
     },
-    number: ["2000+", "300+", "500+"],
+    number: ["2000", "300", "500"],
     title: ["Enrollments", "Certifications", "Projects"],
+    link : "/explore"
   };
 
   const sample = {

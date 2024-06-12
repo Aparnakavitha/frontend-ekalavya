@@ -12,6 +12,7 @@ const CardLayoutData = {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
+          window.location.href = '/explore/description';
         },
       },
       {
@@ -24,6 +25,7 @@ const CardLayoutData = {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
+          window.location.href = '/explore/description';
         },
       },
       {
