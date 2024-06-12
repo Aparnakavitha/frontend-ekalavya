@@ -1,14 +1,15 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Admin from "./pages/admin/Admin";
+import "./App.css";
+import RouterComponent from "./routes/Router";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/admin/*" element={<Admin />} />
-      </Routes>
-    </Router>
+    <div>
+      <div className="App">
+        <header className="App-header">
+          <RouterComponent />
+        </header>
+      </div>
+    </div>
   );
 };
 

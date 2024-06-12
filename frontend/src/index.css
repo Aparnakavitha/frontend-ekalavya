@@ -63,7 +63,7 @@ body {
 }
 
 .statecontent {
-  padding-top: 13vh;
+  padding-top: 9vh;
 }
 
 @media screen and (max-width: 767px) {
@@ -78,4 +78,21 @@ body {
   .profilenotificationbox {
     display: none;
   }
+}
+
+.public {
+  padding-top: 5vh;
+}
+
+.common {
+  padding: 0 6vw;
+  padding-top: 14vh;
+}
+
+
+.spacebtw{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }

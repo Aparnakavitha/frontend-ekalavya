@@ -2,7 +2,7 @@ import React from "react";
 import Batchoperations from "./BatchOperations";
 
 export default {
-  title: "Layouts/AdminBatches/Components/Add Batch ",
+  title: "Layouts/Admin-batches/Components/Add Batch ",
   component: Batchoperations,
 };
 

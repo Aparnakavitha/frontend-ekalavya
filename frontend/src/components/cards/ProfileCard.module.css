@@ -107,3 +107,12 @@
 .card:hover .student-image {
   background-color: var(--neutral800);
 }
+
+.card:hover .contact-info,
+.card:hover .delete-icon {
+  color: var(--neutral800)
+}
+
+.card:hover .student-image {
+  background-color: var(--neutral800)
+}

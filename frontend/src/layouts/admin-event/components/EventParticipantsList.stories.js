@@ -2,7 +2,7 @@ import React from "react";
 import EventParticipantsList from "./EventParticipantsList";
 
 export default {
-  title: "layouts/AdminEvent/Components/EventParticipantsList",
+  title: "layouts/Admin-event/Components/EventParticipantsList",
   component: EventParticipantsList,
   argTypes: {
     onClick: { action: "clicked" },
