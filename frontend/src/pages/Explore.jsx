@@ -19,6 +19,7 @@ const Explore = () => {
       profilePic: Dp,
       gmail: "sanaparvin@gmail.com",
     },
+    user:"public"
   };
   const footerdata = {
     Logo: image,
