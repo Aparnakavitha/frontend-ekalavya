@@ -3,12 +3,12 @@ import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
 import DeleteBox from "../../common/components/DeleteBox";
-import profilepic from "../../../assets/profilepic.jpg";
+import profilepic from "../../../assets/DP.png";
 
 const MentorProfileInfo = (props) => {
   const sample = {
     role: "mentor",
-    profilepic: { profilepic },
+    profilepic:  profilepic ,
     name: "Emma Watson",
     college: "Christ University",
     dob: "1990-01-01",
