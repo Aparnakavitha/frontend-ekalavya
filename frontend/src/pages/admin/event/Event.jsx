@@ -1,5 +1,5 @@
 import React from "react";
-import EventData from "./EventData";
+import EventData from "../../../services/admin/event/EventData";
 import { Greeting, DataView } from "../../../layouts/common";
 import AdminEventAction from "../../../layouts/admin-event/components/AdminEventAction";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
