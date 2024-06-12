@@ -10,6 +10,9 @@ const SideBar = ({ button, listItems, profileBox, onItemClick, location ,user })
   const [showSidebar, setShowSidebar] = useState(false);
 
   const isActive = (path) => {
+    if (user === "public") {
+      return false;
+    }
     return location.pathname === path || location.pathname.startsWith(`${path}/`);
   };
 
