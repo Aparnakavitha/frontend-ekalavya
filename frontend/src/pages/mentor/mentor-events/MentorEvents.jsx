@@ -26,6 +26,11 @@ const MentorEvents = () => {
     title: "Events",
   };
 
+  const handleClick = (e) => {
+    console.log("Card clicked");
+    navigate("/mentor/event-details")
+  };
+  
   const primaryCardData = {
     data: [
       {
@@ -36,9 +41,7 @@ const MentorEvents = () => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -48,9 +51,7 @@ const MentorEvents = () => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -60,9 +61,7 @@ const MentorEvents = () => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -72,9 +71,7 @@ const MentorEvents = () => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -84,9 +81,7 @@ const MentorEvents = () => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -96,9 +91,7 @@ const MentorEvents = () => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -108,9 +101,7 @@ const MentorEvents = () => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
       {
         miniHeading: "Capstone",
@@ -120,9 +111,7 @@ const MentorEvents = () => {
         description:
           "Unlock the power of data with our comprehensive Introduction to Data",
         cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-        },
+        handleClick: handleClick,
       },
     ],
     tableColumns: [
@@ -133,7 +122,7 @@ const MentorEvents = () => {
       { key: "description", displayName: "Description" },
     ],
     toggle: false,
-    itemsPerPage: 5,
+    itemsPerPage: 9,
   };
 
   return (

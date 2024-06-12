@@ -11,6 +11,7 @@ import MentorProfile from "./mentor-profile/MentorProfile";
 import MentorEvents from "./mentor-events/MentorEvents";
 import MentorSkills from "./mentor-skills/MentorSkills";
 import MentorCreateEvent from "./mentor-events/MentorCreateEvent";
+import MentorEventDetails from "./mentor-events/MentorEventDetails";
 
 const MentorContent = () => {
   const navigate = useNavigate();
@@ -79,10 +80,11 @@ const MentorContent = () => {
           </div>
           <div className="statecontent">
             <Routes>
-              <Route exact path="/profile" element={<MentorProfile />} />
-              <Route exact path="/events" element={<MentorEvents />} />
-              <Route exact path="/skills" element={<MentorSkills />} />
+              <Route path="/profile" element={<MentorProfile />} />
+              <Route path="/events" element={<MentorEvents />} />
+              <Route path="/skills" element={<MentorSkills />} />
               <Route path="/event-creation" element={<MentorCreateEvent />} />
+              <Route path="/event-details" element={<MentorEventDetails />} />
             </Routes>
           </div>
         </div>
