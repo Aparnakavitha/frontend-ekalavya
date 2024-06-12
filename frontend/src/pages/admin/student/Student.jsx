@@ -10,7 +10,7 @@ const Student = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/student-detail`);
+    navigate(`/admin/student/student-details`);
   };
   return (
     <div>

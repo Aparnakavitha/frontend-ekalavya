@@ -1,6 +1,5 @@
-import React from "react";
-import { RecoilRoot, useRecoilState } from "recoil";
-import { useNavigate, Routes, Route, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
@@ -12,7 +11,6 @@ import {
   MdPsychology,
 } from "react-icons/md";
 import { RiContactsBook3Fill } from "react-icons/ri";
-import { currentPageState } from "./AdminAtoms";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
 import Footer from "../../layouts/common/components/Footer";
 import Student from "./student/Student";
@@ -23,42 +21,12 @@ import Skill from "./skill/Skill";
 import BatchSelect from "./batch/BatchSelect";
 import StudentDetails from "./student/StudentDetails";
 import MentorDetails from "./mentor/MentorDetails";
+import EventDetails from "./event/EventDetails";
+import EventParticipantsList from "../../layouts/admin-event/components/EventParticipantsList";
+import EventParticipants from "./event/EventParticipants";
 
 const AdminContent = () => {
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
-  const location = useLocation();
   const navigate = useNavigate();
-
-  React.useEffect(() => {
-    switch (location.pathname) {
-      case "/student":
-        setCurrentPage("student");
-        break;
-      case "/mentor":
-        setCurrentPage("mentor");
-        break;
-      case "/events":
-        setCurrentPage("events");
-        break;
-      case "/batches":
-        setCurrentPage("batches");
-        break;
-      case "/skills":
-        setCurrentPage("skills");
-        break;
-      case "/batch-select":
-        setCurrentPage("batch-select");
-        break;
-      case "/student-detail":
-        setCurrentPage("student-detail");
-        break;
-        case "/mentor-detail":
-          setCurrentPage("mentor-detail");
-          break;
-      default:
-        setCurrentPage("student");
-    }
-  }, [location.pathname, setCurrentPage]);
 
   const sample = {
     content: "Logout",
@@ -104,53 +72,9 @@ const AdminContent = () => {
       gmail: "nazeem@gmail.com",
     },
   };
-
   const handleSidebarItemClick = (page) => {
-    setCurrentPage(page);
-    switch (page) {
-      case "student":
-        navigate("/student");
-        break;
-      case "mentor":
-        navigate("/mentor");
-        break;
-      case "events":
-        navigate("/events");
-        break;
-      case "batches":
-        navigate("/batches");
-        break;
-      case "skills":
-        navigate("/skills");
-        break;
-      default:
-        navigate("/student");
-    }
+    navigate(`/admin/${page}`);
   };
-
-  const renderContent = () => {
-    switch (currentPage) {
-      case "student":
-        return <Student />;
-      case "mentor":
-        return <Mentor />;
-      case "events":
-        return <Event />;
-      case "batches":
-        return <BatchList />;
-      case "skills":
-        return <Skill />;
-      case "batch-select":
-        return <BatchSelect />;
-      case "student-detail":
-        return <StudentDetails />;
-        case "mentor-detail":
-          return <MentorDetails />;
-      default:
-        return <Student />;
-    }
-  };
-
   const footercontent = {
     Logo: edunexa,
     quoteContent: "Embark on Your Learning Journey Today!",
@@ -176,7 +100,26 @@ const AdminContent = () => {
               gmail={sidebarContent.profileBox.gmail}
             />
           </div>
-          <div className="statecontent">{renderContent()}</div>
+          <div className="statecontent">
+            <Routes>
+              <Route path="/student" element={<Student />} />
+              <Route path="/mentor" element={<Mentor />} />
+              <Route path="/events" element={<Event />} />
+              <Route path="/batches" element={<BatchList />} />
+              <Route path="/skills" element={<Skill />} />
+              <Route path="/batches/batch-details" element={<BatchSelect />} />
+              <Route
+                path="student/student-details"
+                element={<StudentDetails />}
+              />
+              <Route path="mentor/mentor-details" element={<MentorDetails />} />
+              <Route path="events/event-details" element={<EventDetails />} />
+              <Route
+                path="events/event-details/event-participants"
+                element={<EventParticipants />}
+              />
+            </Routes>
+          </div>
         </div>
         <div className="footer">
           <Footer {...footercontent} />
@@ -186,10 +129,4 @@ const AdminContent = () => {
   );
 };
 
-const Admin = () => (
-  <RecoilRoot>
-    <AdminContent />
-  </RecoilRoot>
-);
-
-export default Admin;
+export default AdminContent;

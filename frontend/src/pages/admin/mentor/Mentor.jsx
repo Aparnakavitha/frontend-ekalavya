@@ -9,7 +9,7 @@ const Mentor = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/mentor-detail`);
+    navigate(`/admin/mentor/mentor-details`);
   };
   return (
     <div>

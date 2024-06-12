@@ -10,12 +10,13 @@ const BatchList = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/batch-select`);
+    navigate(`/admin/batches/batch-details`);
   };
 
   return (
     <div>
       <Greeting {...BatchListData.greeting} />
+
       <AdminBatchAction />
       <DataView
         CardComponent={(props) => (

@@ -4,9 +4,13 @@ import EventData from "./EventData";
 import Modal from "../../common/components/Modal";
 import CardRow from "./Cardrow";
 import Addevent from "./AddEvent";
+import styles from "../AdminStudent.module.css";
+import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import { DeleteBox } from "../../common";
 
 const EventList = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -16,9 +20,41 @@ const EventList = () => {
     setIsOpen(false);
   };
 
+  const handleOpenDelete = () => {
+    setIsDeleteOpen(true);
+  };
+
+  const handleCloseDelete = () => {
+    setIsDeleteOpen(false);
+  };
+
+  const handleDeleteCancel = () => {
+    console.log("Delete canceled");
+    handleCloseDelete();
+  };
+
+  const handleDeleteConfirm = () => {
+    console.log("Delete confirmed");
+    handleCloseDelete();
+  };
+
   const handleFormSubmit = (formData) => {
     console.log("Form submitted with data:", formData);
     handleCloseModal();
+    handleCloseDelete();
+  };
+
+  const props = {
+    content: "Delete Student",
+    variant: "tertiary",
+    onClick: handleOpenDelete,
+    width: "full",
+  };
+
+  const deleteprops = {
+    title: "Confirmation Required",
+    message: "Are you sure you want to delete this Student?",
+    buttonText: "Confirm",
   };
 
   const heading = {
@@ -36,6 +72,24 @@ const EventList = () => {
         <Addevent {...EventData.addevent} onSubmit={handleFormSubmit} />
       </Modal>
       <CardRow {...EventData.eventcards} />
+      <div className="padding">
+        <div className={`${styles["eventslist-container"]}`}>
+          <div className={`${styles["eventslist-deletebutton"]}`}>
+            <PrimaryButton {...props} />
+          </div>
+        </div>
+      </div>
+      <Modal
+        isOpen={isDeleteOpen}
+        widthVariant="small"
+        onClose={handleCloseDelete}
+      >
+        <DeleteBox
+          {...deleteprops}
+          onCancel={handleDeleteCancel}
+          onConfirm={handleDeleteConfirm}
+        />
+      </Modal>
     </div>
   );
 };
