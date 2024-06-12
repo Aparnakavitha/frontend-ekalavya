@@ -21,7 +21,7 @@ Addnewstudent.args = {
   labelTitle: "Add student ID",
   placeHolder: "Student ID",
   buttonTitle: "Add",
-  isSelect:true,
+  isSelect: true,
   options,
 };
 
@@ -33,4 +33,18 @@ Editbatchname.args = {
   placeHolder: "Batch Name",
   buttonTitle: "Save",
   initialData: { inputData: "Batch 1" },
+  isEdit: false,
+};
+
+export const Editskillname = Template.bind({});
+
+Editskillname.args = {
+  mainHeading: "Edit Skill Name",
+  labelTitle: "Skill Name",
+  placeHolder: "Skill Name",
+  buttonTitle: "Save",
+  initialData: { inputData: "Skill 1" },
+  isEdit: true,
+  message: "You are updating :",
+  skillId: "SKILL4785",
 };

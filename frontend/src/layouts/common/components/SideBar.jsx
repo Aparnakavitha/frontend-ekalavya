@@ -5,7 +5,7 @@ import { BsList, BsX } from "react-icons/bs";
 import Logo from "../../../assets/EduNexa.png";
 import ProfileBox from "../../../components/profilenotificationbox/ProfileNotificationBox";
 
-const SideBar = ({ button, listItems, profileBox , onItemClick }) => {
+const SideBar = ({ button, listItems, profileBox, onItemClick }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showSidebar, setShowSidebar] = useState(false);
 

@@ -5,7 +5,12 @@ import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
-import { MdEvent, MdViewQuilt, MdAccountCircle, MdPsychology } from "react-icons/md";
+import {
+  MdEvent,
+  MdViewQuilt,
+  MdAccountCircle,
+  MdPsychology,
+} from "react-icons/md";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import { currentPageState } from "./AdminAtoms";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
@@ -16,6 +21,8 @@ import Event from "./event/Event";
 import BatchList from "./batch/BatchList";
 import Skill from "./skill/Skill";
 import BatchSelect from "./batch/BatchSelect";
+import StudentDetails from "./student/StudentDetails";
+import MentorDetails from "./mentor/MentorDetails";
 
 const AdminContent = () => {
   const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
@@ -42,6 +49,12 @@ const AdminContent = () => {
       case "/batch-select":
         setCurrentPage("batch-select");
         break;
+      case "/student-detail":
+        setCurrentPage("student-detail");
+        break;
+        case "/mentor-detail":
+          setCurrentPage("mentor-detail");
+          break;
       default:
         setCurrentPage("student");
     }
@@ -129,6 +142,10 @@ const AdminContent = () => {
         return <Skill />;
       case "batch-select":
         return <BatchSelect />;
+      case "student-detail":
+        return <StudentDetails />;
+        case "mentor-detail":
+          return <MentorDetails />;
       default:
         return <Student />;
     }

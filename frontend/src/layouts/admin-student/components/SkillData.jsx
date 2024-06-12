@@ -27,7 +27,7 @@ const SkillData = {
         mainHeading: "Java",
         Count: 53,
         cardType: "skill",
-        canEdit: false,
+        canEdit: true,
       },
       {
         miniHeading: "Skill 2",

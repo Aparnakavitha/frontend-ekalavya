@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import DataView from "../../common/components/DataView";
-import DeleteBox from "../../common/components/DeleteBox";
 import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import Modal from "../../common/components/Modal";
+import UpdateSingleField from "../../../layouts/common/components/UpdateSingleField";
 import skillCardData from "./AdminSkillsListData";
 
 const AdminSkillsList = () => {
@@ -20,13 +20,20 @@ const AdminSkillsList = () => {
     setSelectedSkill(null);
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (data) => {
     if (selectedSkill) {
-      const updatedSkills = skills.filter(
-        (skill) => skill.miniHeading !== selectedSkill.miniHeading
+      const updatedSkills = skills.map((skill) =>
+        skill.miniHeading === selectedSkill.miniHeading
+          ? { ...skill, mainHeading: data.inputData }
+          : skill
       );
       setSkills(updatedSkills);
-      console.log("Deleted skill ID:", selectedSkill.miniHeading);
+      console.log(
+        "Updated skill:",
+        selectedSkill.miniHeading,
+        "to:",
+        data.inputData
+      );
     }
     handleCloseModal();
   };
@@ -35,19 +42,27 @@ const AdminSkillsList = () => {
     ...skillCardData,
     data: skills.map((skill) => ({
       ...skill,
-      handleDeleteClick: () => handleOpenModal(skill),
+      handleEditClick: () => handleOpenModal(skill),
     })),
   };
 
   return (
     <div>
       <DataView CardComponent={SkillBatchCard} {...skillData} />
-      <Modal isOpen={isOpen} widthVariant="small" onClose={handleCloseModal}>
-        <DeleteBox
-          {...skillCardData.deleteProps}
-          onCancel={handleCloseModal}
-          onConfirm={handleFormSubmit}
-        />
+      <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
+        {selectedSkill && (
+          <UpdateSingleField
+            mainHeading="Edit Skill"
+            labelTitle="Skill Name"
+            placeHolder="Skill Name"
+            buttonTitle="Save"
+            initialData={{ inputData: selectedSkill.mainHeading }}
+            onSubmit={handleFormSubmit}
+            isEdit={true}
+            message="You are updating :"
+            skillId={selectedSkill.miniHeading}
+          />
+        )}
       </Modal>
     </div>
   );
