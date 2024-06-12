@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route, useParams, useNavigate } from "react-router-dom";
+import React from "react";
+import { useLocation,useNavigate,Routes,Route } from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
@@ -14,6 +14,8 @@ import MentorCreateEvent from "./mentor-events/MentorCreateEvent";
 import MentorEventDetails from "./mentor-events/MentorEventDetails";
 
 const MentorContent = () => {
+  const location = useLocation(); 
+
   const navigate = useNavigate();
 
   const sample = {
@@ -68,6 +70,8 @@ const MentorContent = () => {
         listItems={sidebarContent.listItems}
         profileBox={sidebarContent.profileBox}
         onItemClick={handleSidebarItemClick}
+        location={location} 
+        user="mentor"
       />
       <div className="page">
         <div>
