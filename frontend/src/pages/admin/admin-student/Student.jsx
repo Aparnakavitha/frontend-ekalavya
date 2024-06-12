@@ -3,7 +3,7 @@ import Greeting from "../../../layouts/admin-student/components/AdminStudentGree
 import AdminStudentAction from "../../../layouts/admin-student/components/AdminStudentAction";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
-import StudentData from "./StudentData";
+import StudentData from "../../../services/admin/student/StudentData";
 
 const Student = () => {
   return (

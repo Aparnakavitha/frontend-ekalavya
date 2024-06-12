@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useParams, useNavigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useParams,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
@@ -12,8 +18,11 @@ import StudentEvent from "./student-events/StudentEvents";
 import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
 import EventDescription from "../EventDescription";
 import StudentEventDescription from "../../layouts/student-event-description/components/StudentEventDescription";
+import Explore from "../Explore";
 
 const StudentContent = () => {
+  const location = useLocation();
+
   const navigate = useNavigate();
 
   const sample = {
@@ -68,6 +77,8 @@ const StudentContent = () => {
         listItems={sidebarContent.listItems}
         profileBox={sidebarContent.profileBox}
         onItemClick={handleSidebarItemClick}
+        location={location}
+        user="student"
       />
       <div className="page">
         <div>
@@ -80,15 +91,15 @@ const StudentContent = () => {
           </div>
           <div className="statecontent">
             <Routes>
-              <Route path="/student">
-                <Route exact path="profile" element={<StudentProfile />} />
-                <Route exact path="events" element={<StudentEvent />} />
+                <Route exact path="/profile" element={<StudentProfile />} />
+                <Route exact path="/events" element={<StudentEvent />} />
                 <Route
                   path="events/:eventId"
                   element={<StudentEventDescription />}
                 />
                 <Route exact path="skills" element={<SkillLayout />} />
-              </Route>
+             
+
             </Routes>
           </div>
         </div>

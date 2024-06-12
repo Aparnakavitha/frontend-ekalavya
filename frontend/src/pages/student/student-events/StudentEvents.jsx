@@ -49,7 +49,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
 
@@ -64,7 +64,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
 
@@ -79,7 +79,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
 
@@ -94,7 +94,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
 
@@ -109,7 +109,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
 
@@ -124,7 +124,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
 
@@ -139,7 +139,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
 
@@ -154,7 +154,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
 
@@ -169,7 +169,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
 
@@ -184,7 +184,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
 
@@ -199,7 +199,7 @@ const StudentEvent = () => {
         cardType: "Course",
         handleClick: (e) => {
           console.log("clicked");
-          navigate(`${3}`)
+          navigate(`${3}`);
         },
       },
     ],
@@ -223,6 +223,7 @@ const StudentEvent = () => {
           variant: "secondary",
           onClick: () => {
             console.log("Explore Events clicked");
+            navigate("/explore");
           },
           width: "half",
         }}
