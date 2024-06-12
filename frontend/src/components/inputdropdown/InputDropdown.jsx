@@ -72,7 +72,7 @@ function InputDropdown({
   });
 
   return (
-    <div className={styles.container}>
+    <div>
       {label && <label className={styles.label}>{label}</label>}
       <Select
         value={
@@ -97,6 +97,7 @@ function InputDropdown({
             onBlur(event);
           }
         }}
+        noOptionsMessage={() => null}
         styles={{
           control: getControlStyles,
           option: getOptionStyles,
@@ -134,12 +135,20 @@ function InputDropdown({
             paddingLeft: "15px",
             color: "var(--neutral400)",
           }),
-          dropdownIndicator: (provided) => ({
+          dropdownIndicator: (provided, state) => ({
             ...provided,
             cursor: "pointer",
-            color: isFocused ? "var(--neutral200)" : "var(--neutral600)",
+            color:
+              state.selectProps.menuIsOpen && options.length === 0
+                ? "yellow"
+                : isFocused
+                  ? "var(--neutral200)"
+                  : "var(--neutral600)",
             "&:hover": {
-              color: "var(--neutral200)",
+              color:
+                state.selectProps.menuIsOpen && options.length === 0
+                  ? "yellow"
+                  : "var(--neutral200)",
             },
           }),
           clearIndicator: (provided) => ({
