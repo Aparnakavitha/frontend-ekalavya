@@ -51,6 +51,7 @@ const MentorProfileInfo = (props) => {
     initialData: {...mentorData,
     },
     isEdit: true,
+    onSubmit : handleFormSubmit
   };
 
   const deleteBox = {
@@ -84,52 +85,3 @@ const MentorProfileInfo = (props) => {
 export default MentorProfileInfo;
 
 
-
-
-const jjl= {
-  "userId":1 ,
-  "firstName": "Raju",
-  "lastName": "P",
-  "phoneNo": "9874587458",
-  "dob": "1990-05-15",
-  "aboutMe": "I'm a btech graduate",
-  "addresses": [
-    {
-      "addressType": "home",
-      "houseName": "123 Main St",
-      "city": "city",
-      "state": "State",
-      "country": "Country",
-      "pinCode": "12345"
-    },
-    {
-      "addressType": "home",
-      "houseName": "456 Business Ave",
-      "city": "Worktown",
-      "state": "State",
-      "country": "Country",
-      "pinCode": "54321"
-    }
-  ],
-  "qualifications": [
-    {
-        "degree": "Btech CS",
-        "institution": "KTU",
-        "specialization": "Btech",
-        "startDate": "2005-01-01",
-        "endDate": "2009-01-01",
-        "percentage": "88"
-    },
-    {  
-        "degree": "Mtech in CS",
-        "institution": "KTU",
-        "specialization": "Mtech",
-        "startDate": "2010-01-01",
-        "endDate": "2012-01-01",
-        "percentage": "88.2"
- 
- 
-    }
- ]
- }
-  

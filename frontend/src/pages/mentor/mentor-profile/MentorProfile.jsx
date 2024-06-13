@@ -4,7 +4,7 @@ import MentorProfileInfo from "../../../layouts/mentor-profile/components/Mentor
 import AboutMe from "../../../layouts/common/components/AboutMe";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
 import profilepic from "../../../assets/DP.png";
-import { getMentorDetails } from "../../../../src/services/mentor/mentor";
+import { getMentorDetails } from "../../../services/mentor/User";
 
 const MentorProfile = () => {
   const [mentorData, setMentorData] = useState(null);
@@ -61,35 +61,16 @@ const MentorProfile = () => {
     state: homeAddress ? homeAddress.state : "",
     country: homeAddress ? homeAddress.country : "",
     aboutMe: mentorData.aboutMe || "",
-
   };
 
-  const Education = mentorData.qualifications
-  // [
-  //   {
-  //     name: "MBAzzzzzzzzzz finCRVGHBJNKMLance",
-  //     university: "Christ University",
-  //     cgpa: 7.2,
-  //     start: "May 2022",
-  //     end: "April 2024",
-  //     Specialization: "Marketing",
-  //   },
-  //   {
-  //     name: "B.Tech",
-  //     university: "PES University",
-  //     cgpa: 7.2,
-  //     start: "May 2022",
-  //     end: "April 2024",
-  //     Specialization: "Marketing",
-  //   },
-  // ];
+  const Education = mentorData.qualifications;
 
   return (
     <div>
       <Greeting {...greet} />
       <MentorProfileInfo {...profileData} />
       <AboutMe {...about} />
-      <EducationalQualification qualifications = {Education}/>
+      <EducationalQualification qualifications={Education} />
     </div>
   );
 };

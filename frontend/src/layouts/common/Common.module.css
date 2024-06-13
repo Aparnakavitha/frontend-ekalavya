@@ -7,7 +7,7 @@
   padding: 20px;
   position: fixed;
   top: 0;
-  z-index: 1500;
+  z-index: 800;
   transition: left 0.8s ease-in-out;
 }
 

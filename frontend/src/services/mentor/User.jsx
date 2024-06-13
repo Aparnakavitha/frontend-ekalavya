@@ -5,7 +5,19 @@ const API_URL = "http://localhost:8888";
 export const getMentorDetails = async (params) => {
   try {
     const response = await axios.get(`${API_URL}/users`, {
-      params: params, // Pass the params object directly
+      params: params, 
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
+export const updateMentorDetails = async (params) => {
+  try {
+    const response = await axios.post(`${API_URL}/users`, {
+      params: params,
     });
     return response.data;
   } catch (error) {
