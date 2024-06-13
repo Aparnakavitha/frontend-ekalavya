@@ -6,27 +6,21 @@ import DeleteBox from "../../common/components/DeleteBox";
 import profilepic from "../../../assets/DP.png";
 
 const MentorProfileInfo = (props) => {
+  const mentorData  = props; 
+
   const sample = {
     role: "mentor",
-    profilepic:  profilepic ,
-    name: "Emma Watson",
-    college: "Christ University",
-    dob: "1990-01-01",
-    email: "emmawatson@gmail.com",
-    phoneNumber: 8755383632,
-    houseName: "Sample House",
-    city: "Sample City",
-    pinCode: "123456",
-    state: "Sample State",
-    country: "Sample Country",
+    ...mentorData,
     hasDelete: false,
     onClickEdit: () => {
       handleOpenEditBasicDetails();
+      console.log(mentorData);
     },
     onClickDelete: () => {
       handleOpenDeleteBasicDetails();
     },
   };
+  
 
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
   const [isDeleteDetailsIsOpen, setIsDeleteDetailsIsOpen] = useState(false);
@@ -54,20 +48,10 @@ const MentorProfileInfo = (props) => {
 
   const editBox = {
     mainHeading: "Edit Basic Details",
-    initialData: {
-      profilepic: sample.profilepic,
-      name: sample.name,
-      dob: sample.dob,
-      college: sample.college,
-      phoneNumber: sample.phoneNumber,
-      houseName: "Skyline villa",
-      city: "Bengaluru",
-      pinCode: "795432",
-      state: "Karnataka",
-      country: "India",
-      aboutMe: "Mumble mumble mumble",
+    initialData: {...mentorData,
     },
     isEdit: true,
+    onSubmit : handleFormSubmit
   };
 
   const deleteBox = {
@@ -99,3 +83,5 @@ const MentorProfileInfo = (props) => {
 };
 
 export default MentorProfileInfo;
+
+
