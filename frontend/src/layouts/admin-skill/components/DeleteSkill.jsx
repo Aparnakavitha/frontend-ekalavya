@@ -52,7 +52,7 @@ const DeleteSkill = ({ onSubmit, onCancel }) => {
         {error && <div className={`${styles["error-message"]}`}>{error}</div>}
         <div className={`${styles["deleteskill-buttonrow"]}`}>
           <PrimaryButton
-            variant="primary"
+            variant="secondary"
             content="Cancel"
             onClick={onCancel}
             width="full"

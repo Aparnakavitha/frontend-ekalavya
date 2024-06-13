@@ -18,6 +18,7 @@ import AdminStudentDetails from './admin-student/AdminStudentDetails';
 import AdminMentorDetails from './admin-mentor/AdminMentorDetails';
 import AdminEventDetails from './admin-events/EventDetails';
 import AdminEventParticipants from './admin-events/AdminEventParticipants';
+import AdminSkillStudents from './admin-skills/AdminSkillStudents';
 
 const AdminContent = () => {
   const navigate = useNavigate();
@@ -87,8 +88,8 @@ const AdminContent = () => {
         listItems={sidebarContent.listItems}
         profileBox={sidebarContent.profileBox}
         onItemClick={handleSidebarItemClick}
-        location={location}  // Pass the location here
-        user="admin"  // Assuming the user type is admin
+        location={location}
+        user="admin"
       />
       <div className="page">
         <div>
@@ -106,6 +107,7 @@ const AdminContent = () => {
               <Route path="events" element={<AdminEvent />} />
               <Route path="batches" element={<AdminBatchList />} />
               <Route path="skills" element={<AdminSkill />} />
+              <Route path="skills/skill-participants" element={<AdminSkillStudents />} />
               <Route path="batches/batch-details" element={<AdminBatchSelect />} />
               <Route path="student/student-details" element={<AdminStudentDetails />} />
               <Route path="mentor/mentor-details" element={<AdminMentorDetails />} />
