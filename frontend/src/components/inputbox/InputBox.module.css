@@ -84,6 +84,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   width: 25px;
   height: 25px;
   filter: invert(50%);
+  cursor: pointer;
 }
 
 .file-input-wrapper {
