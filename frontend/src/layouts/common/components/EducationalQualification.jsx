@@ -48,7 +48,7 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
   const handleFormSubmit = async (formData) => {
     try {
       const formDataToSend = {
-        userId: "02", 
+        userId: userId, 
         qualifications: [formData] 
       };
       await onFormSubmit(formDataToSend);
@@ -66,7 +66,7 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
       const qualification = qualifications[index];
 
       const formData = {
-        userId: "02",
+        userId: userId,
         qualifications: [
           {
             qualificationId: qualification.qualificationId,
