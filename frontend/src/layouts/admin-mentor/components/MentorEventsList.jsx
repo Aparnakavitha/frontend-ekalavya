@@ -7,8 +7,11 @@ import Addevent from "../../admin-student/components/AddEvent";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { DeleteBox } from "../../common";
 import styles from "../AdminMentor.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const MentorEventsList = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
@@ -44,6 +47,10 @@ const MentorEventsList = () => {
     handleCloseDelete();
   };
 
+  const handleClick = () => {
+    navigate(`/admin/events/event-details`);
+  };
+
   const props = {
     content: "Delete Mentor",
     variant: "tertiary",
@@ -71,7 +78,7 @@ const MentorEventsList = () => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <Addevent {...EventData.addevent} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...EventData.eventcards} />
+      <CardRow {...EventData.eventcards} handleClick={handleClick} />
       <div className="padding">
         <div className={`${styles["mentoreventslist-container"]}`}>
           <div className={`${styles["mentoreventslist-deletebutton"]}`}>

@@ -34,7 +34,7 @@ const EventsDescriptionData = {
     },
     deleteeventprops: {
       title: "Confirmation Required",
-      message: "Are you sure you want to remove this skill?",
+      message: "Are you sure you want to remove this event?",
       buttonText: "Confirm",
     },
   };

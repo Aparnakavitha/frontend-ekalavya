@@ -32,7 +32,7 @@ const DeleteSkill = ({ onSubmit, onCancel }) => {
       setError(validationError);
       return;
     }
-    onSubmit(skill); // Call the onSubmit prop with the skill value
+    onSubmit(skill);
   };
 
   return (
@@ -52,7 +52,7 @@ const DeleteSkill = ({ onSubmit, onCancel }) => {
         {error && <div className={`${styles["error-message"]}`}>{error}</div>}
         <div className={`${styles["deleteskill-buttonrow"]}`}>
           <PrimaryButton
-            variant="primary"
+            variant="secondary"
             content="Cancel"
             onClick={onCancel}
             width="full"
