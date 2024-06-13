@@ -5,26 +5,11 @@ import QualificationForm from "./QualificationForm";
 import { action } from "@storybook/addon-actions";
 import DeleteBox from "./DeleteBox";
 
-const EducationalQualification = () => {
+const EducationalQualification = ({qualifications}) => {
+ 
+
   const sample = {
-    q: [
-      {
-        name: "MBA finance",
-        university: "Christ University",
-        cgpa: 7.2,
-        start: "May 2022",
-        end: "April 2024",
-        Specialization: "Marketing",
-      },
-      {
-        name: "B.Tech",
-        university: "PES University",
-        cgpa: 7.2,
-        start: "May 2022",
-        end: "April 2024",
-        Specialization: "Marketing",
-      },
-    ],
+    qualifications,
     onClickAdd: () => {
       handleOpenAddQualification();
     },

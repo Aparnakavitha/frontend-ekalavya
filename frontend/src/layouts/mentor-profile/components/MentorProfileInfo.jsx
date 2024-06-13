@@ -6,27 +6,21 @@ import DeleteBox from "../../common/components/DeleteBox";
 import profilepic from "../../../assets/DP.png";
 
 const MentorProfileInfo = (props) => {
+  const mentorData  = props; 
+
   const sample = {
     role: "mentor",
-    profilepic:  profilepic ,
-    name: "Emma Watson",
-    college: "Christ University",
-    dob: "1990-01-01",
-    email: "emmawatson@gmail.com",
-    phoneNumber: 8755383632,
-    houseName: "Sample House",
-    city: "Sample City",
-    pinCode: "123456",
-    state: "Sample State",
-    country: "Sample Country",
+    ...mentorData,
     hasDelete: false,
     onClickEdit: () => {
       handleOpenEditBasicDetails();
+      console.log(mentorData);
     },
     onClickDelete: () => {
       handleOpenDeleteBasicDetails();
     },
   };
+  
 
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
   const [isDeleteDetailsIsOpen, setIsDeleteDetailsIsOpen] = useState(false);
@@ -54,18 +48,7 @@ const MentorProfileInfo = (props) => {
 
   const editBox = {
     mainHeading: "Edit Basic Details",
-    initialData: {
-      profilepic: sample.profilepic,
-      name: sample.name,
-      dob: sample.dob,
-      college: sample.college,
-      phoneNumber: sample.phoneNumber,
-      houseName: "Skyline villa",
-      city: "Bengaluru",
-      pinCode: "795432",
-      state: "Karnataka",
-      country: "India",
-      aboutMe: "Mumble mumble mumble",
+    initialData: {...mentorData,
     },
     isEdit: true,
   };
@@ -99,3 +82,54 @@ const MentorProfileInfo = (props) => {
 };
 
 export default MentorProfileInfo;
+
+
+
+
+const jjl= {
+  "userId":1 ,
+  "firstName": "Raju",
+  "lastName": "P",
+  "phoneNo": "9874587458",
+  "dob": "1990-05-15",
+  "aboutMe": "I'm a btech graduate",
+  "addresses": [
+    {
+      "addressType": "home",
+      "houseName": "123 Main St",
+      "city": "city",
+      "state": "State",
+      "country": "Country",
+      "pinCode": "12345"
+    },
+    {
+      "addressType": "home",
+      "houseName": "456 Business Ave",
+      "city": "Worktown",
+      "state": "State",
+      "country": "Country",
+      "pinCode": "54321"
+    }
+  ],
+  "qualifications": [
+    {
+        "degree": "Btech CS",
+        "institution": "KTU",
+        "specialization": "Btech",
+        "startDate": "2005-01-01",
+        "endDate": "2009-01-01",
+        "percentage": "88"
+    },
+    {  
+        "degree": "Mtech in CS",
+        "institution": "KTU",
+        "specialization": "Mtech",
+        "startDate": "2010-01-01",
+        "endDate": "2012-01-01",
+        "percentage": "88.2"
+ 
+ 
+    }
+ ]
+ }
+  

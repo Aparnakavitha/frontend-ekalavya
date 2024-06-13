@@ -5,30 +5,7 @@ import { IoMdAdd } from "react-icons/io";
 import styles from "../Common.module.css";
 
 const Education = (props) => {
-  const {
-    qualifications = [
-      {
-        name: "Master of Business Administration (MBA)",
-        university: "Christ University",
-        cgpa: 7.2,
-        start: "May 2022",
-        end: "April 2024",
-        specialization: "Marketing",
-      },
-
-      {
-        name: "Bachelor of Technology (B.Tech)",
-        university: "Christ University",
-        cgpa: 7.2,
-        start: "May 2022",
-        end: "April 2024",
-        specialization: "Marketing",
-      },
-    ],
-    onClickAdd,
-    onClickEdit,
-    onClickDelete,
-  } = props;
+  const { qualifications, onClickAdd, onClickEdit, onClickDelete } = props;
 
   return (
     <div className={`${styles["education-container"]} padding-bottom padding`}>
@@ -65,13 +42,13 @@ const Education = (props) => {
                       <h3
                         className={`${styles["education-qualification-name"]}`}
                       >
-                        {qualification.name}
+                        {qualification.degree}
                       </h3>
 
-                      <p>{qualification.university}</p>
-                      <p>CGPA: {qualification.cgpa}</p>
+                      <p>{qualification.institution}</p>
+                      <p>Percentage: {qualification.percentage}</p>
                       <p>
-                        {qualification.start} - {qualification.end}
+                        {qualification.startDate} - {qualification.endDate}
                       </p>
                       <p>Specialization: {qualification.specialization}</p>
                     </li>
