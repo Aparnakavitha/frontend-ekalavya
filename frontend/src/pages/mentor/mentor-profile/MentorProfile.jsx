@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Greeting } from "../../../layouts/common";
 import MentorProfileInfo from "../../../layouts/mentor-profile/components/MentorProfileInfo";
 import AboutMe from "../../../layouts/common/components/AboutMe";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
+import profilepic from "../../../assets/DP.png";
+import { getUserDetails } from "../../../services/User";
 
 const MentorProfile = () => {
+  const [mentorData, setMentorData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const params = {
+          userId: "02",
+        };
+        const data = await getUserDetails(params);
+        setMentorData(data.responseData[0]);
+        console.log(mentorData);
+      } catch (error) {
+        console.error("Error fetching mentor data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!mentorData) {
+    return <div>Loading...</div>;
+  }
+
   const greet = {
     welcome: "Welcome Back",
-    name: "John",
+    name: `${mentorData.firstName} ${mentorData.lastName}`,
     info: "Here is the information about",
     profile: "Students",
     showButtons: false,
@@ -15,15 +40,37 @@ const MentorProfile = () => {
 
   const about = {
     title: "About Me",
-    description:
-      "Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. My journey in [Your Field] has been fueled by a profound interest in [What Motivates You], and a commitment to achieving [Your Goals/Objectives]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. My journey in [Your Field] has been fueled by a profound interest in [What Motivates You], and a commitment to achieving [Your Goals/Objectives]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field].",
+    description: mentorData.aboutMe || "",
   };
+
+  const homeAddress = mentorData.addresses.find(
+    (address) => address.addressType === "home"
+  );
+
+  const profileData = {
+    userId: mentorData.userId,
+    profilepic: profilepic,
+    name: greet.name,
+    college: mentorData.college.collegeName,
+    dob: mentorData.dob,
+    email: mentorData.emailId,
+    phoneNumber: mentorData.phoneNo,
+    houseName: homeAddress ? homeAddress.houseName : "",
+    city: homeAddress ? homeAddress.city : "",
+    pinCode: homeAddress ? homeAddress.pinCode : "",
+    state: homeAddress ? homeAddress.state : "",
+    country: homeAddress ? homeAddress.country : "",
+    aboutMe: mentorData.aboutMe || "",
+  };
+
+  const Education = mentorData.qualifications;
+
   return (
     <div>
       <Greeting {...greet} />
-      <MentorProfileInfo />
+      <MentorProfileInfo {...profileData} />
       <AboutMe {...about} />
-      <EducationalQualification />
+      <EducationalQualification qualifications={Education} />
     </div>
   );
 };

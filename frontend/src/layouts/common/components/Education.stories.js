@@ -6,11 +6,11 @@ export default {
 };
 
 const sample = {
-  name: "Bachelor of Technology (B.Tech)",
-  university: "Christ University",
-  cgpa: 7.2,
-  start: "May 2022",
-  end: "April 2024",
+  degree: "Bachelor of Technology (B.Tech)",
+  institution: "Christ University",
+  percentage: 7.2,
+  startDate: "May 2022",
+  endDate: "April 2024",
   specialization: "Marketing",
 };
 
