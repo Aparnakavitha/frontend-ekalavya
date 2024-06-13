@@ -10,7 +10,8 @@ const UserProfileInfo = (props) => {
   const {
     role,
     profilepic,
-    name,
+    first_name,
+    last_name,
     userId,
     college,
     dob,
@@ -61,7 +62,9 @@ const UserProfileInfo = (props) => {
               <ProfilePicture src={profilepic} />
             </div>
             <div className={`${styles["userprofile-info-text"]}`}>
-              <h3 className={`${styles["userprofile-name"]}`}>{name}</h3>
+              <h3 className={`${styles["userprofile-name"]}`}>
+                {first_name} {last_name}
+              </h3>
               <h4 className={`${styles["userprofile-student-id"]}`}>
                 <b>{role.charAt(0).toUpperCase() + role.slice(1)} Id:</b>{" "}
                 {userId}
@@ -82,22 +85,27 @@ const UserProfileInfo = (props) => {
             <h4 className={`${styles["userprofile-phone"]}`}>
               <FaPhone /> {phoneNumber}
             </h4>
-            <h4 className={`${styles["userprofile-linkedin"]}`}>
-              <a
-                className={`${styles["userprofile-social-links"]}`}
-                href={`https://${linkedin}`}
-              >
-                <FaLinkedin /> LinkedIn
-              </a>
-            </h4>
-            <h4 className={styles["userprofile-github"]}>
-              <a
-                className={`${styles["userprofile-social-links"]}`}
-                href={`https://${github}`}
-              >
-                <FaGithub /> GitHub
-              </a>
-            </h4>
+            {linkedin && (
+              <h4 className={`${styles["userprofile-linkedin"]}`}>
+                <a
+                  className={`${styles["userprofile-social-links"]}`}
+                  href={`https://${linkedin}`}
+                >
+                  <FaLinkedin /> LinkedIn
+                </a>
+              </h4>
+            )}
+
+            {github && (
+              <h4 className={styles["userprofile-github"]}>
+                <a
+                  className={`${styles["userprofile-social-links"]}`}
+                  href={`https://${github}`}
+                >
+                  <FaGithub /> GitHub
+                </a>
+              </h4>
+            )}
             <br />
             <h4 className={`${styles["userprofile-address"]}`}>
               <b>Address:</b>

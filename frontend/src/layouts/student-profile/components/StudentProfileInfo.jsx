@@ -6,10 +6,11 @@ import DeleteBox from "../../common/components/DeleteBox";
 import image from "../../../assets/pic.png";
 
 const StudentProfileInfo = (props) => {
-  const sample = {
+  const response = {
     role: "student",
     profilepic: image,
-    name: "Emma Watson",
+    first_name: "Emma",
+    last_name:"Watson",
     college: "Christ University",
     dob: "1990-01-01",
     email: "emmawatson@gmail.com",
@@ -54,7 +55,7 @@ const StudentProfileInfo = (props) => {
 
   const editBox = {
     mainHeading: "Edit Basic Details",
-    initialData: { ...sample },
+    initialData: { ...response },
     isEdit: true,
     onSubmit: handleFormSubmit,
   };
@@ -75,7 +76,7 @@ const StudentProfileInfo = (props) => {
 
   return (
     <div>
-      <UserProfileInfo {...sample} />
+      <UserProfileInfo {...response} />
       <Modal
         isOpen={isEditDetailsOpen}
         widthVariant="medium"
