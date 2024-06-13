@@ -1,34 +1,36 @@
-import React from "react";
-import { RecoilRoot, useRecoilState } from "recoil";
-import SideBar from "../../layouts/common/components/SideBar";
-import Button from "../../components/buttons/PrimaryButton";
-import Dp from "../../../src/assets/DP.png";
-import edunexa from "../../../src/assets/edunexa.png";
-import { MdEvent } from "react-icons/md";
-import { MdViewQuilt } from "react-icons/md";
-import { MdAccountCircle } from "react-icons/md";
-import { RiContactsBook3Fill } from "react-icons/ri";
-import { RiTaskFill } from "react-icons/ri";
-import { MdPsychology } from "react-icons/md";
-import { currentPageState } from "./AdminAtoms";
-import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
-import Footer from "../../layouts/common/components/Footer";
-import Student from "./student/Student";
-import Mentor from "./mentor/Mentor";
-import Event from "./event/Event";
-import BatchList from "./batch/BatchList";
-import Skill from "./skill/Skill";
+import React from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import SideBar from '../../layouts/common/components/SideBar';
+import Button from '../../components/buttons/PrimaryButton';
+import Dp from '../../../src/assets/DP.png';
+import edunexa from '../../../src/assets/edunexa.png';
+import { MdEvent, MdViewQuilt, MdAccountCircle, MdPsychology } from 'react-icons/md';
+import { RiContactsBook3Fill } from 'react-icons/ri';
+import ProfileNotificationBox from '../../components/profilenotificationbox/ProfileNotificationBox';
+import Footer from '../../layouts/common/components/Footer';
+import AdminStudent from './admin-student/AdminStudent';
+import AdminMentor from './admin-mentor/AdminMentor';
+import AdminEvent from './admin-events/AdminEvent';
+import AdminBatchList from './admin-batches/AdminBatchList';
+import AdminSkill from './admin-skills/AdminSkill';
+import AdminBatchSelect from './admin-batches/AdminBatchSelect';
+import AdminStudentDetails from './admin-student/AdminStudentDetails';
+import AdminMentorDetails from './admin-mentor/AdminMentorDetails';
+import AdminEventDetails from './admin-events/EventDetails';
+import AdminEventParticipants from './admin-events/AdminEventParticipants';
+import AdminSkillStudents from './admin-skills/AdminSkillStudents';
 
 const AdminContent = () => {
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const sample = {
-    content: "Logout",
-    variant: "primary",
+    content: 'Logout',
+    variant: 'primary',
     onClick: (r) => {
-      console.log("clicked");
+      console.log('clicked');
     },
-    width: "full",
+    width: 'full',
   };
 
   const sidebarContent = {
@@ -36,63 +38,46 @@ const AdminContent = () => {
     listItems: [
       {
         icon: <MdAccountCircle />,
-        name: "Student",
+        name: 'Student',
         viewIcon: true,
-        page: "student",
+        page: 'student',
       },
       {
         icon: <RiContactsBook3Fill />,
-        name: "Mentor",
+        name: 'Mentor',
         viewIcon: true,
-        page: "mentor",
+        page: 'mentor',
       },
-      { icon: <MdEvent />, name: "Events", viewIcon: true, page: "events" },
+      { icon: <MdEvent />, name: 'Events', viewIcon: true, page: 'events' },
       {
         icon: <MdViewQuilt />,
-        name: "Batches",
+        name: 'Batches',
         viewIcon: true,
-        page: "batches",
+        page: 'batches',
       },
       {
         icon: <MdPsychology />,
-        name: "Skills",
+        name: 'Skills',
         viewIcon: true,
-        page: "skills",
+        page: 'skills',
       },
     ],
     profileBox: {
-      name: "Nazeem",
+      name: 'Nazeem',
       profilePic: Dp,
-      gmail: "nazeem@gmail.com",
+      gmail: 'nazeem@gmail.com',
     },
   };
 
   const handleSidebarItemClick = (page) => {
-    setCurrentPage(page);
-  };
-
-  const renderContent = () => {
-    switch (currentPage) {
-      case "student":
-        return <Student />;
-      case "mentor":
-        return <Mentor />;
-      case "events":
-        return <Event />;
-      case "batches":
-        return <BatchList />;
-      case "skills":
-        return <Skill />;
-      default:
-        return <Student />;
-    }
+    navigate(`/admin/${page}`);
   };
 
   const footercontent = {
     Logo: edunexa,
-    quoteContent: "Embark on Your Learning Journey Today!",
-    copyrightContent: "All rights reserved © 2024 Tarento Group.",
-    copyrightContent2: " | Privacy Policy",
+    quoteContent: 'Embark on Your Learning Journey Today!',
+    copyrightContent: 'All rights reserved © 2024 Tarento Group.',
+    copyrightContent2: ' | Privacy Policy',
     isLeftALigned: true,
   };
 
@@ -103,6 +88,8 @@ const AdminContent = () => {
         listItems={sidebarContent.listItems}
         profileBox={sidebarContent.profileBox}
         onItemClick={handleSidebarItemClick}
+        location={location}
+        user="admin"
       />
       <div className="page">
         <div>
@@ -113,7 +100,21 @@ const AdminContent = () => {
               gmail={sidebarContent.profileBox.gmail}
             />
           </div>
-          <div className="statecontent">{renderContent()}</div>
+          <div className="statecontent">
+            <Routes>
+              <Route path="student" element={<AdminStudent />} />
+              <Route path="mentor" element={<AdminMentor />} />
+              <Route path="events" element={<AdminEvent />} />
+              <Route path="batches" element={<AdminBatchList />} />
+              <Route path="skills" element={<AdminSkill />} />
+              <Route path="skills/skill-participants" element={<AdminSkillStudents />} />
+              <Route path="batches/batch-details" element={<AdminBatchSelect />} />
+              <Route path="student/student-details" element={<AdminStudentDetails />} />
+              <Route path="mentor/mentor-details" element={<AdminMentorDetails />} />
+              <Route path="events/event-details" element={<AdminEventDetails />} />
+              <Route path="events/event-details/event-participants" element={<AdminEventParticipants />} />
+            </Routes>
+          </div>
         </div>
         <div className="footer">
           <Footer {...footercontent} />
@@ -123,10 +124,4 @@ const AdminContent = () => {
   );
 };
 
-const Admin = () => (
-  <RecoilRoot>
-    <AdminContent />
-  </RecoilRoot>
-);
-
-export default Admin;
+export default AdminContent;

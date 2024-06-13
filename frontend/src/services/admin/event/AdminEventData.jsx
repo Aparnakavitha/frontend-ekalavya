@@ -1,4 +1,4 @@
-const EventData = {
+const AdminEventData = {
   greeting: {
     welcome: "Welcome Back",
     name: "John",
@@ -297,4 +297,4 @@ const EventData = {
   },
 };
 
-export default EventData;
+export default AdminEventData;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import styles from "../AdminStudent.module.css";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 import TextButton from "../../../components/buttons/TextButton";
@@ -7,13 +8,15 @@ import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import Modal from "../../../layouts/common/components/Modal";
 import DeleteBox from "../../../layouts/common/components/DeleteBox";
+import UpdateSingleField from "../../../layouts/common/components/UpdateSingleField";
 
-const CardRow = ({ cardData, card }) => {
+const CardRow = ({ cardData, card, handleClick }) => {
   const [cardnum, setCardnum] = useState(4);
   const [pcardnum, setPcardnum] = useState(4);
   const [showAllCards, setShowAllCards] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSkill, setCurrentSkill] = useState(null);
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,6 +46,16 @@ const CardRow = ({ cardData, card }) => {
     setShowAllCards(!showAllCards);
   };
 
+  const handleOpenEdit = (skill) => {
+    setCurrentSkill(skill);
+    setIsEditOpen(true);
+  };
+
+  const handleCloseEdit = () => {
+    setIsEditOpen(false);
+    setCurrentSkill(null);
+  };
+
   const openModal = (skill) => {
     setCurrentSkill(skill);
     setIsModalOpen(true);
@@ -58,20 +71,21 @@ const CardRow = ({ cardData, card }) => {
     closeModal();
   };
 
+  const handleFormSubmit = (data) => {
+    console.log("Form submitted with data:", data);
+    handleCloseEdit();
+  };
+
   const downbutton = {
     icon: <IoIosArrowDown />,
     text: "View More",
-    onClick: (e) => {
-      console.log("clicked");
-    },
+    onClick: dropcards,
   };
 
   const upbutton = {
     icon: <MdOutlineKeyboardArrowUp />,
     text: "View Less",
-    onClick: (e) => {
-      console.log("clicked");
-    },
+    onClick: dropcards,
   };
 
   return (
@@ -87,13 +101,15 @@ const CardRow = ({ cardData, card }) => {
                     key={index}
                     {...data}
                     handleDeleteClick={() => openModal(data)}
+                    handleEditClick={() => handleOpenEdit(data)}
                   />
                 ))}
             </div>
             <div className={styles["cardrow-viewnext"]}>
-              {showAllCards && <TextButton {...upbutton} onClick={dropcards} />}
-              {!showAllCards && (
-                <TextButton {...downbutton} onClick={dropcards} />
+              {showAllCards ? (
+                <TextButton {...upbutton} />
+              ) : (
+                <TextButton {...downbutton} />
               )}
             </div>
           </div>
@@ -110,20 +126,18 @@ const CardRow = ({ cardData, card }) => {
                   <div
                     key={index}
                     className={`${styles["cardrow-primarycard"]}`}
+                    onClick={() => handleClick(item.id)}
                   >
                     <PrimaryCard {...item} />
                   </div>
                 ))}
             </div>
             <div className={styles["cardrow-pviewnext"]}>
-              <div>
-                {showAllCards && (
-                  <TextButton {...upbutton} onClick={dropcards} />
-                )}
-                {!showAllCards && (
-                  <TextButton {...downbutton} onClick={dropcards} />
-                )}
-              </div>
+              {showAllCards ? (
+                <TextButton {...upbutton} />
+              ) : (
+                <TextButton {...downbutton} />
+              )}
             </div>
           </div>
         </div>
@@ -138,8 +152,33 @@ const CardRow = ({ cardData, card }) => {
           onCancel={closeModal}
         />
       </Modal>
+      <Modal
+        isOpen={isEditOpen}
+        widthVariant="medium"
+        onClose={handleCloseEdit}
+      >
+        {currentSkill && (
+          <UpdateSingleField
+            mainHeading="Edit Skill Level"
+            labelTitle="Skill Level"
+            placeHolder="Skill Level"
+            buttonTitle="Save"
+            initialData={{ inputData: currentSkill.Count }}
+            onSubmit={handleFormSubmit}
+            isEdit={true}
+            message="You are updating :"
+            skillId={currentSkill.miniHeading}
+          />
+        )}
+      </Modal>
     </>
   );
+};
+
+CardRow.propTypes = {
+  cardData: PropTypes.array.isRequired,
+  card: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default CardRow;

@@ -1,6 +1,6 @@
 import image from "../../../assets/DP.png";
 
-const MentorData = {
+const AdminMentorData = {
   greeting: {
     welcome: "Welcome Back",
     name: "John",
@@ -167,4 +167,4 @@ const MentorData = {
   },
 };
 
-export default MentorData;
+export default AdminMentorData;

@@ -1,4 +1,4 @@
-const BatchListData = {
+const AdminBatchListData = {
   greeting: {
     welcome: "Welcome Back",
     name: "John",
@@ -199,4 +199,4 @@ const BatchListData = {
   },
 };
 
-export default BatchListData;
+export default AdminBatchListData;

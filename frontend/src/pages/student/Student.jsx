@@ -1,26 +1,29 @@
-import React from "react";
-import { RecoilRoot, useRecoilState } from "recoil";
+import React, { useState, useEffect } from "react";
+import {
+  Routes,
+  Route,
+  useParams,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
-import { MdEvent } from "react-icons/md";
-import { MdViewQuilt } from "react-icons/md";
-import { MdAccountCircle } from "react-icons/md";
-import { RiContactsBook3Fill } from "react-icons/ri";
-import { IoHomeSharp } from "react-icons/io5";
-import { RiTaskFill } from "react-icons/ri";
-import { MdPsychology } from "react-icons/md";
+import { MdEvent, MdAccountCircle, MdPsychology } from "react-icons/md";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
-import { currentPageState } from "./StudentAtoms";
 import Footer from "../../layouts/common/components/Footer";
-import Profile from "./student-profile/Profile";
+import StudentProfile from "./student-profile/StudentProfile";
+import StudentEvent from "./student-events/StudentEvents";
 import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
+import EventDescription from "../EventDescription";
 import StudentEventDescription from "../../layouts/student-event-description/components/StudentEventDescription";
-import StudentEvents from "../../pages/student/student-events/StudentEvents";
+import Explore from "../Explore";
 
 const StudentContent = () => {
-  const [currentPage, setCurrentPage] = useRecoilState(currentPageState);
+  const location = useLocation();
+
+  const navigate = useNavigate();
 
   const sample = {
     content: "Logout",
@@ -34,16 +37,13 @@ const StudentContent = () => {
   const sidebarContent = {
     button: <Button {...sample} />,
     listItems: [
-     
       {
         icon: <MdAccountCircle />,
         name: "Profile",
         viewIcon: true,
         page: "profile",
       },
- 
       { icon: <MdEvent />, name: "Events", viewIcon: true, page: "events" },
-
       {
         icon: <MdPsychology />,
         name: "Skills",
@@ -59,25 +59,14 @@ const StudentContent = () => {
   };
 
   const handleSidebarItemClick = (page) => {
-    setCurrentPage(page);
-  };
-
-  const renderContent = () => {
-    switch (currentPage) {
-      case "events":
-        return <StudentEvents />;
-      case "skills":
-        return <SkillLayout />;
-      default:
-        return <Profile />;
-    }
+    navigate(`/student/${page}`);
   };
 
   const footercontent = {
     Logo: edunexa,
     quoteContent: "Embark on Your Learning Journey Today!",
     copyrightContent: "All rights reserved © 2024 Tarento Group.",
-    copyrightContent2: " | Privacy Policy",
+    copyrightContent2: " | Privacy Policy",
     isLeftALigned: true,
   };
 
@@ -88,6 +77,8 @@ const StudentContent = () => {
         listItems={sidebarContent.listItems}
         profileBox={sidebarContent.profileBox}
         onItemClick={handleSidebarItemClick}
+        location={location}
+        user="student"
       />
       <div className="page">
         <div>
@@ -98,7 +89,17 @@ const StudentContent = () => {
               gmail={sidebarContent.profileBox.gmail}
             />
           </div>
-          <div className="statecontent">{renderContent()}</div>
+          <div className="statecontent">
+            <Routes>
+              <Route exact path="/profile" element={<StudentProfile />} />
+              <Route exact path="/events" element={<StudentEvent />} />
+              <Route
+                path="events/:eventId"
+                element={<StudentEventDescription />}
+              />
+              <Route exact path="skills" element={<SkillLayout />} />
+            </Routes>
+          </div>
         </div>
         <div className="footer">
           <Footer {...footercontent} />
@@ -108,10 +109,4 @@ const StudentContent = () => {
   );
 };
 
-const Student = () => (
-  <RecoilRoot>
-    <StudentContent />
-  </RecoilRoot>
-);
-
-export default Student;
+export default StudentContent;

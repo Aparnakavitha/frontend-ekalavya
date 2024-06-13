@@ -116,7 +116,7 @@ const EducationalQualification = ({qualifications}) => {
 
       <Modal
         isOpen={isDeleteQualificationOpen}
-        widthVariant="medium"
+        widthVariant="small"
         onClose={handleCloseDeleteQualification}
       >
         <DeleteBox {...deleteQualProps} />

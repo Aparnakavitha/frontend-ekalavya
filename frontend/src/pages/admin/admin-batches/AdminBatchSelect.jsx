@@ -11,7 +11,7 @@ const greeting = {
   showButtons: false,
 };
 
-const BatchSelect = () => {
+const AdminBatchSelect = () => {
   return (
     <div>
       <Greeting {...greeting} />
@@ -21,4 +21,4 @@ const BatchSelect = () => {
   );
 };
 
-export default BatchSelect;
+export default AdminBatchSelect;
