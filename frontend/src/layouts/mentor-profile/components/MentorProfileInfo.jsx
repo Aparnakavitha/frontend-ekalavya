@@ -4,24 +4,22 @@ import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
 import DeleteBox from "../../common/components/DeleteBox";
 import profilepic from "../../../assets/DP.png";
-import { updateMentorDetails } from "../../../services/User"
+import { updateUserDetails } from "../../../services/User";
 
-const MentorProfileInfo = (props) => {
-  const mentorData  = props; 
-
+const MentorProfileInfo = ({ profileData, EditableData }) => {
   const sample = {
     role: "mentor",
-    ...mentorData,
+    ...profileData,
+    ...EditableData,
     hasDelete: false,
     onClickEdit: () => {
       handleOpenEditBasicDetails();
-      console.log(mentorData);
+      console.log(profileData);
     },
     onClickDelete: () => {
       handleOpenDeleteBasicDetails();
     },
   };
-  
 
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
   const [isDeleteDetailsIsOpen, setIsDeleteDetailsIsOpen] = useState(false);
@@ -42,18 +40,24 @@ const MentorProfileInfo = (props) => {
     setIsDeleteDetailsIsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form Submitted with data:", formData);
-    handleCloseEditBasicDetails();
-    
+  const handleFormSubmit = async (formData) => {
+    try {
+      console.log("Form Submitted with data:", formData);
+      handleCloseEditBasicDetails();
+      // Call the updateUserDetails API here
+      const response = await updateUserDetails(formData);
+      console.log("Update response:", response);
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
   };
+  
 
   const editBox = {
     mainHeading: "Edit Basic Details",
-    initialData: {...mentorData,
-    },
+    initialData: { ...EditableData },
     isEdit: true,
-    onSubmit : handleFormSubmit,
+    onSubmit: handleFormSubmit,
   };
 
   const deleteBox = {
@@ -85,5 +89,3 @@ const MentorProfileInfo = (props) => {
 };
 
 export default MentorProfileInfo;
-
-

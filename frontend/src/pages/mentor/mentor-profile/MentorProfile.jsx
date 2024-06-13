@@ -17,7 +17,7 @@ const MentorProfile = () => {
         };
         const data = await getUserDetails(params);
         setMentorData(data.responseData[0]);
-        console.log(mentorData);
+        console.log("dsssss",data);
       } catch (error) {
         console.error("Error fetching mentor data:", error);
       }
@@ -32,7 +32,7 @@ const MentorProfile = () => {
 
   const greet = {
     welcome: "Welcome Back",
-    name: `${mentorData.firstName} ${mentorData.lastName}`,
+    name: `${mentorData.firstName}`,
     info: "Here is the information about",
     profile: "Students",
     showButtons: false,
@@ -47,20 +47,28 @@ const MentorProfile = () => {
     (address) => address.addressType === "home"
   );
 
+
+  const EditableData ={
+  userId: mentorData.userId,
+  dob: mentorData.dob,
+  phoneNo: mentorData.phoneNo,
+  addresses: [
+    {
+      addressId: homeAddress ? homeAddress.addressId : "",
+      houseName: homeAddress ? homeAddress.houseName : "",
+      city: homeAddress ? homeAddress.city : "",
+      pinCode: homeAddress ? homeAddress.pinCode : "",
+      state: homeAddress ? homeAddress.state : "",
+      country: homeAddress ? homeAddress.country : "",
+    },
+  ],
+  aboutMe: mentorData.aboutMe || "",
+};
   const profileData = {
-    userId: mentorData.userId,
     profilepic: profilepic,
-    name: greet.name,
+    name: `${mentorData.firstName} ${mentorData.lastName}`,
     college: mentorData.college.collegeName,
-    dob: mentorData.dob,
     email: mentorData.emailId,
-    phoneNumber: mentorData.phoneNo,
-    houseName: homeAddress ? homeAddress.houseName : "",
-    city: homeAddress ? homeAddress.city : "",
-    pinCode: homeAddress ? homeAddress.pinCode : "",
-    state: homeAddress ? homeAddress.state : "",
-    country: homeAddress ? homeAddress.country : "",
-    aboutMe: mentorData.aboutMe || "",
   };
 
   const Education = mentorData.qualifications;
@@ -68,7 +76,7 @@ const MentorProfile = () => {
   return (
     <div>
       <Greeting {...greet} />
-      <MentorProfileInfo {...profileData} />
+      <MentorProfileInfo profileData={profileData} EditableData={EditableData}/>
       <AboutMe {...about} />
       <EducationalQualification qualifications={Education} />
     </div>
