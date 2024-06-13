@@ -39,7 +39,6 @@ const AdminContent = () => {
         };
         const data = await getUserDetails(params);
         setUserData(data.responseData[0]);
-        console.log(userData);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -51,14 +50,6 @@ const AdminContent = () => {
   if (!userData) {
     return <div>Loading...</div>;
   }
-
-  const greetData = {
-    welcome: "Welcome Back",
-    name: userData.firstName,
-    info: "Here is the information about",
-    profile: "Students",
-    showButtons: false,
-  };
 
   const sample = {
     content: "Logout",
@@ -106,7 +97,9 @@ const AdminContent = () => {
   };
 
   const handleSidebarItemClick = (page) => {
-    navigate(`/admin/${page}`, { state: { greetData } });
+    navigate(`/admin/${page}`, {
+      state: { userData },
+    });
   };
 
   const footercontent = {
