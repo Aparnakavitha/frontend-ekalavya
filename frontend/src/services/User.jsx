@@ -16,9 +16,7 @@ export const getUserDetails = async (params) => {
 
 export const updateUserDetails = async (params) => {
   try {
-    const response = await axios.post(`${API_URL}/users`, {
-      params: params,
-    });
+    const response = await axios.post(`${API_URL}/users`, params);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
