@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Education from "./Education";
 import Modal from "./Modal";
 import QualificationForm from "./QualificationForm";
-import { action } from "@storybook/addon-actions";
 import DeleteBox from "./DeleteBox";
 
 const EducationalQualification = ({qualifications}) => {

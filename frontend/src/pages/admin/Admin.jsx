@@ -110,7 +110,7 @@ const AdminContent = () => {
               <Route path="skills/skill-participants" element={<AdminSkillStudents />} />
               <Route path="batches/batch-details" element={<AdminBatchSelect />} />
               <Route path="student/student-details" element={<AdminStudentDetails />} />
-              <Route path="mentor/mentor-details" element={<AdminMentorDetails />} />
+              <Route path="mentor/mentor-details/:userId" element={<AdminMentorDetails />} />
               <Route path="events/event-details" element={<AdminEventDetails />} />
               <Route path="events/event-details/event-participants" element={<AdminEventParticipants />} />
             </Routes>
