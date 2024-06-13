@@ -5,6 +5,7 @@ import BasicDetails from "../../common/components/BasicDetails";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
+import { updateUserDetails } from "../../../services/User";
 
 const MentorProfileInfo = ({ mentorData }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
@@ -21,10 +22,20 @@ const MentorProfileInfo = ({ mentorData }) => {
     setIsEditDetailsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form Submitted with data:", formData);
-    // Perform API call to update details if needed
-    handleCloseEditBasicDetails();
+  const handleFormSubmit = async (formData) => {
+    try {
+      // Perform API call to update user details
+      await updateUserDetails({
+        userId: mentorData.userId, // Assuming userId is available in mentorData
+        ...formData,
+      });
+      console.log("User details updated successfully!");
+      // Optionally, you can fetch updated data here if needed
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+      // Handle error state or display error message
+    }
   };
 
   if (!mentorData) {
