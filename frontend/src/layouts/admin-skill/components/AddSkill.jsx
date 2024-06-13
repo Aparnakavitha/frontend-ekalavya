@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import styles from "../AdminSkill.module.css";
 import Input from "../../../components/inputbox/InputBox";
 
-const AddSkill = () => {
+const AddSkill = ({ onSubmit, onCancel }) => {
   const [skill, setSkill] = useState("");
-  const [isVisible, setIsVisible] = useState(true);
   const [error, setError] = useState("");
 
   const handleInputChange = (event) => {
@@ -32,15 +32,8 @@ const AddSkill = () => {
       setError(validationError);
       return;
     }
-    console.log(skill);
-    setIsVisible(false);
+    onSubmit(skill); // Call the onSubmit prop with the skill value
   };
-
-  const handleCancel = () => {
-    setIsVisible(false);
-  };
-
-  if (!isVisible) return null;
 
   return (
     <div className={`${styles["addskill-boxcontainer"]}`}>
@@ -61,7 +54,7 @@ const AddSkill = () => {
           <PrimaryButton
             variant="secondary"
             content="Cancel"
-            onClick={handleCancel}
+            onClick={onCancel}
             width="full"
           />
           <PrimaryButton
@@ -74,6 +67,11 @@ const AddSkill = () => {
       </div>
     </div>
   );
+};
+
+AddSkill.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
 };
 
 export default AddSkill;

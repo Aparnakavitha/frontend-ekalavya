@@ -14,6 +14,7 @@ const studentAct = {
     content: "+ Add new Student",
     width: "full",
   },
+  showDelete: false,
   searchWidth: "medium",
   searchbarProps: {
     variant: "custom",
@@ -45,6 +46,7 @@ const studentAct = {
 
 const mentorAct = {
   heading: "Mentors List",
+  showDelete: false,
   buttonProps: {
     variant: "tertiary",
     content: "+ Add new Mentor",
@@ -60,6 +62,7 @@ const mentorAct = {
 
 const eventsAct = {
   heading: "Events List",
+  showDelete: false,
   buttonProps: {
     variant: "tertiary",
     content: "+ Add new Student",
@@ -85,6 +88,7 @@ const eventsAct = {
 
 const batchesAct = {
   heading: "Batches List",
+  showDelete: false,
   buttonProps: {
     variant: "tertiary",
     content: "+ Add new Batch",
@@ -100,6 +104,12 @@ const batchesAct = {
 
 const skillsAct = {
   heading: "Skills List",
+  showDelete: true,
+  deleteProps: {
+    variant: "primary",
+    content: " Delete Skill ",
+    width: "full",
+  },
   buttonProps: {
     variant: "tertiary",
     content: "+ Add new Skill",

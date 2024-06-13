@@ -9,13 +9,11 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
       className={`${styles["adminskillparticipants-container"]} ${["padding"]} ${["padding-top"]} ${["padding-bottom"]}`}
     >
       <div className={`${styles["adminskillparticipants-navbuttons"]}`}>
-        {" "}
         {pageName.map((name, index) => (
           <NavButton key={index} pageName={name} onClick={onClick} />
-        ))}{" "}
-      </div>{" "}
+        ))}
+      </div>
       <div className={`${styles["adminskillparticipants-table"]}`}>
-        {" "}
         <Table data={data} headings={headings} />
       </div>
     </div>

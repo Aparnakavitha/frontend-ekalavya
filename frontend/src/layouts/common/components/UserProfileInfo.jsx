@@ -82,22 +82,22 @@ const UserProfileInfo = (props) => {
             <h4 className={`${styles["userprofile-phone"]}`}>
               <FaPhone /> {phoneNumber}
             </h4>
-            <h4 className={`${styles["userprofile-linkedin"]}`}>
+           {linkedin && <h4 className={`${styles["userprofile-linkedin"]}`}>
               <a
                 className={`${styles["userprofile-social-links"]}`}
                 href={`https://${linkedin}`}
               >
-                <FaLinkedin /> LinkedIn
+                <FaLinkedin /> LinkedIn :{linkedin}
               </a>
-            </h4>
-            <h4 className={styles["userprofile-github"]}>
+            </h4>} 
+          {github && <h4 className={styles["userprofile-github"]}>
               <a
                 className={`${styles["userprofile-social-links"]}`}
                 href={`https://${github}`}
               >
-                <FaGithub /> GitHub
+                <FaGithub /> GitHub : {github}
               </a>
-            </h4>
+            </h4>}  
             <br />
             <h4 className={`${styles["userprofile-address"]}`}>
               <b>Address:</b>
