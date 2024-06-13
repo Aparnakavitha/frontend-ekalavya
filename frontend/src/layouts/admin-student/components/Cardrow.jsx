@@ -10,7 +10,7 @@ import Modal from "../../../layouts/common/components/Modal";
 import DeleteBox from "../../../layouts/common/components/DeleteBox";
 import UpdateSingleField from "../../../layouts/common/components/UpdateSingleField";
 
-const CardRow = ({ cardData, card }) => {
+const CardRow = ({ cardData, card, handleClick }) => {
   const [cardnum, setCardnum] = useState(4);
   const [pcardnum, setPcardnum] = useState(4);
   const [showAllCards, setShowAllCards] = useState(false);
@@ -123,7 +123,11 @@ const CardRow = ({ cardData, card }) => {
               {cardData
                 .slice(0, showAllCards ? cardData.length : pcardnum)
                 .map((item, index) => (
-                  <div key={index} className={`${styles["cardrow-primarycard"]}`}>
+                  <div
+                    key={index}
+                    className={`${styles["cardrow-primarycard"]}`}
+                    onClick={() => handleClick(item.id)}
+                  >
                     <PrimaryCard {...item} />
                   </div>
                 ))}
@@ -148,7 +152,11 @@ const CardRow = ({ cardData, card }) => {
           onCancel={closeModal}
         />
       </Modal>
-      <Modal isOpen={isEditOpen} widthVariant="medium" onClose={handleCloseEdit}>
+      <Modal
+        isOpen={isEditOpen}
+        widthVariant="medium"
+        onClose={handleCloseEdit}
+      >
         {currentSkill && (
           <UpdateSingleField
             mainHeading="Edit Skill Level"
@@ -170,6 +178,7 @@ const CardRow = ({ cardData, card }) => {
 CardRow.propTypes = {
   cardData: PropTypes.array.isRequired,
   card: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default CardRow;

@@ -17,7 +17,7 @@ const AdminSkill = () => {
     <div>
       <Greeting {...AdminSkillData.greeting} />
       <AdminSkillAction />
-      <AdminSkillsList handleClick={handleClick} /> {/* Pass handleClick as a prop */}
+      <AdminSkillsList handleClick={handleClick} />
     </div>
   );
 };
