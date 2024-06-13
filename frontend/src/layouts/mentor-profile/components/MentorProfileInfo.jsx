@@ -1,28 +1,11 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
 import DeleteBox from "../../common/components/DeleteBox";
 import profilepic from "../../../assets/DP.png";
-import { updateMentorDetails } from "../../../services/User"
 
-const MentorProfileInfo = (props) => {
-  const mentorData  = props; 
-
-  const sample = {
-    role: "mentor",
-    ...mentorData,
-    hasDelete: false,
-    onClickEdit: () => {
-      handleOpenEditBasicDetails();
-      console.log(mentorData);
-    },
-    onClickDelete: () => {
-      handleOpenDeleteBasicDetails();
-    },
-  };
-  
-
+const MentorProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
   const [isDeleteDetailsIsOpen, setIsDeleteDetailsIsOpen] = useState(false);
 
@@ -42,24 +25,30 @@ const MentorProfileInfo = (props) => {
     setIsDeleteDetailsIsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form Submitted with data:", formData);
-    handleCloseEditBasicDetails();
-    
+  const handleFormSubmit = async (formData) => {
+    try {
+      console.log("Form Submitted with data:", formData);
+      await onFormSubmit(formData);
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
   };
 
   const editBox = {
     mainHeading: "Edit Basic Details",
-    initialData: {...mentorData,
-    },
+    initialData: { ...EditableData },
     isEdit: true,
-    onSubmit : handleFormSubmit,
+    onSubmit: handleFormSubmit,
   };
 
-  const deleteBox = {
-    title: "Confirm deletion",
-    message: "This action will delete the user. Are you sure?",
-    buttonText: "Confirm",
+  const sample = {
+    role: "mentor",
+    ...profileData,
+    ...EditableData,
+    hasDelete: false,
+    onClickEdit: handleOpenEditBasicDetails,
+    onClickDelete: handleOpenDeleteBasicDetails,
   };
 
   return (
@@ -72,18 +61,8 @@ const MentorProfileInfo = (props) => {
       >
         <BasicDetails {...editBox} />
       </Modal>
-
-      <Modal
-        isOpen={isDeleteDetailsIsOpen}
-        widthVariant="medium"
-        onClose={handleCloseDeleteBasicDetails}
-      >
-        <DeleteBox {...deleteBox} />
-      </Modal>
     </div>
   );
 };
 
 export default MentorProfileInfo;
-
-

@@ -70,7 +70,7 @@ const Education = (props) => {
                       <TextButton
                         icon={<MdEdit />}
                         text="Edit"
-                        onClick={onClickEdit}
+                        onClick={() => onClickEdit(index)}
                       />
                     </div>
                     <div
@@ -79,7 +79,7 @@ const Education = (props) => {
                       <TextButton
                         icon={<MdDelete />}
                         text="Delete"
-                        onClick={onClickDelete}
+                        onClick={() => onClickDelete(index)}
                       />
                     </div>
                   </div>
