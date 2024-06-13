@@ -1,26 +1,11 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
 import DeleteBox from "../../common/components/DeleteBox";
 import profilepic from "../../../assets/DP.png";
-import { updateUserDetails } from "../../../services/User";
 
-const MentorProfileInfo = ({ profileData, EditableData }) => {
-  const sample = {
-    role: "mentor",
-    ...profileData,
-    ...EditableData,
-    hasDelete: false,
-    onClickEdit: () => {
-      handleOpenEditBasicDetails();
-      console.log(profileData);
-    },
-    onClickDelete: () => {
-      handleOpenDeleteBasicDetails();
-    },
-  };
-
+const MentorProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
   const [isDeleteDetailsIsOpen, setIsDeleteDetailsIsOpen] = useState(false);
 
@@ -43,15 +28,13 @@ const MentorProfileInfo = ({ profileData, EditableData }) => {
   const handleFormSubmit = async (formData) => {
     try {
       console.log("Form Submitted with data:", formData);
+      // Call the updateUserDetails API here using the passed function
+      await onFormSubmit(formData);
       handleCloseEditBasicDetails();
-      // Call the updateUserDetails API here
-      const response = await updateUserDetails(formData);
-      console.log("Update response:", response);
     } catch (error) {
       console.error("Error updating user details:", error);
     }
   };
-  
 
   const editBox = {
     mainHeading: "Edit Basic Details",
@@ -64,6 +47,15 @@ const MentorProfileInfo = ({ profileData, EditableData }) => {
     title: "Confirm deletion",
     message: "This action will delete the user. Are you sure?",
     buttonText: "Confirm",
+  };
+
+  const sample = {
+    role: "mentor",
+    ...profileData,
+    ...EditableData,
+    hasDelete: false,
+    onClickEdit: handleOpenEditBasicDetails,
+    onClickDelete: handleOpenDeleteBasicDetails,
   };
 
   return (
