@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8888";
 
-export const getMentorDetails = async (params) => {
+export const getUserDetails = async (params) => {
   try {
     const response = await axios.get(`${API_URL}/users`, {
       params: params, 
@@ -14,7 +14,7 @@ export const getMentorDetails = async (params) => {
   }
 };
 
-export const updateMentorDetails = async (params) => {
+export const updateUserDetails = async (params) => {
   try {
     const response = await axios.post(`${API_URL}/users`, {
       params: params,
