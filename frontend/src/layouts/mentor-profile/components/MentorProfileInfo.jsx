@@ -4,6 +4,7 @@ import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
 import DeleteBox from "../../common/components/DeleteBox";
 import profilepic from "../../../assets/DP.png";
+import { updateMentorDetails } from "../../../services/User"
 
 const MentorProfileInfo = (props) => {
   const mentorData  = props; 
@@ -44,6 +45,7 @@ const MentorProfileInfo = (props) => {
   const handleFormSubmit = (formData) => {
     console.log("Form Submitted with data:", formData);
     handleCloseEditBasicDetails();
+    
   };
 
   const editBox = {
@@ -51,7 +53,7 @@ const MentorProfileInfo = (props) => {
     initialData: {...mentorData,
     },
     isEdit: true,
-    onSubmit : handleFormSubmit
+    onSubmit : handleFormSubmit,
   };
 
   const deleteBox = {

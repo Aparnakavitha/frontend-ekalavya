@@ -4,7 +4,7 @@ import MentorProfileInfo from "../../../layouts/mentor-profile/components/Mentor
 import AboutMe from "../../../layouts/common/components/AboutMe";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
 import profilepic from "../../../assets/DP.png";
-import { getMentorDetails } from "../../../services/mentor/User";
+import { getUserDetails } from "../../../services/User";
 
 const MentorProfile = () => {
   const [mentorData, setMentorData] = useState(null);
@@ -15,7 +15,7 @@ const MentorProfile = () => {
         const params = {
           userId: "02",
         };
-        const data = await getMentorDetails(params);
+        const data = await getUserDetails(params);
         setMentorData(data.responseData[0]);
         console.log(mentorData);
       } catch (error) {
