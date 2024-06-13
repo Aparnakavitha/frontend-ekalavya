@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import ActionComponent from "../../common/components/Action";
-import AddUser from "../../common/components/AddUser";
-import Modal from "../../common/components/Modal";
-import AdminMentorActionData from "./MentorData";
+import React, { useState } from 'react';
+import ActionComponent from '../../common/components/Action';
+import AddUser from '../../common/components/AddUser';
+import Modal from '../../common/components/Modal';
+import AdminMentorActionData from './MentorData';
+import { addNewUser } from '../../../services/User'; // Import addNewUser API
 
-const AdminMentorAction = () => {
+const AdminMentorAction = ({ onSubmit, onAddSuccess }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -15,26 +16,39 @@ const AdminMentorAction = () => {
     setIsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form Submitted with data:", formData);
-    handleCloseModal();
-  };
+  const handleFormSubmit = async (formData) => {
+    try {
+      // Provide default values for collegeId and roleId if not provided
+      const userData = {
+        emailId: formData.email,
+        firstName: formData.firstName,
+        lastName: formData.secondName,
+        collegeId: formData.collegeId || 1,
+        roleId: formData.roleId || 1,
+      };
 
-  const actionData = {
-    ...AdminMentorActionData,
-    buttonProps: {
-      ...AdminMentorActionData.buttonProps,
-      onClick: handleOpenModal,
-    },
+      await addNewUser(userData); // Use addNewUser API for submission
+      console.log('New user added successfully!');
+      onAddSuccess(); // Call onAddSuccess callback to refresh mentor data
+      handleCloseModal(); // Close modal after form submission
+    } catch (error) {
+      console.error('Error adding new user:', error);
+    }
   };
 
   return (
     <div>
-      <ActionComponent {...actionData} />
+      <ActionComponent
+        {...AdminMentorActionData}
+        buttonProps={{
+          ...AdminMentorActionData.buttonProps,
+          onClick: handleOpenModal,
+        }}
+      />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddUser
           {...AdminMentorActionData.adduserprops}
-          onSubmit={handleFormSubmit}
+          onSubmit={handleFormSubmit} // Pass handleFormSubmit to AddUser
         />
       </Modal>
     </div>

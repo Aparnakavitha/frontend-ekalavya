@@ -24,17 +24,14 @@ const MentorProfileInfo = ({ mentorData }) => {
 
   const handleFormSubmit = async (formData) => {
     try {
-      // Perform API call to update user details
       await updateUserDetails({
-        userId: mentorData.userId, // Assuming userId is available in mentorData
+        userId: mentorData.userId,
         ...formData,
       });
       console.log("User details updated successfully!");
-      // Optionally, you can fetch updated data here if needed
       handleCloseEditBasicDetails();
     } catch (error) {
       console.error("Error updating user details:", error);
-      // Handle error state or display error message
     }
   };
 
@@ -48,13 +45,13 @@ const MentorProfileInfo = ({ mentorData }) => {
       profilepic: mentorData.profilePicture || profilepic,
       name: `${mentorData.firstName} ${mentorData.lastName}`,
       dob: mentorData.dob,
-      college: mentorData.college ? mentorData.college.collegeName : "N/A",
+      college: mentorData.college ? mentorData.college.collegeName : "",
       phoneNumber: mentorData.phoneNo,
-      houseName: mentorData.addresses.length > 0 ? mentorData.addresses[0].houseName : "N/A",
-      city: mentorData.addresses.length > 0 ? mentorData.addresses[0].city : "N/A",
-      pinCode: mentorData.addresses.length > 0 ? mentorData.addresses[0].pinCode : "N/A",
-      state: mentorData.addresses.length > 0 ? mentorData.addresses[0].state : "N/A",
-      country: mentorData.addresses.length > 0 ? mentorData.addresses[0].country : "N/A",
+      houseName: mentorData.addresses && mentorData.addresses.length > 0 ? mentorData.addresses[0].houseName : "",
+      city: mentorData.addresses && mentorData.addresses.length > 0 ? mentorData.addresses[0].city : "",
+      pinCode: mentorData.addresses && mentorData.addresses.length > 0 ? mentorData.addresses[0].pinCode : "",
+      state: mentorData.addresses && mentorData.addresses.length > 0 ? mentorData.addresses[0].state : "",
+      country: mentorData.addresses && mentorData.addresses.length > 0 ? mentorData.addresses[0].country : "",
       aboutMe: mentorData.aboutMe,
     },
     isEdit: true,
@@ -71,18 +68,18 @@ const MentorProfileInfo = ({ mentorData }) => {
         <NavButton {...navProps} />
       </div>
       <UserProfileInfo
-        role={mentorData.role ? mentorData.role.roleName : "N/A"}
+        role={mentorData.role ? mentorData.role.roleName : ""}
         profilepic={mentorData.profilePicture || profilepic}
         name={`${mentorData.firstName} ${mentorData.lastName}`}
-        college={mentorData.college ? mentorData.college.collegeName : "N/A"}
+        college={mentorData.college ? mentorData.college.collegeName : ""}
         dob={mentorData.dob}
         email={mentorData.emailId}
         phoneNumber={mentorData.phoneNo}
-        houseName={mentorData.addresses.length > 0 ? mentorData.addresses[0].houseName : "N/A"}
-        city={mentorData.addresses.length > 0 ? mentorData.addresses[0].city : "N/A"}
-        pinCode={mentorData.addresses.length > 0 ? mentorData.addresses[0].pinCode : "N/A"}
-        state={mentorData.addresses.length > 0 ? mentorData.addresses[0].state : "N/A"}
-        country={mentorData.addresses.length > 0 ? mentorData.addresses[0].country : "N/A"}
+        houseName={editBox.initialData.houseName}
+        city={editBox.initialData.city}
+        pinCode={editBox.initialData.pinCode}
+        state={editBox.initialData.state}
+        country={editBox.initialData.country}
         hasDelete={false}
         onClickEdit={handleOpenEditBasicDetails}
       />
