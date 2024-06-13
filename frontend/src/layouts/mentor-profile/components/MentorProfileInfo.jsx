@@ -28,7 +28,6 @@ const MentorProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
   const handleFormSubmit = async (formData) => {
     try {
       console.log("Form Submitted with data:", formData);
-      // Call the updateUserDetails API here using the passed function
       await onFormSubmit(formData);
       handleCloseEditBasicDetails();
     } catch (error) {
@@ -41,12 +40,6 @@ const MentorProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
     initialData: { ...EditableData },
     isEdit: true,
     onSubmit: handleFormSubmit,
-  };
-
-  const deleteBox = {
-    title: "Confirm deletion",
-    message: "This action will delete the user. Are you sure?",
-    buttonText: "Confirm",
   };
 
   const sample = {
@@ -67,14 +60,6 @@ const MentorProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
         onClose={handleCloseEditBasicDetails}
       >
         <BasicDetails {...editBox} />
-      </Modal>
-
-      <Modal
-        isOpen={isDeleteDetailsIsOpen}
-        widthVariant="medium"
-        onClose={handleCloseDeleteBasicDetails}
-      >
-        <DeleteBox {...deleteBox} />
       </Modal>
     </div>
   );

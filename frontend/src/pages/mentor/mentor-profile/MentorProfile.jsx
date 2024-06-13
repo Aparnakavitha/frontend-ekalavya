@@ -93,7 +93,11 @@ const MentorProfile = () => {
         onFormSubmit={handleFormSubmit}
       />
       <AboutMe {...about} />
-      <EducationalQualification qualifications={Education} />
+      <EducationalQualification
+        qualifications={Education}
+        userId={mentorData.userId}
+        onFormSubmit={handleFormSubmit}
+      />
     </div>
   );
 };
