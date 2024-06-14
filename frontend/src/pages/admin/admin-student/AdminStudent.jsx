@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import AdminStudentAction from "../../../layouts/admin-student/components/AdminStudentAction";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
+import Greeting from "../../../layouts/common/components/Greeting";
+import AddCollege from "../../../layouts/admin-student/components/AddCollege";
+import CollegeList from "../../../layouts/admin-student/components/CollegeList";
+import Modal from "../../../layouts/common/components/Modal";
+import ActionComponent from "../../../layouts/common/components/Action";
+import AddUser from "../../../layouts/common/components/AddUser";
 import {
   getColleges,
   postColleges,
@@ -10,19 +15,19 @@ import {
   updateUserDetails,
 } from "../../../services/User";
 import { fetchbatches } from "../../../services/Batch";
-import Greeting from "../../../layouts/common/components/Greeting";
-import AddCollege from "../../../layouts/admin-student/components/AddCollege";
-import CollegeList from "../../../layouts/admin-student/components/CollegeList";
-import Modal from "../../../layouts/common/components/Modal";
-import ActionComponent from "../../../layouts/common/components/Action";
-import AddUser from "../../../layouts/common/components/AddUser";
 
-const fetchStudentsData = async (setStudentsData) => {
+const fetchStudentsData = async (params, setStudentsData) => {
   try {
-    const params = {
+    const filterParams = {
       roleId: "3",
+      collegeId: params.College || "",
     };
-    const data = await getUserDetails(params);
+    const filteredParams = Object.fromEntries(
+      Object.entries(filterParams).filter(([key, value]) => value !== "")
+    );
+
+    console.log("Params" + filterParams.collegeId);
+    const data = await getUserDetails(filteredParams);
     setStudentsData(data.responseData);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -37,7 +42,6 @@ const fetchBatchData = async (setBatchData) => {
       batch.batchName,
     ]);
     setBatchData(transformedData);
-    console.log("Batch data:", transformedData);
   } catch (error) {
     console.error("Error fetching batch data:", error);
   }
@@ -51,6 +55,10 @@ const AdminStudent = () => {
   const [userData, setUserData] = useState(null);
   const [studentsData, setStudentsData] = useState([]);
   const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
+  const [params, setParams] = useState({
+    collegeId: "",
+    batchId: "",
+  });
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -81,7 +89,7 @@ const AdminStudent = () => {
   }, [location.state]);
 
   useEffect(() => {
-    fetchStudentsData(setStudentsData);
+    fetchStudentsData(params, setStudentsData);
     fetchBatchData(setBatchData);
   }, []);
 
@@ -246,6 +254,12 @@ const AdminStudent = () => {
       onClick: handleOpenAddStudentModal,
     },
   };
+  const handleFilterChange = (filters) => {
+    setParams((prevParams) => ({
+      ...prevParams,
+      ...filters,
+    }));
+  };
 
   const handleClick = () => {
     navigate(`/admin/student/student-details`);
@@ -265,7 +279,7 @@ const AdminStudent = () => {
         <AddCollege onSubmit={handleFormSubmit} />
       </Modal>
 
-      <ActionComponent {...actionData} />
+      <ActionComponent {...actionData} onFilterChange={handleFilterChange} />
       <Modal
         isOpen={isAddStudentOpen}
         widthVariant="medium"

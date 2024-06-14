@@ -14,11 +14,14 @@ const ActionComponent = ({
   resetProps,
   showFiltersAndReset,
   searchWidth = "full",
+  onFilterChange,
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [filterStates, setFilterStates] = useState(
-    filterProps.map((filter) => filter.defaultOption || "")
+    filterProps.map((filter) => ({
+      heading: filter.Heading,
+      selectedOption: filter.defaultOption || "",
+    }))
   );
 
   const handleToggle = (index) => {
@@ -27,16 +30,30 @@ const ActionComponent = ({
 
   const handleOptionClick = (index, option) => {
     const newFilterStates = [...filterStates];
-    newFilterStates[index] = option;
+    newFilterStates[index] = {
+      heading: filterProps[index].Heading,
+      selectedOption: option,
+    };
     setFilterStates(newFilterStates);
+    const filtersObject = {};
+    newFilterStates.forEach((filter) => {
+      filtersObject[filter.heading] = filter.selectedOption;
+    });
+    onFilterChange(filtersObject);
     setOpenDropdownIndex(null);
   };
 
   const handleReset = () => {
-    const defaultStates = filterProps.map(
-      (filter) => filter.defaultOption || ""
-    );
+    const defaultStates = filterProps.map((filter) => ({
+      heading: filter.Heading,
+      selectedOption: filter.defaultOption || "",
+    }));
     setFilterStates(defaultStates);
+    const filtersObject = {};
+    defaultStates.forEach((filter) => {
+      filtersObject[filter.heading] = filter.selectedOption;
+    });
+    onFilterChange(filtersObject);
   };
 
   return (
@@ -65,22 +82,24 @@ const ActionComponent = ({
                     isOpen={openDropdownIndex === index}
                     onToggle={() => handleToggle(index)}
                     onOptionClick={(option) => handleOptionClick(index, option)}
-                    selectedOption={filterStates[index]}
+                    selectedOption={
+                      filterStates[index]
+                        ? filterStates[index].selectedOption
+                        : ""
+                    }
                   />
                 ))}
-                
               </div>
               <div className={styles["common-reset"]}>
                 <PrimaryButton {...resetProps} onClick={handleReset} />
               </div>
-              
             </div>
           )}
           {showDelete && (
-              <div className={styles["common-deletebutton"]}>
+            <div className={styles["common-deletebutton"]}>
               <PrimaryButton {...deleteProps} />
-              </div>
-            )}
+            </div>
+          )}
         </div>
       </div>
     </div>

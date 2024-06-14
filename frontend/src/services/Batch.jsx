@@ -61,3 +61,16 @@ export const deleteBatch = async (batchId) => {
     throw error;
   }
 };
+
+export const fetchBatchParticipants = async (params = {}) => {
+  try {
+    const response = await axios.get(`${API_URL}/batches/participants`, {
+      params,
+    });
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching batch participants", error);
+    throw error;
+  }
+};
