@@ -1,25 +1,70 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import AdminStudentAction from "../../../layouts/admin-student/components/AdminStudentAction";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
-import { getColleges, postColleges } from "../../../services/User";
 import Greeting from "../../../layouts/common/components/Greeting";
 import AddCollege from "../../../layouts/admin-student/components/AddCollege";
 import CollegeList from "../../../layouts/admin-student/components/CollegeList";
 import Modal from "../../../layouts/common/components/Modal";
+import ActionComponent from "../../../layouts/common/components/Action";
+import AddUser from "../../../layouts/common/components/AddUser";
+import {
+  getColleges,
+  postColleges,
+  getUserDetails,
+  updateUserDetails,
+} from "../../../services/User";
+import { fetchbatches } from "../../../services/Batch";
+
+const fetchStudentsData = async (setStudentsData) => {
+  try {
+    const filterParams = {
+      roleId: 3,
+      // collegeId: params.College || "",
+    };
+    // const filteredParams = Object.fromEntries(
+    //   Object.entries(filterParams).filter(([key, value]) => value !== "")
+    // );
+
+    console.log("Params" + filterParams.collegeId);
+    const data = await getUserDetails(filterParams);
+    setStudentsData(data.responseData);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+const fetchBatchData = async (setBatchData) => {
+  try {
+    const data = await fetchbatches();
+    const transformedData = data.responseData.map((batch) => [
+      batch.batchId,
+      batch.batchName,
+    ]);
+    setBatchData(transformedData);
+  } catch (error) {
+    console.error("Error fetching batch data:", error);
+  }
+};
 
 const AdminStudent = () => {
   const [collegeData, setCollegeData] = useState([]);
+  const [batchData, setBatchData] = useState([]);
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [studentsData, setStudentsData] = useState([]);
+  const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
+  const [params, setParams] = useState({
+    collegeId: "",
+    batchId: "",
+  });
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCollegeData = async () => {
       try {
         const data = await getColleges();
         const transformedData = data.responseData.map((college) => [
@@ -36,16 +81,23 @@ const AdminStudent = () => {
           setUserData(location.state.userData);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching college data:", error);
       }
     };
 
-    fetchData();
+    fetchCollegeData();
   }, [location.state]);
 
-  if (!collegeData.length || !userData) {
+  useEffect(() => {
+    fetchStudentsData(setStudentsData);
+    fetchBatchData(setBatchData);
+  }, []);
+
+  if (!collegeData.length || !userData || studentsData.length === 0) {
     return <div>Loading...</div>;
   }
+
+  console.log(studentsData);
 
   const AdminStudentData = {
     greetingData: {
@@ -67,28 +119,59 @@ const AdminStudent = () => {
       },
       addprops: {},
     },
-    dataView: {
-      data: [
-        {
-          studentImage: "image",
-          studentName: "John Doe",
-          studentId: "STDID3456",
-          studentCollege: "St Christ College",
-          studentMail: "johndoe@email.com",
-          studentPhoneNumber: "(555) 555-5555",
-          canDelete: false,
-        },
-      ],
-      tableColumns: [
-        { key: "studentId", displayName: "Student ID" },
-        { key: "studentName", displayName: "Name" },
-        { key: "studentCollege", displayName: "College" },
-        { key: "studentMail", displayName: "Email ID" },
-        { key: "studentPhoneNumber", displayName: "Phone Number" },
-      ],
-      toggle: true,
-      itemsPerPage: 15,
+    heading: "Students List",
+    buttonProps: {
+      variant: "tertiary",
+      content: "+ Add new Student",
+      width: "full",
     },
+    searchWidth: "medium",
+    searchbarProps: {
+      variant: "custom",
+      placeholder: "Student Name",
+    },
+    showFiltersAndReset: true,
+    filterProps: [
+      {
+        Heading: "College",
+        Content: collegeData.map((college) => college[1]),
+      },
+      { Heading: "Batch", Content: batchData.map((batch) => batch[1]) },
+    ],
+    resetProps: {
+      variant: "secondary",
+      content: "Reset",
+      width: "full",
+    },
+    adduserprops: {
+      options: collegeData.map((college) => ({
+        value: college[0],
+        label: college[1],
+      })),
+      viewCollege: true,
+      heading: "Add New Student",
+    },
+  };
+
+  const dataView = {
+    data: studentsData.map((student) => ({
+      studentImage: student.profilePicture || "",
+      studentName: `${student.firstName || ""} ${student.lastName || ""}`,
+      studentId: student.userId || "",
+      studentCollege: student.college.collegeName || "",
+      studentMail: student.emailId || "",
+      studentPhoneNumber: student.phoneNo || "",
+      canDelete: false,
+    })),
+    tableColumns: [
+      { key: "studentId", displayName: "Student ID" },
+      { key: "studentName", displayName: "Name" },
+      { key: "studentCollege", displayName: "College" },
+      { key: "studentMail", displayName: "Email ID" },
+      { key: "studentPhoneNumber", displayName: "Phone Number" },
+    ],
+    toggle: true,
+    itemsPerPage: 15,
   };
 
   const handleOpenView = () => {
@@ -141,8 +224,54 @@ const AdminStudent = () => {
     handleClick2: handleOpenAdd,
   };
 
-  const handleClick = () => {
-    navigate(`/admin/student/student-details`);
+  const handleOpenAddStudentModal = () => {
+    setIsAddStudentOpen(true);
+  };
+
+  const handleCloseAddStudentModal = () => {
+    setIsAddStudentOpen(false);
+  };
+
+  const handleAddStudentFormSubmit = async (formData) => {
+    try {
+      formData.roleId = 3;
+      console.log(formData);
+      const response = await updateUserDetails(formData);
+      console.log("Student added successfully:", response);
+
+      fetchStudentsData(setStudentsData);
+
+      handleCloseAddStudentModal();
+    } catch (error) {
+      console.error("Error adding student:", error);
+    }
+  };
+
+  const actionData = {
+    ...AdminStudentData,
+    buttonProps: {
+      ...AdminStudentData.buttonProps,
+      onClick: handleOpenAddStudentModal,
+    },
+  };
+  const handleFilterChange = (filters) => {
+    setParams((prevParams) => ({
+      ...prevParams,
+      ...filters,
+    }));
+  };
+
+  const handleCardClick = (userId) => {
+    const selectedStudent = studentsData.find(
+      (student) => student.userId === userId
+    );
+    if (selectedStudent) {
+      navigate(`/admin/student/student-details${userId}`, {
+        state: { studentsData: selectedStudent },
+      });
+    } else {
+      console.error(`Mentor with userId ${userId} not found.`);
+    }
   };
 
   return (
@@ -158,12 +287,26 @@ const AdminStudent = () => {
       <Modal isOpen={isAddOpen} widthVariant="large" onClose={handleCloseAdd}>
         <AddCollege onSubmit={handleFormSubmit} />
       </Modal>
-      <AdminStudentAction />
+
+      <ActionComponent {...actionData} onFilterChange={handleFilterChange} />
+      <Modal
+        isOpen={isAddStudentOpen}
+        widthVariant="medium"
+        onClose={handleCloseAddStudentModal}
+      >
+        <AddUser
+          {...AdminStudentData.adduserprops}
+          onSubmit={handleAddStudentFormSubmit}
+        />
+      </Modal>
       <DataView
         CardComponent={(props) => (
-          <ProfileCard {...props} onClick={handleClick} />
+          <ProfileCard
+            {...props}
+            onClick={() => handleCardClick(props.studentId)}
+          />
         )}
-        {...AdminStudentData.dataView}
+        {...dataView}
       />
     </div>
   );

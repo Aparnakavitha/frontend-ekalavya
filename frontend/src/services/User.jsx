@@ -14,12 +14,21 @@ export const getUserDetails = async (params) => {
   }
 };
 
-export const updateUserDetails = async (params) => {
+export const updateUserDetails = async (data) => {
   try {
-    const response = await axios.post(`${API_URL}/users`, params);
+    const response = await axios.post(`${API_URL}/users`, data);
     return response.data;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error('Error updating user details:', error);
+    throw error;
+  }
+};
+export const addNewUser = async (userData) => {
+  try {
+    const response = await axios.post(`${API_URL}/users`, userData);
+    return response.data;
+  } catch (error) {
+    console.error('Error adding new user:', error);
     throw error;
   }
 };

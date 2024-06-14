@@ -149,7 +149,7 @@ const AdminContent = () => {
                 element={<AdminStudentDetails />}
               />
               <Route
-                path="mentor/mentor-details"
+                path="mentor/mentor-details/:userId"
                 element={<AdminMentorDetails />}
               />
               <Route
