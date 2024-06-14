@@ -5,34 +5,24 @@ import BasicDetails from "../../common/components/BasicDetails";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
-import { updateUserDetails } from "../../../services/User";
 
-const MentorProfileInfo = ({ mentorData }) => {
+const MentorProfileInfo = ({ mentorData, onSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
 
-  const navProps = {
-    pageName: "Mentors List",
-  };
+  const navProps = { pageName: "Mentors List" };
 
-  const handleOpenEditBasicDetails = () => {
-    setIsEditDetailsOpen(true);
-  };
+  const handleOpenEditBasicDetails = () => setIsEditDetailsOpen(true);
+  const handleCloseEditBasicDetails = () => setIsEditDetailsOpen(false);
 
-  const handleCloseEditBasicDetails = () => {
-    setIsEditDetailsOpen(false);
-  };
-
-  const handleFormSubmit = async (formData) => {
-    try {
-      await updateUserDetails({
-        userId: mentorData.userId,
-        ...formData,
-      });
-      console.log("User details updated successfully!");
-      handleCloseEditBasicDetails();
-    } catch (error) {
-      console.error("Error updating user details:", error);
-    }
+  const handleFormSubmit = (formData) => {
+    const { addresses, ...formDataWithoutAddresses } = formData; // Destructure addresses from formData
+    const { houseName, city, pinCode, state, country } = addresses[0]; // Destructure address details
+    onSubmit({
+      userId: mentorData.userId,
+      ...formDataWithoutAddresses,
+      addresses: [{ houseName, city, pinCode, state, country }], // Nest address details inside addresses array
+    });
+    handleCloseEditBasicDetails();
   };
 
   if (!mentorData) {
@@ -42,16 +32,32 @@ const MentorProfileInfo = ({ mentorData }) => {
   const editBox = {
     mainHeading: "Edit Basic Details",
     initialData: {
-      profilepic: mentorData.profilePicture || profilepic,
-      name: `${mentorData.firstName} ${mentorData.lastName}`,
       dob: mentorData.dob,
-      college: mentorData.college ? mentorData.college.collegeName : "",
       phoneNumber: mentorData.phoneNo,
-      houseName: mentorData.addresses && mentorData.addresses.length > 0 ? mentorData.addresses[0].houseName : "",
-      city: mentorData.addresses && mentorData.addresses.length > 0 ? mentorData.addresses[0].city : "",
-      pinCode: mentorData.addresses && mentorData.addresses.length > 0 ? mentorData.addresses[0].pinCode : "",
-      state: mentorData.addresses && mentorData.addresses.length > 0 ? mentorData.addresses[0].state : "",
-      country: mentorData.addresses && mentorData.addresses.length > 0 ? mentorData.addresses[0].country : "",
+      addresses: [
+        {
+          houseName:
+            mentorData.addresses && mentorData.addresses.length > 0
+              ? mentorData.addresses[0].houseName
+              : "",
+          city:
+            mentorData.addresses && mentorData.addresses.length > 0
+              ? mentorData.addresses[0].city
+              : "",
+          pinCode:
+            mentorData.addresses && mentorData.addresses.length > 0
+              ? mentorData.addresses[0].pinCode
+              : "",
+          state:
+            mentorData.addresses && mentorData.addresses.length > 0
+              ? mentorData.addresses[0].state
+              : "",
+          country:
+            mentorData.addresses && mentorData.addresses.length > 0
+              ? mentorData.addresses[0].country
+              : "",
+        },
+      ],
       aboutMe: mentorData.aboutMe,
     },
     isEdit: true,
@@ -69,17 +75,17 @@ const MentorProfileInfo = ({ mentorData }) => {
       </div>
       <UserProfileInfo
         role={mentorData.role ? mentorData.role.roleName : ""}
-        profilepic={mentorData.profilePicture || profilepic}
+        profilepic={ profilepic}
         name={`${mentorData.firstName} ${mentorData.lastName}`}
         college={mentorData.college ? mentorData.college.collegeName : ""}
         dob={mentorData.dob}
         email={mentorData.emailId}
         phoneNumber={mentorData.phoneNo}
-        houseName={editBox.initialData.houseName}
-        city={editBox.initialData.city}
-        pinCode={editBox.initialData.pinCode}
-        state={editBox.initialData.state}
-        country={editBox.initialData.country}
+        houseName={editBox.initialData.addresses[0].houseName}
+        city={editBox.initialData.addresses[0].city}
+        pinCode={editBox.initialData.addresses[0].pinCode}
+        state={editBox.initialData.addresses[0].state}
+        country={editBox.initialData.addresses[0].country}
         hasDelete={false}
         onClickEdit={handleOpenEditBasicDetails}
       />

@@ -66,7 +66,7 @@ const UserProfileInfo = (props) => {
                 <b>{role.charAt(0).toUpperCase() + role.slice(1)} Id:</b>{" "}
                 {userId}
               </h4>
-              {role == "student" && (
+              {role === "student" && (
                 <h4 className={`${styles["userprofile-college"]}`}>
                   {college}
                 </h4>
@@ -82,29 +82,47 @@ const UserProfileInfo = (props) => {
             <h4 className={`${styles["userprofile-phone"]}`}>
               <FaPhone /> {phoneNumber}
             </h4>
-           {linkedin && <h4 className={`${styles["userprofile-linkedin"]}`}>
-              <a
-                className={`${styles["userprofile-social-links"]}`}
-                href={`https://${linkedin}`}
-              >
-                <FaLinkedin /> LinkedIn :{linkedin}
-              </a>
-            </h4>} 
-          {github && <h4 className={styles["userprofile-github"]}>
-              <a
-                className={`${styles["userprofile-social-links"]}`}
-                href={`https://${github}`}
-              >
-                <FaGithub /> GitHub : {github}
-              </a>
-            </h4>}  
+            {linkedin && (
+              <h4 className={`${styles["userprofile-linkedin"]}`}>
+                <a
+                  className={`${styles["userprofile-social-links"]}`}
+                  href={`https://${linkedin}`}
+                >
+                  <FaLinkedin /> LinkedIn :{linkedin}
+                </a>
+              </h4>
+            )}
+            {github && (
+              <h4 className={styles["userprofile-github"]}>
+                <a
+                  className={`${styles["userprofile-social-links"]}`}
+                  href={`https://${github}`}
+                >
+                  <FaGithub /> GitHub : {github}
+                </a>
+              </h4>
+            )}
             <br />
             <h4 className={`${styles["userprofile-address"]}`}>
               <b>Address:</b>
             </h4>
-            <h4 className={`${styles["userprofile-address"]}`}>
-              {houseName},{city} - {pinCode},{state},{country}
-            </h4>
+            <div className={`${styles["userprofile-address-details"]}`}>
+              <div className={`${styles["userprofile-address-line"]}`}>
+                <span><b>House Name:</b> {houseName}</span>
+              </div>
+              <div className={`${styles["userprofile-address-line"]}`}>
+                <span><b>City:</b> {city}</span>
+              </div>
+              <div className={`${styles["userprofile-address-line"]}`}>
+                <span><b>Pin Code:</b> {pinCode}</span>
+              </div>
+              <div className={`${styles["userprofile-address-line"]}`}>
+                <span><b>State:</b> {state}</span>
+              </div>
+              <div className={`${styles["userprofile-address-line"]}`}>
+                <span><b>Country:</b> {country}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

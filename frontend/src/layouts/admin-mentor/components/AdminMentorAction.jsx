@@ -24,7 +24,7 @@ const AdminMentorAction = ({ onSubmit, onAddSuccess }) => {
         firstName: formData.firstName,
         lastName: formData.secondName,
         collegeId: formData.collegeId || 1,
-        roleId: formData.roleId || 1,
+        roleId: formData.roleId || 2,
       };
 
       await addNewUser(userData); // Use addNewUser API for submission
