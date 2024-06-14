@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
@@ -6,8 +6,8 @@ import profilepic from "../../../assets/DP.png";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 
-const StudentProfileInfo = (props) => {
-  const navprops = {
+const StudentProfileInfo = () => {
+  const navProps = {
     pageName: "Students List",
   };
 
@@ -18,22 +18,19 @@ const StudentProfileInfo = (props) => {
     college: "Christ University",
     dob: "1990-01-01",
     email: "emmawatson@gmail.com",
-    phoneNumber: 8755383632,
+    phoneNumber: "8755383632",
     houseName: "Sample House",
     city: "Sample City",
     pinCode: "123456",
     state: "Sample State",
     country: "Sample Country",
     hasDelete: false,
-    onClickEdit: () => {
-      handleOpenEditBasicDetails();
-    },
   };
 
-  const aboutme = {
+  const aboutMeData = {
     title: "About Me",
     description:
-      "Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. My journey in [Your Field] has been fueled by a profound interest in [What Motivates You], and a commitment to achieving [Your Goals/Objectives]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. My journey in [Your Field] has been fueled by a profound interest in [What Motivates You], and a commitment to achieving [Your Goals/Objectives]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field].",
+      "Hey there! I'm Emma Watson, a dedicated student with a passion for learning and growing. My journey in education has been fueled by a profound interest in literature and arts, and a commitment to achieving excellence in academics. I believe in the power of education to transform lives and create positive change in the world.",
   };
 
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
@@ -72,9 +69,13 @@ const StudentProfileInfo = (props) => {
   return (
     <div>
       <div className="padding">
-        <NavButton {...navprops} />
+        <NavButton {...navProps} />
       </div>
-      <UserProfileInfo {...sample} />
+      <UserProfileInfo
+        {...sample}
+        onClickEdit={handleOpenEditBasicDetails}
+        aboutMe={aboutMeData}
+      />
       <Modal
         isOpen={isEditDetailsOpen}
         widthVariant="medium"
@@ -82,8 +83,7 @@ const StudentProfileInfo = (props) => {
       >
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
-      <AboutMe {...aboutme}/>
-
+      <AboutMe {...aboutMeData} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import ProfileCard from "../../../components/cards/ProfileCard";
 import Modal from "../../common/components/Modal";
 import batchParticipantsData from "../../../services/admin/batch/AdminBatchParticipantsData";
 
-const AdminBatchParticipants = () => {
+const AdminBatchParticipants = ({ onCardClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState(batchParticipantsData.data);
@@ -35,6 +35,7 @@ const AdminBatchParticipants = () => {
     ...batchParticipantsData,
     data: users.map((user) => ({
       ...user,
+      onClick: () => onCardClick(),
       handleDelete: () => handleOpenModal(user),
     })),
   };
