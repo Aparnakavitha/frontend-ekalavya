@@ -3,12 +3,14 @@ import ShowCards from "../../common/components/ShowCards";
 import EventData from "./EventData";
 import Modal from "../../common/components/Modal";
 import CardRow from "./Cardrow";
-import Addevent from "./AddEvent";
+import AddEvent from "./AddEvent";
 import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { DeleteBox } from "../../common";
+import { useNavigate } from "react-router-dom";
 
 const EventList = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
@@ -44,6 +46,10 @@ const EventList = () => {
     handleCloseDelete();
   };
 
+  const handleClick = () => {
+    navigate(`/admin/events/event-details`);
+  };
+
   const props = {
     content: "Delete Student",
     variant: "tertiary",
@@ -69,9 +75,9 @@ const EventList = () => {
     <div>
       <ShowCards {...heading} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
-        <Addevent {...EventData.addevent} onSubmit={handleFormSubmit} />
+        <AddEvent {...EventData.addevent} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...EventData.eventcards} />
+      <CardRow {...EventData.eventcards} handleClick={handleClick} />
       <div className="padding">
         <div className={`${styles["eventslist-container"]}`}>
           <div className={`${styles["eventslist-deletebutton"]}`}>

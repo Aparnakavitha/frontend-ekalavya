@@ -2,55 +2,36 @@ import React, { useState } from "react";
 import Education from "./Education";
 import Modal from "./Modal";
 import QualificationForm from "./QualificationForm";
-import { action } from "@storybook/addon-actions";
 import DeleteBox from "./DeleteBox";
 
-const EducationalQualification = () => {
-  const sample = {
-    q: [
-      {
-        name: "MBA finance",
-        university: "Christ University",
-        cgpa: 7.2,
-        start: "May 2022",
-        end: "April 2024",
-        Specialization: "Marketing",
-      },
-      {
-        name: "B.Tech",
-        university: "PES University",
-        cgpa: 7.2,
-        start: "May 2022",
-        end: "April 2024",
-        Specialization: "Marketing",
-      },
-    ],
-    onClickAdd: () => {
-      handleOpenAddQualification();
-    },
-    onClickEdit: () => {
-      handleOpenEditQualification();
-    },
-    onClickDelete: () => {
-      handleOpenDeleteQualification();
-    },
-  };
-
+const EducationalQualification = ({
+  qualifications,
+  onFormSubmit,
+  userId = 1,
+}) => {
   const [isAddQualificationOpen, setIsAddQualificationOpen] = useState(false);
   const [isEditQualificationOpen, setIsEditQualificationOpen] = useState(false);
   const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] =
     useState(false);
+  const [editIndex, setEditIndex] = useState(null);
 
   const handleOpenAddQualification = () => {
     setIsAddQualificationOpen(true);
   };
+
   const handleCloseAddQualification = () => {
     setIsAddQualificationOpen(false);
   };
 
-  const handleOpenEditQualification = () => {
-    setIsEditQualificationOpen(true);
+  const handleOpenEditQualification = (index) => {
+    if (index >= 0 && index < qualifications.length) {
+      setEditIndex(index);
+      setIsEditQualificationOpen(true);
+    } else {
+      console.error(`Invalid index ${index} for qualifications array.`);
+    }
   };
+
   const handleCloseEditQualification = () => {
     setIsEditQualificationOpen(false);
   };
@@ -58,6 +39,7 @@ const EducationalQualification = () => {
   const handleOpenDeleteQualification = () => {
     setIsDeleteQualificationOpen(true);
   };
+
   const handleCloseDeleteQualification = () => {
     setIsDeleteQualificationOpen(false);
   };
@@ -72,6 +54,42 @@ const EducationalQualification = () => {
     handleCloseDeleteQualification();
   };
 
+  const handleFormSubmit = async (formData) => {
+    try {
+      const formDataToSend = {
+        userId: userId,
+        qualifications: [formData],
+      };
+      await onFormSubmit(formDataToSend);
+      handleCloseEditQualification();
+      handleCloseDeleteQualification();
+      handleCloseAddQualification();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
+  const handleRemove = async (index) => {
+    try {
+      const qualification = qualifications[index];
+
+      const formData = {
+        userId: userId,
+        qualifications: [
+          {
+            qualificationId: qualification.qualificationId,
+          },
+        ],
+      };
+
+      console.log("Form Data:", formData);
+      await onFormSubmit(formData);
+      handleCloseEditQualification();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
   const options = [
     { value: "High School", label: "High School" },
     { value: "Bachelor's Degree", label: "Bachelor's Degree" },
@@ -83,36 +101,38 @@ const EducationalQualification = () => {
     heading: "Add New Education Qualification",
     options: options,
     initialValues: {},
-    onSubmit: handleCloseAddQualification,
-  };
-
-  const editsample = {
-    degree: "High School",
-    specialization: "Computer Science",
-    university: "XYZ University",
-    cgpa: "3.8",
-    startDate: "2015-09-01",
-    endDate: "2019-06-01",
+    onSubmit: handleFormSubmit,
   };
 
   const editQualProps = {
     heading: "Edit Education Qualification",
     options: options,
-    initialValues: editsample,
-    onSubmit: handleCloseEditQualification,
+    initialValues: editIndex !== null ? qualifications[editIndex] : {},
+    onSubmit: handleFormSubmit,
   };
 
   const deleteQualProps = {
     title: "Confirm deletion",
     message: "Remove this qualification?",
     buttonText: "Confirm",
-    onConfirm: handleFormConfirm,
+    onConfirm: () => {
+      if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
+        handleRemove(editIndex);
+      }
+    },
     onCancel: handleFormCancel,
+  };
+
+  const educationProps = {
+    qualifications,
+    onClickAdd: handleOpenAddQualification,
+    onClickEdit: handleOpenEditQualification,
+    onClickDelete: handleOpenDeleteQualification,
   };
 
   return (
     <div>
-      <Education {...sample} />
+      <Education {...educationProps} />
       <Modal
         isOpen={isAddQualificationOpen}
         widthVariant="medium"

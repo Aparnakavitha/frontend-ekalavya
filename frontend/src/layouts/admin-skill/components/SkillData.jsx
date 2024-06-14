@@ -13,8 +13,8 @@ const AdminSkillActionData = {
   showDelete: true,
   deleteProps: {
     variant: "primary",
-    content: "Remove a Skill",
-    width :"full",
+    content: "\u00A0Remove a Skill\u00A0",
+    width: "full",
   },
   searchWidth: "large",
   searchbarProps: {

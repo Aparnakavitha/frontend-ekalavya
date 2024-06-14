@@ -17,15 +17,12 @@ const RouterComponent = () => {
           <Route path="/*" element={<Home />} />
           <Route path="/mentor/*" element={<MentorContent />} />
           <Route path="/admin/*" element={<AdminContent />} />
+          <Route exact path="/student/*" element={<StudentContent />} />
           <Route
             exact
             path="/explore/description"
             element={<EventDescription />}
           />
-          <Route exact path="/explore" element={<Explore />} />
-          <Route exact path="/*" element={<Home />} />
-          <Route exact path="/mentor/*" element={<MentorContent />} />
-          <Route exact path="/student/*" element={<StudentContent />} />
         </Routes>
       </BrowserRouter>
     </div>
