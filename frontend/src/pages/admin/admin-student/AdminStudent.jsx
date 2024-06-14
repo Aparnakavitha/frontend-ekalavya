@@ -3,17 +3,24 @@ import { useNavigate, useLocation } from "react-router-dom";
 import AdminStudentAction from "../../../layouts/admin-student/components/AdminStudentAction";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
-import { getColleges, postColleges } from "../../../services/User";
+import {
+  getColleges,
+  postColleges,
+  updateUserDetails,
+} from "../../../services/User";
 import Greeting from "../../../layouts/common/components/Greeting";
 import AddCollege from "../../../layouts/admin-student/components/AddCollege";
 import CollegeList from "../../../layouts/admin-student/components/CollegeList";
 import Modal from "../../../layouts/common/components/Modal";
+import ActionComponent from "../../../layouts/common/components/Action";
+import AddUser from "../../../layouts/common/components/AddUser";
 
 const AdminStudent = () => {
   const [collegeData, setCollegeData] = useState([]);
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -66,6 +73,39 @@ const AdminStudent = () => {
         ],
       },
       addprops: {},
+    },
+    heading: "Students List",
+    buttonProps: {
+      variant: "tertiary",
+      content: "+ Add new Student",
+      width: "full",
+    },
+    searchWidth: "medium",
+    searchbarProps: {
+      variant: "custom",
+      placeholder: "Student Name",
+    },
+    showFiltersAndReset: true,
+    filterProps: [
+      {
+        Heading: "College",
+        Content: collegeData.map((college) => college[1]),
+      },
+      { Heading: "Batch", Content: ["Batch 1", "Batch 2", "Batch 3"] },
+    ],
+    resetProps: {
+      variant: "secondary",
+      content: "Reset",
+      width: "full",
+    },
+    adduserprops: {
+      options: [
+        { value: "option1", label: "Option 1" },
+        { value: "option2", label: "Option 2" },
+        { value: "option3", label: "Option 3" },
+      ],
+      viewCollege: true,
+      heading: "Add New Student",
     },
     dataView: {
       data: [
@@ -141,6 +181,33 @@ const AdminStudent = () => {
     handleClick2: handleOpenAdd,
   };
 
+  const handleOpenAddStudentModal = () => {
+    setIsAddStudentOpen(true);
+  };
+
+  const handleCloseAddStudentModal = () => {
+    setIsAddStudentOpen(false);
+  };
+
+  const handleAddStudentFormSubmit = async (formData) => {
+    try {
+      const response = await updateUserDetails(formData);
+      console.log("Student added successfully:", response);
+
+      handleCloseAddStudentModal();
+    } catch (error) {
+      console.error("Error adding student:", error);
+    }
+  };
+
+  const actionData = {
+    ...AdminStudentData,
+    buttonProps: {
+      ...AdminStudentData.buttonProps,
+      onClick: handleOpenAddStudentModal,
+    },
+  };
+
   const handleClick = () => {
     navigate(`/admin/student/student-details`);
   };
@@ -158,7 +225,18 @@ const AdminStudent = () => {
       <Modal isOpen={isAddOpen} widthVariant="large" onClose={handleCloseAdd}>
         <AddCollege onSubmit={handleFormSubmit} />
       </Modal>
-      <AdminStudentAction />
+
+      <ActionComponent {...actionData} />
+      <Modal
+        isOpen={isAddStudentOpen}
+        widthVariant="medium"
+        onClose={handleCloseAddStudentModal}
+      >
+        <AddUser
+          {...AdminStudentData.adduserprops}
+          onSubmit={handleAddStudentFormSubmit}
+        />
+      </Modal>
       <DataView
         CardComponent={(props) => (
           <ProfileCard {...props} onClick={handleClick} />
