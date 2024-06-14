@@ -53,6 +53,10 @@
   background-color: var(--white);
   border: 1px solid var(--neutral500);
   cursor: pointer;
+  overflow-y: auto;
+  max-height: 250px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(82, 67, 67, 0);
 }
 
 .dropcontent:hover {
@@ -68,6 +72,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-height: 40px;
 }
 
 .dropcontent:last-child {

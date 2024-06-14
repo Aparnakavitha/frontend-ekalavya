@@ -6,8 +6,10 @@ import DataView from "../../../layouts/common/components/DataView";
 import {
   getColleges,
   postColleges,
+  getUserDetails,
   updateUserDetails,
 } from "../../../services/User";
+import { fetchbatches } from "../../../services/Batch";
 import Greeting from "../../../layouts/common/components/Greeting";
 import AddCollege from "../../../layouts/admin-student/components/AddCollege";
 import CollegeList from "../../../layouts/admin-student/components/CollegeList";
@@ -20,13 +22,14 @@ const AdminStudent = () => {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [studentsData, setStudentsData] = useState([]);
   const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCollegeData = async () => {
       try {
         const data = await getColleges();
         const transformedData = data.responseData.map((college) => [
@@ -46,13 +49,26 @@ const AdminStudent = () => {
         console.error("Error fetching data:", error);
       }
     };
-
-    fetchData();
+    const fetchStudentsData = async () => {
+      try {
+        const params = {
+          roleId: "3",
+        };
+        const data = await getUserDetails(params);
+        setStudentsData(data.responseData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchCollegeData();
+    fetchStudentsData();
   }, [location.state]);
 
   if (!collegeData.length || !userData) {
     return <div>Loading...</div>;
   }
+
+  console.log(studentsData);
 
   const AdminStudentData = {
     greetingData: {
@@ -99,36 +115,34 @@ const AdminStudent = () => {
       width: "full",
     },
     adduserprops: {
-      options: [
-        { value: "option1", label: "Option 1" },
-        { value: "option2", label: "Option 2" },
-        { value: "option3", label: "Option 3" },
-      ],
+      options: collegeData.map((college) => ({
+        value: college[0],
+        label: college[1],
+      })),
       viewCollege: true,
       heading: "Add New Student",
     },
-    dataView: {
-      data: [
-        {
-          studentImage: "image",
-          studentName: "John Doe",
-          studentId: "STDID3456",
-          studentCollege: "St Christ College",
-          studentMail: "johndoe@email.com",
-          studentPhoneNumber: "(555) 555-5555",
-          canDelete: false,
-        },
-      ],
-      tableColumns: [
-        { key: "studentId", displayName: "Student ID" },
-        { key: "studentName", displayName: "Name" },
-        { key: "studentCollege", displayName: "College" },
-        { key: "studentMail", displayName: "Email ID" },
-        { key: "studentPhoneNumber", displayName: "Phone Number" },
-      ],
-      toggle: true,
-      itemsPerPage: 15,
-    },
+  };
+
+  const dataView = {
+    data: studentsData.map((student) => ({
+      studentImage: student.profilePicture || "",
+      studentName: `${student.firstName || ""} ${student.lastName || ""}`,
+      studentId: student.userId || "",
+      studentCollege: student.college.collegeName || "",
+      studentMail: student.emailId || "",
+      studentPhoneNumber: student.phoneNo || "",
+      canDelete: false,
+    })),
+    tableColumns: [
+      { key: "studentId", displayName: "Student ID" },
+      { key: "studentName", displayName: "Name" },
+      { key: "studentCollege", displayName: "College" },
+      { key: "studentMail", displayName: "Email ID" },
+      { key: "studentPhoneNumber", displayName: "Phone Number" },
+    ],
+    toggle: true,
+    itemsPerPage: 15,
   };
 
   const handleOpenView = () => {
@@ -191,6 +205,8 @@ const AdminStudent = () => {
 
   const handleAddStudentFormSubmit = async (formData) => {
     try {
+      formData.roleId = 3;
+      console.log(formData);
       const response = await updateUserDetails(formData);
       console.log("Student added successfully:", response);
 
@@ -241,7 +257,7 @@ const AdminStudent = () => {
         CardComponent={(props) => (
           <ProfileCard {...props} onClick={handleClick} />
         )}
-        {...AdminStudentData.dataView}
+        {...dataView}
       />
     </div>
   );
