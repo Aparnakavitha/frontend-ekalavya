@@ -261,8 +261,17 @@ const AdminStudent = () => {
     }));
   };
 
-  const handleClick = () => {
-    navigate(`/admin/student/student-details`);
+  const handleCardClick = (userId) => {
+    const selectedStudent = studentsData.find(
+      (student) => student.userId === userId
+    );
+    if (selectedStudent) {
+      navigate(`/admin/student/student-details${userId}`, {
+        state: { studentsData: selectedStudent },
+      });
+    } else {
+      console.error(`Mentor with userId ${userId} not found.`);
+    }
   };
 
   return (
@@ -292,7 +301,10 @@ const AdminStudent = () => {
       </Modal>
       <DataView
         CardComponent={(props) => (
-          <ProfileCard {...props} onClick={handleClick} />
+          <ProfileCard
+            {...props}
+            onClick={() => handleCardClick(props.studentId)}
+          />
         )}
         {...dataView}
       />
