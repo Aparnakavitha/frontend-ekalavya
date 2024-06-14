@@ -6,11 +6,10 @@ import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 
-// Define fetchMentorData outside of the component
 const fetchMentorData = async (setMentorData) => {
   try {
     const params = {
-      roleId: 1,
+      roleId: 2,
     };
     const data = await getUserDetails(params);
     setMentorData(data.responseData);
@@ -83,7 +82,11 @@ const AdminMentor = () => {
   };
 
   if (!adminData || mentorData.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ padding: '20px', fontSize: '24px', color: 'white', textAlign: 'center' }}>
+        Loading...
+      </div>
+    );
   }
 
   const greet = {
@@ -99,9 +102,12 @@ const AdminMentor = () => {
       studentImage: image,
       studentName: `${mentor.firstName || "N/A"} ${mentor.lastName || "N/A"}`,
       studentId: mentor.userId || "N/A",
-      studentCollege: mentor.college?.collegeName || "N/A",
+      studentCollege: "",
       studentMail: mentor.emailId || "N/A",
       studentPhoneNumber: mentor.phoneNo || "N/A",
+      studentAddress: mentor.addresses && mentor.addresses.length > 0
+        ? `${mentor.addresses[0].houseName}, ${mentor.addresses[0].city} - ${mentor.addresses[0].pinCode}, ${mentor.addresses[0].state}, ${mentor.addresses[0].country}`
+        : "N/A",
       canDelete: false,
     })),
     tableColumns: [
@@ -109,6 +115,7 @@ const AdminMentor = () => {
       { key: "studentName", displayName: "Name" },
       { key: "studentMail", displayName: "Email ID" },
       { key: "studentPhoneNumber", displayName: "Phone Number" },
+      { key: "studentAddress", displayName: "Address" },
     ],
     toggle: true,
     itemsPerPage: 18,

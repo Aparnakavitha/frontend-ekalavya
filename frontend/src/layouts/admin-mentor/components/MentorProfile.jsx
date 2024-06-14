@@ -15,12 +15,18 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
   const handleCloseEditBasicDetails = () => setIsEditDetailsOpen(false);
 
   const handleFormSubmit = (formData) => {
-    const { addresses, ...formDataWithoutAddresses } = formData; // Destructure addresses from formData
-    const { houseName, city, pinCode, state, country } = addresses[0]; // Destructure address details
+    const { addresses, ...formDataWithoutAddresses } = formData;
+    
+    // Prepare addresses with addressId included
+    const updatedAddresses = addresses.map(address => ({
+      ...address,
+      addressId: address.addressId || "", // If addressId is not present, use empty string
+    }));
+
     onSubmit({
       userId: mentorData.userId,
       ...formDataWithoutAddresses,
-      addresses: [{ houseName, city, pinCode, state, country }], // Nest address details inside addresses array
+      addresses: updatedAddresses,
     });
     handleCloseEditBasicDetails();
   };
@@ -29,7 +35,7 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
     return <div>No data found for mentor.</div>;
   }
 
-  const homeAddress = mentorData.addresses.find(
+  const homeAddress = mentorData.addresses && mentorData.addresses.find(
     (address) => address.addressType === "home"
   );
 
@@ -37,7 +43,7 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
     mainHeading: "Edit Basic Details",
     initialData: {
       dob: mentorData.dob,
-      phoneNumber: mentorData.phoneNo,
+      phoneNo: mentorData.phoneNo,
       addresses: [
         {
           addressId: homeAddress ? homeAddress.addressId : "",
@@ -64,9 +70,10 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
         <NavButton {...navProps} />
       </div>
       <UserProfileInfo
+        userId={mentorData.userId}
         role={mentorData.role ? mentorData.role.roleName : ""}
         profilepic={profilepic}
-        name={`${mentorData.firstName} ${mentorData.lastName}`}
+        name={`${mentorData.firstName || "N/A"} ${mentorData.lastName || "N/A"}`}
         college={mentorData.college ? mentorData.college.collegeName : ""}
         dob={mentorData.dob}
         email={mentorData.emailId}
