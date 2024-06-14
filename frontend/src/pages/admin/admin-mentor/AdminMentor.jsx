@@ -31,6 +31,18 @@ const AdminMentor = () => {
   });
   const navigate = useNavigate();
 
+  const fetchData = async (Data) => {
+    try {
+      const params = {
+        userId: Data,
+      };
+      const data = await getUserDetails(params);
+      setMentorData(data.responseData);
+    } catch (error) {
+      console.error("Error fetching mentor data:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
@@ -63,6 +75,7 @@ const AdminMentor = () => {
         emailId: formData.emailId,
         collegeId: formData.collegeId,
         roleId: formData.roleId,
+        addresses : formData.addresses,
       };
 
       await updateUserDetails(updatedFormData);
@@ -117,7 +130,7 @@ const AdminMentor = () => {
   return (
     <div>
       <Greeting {...greet} />
-      <AdminMentorAction onSubmit={handleFormSubmit} onAddSuccess={() => fetchMentorData(setMentorData)} />
+      <AdminMentorAction onSubmit={handleFormSubmit} onAddSuccess={() => fetchMentorData(setMentorData)} fetchData={fetchData}/>
       <DataView
         CardComponent={(props) => (
           <ProfileCard

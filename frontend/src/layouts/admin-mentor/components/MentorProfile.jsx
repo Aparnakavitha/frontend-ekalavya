@@ -5,6 +5,7 @@ import BasicDetails from "../../common/components/BasicDetails";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
+import EducationalQualification from "../../common/components/EducationalQualification";
 
 const MentorProfileInfo = ({ mentorData, onSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
@@ -37,7 +38,7 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
     mainHeading: "Edit Basic Details",
     initialData: {
       dob: mentorData.dob,
-      phoneNumber: mentorData.phoneNo,
+      phoneNo: mentorData.phoneNo,
       addresses: [
         {
           addressId: homeAddress ? homeAddress.addressId : "",
@@ -57,6 +58,8 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
     title: "About Me",
     description: mentorData.aboutMe,
   };
+
+  const Education = mentorData.qualifications;
 
   return (
     <div>
@@ -83,6 +86,11 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
       <AboutMe {...aboutMeProps} />
+      <EducationalQualification
+        qualifications={Education}
+        userId={mentorData.userId}
+        onFormSubmit={handleFormSubmit}
+      />
     </div>
   );
 };
