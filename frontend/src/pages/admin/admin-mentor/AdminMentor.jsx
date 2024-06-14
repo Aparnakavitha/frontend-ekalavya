@@ -6,6 +6,19 @@ import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 
+// Define fetchMentorData outside of the component
+const fetchMentorData = async (setMentorData) => {
+  try {
+    const params = {
+      roleId: 1,
+    };
+    const data = await getUserDetails(params);
+    setMentorData(data.responseData);
+  } catch (error) {
+    console.error("Error fetching mentor data:", error);
+  }
+};
+
 const AdminMentor = () => {
   const [adminData, setAdminData] = useState(null);
   const [mentorData, setMentorData] = useState([]);
@@ -36,20 +49,8 @@ const AdminMentor = () => {
     fetchAdminData();
   }, []);
 
-  const fetchMentorData = async () => {
-    try {
-      const params = {
-        roleId: 1,
-      };
-      const data = await getUserDetails(params);
-      setMentorData(data.responseData);
-    } catch (error) {
-      console.error("Error fetching mentor data:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchMentorData();
+    fetchMentorData(setMentorData);
   }, []);
 
   const handleFormSubmit = async (event) => {
@@ -66,18 +67,19 @@ const AdminMentor = () => {
 
       await updateUserDetails(updatedFormData);
       console.log("User details updated successfully!");
-      fetchMentorData();
+      fetchMentorData(setMentorData);
     } catch (error) {
       console.error("Error updating user details:", error);
     }
   };
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const handleCardClick = (userId) => {
+    const selectedMentor = mentorData.find((mentor) => mentor.userId === userId);
+    if (selectedMentor) {
+      navigate(`/admin/mentor/mentor-details/${userId}`, { state: { mentorData: selectedMentor } });
+    } else {
+      console.error(`Mentor with userId ${userId} not found.`);
+    }
   };
 
   if (!adminData || mentorData.length === 0) {
@@ -115,15 +117,16 @@ const AdminMentor = () => {
   return (
     <div>
       <Greeting {...greet} />
-      <AdminMentorAction onSubmit={handleFormSubmit} onAddSuccess={fetchMentorData} />
-      <form onSubmit={handleFormSubmit}>
-        <DataView
-          CardComponent={(props) => (
-            <ProfileCard {...props} onClick={() => navigate(`/admin/mentor/mentor-details/${props.studentId}`)} />
-          )}
-          {...data}
-        />
-      </form>
+      <AdminMentorAction onSubmit={handleFormSubmit} onAddSuccess={() => fetchMentorData(setMentorData)} />
+      <DataView
+        CardComponent={(props) => (
+          <ProfileCard
+            {...props}
+            onClick={() => handleCardClick(props.studentId)}
+          />
+        )}
+        {...data}
+      />
     </div>
   );
 };
