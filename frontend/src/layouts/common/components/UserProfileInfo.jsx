@@ -15,18 +15,14 @@ const UserProfileInfo = (props) => {
     college,
     dob,
     email,
-    phoneNumber,
+    phoneNo,
     linkedin,
     github,
-    houseName,
-    city,
-    pinCode,
-    state,
-    country,
     aboutMe,
     hasDelete,
     onClickEdit,
     onClickDelete,
+    addresses, 
     ...rest
   } = props;
 
@@ -80,7 +76,7 @@ const UserProfileInfo = (props) => {
               <IoMdMail /> {email}
             </h4>
             <h4 className={`${styles["userprofile-phone"]}`}>
-              <FaPhone /> {phoneNumber}
+              <FaPhone /> {phoneNo}
             </h4>
             {linkedin && (
               <h4 className={`${styles["userprofile-linkedin"]}`}>
@@ -106,23 +102,19 @@ const UserProfileInfo = (props) => {
             <h4 className={`${styles["userprofile-address"]}`}>
               <b>Address:</b>
             </h4>
-            <div className={`${styles["userprofile-address-details"]}`}>
-              <div className={`${styles["userprofile-address-line"]}`}>
-                <span><b>House Name:</b> {houseName}</span>
+            {addresses && addresses.length > 0 && (
+              <div>
+                {addresses.map((address, index) => (
+                  <h4
+                    key={index}
+                    className={`${styles["userprofile-address"]}`}
+                  >
+                    {address.houseName}, {address.city} - {address.pinCode},{" "}
+                    {address.state}, {address.country}
+                  </h4>
+                ))}
               </div>
-              <div className={`${styles["userprofile-address-line"]}`}>
-                <span><b>City:</b> {city}</span>
-              </div>
-              <div className={`${styles["userprofile-address-line"]}`}>
-                <span><b>Pin Code:</b> {pinCode}</span>
-              </div>
-              <div className={`${styles["userprofile-address-line"]}`}>
-                <span><b>State:</b> {state}</span>
-              </div>
-              <div className={`${styles["userprofile-address-line"]}`}>
-                <span><b>Country:</b> {country}</span>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

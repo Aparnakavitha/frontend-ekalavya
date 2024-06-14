@@ -28,6 +28,10 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
   if (!mentorData) {
     return <div>No data found for mentor.</div>;
   }
+  const homeAddress = mentorData.addresses.find(
+    (address) => address.addressType === "home"
+  );
+
 
   const editBox = {
     mainHeading: "Edit Basic Details",
@@ -36,26 +40,12 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
       phoneNumber: mentorData.phoneNo,
       addresses: [
         {
-          houseName:
-            mentorData.addresses && mentorData.addresses.length > 0
-              ? mentorData.addresses[0].houseName
-              : "",
-          city:
-            mentorData.addresses && mentorData.addresses.length > 0
-              ? mentorData.addresses[0].city
-              : "",
-          pinCode:
-            mentorData.addresses && mentorData.addresses.length > 0
-              ? mentorData.addresses[0].pinCode
-              : "",
-          state:
-            mentorData.addresses && mentorData.addresses.length > 0
-              ? mentorData.addresses[0].state
-              : "",
-          country:
-            mentorData.addresses && mentorData.addresses.length > 0
-              ? mentorData.addresses[0].country
-              : "",
+          addressId: homeAddress ? homeAddress.addressId : "",
+          houseName: homeAddress ? homeAddress.houseName : "",
+          city: homeAddress ? homeAddress.city : "",
+          pinCode: homeAddress ? homeAddress.pinCode : "",
+          state: homeAddress ? homeAddress.state : "",
+          country: homeAddress ? homeAddress.country : "",
         },
       ],
       aboutMe: mentorData.aboutMe,

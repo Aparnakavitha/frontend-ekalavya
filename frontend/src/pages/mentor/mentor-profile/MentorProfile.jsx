@@ -4,27 +4,38 @@ import MentorProfileInfo from "../../../layouts/mentor-profile/components/Mentor
 import AboutMe from "../../../layouts/common/components/AboutMe";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
 import profilepic from "../../../assets/DP.png";
-import { getUserDetails } from "../../../services/User";
+import { getUserDetails, updateUserDetails } from "../../../services/User";
 
 const MentorProfile = () => {
   const [mentorData, setMentorData] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const params = {
-          userId: "11",
-        };
-        const data = await getUserDetails(params);
-        setMentorData(data.responseData[0]);
-        console.log(mentorData);
-      } catch (error) {
-        console.error("Error fetching mentor data:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const params = {
+        userId: "02",
+      };
+      const data = await getUserDetails(params);
+      setMentorData(data.responseData[0]);
+      console.log("dsssss", data);
+    } catch (error) {
+      console.error("Error fetching mentor data:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
+
+  const handleFormSubmit = async (formData) => {
+    try {
+      console.log("Form Submitted with data:", formData);
+      const response = await updateUserDetails(formData);
+      console.log("Update response:", response);
+      fetchData();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
 
   if (!mentorData) {
     return <div>Loading...</div>;
@@ -32,7 +43,7 @@ const MentorProfile = () => {
 
   const greet = {
     welcome: "Welcome Back",
-    name: `${mentorData.firstName} ${mentorData.lastName}`,
+    name: `${mentorData.firstName}`,
     info: "Here is the information about",
     profile: "Students",
     showButtons: false,
@@ -47,20 +58,28 @@ const MentorProfile = () => {
     (address) => address.addressType === "home"
   );
 
-  const profileData = {
+  const EditableData = {
     userId: mentorData.userId,
-    profilepic: profilepic,
-    name: greet.name,
-    college: mentorData.college.collegeName,
     dob: mentorData.dob,
-    email: mentorData.emailId,
-    phoneNumber: mentorData.phoneNo,
-    houseName: homeAddress ? homeAddress.houseName : "",
-    city: homeAddress ? homeAddress.city : "",
-    pinCode: homeAddress ? homeAddress.pinCode : "",
-    state: homeAddress ? homeAddress.state : "",
-    country: homeAddress ? homeAddress.country : "",
+    phoneNo: mentorData.phoneNo,
+    addresses: [
+      {
+        addressId: homeAddress ? homeAddress.addressId : "",
+        houseName: homeAddress ? homeAddress.houseName : "",
+        city: homeAddress ? homeAddress.city : "",
+        pinCode: homeAddress ? homeAddress.pinCode : "",
+        state: homeAddress ? homeAddress.state : "",
+        country: homeAddress ? homeAddress.country : "",
+      },
+    ],
     aboutMe: mentorData.aboutMe || "",
+  };
+
+  const profileData = {
+    profilepic: profilepic,
+    name: `${mentorData.firstName} ${mentorData.lastName}`,
+    college: mentorData.college.collegeName,
+    email: mentorData.emailId,
   };
 
   const Education = mentorData.qualifications;
@@ -68,9 +87,17 @@ const MentorProfile = () => {
   return (
     <div>
       <Greeting {...greet} />
-      <MentorProfileInfo {...profileData} />
+      <MentorProfileInfo
+        profileData={profileData}
+        EditableData={EditableData}
+        onFormSubmit={handleFormSubmit}
+      />
       <AboutMe {...about} />
-      <EducationalQualification qualifications={Education} />
+      <EducationalQualification
+        qualifications={Education}
+        userId={mentorData.userId}
+        onFormSubmit={handleFormSubmit}
+      />
     </div>
   );
 };

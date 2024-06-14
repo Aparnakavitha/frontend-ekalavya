@@ -4,37 +4,26 @@ import Modal from "./Modal";
 import QualificationForm from "./QualificationForm";
 import DeleteBox from "./DeleteBox";
 
-const EducationalQualification = ({qualifications}) => {
- 
-
-  const sample = {
-    qualifications,
-    onClickAdd: () => {
-      handleOpenAddQualification();
-    },
-    onClickEdit: () => {
-      handleOpenEditQualification();
-    },
-    onClickDelete: () => {
-      handleOpenDeleteQualification();
-    },
-  };
-
+const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
   const [isAddQualificationOpen, setIsAddQualificationOpen] = useState(false);
   const [isEditQualificationOpen, setIsEditQualificationOpen] = useState(false);
   const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] =
     useState(false);
+  const [editIndex, setEditIndex] = useState(null);
 
   const handleOpenAddQualification = () => {
     setIsAddQualificationOpen(true);
   };
+
   const handleCloseAddQualification = () => {
     setIsAddQualificationOpen(false);
   };
 
-  const handleOpenEditQualification = () => {
+  const handleOpenEditQualification = (index) => {
+    setEditIndex(index);
     setIsEditQualificationOpen(true);
   };
+
   const handleCloseEditQualification = () => {
     setIsEditQualificationOpen(false);
   };
@@ -42,6 +31,7 @@ const EducationalQualification = ({qualifications}) => {
   const handleOpenDeleteQualification = () => {
     setIsDeleteQualificationOpen(true);
   };
+
   const handleCloseDeleteQualification = () => {
     setIsDeleteQualificationOpen(false);
   };
@@ -56,6 +46,44 @@ const EducationalQualification = ({qualifications}) => {
     handleCloseDeleteQualification();
   };
 
+  const handleFormSubmit = async (formData) => {
+    try {
+      const formDataToSend = {
+        userId: userId,
+        qualifications: [formData],
+      };
+      await onFormSubmit(formDataToSend);
+      handleCloseEditQualification();
+      handleCloseDeleteQualification();
+      handleCloseAddQualification();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
+  const handleRemove = async (index) => {
+    try {
+      const qualification = qualifications[index];
+
+      const formData = {
+        userId: userId,
+        qualifications: [
+          {
+            qualificationId: qualification.qualificationId,
+          },
+        ],
+      };
+
+      console.log("Form Data:", formData);
+      console.log("Start Date:", formData.startDate);
+      console.log("End Date:", formData.endDate);
+      await onFormSubmit(formData);
+      handleCloseEditQualification();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
   const options = [
     { value: "High School", label: "High School" },
     { value: "Bachelor's Degree", label: "Bachelor's Degree" },
@@ -67,31 +95,32 @@ const EducationalQualification = ({qualifications}) => {
     heading: "Add New Education Qualification",
     options: options,
     initialValues: {},
-    onSubmit: handleCloseAddQualification,
-  };
-
-  const editsample = {
-    degree: "High School",
-    specialization: "Computer Science",
-    university: "XYZ University",
-    cgpa: "3.8",
-    startDate: "2015-09-01",
-    endDate: "2019-06-01",
+    onSubmit: handleFormSubmit,
   };
 
   const editQualProps = {
     heading: "Edit Education Qualification",
     options: options,
-    initialValues: editsample,
-    onSubmit: handleCloseEditQualification,
+    initialValues: qualifications[editIndex],
+    onSubmit: handleFormSubmit,
   };
 
   const deleteQualProps = {
     title: "Confirm deletion",
     message: "Remove this qualification?",
     buttonText: "Confirm",
-    onConfirm: handleFormConfirm,
+    onConfirm: () => {
+      handleFormSubmit();
+      handleRemove(editIndex);
+    },
     onCancel: handleFormCancel,
+  };
+
+  const sample = {
+    qualifications,
+    onClickAdd: handleOpenAddQualification,
+    onClickEdit: handleOpenEditQualification,
+    onClickDelete: handleOpenDeleteQualification,
   };
 
   return (
