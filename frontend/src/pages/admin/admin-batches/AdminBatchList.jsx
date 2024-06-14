@@ -1,23 +1,52 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { DataView, Greeting } from "../../../layouts/common";
 import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import AdminBatchListData from "../../../services/admin/batch/AdminBatchListData";
 import AdminBatchAction from "../../../layouts/admin-batches/components/AdminBatchAction";
+import { fetchbatches } from "../../../services/admin/batch/AdminBatchListData";
 
 const AdminBatchList = () => {
-  const navigate = useNavigate();
+  const [batchesData, setBatchesData] = useState([]);
+  useEffect(() => {
+    const loadBatches = async () => {
+      try {
+        const params = {
+          // batchId: "2",
 
-  const handleClick = () => {
-    navigate(`/admin/batches/batch-details`);
+        };
+        const data = await fetchbatches(params);
+        console.log(batchesData);
+        setBatchesData(data);
+      } catch (err) {
+        console.error("Error fetching batches:", err);
+      } 
+    };
+
+    loadBatches();
+  }, []);
+
+
+
+  const batchData = {
+  
+    batchName: batchesData.batchName,
+    participantCount: batchesData.participantCount,
+    batchId: batchesData.batchId,
   };
+
+
+  // const handleClick = () => {
+  //   navigate(`/admin/batches/batch-details`);
+  // };
 
   return (
     <div>
       <Greeting {...AdminBatchListData.greeting} />
+      <AdminBatchListData {...batchData} />
 
       <AdminBatchAction />
-      <DataView
+      {/* <DataView
         CardComponent={(props) => (
           <SkillBatchCard
             {...props}
@@ -25,7 +54,7 @@ const AdminBatchList = () => {
           />
         )}
         {...AdminBatchListData.dataView}
-      />
+      /> */}
     </div>
   );
 };
