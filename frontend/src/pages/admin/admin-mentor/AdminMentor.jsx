@@ -153,11 +153,6 @@ const AdminMentor = () => {
         onSubmit={handleFormSubmit}
         onAddSuccess={() => fetchMentorData(setMentorData)}
       />
-      <AdminMentorAction
-        onSubmit={handleFormSubmit}
-        onAddSuccess={() => fetchMentorData(setMentorData)}
-        fetchData={fetchData}
-      />
       <DataView
         CardComponent={(props) => (
           <ProfileCard
