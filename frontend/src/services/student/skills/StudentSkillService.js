@@ -107,7 +107,6 @@ export const getUsersCountForSkill = async (skillId) => {
  export const getSkillsForUser = async (userId) => {
   try {
     const response = await axios.get(`${BASE_URL}?userId=${userId}`);
-    console.log("Response from API:", response);
     
     // Check if response data is an array
     if (Array.isArray(response.data)) {
@@ -127,7 +126,6 @@ export const getUsersCountForSkill = async (skillId) => {
 export const Userskillpost = async (data) => {
     try {
       const response = await axios.post(BASEURL, data);
-      console.log("Response from API:", response);
       return response.data;
     } catch (error) {
       console.error("Error posting skill:", error);
@@ -144,7 +142,6 @@ export const Userskillpost = async (data) => {
   export const UserSkillDelete = async (userId, skillId) => {
     try {
       const response = await axios.delete(BASE_URL, { params: { userId, skillId } });
-      console.log("Response from API:", response);
       return response.data;
     } catch (error) {
       console.error("Error deleting user-skill:", error);

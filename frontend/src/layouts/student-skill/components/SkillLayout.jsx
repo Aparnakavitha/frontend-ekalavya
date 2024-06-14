@@ -15,17 +15,26 @@ import {
 const Layout = () => {
   const [userSkills, setUserSkills] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [skillAdded, setSkillAdded] = useState(false);
   const [deleteModal, setDeleteModal] = useState({
     isOpen: false,
     index: null,
   });
   const [options, setOptions] = useState([]);
-  const userId = 1; // Adjust userId as needed
+  const userId = 1;
+
+  useEffect(() => {
+    fetchSkills();
+  }, []);
 
   useEffect(() => {
     fetchUserSkills();
-    fetchSkills();
   }, []);
+
+  useEffect(() => {
+    setUserSkills(userSkills);
+    setSkillAdded(false);
+  }, [skillAdded]);
 
   const fetchUserSkills = async () => {
     try {
@@ -44,8 +53,7 @@ const Layout = () => {
         skillsResponse.map((skill) => ({
           value: skill.id,
           label:
-            skill.skillName.charAt(0).toUpperCase() +
-            skill.skillName.slice(1),
+            skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1),
           originalName: skill.skillName.toLowerCase(),
         }))
       );
@@ -70,13 +78,15 @@ const Layout = () => {
 
       const newSkill = {
         skill_name:
-          options.find((opt) => opt.value === skill)?.originalName || "undefined",
+          options.find((opt) => opt.value === skill)?.originalName ||
+          "undefined",
         skill_level: 1,
-        skill_id: newSkillResponse.skillId,
+        skill_id: newSkillResponse.responseData[0].skill_id,
         ...newSkillResponse,
       };
 
       setUserSkills((prevSkills) => [...prevSkills, newSkill]);
+      setSkillAdded(true);
       console.log("Skill added successfully:", newSkill);
       setIsOpen(false);
     } catch (error) {
@@ -91,23 +101,28 @@ const Layout = () => {
 
   const handleDeleteSkill = async () => {
     const skillToDelete = userSkills[deleteModal.index];
-    console.log("Deleting skill:", skillToDelete);
 
     if (!skillToDelete) {
       console.error("Skill to delete not found in userSkills");
       return;
     }
 
-    if (!skillToDelete.skill_id) {
+    const { skill_id } = skillToDelete;
+    console.log("SKill ID: ", skill_id);
+
+    if (!skill_id) {
       console.error("Skill id undefined for skill:", skillToDelete);
       return;
     }
 
     try {
-      await UserSkillDelete(userId, skillToDelete.skill_id);
+      await UserSkillDelete(userId, skill_id);
       console.log("Skill deleted successfully:", skillToDelete);
-      // Refetch user skills after deletion to keep frontend in sync with backend
-      fetchUserSkills();
+
+      const updatedSkills = userSkills.filter(
+        (_, index) => index !== deleteModal.index
+      );
+      setUserSkills(updatedSkills);
     } catch (error) {
       console.error("Error deleting skill:", error);
     } finally {
