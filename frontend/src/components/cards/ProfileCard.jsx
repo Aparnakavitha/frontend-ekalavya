@@ -22,6 +22,13 @@ const ProfileCard = (props) => {
     return studentMail;
   };
 
+  const transformName = (studentMail) => {
+    if (studentMail.length > 12) {
+      return studentMail.slice(0, 12) + "...";
+    }
+    return studentMail;
+  };
+
   const handleDeleteIcon = (event) => {
     event.stopPropagation();
     handleDelete();
@@ -45,9 +52,9 @@ const ProfileCard = (props) => {
           )}
         </div>
         <div className={styles["titles-wrapper"]}>
-          <h1 className={styles.title1}>{transformMainMail(studentName)}</h1>
-          <h2 className={styles.title2}>{transformMainMail(studentId)}</h2>
-          <h3 className={styles.title3}>{transformMainMail(studentCollege)}</h3>
+          <h1 className={styles.title1}>{transformName(studentName)}</h1>
+          <h2 className={styles.title2}>{transformName(studentId)}</h2>
+          <h3 className={styles.title3}>{transformName(studentCollege)}</h3>
         </div>
 
         <div className={styles["contact-info"]}>
