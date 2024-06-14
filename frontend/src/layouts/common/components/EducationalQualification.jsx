@@ -9,7 +9,8 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
   const [isEditQualificationOpen, setIsEditQualificationOpen] = useState(false);
   const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] =
     useState(false);
-  const [editIndex, setEditIndex] = useState(null); 
+  const [editIndex, setEditIndex] = useState(null);
+
   const handleOpenAddQualification = () => {
     setIsAddQualificationOpen(true);
   };
@@ -19,7 +20,7 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
   };
 
   const handleOpenEditQualification = (index) => {
-    setEditIndex(index); 
+    setEditIndex(index);
     setIsEditQualificationOpen(true);
   };
 
@@ -48,8 +49,8 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
   const handleFormSubmit = async (formData) => {
     try {
       const formDataToSend = {
-        userId: userId, 
-        qualifications: [formData] 
+        userId: userId,
+        qualifications: [formData],
       };
       await onFormSubmit(formDataToSend);
       handleCloseEditQualification();
@@ -59,10 +60,9 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
       console.error("Error updating user details:", error);
     }
   };
-  
+
   const handleRemove = async (index) => {
     try {
-    
       const qualification = qualifications[index];
 
       const formData = {
@@ -70,21 +70,20 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
         qualifications: [
           {
             qualificationId: qualification.qualificationId,
-          }
-         
-        ]
+          },
+        ],
       };
-    
+
       console.log("Form Data:", formData);
       console.log("Start Date:", formData.startDate);
       console.log("End Date:", formData.endDate);
-      await onFormSubmit(formData); 
+      await onFormSubmit(formData);
       handleCloseEditQualification();
     } catch (error) {
       console.error("Error updating user details:", error);
     }
   };
-  
+
   const options = [
     { value: "High School", label: "High School" },
     { value: "Bachelor's Degree", label: "Bachelor's Degree" },
@@ -102,7 +101,7 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
   const editQualProps = {
     heading: "Edit Education Qualification",
     options: options,
-    initialValues: qualifications[editIndex], 
+    initialValues: qualifications[editIndex],
     onSubmit: handleFormSubmit,
   };
 
