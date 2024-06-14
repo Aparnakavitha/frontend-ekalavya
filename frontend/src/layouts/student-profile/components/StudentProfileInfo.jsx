@@ -2,33 +2,9 @@ import React, { useState } from "react";
 import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
-import DeleteBox from "../../common/components/DeleteBox";
 import image from "../../../assets/pic.png";
 
-const StudentProfileInfo = (props) => {
-  const response = {
-    role: "student",
-    profilepic: image,
-    first_name: "Emma",
-    last_name:"Watson",
-    college: "Christ University",
-    dob: "1990-01-01",
-    email: "emmawatson@gmail.com",
-    phoneNumber: 8755383632,
-    houseName: "Sample House",
-    city: "Sample City",
-    pinCode: "123456",
-    state: "Sample State",
-    country: "Sample Country",
-    hasDelete: false,
-    onClickEdit: () => {
-      handleOpenEditBasicDetails();
-    },
-    onClickDelete: () => {
-      handleOpenDeleteBasicDetails();
-    },
-  };
-
+const StudentProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
   const [isDeleteDetailsIsOpen, setIsDeleteDetailsIsOpen] = useState(false);
 
@@ -48,49 +24,41 @@ const StudentProfileInfo = (props) => {
     setIsDeleteDetailsIsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log(formData, "Form submitted successfully");
-    handleCloseEditBasicDetails();
+  const handleFormSubmit = async (formData) => {
+    try {
+      console.log("Form Submitted with data:", formData);
+      await onFormSubmit(formData);
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
   };
 
   const editBox = {
     mainHeading: "Edit Basic Details",
-    initialData: { ...response },
+    initialData: { ...EditableData },
     isEdit: true,
     onSubmit: handleFormSubmit,
   };
 
-  const deleteBox = {
-    title: "Confirm deletion",
-    message: "This action will delete the user. Are you sure?",
-    buttonText: "Confirm",
-    onCancel: (formData) => {
-      console.log(formData, "Action cancelled");
-      handleCloseDeleteBasicDetails();
-    },
-    onConfirm: (formData) => {
-      console.log(formData, "Action Confirmed");
-      handleCloseDeleteBasicDetails();
-    },
+  const sample = {
+    role: "student",
+    ...profileData,
+    ...EditableData,
+    hasDelete: false,
+    onClickEdit: handleOpenEditBasicDetails,
+    onClickDelete: handleOpenDeleteBasicDetails,
   };
 
   return (
     <div>
-      <UserProfileInfo {...response} />
+      <UserProfileInfo {...sample} />
       <Modal
         isOpen={isEditDetailsOpen}
         widthVariant="medium"
         onClose={handleCloseEditBasicDetails}
       >
         <BasicDetails {...editBox} />
-      </Modal>
-
-      <Modal
-        isOpen={isDeleteDetailsIsOpen}
-        widthVariant="medium"
-        onClose={handleCloseDeleteBasicDetails}
-      >
-        <DeleteBox {...deleteBox} />
       </Modal>
     </div>
   );

@@ -81,9 +81,9 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               />
             )}
           />
-          {errors.phoneNumber && (
+          {errors.phoneNo && (
             <p className={`${styles["basicdetails-error"]}`}>
-              {errors.phoneNumber.message}
+              {errors.phoneNo.message}
             </p>
           )}
           <Controller
@@ -202,7 +202,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
         />
         {errors.houseName && (
           <p className={`${styles["basicdetails-error"]}`}>
-            {errors.houseName.message}
+            {errors.addresses[0].houseName.message}
           </p>
         )}
         <Controller

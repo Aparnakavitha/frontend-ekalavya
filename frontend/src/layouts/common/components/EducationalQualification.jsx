@@ -24,12 +24,8 @@ const EducationalQualification = ({
   };
 
   const handleOpenEditQualification = (index) => {
-    if (index >= 0 && index < qualifications.length) {
-      setEditIndex(index);
-      setIsEditQualificationOpen(true);
-    } else {
-      console.error(`Invalid index ${index} for qualifications array.`);
-    }
+    setEditIndex(index);
+    setIsEditQualificationOpen(true);
   };
 
   const handleCloseEditQualification = () => {
@@ -83,6 +79,8 @@ const EducationalQualification = ({
       };
 
       console.log("Form Data:", formData);
+      console.log("Start Date:", formData.startDate);
+      console.log("End Date:", formData.endDate);
       await onFormSubmit(formData);
       handleCloseEditQualification();
     } catch (error) {
@@ -107,7 +105,7 @@ const EducationalQualification = ({
   const editQualProps = {
     heading: "Edit Education Qualification",
     options: options,
-    initialValues: editIndex !== null ? qualifications[editIndex] : {},
+    initialValues: qualifications[editIndex],
     onSubmit: handleFormSubmit,
   };
 

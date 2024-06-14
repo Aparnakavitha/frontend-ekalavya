@@ -22,7 +22,7 @@ const UserProfileInfo = (props) => {
     hasDelete,
     onClickEdit,
     onClickDelete,
-    addresses, // Updated to include addresses
+    addresses, 
     ...rest
   } = props;
  

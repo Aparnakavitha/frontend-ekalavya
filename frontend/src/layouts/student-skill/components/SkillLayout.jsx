@@ -14,50 +14,45 @@ import {
 
 const Layout = () => {
   const [userSkills, setUserSkills] = useState([]);
-  const [skillsforDelete, setSkillsForDelete] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [deleteModal, setDeleteModal] = useState({
     isOpen: false,
     index: null,
   });
   const [options, setOptions] = useState([]);
+  const userId = 1; // Adjust userId as needed
 
   useEffect(() => {
-    const fetchUserSkills = async () => {
-      try {
-        const skills = await getSkillsForUser(1); // Replace with actual userId logic
-        setSkillsForDelete(skills); // Store skills with IDs for deletion
-        const skillsWithIds = skills.map((skill) => ({
-          ...skill,
-          skill_id: skill.id,
-        }));
-        setUserSkills(skillsWithIds);
-        console.log("Fetched user skills:", skillsWithIds);
-      } catch (error) {
-        console.error("Error fetching user skills", error);
-      }
-    };
-
-    const fetchSkills = async () => {
-      try {
-        const skillsResponse = await SkillService();
-        setOptions(
-          skillsResponse.map((skill) => ({
-            value: skill.id,
-            label:
-              skill.skillName.charAt(0).toUpperCase() +
-              skill.skillName.slice(1),
-            originalName: skill.skillName.toLowerCase(),
-          }))
-        );
-      } catch (error) {
-        console.error("Error fetching skills", error);
-      }
-    };
-
     fetchUserSkills();
     fetchSkills();
   }, []);
+
+  const fetchUserSkills = async () => {
+    try {
+      const skills = await getSkillsForUser(userId);
+      setUserSkills(skills);
+      console.log("Fetched user skills:", skills);
+    } catch (error) {
+      console.error("Error fetching user skills", error);
+    }
+  };
+
+  const fetchSkills = async () => {
+    try {
+      const skillsResponse = await SkillService();
+      setOptions(
+        skillsResponse.map((skill) => ({
+          value: skill.id,
+          label:
+            skill.skillName.charAt(0).toUpperCase() +
+            skill.skillName.slice(1),
+          originalName: skill.skillName.toLowerCase(),
+        }))
+      );
+    } catch (error) {
+      console.error("Error fetching skills", error);
+    }
+  };
 
   const capitalizeFirstLetter = (str) => {
     if (!str) return "";
@@ -68,17 +63,16 @@ const Layout = () => {
     try {
       const { skill } = formData;
       const postData = {
-        userId: 1, // Replace with actual userId logic
+        userId,
         skillId: skill,
       };
       const newSkillResponse = await Userskillpost(postData);
 
       const newSkill = {
         skill_name:
-          options.find((opt) => opt.value === skill)?.originalName ||
-          "undefined",
+          options.find((opt) => opt.value === skill)?.originalName || "undefined",
         skill_level: 1,
-        skill_id: newSkillResponse.skillId, // Ensure skillId is captured
+        skill_id: newSkillResponse.skillId,
         ...newSkillResponse,
       };
 
@@ -96,19 +90,24 @@ const Layout = () => {
   };
 
   const handleDeleteSkill = async () => {
-    const skillToDelete = skillsforDelete[deleteModal.index];
+    const skillToDelete = userSkills[deleteModal.index];
     console.log("Deleting skill:", skillToDelete);
 
-    try {
-      if (!skillToDelete || !skillToDelete.skill_id) {
-        throw new Error("Skill or skill_id undefined");
-      }
+    if (!skillToDelete) {
+      console.error("Skill to delete not found in userSkills");
+      return;
+    }
 
-      await UserSkillDelete(1, skillToDelete.skill_id); // Adjust userId as needed
-      setUserSkills((prevSkills) =>
-        prevSkills.filter((_, index) => index !== deleteModal.index)
-      );
+    if (!skillToDelete.skill_id) {
+      console.error("Skill id undefined for skill:", skillToDelete);
+      return;
+    }
+
+    try {
+      await UserSkillDelete(userId, skillToDelete.skill_id);
       console.log("Skill deleted successfully:", skillToDelete);
+      // Refetch user skills after deletion to keep frontend in sync with backend
+      fetchUserSkills();
     } catch (error) {
       console.error("Error deleting skill:", error);
     } finally {
