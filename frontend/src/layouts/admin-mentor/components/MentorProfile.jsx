@@ -28,10 +28,10 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
   if (!mentorData) {
     return <div>No data found for mentor.</div>;
   }
+
   const homeAddress = mentorData.addresses.find(
     (address) => address.addressType === "home"
   );
-
 
   const editBox = {
     mainHeading: "Edit Basic Details",
@@ -65,17 +65,13 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
       </div>
       <UserProfileInfo
         role={mentorData.role ? mentorData.role.roleName : ""}
-        profilepic={ profilepic}
+        profilepic={profilepic}
         name={`${mentorData.firstName} ${mentorData.lastName}`}
         college={mentorData.college ? mentorData.college.collegeName : ""}
         dob={mentorData.dob}
         email={mentorData.emailId}
-        phoneNumber={mentorData.phoneNo}
-        houseName={editBox.initialData.addresses[0].houseName}
-        city={editBox.initialData.addresses[0].city}
-        pinCode={editBox.initialData.addresses[0].pinCode}
-        state={editBox.initialData.addresses[0].state}
-        country={editBox.initialData.addresses[0].country}
+        phoneNo={mentorData.phoneNo}
+        addresses={mentorData.addresses}
         hasDelete={false}
         onClickEdit={handleOpenEditBasicDetails}
       />

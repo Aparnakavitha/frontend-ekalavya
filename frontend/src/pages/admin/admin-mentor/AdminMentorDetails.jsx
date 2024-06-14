@@ -24,31 +24,31 @@ const AdminMentorDetails = () => {
     fetchMentorData();
   }, [userId]);
 
-  const handleFormSubmit = async (formData) => {
-    try {
-      const { dob, phoneNumber, aboutMe, addresses, userId } = formData; // Destructure relevant fields from formData
-  
-      // Extract address details
-      const { houseName, city, pinCode, state, country } = formData;
-  
-      // Construct the updated data payload
-      const updatedData = {
-        userId,
-        dob,
-        phoneNumber,
-        aboutMe,
-        addresses: [{ houseName, city, pinCode, state, country }], // Nest address details inside addresses array
-      };
-  
-      await updateUserDetails(updatedData); // Update user details
-  
-      console.log("User details updated successfully!");
-      setMentorData(updatedData); // Optionally update local state with updated data
-    } catch (error) {
-      console.error("Error updating user details:", error);
-    }
-  };
-  
+ const handleFormSubmit = async (formData) => {
+  try {
+    const { dob, phoneNumber, aboutMe, addresses, userId } = formData; // Destructure relevant fields from formData
+
+    // Extract address details
+    const { houseName, city, pinCode, state, country } = formData;
+
+    // Construct the updated data payload
+    const updatedData = {
+      userId,
+      dob,
+      phoneNumber,
+      aboutMe,
+      addresses: [{ houseName, city, pinCode, state, country }], // Nest address details inside addresses array
+    };
+
+    await updateUserDetails(updatedData); // Update user details
+
+    console.log("User details updated successfully!");
+    setMentorData(updatedData); // Optionally update local state with updated data
+  } catch (error) {
+    console.error("Error updating user details:", error);
+  }
+};
+
 
   if (!mentorData) {
     return (
