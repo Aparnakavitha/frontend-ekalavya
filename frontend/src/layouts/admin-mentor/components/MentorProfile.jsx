@@ -7,7 +7,7 @@ import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
 import EducationalQualification from "../../common/components/EducationalQualification";
 
-const MentorProfileInfo = ({ mentorData, onSubmit }) => {
+const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
 
   const navProps = { pageName: "Mentors List" };
@@ -17,9 +17,9 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
 
   const handleFormSubmit = (formData) => {
     const { addresses, ...formDataWithoutAddresses } = formData;
-    
+
     // Prepare addresses with addressId included
-    const updatedAddresses = addresses.map(address => ({
+    const updatedAddresses = addresses.map((address) => ({
       ...address,
       addressId: address.addressId || "", // If addressId is not present, use empty string
     }));
@@ -29,16 +29,27 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
       ...formDataWithoutAddresses,
       addresses: updatedAddresses,
     });
+
     handleCloseEditBasicDetails();
+  };
+  
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Sfgsdh", formData);
+      await onformSubmit(formData);
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
   };
 
   if (!mentorData) {
     return <div>No data found for mentor.</div>;
   }
 
-  const homeAddress = mentorData.addresses && mentorData.addresses.find(
-    (address) => address.addressType === "home"
-  );
+  const homeAddress =
+    mentorData.addresses &&
+    mentorData.addresses.find((address) => address.addressType === "home");
 
   const editBox = {
     mainHeading: "Edit Basic Details",
@@ -96,7 +107,7 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
       <EducationalQualification
         qualifications={Education}
         userId={mentorData.userId}
-        onFormSubmit={handleFormSubmit}
+        onFormSubmit={handleFormSubmit2}
       />
     </div>
   );

@@ -38,7 +38,7 @@ const AdminMentorDetails = () => {
 
   const handleFormSubmit = async (formData) => {
     try {
-      const { dob, phoneNo, aboutMe, addresses, userId } = formData;
+      const { dob, phoneNo, aboutMe, addresses, userId ,education} = formData;
 
       // Prepare addresses with addressId included
       const updatedAddresses = addresses.map(address => ({
@@ -63,6 +63,17 @@ const AdminMentorDetails = () => {
     }
   };
 
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Submitted with data:", formData);
+      const response = await updateUserDetails(formData);
+      console.log("Update response:", response);
+      fetchMentorDetails(formData.userId, setMentorData);
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
   if (!mentorData) {
     return (
       <div style={{ padding: '20px', fontSize: '24px', color: 'white', textAlign: 'center' }}>
@@ -73,7 +84,7 @@ const AdminMentorDetails = () => {
 
   return (
     <div>
-      <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} />
+      <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} onformSubmit = {handleFormSubmit2} />
       <MentorEventsList mentorId={mentorData.userId} />
     </div>
   );
