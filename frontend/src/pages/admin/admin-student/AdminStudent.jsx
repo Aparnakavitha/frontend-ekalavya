@@ -17,8 +17,35 @@ import Modal from "../../../layouts/common/components/Modal";
 import ActionComponent from "../../../layouts/common/components/Action";
 import AddUser from "../../../layouts/common/components/AddUser";
 
+const fetchStudentsData = async (setStudentsData) => {
+  try {
+    const params = {
+      roleId: "3",
+    };
+    const data = await getUserDetails(params);
+    setStudentsData(data.responseData);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+const fetchBatchData = async (setBatchData) => {
+  try {
+    const data = await fetchbatches();
+    const transformedData = data.responseData.map((batch) => [
+      batch.batchId,
+      batch.batchName,
+    ]);
+    setBatchData(transformedData);
+    console.log("Batch data:", transformedData);
+  } catch (error) {
+    console.error("Error fetching batch data:", error);
+  }
+};
+
 const AdminStudent = () => {
   const [collegeData, setCollegeData] = useState([]);
+  const [batchData, setBatchData] = useState([]);
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [userData, setUserData] = useState(null);
@@ -46,25 +73,19 @@ const AdminStudent = () => {
           setUserData(location.state.userData);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching college data:", error);
       }
     };
-    const fetchStudentsData = async () => {
-      try {
-        const params = {
-          roleId: "3",
-        };
-        const data = await getUserDetails(params);
-        setStudentsData(data.responseData);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+
     fetchCollegeData();
-    fetchStudentsData();
   }, [location.state]);
 
-  if (!collegeData.length || !userData) {
+  useEffect(() => {
+    fetchStudentsData(setStudentsData);
+    fetchBatchData(setBatchData);
+  }, []);
+
+  if (!collegeData.length || !userData || studentsData.length === 0) {
     return <div>Loading...</div>;
   }
 
@@ -107,7 +128,7 @@ const AdminStudent = () => {
         Heading: "College",
         Content: collegeData.map((college) => college[1]),
       },
-      { Heading: "Batch", Content: ["Batch 1", "Batch 2", "Batch 3"] },
+      { Heading: "Batch", Content: batchData.map((batch) => batch[1]) },
     ],
     resetProps: {
       variant: "secondary",
@@ -209,6 +230,8 @@ const AdminStudent = () => {
       console.log(formData);
       const response = await updateUserDetails(formData);
       console.log("Student added successfully:", response);
+
+      fetchStudentsData(setStudentsData);
 
       handleCloseAddStudentModal();
     } catch (error) {

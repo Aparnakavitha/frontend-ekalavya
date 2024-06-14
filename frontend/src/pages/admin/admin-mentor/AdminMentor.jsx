@@ -10,7 +10,7 @@ import { Greeting, DataView } from "../../../layouts/common";
 const fetchMentorData = async (setMentorData) => {
   try {
     const params = {
-      roleId: 1,
+      roleId: 2,
     };
     const data = await getUserDetails(params);
     setMentorData(data.responseData);
@@ -35,7 +35,7 @@ const AdminMentor = () => {
     const fetchAdminData = async () => {
       try {
         const params = {
-          userId: "11",
+          userId: "4",
         };
         const data = await getUserDetails(params);
         if (data && data.responseData && data.responseData.length > 0) {
@@ -74,9 +74,13 @@ const AdminMentor = () => {
   };
 
   const handleCardClick = (userId) => {
-    const selectedMentor = mentorData.find((mentor) => mentor.userId === userId);
+    const selectedMentor = mentorData.find(
+      (mentor) => mentor.userId === userId
+    );
     if (selectedMentor) {
-      navigate(`/admin/mentor/mentor-details/${userId}`, { state: { mentorData: selectedMentor } });
+      navigate(`/admin/mentor/mentor-details/${userId}`, {
+        state: { mentorData: selectedMentor },
+      });
     } else {
       console.error(`Mentor with userId ${userId} not found.`);
     }
@@ -88,7 +92,7 @@ const AdminMentor = () => {
 
   const greet = {
     welcome: "Welcome Back",
-    name: `${adminData.firstName} ${adminData.lastName}`,
+    name: `${adminData.firstName}`,
     info: "Here is the information about",
     profile: "Mentors",
     showButtons: false,
@@ -117,7 +121,10 @@ const AdminMentor = () => {
   return (
     <div>
       <Greeting {...greet} />
-      <AdminMentorAction onSubmit={handleFormSubmit} onAddSuccess={() => fetchMentorData(setMentorData)} />
+      <AdminMentorAction
+        onSubmit={handleFormSubmit}
+        onAddSuccess={() => fetchMentorData(setMentorData)}
+      />
       <DataView
         CardComponent={(props) => (
           <ProfileCard

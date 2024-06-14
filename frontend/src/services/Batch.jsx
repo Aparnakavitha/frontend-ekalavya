@@ -6,7 +6,7 @@ export const fetchbatches = async (params = {}) => {
   try {
     const response = await axios.get(`${API_URL}/batches`, { params });
     console.log(response);
-    return response.data.responseData;
+    return response.data;
   } catch (error) {
     console.error("Error fetching batches:", error);
     throw error;
