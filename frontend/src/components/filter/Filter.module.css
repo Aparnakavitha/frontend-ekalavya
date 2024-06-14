@@ -4,6 +4,7 @@
   min-width: 75px;
   width: fit-content;
   max-width: 450px;
+  z-index: 1000;
 }
 
 .filterClass:hover {
