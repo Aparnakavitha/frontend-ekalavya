@@ -6,11 +6,10 @@ import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 
-// Define fetchMentorData outside of the component
 const fetchMentorData = async (setMentorData) => {
   try {
     const params = {
-      roleId: 1,
+      roleId: 2,
     };
     const data = await getUserDetails(params);
     setMentorData(data.responseData);
@@ -31,11 +30,23 @@ const AdminMentor = () => {
   });
   const navigate = useNavigate();
 
+  const fetchData = async (Data) => {
+    try {
+      const params = {
+        userId: Data,
+      };
+      const data = await getUserDetails(params);
+      setMentorData(data.responseData);
+    } catch (error) {
+      console.error("Error fetching mentor data:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
         const params = {
-          userId: "11",
+          userId: "2",
         };
         const data = await getUserDetails(params);
         if (data && data.responseData && data.responseData.length > 0) {
@@ -63,6 +74,7 @@ const AdminMentor = () => {
         emailId: formData.emailId,
         collegeId: formData.collegeId,
         roleId: formData.roleId,
+        addresses: formData.addresses,
       };
 
       await updateUserDetails(updatedFormData);
@@ -74,21 +86,36 @@ const AdminMentor = () => {
   };
 
   const handleCardClick = (userId) => {
-    const selectedMentor = mentorData.find((mentor) => mentor.userId === userId);
+    const selectedMentor = mentorData.find(
+      (mentor) => mentor.userId === userId
+    );
     if (selectedMentor) {
-      navigate(`/admin/mentor/mentor-details/${userId}`, { state: { mentorData: selectedMentor } });
+      navigate(`/admin/mentor/mentor-details/${userId}`, {
+        state: { mentorData: selectedMentor },
+      });
     } else {
       console.error(`Mentor with userId ${userId} not found.`);
     }
   };
 
   if (!adminData || mentorData.length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          padding: "20px",
+          fontSize: "24px",
+          color: "white",
+          textAlign: "center",
+        }}
+      >
+        Loading...
+      </div>
+    );
   }
 
   const greet = {
     welcome: "Welcome Back",
-    name: `${adminData.firstName} ${adminData.lastName}`,
+    name: `${adminData.firstName}`,
     info: "Here is the information about",
     profile: "Mentors",
     showButtons: false,
@@ -99,9 +126,13 @@ const AdminMentor = () => {
       studentImage: image,
       studentName: `${mentor.firstName || "N/A"} ${mentor.lastName || "N/A"}`,
       studentId: mentor.userId || "N/A",
-      studentCollege: mentor.college?.collegeName || "N/A",
+      studentCollege: "",
       studentMail: mentor.emailId || "N/A",
       studentPhoneNumber: mentor.phoneNo || "N/A",
+      studentAddress:
+        mentor.addresses && mentor.addresses.length > 0
+          ? `${mentor.addresses[0].houseName}, ${mentor.addresses[0].city} - ${mentor.addresses[0].pinCode}, ${mentor.addresses[0].state}, ${mentor.addresses[0].country}`
+          : "N/A",
       canDelete: false,
     })),
     tableColumns: [
@@ -109,6 +140,7 @@ const AdminMentor = () => {
       { key: "studentName", displayName: "Name" },
       { key: "studentMail", displayName: "Email ID" },
       { key: "studentPhoneNumber", displayName: "Phone Number" },
+      { key: "studentAddress", displayName: "Address" },
     ],
     toggle: true,
     itemsPerPage: 18,
@@ -117,7 +149,15 @@ const AdminMentor = () => {
   return (
     <div>
       <Greeting {...greet} />
-      <AdminMentorAction onSubmit={handleFormSubmit} onAddSuccess={() => fetchMentorData(setMentorData)} />
+      <AdminMentorAction
+        onSubmit={handleFormSubmit}
+        onAddSuccess={() => fetchMentorData(setMentorData)}
+      />
+      <AdminMentorAction
+        onSubmit={handleFormSubmit}
+        onAddSuccess={() => fetchMentorData(setMentorData)}
+        fetchData={fetchData}
+      />
       <DataView
         CardComponent={(props) => (
           <ProfileCard

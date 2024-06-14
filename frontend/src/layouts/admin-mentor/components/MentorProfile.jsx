@@ -5,8 +5,9 @@ import BasicDetails from "../../common/components/BasicDetails";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
+import EducationalQualification from "../../common/components/EducationalQualification";
 
-const MentorProfileInfo = ({ mentorData, onSubmit }) => {
+const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
 
   const navProps = { pageName: "Mentors List" };
@@ -15,29 +16,46 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
   const handleCloseEditBasicDetails = () => setIsEditDetailsOpen(false);
 
   const handleFormSubmit = (formData) => {
-    const { addresses, ...formDataWithoutAddresses } = formData; // Destructure addresses from formData
-    const { houseName, city, pinCode, state, country } = addresses[0]; // Destructure address details
+    const { addresses, ...formDataWithoutAddresses } = formData;
+
+    // Prepare addresses with addressId included
+    const updatedAddresses = addresses.map((address) => ({
+      ...address,
+      addressId: address.addressId || "", // If addressId is not present, use empty string
+    }));
+
     onSubmit({
       userId: mentorData.userId,
       ...formDataWithoutAddresses,
-      addresses: [{ houseName, city, pinCode, state, country }], // Nest address details inside addresses array
+      addresses: updatedAddresses,
     });
+
     handleCloseEditBasicDetails();
+  };
+  
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Sfgsdh", formData);
+      await onformSubmit(formData);
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
   };
 
   if (!mentorData) {
     return <div>No data found for mentor.</div>;
   }
 
-  const homeAddress = mentorData.addresses.find(
-    (address) => address.addressType === "home"
-  );
+  const homeAddress =
+    mentorData.addresses &&
+    mentorData.addresses.find((address) => address.addressType === "home");
 
   const editBox = {
     mainHeading: "Edit Basic Details",
     initialData: {
       dob: mentorData.dob,
-      phoneNumber: mentorData.phoneNo,
+      phoneNo: mentorData.phoneNo,
       addresses: [
         {
           addressId: homeAddress ? homeAddress.addressId : "",
@@ -58,15 +76,18 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
     description: mentorData.aboutMe,
   };
 
+  const Education = mentorData.qualifications;
+
   return (
     <div>
       <div className="padding">
         <NavButton {...navProps} />
       </div>
       <UserProfileInfo
+        userId={mentorData.userId}
         role={mentorData.role ? mentorData.role.roleName : ""}
         profilepic={profilepic}
-        name={`${mentorData.firstName} ${mentorData.lastName}`}
+        name={`${mentorData.firstName || "N/A"} ${mentorData.lastName || "N/A"}`}
         college={mentorData.college ? mentorData.college.collegeName : ""}
         dob={mentorData.dob}
         email={mentorData.emailId}
@@ -83,6 +104,11 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
       <AboutMe {...aboutMeProps} />
+      <EducationalQualification
+        qualifications={Education}
+        userId={mentorData.userId}
+        onFormSubmit={handleFormSubmit2}
+      />
     </div>
   );
 };
