@@ -16,18 +16,18 @@ import {
 } from "../../../services/User";
 import { fetchbatches } from "../../../services/Batch";
 
-const fetchStudentsData = async (params, setStudentsData) => {
+const fetchStudentsData = async (setStudentsData) => {
   try {
     const filterParams = {
-      roleId: "3",
-      collegeId: params.College || "",
+      roleId: 3,
+      // collegeId: params.College || "",
     };
-    const filteredParams = Object.fromEntries(
-      Object.entries(filterParams).filter(([key, value]) => value !== "")
-    );
+    // const filteredParams = Object.fromEntries(
+    //   Object.entries(filterParams).filter(([key, value]) => value !== "")
+    // );
 
     console.log("Params" + filterParams.collegeId);
-    const data = await getUserDetails(filteredParams);
+    const data = await getUserDetails(filterParams);
     setStudentsData(data.responseData);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -89,7 +89,7 @@ const AdminStudent = () => {
   }, [location.state]);
 
   useEffect(() => {
-    fetchStudentsData(params, setStudentsData);
+    fetchStudentsData(setStudentsData);
     fetchBatchData(setBatchData);
   }, []);
 
