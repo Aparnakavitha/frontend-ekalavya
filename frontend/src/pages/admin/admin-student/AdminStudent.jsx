@@ -20,13 +20,7 @@ const fetchStudentsData = async (setStudentsData) => {
   try {
     const filterParams = {
       roleId: 3,
-      // collegeId: params.College || "",
     };
-    // const filteredParams = Object.fromEntries(
-    //   Object.entries(filterParams).filter(([key, value]) => value !== "")
-    // );
-
-    console.log("Params" + filterParams.collegeId);
     const data = await getUserDetails(filterParams);
     setStudentsData(data.responseData);
   } catch (error) {
@@ -155,12 +149,12 @@ const AdminStudent = () => {
 
   const dataView = {
     data: studentsData.map((student) => ({
-      studentImage: student.profilePicture || "",
-      studentName: `${student.firstName || ""} ${student.lastName || ""}`,
-      studentId: student.userId || "",
-      studentCollege: student.college.collegeName || "",
-      studentMail: student.emailId || "",
-      studentPhoneNumber: student.phoneNo || "",
+      studentImage: student?.profilePicture || "",
+      studentName: `${student?.firstName || ""} ${student?.lastName || ""}`,
+      studentId: student?.userId || "",
+      studentCollege: student?.college?.collegeName || "",
+      studentMail: student?.emailId || "",
+      studentPhoneNumber: student?.phoneNo || "",
       canDelete: false,
     })),
     tableColumns: [
@@ -236,10 +230,11 @@ const AdminStudent = () => {
     try {
       formData.roleId = 3;
       console.log(formData);
-      const response = await updateUserDetails(formData);
-      console.log("Student added successfully:", response);
+      await updateUserDetails(formData);
+      console.log("Student added successfully");
 
-      fetchStudentsData(setStudentsData);
+      // Fetch updated student data after adding new student
+      await fetchStudentsData(setStudentsData);
 
       handleCloseAddStudentModal();
     } catch (error) {
@@ -254,6 +249,7 @@ const AdminStudent = () => {
       onClick: handleOpenAddStudentModal,
     },
   };
+
   const handleFilterChange = (filters) => {
     setParams((prevParams) => ({
       ...prevParams,
