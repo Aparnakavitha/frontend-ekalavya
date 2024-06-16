@@ -1,5 +1,4 @@
 const skillCardData = {
-   
   data: [
     {
       miniHeading: "SKILL47851",
