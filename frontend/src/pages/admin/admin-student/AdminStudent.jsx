@@ -22,10 +22,6 @@ const fetchStudentsData = async (setStudentsData) => {
       roleId: 3,
       // collegeId: params.College || "",
     };
-    // const filteredParams = Object.fromEntries(
-    //   Object.entries(filterParams).filter(([key, value]) => value !== "")
-    // );
-
     console.log("Params" + filterParams.collegeId);
     const data = await getUserDetails(filterParams);
     setStudentsData(data.responseData);
@@ -155,12 +151,12 @@ const AdminStudent = () => {
 
   const dataView = {
     data: studentsData.map((student) => ({
-      studentImage: student.profilePicture || "",
-      studentName: `${student.firstName || ""} ${student.lastName || ""}`,
-      studentId: student.userId || "",
-      studentCollege: student.college.collegeName || "",
-      studentMail: student.emailId || "",
-      studentPhoneNumber: student.phoneNo || "",
+      studentImage: student?.profilePicture || "",
+      studentName: `${student?.firstName || ""} ${student?.lastName || ""}`,
+      studentId: student?.userId || "",
+      studentCollege: student?.college?.collegeName || "",
+      studentMail: student?.emailId || "",
+      studentPhoneNumber: student?.phoneNo || "",
       canDelete: false,
     })),
     tableColumns: [
@@ -232,6 +228,11 @@ const AdminStudent = () => {
     setIsAddStudentOpen(false);
   };
 
+  const getCollegeName = (collegeId) => {
+    const college = collegeData.find((c) => c[0] === collegeId);
+    return college ? college[1] : "";
+  };
+
   const handleAddStudentFormSubmit = async (formData) => {
     try {
       formData.roleId = 3;
@@ -239,7 +240,14 @@ const AdminStudent = () => {
       const response = await updateUserDetails(formData);
       console.log("Student added successfully:", response);
 
-      fetchStudentsData(setStudentsData);
+      const newStudent = response.responseData;
+      newStudent.college = {
+        collegeId: formData.collegeId,
+        collegeName: getCollegeName(formData.collegeId),
+      };
+      console.log("New student data:", newStudent);
+
+      setStudentsData((prevStudentsData) => [newStudent, ...prevStudentsData]);
 
       handleCloseAddStudentModal();
     } catch (error) {
@@ -254,6 +262,7 @@ const AdminStudent = () => {
       onClick: handleOpenAddStudentModal,
     },
   };
+
   const handleFilterChange = (filters) => {
     setParams((prevParams) => ({
       ...prevParams,

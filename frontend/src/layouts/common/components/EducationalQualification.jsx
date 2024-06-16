@@ -4,7 +4,11 @@ import Modal from "./Modal";
 import QualificationForm from "./QualificationForm";
 import DeleteBox from "./DeleteBox";
 
-const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
+const EducationalQualification = ({
+  qualifications,
+  onFormSubmit,
+  userId = 1,
+}) => {
   const [isAddQualificationOpen, setIsAddQualificationOpen] = useState(false);
   const [isEditQualificationOpen, setIsEditQualificationOpen] = useState(false);
   const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] =
@@ -110,13 +114,14 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
     message: "Remove this qualification?",
     buttonText: "Confirm",
     onConfirm: () => {
-      handleFormSubmit();
-      handleRemove(editIndex);
+      if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
+        handleRemove(editIndex);
+      }
     },
     onCancel: handleFormCancel,
   };
 
-  const sample = {
+  const educationProps = {
     qualifications,
     onClickAdd: handleOpenAddQualification,
     onClickEdit: handleOpenEditQualification,
@@ -125,7 +130,7 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
 
   return (
     <div>
-      <Education {...sample} />
+      <Education {...educationProps} />
       <Modal
         isOpen={isAddQualificationOpen}
         widthVariant="medium"

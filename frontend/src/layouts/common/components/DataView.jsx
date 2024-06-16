@@ -10,6 +10,7 @@ const DataView = ({
   tableColumns,
   toggle,
   itemsPerPage = 10,
+  cardType = "profilecard",
 }) => {
   const [isCardView, setIsCardView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -35,13 +36,15 @@ const DataView = ({
     setCurrentPage(pageNumber);
   };
 
-  const currentData = data ? data.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  ) : [];
+  const currentData = data
+    ? data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    : [];
 
   const getComponentName = (item) => {
     let cardName = String(CardComponent.name).toLowerCase();
+    if (cardName === "undefined" || cardName === "cardcomponent") {
+      cardName = cardType;
+    }
     if (cardName === "skillbatchcard") {
       if (String(item.cardType).toLowerCase() === "skill") {
         cardName = "dataview-skillbatchcardskill";
