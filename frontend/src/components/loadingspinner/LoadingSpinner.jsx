@@ -2,7 +2,11 @@ import React from "react";
 import { TailSpin } from "react-loader-spinner";
 import styles from "./LoadingSpinner.module.css";
 
-const LoadingSpinner = ({ height = 100, width = 100, color = "#4fa94d" }) => {
+const LoadingSpinner = ({
+  height = 50,
+  width = 50,
+  color = "var(--primary-color)",
+}) => {
   return (
     <div className={styles.loadingContainer}>
       <TailSpin
