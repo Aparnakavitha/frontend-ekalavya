@@ -5,6 +5,7 @@ import AdminMentorAction from "../../../layouts/admin-mentor/components/AdminMen
 import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const fetchMentorData = async (setMentorData) => {
   try {
@@ -99,18 +100,7 @@ const AdminMentor = () => {
   };
 
   if (!adminData || mentorData.length === 0) {
-    return (
-      <div
-        style={{
-          padding: "20px",
-          fontSize: "24px",
-          color: "white",
-          textAlign: "center",
-        }}
-      >
-        Loading...
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   const greet = {
