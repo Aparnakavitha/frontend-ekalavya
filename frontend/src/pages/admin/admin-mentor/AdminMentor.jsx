@@ -46,7 +46,7 @@ const AdminMentor = () => {
     const fetchAdminData = async () => {
       try {
         const params = {
-          userId: "2",
+          userId: "4",
         };
         const data = await getUserDetails(params);
         if (data && data.responseData && data.responseData.length > 0) {
