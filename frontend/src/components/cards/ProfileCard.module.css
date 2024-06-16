@@ -6,6 +6,7 @@
   background-color: var(--neutral800);
   cursor: pointer;
   padding: 30px;
+  transition: all 0.3s ease-in-out;
 }
 
 .card .card-content {
@@ -110,9 +111,26 @@
 
 .card:hover .contact-info,
 .card:hover .delete-icon {
-  color: var(--neutral800)
+  color: var(--neutral800);
 }
 
 .card:hover .student-image {
-  background-color: var(--neutral800)
+  background-color: var(--neutral800);
+}
+
+@keyframes highlight {
+  0% {
+    transform: scale(1);
+    background-color: var(--white);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.card.highlight {
+  animation: highlight 2s ease-in-out;
 }

@@ -13,6 +13,7 @@ const ProfileCard = (props) => {
     onClick,
     canDelete,
     handleDelete,
+    viewAnimation = false,
   } = props;
 
   const transformMainMail = (studentMail) => {
@@ -35,7 +36,10 @@ const ProfileCard = (props) => {
   };
 
   return (
-    <div className={styles.card} onClick={onClick}>
+    <div
+      className={`${styles.card} ${viewAnimation ? styles.highlight : ""}`}
+      onClick={onClick}
+    >
       <div className={styles["card-content"]}>
         <div className={styles["image-icon"]}>
           <img
