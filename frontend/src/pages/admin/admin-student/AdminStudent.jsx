@@ -247,7 +247,6 @@ const AdminStudent = () => {
       };
       console.log("New student data:", newStudent);
 
-      // Prepend the new student to the studentsData array
       setStudentsData((prevStudentsData) => [newStudent, ...prevStudentsData]);
 
       handleCloseAddStudentModal();
