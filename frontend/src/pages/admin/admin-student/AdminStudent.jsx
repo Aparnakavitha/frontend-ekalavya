@@ -15,6 +15,7 @@ import {
   updateUserDetails,
 } from "../../../services/User";
 import { fetchbatches } from "../../../services/Batch";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const fetchStudentsData = async (setStudentsData) => {
   try {
@@ -51,6 +52,7 @@ const AdminStudent = () => {
   const [userData, setUserData] = useState(null);
   const [studentsData, setStudentsData] = useState([]);
   const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
+  const [cardAnimation, setCardAnimation] = useState(false);
   const [params, setParams] = useState({
     collegeId: "",
     batchId: "",
@@ -90,7 +92,7 @@ const AdminStudent = () => {
   }, []);
 
   if (!collegeData.length || !userData || studentsData.length === 0) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   console.log(studentsData);
@@ -158,6 +160,7 @@ const AdminStudent = () => {
       studentMail: student?.emailId || "",
       studentPhoneNumber: student?.phoneNo || "",
       canDelete: false,
+      viewAnimation: (cardAnimation && student?.newEntry) || false,
     })),
     tableColumns: [
       { key: "studentId", displayName: "Student ID" },
@@ -221,6 +224,7 @@ const AdminStudent = () => {
   };
 
   const handleOpenAddStudentModal = () => {
+    setCardAnimation(false);
     setIsAddStudentOpen(true);
   };
 
@@ -236,7 +240,7 @@ const AdminStudent = () => {
   const handleAddStudentFormSubmit = async (formData) => {
     try {
       formData.roleId = 3;
-      console.log(formData);
+
       const response = await updateUserDetails(formData);
       console.log("Student added successfully:", response);
 
@@ -245,8 +249,8 @@ const AdminStudent = () => {
         collegeId: formData.collegeId,
         collegeName: getCollegeName(formData.collegeId),
       };
-      console.log("New student data:", newStudent);
-
+      newStudent.newEntry = true;
+      setCardAnimation(true);
       setStudentsData((prevStudentsData) => [newStudent, ...prevStudentsData]);
 
       handleCloseAddStudentModal();

@@ -25,6 +25,7 @@ import AdminEventDetails from "./admin-events/EventDetails";
 import AdminEventParticipants from "./admin-events/AdminEventParticipants";
 import AdminSkillStudents from "./admin-skills/AdminSkillStudents";
 import { getUserDetails } from "../../services/User";
+import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -48,7 +49,7 @@ const AdminContent = () => {
   }, []);
 
   if (!userData) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   const sample = {
