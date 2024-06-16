@@ -16,9 +16,7 @@ import Footer from "../../layouts/common/components/Footer";
 import StudentProfile from "./student-profile/StudentProfile";
 import StudentEvent from "./student-events/StudentEvents";
 import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
-import EventDescription from "../EventDescription";
 import StudentEventDescription from "../../layouts/student-event-description/components/StudentEventDescription";
-import Explore from "../Explore";
 
 const StudentContent = () => {
   const location = useLocation();
