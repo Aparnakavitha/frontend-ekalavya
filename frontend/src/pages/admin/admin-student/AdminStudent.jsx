@@ -15,6 +15,7 @@ import {
   updateUserDetails,
 } from "../../../services/User";
 import { fetchbatches } from "../../../services/Batch";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const fetchStudentsData = async (setStudentsData) => {
   try {
@@ -91,7 +92,7 @@ const AdminStudent = () => {
   }, []);
 
   if (!collegeData.length || !userData || studentsData.length === 0) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   console.log(studentsData);
