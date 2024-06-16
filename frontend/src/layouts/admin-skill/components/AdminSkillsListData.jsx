@@ -1,132 +1,39 @@
-const skillCardData = {
-  data: [
-    {
-      miniHeading: "SKILL47851",
-      mainHeading: "Java",
-      Count: 53,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL47862",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL47873",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL47884",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL47865",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL47866",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL47867",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL47868",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL47869",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL478610",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL478611",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL478612",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL478613",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL478614",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL478615",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL4786116",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-    {
-      miniHeading: "SKILL4786117",
-      mainHeading: "Python",
-      Count: 40,
-      cardType: "skill",
-      canEdit: true,
-    },
-  ],
-  tableColumns: [
-    { key: "miniHeading", displayName: "Skill ID" },
-    { key: "mainHeading", displayName: "Skill Name" },
-    { key: "Count", displayName: "Count" },
-  ],
-  toggle: true,
-  itemsPerPage: 15,
+const AdminSkillData = {
+  greeting: {
+    welcome: "Welcome Back",
+    name: "John",
+    info: "Here is the information about",
+    profile: "skill",
+    showButtons: false,
+  },
+  DataView: {
+    data: [
+      {
+        miniHeading: "SKILL4785",
+        mainHeading: "Java",
+        Count: 53,
+        cardType: "skill",
+        canEdit: true,
+      },
+      {
+        miniHeading: "SKILL4785",
+        mainHeading: "Java",
+        Count: 53,
+        cardType: "skill",
+        canEdit: true,
+      },
+    ],
+    tableColumns: [
+      { key: "miniHeading", displayName: "Skill ID" },
+      { key: "mainHeading", displayName: "Skill Name" },
+      { key: "Count", displayName: "Count" },
+    ],
+    toggle: true,
+    itemsPerPage: 15,
+    cardType: "skillbatchcardskill",
+  },
 };
-
-export default skillCardData;
+ 
+export default AdminSkillData;
+ 
+ 
