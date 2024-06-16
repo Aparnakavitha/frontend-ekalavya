@@ -45,10 +45,6 @@ const DataView = ({
     if (cardName === "undefined" || cardName === "cardcomponent") {
       cardName = cardType;
     }
-
-    console.log("typee" + cardType);
-    console.log("namee" + cardName);
-
     if (cardName === "skillbatchcard") {
       if (String(item.cardType).toLowerCase() === "skill") {
         cardName = "dataview-skillbatchcardskill";

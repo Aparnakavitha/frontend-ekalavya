@@ -20,7 +20,9 @@ const fetchStudentsData = async (setStudentsData) => {
   try {
     const filterParams = {
       roleId: 3,
+      // collegeId: params.College || "",
     };
+    console.log("Params" + filterParams.collegeId);
     const data = await getUserDetails(filterParams);
     setStudentsData(data.responseData);
   } catch (error) {
@@ -226,15 +228,27 @@ const AdminStudent = () => {
     setIsAddStudentOpen(false);
   };
 
+  const getCollegeName = (collegeId) => {
+    const college = collegeData.find((c) => c[0] === collegeId);
+    return college ? college[1] : "";
+  };
+
   const handleAddStudentFormSubmit = async (formData) => {
     try {
       formData.roleId = 3;
       console.log(formData);
-      await updateUserDetails(formData);
-      console.log("Student added successfully");
+      const response = await updateUserDetails(formData);
+      console.log("Student added successfully:", response);
 
-      // Fetch updated student data after adding new student
-      await fetchStudentsData(setStudentsData);
+      const newStudent = response.responseData;
+      newStudent.college = {
+        collegeId: formData.collegeId,
+        collegeName: getCollegeName(formData.collegeId),
+      };
+      console.log("New student data:", newStudent);
+
+      // Prepend the new student to the studentsData array
+      setStudentsData((prevStudentsData) => [newStudent, ...prevStudentsData]);
 
       handleCloseAddStudentModal();
     } catch (error) {
