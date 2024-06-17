@@ -5,9 +5,19 @@ const SkillsContext = createContext();
 export const SkillsProvider = ({ children }) => {
   const [skills, setSkills] = useState([]);
   const [changed, setChanged] = useState(false);
+  const [participants, setParticipants] = useState([]);
 
   return (
-    <SkillsContext.Provider value={{ skills, setSkills, changed, setChanged }}>
+    <SkillsContext.Provider
+      value={{
+        skills,
+        setSkills,
+        changed,
+        setChanged,
+        participants,
+        setParticipants,
+      }}
+    >
       {children}
     </SkillsContext.Provider>
   );

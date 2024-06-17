@@ -3,7 +3,10 @@ import DataView from "../../common/components/DataView";
 import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import Modal from "../../common/components/Modal";
 import UpdateSingleField from "../../../layouts/common/components/UpdateSingleField";
-import { SkillService } from "../../../services/student/skills/StudentSkillService";
+import {
+  SkillService,
+  updateSkill,
+} from "../../../services/student/skills/StudentSkillService";
 import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 
 const capitalizeFirstLetter = (string) => {
@@ -11,7 +14,7 @@ const capitalizeFirstLetter = (string) => {
 };
 
 const AdminSkillsList = ({ handleClick }) => {
-  const { skills, setSkills ,changed,setChanged} = useSkills();
+  const { skills, setSkills, changed, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,7 +24,7 @@ const AdminSkillsList = ({ handleClick }) => {
     const fetchSkills = async () => {
       try {
         const response = await SkillService();
-        const capitalizedSkills = response.map(skill => ({
+        const capitalizedSkills = response.map((skill) => ({
           ...skill,
           skillName: capitalizeFirstLetter(skill.skillName),
         }));
@@ -32,8 +35,6 @@ const AdminSkillsList = ({ handleClick }) => {
         setLoading(false);
       }
     };
-
-
 
     fetchSkills();
     setChanged(false);
@@ -51,6 +52,11 @@ const AdminSkillsList = ({ handleClick }) => {
 
   const handleFormSubmit = (data) => {
     if (selectedSkill) {
+      const response = updateSkill({
+        skillId: selectedSkill.id,
+        skillName: data.inputData,
+      });
+      console.log("Update response: ", response);
       const updatedSkills = skills.map((skill) =>
         skill.id === selectedSkill.id
           ? { ...skill, skillName: capitalizeFirstLetter(data.inputData) }
@@ -68,6 +74,7 @@ const AdminSkillsList = ({ handleClick }) => {
       miniHeading: skill.id,
       Count: skill.count,
       canEdit: true,
+      cardType: "skill",
       handleClick: handleClick,
       handleEditClick: () => handleOpenModal(skill),
     })),
