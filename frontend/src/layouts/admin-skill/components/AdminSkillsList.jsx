@@ -3,7 +3,7 @@ import DataView from "../../common/components/DataView";
 import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import Modal from "../../common/components/Modal";
 import UpdateSingleField from "../../../layouts/common/components/UpdateSingleField";
-import { SkillService } from "../../../services/student/skills/StudentSkillService";
+import { SkillService, updateSkill } from "../../../services/student/skills/StudentSkillService";
 import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 
 const capitalizeFirstLetter = (string) => {
@@ -50,7 +50,11 @@ const AdminSkillsList = ({ handleClick }) => {
   };
 
   const handleFormSubmit = (data) => {
+    console.log("Skill Id sent:",selectedSkill.id);
+    console.log("New skillName",data);
     if (selectedSkill) {
+      const response=updateSkill({skillId:selectedSkill.id,skillName:data.inputData})
+      console.log("Update response: ",response);
       const updatedSkills = skills.map((skill) =>
         skill.id === selectedSkill.id
           ? { ...skill, skillName: capitalizeFirstLetter(data.inputData) }
@@ -68,6 +72,7 @@ const AdminSkillsList = ({ handleClick }) => {
       miniHeading: skill.id,
       Count: skill.count,
       canEdit: true,
+      cardType:"skill",
       handleClick: handleClick,
       handleEditClick: () => handleOpenModal(skill),
     })),
