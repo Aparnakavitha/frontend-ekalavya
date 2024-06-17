@@ -36,7 +36,7 @@ const AdminContent = () => {
     const fetchData = async () => {
       try {
         const params = {
-          userId: "1",
+          userId: "4",
         };
         const data = await getUserDetails(params);
         setUserData(data.responseData[0]);
@@ -137,12 +137,30 @@ const AdminContent = () => {
               <Route path="events" element={<AdminEvent />} />
               <Route path="batches" element={<AdminBatchList />} />
               <Route path="skills" element={<AdminSkill />} />
-              <Route path="skills/skill-participants" element={<AdminSkillStudents />} />
-              <Route path="batches/batch-details" element={<AdminBatchSelect />} />
-              <Route path="student/student-details" element={<AdminStudentDetails />} />
-              <Route path="mentor/mentor-details" element={<AdminMentorDetails />} />
-              <Route path="events/event-details/:eventId" element={<AdminEventDetails />} />
-              <Route path="events/event-details/event-participants/:eventId" element={<AdminEventParticipants />} />
+              <Route
+                path="skills/skill-participants"
+                element={<AdminSkillStudents />}
+              />
+              <Route
+                path="batches/batch-details"
+                element={<AdminBatchSelect />}
+              />
+              <Route
+                path="student/student-details"
+                element={<AdminStudentDetails />}
+              />
+              <Route
+                path="mentor/mentor-details"
+                element={<AdminMentorDetails />}
+              />
+              <Route
+                path="events/event-details/:eventId"
+                element={<AdminEventDetails />}
+              />
+              <Route
+                path="events/event-details/event-participants/:eventId"
+                element={<AdminEventParticipants />}
+              />
             </Routes>
           </div>
         </div>

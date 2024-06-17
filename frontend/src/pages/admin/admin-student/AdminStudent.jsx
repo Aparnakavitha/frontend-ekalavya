@@ -17,14 +17,23 @@ import {
 import { fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
-const fetchStudentsData = async (setStudentsData) => {
+const fetchStudentsData = async (setStudentsData, params) => {
   try {
-    const filterParams = {
+    var filterParams = {
       roleId: 3,
-      // collegeId: params.College || "",
+      collegeId: params.College || "",
     };
-    console.log("Params" + filterParams.collegeId);
-    const data = await getUserDetails(filterParams);
+    if (params.College) {
+      filterParams = {
+        collegeId: params.College || "",
+      };
+    }
+    const filteredParams = Object.fromEntries(
+      Object.entries(filterParams).filter(([key, value]) => value !== "")
+    );
+
+    console.log("Filtered Params :", filteredParams);
+    const data = await getUserDetails(filteredParams);
     setStudentsData(data.responseData);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -54,7 +63,7 @@ const AdminStudent = () => {
   const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
   const [cardAnimation, setCardAnimation] = useState(false);
   const [params, setParams] = useState({
-    collegeId: "",
+    College: "",
     batchId: "",
   });
 
@@ -87,15 +96,13 @@ const AdminStudent = () => {
   }, [location.state]);
 
   useEffect(() => {
-    fetchStudentsData(setStudentsData);
+    fetchStudentsData(setStudentsData, params);
     fetchBatchData(setBatchData);
-  }, []);
+  }, [params]);
 
-  if (!collegeData.length || !userData || studentsData.length === 0) {
+  if (!collegeData.length || !userData) {
     return <LoadingSpinner />;
   }
-
-  console.log(studentsData);
 
   const AdminStudentData = {
     greetingData: {
@@ -133,6 +140,7 @@ const AdminStudent = () => {
       {
         Heading: "College",
         Content: collegeData.map((college) => college[1]),
+        Value: collegeData.map((college) => college[0]),
       },
       { Heading: "Batch", Content: batchData.map((batch) => batch[1]) },
     ],
@@ -192,7 +200,6 @@ const AdminStudent = () => {
   const handleFormSubmit = async (formData) => {
     try {
       const response = await postColleges(formData);
-      console.log("College added successfully:", response);
       try {
         const data = await getColleges();
         const transformedData = data.responseData.map((college) => [
@@ -242,8 +249,6 @@ const AdminStudent = () => {
       formData.roleId = 3;
 
       const response = await updateUserDetails(formData);
-      console.log("Student added successfully:", response);
-
       const newStudent = response.responseData;
       newStudent.college = {
         collegeId: formData.collegeId,
@@ -268,6 +273,8 @@ const AdminStudent = () => {
   };
 
   const handleFilterChange = (filters) => {
+    console.log("Handlefilter filter", filters);
+    console.log("Handlefilter curret params", params);
     setParams((prevParams) => ({
       ...prevParams,
       ...filters,
@@ -312,15 +319,22 @@ const AdminStudent = () => {
           onSubmit={handleAddStudentFormSubmit}
         />
       </Modal>
-      <DataView
-        CardComponent={(props) => (
-          <ProfileCard
-            {...props}
-            onClick={() => handleCardClick(props.studentId)}
-          />
-        )}
-        {...dataView}
-      />
+
+      {studentsData.length > 0 ? (
+        <DataView
+          CardComponent={(props) => (
+            <ProfileCard
+              {...props}
+              onClick={() => handleCardClick(props.studentId)}
+            />
+          )}
+          {...dataView}
+        />
+      ) : (
+        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+          No students available
+        </p>
+      )}
     </div>
   );
 };
