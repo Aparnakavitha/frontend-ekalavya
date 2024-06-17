@@ -247,6 +247,8 @@ const AdminStudent = () => {
   const handleAddStudentFormSubmit = async (formData) => {
     try {
       formData.roleId = 3;
+      formData.profilePicture =
+        "https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg";
 
       const response = await updateUserDetails(formData);
       const newStudent = response.responseData;
@@ -273,8 +275,6 @@ const AdminStudent = () => {
   };
 
   const handleFilterChange = (filters) => {
-    console.log("Handlefilter filter", filters);
-    console.log("Handlefilter curret params", params);
     setParams((prevParams) => ({
       ...prevParams,
       ...filters,
