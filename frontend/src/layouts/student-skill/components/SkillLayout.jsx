@@ -103,12 +103,11 @@ const Layout = () => {
     const skillToDelete = userSkills[deleteModal.index];
 
     if (!skillToDelete) {
-      console.error("Skill to delete not found in userSkills");
+      console.error("Skill to delete not found");
       return;
     }
 
     const { skill_id } = skillToDelete;
-    console.log("SKill ID: ", skill_id);
 
     if (!skill_id) {
       console.error("Skill id undefined for skill:", skillToDelete);
@@ -117,7 +116,7 @@ const Layout = () => {
 
     try {
       await UserSkillDelete(userId, skill_id);
-      console.log("Skill deleted successfully:", skillToDelete);
+      console.log("Skill deleted successfully");
 
       const updatedSkills = userSkills.filter(
         (_, index) => index !== deleteModal.index

@@ -100,7 +100,7 @@ const AdminStudent = () => {
     fetchBatchData(setBatchData);
   }, [params]);
 
-  if (!collegeData.length || !userData || studentsData.length === 0) {
+  if (!collegeData.length || !userData) {
     return <LoadingSpinner />;
   }
 
@@ -319,15 +319,22 @@ const AdminStudent = () => {
           onSubmit={handleAddStudentFormSubmit}
         />
       </Modal>
-      <DataView
-        CardComponent={(props) => (
-          <ProfileCard
-            {...props}
-            onClick={() => handleCardClick(props.studentId)}
-          />
-        )}
-        {...dataView}
-      />
+
+      {studentsData.length > 0 ? (
+        <DataView
+          CardComponent={(props) => (
+            <ProfileCard
+              {...props}
+              onClick={() => handleCardClick(props.studentId)}
+            />
+          )}
+          {...dataView}
+        />
+      ) : (
+        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+          No students available
+        </p>
+      )}
     </div>
   );
 };

@@ -150,15 +150,15 @@ const AdminContent = () => {
                 element={<AdminStudentDetails />}
               />
               <Route
-                path="mentor/mentor-details/:userId"
+                path="mentor/mentor-details"
                 element={<AdminMentorDetails />}
               />
               <Route
-                path="events/event-details"
+                path="events/event-details/:eventId"
                 element={<AdminEventDetails />}
               />
               <Route
-                path="events/event-details/event-participants"
+                path="events/event-details/event-participants/:eventId"
                 element={<AdminEventParticipants />}
               />
             </Routes>
