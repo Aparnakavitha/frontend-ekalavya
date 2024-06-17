@@ -6,7 +6,7 @@ import { MdModeEdit } from "react-icons/md";
 const SkillBatchCard = (props) => {
   const {
     miniHeading,
-    mainHeading,
+    mainHeading = "", 
     Count,
     cardType,
     handleClick,
@@ -16,7 +16,7 @@ const SkillBatchCard = (props) => {
     canDelete,
   } = props;
 
-  const transformMainHeading = (heading, cardType) => {
+  const transformMainHeading = (heading = "", cardType) => {
     let maxLength;
 
     if (cardType === "skill") {
