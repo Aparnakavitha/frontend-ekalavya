@@ -84,6 +84,13 @@ const AdminEvent = () => {
     }));
   };
 
+  const handleSearchChange = (value) => {
+    setParams((prevParams) => ({
+      ...prevParams,
+      eventTitle: value,
+    }));
+  };
+
   const AdminEventActionData = {
     heading: "Events List",
     buttonProps: {
@@ -99,10 +106,22 @@ const AdminEvent = () => {
     },
     showFiltersAndReset: true,
     filterProps: [
-      { Heading: "Mode", Content: ["Online", "Offline"] },
+      {
+        Heading: "Mode",
+        Content: ["Online", "Offline"],
+        Value: ["Online", "Offline"],
+      },
       {
         Heading: "Type",
         Content: [
+          "Workshop",
+          "Hackathon",
+          "Contest",
+          "Conference",
+          "Webinar",
+          "Session",
+        ],
+        Value: [
           "Workshop",
           "Hackathon",
           "Contest",
@@ -125,6 +144,7 @@ const AdminEvent = () => {
         { value: "option4", label: "Option 4" },
       ],
     },
+    searchPlaceholder:"Search events",
   };
 
   return (
@@ -134,6 +154,7 @@ const AdminEvent = () => {
         formSubmit={formSubmit}
         AdminEventActionData={AdminEventActionData}
         onFilterChange={handleFilterChange}
+        onSearchChange={handleSearchChange}
       />
       {events.length > 0 ? (
         <DataView CardComponent={PrimaryCard} {...primaryCardData} />
