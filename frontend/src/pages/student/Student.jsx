@@ -17,11 +17,34 @@ import StudentProfile from "./student-profile/StudentProfile";
 import StudentEvent from "./student-events/StudentEvents";
 import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
 import StudentEventDescription from "../../layouts/student-event-description/components/StudentEventDescription";
+import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
+import { getUserDetails } from "../../services/User";
 
 const StudentContent = () => {
+  const [userData, setUserData] = useState(null);
   const location = useLocation();
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const params = {
+          userId: "3",
+        };
+        const data = await getUserDetails(params);
+        setUserData(data.responseData[0]);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!userData) {
+    return <LoadingSpinner />;
+  }
+
 
   const sample = {
     content: "Logout",

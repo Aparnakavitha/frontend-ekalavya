@@ -4,7 +4,7 @@ import AdminSkillData from "../../../services/admin/skill/AdminSkillData";
 import { Greeting } from "../../../layouts/common";
 import AdminSkillAction from "../../../layouts/admin-skill/components/AdminSkillAction";
 import AdminSkillsList from "../../../layouts/admin-skill/components/AdminSkillsList";
-import { SkillsProvider } from './AdminSkillContext'; // Adjust the import path as necessary
+import { SkillsProvider } from "./AdminSkillContext"; // Adjust the import path as necessary
 
 const AdminSkill = () => {
   const navigate = useNavigate();

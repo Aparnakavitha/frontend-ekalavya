@@ -6,8 +6,12 @@ import UpdateSingleField from "../../../layouts/common/components/UpdateSingleFi
 import { SkillService } from "../../../services/student/skills/StudentSkillService";
 import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 
+const capitalizeFirstLetter = (string) => {
+  return string.trim().charAt(0).toUpperCase() + string.slice(1);
+};
+
 const AdminSkillsList = ({ handleClick }) => {
-  const { skills, setSkills } = useSkills();
+  const { skills, setSkills ,changed,setChanged} = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -17,7 +21,11 @@ const AdminSkillsList = ({ handleClick }) => {
     const fetchSkills = async () => {
       try {
         const response = await SkillService();
-        setSkills(response);
+        const capitalizedSkills = response.map(skill => ({
+          ...skill,
+          skillName: capitalizeFirstLetter(skill.skillName),
+        }));
+        setSkills(capitalizedSkills);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -25,8 +33,11 @@ const AdminSkillsList = ({ handleClick }) => {
       }
     };
 
+
+
     fetchSkills();
-  }, [setSkills]);
+    setChanged(false);
+  }, [changed]);
 
   const handleOpenModal = (skill) => {
     setSelectedSkill(skill);
@@ -42,7 +53,7 @@ const AdminSkillsList = ({ handleClick }) => {
     if (selectedSkill) {
       const updatedSkills = skills.map((skill) =>
         skill.id === selectedSkill.id
-          ? { ...skill, skillName: data.inputData }
+          ? { ...skill, skillName: capitalizeFirstLetter(data.inputData) }
           : skill
       );
       setSkills(updatedSkills);

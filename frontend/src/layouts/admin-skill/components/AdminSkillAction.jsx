@@ -11,7 +11,7 @@ import {
 import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 
 const AdminSkillAction = () => {
-  const { skills, setSkills } = useSkills();
+  const { skills, setSkills, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deleteSkillId, setDeleteSkillId] = useState(null);
@@ -38,23 +38,26 @@ const AdminSkillAction = () => {
     try {
       const response = await createSkill({ skillName: skill });
       const newSkill = {
-        skillName: response.skill_name,
-        id: response.skill_id,
-        count: 0, // Assuming new skill starts with 0 count
+        skillName: response.responseData[0].skillName,
+        id: response.responseData[0].id,
+        count: response.responseData[0].count,
       };
-      setSkills([...skills, newSkill]); // Directly update the skills state
+      setSkills([...skills, newSkill]);
+      setChanged(true);
       handleCloseModal();
     } catch (error) {
       console.error("Error adding skill:", error);
     }
   };
 
-  const handleDeleteSubmit = async () => {
+  const handleDeleteSubmit = async (deleteSkillId) => {
     try {
       await deleteSkill(deleteSkillId);
       setSkills((prevSkills) =>
         prevSkills.filter((skill) => skill.id !== deleteSkillId)
       );
+      setChanged(true);
+      console.log("skills after deletion: ", skills);
       handleCloseDelete();
     } catch (error) {
       console.error("Error deleting skill:", error);
@@ -69,7 +72,7 @@ const AdminSkillAction = () => {
     },
     deleteProps: {
       ...AdminSkillActionData.deleteProps,
-      onClick: () => handleOpenDelete(deleteSkillId), // Ensure deleteSkillId is set appropriately
+      onClick: () => handleOpenDelete(deleteSkillId),
     },
   };
 

@@ -20,9 +20,9 @@ const DeleteSkill = ({ onSubmit, onCancel }) => {
     if (/^\s/.test(skill)) {
       return "Skill ID cannot start with a space.";
     }
-    if (!/[a-zA-Z]/.test(skill)) {
-      return "Skill ID must contain at least one letter.";
-    }
+    // if (!/[a-zA-Z]/.test(skill)) {
+    //   return "Skill ID must contain at least one letter.";
+    // }
     return "";
   };
 
