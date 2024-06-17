@@ -19,7 +19,6 @@ SkillLayoutDark.args = {
     { Level: "Level 1", mainHeading: "React", isTrue: true },
     { Level: "Level 1", mainHeading: "CSS", isTrue: true },
     { Level: "Level 1", mainHeading: "HTML", isTrue: true },
-    { Level: "Level 1", mainHeading: "SQL", isTrue: true },
   ],
   onAddSkill: action("Add Skill clicked"),
 };

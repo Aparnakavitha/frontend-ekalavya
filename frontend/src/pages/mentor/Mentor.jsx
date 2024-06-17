@@ -1,5 +1,5 @@
-import React from "react";
-import { useLocation,useNavigate,Routes,Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate, Routes, Route } from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
@@ -12,11 +12,41 @@ import MentorEvents from "./mentor-events/MentorEvents";
 import MentorSkills from "./mentor-skills/MentorSkills";
 import MentorCreateEvent from "./mentor-events/MentorCreateEvent";
 import MentorEventDetails from "./mentor-events/MentorEventDetails";
+import { getUserDetails } from "../../services/User";
 
 const MentorContent = () => {
-  const location = useLocation(); 
+  const [Data, setData] = useState({
+    firstName: "",
+    lastName: "",
+    emailId: ""
+  });
+  
+
+  const location = useLocation();
 
   const navigate = useNavigate();
+
+  const fetchData = async () => {
+    try {
+      const params = {
+        userId: "02",
+      };
+      const data = await getUserDetails(params);
+      setData(data.responseData[0]);
+      console.log("mentor data:", Data);
+    } catch (error) {
+      console.error("Error fetching mentor data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const primaryData = {
+    name: `${Data.firstName} ${Data.lastName}`,
+    email: Data.emailId,
+  };
 
   const sample = {
     content: "Logout",
@@ -45,9 +75,9 @@ const MentorContent = () => {
       },
     ],
     profileBox: {
-      name: "Nazeem",
+      name: primaryData.name,
       profilePic: Dp,
-      gmail: "nazeem@gmail.com",
+      gmail: primaryData.email,
     },
   };
 
@@ -70,7 +100,7 @@ const MentorContent = () => {
         listItems={sidebarContent.listItems}
         profileBox={sidebarContent.profileBox}
         onItemClick={handleSidebarItemClick}
-        location={location} 
+        location={location}
         user="mentor"
       />
       <div className="page">

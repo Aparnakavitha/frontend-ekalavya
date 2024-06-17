@@ -2,11 +2,7 @@ import axios from "axios";
  
 const BASE_URL = "http://localhost:8888/events";
  
-/**
-* Fetches events from the API.
-* @param {Object} params 
-* @returns {Promise} 
-*/
+
 export const fetchEventsService = async (params = {}) => {
   try {
     const response = await axios.get(BASE_URL, { params });
@@ -18,11 +14,8 @@ export const fetchEventsService = async (params = {}) => {
   }
 };
  
-/**
-* Adds a new event.
-* @param {Object} eventData 
-* @returns {Promise} 
-*/
+
+
 export const addEventService = async (eventData) => {
   try {
     const response = await axios.post(BASE_URL, eventData);
@@ -33,11 +26,7 @@ export const addEventService = async (eventData) => {
   }
 };
  
-/**
-* Deletes an event.
-* @param {number} eventId 
-* @returns {Promise} 
-*/
+
 export const deleteEventService = async (eventId) => {
   try {
     const response = await axios.delete(BASE_URL, {
@@ -53,14 +42,7 @@ export const deleteEventService = async (eventId) => {
 };
 
 
-/**
-* Get Enrolls a participant in an event.
 
-* @param {number} eventId 
-* @param {number} participantId 
-* @param {string} attendance 
-* @returns {Promise} 
-*/
 export const enrollParticipantService = async (eventId, participantId, attendance) => {
   try {
     const response = await axios.get("http://localhost:8888/enrollment", {
@@ -77,12 +59,8 @@ export const enrollParticipantService = async (eventId, participantId, attendanc
   }
 };
 
- /**
-* Adds a new enrollment.
-* @param {Object} eventData 
-* @returns {Promise} 
-*/
-export const addEnrollment = async (eventId, eventData) => {
+
+export const addEnrollmentService  = async (eventId, eventData) => {
   try {
     const response = await axios.post(`http://localhost:8888/enrollment?eventId=${eventId}`,eventData);
     return response.data;

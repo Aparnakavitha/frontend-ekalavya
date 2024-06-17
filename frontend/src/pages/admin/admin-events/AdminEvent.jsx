@@ -4,8 +4,8 @@ import AdminEventData from "../../../services/admin/event/AdminEventData";
 import { Greeting, DataView } from "../../../layouts/common";
 import AdminEventAction from "../../../layouts/admin-event/components/AdminEventAction";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
-import { addEventService } from "../../../services/admin/event/EventService";
-import { fetchEventsService } from "../../../services/admin/event/EventService";
+import { addEventService } from "../../../services/Event";
+import { fetchEventsService } from "../../../services/Event";
 
 const AdminEvent = () => {
   const [events, setEvents] = useState([]);

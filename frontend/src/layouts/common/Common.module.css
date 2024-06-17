@@ -7,7 +7,7 @@
   padding: 20px;
   position: fixed;
   top: 0;
-  z-index: 1500;
+  z-index: 800;
   transition: left 0.8s ease-in-out;
 }
 
@@ -779,7 +779,6 @@
 }
 
 /* ------------------------------- DeleteBox.css ends here ------------------------------- */
-
 
 /* ------------------------------- DataView.css starts here ------------------------------- */
 
@@ -1734,6 +1733,7 @@
   font-size: 20px;
   max-width: 9rem;
   text-wrap: wrap;
+  line-height: 19px;
 }
 
 .userprofile-student-id {
@@ -1772,6 +1772,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0.2rem;
 }
 
 .userprofile-bio {
@@ -1927,8 +1928,7 @@
   }
 }
 
-  /*---------------------------------------------------------Media queries for education ends here-----------------------------------------------------------------*/
-
+/*---------------------------------------------------------Media queries for education ends here-----------------------------------------------------------------*/
 
 /* ------------------------------- AboutMe.module.css starts here ------------------------------- */
 
@@ -1972,5 +1972,3 @@
   }
 }
 /* ------------------------------- AboutMe.module.css ends here ------------------------------- */
-
-

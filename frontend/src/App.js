@@ -5,9 +5,8 @@ const App = () => {
   return (
     <div>
       <div className="App">
-        <header className="App-header">
-          <RouterComponent />
-        </header>
+        <header className="App-header"></header>
+        <RouterComponent />
       </div>
     </div>
   );

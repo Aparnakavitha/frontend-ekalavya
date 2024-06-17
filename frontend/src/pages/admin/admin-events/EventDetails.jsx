@@ -1,15 +1,14 @@
-import { React, useEffect, useState} from "react";
+import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AdminEventDescription from "../../../layouts/admin-event/components/AdminEventDescription";
-import { addEventService } from "../../../services/admin/event/EventService";
-import { fetchEventsService } from "../../../services/admin/event/EventService";
-import { deleteEventService } from "../../../services/admin/event/EventService";
+import { addEventService } from "../../../services/Event";
+import { fetchEventsService } from "../../../services/Event";
+import { deleteEventService } from "../../../services/Event";
 
 const AdminEventDetails = () => {
   const { eventId } = useParams();
   const [params, setParams] = useState({ eventId });
   const [eventData, setEventData] = useState(null);
-  // const [eventId, setEventId]= useState("23");
 
   const fetchEventData = async () => {
     try {
@@ -37,7 +36,6 @@ const AdminEventDetails = () => {
       console.error("Error creating event:", error);
     }
   };
-
 
   const handleDeleteEvent = async () => {
     try {

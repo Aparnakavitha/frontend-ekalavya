@@ -1,8 +1,7 @@
 import { React, useEffect, useState } from "react";
 import EventParticipantsList from "../../../layouts/admin-event/components/EventParticipantsList";
-import { enrollParticipantService } from "../../../services/admin/event/EventService";
+import { enrollParticipantService } from "../../../services/Event";
 import { useParams } from "react-router-dom";
-
 
 const pageNames = ["Home", "Exploring Future", "Participants"];
 
@@ -12,7 +11,6 @@ const handleNavButtonClick = (pageName) => {
 
 const AdminEventParticipants = () => {
   const { eventId } = useParams();
-  // const [eventId, setEventId] = useState("18");
   const [enrollData, setEnrollData] = useState([]);
   const [headings, setHeadings] = useState([]);
 
@@ -28,30 +26,30 @@ const AdminEventParticipants = () => {
       if (enroll.responseData.length > 0) {
         const firstObject = enroll.responseData[0];
         const keys = Object.keys(firstObject);
-        const filteredHeadings = keys.filter(key => key !== "attendance");
-        const formattedHeadings = filteredHeadings.map(key => {
-          return key.replace(/([A-Z])/g, ' $1').trim(); 
+        const filteredHeadings = keys.filter((key) => key !== "attendance");
+        const formattedHeadings = filteredHeadings.map((key) => {
+          return key.replace(/([A-Z])/g, " $1").trim();
         });
 
-        setHeadings(formattedHeadings);}
+        setHeadings(formattedHeadings);
+      }
     } catch (error) {
       console.log("Error getting participants:", error);
     }
   };
 
   const edata = [];
-  
+
   for (let i = 0; i < enrollData.length; i++) {
     const studentData = [
       enrollData[i].participantId,
       enrollData[i].name,
-      enrollData[i].userName
+      enrollData[i].userName,
     ];
     edata.push(studentData);
   }
 
-  console.log(headings)
-  
+  console.log(headings);
 
   return (
     <EventParticipantsList

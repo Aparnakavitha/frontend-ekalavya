@@ -13,11 +13,19 @@ const ProfileCard = (props) => {
     onClick,
     canDelete,
     handleDelete,
+    viewAnimation = false,
   } = props;
 
   const transformMainMail = (studentMail) => {
     if (studentMail.length > 17) {
       return studentMail.slice(0, 17) + "...";
+    }
+    return studentMail;
+  };
+
+  const transformName = (studentMail) => {
+    if (studentMail.length > 12) {
+      return studentMail.slice(0, 12) + "...";
     }
     return studentMail;
   };
@@ -28,7 +36,10 @@ const ProfileCard = (props) => {
   };
 
   return (
-    <div className={styles.card} onClick={onClick}>
+    <div
+      className={`${styles.card} ${viewAnimation ? styles.highlight : ""}`}
+      onClick={onClick}
+    >
       <div className={styles["card-content"]}>
         <div className={styles["image-icon"]}>
           <img
@@ -45,9 +56,9 @@ const ProfileCard = (props) => {
           )}
         </div>
         <div className={styles["titles-wrapper"]}>
-          <h1 className={styles.title1}>{transformMainMail(studentName)}</h1>
-          <h2 className={styles.title2}>{transformMainMail(studentId)}</h2>
-          <h3 className={styles.title3}>{transformMainMail(studentCollege)}</h3>
+          <h1 className={styles.title1}>{transformName(studentName)}</h1>
+          <h2 className={styles.title2}>{transformName(studentId)}</h2>
+          <h3 className={styles.title3}>{transformName(studentCollege)}</h3>
         </div>
 
         <div className={styles["contact-info"]}>

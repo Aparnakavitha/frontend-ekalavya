@@ -14,13 +14,13 @@ const ActionComponent = ({
   resetProps,
   showFiltersAndReset,
   searchWidth = "full",
-  onFilterChange
+  onFilterChange,
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [filterStates, setFilterStates] = useState(
     filterProps.map((filter) => ({
       heading: filter.Heading,
-      selectedOption: filter.defaultOption || ""
+      selectedOption: filter.defaultOption || "",
     }))
   );
 
@@ -32,7 +32,7 @@ const ActionComponent = ({
     const newFilterStates = [...filterStates];
     newFilterStates[index] = {
       heading: filterProps[index].Heading,
-      selectedOption: option
+      selectedOption: option,
     };
     setFilterStates(newFilterStates);
     const filtersObject = {};
@@ -46,7 +46,7 @@ const ActionComponent = ({
   const handleReset = () => {
     const defaultStates = filterProps.map((filter) => ({
       heading: filter.Heading,
-      selectedOption: filter.defaultOption || ""
+      selectedOption: filter.defaultOption || "",
     }));
     setFilterStates(defaultStates);
     const filtersObject = {};
@@ -83,7 +83,9 @@ const ActionComponent = ({
                     onToggle={() => handleToggle(index)}
                     onOptionClick={(option) => handleOptionClick(index, option)}
                     selectedOption={
-                      filterStates[index] ? filterStates[index].selectedOption : ""
+                      filterStates[index]
+                        ? filterStates[index].selectedOption
+                        : ""
                     }
                   />
                 ))}

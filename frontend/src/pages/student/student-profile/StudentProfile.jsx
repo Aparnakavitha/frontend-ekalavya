@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Greeting } from "../../../layouts/common";
-import MentorProfileInfo from "../../../layouts/mentor-profile/components/MentorProfileInfo";
 import AboutMe from "../../../layouts/common/components/AboutMe";
+import Upcoming from "../../../layouts/student-profile/components/Upcoming";
+import StudentProfileInfo from "../../../layouts/student-profile/components/StudentProfileInfo";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
-import profilepic from "../../../assets/DP.png";
 import { getUserDetails, updateUserDetails } from "../../../services/User";
+import profilepic from "../../../assets/DP.png";
 
-const MentorProfile = () => {
-  const [mentorData, setMentorData] = useState(null);
+const StudentProfile = () => {
+  const [studentData, setStudentData] = useState(null);
 
   const fetchData = async () => {
     try {
       const params = {
-        userId: "4",
+        userId: "02",
       };
       const data = await getUserDetails(params);
-      setMentorData(data.responseData[0]);
+      setStudentData(data.responseData[0]);
       console.log("dsssss", data);
     } catch (error) {
       console.error("Error fetching mentor data:", error);
@@ -37,31 +37,22 @@ const MentorProfile = () => {
     }
   };
 
-  if (!mentorData) {
+  if (!studentData) {
     return <div>Loading...</div>;
   }
 
-  const greet = {
-    welcome: "Welcome Back",
-    name: `${mentorData.firstName}`,
-    info: "Here is the information about",
-    profile: "Students",
-    showButtons: false,
-  };
-
   const about = {
     title: "About Me",
-    description: mentorData.aboutMe || "",
+    description: studentData.aboutMe || "",
   };
-
-  const homeAddress = mentorData.addresses.find(
+  const homeAddress = studentData.addresses.find(
     (address) => address.addressType === "home"
   );
 
   const EditableData = {
-    userId: mentorData.userId,
-    dob: mentorData.dob,
-    phoneNo: mentorData.phoneNo,
+    userId: studentData.userId,
+    dob: studentData.dob,
+    phoneNo: studentData.phoneNo,
     addresses: [
       {
         addressId: homeAddress ? homeAddress.addressId : "",
@@ -72,34 +63,34 @@ const MentorProfile = () => {
         country: homeAddress ? homeAddress.country : "",
       },
     ],
-    aboutMe: mentorData.aboutMe || "",
+    aboutMe: studentData.aboutMe || "",
   };
 
   const profileData = {
     profilepic: profilepic,
-    name: `${mentorData.firstName} ${mentorData.lastName}`,
-    college: mentorData.college.collegeName,
-    email: mentorData.emailId,
+    name: `${studentData.firstName} ${studentData.lastName}`,
+    college: studentData.college.collegeName,
+    email: studentData.emailId,
   };
 
-  const Education = mentorData.qualifications;
+  const Education = studentData.qualifications;
 
   return (
     <div>
-      <Greeting {...greet} />
-      <MentorProfileInfo
+      <StudentProfileInfo
         profileData={profileData}
         EditableData={EditableData}
         onFormSubmit={handleFormSubmit}
       />
-      <AboutMe {...about} />
       <EducationalQualification
         qualifications={Education}
-        userId={mentorData.userId}
+        userId={studentData.userId}
         onFormSubmit={handleFormSubmit}
       />
+      <AboutMe {...about} />
+      <Upcoming />
     </div>
   );
 };
 
-export default MentorProfile;
+export default StudentProfile;
