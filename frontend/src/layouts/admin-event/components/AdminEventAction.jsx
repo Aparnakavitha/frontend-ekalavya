@@ -26,11 +26,12 @@ const AdminEventAction = ({formSubmit, AdminEventActionData, onFilterChange, onS
       ...AdminEventActionData.buttonProps,
       onClick: handleOpenModal,
     },
+    
   };
 
   return (
     <div>
-      <ActionComponent {...actionData} onFilterChange={onFilterChange} onSearchChange={onSearchChange}/>
+      <ActionComponent {...actionData} onFilterChange={onFilterChange} onSearchChange={onSearchChange} />
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddEvent
           {...AdminEventActionData.addeventprops}

@@ -15,6 +15,7 @@ const ActionComponent = ({
   showFiltersAndReset,
   searchWidth = "full",
   onFilterChange,
+  searchPlaceholder,
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [filterStates, setFilterStates] = useState(
@@ -76,7 +77,7 @@ const ActionComponent = ({
             className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}
           >
             <Searchbar
-              placeholder="Search events..."
+              placeholder={searchPlaceholder}
               onSearch={handleSearchChange}
               variant="large"
             />

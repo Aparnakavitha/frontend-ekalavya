@@ -144,6 +144,7 @@ const AdminEvent = () => {
         { value: "option4", label: "Option 4" },
       ],
     },
+    searchPlaceholder:"Search events",
   };
 
   return (
