@@ -1,12 +1,11 @@
 const skillCardData = {
-   
   data: [
     {
       miniHeading: "SKILL47851",
       mainHeading: "Java",
       Count: 53,
       cardType: "skill",
-      canEdit: true,
+      canEdit: false,
     },
     {
       miniHeading: "SKILL47862",
@@ -27,7 +26,7 @@ const skillCardData = {
       mainHeading: "Python",
       Count: 40,
       cardType: "skill",
-      canEdit: true,
+      canEdit: false,
     },
     {
       miniHeading: "SKILL47865",
