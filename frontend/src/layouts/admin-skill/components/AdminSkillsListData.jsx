@@ -33,7 +33,5 @@ const AdminSkillData = {
     cardType: "skillbatchcardskill",
   },
 };
- 
+
 export default AdminSkillData;
- 
- 

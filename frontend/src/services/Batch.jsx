@@ -5,7 +5,6 @@ const API_URL = "http://localhost:8888";
 export const fetchbatches = async (params = {}) => {
   try {
     const response = await axios.get(`${API_URL}/batches`, { params });
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error fetching batches:", error);
@@ -16,7 +15,6 @@ export const fetchbatches = async (params = {}) => {
 export const createBatch = async (batchData = {}) => {
   try {
     const response = await axios.post(`${API_URL}/batches`, batchData);
-    console.log(response);
     return response.data.responseData;
   } catch (error) {
     console.error("Error creating batch:", error);
@@ -28,7 +26,6 @@ export const updateBatch = async (batchData) => {
   try {
     console.log("Updating batch with data:", batchData);
     const response = await axios.put(`${API_URL}/batches`, batchData);
-    console.log("Response from server:", response);
     return response.data.responseData;
   } catch (error) {
     if (error.response) {
@@ -48,7 +45,6 @@ export const deleteBatch = async (batchId) => {
     const response = await axios.delete(
       `${`${API_URL}/batches`}?batchId=${batchId}`
     );
-    console.log("Response from server:", response);
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -67,7 +63,6 @@ export const fetchBatchParticipants = async (params = {}) => {
     const response = await axios.get(`${API_URL}/batches/participants`, {
       params,
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error fetching batch participants", error);
