@@ -5,11 +5,11 @@ import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
 
 const ActionComponent = ({
-  onSearchChange,
   buttonProps,
   showDelete,
   deleteProps,
   heading,
+  searchbarProps,
   filterProps = [],
   resetProps,
   showFiltersAndReset,
@@ -18,10 +18,7 @@ const ActionComponent = ({
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [filterStates, setFilterStates] = useState(
-    filterProps.map((filter) => ({
-      heading: filter.Heading,
-      selectedOption: filter.defaultOption || "",
-    }))
+    filterProps.map((filter) => filter.defaultOption || "")
   );
 
   const handleToggle = (index) => {
@@ -30,10 +27,7 @@ const ActionComponent = ({
 
   const handleOptionClick = (index, option) => {
     const newFilterStates = [...filterStates];
-    newFilterStates[index] = {
-      heading: filterProps[index].Heading,
-      selectedOption: option,
-    };
+    newFilterStates[index] = option;
     setFilterStates(newFilterStates);
     const filtersObject = {};
     newFilterStates.forEach((filter) => {
@@ -44,20 +38,15 @@ const ActionComponent = ({
   };
 
   const handleReset = () => {
-    const defaultStates = filterProps.map((filter) => ({
-      heading: filter.Heading,
-      selectedOption: filter.defaultOption || "",
-    }));
+    const defaultStates = filterProps.map(
+      (filter) => filter.defaultOption || ""
+    );
     setFilterStates(defaultStates);
     const filtersObject = {};
     defaultStates.forEach((filter) => {
       filtersObject[filter.heading] = filter.selectedOption;
     });
     onFilterChange(filtersObject);
-  };
-
-  const handleSearchChange = (value) => {
-    onSearchChange(value);
   };
 
   return (
@@ -73,11 +62,7 @@ const ActionComponent = ({
           <div
             className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}
           >
-             <Searchbar
-              placeholder="Search events..."
-              onSearch={handleSearchChange} 
-              variant="large" 
-            />
+            <Searchbar {...searchbarProps} />
           </div>
           {showFiltersAndReset && (
             <div className={styles["common-right"]}>
@@ -90,11 +75,7 @@ const ActionComponent = ({
                     isOpen={openDropdownIndex === index}
                     onToggle={() => handleToggle(index)}
                     onOptionClick={(option) => handleOptionClick(index, option)}
-                    selectedOption={
-                      filterStates[index]
-                        ? filterStates[index].selectedOption
-                        : ""
-                    }
+                    selectedOption={filterStates[index]}
                   />
                 ))}
               </div>

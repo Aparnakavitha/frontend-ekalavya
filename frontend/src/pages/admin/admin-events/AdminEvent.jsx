@@ -85,7 +85,6 @@ const AdminEvent = () => {
   };
 
   const handleSearchChange = (value) => {
-    // const { value } = event.target;
     setParams((prevParams) => ({
       ...prevParams,
       eventTitle: value,
@@ -107,10 +106,22 @@ const AdminEvent = () => {
     },
     showFiltersAndReset: true,
     filterProps: [
-      { Heading: "Mode", Content: ["Online", "Offline"] },
+      {
+        Heading: "Mode",
+        Content: ["Online", "Offline"],
+        Value: ["Online", "Offline"],
+      },
       {
         Heading: "Type",
         Content: [
+          "Workshop",
+          "Hackathon",
+          "Contest",
+          "Conference",
+          "Webinar",
+          "Session",
+        ],
+        Value: [
           "Workshop",
           "Hackathon",
           "Contest",
