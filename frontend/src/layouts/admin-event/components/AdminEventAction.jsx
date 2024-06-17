@@ -3,7 +3,7 @@ import ActionComponent from "../../common/components/Action";
 import AddEvent from "./AddEvent";
 import Modal from "../../common/components/Modal";
 
-const AdminEventAction = ({formSubmit, AdminEventActionData, onFilterChange}) => {
+const AdminEventAction = ({formSubmit, AdminEventActionData, onFilterChange, onSearchChange}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -30,7 +30,7 @@ const AdminEventAction = ({formSubmit, AdminEventActionData, onFilterChange}) =>
 
   return (
     <div>
-      <ActionComponent {...actionData} onFilterChange={onFilterChange}/>
+      <ActionComponent {...actionData} onFilterChange={onFilterChange} onSearchChange={onSearchChange}/>
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddEvent
           {...AdminEventActionData.addeventprops}

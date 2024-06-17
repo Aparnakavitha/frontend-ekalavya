@@ -5,11 +5,11 @@ import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
 
 const ActionComponent = ({
+  onSearchChange,
   buttonProps,
   showDelete,
   deleteProps,
   heading,
-  searchbarProps,
   filterProps = [],
   resetProps,
   showFiltersAndReset,
@@ -56,6 +56,10 @@ const ActionComponent = ({
     onFilterChange(filtersObject);
   };
 
+  const handleSearchChange = (value) => {
+    onSearchChange(value);
+  };
+
   return (
     <div className="padding">
       <div className={styles["common-content"]}>
@@ -69,7 +73,11 @@ const ActionComponent = ({
           <div
             className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}
           >
-            <Searchbar {...searchbarProps} />
+             <Searchbar
+              placeholder="Search events..."
+              onSearch={handleSearchChange} 
+              variant="large" 
+            />
           </div>
           {showFiltersAndReset && (
             <div className={styles["common-right"]}>

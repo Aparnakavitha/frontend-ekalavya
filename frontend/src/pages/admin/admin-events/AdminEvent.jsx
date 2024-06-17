@@ -84,6 +84,14 @@ const AdminEvent = () => {
     }));
   };
 
+  const handleSearchChange = (value) => {
+    // const { value } = event.target;
+    setParams((prevParams) => ({
+      ...prevParams,
+      eventTitle: value,
+    }));
+  };
+
   const AdminEventActionData = {
     heading: "Events List",
     buttonProps: {
@@ -134,6 +142,7 @@ const AdminEvent = () => {
         formSubmit={formSubmit}
         AdminEventActionData={AdminEventActionData}
         onFilterChange={handleFilterChange}
+        onSearchChange={handleSearchChange}
       />
       {events.length > 0 ? (
         <DataView CardComponent={PrimaryCard} {...primaryCardData} />
