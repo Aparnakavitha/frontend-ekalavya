@@ -16,8 +16,9 @@ const AddEvent = ({
   organizeroptions,
   onSubmit,
   isOrganizer,
+  fetchedFormData
 }) => {
-  const mergedDefaultValues = { ...defaultValues };
+  const mergedDefaultValues = { ...fetchedFormData };
 
   const eventtypeoptions = [
     { value: "Hackathon", label: "Hackathon" },
@@ -41,6 +42,11 @@ const AddEvent = ({
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
 
   const handleFormSubmit = (data) => {
+    const ensureFullTimeFormat = (time) => {
+      return time && time.length === 5 ? `${time}:00` : time;
+    };
+    data.startTime = ensureFullTimeFormat(data.startTime);
+    data.endTime = ensureFullTimeFormat(data.endTime);
     if (data.eventMode === "Online") {
       if (!data.location) {
         data.link = "";
@@ -52,6 +58,7 @@ const AddEvent = ({
     if (!isOrganizer) {
       data.organizer = null;
     }
+    console.log(data);
     onSubmit(data);
   };
 
