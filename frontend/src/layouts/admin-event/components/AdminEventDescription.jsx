@@ -6,7 +6,7 @@ import DeleteBox from "../../common/components/DeleteBox";
 import AddEvent from "../../admin-event/components/AddEvent";
 import EventsDescriptionData from "./EventDescriptionData";
 
-const AdminEventDescription = ({formSubmit, fetchedFormData ,onDelete, enrollData,eventId}) => {
+const AdminEventDescription = ({formSubmit, fetchedFormData ,onDelete, organizer,eventId}) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -68,7 +68,7 @@ const AdminEventDescription = ({formSubmit, fetchedFormData ,onDelete, enrollDat
 
   return (
     <div>
-      <EventsDescription {...actionData} />
+      <EventsDescription {...actionData} organizer={organizer} />
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddEvent defaultValues={EventsDescriptionData.defaultValues}
           organizeroptions={organizeroptions}

@@ -57,12 +57,14 @@ const ActionComponent = ({
     const defaultStates = filterProps.map((filter) => ({
       heading: filter.Heading,
       selectedOption: filter.defaultOption || "",
+      selectedOptionValue: null,
     }));
     setFilterStates(defaultStates);
     const filtersObject = {};
     defaultStates.forEach((filter) => {
-      filtersObject[filter.heading] = filter.selectedOption;
+      filtersObject[filter.heading] = filter.selectedOptionValue;
     });
+    filtersObject.StudentIds = "";
     onFilterChange(filtersObject);
   };
 

@@ -14,27 +14,47 @@ import {
   getUserDetails,
   updateUserDetails,
 } from "../../../services/User";
-import { fetchbatches } from "../../../services/Batch";
+import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const fetchStudentsData = async (setStudentsData, params) => {
   try {
     var filterParams = {
       roleId: 3,
-      collegeId: params.College || "",
     };
     if (params.College) {
       filterParams = {
         collegeId: params.College || "",
       };
     }
+    if (params.StudentIds) {
+      filterParams = {
+        userId: params.StudentIds || "",
+      };
+    }
+    if (params.Batch && !params.StudentIds) {
+      setStudentsData([]);
+      return;
+    }
+    console.log(
+      "collegse----",
+      params.College,
+      "useridss---",
+      params.StudentIds,
+      "batchhh---",
+      params.StudentIds
+    );
     const filteredParams = Object.fromEntries(
       Object.entries(filterParams).filter(([key, value]) => value !== "")
     );
 
-    console.log("Filtered Params :", filteredParams);
+    console.log("filtered-----", filteredParams);
+
     const data = await getUserDetails(filteredParams);
-    setStudentsData(data.responseData);
+    const studentsOnly = data.responseData.filter(
+      (item) => item.role && item.role.roleId === 3
+    );
+    setStudentsData(studentsOnly);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -53,6 +73,36 @@ const fetchBatchData = async (setBatchData) => {
   }
 };
 
+const fetchBatchParticipantsData = async (setParams, params) => {
+  try {
+    if (params.Batch) {
+      var filterParams = {
+        batchId: params.Batch || "",
+      };
+      const filteredParams = Object.fromEntries(
+        Object.entries(filterParams).filter(([key, value]) => value !== "")
+      );
+      console.log("Filtered Params :", filteredParams);
+      const participantsData = await fetchBatchParticipants(filteredParams);
+      const participantsTransformedData = participantsData.responseData;
+
+      filterParams = {
+        userId: participantsTransformedData.join(",") || "",
+      };
+      const filteredParam = Object.fromEntries(
+        Object.entries(filterParams).filter(([key, value]) => value !== "")
+      );
+
+      setParams((prevParams) => ({
+        ...prevParams,
+        StudentIds: participantsTransformedData.join(",") || "",
+      }));
+    }
+  } catch (error) {
+    console.error("Error fetching batch data:", error);
+  }
+};
+
 const AdminStudent = () => {
   const [collegeData, setCollegeData] = useState([]);
   const [batchData, setBatchData] = useState([]);
@@ -64,7 +114,8 @@ const AdminStudent = () => {
   const [cardAnimation, setCardAnimation] = useState(false);
   const [params, setParams] = useState({
     College: "",
-    batchId: "",
+    Batch: "",
+    StudentIds: "",
   });
 
   const navigate = useNavigate();
@@ -97,7 +148,8 @@ const AdminStudent = () => {
 
   useEffect(() => {
     fetchStudentsData(setStudentsData, params);
-    fetchBatchData(setBatchData);
+    fetchBatchData(setBatchData, params);
+    fetchBatchParticipantsData(setParams, params);
   }, [params]);
 
   if (!collegeData.length || !userData) {
@@ -142,7 +194,11 @@ const AdminStudent = () => {
         Content: collegeData.map((college) => college[1]),
         Value: collegeData.map((college) => college[0]),
       },
-      { Heading: "Batch", Content: batchData.map((batch) => batch[1]) },
+      {
+        Heading: "Batch",
+        Content: batchData.map((batch) => batch[1]),
+        Value: batchData.map((batch) => batch[0]),
+      },
     ],
     resetProps: {
       variant: "secondary",
@@ -157,6 +213,7 @@ const AdminStudent = () => {
       viewCollege: true,
       heading: "Add New Student",
     },
+    searchPlaceholder: "Search student",
   };
 
   const dataView = {
@@ -247,6 +304,8 @@ const AdminStudent = () => {
   const handleAddStudentFormSubmit = async (formData) => {
     try {
       formData.roleId = 3;
+      formData.profilePicture =
+        "https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg";
 
       const response = await updateUserDetails(formData);
       const newStudent = response.responseData;
@@ -273,11 +332,10 @@ const AdminStudent = () => {
   };
 
   const handleFilterChange = (filters) => {
-    console.log("Handlefilter filter", filters);
-    console.log("Handlefilter curret params", params);
     setParams((prevParams) => ({
       ...prevParams,
       ...filters,
+      StudentIds: filters.StudentIds || "",
     }));
   };
 
@@ -286,7 +344,7 @@ const AdminStudent = () => {
       (student) => student.userId === userId
     );
     if (selectedStudent) {
-      navigate(`/admin/student/student-details${userId}`, {
+      navigate(`/admin/student/student-details/${userId}`, {
         state: { studentsData: selectedStudent },
       });
     } else {
