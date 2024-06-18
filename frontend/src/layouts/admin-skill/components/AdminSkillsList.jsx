@@ -5,20 +5,25 @@ import Modal from "../../common/components/Modal";
 import UpdateSingleField from "../../../layouts/common/components/UpdateSingleField";
 import {
   SkillService,
+  getUsersCountForSkill,
   updateSkill,
 } from "../../../services/student/skills/StudentSkillService";
 import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
+import { useNavigate } from "react-router-dom";
 
 const capitalizeFirstLetter = (string) => {
   return string.trim().charAt(0).toUpperCase() + string.slice(1);
 };
 
 const AdminSkillsList = ({ handleClick }) => {
-  const { skills, setSkills, changed, setChanged } = useSkills();
+  const { skills, setSkills, changed, setChanged, setParticipants, participants } =
+    useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -49,7 +54,7 @@ const AdminSkillsList = ({ handleClick }) => {
     setIsOpen(false);
     setSelectedSkill(null);
   };
-
+  
   const handleFormSubmit = (data) => {
     if (selectedSkill) {
       const response = updateSkill({
@@ -75,7 +80,14 @@ const AdminSkillsList = ({ handleClick }) => {
       Count: skill.count,
       canEdit: true,
       cardType: "skill",
-      handleClick: handleClick,
+      handleClick: async () => {
+        console.log("Skill Id used for request: ", skill.id);
+        const response = await getUsersCountForSkill(skill.id);
+        setParticipants(response.users);
+        console.log("Participants here.....",participants);
+        navigate(`/admin/skills/skill-participants`);
+        console.log("Response for skill users", response);
+      },
       handleEditClick: () => handleOpenModal(skill),
     })),
   };
