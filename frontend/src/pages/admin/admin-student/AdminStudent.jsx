@@ -210,7 +210,7 @@ const AdminStudent = () => {
       viewCollege: true,
       heading: "Add New Student",
     },
-    searchPlaceholder: "Search student",
+    searchPlaceholder: "Enter Student ID",
   };
 
   const dataView = {
