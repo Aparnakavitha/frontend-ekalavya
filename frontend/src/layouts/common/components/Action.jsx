@@ -3,11 +3,6 @@ import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
-import {
-  SkillService,
-  filterSkills,
-} from "../../../services/student/skills/StudentSkillService";
-import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 
 const ActionComponent = ({
   onSearchChange,
@@ -30,8 +25,6 @@ const ActionComponent = ({
       selectedOptionValue: filter.defaultValue || "",
     }))
   );
-
-  const { setSkills } = useSkills();
 
   const handleToggle = (index) => {
     setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -70,9 +63,7 @@ const ActionComponent = ({
 
   const handleSearchChange = async (value) => {
     console.log(value);
-    const searchedSkill = await filterSkills(value);
-    console.log("Skill search response: ", searchedSkill);
-    setSkills(searchedSkill)
+    onSearchChange(value);
   };
 
   return (

@@ -22,6 +22,7 @@ const AdminSkillActionData = {
     placeholder: "Skill",
   },
   showFiltersAndReset: false,
+  searchPlaceholder:"Enter skill name",
 };
 
 export default AdminSkillActionData;

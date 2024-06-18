@@ -8,7 +8,11 @@ import {
   createSkill,
   deleteSkill,
 } from "../../../services/student/skills/StudentSkillService";
-import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
+import {
+  useSkills,
+  setSkills,
+} from "../../../pages/admin/admin-skills/AdminSkillContext";
+import { filterSkills } from "../../../services/student/skills/StudentSkillService";
 
 const AdminSkillAction = () => {
   const { skills, setSkills, setChanged } = useSkills();
@@ -64,6 +68,13 @@ const AdminSkillAction = () => {
     }
   };
 
+  const handleSearchChange = async (value) => {
+    console.log("Search -----", value);
+    const searchedSkill = await filterSkills(value);
+    console.log("Skill search response: ", searchedSkill);
+    setSkills(searchedSkill);
+  };
+
   const actionData = {
     ...AdminSkillActionData,
     buttonProps: {
@@ -78,7 +89,7 @@ const AdminSkillAction = () => {
 
   return (
     <div>
-      <ActionComponent {...actionData} />
+      <ActionComponent {...actionData} onSearchChange={handleSearchChange} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddSkill onSubmit={handleFormSubmit} onCancel={handleCloseModal} />
       </Modal>
