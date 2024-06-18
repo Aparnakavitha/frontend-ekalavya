@@ -7,7 +7,6 @@ const SearchBar = ({ variant = "large", placeholder, onSearch }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(query);
-    console.log(query,"cfvgbhnjkl")
   };
 
   let boxClassName;
