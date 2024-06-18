@@ -30,7 +30,6 @@
   font-weight: 600;
   color: var(--white);
   width: 80%;
-
 }
 
 .search-button {
@@ -54,6 +53,24 @@
 
 .none {
   display: none;
+}
+
+.clear-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.clear-button .icon {
+  color: var(--white);
+  font-size: 24px;
+}
+
+.clear-button .icon :hover {
+  color: var(--primary-color);
+  font-size: 24px;
 }
 
 .custom-box {
