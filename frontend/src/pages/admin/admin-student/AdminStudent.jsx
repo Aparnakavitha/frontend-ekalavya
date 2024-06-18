@@ -14,25 +14,42 @@ import {
   getUserDetails,
   updateUserDetails,
 } from "../../../services/User";
-import { fetchbatches } from "../../../services/Batch";
+import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const fetchStudentsData = async (setStudentsData, params) => {
   try {
     var filterParams = {
       roleId: 3,
-      collegeId: params.College || "",
     };
     if (params.College) {
       filterParams = {
         collegeId: params.College || "",
       };
     }
+    if (params.StudentIds) {
+      filterParams = {
+        userId: params.StudentIds || "",
+      };
+    }
+    if (params.Batch && !params.StudentIds) {
+      setStudentsData([]);
+      return;
+    }
+    console.log(
+      "collegse----",
+      params.College,
+      "useridss---",
+      params.StudentIds,
+      "batchhh---",
+      params.StudentIds
+    );
     const filteredParams = Object.fromEntries(
       Object.entries(filterParams).filter(([key, value]) => value !== "")
     );
 
-    console.log("Filtered Params :", filteredParams);
+    console.log("filtered-----", filteredParams);
+
     const data = await getUserDetails(filteredParams);
     setStudentsData(data.responseData);
   } catch (error) {
@@ -53,6 +70,36 @@ const fetchBatchData = async (setBatchData) => {
   }
 };
 
+const fetchBatchParticipantsData = async (setParams, params) => {
+  try {
+    if (params.Batch) {
+      var filterParams = {
+        batchId: params.Batch || "",
+      };
+      const filteredParams = Object.fromEntries(
+        Object.entries(filterParams).filter(([key, value]) => value !== "")
+      );
+      console.log("Filtered Params :", filteredParams);
+      const participantsData = await fetchBatchParticipants(filteredParams);
+      const participantsTransformedData = participantsData.responseData;
+
+      filterParams = {
+        userId: participantsTransformedData.join(",") || "",
+      };
+      const filteredParam = Object.fromEntries(
+        Object.entries(filterParams).filter(([key, value]) => value !== "")
+      );
+
+      setParams((prevParams) => ({
+        ...prevParams,
+        StudentIds: participantsTransformedData.join(",") || "",
+      }));
+    }
+  } catch (error) {
+    console.error("Error fetching batch data:", error);
+  }
+};
+
 const AdminStudent = () => {
   const [collegeData, setCollegeData] = useState([]);
   const [batchData, setBatchData] = useState([]);
@@ -64,7 +111,8 @@ const AdminStudent = () => {
   const [cardAnimation, setCardAnimation] = useState(false);
   const [params, setParams] = useState({
     College: "",
-    batchId: "",
+    Batch: "",
+    StudentIds: "",
   });
 
   const navigate = useNavigate();
@@ -97,7 +145,8 @@ const AdminStudent = () => {
 
   useEffect(() => {
     fetchStudentsData(setStudentsData, params);
-    fetchBatchData(setBatchData);
+    fetchBatchData(setBatchData, params);
+    fetchBatchParticipantsData(setParams, params);
   }, [params]);
 
   if (!collegeData.length || !userData) {
@@ -142,7 +191,11 @@ const AdminStudent = () => {
         Content: collegeData.map((college) => college[1]),
         Value: collegeData.map((college) => college[0]),
       },
-      { Heading: "Batch", Content: batchData.map((batch) => batch[1]) },
+      {
+        Heading: "Batch",
+        Content: batchData.map((batch) => batch[1]),
+        Value: batchData.map((batch) => batch[0]),
+      },
     ],
     resetProps: {
       variant: "secondary",
@@ -157,6 +210,7 @@ const AdminStudent = () => {
       viewCollege: true,
       heading: "Add New Student",
     },
+    searchPlaceholder: "Search student",
   };
 
   const dataView = {
@@ -278,6 +332,7 @@ const AdminStudent = () => {
     setParams((prevParams) => ({
       ...prevParams,
       ...filters,
+      StudentIds: filters.StudentIds || "",
     }));
   };
 
