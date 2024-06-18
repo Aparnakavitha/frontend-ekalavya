@@ -146,11 +146,11 @@ const AdminContent = () => {
                 element={<AdminBatchSelect />}
               />
               <Route
-                path="student/student-details"
+                path="student/student-details/:userId"
                 element={<AdminStudentDetails />}
               />
               <Route
-                path="mentor/mentor-details"
+                path="mentor/mentor-details/:userId"
                 element={<AdminMentorDetails />}
               />
               <Route

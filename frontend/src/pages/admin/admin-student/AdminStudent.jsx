@@ -36,25 +36,23 @@ const fetchStudentsData = async (setStudentsData, params) => {
       setStudentsData([]);
       return;
     }
-    console.log(
-      "collegse----",
-      params.College,
-      "useridss---",
-      params.StudentIds,
-      "batchhh---",
-      params.StudentIds
-    );
     const filteredParams = Object.fromEntries(
       Object.entries(filterParams).filter(([key, value]) => value !== "")
     );
-
-    console.log("filtered-----", filteredParams);
 
     const data = await getUserDetails(filteredParams);
     const studentsOnly = data.responseData.filter(
       (item) => item.role && item.role.roleId === 3
     );
-    setStudentsData(studentsOnly);
+
+    if (studentsOnly) {
+      setStudentsData(studentsOnly);
+    } else {
+      studentsOnly = data.responseData.filter(
+        (item) => item.role && item.role.roleId === 999
+      );
+      setStudentsData(studentsOnly);
+    }
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -82,7 +80,6 @@ const fetchBatchParticipantsData = async (setParams, params) => {
       const filteredParams = Object.fromEntries(
         Object.entries(filterParams).filter(([key, value]) => value !== "")
       );
-      console.log("Filtered Params :", filteredParams);
       const participantsData = await fetchBatchParticipants(filteredParams);
       const participantsTransformedData = participantsData.responseData;
 
@@ -213,7 +210,7 @@ const AdminStudent = () => {
       viewCollege: true,
       heading: "Add New Student",
     },
-    searchPlaceholder: "Search student",
+    searchPlaceholder: "Enter Student ID",
   };
 
   const dataView = {
@@ -339,6 +336,13 @@ const AdminStudent = () => {
     }));
   };
 
+  const handleSearchChange = (value) => {
+    setParams((prevParams) => ({
+      ...prevParams,
+      StudentIds: value,
+    }));
+  };
+
   const handleCardClick = (userId) => {
     const selectedStudent = studentsData.find(
       (student) => student.userId === userId
@@ -366,7 +370,11 @@ const AdminStudent = () => {
         <AddCollege onSubmit={handleFormSubmit} />
       </Modal>
 
-      <ActionComponent {...actionData} onFilterChange={handleFilterChange} />
+      <ActionComponent
+        {...actionData}
+        onFilterChange={handleFilterChange}
+        onSearchChange={handleSearchChange}
+      />
       <Modal
         isOpen={isAddStudentOpen}
         widthVariant="medium"
