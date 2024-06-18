@@ -12,9 +12,7 @@ const AdminSkill = () => {
 
   const handleClick = (skillData) => {
     console.log("Data from skill card: ", skillData);
-
     navigate(`/admin/skills/skill-participants`);
-
     const skillParticipants = getUsersCountForSkill(skillData);
     console.log(skillParticipants);
   };
