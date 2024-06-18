@@ -6,8 +6,8 @@ import { PiCards, PiListBullets } from "react-icons/pi";
 
 const DataView = ({
   CardComponent,
-  data = [], // Default to an empty array
-  tableColumns = [], // Default to an empty array
+  data = [],
+  tableColumns = [],
   toggle,
   itemsPerPage = 10,
   cardType = "profilecard",
@@ -36,7 +36,10 @@ const DataView = ({
     setCurrentPage(pageNumber);
   };
 
-  const currentData = data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const currentData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const getComponentName = (item) => {
     let cardName = String(CardComponent.name).toLowerCase();
@@ -58,6 +61,8 @@ const DataView = ({
   const filteredTableData = currentData.map((item) =>
     tableColumns.map((column) => item[column.key])
   );
+
+  console.log("table------", filteredTableData);
 
   const tableHeadings = tableColumns.map((column) => column.displayName);
   const emptyBoxCount = itemsPerPage - currentData.length;
