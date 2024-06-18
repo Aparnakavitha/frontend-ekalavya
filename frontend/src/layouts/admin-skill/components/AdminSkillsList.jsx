@@ -70,7 +70,7 @@ const AdminSkillsList = ({ handleClick }) => {
   const skillData = {
     data: skills.map((skill) => ({
       ...skill,
-      mainHeading: skill.skillName,
+      mainHeading: capitalizeFirstLetter(skill.skillName),
       miniHeading: skill.id,
       Count: skill.count,
       canEdit: true,

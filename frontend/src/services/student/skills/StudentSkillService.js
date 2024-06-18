@@ -11,7 +11,7 @@ const BASEURL = "http://localhost:8082/api/v1/skills/user";
 export const SkillService = async (params = {}) => {
   try {
     const response = await axios.get(BASE_URL, { params });
-    console.log("Response from API:", response);
+    console.log("Response from API:", response.data.responseData);
     return response.data.responseData;
   } catch (error) {
     console.error("Error fetching skills:", error);
@@ -75,7 +75,7 @@ export const deleteSkill = async (skillId) => {
 export const filterSkills = async (skillName) => {
   try {
     const response = await axios.get(BASE_URL, { params: { skillName } });
-    console.log("Response from API:", response);
+    console.log("Response from API:", response.data.responseData);
     return response.data.responseData;
   } catch (error) {
     console.error("Error filtering skills:", error);
