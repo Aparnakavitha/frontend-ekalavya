@@ -51,7 +51,10 @@ const fetchStudentsData = async (setStudentsData, params) => {
     console.log("filtered-----", filteredParams);
 
     const data = await getUserDetails(filteredParams);
-    setStudentsData(data.responseData);
+    const studentsOnly = data.responseData.filter(
+      (item) => item.role && item.role.roleId === 3
+    );
+    setStudentsData(studentsOnly);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -341,7 +344,7 @@ const AdminStudent = () => {
       (student) => student.userId === userId
     );
     if (selectedStudent) {
-      navigate(`/admin/student/student-details${userId}`, {
+      navigate(`/admin/student/student-details/${userId}`, {
         state: { studentsData: selectedStudent },
       });
     } else {
