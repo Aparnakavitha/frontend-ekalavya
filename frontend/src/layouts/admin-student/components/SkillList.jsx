@@ -4,9 +4,11 @@ import ShowCards from "../../common/components/ShowCards";
 import Modal from "../../common/components/Modal";
 import { CombinedSkillForm } from "../../common";
 import CardRow from "./Cardrow";
-
+import { adminStudentSkillState } from "../../../states/Atoms";
+import { useRecoilValue } from "recoil";
 const SkillList = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const studentSkills=useRecoilValue(adminStudentSkillState);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -45,24 +47,7 @@ const SkillList = () => {
 
   const skillcards = {
     card: "skill",
-    cardData: [
-      {
-        miniHeading: "Skill 1",
-        mainHeading: "Java",
-        Count: 2,
-        cardType: "skill",
-        canEdit: true,
-        canDelete: true,
-      },
-      {
-        miniHeading: "Skill 2",
-        mainHeading: "Python",
-        Count: 3,
-        cardType: "skill",
-        canEdit: true,
-        canDelete: true,
-      },
-    ],
+    cardData: [...studentSkills],
   };
 
   return (
