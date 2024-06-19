@@ -54,7 +54,7 @@ const AdminBatchSearch = ({batchDelete, addParticipant, changeBatchName, batchNa
       mainHeading: "Edit Batch Name",
       labelTitle: "Batch Name",
       placeHolder: batchName,
-      value:batchName,
+      value: batchName,
       buttonTitle: "Save",
       initialData: { inputData: "Batch 1" },
     },
@@ -153,6 +153,7 @@ const AdminBatchSearch = ({batchDelete, addParticipant, changeBatchName, batchNa
         <UpdateSingleField
           {...AdminBatchSearchData.editprops}
           onSubmit={handleFormSubmit}
+          placeHolder={batchName}
         />
       </Modal>
       <Modal

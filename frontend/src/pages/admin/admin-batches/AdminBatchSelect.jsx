@@ -9,7 +9,6 @@ import image from "../../../assets/DP.png";
 import { postUserIds } from "../../../services/Batch";
 import { updateBatch, fetchbatches } from "../../../services/Batch";
 
-
 const greeting = {
   welcome: "Welcome Back",
   name: "John",
@@ -26,8 +25,7 @@ const AdminBatchSelect = () => {
 
   const [participantIdData, setParticipantIdData] = useState([]);
   const [userData, setUserData] = useState([]);
-  const [batchName, setBatchName] = useState([]);
-
+  const [batchName, setBatchName] = useState("");
 
   const batchId = "21";
 
@@ -56,24 +54,24 @@ const AdminBatchSelect = () => {
       console.log(userData);
       const batchParticipantsData = {
         data:
-        //  [{
-        //   studentImage: image,
-        //     studentName: "aleena",
-        //     studentId: 1,
-        //     studentCollege: "alaksnjw",
-        //     studentMail: "aleena@gmail.com",
-        //     studentPhoneNumber: 9745241897,
-        //     canDelete: true,
-        // }],
-        participantResponse.responseData.map((participant) => ({
-          studentImage: image,
-          studentName: participant.firstName + " " + participant.lastName,
-          studentId: participant.userId,
-          studentCollege: participant.college.collegeName,
-          studentMail: participant.emailId,
-          studentPhoneNumber: participant.phoneNo,
-          canDelete: true,
-        })),
+          //  [{
+          //   studentImage: image,
+          //     studentName: "aleena",
+          //     studentId: 1,
+          //     studentCollege: "alaksnjw",
+          //     studentMail: "aleena@gmail.com",
+          //     studentPhoneNumber: 9745241897,
+          //     canDelete: true,
+          // }],
+          participantResponse.responseData.map((participant) => ({
+            studentImage: image,
+            studentName: participant.firstName + " " + participant.lastName,
+            studentId: participant.userId,
+            studentCollege: participant.college.collegeName,
+            studentMail: participant.emailId,
+            studentPhoneNumber: participant.phoneNo,
+            canDelete: true,
+          })),
         tableColumns: [
           { key: "studentId", displayName: "Student ID" },
           { key: "studentName", displayName: "Name" },
@@ -89,10 +87,9 @@ const AdminBatchSelect = () => {
           buttonText: "Confirm",
         },
       };
-    
+
       console.log("userdata list", participantResponse.responseData);
       console.log("cardata list", batchParticipantsData.data);
-
     } catch (error) {
       console.error("Error fetching participant data:", error);
     }
@@ -100,66 +97,68 @@ const AdminBatchSelect = () => {
 
   const batchDelete = async () => {
     try {
-      await deleteBatch( batchId );
+      await deleteBatch(batchId);
       console.log("Batch deleted successfully");
     } catch (error) {
       console.error("Error deleting batch:", error);
     }
   };
 
-  const addParticipant= async(data) =>{
-    try{
+  const addParticipant = async (data) => {
+    try {
       const userId = {
-        "batchId" : batchId,
-        "userId" : data.inputData
-      }
+        batchId: batchId,
+        userId: data.inputData,
+      };
       const response = await postUserIds(userId);
       console.log("Response from API:", response);
-    }catch (error) {
+    } catch (error) {
       console.error("Error adding participant data:", error);
     }
-  }
+  };
 
-  const changeBatchName= async(data) =>{
-    try{
+  const changeBatchName = async (data) => {
+    try {
       const userId = {
-        "batchId" : batchId,
-        "batchName" : data.inputData
-      }
+        batchId: batchId,
+        batchName: data.inputData,
+      };
       const response = await updateBatch(userId);
       console.log("Response from API:", response);
-    }catch (error) {
+      viewBatchName();
+      viewBatchParticipants();
+    } catch (error) {
       console.error("Error adding participant data:", error);
     }
-  }
+  };
 
-
-   const viewBatchName= async()=>{
-    try{
-      const response = await fetchbatches({batchId});
-      const data=response.responseData;
+  const viewBatchName = async () => {
+    try {
+      const response = await fetchbatches({ batchId });
+      const data = response.responseData;
       setBatchName(data[0].batchName);
-      console.log("batchname",batchName)
-    }catch (error) {
+      console.log("batchname", batchName);
+    } catch (error) {
       console.error("Error adding participant data:", error);
     }
-   }
+  };
   useEffect(() => {
     viewBatchName();
     viewBatchParticipants();
   }, [batchId]);
 
   const batchParticipantsData = {
-    data:
-     [{
-      studentImage: image,
+    data: [
+      {
+        studentImage: image,
         studentName: "aleena",
         studentId: 1,
         studentCollege: "alaksnjw",
         studentMail: "aleena@gmail.com",
         studentPhoneNumber: 9745241897,
         canDelete: true,
-    }],
+      },
+    ],
     // userData.map((participant) => ({
     //   studentImage: image,
     //   studentName: participant.firstName + " " + participant.lastName,
@@ -188,7 +187,7 @@ const AdminBatchSelect = () => {
   return (
     <div>
       <Greeting {...greeting} />
-      <AdminBatchSearch 
+      <AdminBatchSearch
         batchDelete={batchDelete}
         addParticipant={addParticipant}
         changeBatchName={changeBatchName}
