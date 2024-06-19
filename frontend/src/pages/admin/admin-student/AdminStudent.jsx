@@ -52,7 +52,7 @@ const AdminStudent = () => {
     const fetchStudentsData = async () => {
       try {
         const params = {
-          roleId: "3",
+          roleId: "1",
         };
         const data = await getUserDetails(params);
         setStudentsData(data.responseData);

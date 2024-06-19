@@ -6,11 +6,10 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { useForm, Controller } from "react-hook-form";
 import { validateAndCleanInput } from "../../common/components/validation";
 
-const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
+const BatchOperations = ({ mainHeading, onSubmit, options }) => {
   const {
     handleSubmit,
     control,
-    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -20,7 +19,7 @@ const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
   });
 
   const handleFormSubmit = (data) => {
-    onSubmit(data);
+    onSubmit(data); // Call onSubmit function passed from props
   };
 
   return (
@@ -76,10 +75,10 @@ const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
         </div>
       </div>
       <div className={`${styles["batchoperations-buttoncontainer"]}`}>
-        <PrimaryButton variant="primary" content="Create Batch" width="full" />
+        <PrimaryButton type="submit" variant="primary" content="Create Batch" width="full" />
       </div>
     </form>
   );
 };
 
-export default Batchoperations;
+export default BatchOperations;
