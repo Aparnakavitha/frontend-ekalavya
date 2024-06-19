@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SkillList from "../../../layouts/admin-student/components/SkillList";
 import EventList from "../../../layouts/admin-student/components/EventsList";
 import EducationalQaulification from "../../../layouts/common/components/EducationalQualification";
@@ -24,9 +24,10 @@ const fetchStudentDetails = async (userId, setStudentData) => {
 };
 
 const AdminStudentDetails = () => {
-  const [studentData, setStudentData] = useState(null);
+  const [studentsData, setStudentData] = useState(null);
+  const navigate = useNavigate();
   const location = useLocation();
-  const { studentData: selectedStudent } = location.state || {};
+  const { studentsData: selectedStudent } = location.state || {};
 
   useEffect(() => {
     if (selectedStudent) {
@@ -35,10 +36,10 @@ const AdminStudentDetails = () => {
   }, [selectedStudent]);
 
   useEffect(() => {
-    if (studentData) {
-      fetchStudentDetails(studentData.userId, setStudentData);
+    if (studentsData) {
+      fetchStudentDetails(studentsData.userId, setStudentData);
     }
-  }, [studentData]);
+  }, [studentsData]);
 
   const handleFormSubmit = async (formData) => {
     try {
@@ -78,19 +79,19 @@ const AdminStudentDetails = () => {
     }
   };
 
-  if (!studentData) {
+  if (!studentsData) {
     return <LoadingSpinner />;
   }
   return (
     <div>
       <StudentProfileInfo
-        studentData={studentData}
+        studentsData={studentsData}
         onSubmit={handleFormSubmit}
         onformSubmit={handleFormSubmit2}
       />
       {/* <EducationalQaulification/> */}
       <SkillList />
-      <EventList studentId={studentData.userId} />
+      <EventList studentId={studentsData.userId} />
     </div>
   );
 };
