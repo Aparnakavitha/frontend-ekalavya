@@ -22,6 +22,10 @@
   width: 100%;
 }
 
+.error-message {
+  color: var(--white);
+}
+
 @media (max-width: 767px) {
   .skillsearch-skillsheading {
     font-size: 24px;

@@ -4,7 +4,11 @@ import SkillList from "../../../layouts/admin-student/components/SkillList";
 import EventList from "../../../layouts/admin-student/components/EventsList";
 import EducationalQaulification from "../../../layouts/common/components/EducationalQualification";
 import StudentProfileInfo from "../../../layouts/admin-student/components/StudentProfile";
-import { getUserDetails, updateUserDetails } from "../../../services/User";
+import {
+  getUserDetails,
+  updateUserDetails,
+  addNewUser,
+} from "../../../services/User";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
@@ -72,10 +76,9 @@ const AdminStudentDetails = () => {
     try {
       const { dob, phoneNo, aboutMe, addresses, userId, education } = formData;
 
-      // Prepare addresses with addressId included
       const updatedAddresses = addresses.map((address) => ({
         ...address,
-        addressId: address.addressId || "", // If addressId is not present, use empty string
+        addressId: address.addressId || "",
       }));
 
       const updatedData = {
@@ -86,10 +89,10 @@ const AdminStudentDetails = () => {
         addresses: updatedAddresses,
       };
 
-      await updateUserDetails(updatedData);
+      await addNewUser(updatedData);
 
       console.log("User details updated successfully!");
-      fetchStudentDetails(userId, setStudentData); // Fetch updated mentor details after update
+      fetchStudentDetails(userId, setStudentData);
     } catch (error) {
       console.error("Error updating user details:", error);
     }
@@ -98,7 +101,7 @@ const AdminStudentDetails = () => {
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Submitted with data:", formData);
-      const response = await updateUserDetails(formData);
+      const response = await addNewUser(formData);
       console.log("Update response:", response);
       fetchStudentDetails(formData.userId, setStudentData);
     } catch (error) {
