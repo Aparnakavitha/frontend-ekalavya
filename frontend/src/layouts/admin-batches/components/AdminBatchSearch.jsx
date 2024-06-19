@@ -7,11 +7,15 @@ import DeleteBox from "../../common/components/DeleteBox";
 import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
 
-const AdminBatchSearch = ({batchDelete, addParticipant, changeBatchName, batchName}) => {
+const AdminBatchSearch = ({
+  batchDelete,
+  addParticipant,
+  changeBatchName,
+  batchName,
+}) => {
   const [isBatchOperationsOpen, setIsBatchOperationsOpen] = useState(false);
   const [isUpdateSingleFieldOpen, setIsUpdateSingleFieldOpen] = useState(false);
   const [isDeleteBoxOpen, setIsDeleteBoxOpen] = useState(false);
-
 
   const AdminBatchSearchData = {
     navbuttonProps: {
@@ -54,9 +58,8 @@ const AdminBatchSearch = ({batchDelete, addParticipant, changeBatchName, batchNa
       mainHeading: "Edit Batch Name",
       labelTitle: "Batch Name",
       placeHolder: batchName,
-      value: batchName,
       buttonTitle: "Save",
-      initialData: { inputData: "Batch 1" },
+      initialData: { inputData: batchName},
     },
     deleteprops: {
       title: "Confirmation Required",
@@ -64,7 +67,6 @@ const AdminBatchSearch = ({batchDelete, addParticipant, changeBatchName, batchNa
       buttonText: "Confirm",
     },
   };
-  
 
   const handleOpenBatchOperations = () => {
     setIsBatchOperationsOpen(true);
@@ -98,7 +100,7 @@ const AdminBatchSearch = ({batchDelete, addParticipant, changeBatchName, batchNa
     handleCloseDeleteBox();
   };
 
-  const addStdFormSubmit=(formData)=>{
+  const addStdFormSubmit = (formData) => {
     console.log("Add student form submitted with data:", formData);
     addParticipant(formData);
     handleCloseBatchOperations();
@@ -142,7 +144,6 @@ const AdminBatchSearch = ({batchDelete, addParticipant, changeBatchName, batchNa
         <UpdateSingleField
           {...AdminBatchSearchData.newprops}
           onSubmit={addStdFormSubmit}
-
         />
       </Modal>
       <Modal
