@@ -73,18 +73,6 @@ export const fetchBatchParticipants = async (params = {}) => {
   }
 };
 
-export const fetchBatchParticipants = async (params = {}) => {
-  try {
-    const response = await axios.get(`${API_URL}/batches/participants`, {
-      params,
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching batch participants", error);
-    throw error;
-  }
-};
-
 export const postUserIds = async (data) => {
   try {
     const response = await axios.post(`${API_URL}/batches/participants`, data);
