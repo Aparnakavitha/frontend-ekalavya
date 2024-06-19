@@ -58,6 +58,7 @@ export const deleteBatch = async (batchId) => {
     }
     throw error;
   }
+  
 };
 
 export const fetchBatchParticipants = async (params = {}) => {

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import ActionComponent from "../../common/components/Action";
 import Modal from "../../common/components/Modal";
 import AdminBatchActionData from "./BatchActionData";
-import Batchoperations from "./BatchOperations";
+import BatchOperations from "./BatchOperations";
 
-const AdminBatchAction = () => {
+const AdminBatchAction = ({ onSubmit }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -15,9 +15,14 @@ const AdminBatchAction = () => {
     setIsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form submitted with data:", formData);
-    handleCloseModal();
+  const handleFormSubmit = async (formData) => {
+    try {
+      await onSubmit(formData); // Pass formData to parent component onSubmit function
+      setIsOpen(false); // Close modal on successful submission
+    } catch (error) {
+      console.error("Error submitting batch:", error);
+      // Handle error if needed
+    }
   };
 
   const actionData = {
@@ -32,10 +37,10 @@ const AdminBatchAction = () => {
     <div>
       <ActionComponent {...actionData} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
-        <Batchoperations
-          {...AdminBatchActionData.batchprops}
+        <BatchOperations
+          mainHeading="Create New Batch"
           onSubmit={handleFormSubmit}
-        />
+          />
       </Modal>
     </div>
   );
