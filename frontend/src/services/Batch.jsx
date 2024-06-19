@@ -71,3 +71,27 @@ export const fetchBatchParticipants = async (params = {}) => {
     throw error;
   }
 };
+
+export const postUserIds = async (data) => {
+  try {
+    const response = await axios.post(`${API_URL}/batches/participants`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error posting user IDs:", error);
+    throw error;
+  }
+};
+export const userBatchDelete = async (userId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/all`, {
+      params: {
+        userId: userId
+      }
+    });
+    console.log("Delete response:", response);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user from all batches:", error);
+    throw error;
+  }
+};
