@@ -27,8 +27,7 @@ const AdminBatchList = () => {
         const formattedData = data.map((item) => ({
           miniHeading: item && item.batchId ? String(item.batchId) : "",
           mainHeading: item && item.batchName ? item.batchName : "",
-          Count:
-            item && item.participantCount ? String(item.participantCount) : "",
+          Count: item && item.participantCount ? item.participantCount : "0",
           cardType: "batch",
         }));
 
