@@ -14,8 +14,8 @@ const PrimaryCard = (props) => {
   } = props;
  
   const transformMainHeading = (heading) => {
-    if (heading && heading.length > 24) {
-      return heading.slice(0, 20) + "...";
+    if (heading && heading.length > 17) {
+      return heading.slice(0, 17) + "...";
     }
     return heading;
   };
