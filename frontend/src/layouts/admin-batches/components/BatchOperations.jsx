@@ -54,7 +54,9 @@ const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
               {errors.batchName.message}
             </p>
           )}
-          <Controller
+          {/*Input dropdown omitted temporarily*/}
+
+          {/* <Controller
             name="studentIds"
             control={control}
             rules={{ required: "Student ID is required" }}
@@ -72,7 +74,7 @@ const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
             <p className={`${styles["batchoperations-error"]}`}>
               {errors.studentIds.message}
             </p>
-          )}
+          )} */}
         </div>
       </div>
       <div className={`${styles["batchoperations-buttoncontainer"]}`}>
