@@ -16,6 +16,7 @@ import {
 } from "../../../services/User";
 import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import image from "../../../assets/DP.png";
 
 const fetchStudentsData = async (setStudentsData, params) => {
   try {
@@ -209,14 +210,14 @@ const AdminStudent = () => {
 
   const dataView = {
     data: studentsData.map((student) => ({
-      studentImage: student?.profilePicture || "",
-      studentName: `${student?.firstName || ""} ${student?.lastName || ""}`,
-      studentId: student?.userId || "",
-      studentCollege: student?.college?.collegeName || "",
-      studentMail: student?.emailId || "",
-      studentPhoneNumber: student?.phoneNo || "",
+      studentImage: image,
+      studentName: `${student.firstName || ""} ${student.lastName || ""}`,
+      studentId: student.userId || "",
+      studentCollege: student.college.collegeName || "",
+      studentMail: student.emailId || "",
+      studentPhoneNumber: student.phoneNo || "",
       canDelete: false,
-      viewAnimation: (cardAnimation && student?.newEntry) || false,
+      viewAnimation: (cardAnimation && student.newEntry) || false,
     })),
     tableColumns: [
       { key: "studentId", displayName: "Student ID" },

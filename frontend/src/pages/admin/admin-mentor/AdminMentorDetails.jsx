@@ -37,22 +37,12 @@ const AdminMentorDetails = () => {
   const handleFormSubmit = async (formData) => {
     try {
       const { dob, phoneNo, aboutMe, addresses, userId } = formData;
-
       const updatedAddresses = addresses.map((address) => ({
         ...address,
         addressId: address.addressId || "",
       }));
-
-      const updatedData = {
-        userId,
-        dob,
-        phoneNo,
-        aboutMe,
-        addresses: updatedAddresses,
-      };
-
+      const updatedData = { userId, dob, phoneNo, aboutMe, addresses: updatedAddresses };
       await updateUserDetails(updatedData);
-      console.log("User details updated successfully!");
       fetchMentorDetails(userId, setMentorData);
     } catch (error) {
       console.error("Error updating user details:", error);
@@ -62,7 +52,8 @@ const AdminMentorDetails = () => {
   const handleDelete = async () => {
     try {
       if (mentorData && mentorData.userId) {
-        await deleteUser({ userId: mentorData.userId });
+        const params = { userId: mentorData.userId };
+        await deleteUser(params);
         console.log(`User with userId ${mentorData.userId} deleted successfully.`);
         navigate("/admin/mentor");
       } else {
@@ -74,17 +65,13 @@ const AdminMentorDetails = () => {
   };
 
   if (!mentorData) {
-    return (
-      <div style={{ padding: "20px", fontSize: "24px", color: "white", textAlign: "center" }}>
-        Loading...
-      </div>
-    );
+    return <div style={{ padding: "20px", fontSize: "24px", color: "white", textAlign: "center" }}>Loading...</div>;
   }
 
   return (
     <div>
       <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} />
-      <MentorEventsList handleDelete={handleDelete} />
+      <MentorEventsList mentorId={mentorData.userId} handleDelete={handleDelete} />
     </div>
   );
 };
