@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import ActionComponent from '../../common/components/Action';
-import AddUser from '../../common/components/AddUser';
-import Modal from '../../common/components/Modal';
-import AdminMentorActionData from './MentorData';
-import { addNewUser } from '../../../services/User';
+import React, { useState } from "react";
+import ActionComponent from "../../common/components/Action";
+import AddUser from "../../common/components/AddUser";
+import Modal from "../../common/components/Modal";
+import AdminMentorActionData from "./MentorData";
+import { addNewUser } from "../../../services/User";
 
-const AdminMentorAction = ({ onSubmit, onAddSuccess, fetchData }) => {
+const AdminMentorAction = ({
+  onSubmit,
+  onAddSuccess,
+  fetchData,
+  onSearchChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -27,11 +32,11 @@ const AdminMentorAction = ({ onSubmit, onAddSuccess, fetchData }) => {
       };
 
       await addNewUser(userData);
-      console.log('New user added successfully!');
+      console.log("New user added successfully!");
       onAddSuccess();
       handleCloseModal();
     } catch (error) {
-      console.error('Error adding new user:', error);
+      console.error("Error adding new user:", error);
       // Add UI feedback or notification for the user
     }
   };
@@ -45,6 +50,7 @@ const AdminMentorAction = ({ onSubmit, onAddSuccess, fetchData }) => {
           onClick: handleOpenModal,
         }}
         searchbarProps={fetchData}
+        onSearchChange={onSearchChange}
       />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddUser
