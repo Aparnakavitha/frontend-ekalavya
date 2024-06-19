@@ -23,12 +23,11 @@ const AdminBatchList = () => {
       const responseData = await fetchbatches();
       const data = responseData.responseData;
       console.log(data);
-
       if (Array.isArray(data)) {
         const formattedData = data.map((item) => ({
-          miniHeading: `B${item.batchId}`,
-          mainHeading: item.batchName,
-          Count: item.participantCount,
+          miniHeading: item && item.batchId ? item.batchId : "",
+          mainHeading: item && item.batchName ? item.batchName : "",
+          Count: item && item.participantCount ? item.participantCount : "",
           cardType: "batch",
         }));
 
