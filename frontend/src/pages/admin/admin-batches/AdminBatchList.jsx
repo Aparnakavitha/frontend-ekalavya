@@ -4,6 +4,7 @@ import { DataView, Greeting } from "../../../layouts/common";
 import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import { fetchbatches, createBatch } from "../../../services/Batch";
 import AdminBatchAction from "../../../layouts/admin-batches/components/AdminBatchAction";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const AdminBatchList = () => {
   const navigate = useNavigate();
@@ -14,16 +15,15 @@ const AdminBatchList = () => {
 
   useEffect(() => {
     fetchData();
-  }, [changed]); 
+  }, [changed]);
 
   const fetchData = async () => {
-    setLoading(true); 
+    setLoading(true);
     try {
       const responseData = await fetchbatches();
       const data = responseData.responseData;
       console.log(data);
 
-      
       if (Array.isArray(data)) {
         const formattedData = data.map((item) => ({
           miniHeading: `B${item.batchId}`,
@@ -34,7 +34,7 @@ const AdminBatchList = () => {
 
         console.log("Formatted batchData is : ", formattedData);
         setBatchData(formattedData);
-        setLoading(false); 
+        setLoading(false);
         console.log("Data fetched successfully:", formattedData);
       } else {
         throw new Error("Received data is not in expected format");
@@ -42,7 +42,7 @@ const AdminBatchList = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
       setError(error);
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -56,8 +56,8 @@ const AdminBatchList = () => {
       const response = await createBatch({ batchName: batchName });
 
       console.log("Create batch response:", response);
-      setBatchData([...batchData,response[0]]);
-      setChanged((prev) => !prev); 
+      setBatchData([...batchData, response[0]]);
+      setChanged((prev) => !prev);
     } catch (error) {
       console.error("Error adding batch:", error);
       setError(error);
@@ -76,7 +76,7 @@ const AdminBatchList = () => {
       <AdminBatchAction onSubmit={handleFormSubmit} />
 
       {loading ? (
-        <div>Loading...</div>
+        <LoadingSpinner />
       ) : error ? (
         <div>Error: {error.message}</div>
       ) : batchData ? (
