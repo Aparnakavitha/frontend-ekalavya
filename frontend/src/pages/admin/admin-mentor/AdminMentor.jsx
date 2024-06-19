@@ -7,13 +7,23 @@ import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
-const fetchMentorData = async (setMentorData) => {
+const fetchMentorData = async (setMentorData, value = 0) => {
   try {
-    const params = {
+    var params = {
       roleId: 2,
     };
+    if (value) {
+      params = {
+        userId: value,
+      };
+    }
+
     const data = await getUserDetails(params);
-    setMentorData(data.responseData);
+    const mentorsOnly =
+      data.responseData?.filter(
+        (item) => item.role && item.role.roleId === 2
+      ) || [];
+    setMentorData(mentorsOnly);
   } catch (error) {
     console.error("Error fetching mentor data:", error);
   }
@@ -137,12 +147,17 @@ const AdminMentor = () => {
     itemsPerPage: 18,
   };
 
+  const handleSearchChange = (value) => {
+    fetchMentorData(setMentorData, value);
+  };
+
   return (
     <div>
       <Greeting {...greet} />
       <AdminMentorAction
         onSubmit={handleFormSubmit}
         onAddSuccess={() => fetchMentorData(setMentorData)}
+        onSearchChange={handleSearchChange}
       />
 
       {mentorData.length > 0 ? (
