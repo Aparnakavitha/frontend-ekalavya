@@ -18,8 +18,8 @@ const BatchOperations = ({ mainHeading, onSubmit, options }) => {
     },
   });
 
-  const handleFormSubmit = (data) => {
-    onSubmit(data); // Call onSubmit function passed from props
+  const handleFormSubmit = (formData) => {
+    onSubmit(formData); // Call onSubmit function passed from props
   };
 
   return (
@@ -53,7 +53,7 @@ const BatchOperations = ({ mainHeading, onSubmit, options }) => {
               {errors.batchName.message}
             </p>
           )}
-          <Controller
+          {/* <Controller
             name="studentIds"
             control={control}
             rules={{ required: "Student ID is required" }}
@@ -71,7 +71,7 @@ const BatchOperations = ({ mainHeading, onSubmit, options }) => {
             <p className={`${styles["batchoperations-error"]}`}>
               {errors.studentIds.message}
             </p>
-          )}
+          )} */}
         </div>
       </div>
       <div className={`${styles["batchoperations-buttoncontainer"]}`}>

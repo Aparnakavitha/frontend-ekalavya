@@ -41,7 +41,7 @@ const Home = () => {
     },
     number: ["2000", "300", "500"],
     title: ["Enrollments", "Certifications", "Projects"],
-    link : "/explore"
+    link: "/explore",
   };
 
   const sample = {
@@ -52,7 +52,7 @@ const Home = () => {
     },
     width: "full",
   };
-  
+
   const header = {
     menuItems: [
       {

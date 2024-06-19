@@ -20,16 +20,25 @@ const AdminBatchList = () => {
     setLoading(true); // Set loading state while fetching data
     try {
       const responseData = await fetchbatches();
-      const formattedData = responseData.map((item) => ({
-        miniHeading: `B${item.batchId}`,
-        mainHeading: item.batchName,
-        Count: item.participantCount,
-        cardType: "batch",
-      }));
+      const data = responseData.responseData;
+      console.log(data);
 
-      setBatchData(formattedData);
-      setLoading(false); // Clear loading state on successful data fetch
-      console.log("Data fetched successfully:", formattedData);
+      // Check if responseData is an array
+      if (Array.isArray(data)) {
+        const formattedData = data.map((item) => ({
+          miniHeading: `B${item.batchId}`,
+          mainHeading: item.batchName,
+          Count: item.participantCount,
+          cardType: "batch",
+        }));
+
+        console.log("Formatted batchData is : ", formattedData);
+        setBatchData(formattedData);
+        setLoading(false); // Clear loading state on successful data fetch
+        console.log("Data fetched successfully:", formattedData);
+      } else {
+        throw new Error("Received data is not in expected format");
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
       setError(error);
@@ -43,17 +52,15 @@ const AdminBatchList = () => {
 
   const handleFormSubmit = async (formData) => {
     try {
-      const { batchName, studentIds } = formData;
-      const response = await createBatch({ batchName, studentIds });
+      const { batchName } = formData;
+      const response = await createBatch({ batchName: batchName });
 
-      if (response && response.responseData && response.responseData.length > 0) {
-        setChanged((prev) => !prev); // Toggle changed state to trigger refetch
-        // Optionally, you can add a success message or toast notification
-      } else {
-        console.error("Unexpected response structure:", response);
-      }
+      console.log("Create batch response:", response);
+      setBatchData([...batchData,response[0]]);
+      setChanged((prev) => !prev); 
     } catch (error) {
       console.error("Error adding batch:", error);
+      setError(error);
     }
   };
 
@@ -75,13 +82,14 @@ const AdminBatchList = () => {
       ) : batchData ? (
         <DataView
           data={batchData}
-          CardComponent={(props) => <SkillBatchCard {...props} handleClick={handleClick} />}
+          CardComponent={(props) => <SkillBatchCard {...props} />}
           tableColumns={[
             { key: "miniHeading", displayName: "Batch ID" },
             { key: "mainHeading", displayName: "Batch Name" },
             { key: "Count", displayName: "Participant Count" },
           ]}
           toggle={true}
+          cardType="SkillBatchCardbatch"
           itemsPerPage={12}
         />
       ) : (

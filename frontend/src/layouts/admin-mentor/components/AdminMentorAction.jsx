@@ -5,7 +5,7 @@ import Modal from '../../common/components/Modal';
 import AdminMentorActionData from './MentorData';
 import { addNewUser } from '../../../services/User'; // Import addNewUser API
 
-const AdminMentorAction = ({ onSubmit, onAddSuccess }) => {
+const AdminMentorAction = ({ onSubmit, onAddSuccess,fetchData }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -44,11 +44,12 @@ const AdminMentorAction = ({ onSubmit, onAddSuccess }) => {
           ...AdminMentorActionData.buttonProps,
           onClick: handleOpenModal,
         }}
+        searchbarProps={fetchData}
       />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddUser
           {...AdminMentorActionData.adduserprops}
-          onSubmit={handleFormSubmit} // Pass handleFormSubmit to AddUser
+          onSubmit={handleFormSubmit} 
         />
       </Modal>
     </div>

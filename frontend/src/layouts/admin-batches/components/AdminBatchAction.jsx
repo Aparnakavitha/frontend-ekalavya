@@ -40,13 +40,7 @@ const AdminBatchAction = ({ onSubmit }) => {
         <BatchOperations
           mainHeading="Create New Batch"
           onSubmit={handleFormSubmit}
-          options={[
-            // Example options data, replace with actual data
-            { value: "student1", label: "Student 1" },
-            { value: "student2", label: "Student 2" },
-            // Add more options as needed
-          ]}
-        />
+          />
       </Modal>
     </div>
   );
