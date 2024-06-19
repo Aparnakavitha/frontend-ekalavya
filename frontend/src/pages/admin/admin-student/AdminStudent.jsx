@@ -14,6 +14,7 @@ import {
   postColleges,
   getUserDetails,
   updateUserDetails,
+  addNewUser,
 } from "../../../services/User";
 import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
@@ -308,7 +309,7 @@ const AdminStudent = () => {
       formData.profilePicture =
         "https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg";
 
-      const response = await updateUserDetails(formData);
+      const response = await addNewUser(formData);
       const newStudent = response.responseData;
       newStudent.college = {
         collegeId: formData.collegeId,
