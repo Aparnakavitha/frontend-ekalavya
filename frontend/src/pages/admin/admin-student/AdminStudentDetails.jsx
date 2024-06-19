@@ -8,6 +8,7 @@ import {
   getUserDetails,
   updateUserDetails,
   addNewUser,
+  deleteUser
 } from "../../../services/User";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
@@ -109,6 +110,26 @@ const AdminStudentDetails = () => {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      if (studentsData && studentsData.userId) {
+        const params = { userId: studentsData.userId };
+        await deleteUser(params);
+        console.log(
+          `User with userId ${studentsData.userId} deleted successfully.`
+        );
+        navigate("/admin/student");
+      } else {
+        console.error("studentsData or studentsData.userId is not defined");
+      }
+    } catch (error) {
+      console.error(
+        `Error deleting user with userId ${studentsData.userId}:`,
+        error
+      );
+    }
+  };
+
   if (!studentsData) {
     return <LoadingSpinner />;
   }
@@ -121,7 +142,8 @@ const AdminStudentDetails = () => {
       />
       {/* <EducationalQaulification/> */}
       <SkillList />
-      <EventList studentId={studentsData.userId} />
+      <EventList studentId={studentsData.userId} 
+      handleDelete={handleDelete}/>
     </div>
   );
 };
