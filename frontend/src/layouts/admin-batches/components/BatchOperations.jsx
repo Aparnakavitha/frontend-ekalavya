@@ -19,7 +19,7 @@ const BatchOperations = ({ mainHeading, onSubmit, options }) => {
   });
 
   const handleFormSubmit = (formData) => {
-    onSubmit(formData); // Call onSubmit function passed from props
+    onSubmit(formData); 
   };
 
   return (
