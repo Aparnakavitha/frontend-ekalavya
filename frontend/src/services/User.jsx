@@ -9,7 +9,7 @@ export const getUserDetails = async (params) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching user details:", error);
     throw error;
   }
 };
@@ -19,71 +19,39 @@ export const updateUserDetails = async (data) => {
     const response = await axios.post(`${API_URL}/users`, data);
     return response.data;
   } catch (error) {
-    console.error('Error updating user details:', error);
+    console.error("Error updating user details:", error);
     throw error;
   }
 };
+
 export const addNewUser = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/users`, userData);
     return response.data;
   } catch (error) {
-    console.error('Error adding new user:', error);
+    console.error("Error adding new user:", error);
     throw error;
   }
 };
 
-const apiData = {
-  userId: null,
-  firstName: null,
-  lastName: null,
-  phoneNo: null,
-  dob: null,
-  aboutMe: null,
-  addresses: [
-    {
-      addressType: null,
-      houseName: null,
-      city: null,
-      state: null,
-      country: null,
-      pinCode: null,
-    },
-    {
-      addressType: null,
-      houseName: null,
-      city: null,
-      state: null,
-      country: null,
-      pinCode: null,
-    },
-  ],
-  qualifications: [
-    {
-      degree: null,
-      institution: null,
-      specialization: null,
-      startDate: null,
-      endDate: null,
-      percentage: null,
-    },
-    {
-      degree: null,
-      institution: null,
-      specialization: null,
-      startDate: null,
-      endDate: null,
-      percentage: null,
-    },
-  ],
+export const deleteUser = async (params) => {
+  try {
+    const response = await axios.delete(`${API_URL}/users`, {
+      params: params,
+    });    return response.data;
+  } catch (error) {
+    console.error(`Error deleting user`, error);
+    throw error;
+  }
 };
+
 
 export const getColleges = async (params) => {
   try {
     const response = await axios.get(`${API_URL}/colleges`);
     return response.data;
   } catch (error) {
-    console.error("Error fetching data", error);
+    console.error("Error fetching colleges data:", error);
     throw error;
   }
 };
@@ -97,7 +65,7 @@ export const postColleges = async (collegeData) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error adding college", error);
+    console.error("Error adding college:", error);
     throw error;
   }
 };

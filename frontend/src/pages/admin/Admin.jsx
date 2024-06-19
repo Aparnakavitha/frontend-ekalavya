@@ -35,7 +35,7 @@ const AdminContent = () => {
     const fetchData = async () => {
       try {
         const params = {
-          userId: "02",
+          userId: "11",
         };
         const data = await getUserDetails(params);
         setUserData(data.responseData[0]);

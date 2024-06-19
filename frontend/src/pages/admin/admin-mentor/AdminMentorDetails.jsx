@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
 import MentorProfileInfo from "../../../layouts/admin-mentor/components/MentorProfile";
 import MentorEventsList from "../../../layouts/admin-mentor/components/MentorEventsList";
-import { getUserDetails, updateUserDetails } from "../../../services/User";
+import { getUserDetails, updateUserDetails, deleteUser } from "../../../services/User";
 import profilepic from "../../../assets/DP.png";
 
 const fetchMentorDetails = async (userId, setMentorData) => {
@@ -21,6 +21,7 @@ const fetchMentorDetails = async (userId, setMentorData) => {
 
 const AdminMentorDetails = () => {
   const [mentorData, setMentorData] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate
   const location = useLocation();
   const { mentorData: selectedMentor } = location.state || {};
 
@@ -38,10 +39,10 @@ const AdminMentorDetails = () => {
 
   const handleFormSubmit = async (formData) => {
     try {
-      const { dob, phoneNo, aboutMe, addresses, userId ,education} = formData;
+      const { dob, phoneNo, aboutMe, addresses, userId } = formData;
 
       // Prepare addresses with addressId included
-      const updatedAddresses = addresses.map(address => ({
+      const updatedAddresses = addresses.map((address) => ({
         ...address,
         addressId: address.addressId || "", // If addressId is not present, use empty string
       }));
@@ -63,20 +64,21 @@ const AdminMentorDetails = () => {
     }
   };
 
-  const handleFormSubmit2 = async (formData) => {
+  const handleDelete = async () => {
     try {
-      console.log("Form Submitted with data:", formData);
-      const response = await updateUserDetails(formData);
-      console.log("Update response:", response);
-      fetchMentorDetails(formData.userId, setMentorData);
+      if (mentorData) {
+        await deleteUser(mentorData.userId);
+        console.log(`User with userId ${mentorData.userId} deleted successfully.`);
+        navigate("/admin/mentor"); // Navigate to /admin/mentor after successful deletion
+      }
     } catch (error) {
-      console.error("Error updating user details:", error);
+      console.error(`Error deleting user with userId ${mentorData.userId}:`, error);
     }
   };
 
   if (!mentorData) {
     return (
-      <div style={{ padding: '20px', fontSize: '24px', color: 'white', textAlign: 'center' }}>
+      <div style={{ padding: "20px", fontSize: "24px", color: "white", textAlign: "center" }}>
         Loading...
       </div>
     );
@@ -84,8 +86,8 @@ const AdminMentorDetails = () => {
 
   return (
     <div>
-      <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} onformSubmit = {handleFormSubmit2} />
-      <MentorEventsList mentorId={mentorData.userId} />
+      <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} />
+      <MentorEventsList mentorId={mentorData.userId} handleDelete={handleDelete} />
     </div>
   );
 };

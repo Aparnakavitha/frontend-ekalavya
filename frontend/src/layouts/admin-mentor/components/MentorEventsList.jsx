@@ -9,8 +9,7 @@ import { DeleteBox } from "../../common";
 import styles from "../AdminMentor.module.css";
 import { useNavigate } from "react-router-dom";
 
-
-const MentorEventsList = () => {
+const MentorEventsList = ({ handleDelete }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -36,7 +35,7 @@ const MentorEventsList = () => {
     handleCloseModal();
     handleCloseDelete();
   };
-  
+
   const handleDeleteCancel = () => {
     console.log("Delete canceled");
     handleCloseDelete();
@@ -44,6 +43,9 @@ const MentorEventsList = () => {
 
   const handleDeleteConfirm = () => {
     console.log("Delete confirmed");
+    if (handleDelete) {
+      handleDelete(); // Call the parent component's handleDelete function
+    }
     handleCloseDelete();
   };
 
@@ -86,16 +88,8 @@ const MentorEventsList = () => {
           </div>
         </div>
       </div>
-      <Modal
-        isOpen={isDeleteOpen}
-        widthVariant="small"
-        onClose={handleCloseDelete}
-      >
-        <DeleteBox
-          {...deleteprops}
-          onCancel={handleDeleteCancel}
-          onConfirm={handleDeleteConfirm}
-        />
+      <Modal isOpen={isDeleteOpen} widthVariant="small" onClose={handleCloseDelete}>
+        <DeleteBox {...deleteprops} onCancel={handleDeleteCancel} onConfirm={handleDeleteConfirm} />
       </Modal>
     </div>
   );
