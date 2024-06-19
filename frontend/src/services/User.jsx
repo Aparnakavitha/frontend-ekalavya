@@ -2,11 +2,10 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8888";
 
+// Function to get user details
 export const getUserDetails = async (params) => {
   try {
-    const response = await axios.get(`${API_URL}/users`, {
-      params: params,
-    });
+    const response = await axios.get(`${API_URL}/users`, { params });
     return response.data;
   } catch (error) {
     console.error("Error fetching user details:", error);
@@ -14,9 +13,10 @@ export const getUserDetails = async (params) => {
   }
 };
 
+// Function to update user details
 export const updateUserDetails = async (data) => {
   try {
-    const response = await axios.post(`${API_URL}/users`, data);
+    const response = await axios.put(`${API_URL}/users/${data.userId}`, data);
     return response.data;
   } catch (error) {
     console.error("Error updating user details:", error);
@@ -24,9 +24,14 @@ export const updateUserDetails = async (data) => {
   }
 };
 
+// Function to add a new user
 export const addNewUser = async (userData) => {
   try {
-    const response = await axios.post(`${API_URL}/users`, userData);
+    const response = await axios.post(`${API_URL}/users`, userData, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     return response.data;
   } catch (error) {
     console.error("Error adding new user:", error);
@@ -34,19 +39,18 @@ export const addNewUser = async (userData) => {
   }
 };
 
+// Function to delete a user
 export const deleteUser = async (params) => {
   try {
-    const response = await axios.delete(`${API_URL}/users`, {
-      params: params,
-    });    return response.data;
+    const response = await axios.delete(`${API_URL}/users`, { params });
+    return response.data;
   } catch (error) {
-    console.error(`Error deleting user`, error);
+    console.error("Error deleting user:", error);
     throw error;
   }
 };
-
-
-export const getColleges = async (params) => {
+// Function to get colleges data
+export const getColleges = async () => {
   try {
     const response = await axios.get(`${API_URL}/colleges`);
     return response.data;
@@ -56,6 +60,7 @@ export const getColleges = async (params) => {
   }
 };
 
+// Function to add a new college
 export const postColleges = async (collegeData) => {
   try {
     const response = await axios.post(`${API_URL}/colleges`, collegeData, {

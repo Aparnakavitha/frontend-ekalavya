@@ -44,7 +44,7 @@ const MentorEventsList = ({ handleDelete }) => {
   const handleDeleteConfirm = () => {
     console.log("Delete confirmed");
     if (handleDelete) {
-      handleDelete(); // Call the parent component's handleDelete function
+      handleDelete();
     }
     handleCloseDelete();
   };
