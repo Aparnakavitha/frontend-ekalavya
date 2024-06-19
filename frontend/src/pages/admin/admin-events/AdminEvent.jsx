@@ -61,7 +61,7 @@ const AdminEvent = () => {
       { key: "endDate", displayName: "End Date" },
       { key: "description", displayName: "Description" },
     ],
-    toggle: false,
+    toggle: true,
     itemsPerPage: 8,
   };
 
