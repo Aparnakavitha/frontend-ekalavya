@@ -7,13 +7,23 @@ import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
-const fetchMentorData = async (setMentorData) => {
+const fetchMentorData = async (setMentorData, value = 0) => {
   try {
-    const params = {
+    var params = {
       roleId: 2,
     };
+    if (value) {
+      params = {
+        userId: value,
+      };
+    }
+
     const data = await getUserDetails(params);
-    setMentorData(data.responseData);
+    const mentorsOnly =
+      data.responseData?.filter(
+        (item) => item.role && item.role.roleId === 2
+      ) || [];
+    setMentorData(mentorsOnly);
   } catch (error) {
     console.error("Error fetching mentor data:", error);
   }
@@ -72,6 +82,7 @@ const AdminMentor = () => {
       const updatedFormData = {
         userId: formData.userId,
         firstName: formData.firstName,
+
         emailId: formData.emailId,
         collegeId: formData.collegeId,
         roleId: formData.roleId,
@@ -99,7 +110,7 @@ const AdminMentor = () => {
     }
   };
 
-  if (!adminData || mentorData.length === 0) {
+  if (!adminData) {
     return <LoadingSpinner />;
   }
 
@@ -136,22 +147,34 @@ const AdminMentor = () => {
     itemsPerPage: 18,
   };
 
+  const handleSearchChange = (value) => {
+    fetchMentorData(setMentorData, value);
+  };
+
   return (
     <div>
       <Greeting {...greet} />
       <AdminMentorAction
         onSubmit={handleFormSubmit}
         onAddSuccess={() => fetchMentorData(setMentorData)}
+        onSearchChange={handleSearchChange}
       />
-      <DataView
-        CardComponent={(props) => (
-          <ProfileCard
-            {...props}
-            onClick={() => handleCardClick(props.studentId)}
-          />
-        )}
-        {...data}
-      />
+
+      {mentorData.length > 0 ? (
+        <DataView
+          CardComponent={(props) => (
+            <ProfileCard
+              {...props}
+              onClick={() => handleCardClick(props.studentId)}
+            />
+          )}
+          {...data}
+        />
+      ) : (
+        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+          No mentors available
+        </p>
+      )}
     </div>
   );
 };

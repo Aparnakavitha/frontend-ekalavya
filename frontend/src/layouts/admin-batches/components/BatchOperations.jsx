@@ -53,6 +53,8 @@ const BatchOperations = ({ mainHeading, onSubmit, options }) => {
               {errors.batchName.message}
             </p>
           )}
+          {/*Input dropdown omitted temporarily*/}
+
           {/* <Controller
             name="studentIds"
             control={control}
