@@ -5,6 +5,7 @@ import AdminMentorAction from "../../../layouts/admin-mentor/components/AdminMen
 import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const fetchMentorData = async (setMentorData) => {
   try {
@@ -46,7 +47,7 @@ const AdminMentor = () => {
     const fetchAdminData = async () => {
       try {
         const params = {
-          userId: "2",
+          userId: "4",
         };
         const data = await getUserDetails(params);
         if (data && data.responseData && data.responseData.length > 0) {
@@ -74,7 +75,7 @@ const AdminMentor = () => {
         emailId: formData.emailId,
         collegeId: formData.collegeId,
         roleId: formData.roleId,
-        addresses : formData.addresses,
+        addresses: formData.addresses,
       };
 
       await updateUserDetails(updatedFormData);
@@ -86,20 +87,20 @@ const AdminMentor = () => {
   };
 
   const handleCardClick = (userId) => {
-    const selectedMentor = mentorData.find((mentor) => mentor.userId === userId);
+    const selectedMentor = mentorData.find(
+      (mentor) => mentor.userId === userId
+    );
     if (selectedMentor) {
-      navigate(`/admin/mentor/mentor-details/${userId}`, { state: { mentorData: selectedMentor } });
+      navigate(`/admin/mentor/mentor-details/${userId}`, {
+        state: { mentorData: selectedMentor },
+      });
     } else {
       console.error(`Mentor with userId ${userId} not found.`);
     }
   };
 
   if (!adminData || mentorData.length === 0) {
-    return (
-      <div style={{ padding: '20px', fontSize: '24px', color: 'white', textAlign: 'center' }}>
-        Loading...
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   const greet = {
@@ -118,9 +119,10 @@ const AdminMentor = () => {
       studentCollege: "",
       studentMail: mentor.emailId || "N/A",
       studentPhoneNumber: mentor.phoneNo || "N/A",
-      studentAddress: mentor.addresses && mentor.addresses.length > 0
-        ? `${mentor.addresses[0].houseName}, ${mentor.addresses[0].city} - ${mentor.addresses[0].pinCode}, ${mentor.addresses[0].state}, ${mentor.addresses[0].country}`
-        : "N/A",
+      studentAddress:
+        mentor.addresses && mentor.addresses.length > 0
+          ? `${mentor.addresses[0].houseName}, ${mentor.addresses[0].city} - ${mentor.addresses[0].pinCode}, ${mentor.addresses[0].state}, ${mentor.addresses[0].country}`
+          : "N/A",
       canDelete: false,
     })),
     tableColumns: [
@@ -137,7 +139,10 @@ const AdminMentor = () => {
   return (
     <div>
       <Greeting {...greet} />
-      <AdminMentorAction onSubmit={handleFormSubmit} onAddSuccess={() => fetchMentorData(setMentorData)} fetchData={fetchData}/>
+      <AdminMentorAction
+        onSubmit={handleFormSubmit}
+        onAddSuccess={() => fetchMentorData(setMentorData)}
+      />
       <DataView
         CardComponent={(props) => (
           <ProfileCard

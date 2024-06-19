@@ -5,7 +5,7 @@ const AdminStudentActionData = {
     content: "+ Add new Mentor",
     width: "full",
   },
-  showDelete:false,
+  showDelete: false,
   searchWidth: "large",
   searchbarProps: {
     variant: "custom",
@@ -16,6 +16,7 @@ const AdminStudentActionData = {
     viewCollege: false,
     heading: "Add New Mentor",
   },
+  searchPlaceholder: "Search mentor",
 };
 
 export default AdminStudentActionData;

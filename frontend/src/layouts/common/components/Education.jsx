@@ -5,9 +5,7 @@ import { IoMdAdd } from "react-icons/io";
 import styles from "../Common.module.css";
 import { format, parse } from "date-fns";
 
-const Education = (props) => {
-  const { qualifications, onClickAdd, onClickEdit, onClickDelete } = props;
-
+const Education = ({ qualifications, onClickAdd, onClickEdit, onClickDelete }) => {
   const formattedDate = (dateString) => {
     const date = parse(dateString, "yyyy-MM-dd", new Date());
     const day = format(date, "do");
@@ -24,7 +22,7 @@ const Education = (props) => {
               Educational Qualification
             </h2>
           </div>
-          <div className={`${"education-qualification-add-button"}`}>
+          <div className={`${styles["education-qualification-add-button"]}`}>
             <div className={`${styles["education-qualification-button"]}`}>
               <TextButton
                 icon={<IoMdAdd />}
@@ -37,54 +35,41 @@ const Education = (props) => {
         <div className={`${styles["education-qualifications-list"]}`}>
           <div>
             <ol type="1" className={`${styles["education-list-box"]}`}>
-              {qualifications.map((qualification, index) => (
-                <div
-                  key={index}
-                  className={`${styles["education-qualification-instance"]}`}
-                >
-                  <div key={index} className={`${styles["education-maindiv"]}`}>
-                    <li
-                      key={index}
-                      className={`${styles["education-education"]}`}
-                    >
-                      <h3
-                        className={`${styles["education-qualification-name"]}`}
-                      >
+              {qualifications && qualifications.length > 0 ? (
+                qualifications.map((qualification, index) => (
+                  <li key={qualification.qualificationId} className={`${styles["education-qualification-instance"]}`}>
+                    <div className={`${styles["education-maindiv"]}`}>
+                      <h3 className={`${styles["education-qualification-name"]}`}>
                         {qualification.degree}
                       </h3>
-
                       <p>{qualification.institution}</p>
                       <p>Percentage: {qualification.percentage}</p>
                       <p>
                         {formattedDate(qualification.startDate)} - {formattedDate(qualification.endDate)}
                       </p>
                       <p>Specialization: {qualification.specialization}</p>
-                    </li>
-                  </div>
-                  <div
-                    className={`${styles["education-qualification-mod-buttons"]}`}
-                  >
-                    <div
-                      className={`${styles["education-qualification-button"]}`}
-                    >
-                      <TextButton
-                        icon={<MdEdit />}
-                        text="Edit"
-                        onClick={() => onClickEdit(index)}
-                      />
                     </div>
-                    <div
-                      className={`${styles["education-qualification-button"]}`}
-                    >
-                      <TextButton
-                        icon={<MdDelete />}
-                        text="Delete"
-                        onClick={() => onClickDelete(index)}
-                      />
+                    <div className={`${styles["education-qualification-mod-buttons"]}`}>
+                      <div className={`${styles["education-qualification-button"]}`}>
+                        <TextButton
+                          icon={<MdEdit />}
+                          text="Edit"
+                          onClick={() => onClickEdit(index)}
+                        />
+                      </div>
+                      <div className={`${styles["education-qualification-button"]}`}>
+                        <TextButton
+                          icon={<MdDelete />}
+                          text="Delete"
+                          onClick={() => onClickDelete(index)}
+                        />
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  </li>
+                ))
+              ) : (
+                <li className={`${styles["education-no-qualifications"]}`}>No qualifications to display.</li>
+              )}
             </ol>
           </div>
         </div>
