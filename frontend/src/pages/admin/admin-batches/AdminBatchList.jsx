@@ -25,9 +25,10 @@ const AdminBatchList = () => {
       console.log(data);
       if (Array.isArray(data)) {
         const formattedData = data.map((item) => ({
-          miniHeading: item && item.batchId ? item.batchId : "",
+          miniHeading: item && item.batchId ? String(item.batchId) : "",
           mainHeading: item && item.batchName ? item.batchName : "",
-          Count: item && item.participantCount ? item.participantCount : "",
+          Count:
+            item && item.participantCount ? String(item.participantCount) : "",
           cardType: "batch",
         }));
 
@@ -55,7 +56,20 @@ const AdminBatchList = () => {
       const response = await createBatch({ batchName: batchName });
 
       console.log("Create batch response:", response);
-      setBatchData([...batchData, response[0]]);
+
+      const formattedNewBatch = {
+        miniHeading:
+          response[0] && response[0].batchId ? String(response[0].batchId) : "",
+        mainHeading:
+          response[0] && response[0].batchName ? response[0].batchName : "",
+        Count:
+          response[0] && response[0].participantCount
+            ? String(response[0].participantCount)
+            : "",
+        cardType: "batch",
+      };
+
+      setBatchData([...batchData, formattedNewBatch]);
       setChanged((prev) => !prev);
     } catch (error) {
       console.error("Error adding batch:", error);
