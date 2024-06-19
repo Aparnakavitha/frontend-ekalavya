@@ -6,6 +6,9 @@ import EducationalQaulification from "../../../layouts/common/components/Educati
 import StudentProfileInfo from "../../../layouts/admin-student/components/StudentProfile";
 import { getUserDetails, updateUserDetails } from "../../../services/User";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import { useRecoilState } from "recoil";
+import { adminStudentSkillState } from "../../../states/Atoms";
+import { getSkillsForUser } from "../../../services/student/skills/StudentSkillService";
 
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
@@ -23,11 +26,35 @@ const fetchStudentDetails = async (userId, setStudentData) => {
   }
 };
 
+const userId = 1;
+
 const AdminStudentDetails = () => {
   const [studentsData, setStudentData] = useState(null);
+  const [studentSkills, setStudentSkills] = useRecoilState(
+    adminStudentSkillState
+  );
   const navigate = useNavigate();
   const location = useLocation();
   const { studentsData: selectedStudent } = location.state || {};
+
+  const fetchStudentSkills = async () => {
+    const response = await getSkillsForUser(userId);
+    const skills = response.map((skill) => ({
+      miniHeading: skill.skill_id,
+      mainHeading: skill.skill_name,
+      count: skill.count,
+      cardType: "skill",
+      canEdit: true,
+      canDelete: true,
+    }));
+
+    console.log("Formatted skills: ",skills);
+    setStudentSkills(skills);
+  };
+
+  useEffect(() => {
+    fetchStudentSkills();
+  }, []);
 
   useEffect(() => {
     if (selectedStudent) {
