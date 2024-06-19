@@ -6,16 +6,17 @@ import { PiCards, PiListBullets } from "react-icons/pi";
 
 const DataView = ({
   CardComponent,
-  data,
-  tableColumns,
+  data = [],
+  tableColumns = [],
   toggle,
   itemsPerPage = 10,
+  cardType = "profilecard",
 }) => {
   const [isCardView, setIsCardView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileView, setIsMobileView] = useState(false);
 
-  const totalPages = Math.ceil((data?.length || 0) / itemsPerPage);
+  const totalPages = Math.ceil(data.length / itemsPerPage);
 
   useEffect(() => {
     if (currentPage > totalPages) {
@@ -35,13 +36,16 @@ const DataView = ({
     setCurrentPage(pageNumber);
   };
 
-  const currentData = data ? data.slice(
+  const currentData = data.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
-  ) : [];
+  );
 
   const getComponentName = (item) => {
     let cardName = String(CardComponent.name).toLowerCase();
+    if (cardName === "undefined" || cardName === "cardcomponent") {
+      cardName = cardType;
+    }
     if (cardName === "skillbatchcard") {
       if (String(item.cardType).toLowerCase() === "skill") {
         cardName = "dataview-skillbatchcardskill";
@@ -57,6 +61,8 @@ const DataView = ({
   const filteredTableData = currentData.map((item) =>
     tableColumns.map((column) => item[column.key])
   );
+
+  console.log("table------", filteredTableData);
 
   const tableHeadings = tableColumns.map((column) => column.displayName);
   const emptyBoxCount = itemsPerPage - currentData.length;
@@ -132,7 +138,7 @@ const DataView = ({
         )}
       </div>
 
-      {data?.length > itemsPerPage && (
+      {data.length > itemsPerPage && (
         <div className={styles["dataview-pagination"]}>
           <Pagination
             totalPages={totalPages}

@@ -1,14 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DataView from "../../common/components/DataView";
 import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import Modal from "../../common/components/Modal";
 import UpdateSingleField from "../../../layouts/common/components/UpdateSingleField";
-import skillCardData from "./AdminSkillsListData";
+import {
+  SkillService,
+  getUsersCountForSkill,
+  updateSkill,
+} from "../../../services/student/skills/StudentSkillService";
+import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
+import { useNavigate } from "react-router-dom";
+
+const capitalizeFirstLetter = (string) => {
+  return string.trim().charAt(0).toUpperCase() + string.slice(1);
+};
 
 const AdminSkillsList = ({ handleClick }) => {
+  const { skills, setSkills, changed, setChanged, setParticipants, participants } =
+    useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
-  const [skills, setSkills] = useState(skillCardData.data);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const response = await SkillService();
+        const capitalizedSkills = response.map((skill) => ({
+          ...skill,
+          skillName: capitalizeFirstLetter(skill.skillName),
+        }));
+        setSkills(capitalizedSkills);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchSkills();
+    setChanged(false);
+  }, [changed]);
 
   const handleOpenModal = (skill) => {
     setSelectedSkill(skill);
@@ -19,33 +54,51 @@ const AdminSkillsList = ({ handleClick }) => {
     setIsOpen(false);
     setSelectedSkill(null);
   };
-
+  
   const handleFormSubmit = (data) => {
     if (selectedSkill) {
+      const response = updateSkill({
+        skillId: selectedSkill.id,
+        skillName: data.inputData,
+      });
+      console.log("Update response: ", response);
       const updatedSkills = skills.map((skill) =>
-        skill.miniHeading === selectedSkill.miniHeading
-          ? { ...skill, mainHeading: data.inputData }
+        skill.id === selectedSkill.id
+          ? { ...skill, skillName: capitalizeFirstLetter(data.inputData) }
           : skill
       );
       setSkills(updatedSkills);
-      console.log(
-        "Updated skill:",
-        selectedSkill.miniHeading,
-        "to:",
-        data.inputData
-      );
     }
     handleCloseModal();
   };
 
   const skillData = {
-    ...skillCardData,
     data: skills.map((skill) => ({
       ...skill,
-      handleClick: handleClick,
+      mainHeading: capitalizeFirstLetter(skill.skillName),
+      miniHeading: skill.id,
+      Count: skill.count,
+      canEdit: true,
+      cardType: "skill",
+      handleClick: async () => {
+        console.log("Skill Id used for request: ", skill.id);
+        const response = await getUsersCountForSkill(skill.id);
+        setParticipants(response.users);
+        console.log("Participants here.....",participants);
+        navigate(`/admin/skills/skill-participants`);
+        console.log("Response for skill users", response);
+      },
       handleEditClick: () => handleOpenModal(skill),
     })),
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div>
@@ -57,11 +110,11 @@ const AdminSkillsList = ({ handleClick }) => {
             labelTitle="Skill Name"
             placeHolder="Skill Name"
             buttonTitle="Save"
-            initialData={{ inputData: selectedSkill.mainHeading }}
+            initialData={{ inputData: selectedSkill.skillName }}
             onSubmit={handleFormSubmit}
             isEdit={true}
             message="You are updating :"
-            skillId={selectedSkill.miniHeading}
+            skillId={selectedSkill.skillName}
           />
         )}
       </Modal>

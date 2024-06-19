@@ -2,8 +2,10 @@ import React from "react";
 import styles from "../AdminSkill.module.css";
 import Table from "../../../components/table/Table";
 import NavButton from "../../../components/buttons/NavButton";
+import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 
 const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
+  const {participants}=useSkills();
   return (
     <div
       className={`${styles["adminskillparticipants-container"]} ${["padding"]} ${["padding-top"]} ${["padding-bottom"]}`}
