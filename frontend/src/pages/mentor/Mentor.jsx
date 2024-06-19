@@ -15,6 +15,8 @@ import MentorEventDetails from "./mentor-events/MentorEventDetails";
 import { getUserDetails } from "../../services/User";
 import { toast } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css"; 
+import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
+
 
 const MentorContent = () => {
   const [Data, setData] = useState({
@@ -23,6 +25,7 @@ const MentorContent = () => {
     emailId: ""
   });
   
+  const userId = sessionStorage.getItem("user_id");
 
   const location = useLocation();
 
@@ -31,7 +34,7 @@ const MentorContent = () => {
   const fetchData = async () => {
     try {
       const params = {
-        userId: "02",
+        userId: userId,
       };
       const data = await getUserDetails(params);
       setData(data.responseData[0]);
@@ -44,6 +47,10 @@ const MentorContent = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (!Data) {
+    return <LoadingSpinner />;
+  }
 
   const primaryData = {
     name: `${Data.firstName} ${Data.lastName}`,

@@ -49,10 +49,10 @@ const CustomGoogleLoginButton = () => {
 
     switch (roleId) {
       case 3:
-        navigate("/student/profile/:userId");
+        navigate(`/student/profile`);
         break;
       case 2:
-        navigate("/mentor/profile/:userId");
+        navigate(`/mentor/profile`);
         break;
       case 1:
         navigate("/admin/student");

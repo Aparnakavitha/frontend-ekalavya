@@ -35,11 +35,13 @@ const AdminContent = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const userId = sessionStorage.getItem("user_id");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const params = {
-          userId: "1",
+          userId: userId,
         };
         const data = await getUserDetails(params);
         setUserData(data.responseData[0]);
