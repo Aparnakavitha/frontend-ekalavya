@@ -49,8 +49,6 @@ export const deleteUser = async (params) => {
     throw error;
   }
 };
-
-
 // Function to get colleges data
 export const getColleges = async () => {
   try {

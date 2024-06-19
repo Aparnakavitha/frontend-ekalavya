@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import MentorProfileInfo from "../../../layouts/admin-mentor/components/MentorProfile";
 import MentorEventsList from "../../../layouts/admin-mentor/components/MentorEventsList";
-import { getUserDetails, updateUserDetails, deleteUser } from "../../../services/User";
+import {
+  getUserDetails,
+  updateUserDetails,
+  deleteUser,
+  addNewUser,
+} from "../../../services/User";
 
 const fetchMentorDetails = async (userId, setMentorData) => {
   try {
@@ -41,8 +46,14 @@ const AdminMentorDetails = () => {
         ...address,
         addressId: address.addressId || "",
       }));
-      const updatedData = { userId, dob, phoneNo, aboutMe, addresses: updatedAddresses };
-      await updateUserDetails(updatedData);
+      const updatedData = {
+        userId,
+        dob,
+        phoneNo,
+        aboutMe,
+        addresses: updatedAddresses,
+      };
+      await addNewUser(updatedData);
       fetchMentorDetails(userId, setMentorData);
     } catch (error) {
       console.error("Error updating user details:", error);
@@ -54,24 +65,43 @@ const AdminMentorDetails = () => {
       if (mentorData && mentorData.userId) {
         const params = { userId: mentorData.userId };
         await deleteUser(params);
-        console.log(`User with userId ${mentorData.userId} deleted successfully.`);
+        console.log(
+          `User with userId ${mentorData.userId} deleted successfully.`
+        );
         navigate("/admin/mentor");
       } else {
         console.error("mentorData or mentorData.userId is not defined");
       }
     } catch (error) {
-      console.error(`Error deleting user with userId ${mentorData.userId}:`, error);
+      console.error(
+        `Error deleting user with userId ${mentorData.userId}:`,
+        error
+      );
     }
   };
 
   if (!mentorData) {
-    return <div style={{ padding: "20px", fontSize: "24px", color: "white", textAlign: "center" }}>Loading...</div>;
+    return (
+      <div
+        style={{
+          padding: "20px",
+          fontSize: "24px",
+          color: "white",
+          textAlign: "center",
+        }}
+      >
+        Loading...
+      </div>
+    );
   }
 
   return (
     <div>
       <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} />
-      <MentorEventsList mentorId={mentorData.userId} handleDelete={handleDelete} />
+      <MentorEventsList
+        mentorId={mentorData.userId}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };
