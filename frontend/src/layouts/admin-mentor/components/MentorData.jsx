@@ -2,7 +2,7 @@ const AdminStudentActionData = {
   heading: "Mentors List",
   buttonProps: {
     variant: "tertiary",
-    content: "+ Add new Mentor",
+    content: "+ Add New Mentor",
     width: "full",
   },
   showDelete: false,

@@ -37,7 +37,6 @@ const AdminMentorAction = ({
       handleCloseModal();
     } catch (error) {
       console.error("Error adding new user:", error);
-      // Add UI feedback or notification for the user
     }
   };
 

@@ -173,7 +173,7 @@ const AdminStudent = () => {
     heading: "Students List",
     buttonProps: {
       variant: "tertiary",
-      content: "+ Add new Student",
+      content: "+ Add New Student",
       width: "full",
     },
     searchWidth: "medium",

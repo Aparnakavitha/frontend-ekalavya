@@ -15,7 +15,7 @@ const AdminEvent = () => {
     eventMode: "",
   });
 
-  const  greeting = {
+  const greeting = {
     welcome: "Welcome Back",
     name: "John",
     info: "Here is the information about",
@@ -102,7 +102,7 @@ const AdminEvent = () => {
     heading: "Events List",
     buttonProps: {
       variant: "tertiary",
-      content: "+ Add new Event",
+      content: "+ Add New Event",
       width: "full",
     },
     showDelete: false,
@@ -151,7 +151,7 @@ const AdminEvent = () => {
         { value: "option4", label: "Option 4" },
       ],
     },
-    searchPlaceholder:"Search events",
+    searchPlaceholder: "Enter Event Title",
   };
 
   return (
