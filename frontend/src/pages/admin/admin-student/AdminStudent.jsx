@@ -41,18 +41,12 @@ const fetchStudentsData = async (setStudentsData, params) => {
     );
 
     const data = await getUserDetails(filteredParams);
-    const studentsOnly = data.responseData.filter(
-      (item) => item.role && item.role.roleId === 3
-    );
+    const studentsOnly =
+      data.responseData?.filter(
+        (item) => item.role && item.role.roleId === 3
+      ) || [];
 
-    if (studentsOnly) {
-      setStudentsData(studentsOnly);
-    } else {
-      studentsOnly = data.responseData.filter(
-        (item) => item.role && item.role.roleId === 999
-      );
-      setStudentsData(studentsOnly);
-    }
+    setStudentsData(studentsOnly);
   } catch (error) {
     console.error("Error fetching data:", error);
   }

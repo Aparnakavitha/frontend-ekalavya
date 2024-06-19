@@ -62,8 +62,6 @@ const DataView = ({
     tableColumns.map((column) => item[column.key])
   );
 
-  console.log("table------", filteredTableData);
-
   const tableHeadings = tableColumns.map((column) => column.displayName);
   const emptyBoxCount = itemsPerPage - currentData.length;
 
