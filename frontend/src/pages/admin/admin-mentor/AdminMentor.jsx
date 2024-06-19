@@ -72,6 +72,7 @@ const AdminMentor = () => {
       const updatedFormData = {
         userId: formData.userId,
         firstName: formData.firstName,
+
         emailId: formData.emailId,
         collegeId: formData.collegeId,
         roleId: formData.roleId,
@@ -99,7 +100,7 @@ const AdminMentor = () => {
     }
   };
 
-  if (!adminData || mentorData.length === 0) {
+  if (!adminData) {
     return <LoadingSpinner />;
   }
 
@@ -143,15 +144,22 @@ const AdminMentor = () => {
         onSubmit={handleFormSubmit}
         onAddSuccess={() => fetchMentorData(setMentorData)}
       />
-      <DataView
-        CardComponent={(props) => (
-          <ProfileCard
-            {...props}
-            onClick={() => handleCardClick(props.studentId)}
-          />
-        )}
-        {...data}
-      />
+
+      {mentorData.length > 0 ? (
+        <DataView
+          CardComponent={(props) => (
+            <ProfileCard
+              {...props}
+              onClick={() => handleCardClick(props.studentId)}
+            />
+          )}
+          {...data}
+        />
+      ) : (
+        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+          No mentors available
+        </p>
+      )}
     </div>
   );
 };

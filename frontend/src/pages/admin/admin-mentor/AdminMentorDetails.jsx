@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MentorProfileInfo from "../../../layouts/admin-mentor/components/MentorProfile";
 import MentorEventsList from "../../../layouts/admin-mentor/components/MentorEventsList";
-import { getUserDetails, updateUserDetails } from "../../../services/User";
-import profilepic from "../../../assets/DP.png";
+import { getUserDetails, updateUserDetails, deleteUser } from "../../../services/User";
 
 const fetchMentorDetails = async (userId, setMentorData) => {
   try {
-    const params = {
-      userId,
-    };
+    const params = { userId };
     const data = await getUserDetails(params);
     if (data && data.responseData && data.responseData.length > 0) {
       setMentorData(data.responseData[0]);
@@ -21,6 +18,7 @@ const fetchMentorDetails = async (userId, setMentorData) => {
 
 const AdminMentorDetails = () => {
   const [mentorData, setMentorData] = useState(null);
+  const navigate = useNavigate();
   const location = useLocation();
   const { mentorData: selectedMentor } = location.state || {};
 
@@ -31,19 +29,18 @@ const AdminMentorDetails = () => {
   }, [selectedMentor]);
 
   useEffect(() => {
-    if (mentorData) {
+    if (mentorData && mentorData.userId) {
       fetchMentorDetails(mentorData.userId, setMentorData);
     }
   }, [mentorData]);
 
   const handleFormSubmit = async (formData) => {
     try {
-      const { dob, phoneNo, aboutMe, addresses, userId ,education} = formData;
+      const { dob, phoneNo, aboutMe, addresses, userId } = formData;
 
-      // Prepare addresses with addressId included
-      const updatedAddresses = addresses.map(address => ({
+      const updatedAddresses = addresses.map((address) => ({
         ...address,
-        addressId: address.addressId || "", // If addressId is not present, use empty string
+        addressId: address.addressId || "",
       }));
 
       const updatedData = {
@@ -55,28 +52,30 @@ const AdminMentorDetails = () => {
       };
 
       await updateUserDetails(updatedData);
-
       console.log("User details updated successfully!");
-      fetchMentorDetails(userId, setMentorData); // Fetch updated mentor details after update
+      fetchMentorDetails(userId, setMentorData);
     } catch (error) {
       console.error("Error updating user details:", error);
     }
   };
 
-  const handleFormSubmit2 = async (formData) => {
+  const handleDelete = async () => {
     try {
-      console.log("Form Submitted with data:", formData);
-      const response = await updateUserDetails(formData);
-      console.log("Update response:", response);
-      fetchMentorDetails(formData.userId, setMentorData);
+      if (mentorData && mentorData.userId) {
+        await deleteUser({ userId: mentorData.userId });
+        console.log(`User with userId ${mentorData.userId} deleted successfully.`);
+        navigate("/admin/mentor");
+      } else {
+        console.error("mentorData or mentorData.userId is not defined");
+      }
     } catch (error) {
-      console.error("Error updating user details:", error);
+      console.error(`Error deleting user with userId ${mentorData.userId}:`, error);
     }
   };
 
   if (!mentorData) {
     return (
-      <div style={{ padding: '20px', fontSize: '24px', color: 'white', textAlign: 'center' }}>
+      <div style={{ padding: "20px", fontSize: "24px", color: "white", textAlign: "center" }}>
         Loading...
       </div>
     );
@@ -84,8 +83,8 @@ const AdminMentorDetails = () => {
 
   return (
     <div>
-      <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} onformSubmit = {handleFormSubmit2} />
-      <MentorEventsList mentorId={mentorData.userId} />
+      <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} />
+      <MentorEventsList handleDelete={handleDelete} />
     </div>
   );
 };
