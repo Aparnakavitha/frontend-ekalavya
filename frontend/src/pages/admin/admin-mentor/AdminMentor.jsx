@@ -104,7 +104,7 @@ const AdminMentor = () => {
 
   const greet = {
     welcome: "Welcome Back",
-    name: `${adminData.firstName} ${adminData.lastName}`,
+    name: `${adminData.firstName}`,
     info: "Here is the information about",
     profile: "Mentors",
     showButtons: false,
