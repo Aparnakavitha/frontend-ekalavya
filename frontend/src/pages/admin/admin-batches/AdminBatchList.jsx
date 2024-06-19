@@ -14,16 +14,16 @@ const AdminBatchList = () => {
 
   useEffect(() => {
     fetchData();
-  }, [changed]); // Refetch data when changed state updates
+  }, [changed]); 
 
   const fetchData = async () => {
-    setLoading(true); // Set loading state while fetching data
+    setLoading(true); 
     try {
       const responseData = await fetchbatches();
       const data = responseData.responseData;
       console.log(data);
 
-      // Check if responseData is an array
+      
       if (Array.isArray(data)) {
         const formattedData = data.map((item) => ({
           miniHeading: `B${item.batchId}`,
@@ -34,7 +34,7 @@ const AdminBatchList = () => {
 
         console.log("Formatted batchData is : ", formattedData);
         setBatchData(formattedData);
-        setLoading(false); // Clear loading state on successful data fetch
+        setLoading(false); 
         console.log("Data fetched successfully:", formattedData);
       } else {
         throw new Error("Received data is not in expected format");
@@ -42,7 +42,7 @@ const AdminBatchList = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
       setError(error);
-      setLoading(false); // Clear loading state on error
+      setLoading(false); 
     }
   };
 

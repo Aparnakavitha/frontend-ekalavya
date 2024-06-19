@@ -17,11 +17,11 @@ const AdminBatchAction = ({ onSubmit }) => {
 
   const handleFormSubmit = async (formData) => {
     try {
-      await onSubmit(formData); // Pass formData to parent component onSubmit function
-      setIsOpen(false); // Close modal on successful submission
+      await onSubmit(formData); 
+      setIsOpen(false); 
     } catch (error) {
       console.error("Error submitting batch:", error);
-      // Handle error if needed
+      
     }
   };
 
