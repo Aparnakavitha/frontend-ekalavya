@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
@@ -61,7 +61,8 @@ const ActionComponent = ({
     onFilterChange(filtersObject);
   };
 
-  const handleSearchChange = (value) => {
+  const handleSearchChange = async (value) => {
+    console.log(value);
     onSearchChange(value);
   };
 

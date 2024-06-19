@@ -8,7 +8,11 @@ import {
   createSkill,
   deleteSkill,
 } from "../../../services/student/skills/StudentSkillService";
-import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
+import {
+  useSkills,
+  setSkills,
+} from "../../../pages/admin/admin-skills/AdminSkillContext";
+import { filterSkills } from "../../../services/student/skills/StudentSkillService";
 
 const AdminSkillAction = () => {
   const { skills, setSkills, setChanged } = useSkills();
@@ -57,11 +61,15 @@ const AdminSkillAction = () => {
         prevSkills.filter((skill) => skill.id !== deleteSkillId)
       );
       setChanged(true);
-      console.log("skills after deletion: ", skills);
       handleCloseDelete();
     } catch (error) {
       console.error("Error deleting skill:", error);
     }
+  };
+
+  const handleSearchChange = async (value) => {
+    const searchedSkill = await filterSkills(value);
+    setSkills(searchedSkill);
   };
 
   const actionData = {
@@ -78,7 +86,7 @@ const AdminSkillAction = () => {
 
   return (
     <div>
-      <ActionComponent {...actionData} />
+      <ActionComponent {...actionData} onSearchChange={handleSearchChange} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddSkill onSubmit={handleFormSubmit} onCancel={handleCloseModal} />
       </Modal>

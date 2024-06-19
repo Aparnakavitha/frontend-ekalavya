@@ -6,7 +6,7 @@ import { MdModeEdit } from "react-icons/md";
 const SkillBatchCard = (props) => {
   const {
     miniHeading,
-    mainHeading = "", 
+    mainHeading = "",
     Count,
     cardType,
     handleClick,

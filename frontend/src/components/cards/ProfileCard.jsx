@@ -17,15 +17,22 @@ const ProfileCard = (props) => {
   } = props;
 
   const transformMainMail = (studentMail) => {
-    if (studentMail.length > 17) {
-      return studentMail.slice(0, 17) + "...";
+    if (studentMail.length > 20) {
+      return studentMail.slice(0, 20) + "...";
     }
     return studentMail;
   };
 
   const transformName = (studentMail) => {
-    if (studentMail.length > 12) {
-      return studentMail.slice(0, 12) + "...";
+    if (studentMail.length > 15) {
+      return studentMail.slice(0, 15) + "...";
+    }
+    return studentMail;
+  };
+
+  const transformCollege = (studentMail) => {
+    if (studentMail.length > 26) {
+      return studentMail.slice(0, 26) + "...";
     }
     return studentMail;
   };
@@ -58,7 +65,7 @@ const ProfileCard = (props) => {
         <div className={styles["titles-wrapper"]}>
           <h1 className={styles.title1}>{transformName(studentName)}</h1>
           <h2 className={styles.title2}>{transformName(studentId)}</h2>
-          <h3 className={styles.title3}>{transformName(studentCollege)}</h3>
+          <h3 className={styles.title3}>{transformCollege(studentCollege)}</h3>
         </div>
 
         <div className={styles["contact-info"]}>
