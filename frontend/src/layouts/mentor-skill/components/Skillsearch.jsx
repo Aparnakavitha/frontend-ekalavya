@@ -5,7 +5,8 @@ import styles from "../MentorSkill.module.css";
 import Modal from "../../common/components/Modal";
 import CombinedSkillForm from "../../common/components/CombinedSkillForm";
 import DeleteBox from "../../common/components/DeleteBox";
-import { skillData } from "./skillData";
+import profilePic from "../../../assets/SkillUser.png";
+import { getSkillsForUser } from "../../../services/student/skills/StudentSkillService";
 
 const Skillsearch = () => {
   const [modalState, setModalState] = useState({
@@ -13,6 +14,22 @@ const Skillsearch = () => {
     type: "",
     selectedIndex: null,
   });
+
+  const skillData = {
+    heading: "Skills",
+    subheading: "Add skills to students",
+    searchBarPlaceholder: "Student Name/Student ID",
+  };
+
+  const options = [
+    { value: "abc", label: "ABC" },
+    { value: "xyz", label: "XYZ" },
+    { value: "pqr", label: "PQR" },
+  ];
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const openModal = (type, index = null) =>
     setModalState({ isOpen: true, type, selectedIndex: index });
@@ -29,6 +46,26 @@ const Skillsearch = () => {
     closeModal();
   };
 
+  const handleSearch = async (userId) => {
+    try {
+      setLoading(true);
+      setError(null);
+      const skillsData = await getSkillsForUser(userId);
+      setSearchResults(skillsData && skillsData.length > 0 ? skillsData : []);
+    } catch (error) {
+      console.error("Error fetching skills for user:", error.message);
+      setSearchResults([]);
+      setError(error.message || "User not found or an error occurred.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clearSearch = () => {
+    setSearchResults([]);
+    setError(null);
+  };
+
   return (
     <div
       className={`${styles["skillsearch-skillssearch"]} padding padding-top padding-bottom`}
@@ -42,18 +79,26 @@ const Skillsearch = () => {
       <div className={`${styles["skillsearch-searchbar"]}`}>
         <SearchBar
           placeholder={skillData.searchBarPlaceholder}
-          onSearch={skillData.onSearch}
+          onSearch={handleSearch}
+          onClear={clearSearch}
         />
       </div>
 
       <div className={`${styles["skillsearch-cardcontainer"]}`}>
-        {skillData.skillcard.map((card, index) => (
+        {loading && <p>Loading...</p>}
+        {error && <p className={`${styles["error-message"]}`}>{error}</p>}
+        {searchResults.map((user, index) => (
           <div key={index}>
-            <Card
-              {...card}
-              deleteSkill={() => openModal("delete", index)}
-              addSkill={() => openModal("add")}
-            />
+            {user.user_details && (
+              <Card
+                mainHeading={user.user_details.user_name}
+                miniHeading="Student"
+                profilepic={profilePic}
+                skills={user.skills.map((skill) => skill.skill_name)}
+                deleteSkill={() => openModal("delete", index)}
+                addSkill={() => openModal("add")}
+              />
+            )}
           </div>
         ))}
       </div>
@@ -71,7 +116,7 @@ const Skillsearch = () => {
               isEditlevel={false}
               displaytext="This skill is only to be placed at level 1"
               buttonTitle="Add Skill"
-              options={skillData.options}
+              options={options}
               onSubmit={handleAddSkill}
             />
           ) : (
