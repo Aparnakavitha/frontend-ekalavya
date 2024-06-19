@@ -23,6 +23,7 @@ const RouterComponent = () => {
             path="/explore/description"
             element={<EventDescription />}
           />
+           <Route path="/student/*" element={<StudentContent />} />
         </Routes>
       </BrowserRouter>
     </div>
