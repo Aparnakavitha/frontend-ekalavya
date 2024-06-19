@@ -19,16 +19,17 @@ export const updateUserDetails = async (data) => {
     const response = await axios.post(`${API_URL}/users`, data);
     return response.data;
   } catch (error) {
-    console.error('Error updating user details:', error);
+    console.error("Error updating user details:", error);
     throw error;
   }
 };
+
 export const addNewUser = async (userData) => {
   try {
     const response = await axios.post(`${API_URL}/users`, userData);
     return response.data;
   } catch (error) {
-    console.error('Error adding new user:', error);
+    console.error("Error adding new user:", error);
     throw error;
   }
 };
