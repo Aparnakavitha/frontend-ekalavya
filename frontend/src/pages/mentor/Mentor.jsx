@@ -13,6 +13,8 @@ import MentorSkills from "./mentor-skills/MentorSkills";
 import MentorCreateEvent from "./mentor-events/MentorCreateEvent";
 import MentorEventDetails from "./mentor-events/MentorEventDetails";
 import { getUserDetails } from "../../services/User";
+import { toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 
 const MentorContent = () => {
   const [Data, setData] = useState({
@@ -52,7 +54,18 @@ const MentorContent = () => {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      console.log("clicked");
+      sessionStorage.clear(); 
+      navigate("/"); 
+      toast.success("LogOut Successful", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     },
     width: "full",
   };

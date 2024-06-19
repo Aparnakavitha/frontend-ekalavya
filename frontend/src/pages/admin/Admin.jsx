@@ -4,6 +4,7 @@ import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
+import { RecoilRoot } from 'recoil';
 import {
   MdEvent,
   MdViewQuilt,
@@ -26,6 +27,8 @@ import AdminEventParticipants from "./admin-events/AdminEventParticipants";
 import AdminSkillStudents from "./admin-skills/AdminSkillStudents";
 import { getUserDetails } from "../../services/User";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
+import { toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -56,7 +59,18 @@ const AdminContent = () => {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      console.log("clicked");
+      sessionStorage.clear(); 
+      navigate("/"); 
+      toast.success("LogOut Successful", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     },
     width: "full",
   };

@@ -19,6 +19,8 @@ import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
 import StudentEventDescription from "../../layouts/student-event-description/components/StudentEventDescription";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import { getUserDetails } from "../../services/User";
+import { toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 
 const StudentContent = () => {
   const [userData, setUserData] = useState(null);
@@ -50,7 +52,18 @@ const StudentContent = () => {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      console.log("clicked");
+      sessionStorage.clear(); 
+      navigate("/"); 
+      toast.success("LogOut Successful", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     },
     width: "full",
   };
