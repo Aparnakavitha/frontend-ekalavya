@@ -132,6 +132,13 @@ const AdminStudent = () => {
         if (location.state && location.state.userData) {
           setUserData(location.state.userData);
         }
+
+        // const userId = sessionStorage.getItem("user_id");
+        // const params = {
+        //   userId: userId,
+        // };
+        // const logData = await getUserDetails(params);
+        // setUserData(logData.responseData[0]);
       } catch (error) {
         console.error("Error fetching college data:", error);
       }

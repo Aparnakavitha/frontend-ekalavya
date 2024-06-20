@@ -56,8 +56,9 @@ const AdminMentor = () => {
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
+        const userId = sessionStorage.getItem("user_id");
         const params = {
-          userId: "1",
+          userId: userId,
         };
         const data = await getUserDetails(params);
         if (data && data.responseData && data.responseData.length > 0) {

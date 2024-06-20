@@ -28,21 +28,20 @@ import { getUserDetails } from "../../services/User";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import { SkillsProvider } from "./admin-skills/AdminSkillContext";
 import { RecoilRoot } from "recoil";
-import { toast } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css"; 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const userId = sessionStorage.getItem("user_id");
-
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const userId = sessionStorage.getItem("user_id");
         const params = {
-          userId: "1",
+          userId: userId,
         };
         const data = await getUserDetails(params);
         setUserData(data.responseData[0]);
@@ -62,8 +61,8 @@ const AdminContent = () => {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      sessionStorage.clear(); 
-      navigate("/"); 
+      sessionStorage.clear();
+      navigate("/");
       toast.success("LogOut Successful", {
         position: "top-center",
         autoClose: 5000,
@@ -73,7 +72,7 @@ const AdminContent = () => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
     },
     width: "full",
   };
@@ -148,39 +147,39 @@ const AdminContent = () => {
             />
           </div>
           <div className="statecontent">
-              <SkillsProvider>
-                <Routes>
-                  <Route path="student" element={<AdminStudent />} />
-                  <Route path="mentor" element={<AdminMentor />} />
-                  <Route path="events" element={<AdminEvent />} />
-                  <Route path="batches" element={<AdminBatchList />} />
-                  <Route path="skills" element={<AdminSkill />} />
-                  <Route
-                    path="skills/skill-participants"
-                    element={<AdminSkillStudents />}
-                  />
-                  <Route
-                    path="batches/batch-details"
-                    element={<AdminBatchSelect />}
-                  />
-                  <Route
-                    path="student/student-details/:userId"
-                    element={<AdminStudentDetails />}
-                  />
-                  <Route
-                    path="mentor/mentor-details/:userId"
-                    element={<AdminMentorDetails />}
-                  />
-                  <Route
-                    path="events/event-details/:eventId"
-                    element={<AdminEventDetails />}
-                  />
-                  <Route
-                    path="events/event-details/event-participants/:eventId"
-                    element={<AdminEventParticipants />}
-                  />
-                </Routes>
-              </SkillsProvider>
+            <SkillsProvider>
+              <Routes>
+                <Route path="student" element={<AdminStudent />} />
+                <Route path="mentor" element={<AdminMentor />} />
+                <Route path="events" element={<AdminEvent />} />
+                <Route path="batches" element={<AdminBatchList />} />
+                <Route path="skills" element={<AdminSkill />} />
+                <Route
+                  path="skills/skill-participants"
+                  element={<AdminSkillStudents />}
+                />
+                <Route
+                  path="batches/batch-details"
+                  element={<AdminBatchSelect />}
+                />
+                <Route
+                  path="student/student-details/:userId"
+                  element={<AdminStudentDetails />}
+                />
+                <Route
+                  path="mentor/mentor-details/:userId"
+                  element={<AdminMentorDetails />}
+                />
+                <Route
+                  path="events/event-details/:eventId"
+                  element={<AdminEventDetails />}
+                />
+                <Route
+                  path="events/event-details/event-participants/:eventId"
+                  element={<AdminEventParticipants />}
+                />
+              </Routes>
+            </SkillsProvider>
           </div>
         </div>
         <div className="footer">

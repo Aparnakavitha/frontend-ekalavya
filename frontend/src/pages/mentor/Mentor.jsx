@@ -13,19 +13,16 @@ import MentorSkills from "./mentor-skills/MentorSkills";
 import MentorCreateEvent from "./mentor-events/MentorCreateEvent";
 import MentorEventDetails from "./mentor-events/MentorEventDetails";
 import { getUserDetails } from "../../services/User";
-import { toast } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css"; 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
-
 
 const MentorContent = () => {
   const [Data, setData] = useState({
     firstName: "",
     lastName: "",
-    emailId: ""
+    emailId: "",
   });
-  
-  const userId = sessionStorage.getItem("user_id");
 
   const location = useLocation();
 
@@ -33,6 +30,7 @@ const MentorContent = () => {
 
   const fetchData = async () => {
     try {
+      const userId = sessionStorage.getItem("user_id");
       const params = {
         userId: userId,
       };
@@ -61,8 +59,8 @@ const MentorContent = () => {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      sessionStorage.clear(); 
-      navigate("/"); 
+      sessionStorage.clear();
+      navigate("/");
       toast.success("LogOut Successful", {
         position: "top-center",
         autoClose: 5000,
@@ -72,7 +70,7 @@ const MentorContent = () => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
     },
     width: "full",
   };
@@ -138,7 +136,10 @@ const MentorContent = () => {
               <Route path="/events" element={<MentorEvents />} />
               <Route path="/skills" element={<MentorSkills />} />
               <Route path="/event-creation" element={<MentorCreateEvent />} />
-              <Route path="/event-details/:eventId" element={<MentorEventDetails />} />
+              <Route
+                path="/event-details/:eventId"
+                element={<MentorEventDetails />}
+              />
             </Routes>
           </div>
         </div>
