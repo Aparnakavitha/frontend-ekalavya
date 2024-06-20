@@ -34,15 +34,6 @@ const StudentProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
     }
   };
 
-  const sample = {
-    role: "student",
-    profilepic: image,
-    ...profileData,
-    ...EditableData,
-    hasDelete: false,
-    onClickEdit: handleOpenEditBasicDetails,
-    onClickDelete: handleOpenDeleteBasicDetails,
-  };
 
   const editBox = {
     mainHeading: "Edit Basic Details",
