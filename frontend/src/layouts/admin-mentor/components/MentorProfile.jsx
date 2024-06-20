@@ -6,7 +6,7 @@ import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
 import EducationalQualification from "../../common/components/EducationalQualification";
-import { updateUserDetails } from "../../../services/User";
+import { addNewUser } from "../../../services/User";
 
 const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
@@ -37,7 +37,7 @@ const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Sfgsdh", formData);
-      const response = await updateUserDetails(formData);
+      const response = await addNewUser(formData);
       console.log("Update response:", response);
       handleCloseEditBasicDetails();
     } catch (error) {
