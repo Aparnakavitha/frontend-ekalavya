@@ -24,22 +24,30 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
 
   const handleFormSubmit = (formData) => {
     const { addresses, ...formDataWithoutAddresses } = formData;
-
-    // Prepare addresses with addressId included
-    const updatedAddresses = addresses.map((address) => ({
+  
+    // Check if any address fields have been updated
+    const addressesChanged = addresses.some(address => (
+      address.houseName ||
+      address.city ||
+      address.pinCode ||
+      address.state ||
+      address.country
+    ));
+  
+    // Prepare addresses with addressId included if they have changed
+    const updatedAddresses = addressesChanged ? addresses.map((address) => ({
       ...address,
       addressId: address.addressId || "", // If addressId is not present, use empty string
-    }));
-
+    })) : [];
+  
     onSubmit({
       userId: studentsData.userId,
       ...formDataWithoutAddresses,
       addresses: updatedAddresses,
     });
-
+  
     handleCloseEditBasicDetails();
   };
-
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Sfgsdh", formData);
