@@ -24,13 +24,14 @@ const MentorContent = () => {
     emailId: "",
   });
 
+  const userId = sessionStorage.getItem("user_id");
+
   const location = useLocation();
 
   const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
-      const userId = sessionStorage.getItem("user_id");
       const params = {
         userId: userId,
       };
