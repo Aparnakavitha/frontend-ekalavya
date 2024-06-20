@@ -2,8 +2,6 @@ import React from "react";
 import "./App.css";
 import RouterComponent from "./routes/Router";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import CustomGoogleLoginButton from "./services/CustomGoogleLoginButton";
-
 
 const App = () => {
   return (
@@ -11,7 +9,6 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           <RouterComponent />
-          {/* <CustomGoogleLoginButton /> */}
         </header>
       </div>
     </GoogleOAuthProvider>

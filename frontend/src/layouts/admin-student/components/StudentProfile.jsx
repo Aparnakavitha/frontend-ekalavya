@@ -25,10 +25,9 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
   const handleFormSubmit = (formData) => {
     const { addresses, ...formDataWithoutAddresses } = formData;
 
-    // Prepare addresses with addressId included
     const updatedAddresses = addresses.map((address) => ({
       ...address,
-      addressId: address.addressId || "", // If addressId is not present, use empty string
+      addressId: address.addressId || "",
     }));
 
     onSubmit({

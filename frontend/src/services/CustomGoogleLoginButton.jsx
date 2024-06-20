@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./CustomGoogleLoginButton.css";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
@@ -6,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const clientId = "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com"; // Replace with your actual Google Client ID
 
-const CustomGoogleLoginButton = () => {
+const CustomGoogleLoginButton = ({ fullWidth }) => {
   const navigate = useNavigate();
 
   const handleLoginSuccess = async (credentialResponse) => {
@@ -70,10 +71,21 @@ const CustomGoogleLoginButton = () => {
   });
 
   return (
-    <button onClick={() => login()} className="custom-google-login-button">
+    <button
+      onClick={() => login()}
+      className={`custom-google-login-button ${fullWidth ? 'full-width' : ''}`}
+    >
       Login
     </button>
   );
+};
+
+CustomGoogleLoginButton.propTypes = {
+  fullWidth: PropTypes.bool,
+};
+
+CustomGoogleLoginButton.defaultProps = {
+  fullWidth: false,
 };
 
 export default CustomGoogleLoginButton;
