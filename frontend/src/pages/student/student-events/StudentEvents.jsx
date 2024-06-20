@@ -1,209 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import EventMenus from "../../../layouts/common/components/EventMenus";
 import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
-import { useNavigate } from "react-router-dom";
-
+import { getEnrolledEventIds } from "../../../../src/services/Event";
+ 
 const StudentEvent = () => {
   const navigate = useNavigate();
+  const [event, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true); // Default to true to show loading initially
+  const [filter, setFilter] = useState("Upcoming");
+  const participantId = sessionStorage.getItem("user_id");
+ 
+  useEffect(() => {
+    fetchEnrolledEvents();
+  }, [filter]);
+ 
+  const fetchEnrolledEvents = async () => {
+    setLoading(true); // Start loading
+    try {
+      const eventIds = await getEnrolledEventIds(participantId);
+      console.log("Enrolled Event IDs:", eventIds);
+      
+      if (filter === "Upcoming") {
+        setEvents(eventIds.upcoming);
+      } else if (filter === "Enrolled") {
+        setEvents(eventIds.enrolled);
+      } else if (filter === "Completed") {
+        setEvents(eventIds.completed);
+      }
+    } catch (error) {
+      console.error("Error fetching enrolled events:", error);
+    }
+    setLoading(false); // Stop loading
+  };
+ 
   const primaryCardData = {
-    data: [
-      {
-        id: 1,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${1}`);
-        },
+    data: event.map((event) => ({
+      id: event.eventId,
+      miniHeading: event.eventType,
+      mainHeading: event.eventTitle,
+      startDate: event.startDate,
+      endDate: event.endDate,
+      description: event.description,
+      cardType: "Course",
+      handleClick: () => {
+        console.log("clicked");
+        navigate(`${event.eventId}`, {
+          state: { eventId: event.eventId, tab: filter },
+        });
       },
-
-      {
-        id: 1,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${1}`);
-        },
-      },
-      ,
-      {
-        id: 3,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-
-      {
-        id: 3,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-
-      {
-        id: 5,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-
-      {
-        id: 6,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-
-      {
-        id: 7,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-
-      {
-        id: 8,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-
-      {
-        id: 9,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-
-      {
-        id: 10,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-
-      {
-        id: 11,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-
-      {
-        id: 12,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-
-      {
-        id: 13,
-        miniHeading: "Capstone",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-        handleClick: (e) => {
-          console.log("clicked");
-          navigate(`${3}`);
-        },
-      },
-    ],
-
+    })),
     tableColumns: [
       { key: "miniHeading", displayName: "Type" },
       { key: "mainHeading", displayName: "Title" },
@@ -211,10 +58,16 @@ const StudentEvent = () => {
       { key: "endDate", displayName: "End Date" },
       { key: "description", displayName: "Description" },
     ],
-
     toggle: false,
     itemsPerPage: 10,
   };
+ 
+  console.log("primaryCardData:", primaryCardData.data);
+ 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+ 
   return (
     <div>
       <EventMenus
@@ -228,12 +81,9 @@ const StudentEvent = () => {
           width: "half",
         }}
         statuses={[
-          { name: "Upcoming", onClick: () => console.log("Upcoming clicked") },
-          { name: "Enrolled", onClick: () => console.log("Enrolled clicked") },
-          {
-            name: "Completed",
-            onClick: () => console.log("Completed clicked"),
-          },
+          { name: "Upcoming", onClick: () => setFilter("Upcoming") },
+          { name: "Enrolled", onClick: () => setFilter("Enrolled") },
+          { name: "Completed", onClick: () => setFilter("Completed") },
         ]}
         title="Events"
       />
@@ -247,5 +97,6 @@ const StudentEvent = () => {
     </div>
   );
 };
-
+ 
 export default StudentEvent;
+ 
