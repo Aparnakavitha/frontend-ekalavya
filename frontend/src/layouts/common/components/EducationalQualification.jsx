@@ -64,11 +64,11 @@ const EducationalQualification = ({
       console.error("Error updating user details:", error);
     }
   };
- 
+
   const handleRemove = async (index) => {
     try {
       const qualification = qualifications[index];
- 
+
       const formData = {
         userId: userId,
         qualifications: [
@@ -113,6 +113,7 @@ const EducationalQualification = ({
     message: "Remove this qualification?",
     buttonText: "Confirm",
     onConfirm: () => {
+      console.log("hello")
       if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
         handleRemove(editIndex);
       }
