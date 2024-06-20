@@ -27,7 +27,7 @@ const AdminBatchList = () => {
       if (Array.isArray(data)) {
         const formattedData = data.map((item) => ({
           miniHeading: `B${item.batchId}`,
-          mainHeading: item.batchName || "", // Ensure mainHeading is not undefined
+          mainHeading: item.batchName || "", 
           Count: item.participantCount,
           cardType: "batch",
         }));
@@ -47,8 +47,8 @@ const AdminBatchList = () => {
   };
 
   const handleSearchChange = (data) => {
-    setSearchQuery(data); // Update search query state
-    setChanged((prev) => !prev); // Trigger useEffect to fetch new data
+    setSearchQuery(data); 
+    setChanged((prev) => !prev); 
   };
 
   const handleClick = () => {
