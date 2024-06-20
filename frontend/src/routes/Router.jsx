@@ -19,8 +19,7 @@ const RouterComponent = () => {
           <Route path="/admin/*" element={<AdminContent />} />
           <Route exact path="/student/*" element={<StudentContent />} />
           <Route
-            exact
-            path="/explore/description"
+            path="/explore/event-details/:eventId"
             element={<EventDescription />}
           />
         </Routes>
