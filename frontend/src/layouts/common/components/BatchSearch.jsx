@@ -18,28 +18,56 @@ const BatchSearch = ({
   showTextButton,
   showReset,
   showAdd,
+  onSearchChange,
+  onFilterChange,
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [filterStates, setFilterStates] = useState(
-    filterProps.map((filter) => filter.defaultOption || "")
+    filterProps.map((filter) => ({
+      heading: filter.Heading,
+      selectedOption: filter.defaultOption || "",
+      selectedOptionValue: filter.defaultValue || "",
+    }))
   );
 
   const handleToggle = (index) => {
     setOpenDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
-  const handleOptionClick = (index, option) => {
+  const handleOptionClick = (index, arrayIndex, option) => {
     const newFilterStates = [...filterStates];
-    newFilterStates[index] = option;
+    newFilterStates[index] = {
+      heading: filterProps[index].Heading,
+      selectedOption: option,
+      selectedOptionValue: filterProps[index].Value[arrayIndex],
+    };
     setFilterStates(newFilterStates);
+    const filtersObject = {};
+    newFilterStates.forEach((filter) => {
+      filtersObject[filter.heading] = filter.selectedOptionValue;
+    });
+    onFilterChange(filtersObject);
     setOpenDropdownIndex(null);
   };
 
   const handleReset = () => {
-    const defaultStates = filterProps.map(
-      (filter) => filter.defaultOption || ""
-    );
+    const defaultStates = filterProps.map((filter) => ({
+      heading: filter.Heading,
+      selectedOption: filter.defaultOption || "",
+      selectedOptionValue: null,
+    }));
     setFilterStates(defaultStates);
+    const filtersObject = {};
+    defaultStates.forEach((filter) => {
+      filtersObject[filter.heading] = filter.selectedOptionValue;
+    });
+    filtersObject.StudentIds = "";
+    onFilterChange(filtersObject);
+  };
+
+  const handleSearchChange = async (value) => {
+    console.log(value);
+    onSearchChange(value);
   };
 
   return (
@@ -62,7 +90,7 @@ const BatchSearch = ({
         </div>
         <div className={`${styles["batchsearch-bottom"]}`}>
           <div className={`${styles["batchsearch-search"]}`}>
-            <Searchbar {...searchbarProps} />
+            <Searchbar {...searchbarProps} onSearch={handleSearchChange} />
           </div>
           <div className={`${styles["batchsearch-right"]}`}>
             {showFiltersAndReset && (
@@ -74,8 +102,14 @@ const BatchSearch = ({
                     Content={props.Content}
                     isOpen={openDropdownIndex === index}
                     onToggle={() => handleToggle(index)}
-                    onOptionClick={(option) => handleOptionClick(index, option)}
-                    selectedOption={filterStates[index]}
+                    onOptionClick={(option) =>
+                      handleOptionClick(
+                        index,
+                        props.Content.indexOf(option),
+                        option
+                      )
+                    }
+                    selectedOption={filterStates[index].selectedOption} // Pass the selectedOption property
                   />
                 ))}
               </div>
