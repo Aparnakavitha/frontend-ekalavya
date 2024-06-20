@@ -5,7 +5,7 @@ import { EventsDescription } from "../../common";
 import Modal from "../../common/components/Modal";
 import LoginBox from "../../common/components/LoginBox";
 
-const HomeEventDescription = ({ event }) => {
+const HomeEventDescription = ({ event, organizer }) => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleOpenLoginModal = () => {
@@ -18,18 +18,6 @@ const HomeEventDescription = ({ event }) => {
 
   const handleRegisterClick = () => {
     handleOpenLoginModal();
-  };
-
-  const handleButtonClick = (message) => {
-    toast.success(message, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
   };
 
   const homeEvents = {
@@ -45,7 +33,7 @@ const HomeEventDescription = ({ event }) => {
     link: event.link,
     speaker: event.speaker,
     speakerDescription: event.speakerDescription,
-    organizer: event.organizer,
+    organizer: organizer ? `${organizer.firstName} ${organizer.lastName}` : "",
     button: "Events",
     buttons: event.eventTitle,
     small: "edit",
@@ -58,8 +46,7 @@ const HomeEventDescription = ({ event }) => {
 
   const loginBoxProps = {
     title: "Please Log In",
-    message:
-      "You need to log in to register for this event. Please log in",
+    message: "You need to log in to register for this event. Please log in",
     buttonText: "Log In with Google",
     onCancel: handleCloseLoginModal,
   };
@@ -67,20 +54,6 @@ const HomeEventDescription = ({ event }) => {
   return (
     <div className="padding padding-top padding-bottom">
       <EventsDescription {...homeEvents} />
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition={Slide}
-      />
-
       <Modal
         isOpen={isLoginModalOpen}
         widthVariant="small"

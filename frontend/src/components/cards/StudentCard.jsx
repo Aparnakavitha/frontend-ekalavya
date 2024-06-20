@@ -60,12 +60,12 @@ const StudentCard = (props) => {
           className={styles.studentImage}
         />
         <div className={styles.maincontent}>
-          <a className={styles.studentname}>{transformMainName(studentName)}</a>
+          <a className={styles.studentname} title={studentName}>{transformMainName(studentName)}</a>
           <a className={styles.studentid}>{studentId}</a>
-          <a className={styles.studentcollege}>{studentCollege}</a>
+          <a className={styles.studentcollege} title={studentCollege}>{studentCollege}</a>
         </div>
         <div className={styles.maincontent}>
-          <a className={styles.studentmail}>{transformMainMail(studentMail)}</a>
+          <a className={styles.studentmail} title={studentMail}>{transformMainMail(studentMail)}</a>
           <a className={styles.studentphonenumber}>{studentPhoneNumber}</a>
         </div>
       </div>
