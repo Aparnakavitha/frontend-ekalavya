@@ -7,14 +7,13 @@ import { format, parse } from "date-fns";
  
 const Education = ({ qualifications, onClickAdd, onClickEdit, onClickDelete }) => {
   const formattedDate = (dateString) => {
-    if (!dateString) return '';
+    if (!dateString) return ''; 
     const date = parse(dateString, "yyyy-MM-dd", new Date());
     const day = format(date, "do");
     const monthYear = format(date, "MMMM, yyyy");
     return `${day} ${monthYear}`;
   };
   
- 
   return (
     <div className={`${styles["education-container"]} padding-bottom padding`}>
       <div className={`${styles["education-qualification"]}`}>
