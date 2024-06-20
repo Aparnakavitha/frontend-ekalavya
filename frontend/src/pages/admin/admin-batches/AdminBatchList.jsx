@@ -76,15 +76,20 @@ const AdminBatchList = () => {
     }
   };
 
+  const loggedUserFirstName = sessionStorage.getItem("firstName");
+
+  const greet = {
+    welcome: "Welcome Back",
+    name: loggedUserFirstName || "",
+    info: "Here is the information about",
+    profile: "batches",
+    showButtons: false,
+  };
+
   return (
     <div>
-      <Greeting
-        welcome="Welcome Back"
-        name="John"
-        info="Here is the information about"
-        profile="Batches"
-        showButtons={false}
-      />
+      <Greeting {...greet} />
+
       <AdminBatchAction onSubmit={handleFormSubmit} />
 
       {loading ? (

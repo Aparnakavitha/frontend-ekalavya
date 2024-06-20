@@ -17,10 +17,20 @@ const AdminSkill = () => {
     navigate(`/admin/skills/skill-participants`);
   };
 
+  const loggedUserFirstName = sessionStorage.getItem("firstName");
+
+  const greet = {
+    welcome: "Welcome Back",
+    name: loggedUserFirstName || "",
+    info: "Here is the information about",
+    profile: "skills",
+    showButtons: false,
+  };
+
   return (
     <SkillsProvider>
       <div>
-        <Greeting {...AdminSkillData.greeting} />
+        <Greeting {...greet} />
         <AdminSkillAction />
         <AdminSkillsList handleClick={handleClick} />
       </div>

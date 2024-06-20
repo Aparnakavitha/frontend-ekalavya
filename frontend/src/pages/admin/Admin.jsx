@@ -29,6 +29,7 @@ import { SkillsProvider } from "./admin-skills/AdminSkillContext";
 import { RecoilRoot } from "recoil";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import image from "../../assets/DP.png"
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -38,22 +39,23 @@ const AdminContent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const userId = sessionStorage.getItem("user_id");
-        // if (!userId) {
-        //   console.error("User ID is not found in session storage");
-        //   return;
-        // }
-        // console.log("Fetched User ID:", userId); // Debug log
-
+        const userId = sessionStorage.getItem("user_id");
+        if (!userId) {
+          console.error("User ID is not found in session storage");
+          return;
+        }
+        console.log("Fetched User ID:", userId); // Debug log
         const params = {
-          userId: 7,
+          userId: userId,
         };
         const data = await getUserDetails(params);
-        if (data && data.responseData && data.responseData.length > 0) {
-          setUserData(data.responseData[0]);
-        } else {
-          console.error("No user data found");
-        }
+        const firstName = data.responseData[0].firstName;
+        const lastName = data.responseData[0].lastName;
+        const emailId = data.responseData[0].emailId;
+        sessionStorage.setItem("firstName", firstName);
+        sessionStorage.setItem("lastName", lastName);
+        sessionStorage.setItem("emailId", emailId);
+        setUserData(data.responseData[0]);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -117,7 +119,7 @@ const AdminContent = () => {
     ],
     profileBox: {
       name: `${userData.firstName} ${userData.lastName}`,
-      profilePic: userData.profilePicture,
+      profilePic: image,
       gmail: userData.emailId,
     },
   };
