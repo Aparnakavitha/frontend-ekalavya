@@ -1,7 +1,6 @@
 import axios from "axios";
- 
+
 const BASE_URL = "https://ekalavya.tarento.com/events";
- 
 
 export const fetchEventsService = async (params = {}) => {
   try {
@@ -13,8 +12,6 @@ export const fetchEventsService = async (params = {}) => {
     throw error;
   }
 };
- 
-
 
 export const addEventService = async (eventData) => {
   try {
@@ -25,33 +22,37 @@ export const addEventService = async (eventData) => {
     throw error;
   }
 };
- 
 
 export const deleteEventService = async (eventId) => {
   try {
     const response = await axios.delete(BASE_URL, {
       params: {
-        event_id: eventId
-      }
+        eventId: eventId,
+      },
     });
     return response.data;
   } catch (error) {
-    console.error('Error deleting event:', error);
+    console.error("Error deleting event:", error);
     throw error;
   }
 };
 
-
-
-export const enrollParticipantService = async (eventId, participantId, attendance) => {
+export const enrollParticipantService = async (
+  eventId,
+  participantId,
+  attendance
+) => {
   try {
-    const response = await axios.get("https://ekalavya.tarento.com/enrollment", {
-  params: {
-    eventId: eventId,
-    participantId: participantId,
-    attendance: attendance
-  }
-});
+    const response = await axios.get(
+      "https://ekalavya.tarento.com/enrollment",
+      {
+        params: {
+          eventId: eventId,
+          participantId: participantId,
+          attendance: attendance,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("Error enrolling participant:", error);
@@ -59,10 +60,12 @@ export const enrollParticipantService = async (eventId, participantId, attendanc
   }
 };
 
-
-export const addEnrollmentService  = async (eventId, eventData) => {
+export const addEnrollmentService = async (eventId, eventData) => {
   try {
-    const response = await axios.post(`https://ekalavya.tarento.com/enrollment?eventId=${eventId}`,eventData);
+    const response = await axios.post(
+      `https://ekalavya.tarento.com/enrollment?eventId=${eventId}`,
+      eventData
+    );
     return response.data;
   } catch (error) {
     console.log("Error adding event:", error);
