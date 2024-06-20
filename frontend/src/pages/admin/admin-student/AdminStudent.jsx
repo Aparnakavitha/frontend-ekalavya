@@ -20,6 +20,18 @@ import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import image from "../../../assets/DP.png";
 
+const fetchLoggedUserData = async (setUserData) => {
+  try {
+    const userId = sessionStorage.getItem("user_id");
+    const params = {
+      userId: userId,
+    };
+    const logData = await getUserDetails(params);
+    setUserData(logData.responseData[0]);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
 const fetchStudentsData = async (setStudentsData, params) => {
   try {
     var filterParams = {
@@ -129,25 +141,19 @@ const AdminStudent = () => {
         ]);
         setCollegeData(transformedData);
 
-        if (location.state && location.state.userData) {
-          setUserData(location.state.userData);
-        }
-
-        // const userId = sessionStorage.getItem("user_id");
-        // const params = {
-        //   userId: userId,
-        // };
-        // const logData = await getUserDetails(params);
-        // setUserData(logData.responseData[0]);
+        // if (location.state && location.state.userData) {
+        //   setUserData(location.state.userData);
+        // }
       } catch (error) {
         console.error("Error fetching college data:", error);
       }
     };
 
     fetchCollegeData();
-  }, [location.state]);
+  }, []);
 
   useEffect(() => {
+    fetchLoggedUserData(setUserData);
     fetchStudentsData(setStudentsData, params);
     fetchBatchData(setBatchData, params);
     fetchBatchParticipantsData(setParams, params);

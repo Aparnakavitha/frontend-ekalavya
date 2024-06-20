@@ -40,7 +40,7 @@ const CustomGoogleLoginButton = () => {
     console.log("Picture URL:", picture);
     console.log("Participant ID:", participantId);
 
-    const response = await axios.post("http://localhost:8888/login", { email });
+    const response = await axios.post("https://ekalavya.tarento.com/login", { email });
     const { roleId, userId } = response.data.responseData;
     console.log("API Response Role ID:", roleId);
 

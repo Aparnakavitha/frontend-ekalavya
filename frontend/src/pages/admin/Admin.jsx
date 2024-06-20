@@ -147,39 +147,41 @@ const AdminContent = () => {
             />
           </div>
           <div className="statecontent">
-            <SkillsProvider>
-              <Routes>
-                <Route path="student" element={<AdminStudent />} />
-                <Route path="mentor" element={<AdminMentor />} />
-                <Route path="events" element={<AdminEvent />} />
-                <Route path="batches" element={<AdminBatchList />} />
-                <Route path="skills" element={<AdminSkill />} />
-                <Route
-                  path="skills/skill-participants"
-                  element={<AdminSkillStudents />}
-                />
-                <Route
-                  path="batches/batch-details"
-                  element={<AdminBatchSelect />}
-                />
-                <Route
-                  path="student/student-details/:userId"
-                  element={<AdminStudentDetails />}
-                />
-                <Route
-                  path="mentor/mentor-details/:userId"
-                  element={<AdminMentorDetails />}
-                />
-                <Route
-                  path="events/event-details/:eventId"
-                  element={<AdminEventDetails />}
-                />
-                <Route
-                  path="events/event-details/event-participants/:eventId"
-                  element={<AdminEventParticipants />}
-                />
-              </Routes>
-            </SkillsProvider>
+            <RecoilRoot>
+              <SkillsProvider>
+                <Routes>
+                  <Route path="student" element={<AdminStudent />} />
+                  <Route path="mentor" element={<AdminMentor />} />
+                  <Route path="events" element={<AdminEvent />} />
+                  <Route path="batches" element={<AdminBatchList />} />
+                  <Route path="skills" element={<AdminSkill />} />
+                  <Route
+                    path="skills/skill-participants"
+                    element={<AdminSkillStudents />}
+                  />
+                  <Route
+                    path="batches/batch-details"
+                    element={<AdminBatchSelect />}
+                  />
+                  <Route
+                    path="student/student-details/:userId"
+                    element={<AdminStudentDetails />}
+                  />
+                  <Route
+                    path="mentor/mentor-details/:userId"
+                    element={<AdminMentorDetails />}
+                  />
+                  <Route
+                    path="events/event-details/:eventId"
+                    element={<AdminEventDetails />}
+                  />
+                  <Route
+                    path="events/event-details/event-participants/:eventId"
+                    element={<AdminEventParticipants />}
+                  />
+                </Routes>
+              </SkillsProvider>
+            </RecoilRoot>
           </div>
         </div>
         <div className="footer">
