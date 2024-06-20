@@ -6,11 +6,10 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { useForm, Controller } from "react-hook-form";
 import { validateAndCleanInput } from "../../common/components/validation";
 
-const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
+const BatchOperations = ({ mainHeading, onSubmit, options }) => {
   const {
     handleSubmit,
     control,
-    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -19,8 +18,8 @@ const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
     },
   });
 
-  const handleFormSubmit = (data) => {
-    onSubmit(data);
+  const handleFormSubmit = (formData) => {
+    onSubmit(formData); 
   };
 
   return (
@@ -54,7 +53,9 @@ const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
               {errors.batchName.message}
             </p>
           )}
-          <Controller
+          {/*Input dropdown omitted temporarily*/}
+
+          {/* <Controller
             name="studentIds"
             control={control}
             rules={{ required: "Student ID is required" }}
@@ -72,14 +73,14 @@ const Batchoperations = ({ mainHeading, initialdata, onSubmit, options }) => {
             <p className={`${styles["batchoperations-error"]}`}>
               {errors.studentIds.message}
             </p>
-          )}
+          )} */}
         </div>
       </div>
       <div className={`${styles["batchoperations-buttoncontainer"]}`}>
-        <PrimaryButton variant="primary" content="Create Batch" width="full" />
+        <PrimaryButton type="submit" variant="primary" content="Create Batch" width="full" />
       </div>
     </form>
   );
 };
 
-export default Batchoperations;
+export default BatchOperations;

@@ -4,11 +4,16 @@ import DeleteBox from "../../common/components/DeleteBox";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import Modal from "../../common/components/Modal";
 import batchParticipantsData from "../../../services/admin/batch/AdminBatchParticipantsData";
+import { useNavigate } from "react-router-dom";
 
-const AdminBatchParticipants = () => {
+
+const AdminBatchParticipants = ({
+  onCardClick,
+  batchParticipantsData,
+}) => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [users, setUsers] = useState(batchParticipantsData.data);
 
   const handleOpenModal = (user) => {
     setSelectedUser(user);
@@ -29,12 +34,16 @@ const AdminBatchParticipants = () => {
       console.log("Deleted batch ID:", selectedUser.studentId);
     }
     handleCloseModal();
+    navigate(`/admin/batches`);
   };
+
+  const [users, setUsers] = useState(batchParticipantsData.data);
 
   const usersData = {
     ...batchParticipantsData,
     data: users.map((user) => ({
       ...user,
+      onClick: () => onCardClick(),
       handleDelete: () => handleOpenModal(user),
     })),
   };

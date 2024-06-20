@@ -780,7 +780,6 @@
 
 /* ------------------------------- DeleteBox.css ends here ------------------------------- */
 
-
 /* ------------------------------- DataView.css starts here ------------------------------- */
 
 .dataview-togglecontainer {
@@ -1849,6 +1848,8 @@
 .education-qualification-instance {
   display: flex;
   justify-content: space-between;
+  padding-bottom: 1rem;
+  list-style-type: decimal;
 }
 
 .education-qualification-mod-buttons {
@@ -1876,6 +1877,8 @@
 
 .education-list-box {
   margin-left: 0.2rem;
+  list-style-type: decimal;
+  padding-bottom: 1rem;
 }
 
 /*---------------------------------------------------Education layout css ends here--------------------------------------------------------------------------*/
@@ -1926,11 +1929,11 @@
   .education-qualification-instance {
     margin-top: 1rem;
     flex-direction: column;
+    padding-bottom: 1rem;
   }
 }
 
-  /*---------------------------------------------------------Media queries for education ends here-----------------------------------------------------------------*/
-
+/*---------------------------------------------------------Media queries for education ends here-----------------------------------------------------------------*/
 
 /* ------------------------------- AboutMe.module.css starts here ------------------------------- */
 
@@ -1974,5 +1977,3 @@
   }
 }
 /* ------------------------------- AboutMe.module.css ends here ------------------------------- */
-
-
