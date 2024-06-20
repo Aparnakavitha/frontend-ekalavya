@@ -5,29 +5,7 @@ import BasicDetails from "../../common/components/BasicDetails";
 import DeleteBox from "../../common/components/DeleteBox";
 import image from "../../../assets/pic.png";
 
-const StudentProfileInfo = (props) => {
-  const sample = {
-    role: "student",
-    profilepic: image,
-    name: "Emma Watson",
-    college: "Christ University",
-    dob: "1990-01-01",
-    email: "emmawatson@gmail.com",
-    phoneNumber: 8755383632,
-    houseName: "Sample House",
-    city: "Sample City",
-    pinCode: "123456",
-    state: "Sample State",
-    country: "Sample Country",
-    hasDelete: false,
-    onClickEdit: () => {
-      handleOpenEditBasicDetails();
-    },
-    onClickDelete: () => {
-      handleOpenDeleteBasicDetails();
-    },
-  };
-
+const StudentProfileInfo = ({ profileData, EditableData, onFormSubmit }) => { // <-- Corrected here
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
   const [isDeleteDetailsIsOpen, setIsDeleteDetailsIsOpen] = useState(false);
 
@@ -47,14 +25,25 @@ const StudentProfileInfo = (props) => {
     setIsDeleteDetailsIsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
+  const handleFormSubmit = async (formData) => {
     console.log(formData, "Form submitted successfully");
+    await onFormSubmit(formData);
     handleCloseEditBasicDetails();
+  };
+
+  const sample = {
+    role: "student",
+    profilepic: image,
+    ...profileData,
+    ...EditableData,
+    hasDelete: false,
+    onClickEdit: handleOpenEditBasicDetails,
+    onClickDelete: handleOpenDeleteBasicDetails,
   };
 
   const editBox = {
     mainHeading: "Edit Basic Details",
-    initialData: { ...sample },
+    initialData: { ...EditableData },
     isEdit: true,
     onSubmit: handleFormSubmit,
   };
@@ -63,15 +52,16 @@ const StudentProfileInfo = (props) => {
     title: "Confirm deletion",
     message: "This action will delete the user. Are you sure?",
     buttonText: "Confirm",
-    onCancel: (formData) => {
-      console.log(formData, "Action cancelled");
+    onCancel: () => {
+      console.log("Action cancelled");
       handleCloseDeleteBasicDetails();
     },
-    onConfirm: (formData) => {
-      console.log(formData, "Action Confirmed");
+    onConfirm: () => {
+      console.log("Action confirmed");
       handleCloseDeleteBasicDetails();
     },
   };
+  
 
   return (
     <div>

@@ -29,7 +29,7 @@ const MentorContent = () => {
   const fetchData = async () => {
     try {
       const params = {
-        userId: "02",
+        userId: "03",
       };
       const data = await getUserDetails(params);
       setData(data.responseData[0]);
