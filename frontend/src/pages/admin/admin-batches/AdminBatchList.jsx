@@ -106,7 +106,7 @@ const AdminBatchList = () => {
             { key: "Count", displayName: "Participant Count" },
           ]}
           toggle={true}
-          cardType="SkillBatchCardbatch"
+          cardType="SkillBatchCard"
           itemsPerPage={12}
         />
       ) : (
