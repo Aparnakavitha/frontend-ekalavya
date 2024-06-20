@@ -3,7 +3,7 @@ import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { EventsDescription } from "../../common";
 
-const HomeEventDescription = () => {
+const HomeEventDescription = ({ event }) => {
   const handleButtonClick = (message) => {
     toast.success(message, {
       position: "top-center",
@@ -17,21 +17,21 @@ const HomeEventDescription = () => {
   };
 
   const homeEvents = {
-    eventTitle: "Exploring Future Technologies",
-    eventType: "Techtalks",
-    eventMode: "Offline",
-    description:
-      "TechTalks 2024 is a full-day event dedicated to exploring emerging technologies and their impact on various industries. Join us for insightful talks, engaging discussions, and networking opportunities with experts in the field.",
-    startDate: "2024-02-15",
-    endDate: "2024-02-25",
-    startTime: "10:00",
-    endTime: "14:00",
-    location: "Auditorium 101, Engineering Building",
-    speaker: "Sam Alex",
-    speakerDescription: "Associate Software Engineer",
-    organizer: "Nazeem",
+    eventTitle: event.eventTitle,
+    eventType: event.eventType,
+    eventMode: event.eventMode,
+    description: event.description,
+    startDate: event.startDate,
+    endDate: event.endDate,
+    startTime: event.startTime,
+    endTime: event.endTime,
+    location: event.location,
+    link: event.link,
+    speaker: event.speaker,
+    speakerDescription: event.speakerDescription,
+    organizer: event.organizer,
     button: "Events",
-    buttons: "Exploring Future Technologies",
+    buttons: event.eventTitle,
     small: "edit",
     medium: "delete",
     large: "view participants",
