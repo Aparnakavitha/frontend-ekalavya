@@ -28,7 +28,7 @@ const CardLayout = ({ events, onEventClick }) => {
   return (
     <div className={`${styles["cardlayout-content"]}`}>
       <div className="padding">
-        <div className={`${styles["cardlayout-heading"]}`}>Upcoming Events</div>
+        <div className={`${styles["cardlayout-heading"]}`}>Events</div>
       </div>
       <DataView CardComponent={PrimaryCard} {...cardData} />
     </div>

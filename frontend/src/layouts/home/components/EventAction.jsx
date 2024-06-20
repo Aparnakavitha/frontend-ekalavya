@@ -4,7 +4,7 @@ import BatchSearch from "../../common/components/BatchSearch";
 const EventAction = ({ onSearchChange, onFilterChange }) => {
   const EventActionData = {
     navbuttonProps: {
-      pageName: "Upcoming Events",
+      pageName: "Events",
     },
     showTextButton: false,
     showAdd: false,

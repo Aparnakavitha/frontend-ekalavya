@@ -21,7 +21,6 @@ const EventsExplore = () => {
           eventTitle: params.eventTitle || "",
           eventType: params.Type || "",
           eventMode: params.Mode || "",
-          completed: 0,
         };
         const filteredParams = Object.fromEntries(
           Object.entries(filterParams).filter(([key, value]) => value !== "")
