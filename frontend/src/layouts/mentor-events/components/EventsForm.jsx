@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Input from "../../../components/inputbox/InputBox";
-import InputDropdown from "../../../components/inputdropdown/InputDropdown";
-import styles from "../MentorEvents.module.css";
-import PrimaryButton from "../../../components/buttons/PrimaryButton";
-import NavButton from "../../../components/buttons/NavButton";
+import React, { useState, useEffect } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Input from '../../../components/inputbox/InputBox';
+import InputDropdown from '../../../components/inputdropdown/InputDropdown';
+import styles from '../MentorEvents.module.css';
+import PrimaryButton from '../../../components/buttons/PrimaryButton';
+import NavButton from '../../../components/buttons/NavButton';
 import {
   validateURL,
   validateStartDate,
   validateEndDate,
   validateAndCleanInput,
-} from "../../common/components/validation";
-
-const EventForm = () => {
+} from '../../common/components/validation';
+ 
+const EventForm = ({ hostId, onSubmit }) => {
   const {
     handleSubmit,
     control,
@@ -24,39 +24,69 @@ const EventForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      eventTitle: "",
-      eventMode: "",
-      eventType: "",
-      description: "",
-      startDate: "",
-      endDate: "",
-      startTime: "",
-      endTime: "",
-      location: "",
-      speaker: "",
-      speakerdescription: "",
+      eventTitle: '',
+      eventMode: '',
+      eventType: '',
+      description: '',
+      startDate: '',
+      endDate: '',
+      startTime: '',
+      endTime: '',
+      location: '',
+      speaker: '',
+      speakerDescription: '',
     },
   });
-
-  const [eventMode, setEventMode] = useState("Offline");
-
-  const onSubmit = (data) => {
-    if (data.eventMode === "Online") {
+ 
+  const [eventMode, setEventMode] = useState('Offline');
+ 
+  const onSubmitForm = async (data) => {
+    const ensureFullTimeFormat = (time) => {
+      return time && time.length === 5 ? `${time}:00` : time;
+    };
+ 
+    data.startTime = ensureFullTimeFormat(data.startTime);
+    data.endTime = ensureFullTimeFormat(data.endTime);
+    if (data.eventMode === 'Online') {
       if (!data.location) {
-        data.link = "";
+        data.link = '';
       } else {
         data.link = data.location;
       }
       delete data.location;
     }
-    console.log("Form Data:", data);
-    handleToastMessage("Event created successfully!");
-    reset();
+ 
+    const formData = {
+      eventTitle: data.eventTitle,
+      hostId: hostId,
+      description: data.description,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      contact: '7558845722',
+      link: data.link,
+      eventType: data.eventType,
+      speaker: data.speaker,
+      startTime: data.startTime,
+      endTime: data.endTime,
+      location: data.location,
+      speakerDescription: data.speakerDescription,
+      eventMode: data.eventMode,
+      organizer: hostId,
+    };
+ 
+    console.log('Form Data:', formData);
+    try {
+      await onSubmit(formData);
+      handleToastMessage('Event created successfully!');
+      reset();
+    } catch (error) {
+      console.error('Error creating event:', error);
+    }
   };
-
+ 
   const handleToastMessage = (message) => {
     toast.success(message, {
-      position: "top-center",
+      position: 'top-center',
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -65,145 +95,145 @@ const EventForm = () => {
       progress: undefined,
     });
   };
-
+ 
   const options = [
-    { value: "Online", label: "Online" },
-    { value: "Offline", label: "Offline" },
+    { value: 'Online', label: 'Online' },
+    { value: 'Offline', label: 'Offline' },
   ];
-
-  const selectedEventMode = watch("eventMode", eventMode);
-
+ 
+  const selectedEventMode = watch('eventMode', eventMode);
+ 
   const handleEventModeChange = (selectedOption) => {
     const newValue = selectedOption.value;
     setEventMode(newValue);
-    setValue("eventMode", newValue);
+    setValue('eventMode', newValue);
   };
-
+ 
   useEffect(() => {
-    if (selectedEventMode === "Online") {
-      setValue("location", "");
+    if (selectedEventMode === 'Online') {
+      setValue('location', '');
     }
   }, [selectedEventMode, setValue]);
-
+ 
   const typeoptions = [
-    { value: "Hackathon", label: "Hackathon" },
-    { value: "Workshop", label: "Workshop" },
-    { value: "Session", label: "Session" },
-    { value: "Conference", label: "Conference" },
-    { value: "Contest", label: "Contest" },
-    { value: "Webinar", label: "Webinar" },
+    { value: 'Hackathon', label: 'Hackathon' },
+    { value: 'Workshop', label: 'Workshop' },
+    { value: 'Session', label: 'Session' },
+    { value: 'Conference', label: 'Conference' },
+    { value: 'Contest', label: 'Contest' },
+    { value: 'Webinar', label: 'Webinar' },
   ];
-
+ 
   return (
     <div>
       <form
-        onSubmit={handleSubmit(onSubmit)}
-        className={`${styles["eventform-form"]} padding padding-top padding-bottom`}
+        onSubmit={handleSubmit(onSubmitForm)}
+        className={`${styles['eventform-form']} padding padding-top padding-bottom`}
       >
-        <NavButton pageName="Create Event" onClick={() => {}} />
-        <div className={`${styles["eventform-eventtitlemode"]}`}>
-          <div className={`${styles["eventform-eventtitlediv"]}`}>
+        <NavButton pageName='Create Event' onClick={() => {}} />
+        <div className={`${styles['eventform-eventtitlemode']}`}>
+          <div className={`${styles['eventform-eventtitlediv']}`}>
             <Controller
-              name="eventTitle"
+              name='eventTitle'
               control={control}
               rules={{
-                required: "Event Title is required",
+                required: 'Event Title is required',
                 validate: validateAndCleanInput,
               }}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Event Title"
-                  size="normal"
-                  placeholders={["Event Title"]}
-                  className={`${styles["eventform-eventtitle"]}`}
+                  label='Event Title'
+                  size='normal'
+                  placeholders={['Event Title']}
+                  className={`${styles['eventform-eventtitle']}`}
                 />
               )}
             />
             {errors.eventTitle && (
-              <p className={`${styles["eventform-error"]}`}>
+              <p className={`${styles['eventform-error']}`}>
                 {errors.eventTitle.message}
               </p>
             )}
           </div>
-
-          <div className={`${styles["eventform-eventmodediv"]}`}>
+ 
+          <div className={`${styles['eventform-eventmodediv']}`}>
             <Controller
-              name="eventMode"
+              name='eventMode'
               control={control}
               rules={{
-                required: "Event Mode is required",
+                required: 'Event Mode is required',
                 validate: validateAndCleanInput,
               }}
               render={({ field }) => (
                 <InputDropdown
                   {...field}
-                  label="Event Mode"
-                  placeholder="Event Mode"
+                  label='Event Mode'
+                  placeholder='Event Mode'
                   options={options}
-                  className={`${styles["eventform-eventmode"]}`}
+                  className={`${styles['eventform-eventmode']}`}
                 />
               )}
             />
             {errors.eventMode && (
-              <p className={`${styles["eventform-error"]}`}>
+              <p className={`${styles['eventform-error']}`}>
                 {errors.eventMode.message}
               </p>
             )}
           </div>
         </div>
-
+ 
         <Controller
-          name="eventType"
+          name='eventType'
           control={control}
           rules={{
-            required: "Event Type is required",
+            required: 'Event Type is required',
             validate: validateAndCleanInput,
           }}
           render={({ field }) => (
             <InputDropdown
               {...field}
-              label="Event Type"
-              size="normal"
-              placeholder={["Event Type"]}
+              label='Event Type'
+              size='normal'
+              placeholder={['Event Type']}
               options={typeoptions}
-              className={`${styles["eventform-eventtype"]}`}
+              className={`${styles['eventform-eventtype']}`}
             />
           )}
         />
         {errors.eventType && (
-          <p className={`${styles["eventform-error"]}`}>
+          <p className={`${styles['eventform-error']}`}>
             {errors.eventType.message}
           </p>
         )}
-
+ 
         <Controller
-          name="description"
+          name='description'
           control={control}
           rules={{
-            required: "Description is required",
+            required: 'Description is required',
             validate: validateAndCleanInput,
           }}
           render={({ field }) => (
             <Input
               {...field}
-              label="Description"
-              size="large"
-              placeholders={["Description"]}
-              className={`${styles["eventform-description"]}`}
+              label='Description'
+              size='large'
+              placeholders={['Description']}
+              className={`${styles['eventform-description']}`}
             />
           )}
         />
         {errors.description && (
-          <p className={`${styles["eventform-error"]}`}>
+          <p className={`${styles['eventform-error']}`}>
             {errors.description.message}
           </p>
         )}
-
-        <div className={`${styles["eventform-datetimecontainer"]}`}>
-          <div className={`${styles["eventform-datetime"]}`}>
+ 
+        <div className={`${styles['eventform-datetimecontainer']}`}>
+          <div className={`${styles['eventform-datetime']}`}>
             <Controller
-              name="startDate"
+              name='startDate'
               control={control}
               rules={{
                 validate: validateStartDate,
@@ -211,24 +241,24 @@ const EventForm = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Start Date"
-                  size="normal"
-                  placeholders={["dd/mm/yyyy"]}
-                  className={`${styles["eventform-startdate"]}`}
+                  label='Start Date'
+                  size='normal'
+                  placeholders={['dd/mm/yyyy']}
+                  className={`${styles['eventform-startdate']}`}
                   isDatePicker
                 />
               )}
             />
             {errors.startDate && (
-              <p className={`${styles["eventform-error"]}`}>
+              <p className={`${styles['eventform-error']}`}>
                 {errors.startDate.message}
               </p>
             )}
           </div>
-
-          <div className={`${styles["eventform-datetime"]}`}>
+ 
+          <div className={`${styles['eventform-datetime']}`}>
             <Controller
-              name="endDate"
+              name='endDate'
               control={control}
               rules={{
                 validate: validateEndDate,
@@ -236,162 +266,163 @@ const EventForm = () => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="End Date"
-                  size="normal"
-                  placeholders={["dd/mm/yyyy"]}
-                  className={`${styles["eventform-enddate"]}`}
+                  label='End Date'
+                  size='normal'
+                  placeholders={['dd/mm/yyyy']}
+                  className={`${styles['eventform-enddate']}`}
                   isDatePicker
                 />
               )}
             />
             {errors.endDate && (
-              <p className={`${styles["eventform-error"]}`}>
+              <p className={`${styles['eventform-error']}`}>
                 {errors.endDate.message}
               </p>
             )}
           </div>
-
-          <div className={`${styles["eventform-datetime"]}`}>
+ 
+          <div className={`${styles['eventform-datetime']}`}>
             <Controller
-              name="startTime"
+              name='startTime'
               control={control}
               rules={{
-                required: "Start Time is required",
+                required: 'Start Time is required',
               }}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="Start Time"
-                  size="normal"
-                  placeholders={["hh:mm:ss"]}
-                  className={`${styles["eventform-starttime"]}`}
+                  label='Start Time'
+                  size='normal'
+                  placeholders={['hh:mm:ss']}
+                  className={`${styles['eventform-starttime']}`}
                   isTimePicker
                 />
               )}
             />
             {errors.startTime && (
-              <p className={`${styles["eventform-error"]}`}>
+              <p className={`${styles['eventform-error']}`}>
                 {errors.startTime.message}
               </p>
             )}
           </div>
-
-          <div className={`${styles["eventform-datetime"]}`}>
+ 
+          <div className={`${styles['eventform-datetime']}`}>
             <Controller
-              name="endTime"
+              name='endTime'
               control={control}
               rules={{
-                required: "End Time is required",
+                required: 'End Time is required',
               }}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label="End Time"
-                  size="normal"
-                  placeholders={["hh:mm:ss"]}
-                  className={`${styles["eventform-endtime"]}`}
+                  label='End Time'
+                  size='normal'
+                  placeholders={['hh:mm:ss']}
+                  className={`${styles['eventform-endtime']}`}
                   isTimePicker
                 />
               )}
             />
             {errors.endTime && (
-              <p className={`${styles["eventform-error"]}`}>
+              <p className={`${styles['eventform-error']}`}>
                 {errors.endTime.message}
               </p>
             )}
           </div>
         </div>
-
+ 
         <Controller
-          name="location"
+          name='location'
           control={control}
           rules={{
             required:
-              selectedEventMode === "Online"
-                ? "Link is required"
-                : "Location is required",
+              selectedEventMode === 'Online'
+                ? 'Link is required'
+                : 'Location is required',
             validate:
-              selectedEventMode === "Online"
+              selectedEventMode === 'Online'
                 ? validateURL
                 : validateAndCleanInput,
           }}
           render={({ field }) => (
             <Input
               {...field}
-              label={selectedEventMode === "Online" ? "Link" : "Location"}
-              size="normal"
+              label={selectedEventMode === 'Online' ? 'Link' : 'Location'}
+              size='normal'
               placeholders={[
-                selectedEventMode === "Online" ? "Link" : "Location",
+                selectedEventMode === 'Online' ? 'Link' : 'Location',
               ]}
-              className={`${styles["eventform-location"]}`}
+              className={`${styles['eventform-location']}`}
             />
           )}
         />
         {errors.location && (
-          <p className={`${styles["eventform-error"]}`}>
+          <p className={`${styles['eventform-error']}`}>
             {errors.location.message}
           </p>
         )}
-        
+ 
         <Controller
-          name="speaker"
+          name='speaker'
           control={control}
           rules={{
-            required: "Speaker is required",
+            required: 'Speaker is required',
             validate: validateAndCleanInput,
           }}
           render={({ field }) => (
             <Input
               {...field}
-              label="Speaker"
-              size="normal"
-              placeholders={["Speaker"]}
-              className={`${styles["eventform-speaker"]}`}
+              label='Speaker'
+              size='normal'
+              placeholders={['Speaker']}
+              className={`${styles['eventform-speaker']}`}
             />
           )}
         />
         {errors.speaker && (
-          <p className={`${styles["eventform-error"]}`}>
+          <p className={`${styles['eventform-error']}`}>
             {errors.speaker.message}
           </p>
         )}
-
+ 
         <Controller
-          name="speakerdescription"
+          name='speakerDescription'
           control={control}
           rules={{
-            required: "Speaker Description is required",
+            required: 'Speaker Description is required',
             validate: validateAndCleanInput,
           }}
           render={({ field }) => (
             <Input
               {...field}
-              label="Speaker Description"
-              size="normal"
-              placeholders={["Speaker Description"]}
-              className={`${styles["eventform-speakerdescription"]}`}
+              label='Speaker Description'
+              size='normal'
+              placeholders={['Speaker Description']}
+              className={`${styles['eventform-speakerdescription']}`}
             />
           )}
         />
-        {errors.speakerdescription && (
-          <p className={`${styles["eventform-error"]}`}>
-            {errors.speakerdescription.message}
+        {errors.speakerDescription && (
+          <p className={`${styles['eventform-error']}`}>
+            {errors.speakerDescription.message}
           </p>
         )}
-
-        <div className={`${styles["eventform-buttondiv"]}`}>
-          <div className={`${styles["eventform-buttoncontainer"]}`}>
+ 
+        <div className={`${styles['eventform-buttondiv']}`}>
+          <div className={`${styles['eventform-buttoncontainer']}`}>
             <PrimaryButton
-              content="Submit"
-              variant="primary"
-              width="full"
-              className={`${styles["eventform-submitbutton"]}`}
+              content='Submit'
+              variant='primary'
+              width='full'
+              className={`${styles['eventform-submitbutton']}`}
+              type='submit'
             />
           </div>
         </div>
       </form>
       <ToastContainer
-        position="top-center"
+        position='top-center'
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -400,10 +431,11 @@ const EventForm = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
+        theme='dark'
       />
     </div>
   );
 };
-
+ 
 export default EventForm;
+ 

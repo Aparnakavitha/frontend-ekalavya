@@ -118,8 +118,12 @@ export const getUsersCountForSkill = async (skillId) => {
       throw new Error("Unexpected response structure from API");
     }
   } catch (error) {
-    console.error("Error fetching skills for user:", error);
-    throw error;
+    if (error.response && error.response.data && error.response.data.errorMessage) {
+      throw new Error(error.response.data.errorMessage);
+    } else {
+      console.error("Error fetching skills for user:", error);
+      throw new Error("Error fetching skills for user.");
+    }
   }
 };
 

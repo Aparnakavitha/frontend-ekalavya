@@ -65,10 +65,11 @@ const EducationalQualification = ({
     }
   };
 
-  const handleRemove = async (index) => {
+  const handleRemove = async (editIndex) => {
     try {
-      const qualification = qualifications[index];
+      const qualification = qualifications[editIndex];
 
+      console.log("hello");
       const formData = {
         userId: userId,
         qualifications: [

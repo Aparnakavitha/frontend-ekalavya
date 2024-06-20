@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8888";
+const API_URL = "https://ekalavya.tarento.com";
 
 export const fetchbatches = async (params) => {
   try {
@@ -58,6 +58,7 @@ export const deleteBatch = async (batchId) => {
     }
     throw error;
   }
+  
 };
 
 export const fetchBatchParticipants = async (params = {}) => {
@@ -68,6 +69,30 @@ export const fetchBatchParticipants = async (params = {}) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching batch participants", error);
+    throw error;
+  }
+};
+
+export const postUserIds = async (data) => {
+  try {
+    const response = await axios.post(`${API_URL}/batches/participants`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error posting user IDs:", error);
+    throw error;
+  }
+};
+export const userBatchDelete = async (userId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/all`, {
+      params: {
+        userId: userId
+      }
+    });
+    console.log("Delete response:", response);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user from all batches:", error);
     throw error;
   }
 };
