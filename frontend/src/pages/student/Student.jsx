@@ -19,6 +19,7 @@ import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
 import EventDescription from "../EventDescription";
 import StudentEventDescription from "../../layouts/student-event-description/components/StudentEventDescription";
 import Explore from "../Explore";
+import StudentEventDetails from "./student-events/StudentEventDetails";
 
 const StudentContent = () => {
   const location = useLocation();
@@ -95,7 +96,7 @@ const StudentContent = () => {
               <Route exact path="/events" element={<StudentEvent />} />
               <Route
                 path="events/:eventId"
-                element={<StudentEventDescription />}
+                element={<StudentEventDetails />}
               />
               <Route exact path="skills" element={<SkillLayout />} />
             </Routes>

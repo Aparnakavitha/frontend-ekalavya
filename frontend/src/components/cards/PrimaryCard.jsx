@@ -27,8 +27,8 @@ const PrimaryCard = (props) => {
     return description;
   };
 
-  const formattedStartDate = format(new Date(startDate), "MM/dd/yyyy hh:mm a");
-  const formattedEndDate = format(new Date(endDate), "MM/dd/yyyy hh:mm a");
+  const formattedStartDate = format(new Date(startDate), "MMM dd, yyyy");
+  const formattedEndDate = format(new Date(endDate), "MMM dd, yyyy");
 
   const [isHover, setIsHover] = useState(false);
 
