@@ -4,7 +4,7 @@ import AdminSkillData from "../../../services/admin/skill/AdminSkillData";
 import { CombinedSkillForm, Greeting } from "../../../layouts/common";
 import AdminSkillAction from "../../../layouts/admin-skill/components/AdminSkillAction";
 import AdminSkillsList from "../../../layouts/admin-skill/components/AdminSkillsList";
-import { getUsersCountForSkill } from "../../../services/student/skills/StudentSkillService";
+import { getUsersCountForSkill } from "../../../services/Skills";
 import { SkillsProvider, setParticipants } from "./AdminSkillContext";
 
 const AdminSkill = () => {

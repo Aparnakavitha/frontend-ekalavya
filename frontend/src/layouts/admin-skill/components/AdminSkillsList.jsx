@@ -7,7 +7,7 @@ import {
   SkillService,
   getUsersCountForSkill,
   updateSkill,
-} from "../../../services/student/skills/StudentSkillService";
+} from "../../../services/Skills";
 import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
