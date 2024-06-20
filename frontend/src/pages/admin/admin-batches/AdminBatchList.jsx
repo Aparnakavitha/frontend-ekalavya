@@ -4,7 +4,6 @@ import { DataView, Greeting } from "../../../layouts/common";
 import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import { fetchbatches, createBatch } from "../../../services/Batch";
 import AdminBatchAction from "../../../layouts/admin-batches/components/AdminBatchAction";
-import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const AdminBatchList = () => {
   const navigate = useNavigate();
@@ -12,6 +11,7 @@ const AdminBatchList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [changed, setChanged] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -23,12 +23,14 @@ const AdminBatchList = () => {
       const responseData = await fetchbatches();
       const data = responseData.responseData;
       console.log(data);
+
       if (Array.isArray(data)) {
         const formattedData = data.map((item) => ({
-          miniHeading: item && item.batchId ? `${String(item.batchId)}` : "",
-          mainHeading: item && item.batchName ? item.batchName : "",
-          Count: item && item.participantCount ? item.participantCount : "0",
+          miniHeading: `B${item.batchId}`,
+          mainHeading: item.batchName || "", 
+          Count: item.participantCount,
           cardType: "batch",
+          handleClick: () => handleClick(item),
         }));
 
         console.log("Formatted batchData is : ", formattedData);
@@ -45,8 +47,14 @@ const AdminBatchList = () => {
     }
   };
 
-  const handleClick = () => {
-    navigate(`/admin/batches/batch-details`);
+  const handleSearchChange = (data) => {
+    setSearchQuery(data); 
+    setChanged((prev) => !prev); 
+  };
+
+  const handleClick = (item) => {
+    console.log("batch-----",item);
+    navigate(`/admin/batches/batch-details/${item.miniHeading}`);
   };
 
   const handleFormSubmit = async (formData) => {
@@ -55,20 +63,7 @@ const AdminBatchList = () => {
       const response = await createBatch({ batchName: batchName });
 
       console.log("Create batch response:", response);
-
-      const formattedNewBatch = {
-        miniHeading:
-          response[0] && response[0].batchId ? String(response[0].batchId) : "",
-        mainHeading:
-          response[0] && response[0].batchName ? response[0].batchName : "",
-        Count:
-          response[0] && response[0].participantCount
-            ? String(response[0].participantCount)
-            : "",
-        cardType: "batch",
-      };
-
-      setBatchData([...batchData, formattedNewBatch]);
+      setBatchData([...(batchData || []), response[0]]);
       setChanged((prev) => !prev);
     } catch (error) {
       console.error("Error adding batch:", error);
@@ -78,27 +73,27 @@ const AdminBatchList = () => {
 
   const loggedUserFirstName = sessionStorage.getItem("firstName");
 
-  const greet = {
-    welcome: "Welcome Back",
-    name: loggedUserFirstName || "",
-    info: "Here is the information about",
-    profile: "batches",
-    showButtons: false,
-  };
+  const filteredData = batchData?.filter((batch) =>
+    batch.mainHeading?.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div>
-      <Greeting {...greet} />
-
-      <AdminBatchAction onSubmit={handleFormSubmit} />
-
+      <Greeting
+        welcome="Welcome Back"
+        name= {loggedUserFirstName}
+        info="Here is the information about"
+        profile="Batches"
+        showButtons={false}
+      />
+      <AdminBatchAction onSubmit={handleFormSubmit} onSearchChange={handleSearchChange} />
       {loading ? (
-        <LoadingSpinner />
+        <div>Loading...</div>
       ) : error ? (
         <div>Error: {error.message}</div>
       ) : batchData ? (
         <DataView
-          data={batchData}
+          data={filteredData}
           CardComponent={(props) => <SkillBatchCard {...props} />}
           tableColumns={[
             { key: "miniHeading", displayName: "Batch ID" },
