@@ -1,18 +1,17 @@
 import React from "react";
 import styles from "./EventCard.module.css";
 
+
 const EventCard = (props) => {
   const {
     main = "All hands meeting",
-    sub = "http:// www.zoom.com",
+    sub = "http://www.zoom.com",
     start = "10:30am",
     end = "11:30am",
     status = "due",
     mode = "dark",
     date = 17,
-    handleClick = () => {
-      alert("event card clicked!");
-    },
+    handleClick,
   } = props;
 
   const formatText = (text) => {

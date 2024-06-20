@@ -53,7 +53,7 @@ const EventsDescription = (props) => {
       <div className={`${styles["eventsdescription-topleft"]}`}>
         <div className={`${styles["eventsdescription-navbutton"]}`}>
           <div>
-            <NavButton pageName={eventTitle} onClick={onclick1} />
+            <NavButton pageName={eventTitle}/>
           </div>
         </div>
       </div>

@@ -28,15 +28,13 @@ import { getUserDetails } from "../../services/User";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import { SkillsProvider } from "./admin-skills/AdminSkillContext";
 import { RecoilRoot } from "recoil";
-import { toast } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css"; 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +44,12 @@ const AdminContent = () => {
           userId: userId,
         };
         const data = await getUserDetails(params);
+        const firstName = data.responseData[0].firstName;
+        const lastName = data.responseData[0].lastName;
+        const emailId = data.responseData[0].emailId;
+        sessionStorage.setItem("firstName", firstName);
+        sessionStorage.setItem("lastName", lastName);
+        sessionStorage.setItem("emailId", emailId);
         setUserData(data.responseData[0]);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -63,8 +67,8 @@ const AdminContent = () => {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      sessionStorage.clear(); 
-      navigate("/"); 
+      sessionStorage.clear();
+      navigate("/");
       toast.success("LogOut Successful", {
         position: "top-center",
         autoClose: 5000,
@@ -74,7 +78,7 @@ const AdminContent = () => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
     },
     width: "full",
   };
