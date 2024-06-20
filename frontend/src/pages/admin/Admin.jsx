@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
-import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
 import {
   MdEvent,
@@ -28,24 +27,33 @@ import { getUserDetails } from "../../services/User";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import { SkillsProvider } from "./admin-skills/AdminSkillContext";
 import { RecoilRoot } from "recoil";
-import { toast } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css"; 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const userId = sessionStorage.getItem("user_id");
-
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // const userId = sessionStorage.getItem("user_id");
+        // if (!userId) {
+        //   console.error("User ID is not found in session storage");
+        //   return;
+        // }
+        // console.log("Fetched User ID:", userId); // Debug log
+
         const params = {
-          userId: "7",
+          userId: 7,
         };
         const data = await getUserDetails(params);
-        setUserData(data.responseData[0]);
+        if (data && data.responseData && data.responseData.length > 0) {
+          setUserData(data.responseData[0]);
+        } else {
+          console.error("No user data found");
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -62,8 +70,8 @@ const AdminContent = () => {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      sessionStorage.clear(); 
-      navigate("/"); 
+      sessionStorage.clear();
+      navigate("/");
       toast.success("LogOut Successful", {
         position: "top-center",
         autoClose: 5000,
@@ -73,7 +81,7 @@ const AdminContent = () => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
     },
     width: "full",
   };
@@ -148,6 +156,7 @@ const AdminContent = () => {
             />
           </div>
           <div className="statecontent">
+            <RecoilRoot>
               <SkillsProvider>
                 <Routes>
                   <Route path="student" element={<AdminStudent />} />
@@ -181,6 +190,7 @@ const AdminContent = () => {
                   />
                 </Routes>
               </SkillsProvider>
+            </RecoilRoot>
           </div>
         </div>
         <div className="footer">
