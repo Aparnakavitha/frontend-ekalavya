@@ -20,18 +20,6 @@ import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import image from "../../../assets/DP.png";
 
-const fetchLoggedUserData = async (setUserData) => {
-  try {
-    const userId = sessionStorage.getItem("user_id");
-    const params = {
-      userId: userId,
-    };
-    const logData = await getUserDetails(params);
-    setUserData(logData.responseData[0]);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-};
 const fetchStudentsData = async (setStudentsData, params) => {
   try {
     var filterParams = {
@@ -141,9 +129,9 @@ const AdminStudent = () => {
         ]);
         setCollegeData(transformedData);
 
-        // if (location.state && location.state.userData) {
-        //   setUserData(location.state.userData);
-        // }
+        if (location.state && location.state.userData) {
+          setUserData(location.state.userData);
+        }
       } catch (error) {
         console.error("Error fetching college data:", error);
       }
@@ -153,7 +141,6 @@ const AdminStudent = () => {
   }, []);
 
   useEffect(() => {
-    fetchLoggedUserData(setUserData);
     fetchStudentsData(setStudentsData, params);
     fetchBatchData(setBatchData, params);
     fetchBatchParticipantsData(setParams, params);
@@ -164,10 +151,12 @@ const AdminStudent = () => {
     return <LoadingSpinner />;
   }
 
+  const loggedUserFirstName = sessionStorage.getItem("firstName");
+
   const AdminStudentData = {
     greetingData: {
       welcome: "Welcome Back",
-      name: userData?.firstName || "",
+      name: loggedUserFirstName || "",
       info: "Here is the information about",
       profile: "Students",
       showButtons: true,
