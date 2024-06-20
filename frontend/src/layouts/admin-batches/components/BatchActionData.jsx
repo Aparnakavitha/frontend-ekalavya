@@ -2,15 +2,16 @@ const AdminBatchActionData = {
   heading: "Batches List",
   buttonProps: {
     variant: "tertiary",
-    content: "+ Add new Batch",
+    content: "+ Add New Batch",
     width: "full",
   },
-  showDelete:false,
+  showDelete: false,
   searchWidth: "large",
   searchbarProps: {
     variant: "custom",
     placeholder: "Batch",
   },
+  searchPlaceholder: "Enter Batch Name",
   showFiltersAndReset: false,
   batchprops: {
     mainHeading: "Create Batch",

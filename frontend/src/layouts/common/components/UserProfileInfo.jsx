@@ -5,7 +5,7 @@ import TextButton from "../../../components/buttons/TextButton";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { IoMdMail } from "react-icons/io";
 import { FaPhone, FaGithub, FaLinkedin } from "react-icons/fa";
-
+ 
 const UserProfileInfo = (props) => {
   const {
     role,
@@ -22,10 +22,10 @@ const UserProfileInfo = (props) => {
     hasDelete,
     onClickEdit,
     onClickDelete,
-    addresses, // Updated to include addresses
+    addresses, 
     ...rest
   } = props;
-
+ 
   return (
     <div className={`${styles["userprofile-main"]} padding-top padding`}>
       <div className={`${styles["userprofile-user-details"]}`}>
@@ -50,7 +50,7 @@ const UserProfileInfo = (props) => {
             )}
           </div>
         </div>
-
+ 
         <div className={`${styles["userprofile-details-section"]}`}>
           <div className={`${styles["userprofile-basic-info"]}`}>
             <div className={`${styles["userprofile-profile-picture"]}`}>
@@ -70,7 +70,7 @@ const UserProfileInfo = (props) => {
               <h4 className={`${styles["userprofile-dob"]}`}>DOB: {dob}</h4>
             </div>
           </div>
-
+ 
           <div className={`${styles["userprofile-bio"]}`}>
             <h4 className={`${styles["userprofile-email"]}`}>
               <IoMdMail /> {email}
@@ -121,5 +121,5 @@ const UserProfileInfo = (props) => {
     </div>
   );
 };
-
+ 
 export default UserProfileInfo;

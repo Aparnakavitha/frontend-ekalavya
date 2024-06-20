@@ -13,6 +13,10 @@ import MentorSkills from "./mentor-skills/MentorSkills";
 import MentorCreateEvent from "./mentor-events/MentorCreateEvent";
 import MentorEventDetails from "./mentor-events/MentorEventDetails";
 import { getUserDetails } from "../../services/User";
+import { toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
+import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
+
 
 const MentorContent = () => {
   const [Data, setData] = useState({
@@ -21,6 +25,7 @@ const MentorContent = () => {
     emailId: ""
   });
   
+  const userId = sessionStorage.getItem("user_id");
 
   const location = useLocation();
 
@@ -29,7 +34,7 @@ const MentorContent = () => {
   const fetchData = async () => {
     try {
       const params = {
-        userId: "03",
+        userId: userId,
       };
       const data = await getUserDetails(params);
       setData(data.responseData[0]);
@@ -43,6 +48,10 @@ const MentorContent = () => {
     fetchData();
   }, []);
 
+  if (!Data) {
+    return <LoadingSpinner />;
+  }
+
   const primaryData = {
     name: `${Data.firstName} ${Data.lastName}`,
     email: Data.emailId,
@@ -52,7 +61,18 @@ const MentorContent = () => {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      console.log("clicked");
+      sessionStorage.clear(); 
+      navigate("/"); 
+      toast.success("LogOut Successful", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     },
     width: "full",
   };
@@ -118,7 +138,7 @@ const MentorContent = () => {
               <Route path="/events" element={<MentorEvents />} />
               <Route path="/skills" element={<MentorSkills />} />
               <Route path="/event-creation" element={<MentorCreateEvent />} />
-              <Route path="/event-details" element={<MentorEventDetails />} />
+              <Route path="/event-details/:eventId" element={<MentorEventDetails />} />
             </Routes>
           </div>
         </div>

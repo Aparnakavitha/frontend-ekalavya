@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
-import DeleteBox from "../../common/components/DeleteBox";
 import image from "../../../assets/pic.png";
 
-const StudentProfileInfo = ({ profileData, EditableData, onFormSubmit }) => { // <-- Corrected here
+const StudentProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
   const [isDeleteDetailsIsOpen, setIsDeleteDetailsIsOpen] = useState(false);
 
@@ -26,9 +25,13 @@ const StudentProfileInfo = ({ profileData, EditableData, onFormSubmit }) => { //
   };
 
   const handleFormSubmit = async (formData) => {
-    console.log(formData, "Form submitted successfully");
-    await onFormSubmit(formData);
-    handleCloseEditBasicDetails();
+    try {
+      console.log("Form Submitted with data:", formData);
+      await onFormSubmit(formData);
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
   };
 
   const sample = {
@@ -48,18 +51,13 @@ const StudentProfileInfo = ({ profileData, EditableData, onFormSubmit }) => { //
     onSubmit: handleFormSubmit,
   };
 
-  const deleteBox = {
-    title: "Confirm deletion",
-    message: "This action will delete the user. Are you sure?",
-    buttonText: "Confirm",
-    onCancel: () => {
-      console.log("Action cancelled");
-      handleCloseDeleteBasicDetails();
-    },
-    onConfirm: () => {
-      console.log("Action confirmed");
-      handleCloseDeleteBasicDetails();
-    },
+  const sample = {
+    role: "student",
+    ...profileData,
+    ...EditableData,
+    hasDelete: false,
+    onClickEdit: handleOpenEditBasicDetails,
+    onClickDelete: handleOpenDeleteBasicDetails,
   };
   
 
@@ -72,14 +70,6 @@ const StudentProfileInfo = ({ profileData, EditableData, onFormSubmit }) => { //
         onClose={handleCloseEditBasicDetails}
       >
         <BasicDetails {...editBox} />
-      </Modal>
-
-      <Modal
-        isOpen={isDeleteDetailsIsOpen}
-        widthVariant="medium"
-        onClose={handleCloseDeleteBasicDetails}
-      >
-        <DeleteBox {...deleteBox} />
       </Modal>
     </div>
   );

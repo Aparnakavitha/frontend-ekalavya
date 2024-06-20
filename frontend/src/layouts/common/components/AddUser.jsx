@@ -53,7 +53,7 @@ const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
           </div>
           <div className={`${styles["adduser-name"]}`}>
             <Controller
-              name="secondName"
+              name="lastName"
               control={control}
               rules={{
                 required: "Second name is required",
@@ -67,15 +67,15 @@ const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
                 />
               )}
             />
-            {errors.secondName && (
+            {errors.lastName && (
               <p className={`${styles["adduser-error"]}`}>
-                {errors.secondName.message}
+                {errors.lastName.message}
               </p>
             )}
           </div>
         </div>
         <Controller
-          name="email"
+          name="emailId"
           control={control}
           rules={{
             required: "Email is required",
@@ -90,12 +90,14 @@ const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
             />
           )}
         />
-        {errors.email && (
-          <p className={`${styles["adduser-error"]}`}>{errors.email.message}</p>
+        {errors.emailId && (
+          <p className={`${styles["adduser-error"]}`}>
+            {errors.emailId.message}
+          </p>
         )}
         {viewCollege && (
           <Controller
-            name="college"
+            name="collegeId"
             control={control}
             rules={{
               required: "College name is required",
@@ -111,9 +113,9 @@ const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
             )}
           />
         )}
-        {errors.college && (
+        {errors.collegeId && (
           <p className={`${styles["adduser-error"]}`}>
-            {errors.college.message}
+            {errors.collegeId.message}
           </p>
         )}
         <PrimaryButton

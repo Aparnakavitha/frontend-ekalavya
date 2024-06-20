@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { IoIosCloseCircle } from "react-icons/io";
 import styles from "./Searchbar.module.css";
 
 const SearchBar = ({ variant = "large", placeholder, onSearch }) => {
@@ -7,6 +8,12 @@ const SearchBar = ({ variant = "large", placeholder, onSearch }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(query);
+    console.log(query, "searched");
+  };
+
+  const clearSearch = (e) => {
+    setQuery("");
+    onSearch("");
   };
 
   let boxClassName;
@@ -31,6 +38,15 @@ const SearchBar = ({ variant = "large", placeholder, onSearch }) => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
+          {query && (
+            <button
+              type="button"
+              className={styles["clear-button"]}
+              onClick={clearSearch}
+            >
+              <IoIosCloseCircle className={`${styles.icon}`} />
+            </button>
+          )}
           <button type="submit" className={styles["search-button"]}>
             Search
           </button>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import DeleteButton from "../../../components/buttons/DeleteButton";
 
 const DeleteBox = ({ title, message, buttonText, onCancel, onConfirm }) => {
   return (
@@ -19,9 +20,9 @@ const DeleteBox = ({ title, message, buttonText, onCancel, onConfirm }) => {
           width="full"
           onClick={onCancel}
         />
-        <PrimaryButton
+        <DeleteButton
           content={buttonText}
-          variant="primary"
+          variant="tertiary"
           width="full"
           onClick={onConfirm}
         />

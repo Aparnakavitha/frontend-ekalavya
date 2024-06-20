@@ -4,12 +4,17 @@ import Modal from "./Modal";
 import QualificationForm from "./QualificationForm";
 import DeleteBox from "./DeleteBox";
 
-const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
+const EducationalQualification = ({
+  qualifications=[],
+  onFormSubmit,
+  userId,
+}) => {
   const [isAddQualificationOpen, setIsAddQualificationOpen] = useState(false);
   const [isEditQualificationOpen, setIsEditQualificationOpen] = useState(false);
   const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] =
     useState(false);
-  const [editIndex, setEditIndex] = useState(null); 
+  const [editIndex, setEditIndex] = useState(null);
+
   const handleOpenAddQualification = () => {
     setIsAddQualificationOpen(true);
   };
@@ -19,7 +24,7 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
   };
 
   const handleOpenEditQualification = (index) => {
-    setEditIndex(index); 
+    setEditIndex(index);
     setIsEditQualificationOpen(true);
   };
 
@@ -48,8 +53,8 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
   const handleFormSubmit = async (formData) => {
     try {
       const formDataToSend = {
-        userId: userId, 
-        qualifications: [formData] 
+        userId: userId,
+        qualifications: [formData],
       };
       await onFormSubmit(formDataToSend);
       handleCloseEditQualification();
@@ -59,32 +64,30 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
       console.error("Error updating user details:", error);
     }
   };
-  
-  const handleRemove = async (index) => {
-    try {
-    
-      const qualification = qualifications[index];
 
+  const handleRemove = async (editIndex) => {
+    try {
+      const qualification = qualifications[editIndex];
+
+      console.log("hello");
       const formData = {
         userId: userId,
         qualifications: [
           {
-            qualificationId: qualification.qualificationId,
-          }
-         
-        ]
+            qualificationId: qualification?.qualificationId, }
+        ],
       };
-    
+
       console.log("Form Data:", formData);
       console.log("Start Date:", formData.startDate);
       console.log("End Date:", formData.endDate);
-      await onFormSubmit(formData); 
+      await onFormSubmit(formData);
       handleCloseEditQualification();
     } catch (error) {
       console.error("Error updating user details:", error);
     }
   };
-  
+
   const options = [
     { value: "High School", label: "High School" },
     { value: "Bachelor's Degree", label: "Bachelor's Degree" },
@@ -102,7 +105,7 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
   const editQualProps = {
     heading: "Edit Education Qualification",
     options: options,
-    initialValues: qualifications[editIndex], 
+    initialValues: qualifications[editIndex] || {},
     onSubmit: handleFormSubmit,
   };
 
@@ -111,13 +114,14 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
     message: "Remove this qualification?",
     buttonText: "Confirm",
     onConfirm: () => {
-      handleFormSubmit();
-      handleRemove(editIndex);
+      if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
+        handleRemove(editIndex);
+      }
     },
     onCancel: handleFormCancel,
   };
 
-  const sample = {
+  const educationProps = {
     qualifications,
     onClickAdd: handleOpenAddQualification,
     onClickEdit: handleOpenEditQualification,
@@ -126,7 +130,7 @@ const EducationalQualification = ({ qualifications, onFormSubmit, userId }) => {
 
   return (
     <div>
-      <Education {...sample} />
+      <Education {...educationProps} />
       <Modal
         isOpen={isAddQualificationOpen}
         widthVariant="medium"

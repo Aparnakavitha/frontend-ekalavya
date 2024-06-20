@@ -3,42 +3,51 @@ import AboutMe from "../../../layouts/common/components/AboutMe";
 import Upcoming from "../../../layouts/student-profile/components/Upcoming";
 import StudentProfileInfo from "../../../layouts/student-profile/components/StudentProfileInfo";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
-import profilepic from "../../../assets/DP.png";
 import { getUserDetails, updateUserDetails } from "../../../services/User";
+import profilepic from "../../../assets/DP.png";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const StudentProfile = () => {
   const [studentData, setStudentData] = useState(null);
 
   const fetchData = async () => {
     try {
+      const userId = sessionStorage.getItem("user_id");
       const params = {
-        userId: 3,
+        userId: userId,
       };
       const data = await getUserDetails(params);
-      setStudentData(data.responseData[0]);
-      console.log("Student data fetched:", data.responseData[0]);
+      // // Assuming data.responseData is an array and we want the first element
+      if (data.responseData[0]) {
+        setStudentData(data.responseData[0]);
+      } else {
+        console.error("No student data found");
+        // Handle case where no student data is found
+      }
+      console.log("Student data:", data.responseData);
     } catch (error) {
       console.error("Error fetching student data:", error);
+      // Handle error state or display a message to the user
     }
   };
-
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // Empty dependency array ensures useEffect runs once on component mount
 
   const handleFormSubmit = async (formData) => {
     try {
       console.log("Form Submitted with data:", formData);
       const response = await updateUserDetails(formData);
       console.log("Update response:", response);
-      fetchData();
+      fetchData(); // Refetch data after update
     } catch (error) {
-      console.error("Error updating student details:", error);
+      console.error("Error updating user details:", error);
+      // Handle error state or display a message to the user
     }
   };
 
   if (!studentData) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />; // Display a loading spinner while data is being fetched
   }
 
   const about = {
@@ -56,12 +65,12 @@ const StudentProfile = () => {
     phoneNo: studentData.phoneNo,
     addresses: [
       {
-        addressId: homeAddress ? homeAddress.addressId : "",
-        houseName: homeAddress ? homeAddress.houseName : "",
-        city: homeAddress ? homeAddress.city : "",
-        pinCode: homeAddress ? homeAddress.pinCode : "",
-        state: homeAddress ? homeAddress.state : "",
-        country: homeAddress ? homeAddress.country : "",
+        addressId: homeAddress?.addressId || "",
+        houseName: homeAddress?.houseName || "",
+        city: homeAddress?.city || "",
+        pinCode: homeAddress?.pinCode || "",
+        state: homeAddress?.state || "",
+        country: homeAddress?.country || "",
       },
     ],
     aboutMe: studentData.aboutMe || "",
@@ -70,11 +79,11 @@ const StudentProfile = () => {
   const profileData = {
     profilepic: profilepic,
     name: `${studentData.firstName} ${studentData.lastName}`,
-    college: studentData.college.collegeName,
+    college: studentData.college?.collegeName || "",
     email: studentData.emailId,
   };
 
-  const education = studentData.qualifications;
+  const Education = studentData.qualifications || [];
 
   return (
     <div>
@@ -83,12 +92,12 @@ const StudentProfile = () => {
         EditableData={EditableData}
         onFormSubmit={handleFormSubmit}
       />
-      <AboutMe {...about} />
       <EducationalQualification
-        qualifications={education}
+        qualifications={Education}
         userId={studentData.userId}
         onFormSubmit={handleFormSubmit}
       />
+      <AboutMe {...about} />
       <Upcoming />
     </div>
   );

@@ -2,10 +2,10 @@ const AdminStudentActionData = {
   heading: "Mentors List",
   buttonProps: {
     variant: "tertiary",
-    content: "+ Add new Mentor",
+    content: "+ Add New Mentor",
     width: "full",
   },
-  showDelete:false,
+  showDelete: false,
   searchWidth: "large",
   searchbarProps: {
     variant: "custom",
@@ -16,6 +16,7 @@ const AdminStudentActionData = {
     viewCollege: false,
     heading: "Add New Mentor",
   },
+  searchPlaceholder: "Enter Mentor ID",
 };
 
 export default AdminStudentActionData;

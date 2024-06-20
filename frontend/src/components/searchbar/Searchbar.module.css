@@ -1,6 +1,6 @@
 .box {
   max-width: 1000px;
-  width: 80%;
+  width: 100%;
 }
 
 .search-box {
@@ -29,6 +29,7 @@
   letter-spacing: -0.41px;
   font-weight: 600;
   color: var(--white);
+  width: 80%;
 }
 
 .search-button {
@@ -52,6 +53,24 @@
 
 .none {
   display: none;
+}
+
+.clear-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.clear-button .icon {
+  color: var(--white);
+  font-size: 24px;
+}
+
+.clear-button .icon :hover {
+  color: var(--primary-color);
+  font-size: 24px;
 }
 
 .custom-box {
@@ -80,7 +99,7 @@
   border-radius: 0 18px 18px 0;
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 1235px) {
   .small-box,
   .custom-box {
     width: 100%;
@@ -93,7 +112,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .box .search-box {
+  .search-box {
     width: 125%;
   }
 
@@ -108,5 +127,8 @@
   .small-box .search-box,
   .custom-box .search-box {
     width: 100%;
+  }
+  .box {
+    width: 80%;
   }
 }

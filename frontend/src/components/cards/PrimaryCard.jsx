@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./PrimaryCard.module.css";
 import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
 import { format } from "date-fns";
-
+ 
 const PrimaryCard = (props) => {
   const {
     miniHeading,
@@ -12,34 +12,34 @@ const PrimaryCard = (props) => {
     Description,
     handleClick,
   } = props;
-
+ 
   const transformMainHeading = (heading) => {
-    if (heading && heading.length > 24) {
-      return heading.slice(0, 20) + "...";
+    if (heading && heading.length > 17) {
+      return heading.slice(0, 17) + "...";
     }
     return heading;
   };
-
+ 
   const transformMainDescription = (description) => {
     if (description && description.length > 34) {
       return description.slice(0, 70) + "...";
     }
     return description;
   };
-
-  const formattedStartDate = format(new Date(startDate), "MM/dd/yyyy hh:mm a");
-  const formattedEndDate = format(new Date(endDate), "MM/dd/yyyy hh:mm a");
-
+ 
+  const formattedStartDate = format(new Date(startDate), "MMM dd, yyyy");
+  const formattedEndDate = format(new Date(endDate), "MMM dd, yyyy");
+ 
   const [isHover, setIsHover] = useState(false);
-
+ 
   const handleMouseEnter = () => {
     setIsHover(true);
   };
-
+ 
   const handleMouseLeave = () => {
     setIsHover(false);
   };
-
+ 
   const leftCardClass = isHover ? styles.leftCardHover : styles.leftCard;
   const rightCardClass = isHover ? styles.rightCardHover : styles.rightCard;
   const maskClass = isHover ? styles.maskHover : styles.mask;
@@ -49,7 +49,7 @@ const PrimaryCard = (props) => {
   const mask5Class = isHover ? styles.mask5Hover : styles.mask5;
   const arrowClass = isHover ? styles.arrowHover : styles.arrow;
   const cardsClass = isHover ? styles.cardOutlineHover : styles.cardOutline;
-
+ 
   return (
     <div
       className={`${styles.cards}`}
@@ -87,5 +87,6 @@ const PrimaryCard = (props) => {
     </div>
   );
 };
-
+ 
 export default PrimaryCard;
+ 
