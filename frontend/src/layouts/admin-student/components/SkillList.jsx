@@ -4,12 +4,25 @@ import ShowCards from "../../common/components/ShowCards";
 import Modal from "../../common/components/Modal";
 import { CombinedSkillForm } from "../../common";
 import CardRow from "./Cardrow";
-import { adminStudentSkillState } from "../../../states/Atoms";
-import { useRecoilValue } from "recoil";
-const SkillList = () => {
+import {
+  adminStudentSkillState,
+  studentSkillState,
+} from "../../../states/Atoms";
+import { useRecoilValue ,useRecoilState} from "recoil";
+import { Userskillpost } from "../../../services/Skills";
+const SkillList = ({ studentId }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const studentSkills=useRecoilValue(adminStudentSkillState);
+  const studentSkills = useRecoilValue(adminStudentSkillState);
+  const [setStudentSkills]=useRecoilState(adminStudentSkillState);
+  const allSkills = useRecoilValue(studentSkillState);
 
+  const addSkillOptions = allSkills.map((skill) => ({
+    value: skill.id,
+    label: skill.skillName,
+  }));
+
+  console.log("All defined skills:", addSkillOptions);
+  console.log("Student skills",studentSkills);
   const handleOpenModal = () => {
     setIsOpen(true);
   };
@@ -18,8 +31,13 @@ const SkillList = () => {
     setIsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
+  const handleFormSubmit = async (formData) => {
     console.log("Form submitted with data:", formData);
+    const submitResponse = await Userskillpost({
+      userId:studentId,
+      skillId: formData.selectedSkills,
+    });
+    console.log("Submission response",submitResponse);
     handleCloseModal();
   };
 
@@ -37,11 +55,7 @@ const SkillList = () => {
     isSelect: false,
     isEditlevel: false,
     buttonTitle: "Add Skill",
-    options: [
-      { value: "abc", label: "ABC" },
-      { value: "xyz", label: "XYZ" },
-      { value: "pqr", label: "PQR" },
-    ],
+    options: [...addSkillOptions],
   };
 
   const skillcards = {

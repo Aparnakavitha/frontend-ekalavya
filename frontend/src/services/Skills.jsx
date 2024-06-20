@@ -104,10 +104,10 @@ export const getUsersCountForSkill = async (skillId) => {
   }
 };
 
- export const getSkillsForUser = async (userId) => {
+export const getSkillsForUser = async (userId) => {
   try {
     const response = await axios.get(`${BASE_URL}?userId=${userId}`);
-    
+
     // Check if response data is an array
     if (Array.isArray(response.data)) {
       return response.data; // Assuming response.data directly gives array of skills
@@ -118,7 +118,11 @@ export const getUsersCountForSkill = async (skillId) => {
       throw new Error("Unexpected response structure from API");
     }
   } catch (error) {
-    if (error.response && error.response.data && error.response.data.errorMessage) {
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.errorMessage
+    ) {
       throw new Error(error.response.data.errorMessage);
     } else {
       console.error("Error fetching skills for user:", error);
@@ -128,27 +132,29 @@ export const getUsersCountForSkill = async (skillId) => {
 };
 
 export const Userskillpost = async (data) => {
-    try {
-      const response = await axios.post(BASEURL, data);
-      return response.data;
-    } catch (error) {
-      console.error("Error posting skill:", error);
-      throw error;
-    }
-  };
-  
-  /**
-  * Deletes a user-skill relationship.
-  * @param {number} userId - The ID of the user.
-  * @param {number} skillId - The ID of the skill.
-  * @returns {Promise} - Axios promise with the response data.
-  */
-  export const UserSkillDelete = async (userId, skillId) => {
-    try {
-      const response = await axios.delete(BASE_URL, { params: { userId, skillId } });
-      return response.data;
-    } catch (error) {
-      console.error("Error deleting user-skill:", error);
-      throw error;
-    }
+  try {
+    const response = await axios.post(BASEURL, data);
+    return response.data;
+  } catch (error) {
+    console.error("Error posting skill:", error);
+    throw error;
+  }
+};
+
+/**
+ * Deletes a user-skill relationship.
+ * @param {number} userId - The ID of the user.
+ * @param {number} skillId - The ID of the skill.
+ * @returns {Promise} - Axios promise with the response data.
+ */
+export const UserSkillDelete = async (userId, skillId) => {
+  try {
+    const response = await axios.delete(BASE_URL, {
+      params: { userId, skillId },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user-skill:", error);
+    throw error;
+  }
 };

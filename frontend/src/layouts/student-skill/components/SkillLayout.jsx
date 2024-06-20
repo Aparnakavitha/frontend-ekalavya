@@ -21,7 +21,7 @@ const Layout = () => {
     index: null,
   });
   const [options, setOptions] = useState([]);
-  const userId = 1;
+  const userId = sessionStorage.getItem("user_id");
 
   useEffect(() => {
     fetchSkills();
