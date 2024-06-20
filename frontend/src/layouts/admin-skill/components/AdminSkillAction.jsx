@@ -7,12 +7,12 @@ import DeleteSkill from "./DeleteSkill";
 import {
   createSkill,
   deleteSkill,
-} from "../../../services/student/skills/StudentSkillService";
+  filterSkills,
+} from "../../../services/Skills";
 import {
   useSkills,
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
-import { filterSkills } from "../../../services/student/skills/StudentSkillService";
 
 const AdminSkillAction = () => {
   const { skills, setSkills, setChanged } = useSkills();

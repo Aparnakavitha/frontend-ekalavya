@@ -15,9 +15,13 @@ const AdminEvent = () => {
     eventMode: "",
   });
 
+
+  const loggedUserFirstName = sessionStorage.getItem("firstName");
+
+
   const greeting = {
     welcome: "Welcome Back",
-    name: "John",
+    name: loggedUserFirstName || "",
     info: "Here is the information about",
     profile: "Mentors",
     showButtons: false,

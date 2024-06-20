@@ -4,7 +4,7 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import styles from "../Common.module.css";
 import { format, parse } from "date-fns";
-
+ 
 const Education = ({ qualifications, onClickAdd, onClickEdit, onClickDelete }) => {
   const formattedDate = (dateString) => {
     if (!dateString) return ''; 
@@ -14,7 +14,6 @@ const Education = ({ qualifications, onClickAdd, onClickEdit, onClickDelete }) =
     return `${day} ${monthYear}`;
   };
   
-
   return (
     <div className={`${styles["education-container"]} padding-bottom padding`}>
       <div className={`${styles["education-qualification"]}`}>
@@ -79,5 +78,5 @@ const Education = ({ qualifications, onClickAdd, onClickEdit, onClickDelete }) =
     </div>
   );
 };
-
+ 
 export default Education;

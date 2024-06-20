@@ -8,12 +8,12 @@ import {
   getUserDetails,
   updateUserDetails,
   addNewUser,
-  deleteUser
+  deleteUser,
 } from "../../../services/User";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
-import { getSkillsForUser } from "../../../services/student/skills/StudentSkillService";
+import { getSkillsForUser } from "../../../services/Skills";
 
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
@@ -53,7 +53,7 @@ const AdminStudentDetails = () => {
       canDelete: true,
     }));
 
-    console.log("Formatted skills: ",skills);
+    console.log("Formatted skills: ", skills);
     setStudentSkills(skills);
   };
 
@@ -141,8 +141,7 @@ const AdminStudentDetails = () => {
         onformSubmit={handleFormSubmit2}
       />
       <SkillList />
-      <EventList studentId={studentsData.userId} 
-      handleDelete={handleDelete}/>
+      <EventList studentId={studentsData.userId} handleDelete={handleDelete} />
     </div>
   );
 };

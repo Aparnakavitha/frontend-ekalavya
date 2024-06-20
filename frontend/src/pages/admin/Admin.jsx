@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
-import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
 import {
   MdEvent,
@@ -28,24 +27,34 @@ import { getUserDetails } from "../../services/User";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import { SkillsProvider } from "./admin-skills/AdminSkillContext";
 import { RecoilRoot } from "recoil";
-import { toast } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css"; 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import image from "../../assets/DP.png"
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
-  
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const userId = sessionStorage.getItem("user_id");
+        if (!userId) {
+          console.error("User ID is not found in session storage");
+          return;
+        }
+        console.log("Fetched User ID:", userId); // Debug log
         const params = {
           userId: userId,
         };
         const data = await getUserDetails(params);
+        const firstName = data.responseData[0].firstName;
+        const lastName = data.responseData[0].lastName;
+        const emailId = data.responseData[0].emailId;
+        sessionStorage.setItem("firstName", firstName);
+        sessionStorage.setItem("lastName", lastName);
+        sessionStorage.setItem("emailId", emailId);
         setUserData(data.responseData[0]);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -63,8 +72,8 @@ const AdminContent = () => {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      sessionStorage.clear(); 
-      navigate("/"); 
+      sessionStorage.clear();
+      navigate("/");
       toast.success("LogOut Successful", {
         position: "top-center",
         autoClose: 5000,
@@ -74,7 +83,7 @@ const AdminContent = () => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
     },
     width: "full",
   };
@@ -110,7 +119,7 @@ const AdminContent = () => {
     ],
     profileBox: {
       name: `${userData.firstName} ${userData.lastName}`,
-      profilePic: userData.profilePicture,
+      profilePic: image,
       gmail: userData.emailId,
     },
   };

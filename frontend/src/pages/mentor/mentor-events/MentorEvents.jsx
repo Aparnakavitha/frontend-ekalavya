@@ -13,12 +13,14 @@ const MentorEvents = () => {
   const [selectedStatus, setSelectedStatus] = useState("upcoming");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const userId = sessionStorage.getItem("user_id");
  
   const fetchEventsByStatus = async (status) => {
     setLoading(true);
     setError(null);
     try {
-      const eventList = await fetchEventsService({ host: 1, completed: status === "completed" ? 1 : 0 });
+      const eventList = await fetchEventsService({ host: userId, completed: status === "completed" ? 1 : 0 });
       console.log(`Fetched ${status} events:`, eventList);
       setEvents(eventList);
     } catch (error) {
@@ -38,7 +40,7 @@ const MentorEvents = () => {
     variant: "secondary",
     width: "half",
     onClick: () => {
-      navigate("/mentor/event-creation");
+      navigate("/mentor/events/event-creation");
     },
   };
  
@@ -48,7 +50,7 @@ const MentorEvents = () => {
  
   const handleClick = (event) => {
     console.log(`Clicked on event ${event.eventId}`);
-    navigate(`/mentor/event-details/${event.eventId}`);
+    navigate(`/mentor/events/event-details/${event.eventId}`);
   };
  
   const primaryCardData = {

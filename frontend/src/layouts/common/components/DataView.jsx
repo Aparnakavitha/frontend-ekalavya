@@ -114,6 +114,7 @@ const DataView = ({
               </div>
             ))}
             {!isMobileView &&
+              currentPage > 1 &&
               Array.from({ length: emptyBoxCount }).map((_, index) => (
                 <div
                   key={index}
@@ -125,6 +126,7 @@ const DataView = ({
           <div className={styles["dataview-tablecontainer"]}>
             <Table data={filteredTableData} headings={tableHeadings} />
             {!isMobileView &&
+              currentPage > 1 &&
               Array.from({ length: emptyBoxCount }).map((_, index) => (
                 <div
                   key={index}

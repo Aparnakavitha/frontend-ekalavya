@@ -6,7 +6,7 @@ import profilepic from "../../../assets/DP.png";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import EducationalQualification from "../../common/components/EducationalQualification";
-import { updateUserDetails } from "../../../services/User";
+import { addNewUser } from "../../../services/User";
 
 const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
   const navProps = {
@@ -42,7 +42,7 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Sfgsdh", formData);
-      const response = await updateUserDetails(formData);
+      const response = await addNewUser(formData);
       console.log("Update response:", response);
       handleCloseEditBasicDetails();
     } catch (error) {
