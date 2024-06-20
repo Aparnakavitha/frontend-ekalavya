@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ToastContainer, toast, Slide } from "react-toastify";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
 import Greeting from "../../../layouts/common/components/Greeting";
@@ -13,9 +14,11 @@ import {
   postColleges,
   getUserDetails,
   updateUserDetails,
+  addNewUser,
 } from "../../../services/User";
 import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import image from "../../../assets/DP.png";
 
 const fetchStudentsData = async (setStudentsData, params) => {
   try {
@@ -41,18 +44,12 @@ const fetchStudentsData = async (setStudentsData, params) => {
     );
 
     const data = await getUserDetails(filteredParams);
-    const studentsOnly = data.responseData.filter(
-      (item) => item.role && item.role.roleId === 3
-    );
+    const studentsOnly =
+      data.responseData?.filter(
+        (item) => item.role && item.role.roleId === 3
+      ) || [];
 
-    if (studentsOnly) {
-      setStudentsData(studentsOnly);
-    } else {
-      studentsOnly = data.responseData.filter(
-        (item) => item.role && item.role.roleId === 999
-      );
-      setStudentsData(studentsOnly);
-    }
+    setStudentsData(studentsOnly);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -176,7 +173,7 @@ const AdminStudent = () => {
     heading: "Students List",
     buttonProps: {
       variant: "tertiary",
-      content: "+ Add new Student",
+      content: "+ Add New Student",
       width: "full",
     },
     searchWidth: "medium",
@@ -215,14 +212,14 @@ const AdminStudent = () => {
 
   const dataView = {
     data: studentsData.map((student) => ({
-      studentImage: student?.profilePicture || "",
-      studentName: `${student?.firstName || ""} ${student?.lastName || ""}`,
-      studentId: student?.userId || "",
-      studentCollege: student?.college?.collegeName || "",
-      studentMail: student?.emailId || "",
-      studentPhoneNumber: student?.phoneNo || "",
+      studentImage: image,
+      studentName: `${student.firstName || ""} ${student.lastName || ""}`,
+      studentId: student.userId || "",
+      studentCollege: student.college.collegeName || "",
+      studentMail: student.emailId || "",
+      studentPhoneNumber: student.phoneNo || "",
       canDelete: false,
-      viewAnimation: (cardAnimation && student?.newEntry) || false,
+      viewAnimation: (cardAnimation && student.newEntry) || false,
     })),
     tableColumns: [
       { key: "studentId", displayName: "Student ID" },
@@ -272,6 +269,15 @@ const AdminStudent = () => {
       } catch (error) {
         console.error("Error fetching data:", error);
       }
+      toast.success("College Added", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       handleCloseAdd();
     } catch (error) {
       console.error("Error adding college:", error);
@@ -304,7 +310,7 @@ const AdminStudent = () => {
       formData.profilePicture =
         "https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg";
 
-      const response = await updateUserDetails(formData);
+      const response = await addNewUser(formData);
       const newStudent = response.responseData;
       newStudent.college = {
         collegeId: formData.collegeId,
@@ -401,6 +407,19 @@ const AdminStudent = () => {
           No students available
         </p>
       )}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Slide}
+      />
     </div>
   );
 };

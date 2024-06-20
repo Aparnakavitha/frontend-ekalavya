@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import ActionComponent from '../../common/components/Action';
-import AddUser from '../../common/components/AddUser';
-import Modal from '../../common/components/Modal';
-import AdminMentorActionData from './MentorData';
-import { addNewUser } from '../../../services/User'; // Import addNewUser API
+import React, { useState } from "react";
+import ActionComponent from "../../common/components/Action";
+import AddUser from "../../common/components/AddUser";
+import Modal from "../../common/components/Modal";
+import AdminMentorActionData from "./MentorData";
+import { addNewUser } from "../../../services/User";
 
-const AdminMentorAction = ({ onSubmit, onAddSuccess,fetchData }) => {
+const AdminMentorAction = ({
+  onSubmit,
+  onAddSuccess,
+  fetchData,
+  onSearchChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -18,21 +23,20 @@ const AdminMentorAction = ({ onSubmit, onAddSuccess,fetchData }) => {
 
   const handleFormSubmit = async (formData) => {
     try {
-      // Provide default values for collegeId and roleId if not provided
       const userData = {
-        emailId: formData.email,
+        emailId: formData.emailId,
         firstName: formData.firstName,
-        lastName: formData.secondName,
+        lastName: formData.lastName,
         collegeId: formData.collegeId || 1,
         roleId: formData.roleId || 2,
       };
 
-      await addNewUser(userData); // Use addNewUser API for submission
-      console.log('New user added successfully!');
-      onAddSuccess(); // Call onAddSuccess callback to refresh mentor data
-      handleCloseModal(); // Close modal after form submission
+      await addNewUser(userData);
+      console.log("New user added successfully!");
+      onAddSuccess();
+      handleCloseModal();
     } catch (error) {
-      console.error('Error adding new user:', error);
+      console.error("Error adding new user:", error);
     }
   };
 
@@ -45,11 +49,12 @@ const AdminMentorAction = ({ onSubmit, onAddSuccess,fetchData }) => {
           onClick: handleOpenModal,
         }}
         searchbarProps={fetchData}
+        onSearchChange={onSearchChange}
       />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddUser
           {...AdminMentorActionData.adduserprops}
-          onSubmit={handleFormSubmit} 
+          onSubmit={handleFormSubmit}
         />
       </Modal>
     </div>

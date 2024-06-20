@@ -61,7 +61,6 @@ const AdminSkillAction = () => {
         prevSkills.filter((skill) => skill.id !== deleteSkillId)
       );
       setChanged(true);
-      console.log("skills after deletion: ", skills);
       handleCloseDelete();
     } catch (error) {
       console.error("Error deleting skill:", error);
@@ -69,9 +68,7 @@ const AdminSkillAction = () => {
   };
 
   const handleSearchChange = async (value) => {
-    console.log("Search -----", value);
     const searchedSkill = await filterSkills(value);
-    console.log("Skill search response: ", searchedSkill);
     setSkills(searchedSkill);
   };
 

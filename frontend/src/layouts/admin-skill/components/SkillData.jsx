@@ -2,7 +2,7 @@ const AdminSkillActionData = {
   heading: "Skills List",
   buttonProps: {
     variant: "tertiary",
-    content: "+ Add new Skill",
+    content: "+ Add New Skill",
     width: "full",
   },
   deleteProps: {
@@ -22,7 +22,7 @@ const AdminSkillActionData = {
     placeholder: "Skill",
   },
   showFiltersAndReset: false,
-  searchPlaceholder:"Enter skill name",
+  searchPlaceholder: "Enter Skill Name",
 };
 
 export default AdminSkillActionData;
