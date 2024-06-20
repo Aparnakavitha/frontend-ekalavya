@@ -22,6 +22,7 @@ const RouterComponent = () => {
             path="/explore/event-details/:eventId"
             element={<EventDescription />}
           />
+           <Route path="/student/*" element={<StudentContent />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import AdminEventData from "../../../services/admin/event/AdminEventData";
 import { Greeting, DataView } from "../../../layouts/common";
 import AdminEventAction from "../../../layouts/admin-event/components/AdminEventAction";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
@@ -15,6 +14,14 @@ const AdminEvent = () => {
     eventType: "",
     eventMode: "",
   });
+
+  const greeting = {
+    welcome: "Welcome Back",
+    name: "John",
+    info: "Here is the information about",
+    profile: "Mentors",
+    showButtons: false,
+  };
 
   useEffect(() => {
     const getEvents = async () => {
@@ -61,7 +68,7 @@ const AdminEvent = () => {
       { key: "endDate", displayName: "End Date" },
       { key: "description", displayName: "Description" },
     ],
-    toggle: false,
+    toggle: true,
     itemsPerPage: 8,
   };
 
@@ -95,7 +102,7 @@ const AdminEvent = () => {
     heading: "Events List",
     buttonProps: {
       variant: "tertiary",
-      content: "+ Add new Event",
+      content: "+ Add New Event",
       width: "full",
     },
     showDelete: false,
@@ -144,12 +151,12 @@ const AdminEvent = () => {
         { value: "option4", label: "Option 4" },
       ],
     },
-    searchPlaceholder:"Search events",
+    searchPlaceholder: "Enter Event Title",
   };
 
   return (
     <div>
-      <Greeting {...AdminEventData.greeting} />
+      <Greeting {...greeting} />
       <AdminEventAction
         formSubmit={formSubmit}
         AdminEventActionData={AdminEventActionData}

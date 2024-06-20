@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
 import ShowCards from "../../common/components/ShowCards";
-import EventData from "./MentorEventData";
 import Modal from "../../common/components/Modal";
 import CardRow from "../../admin-student/components/Cardrow";
 import Addevent from "../../admin-student/components/AddEvent";
@@ -9,8 +9,8 @@ import { DeleteBox } from "../../common";
 import styles from "../AdminMentor.module.css";
 import { useNavigate } from "react-router-dom";
 
-
-const MentorEventsList = () => {
+// EventData merged into the component
+const MentorEventsList = ({ handleDelete }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -36,7 +36,7 @@ const MentorEventsList = () => {
     handleCloseModal();
     handleCloseDelete();
   };
-  
+
   const handleDeleteCancel = () => {
     console.log("Delete canceled");
     handleCloseDelete();
@@ -44,6 +44,9 @@ const MentorEventsList = () => {
 
   const handleDeleteConfirm = () => {
     console.log("Delete confirmed");
+    if (handleDelete) {
+      handleDelete();
+    }
     handleCloseDelete();
   };
 
@@ -64,21 +67,55 @@ const MentorEventsList = () => {
     buttonText: "Confirm",
   };
 
+  // EventData
   const heading = {
-    ...EventData.heading,
+    heading: "Events Handled",
     textbuttonprops: {
-      ...EventData.heading.textbuttonprops,
+      icon: <AiOutlinePlus />,
+      text: "Add Events",
       onClick: handleOpenModal,
     },
+  };
+
+  const addevent = {
+    mainHeading: "Add Event",
+    options: [
+      { value: "abc", label: "ABC" },
+      { value: "xyz", label: "XYZ" },
+      { value: "pqr", label: "PQR" },
+    ],
+  };
+
+  const eventcards = {
+    card: "event",
+    cardData: [
+      {
+        miniHeading: "Capstone 1",
+        mainHeading: "Health Management",
+        startDate: "Jan 15, 2030",
+        endDate: "Mar 15, 2030",
+        Description:
+          "Unlock the power of data with our comprehensive Introduction to Data",
+        cardType: "Course",
+      },
+      {
+        miniHeading: "Capstone 2",
+        mainHeading: "Business Management",
+        startDate: "Feb 20, 2030",
+        endDate: "Apr 20, 2030",
+        Description: "A comprehensive course on business management strategies",
+        cardType: "Course",
+      },
+    ],
   };
 
   return (
     <div>
       <ShowCards {...heading} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
-        <Addevent {...EventData.addevent} onSubmit={handleFormSubmit} />
+        <Addevent {...addevent} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...EventData.eventcards} handleClick={handleClick} />
+      <CardRow {...eventcards} handleClick={handleClick} />
       <div className="padding">
         <div className={`${styles["mentoreventslist-container"]}`}>
           <div className={`${styles["mentoreventslist-deletebutton"]}`}>
@@ -86,16 +123,8 @@ const MentorEventsList = () => {
           </div>
         </div>
       </div>
-      <Modal
-        isOpen={isDeleteOpen}
-        widthVariant="small"
-        onClose={handleCloseDelete}
-      >
-        <DeleteBox
-          {...deleteprops}
-          onCancel={handleDeleteCancel}
-          onConfirm={handleDeleteConfirm}
-        />
+      <Modal isOpen={isDeleteOpen} widthVariant="small" onClose={handleCloseDelete}>
+        <DeleteBox {...deleteprops} onCancel={handleDeleteCancel} onConfirm={handleDeleteConfirm} />
       </Modal>
     </div>
   );

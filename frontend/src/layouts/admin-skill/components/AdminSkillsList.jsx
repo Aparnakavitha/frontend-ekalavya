@@ -10,18 +10,20 @@ import {
 } from "../../../services/student/skills/StudentSkillService";
 import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { participantsState } from "../../../states/Atoms";
 
 const capitalizeFirstLetter = (string) => {
   return string.trim().charAt(0).toUpperCase() + string.slice(1);
 };
 
 const AdminSkillsList = ({ handleClick }) => {
-  const { skills, setSkills, changed, setChanged, setParticipants, participants } =
-    useSkills();
+  const { skills, setSkills, changed, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [participants, setParticipants] = useRecoilState(participantsState);
 
   const navigate = useNavigate();
 
@@ -43,7 +45,7 @@ const AdminSkillsList = ({ handleClick }) => {
 
     fetchSkills();
     setChanged(false);
-  }, [changed]);
+  }, [changed, setSkills, setChanged]);
 
   const handleOpenModal = (skill) => {
     setSelectedSkill(skill);
@@ -54,20 +56,23 @@ const AdminSkillsList = ({ handleClick }) => {
     setIsOpen(false);
     setSelectedSkill(null);
   };
-  
-  const handleFormSubmit = (data) => {
+
+  const handleFormSubmit = async (data) => {
     if (selectedSkill) {
-      const response = updateSkill({
-        skillId: selectedSkill.id,
-        skillName: data.inputData,
-      });
-      console.log("Update response: ", response);
-      const updatedSkills = skills.map((skill) =>
-        skill.id === selectedSkill.id
-          ? { ...skill, skillName: capitalizeFirstLetter(data.inputData) }
-          : skill
-      );
-      setSkills(updatedSkills);
+      try {
+        const response = await updateSkill({
+          skillId: selectedSkill.id,
+          skillName: data.inputData,
+        });
+        const updatedSkills = skills.map((skill) =>
+          skill.id === selectedSkill.id
+            ? { ...skill, skillName: capitalizeFirstLetter(data.inputData) }
+            : skill
+        );
+        setSkills(updatedSkills);
+      } catch (error) {
+        console.error("Error updating skill: ", error);
+      }
     }
     handleCloseModal();
   };
@@ -81,12 +86,19 @@ const AdminSkillsList = ({ handleClick }) => {
       canEdit: true,
       cardType: "skill",
       handleClick: async () => {
-        console.log("Skill Id used for request: ", skill.id);
-        const response = await getUsersCountForSkill(skill.id);
-        setParticipants(response.users);
-        console.log("Participants here.....",participants);
-        navigate(`/admin/skills/skill-participants`);
-        console.log("Response for skill users", response);
+        try {
+          const response = await getUsersCountForSkill(skill.id);
+          const participantData = response.users.map((user) => [
+            user.userId,
+            user.UserName,
+            user.emailId,
+          ]);
+
+          setParticipants(participantData);
+          navigate(`/admin/skills/skill-participants`);
+        } catch (error) {
+          console.error("Error fetching skill participants: ", error);
+        }
       },
       handleEditClick: () => handleOpenModal(skill),
     })),
