@@ -5,6 +5,7 @@
     border-radius: 50px; /* Rounded corners */
     padding: 10px 20px; /* Padding for better appearance */
     font-size: 14px; /* Larger font size */
+    font-weight: 600;
     cursor: pointer; /* Pointer cursor on hover */
     display: flex; /* Flexbox for aligning items */
     align-items: center; /* Center items vertically */
@@ -13,4 +14,8 @@
    
   .custom-google-login-button:hover {
     background-color: var(--white); /* Slightly darker green on hover */
+  }
+
+  .full-width {
+    width: 100%;
   }
