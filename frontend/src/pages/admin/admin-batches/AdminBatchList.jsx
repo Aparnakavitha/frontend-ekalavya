@@ -30,6 +30,7 @@ const AdminBatchList = () => {
           mainHeading: item.batchName || "", 
           Count: item.participantCount,
           cardType: "batch",
+          handleClick: () => handleClick(item),
         }));
 
         console.log("Formatted batchData is : ", formattedData);
@@ -51,8 +52,9 @@ const AdminBatchList = () => {
     setChanged((prev) => !prev); 
   };
 
-  const handleClick = () => {
-    navigate(`/admin/batches/batch-details`);
+  const handleClick = (item) => {
+    console.log("batch-----",item);
+    navigate(`/admin/batches/batch-details/${item.miniHeading}`);
   };
 
   const handleFormSubmit = async (formData) => {
@@ -71,14 +73,6 @@ const AdminBatchList = () => {
 
   const loggedUserFirstName = sessionStorage.getItem("firstName");
 
-  const greet = {
-    welcome: "Welcome Back",
-    name: loggedUserFirstName || "",
-    info: "Here is the information about",
-    profile: "batches",
-    showButtons: false,
-  };
-
   const filteredData = batchData?.filter((batch) =>
     batch.mainHeading?.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -87,7 +81,7 @@ const AdminBatchList = () => {
     <div>
       <Greeting
         welcome="Welcome Back"
-        name="John"
+        name= {loggedUserFirstName}
         info="Here is the information about"
         profile="Batches"
         showButtons={false}

@@ -171,7 +171,7 @@ const AdminContent = () => {
                     element={<AdminSkillStudents />}
                   />
                   <Route
-                    path="batches/batch-details"
+                    path="batches/batch-details/:batchId"
                     element={<AdminBatchSelect />}
                   />
                   <Route
