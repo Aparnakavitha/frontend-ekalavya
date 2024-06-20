@@ -148,6 +148,7 @@ const AdminContent = () => {
             />
           </div>
           <div className="statecontent">
+            <RecoilRoot>
               <SkillsProvider>
                 <Routes>
                   <Route path="student" element={<AdminStudent />} />
@@ -181,6 +182,7 @@ const AdminContent = () => {
                   />
                 </Routes>
               </SkillsProvider>
+            </RecoilRoot>
           </div>
         </div>
         <div className="footer">
