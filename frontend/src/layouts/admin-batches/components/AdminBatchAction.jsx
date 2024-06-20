@@ -4,7 +4,7 @@ import Modal from "../../common/components/Modal";
 import AdminBatchActionData from "./BatchActionData";
 import BatchOperations from "./BatchOperations";
 
-const AdminBatchAction = ({ onSubmit }) => {
+const AdminBatchAction = ({ onSubmit, onSearchChange }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -17,11 +17,10 @@ const AdminBatchAction = ({ onSubmit }) => {
 
   const handleFormSubmit = async (formData) => {
     try {
-      await onSubmit(formData); 
-      setIsOpen(false); 
+      await onSubmit(formData);
+      setIsOpen(false);
     } catch (error) {
       console.error("Error submitting batch:", error);
-      
     }
   };
 
@@ -35,12 +34,12 @@ const AdminBatchAction = ({ onSubmit }) => {
 
   return (
     <div>
-      <ActionComponent {...actionData} />
+      <ActionComponent {...actionData} onSearchChange={onSearchChange} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <BatchOperations
           mainHeading="Create New Batch"
           onSubmit={handleFormSubmit}
-          />
+        />
       </Modal>
     </div>
   );
