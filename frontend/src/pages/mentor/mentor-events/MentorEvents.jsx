@@ -40,7 +40,7 @@ const MentorEvents = () => {
     variant: "secondary",
     width: "half",
     onClick: () => {
-      navigate("/mentor/event-creation");
+      navigate("/mentor/events/event-creation");
     },
   };
  
@@ -50,7 +50,7 @@ const MentorEvents = () => {
  
   const handleClick = (event) => {
     console.log(`Clicked on event ${event.eventId}`);
-    navigate(`/mentor/event-details/${event.eventId}`);
+    navigate(`/mentor/events/event-details/${event.eventId}`);
   };
  
   const primaryCardData = {

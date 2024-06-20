@@ -44,7 +44,7 @@ const AdminContent = () => {
           console.error("User ID is not found in session storage");
           return;
         }
-        console.log("Fetched User ID:", userId); // Debug log
+        console.log("Fetched User ID:", userId); 
         const params = {
           userId: userId,
         };
