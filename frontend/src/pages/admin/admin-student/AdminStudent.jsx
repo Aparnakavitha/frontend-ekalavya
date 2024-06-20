@@ -146,14 +146,15 @@ const AdminStudent = () => {
     fetchBatchParticipantsData(setParams, params);
   }, [params]);
 
-  if (!collegeData.length || !userData) {
+  // || !userData
+  if (!collegeData.length) {
     return <LoadingSpinner />;
   }
 
   const AdminStudentData = {
     greetingData: {
       welcome: "Welcome Back",
-      name: userData.firstName,
+      name: userData?.firstName || "",
       info: "Here is the information about",
       profile: "Students",
       showButtons: true,
