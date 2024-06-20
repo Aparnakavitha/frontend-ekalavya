@@ -2,11 +2,12 @@
 import axios from "axios";
 const API_URL = "http://localhost:8888";
 
-export const fetchbatches = async (params = {}) => {
+export const fetchbatches = async (params) => {
   try {
-    const response = await axios.get(`${API_URL}/batches`, { params });
-    console.log(response);
-    return response.data.responseData;
+    const response = await axios.get(`${API_URL}/batches`, {
+      params: params,
+    });
+    return response.data;
   } catch (error) {
     console.error("Error fetching batches:", error);
     throw error;

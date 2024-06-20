@@ -8,24 +8,24 @@ import { fetchbatches } from "../../../services/admin/batch/AdminBatchListData";
 
 const AdminBatchList = () => {
   const [batchesData, setBatchesData] = useState([]);
-  useEffect(() => {
-    const loadBatches = async () => {
+  
+  const loadBatches = async () => {
       try {
         const params = {
-          // batchId: "2",
+          batchId: "2",
 
         };
         const data = await fetchbatches(params);
-        console.log(batchesData);
-        setBatchesData(data);
+        setBatchesData(data.responseData[0]);
+        console.log("dsssss",batchesData);
       } catch (err) {
         console.error("Error fetching batches:", err);
       } 
     };
 
-    loadBatches();
-  }, []);
-
+    useEffect(() => {
+      loadBatches();
+    }, []);
 
 
   const batchData = {
