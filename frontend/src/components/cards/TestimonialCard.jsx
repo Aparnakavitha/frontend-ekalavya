@@ -25,7 +25,7 @@ const TestimonialCard = ({
           <div className={styles.place}>{place}</div>
         </div>
       </div>
-      <div className={styles.description}>{truncateText(description, 350)}</div>
+      <div className={styles.description} title={description}>{truncateText(description, 350)}</div>
     </div>
   );
 };
