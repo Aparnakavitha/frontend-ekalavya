@@ -5,8 +5,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const clientId =
-  "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com"; // Replace with your actual Google Client ID
+const clientId = "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com"; // Replace with your actual Google Client ID
 
 const CustomGoogleLoginButton = ({ fullWidth }) => {
   const navigate = useNavigate();
@@ -26,14 +25,11 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
   };
 
   const fetchUserInfo = async (accessToken) => {
-    const response = await axios.get(
-      "https://www.googleapis.com/oauth2/v3/userinfo",
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const response = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     console.log("User Info Response:", response.data);
     return response.data;
   };
@@ -45,9 +41,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     console.log("Picture URL:", picture);
     console.log("Participant ID:", participantId);
 
-    const response = await axios.post("https://ekalavya.tarento.com/login", {
-      email,
-    });
+    const response = await axios.post("https://ekalavya.tarento.com/login", { email });
     const { roleId, userId } = response.data.responseData;
     console.log("API Response Role ID:", roleId);
 
