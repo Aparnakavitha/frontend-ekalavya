@@ -4,8 +4,8 @@ import { addEventService } from '../../../services/Event';
  
 const MentorCreateEvent = () => {
   
-  const [hostId, setHostId] = useState("1");
- 
+  const hostId = sessionStorage.getItem("user_id");
+  
   const submitEvent = async (data) => {
     try {
       const formData = { ...data, hostId };

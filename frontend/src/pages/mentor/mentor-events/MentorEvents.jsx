@@ -13,12 +13,14 @@ const MentorEvents = () => {
   const [selectedStatus, setSelectedStatus] = useState("upcoming");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const userId = sessionStorage.getItem("user_id");
  
   const fetchEventsByStatus = async (status) => {
     setLoading(true);
     setError(null);
     try {
-      const eventList = await fetchEventsService({ host: 1, completed: status === "completed" ? 1 : 0 });
+      const eventList = await fetchEventsService({ host: userId, completed: status === "completed" ? 1 : 0 });
       console.log(`Fetched ${status} events:`, eventList);
       setEvents(eventList);
     } catch (error) {
