@@ -23,7 +23,6 @@ const SkillList = () => {
     handleCloseModal();
   };
 
-  // SkillData
   const heading = {
     heading: "Skills",
     textbuttonprops: {
