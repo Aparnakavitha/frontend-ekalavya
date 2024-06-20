@@ -4,27 +4,30 @@ import MentorProfileInfo from "../../../layouts/mentor-profile/components/Mentor
 import AboutMe from "../../../layouts/common/components/AboutMe";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
 import profilepic from "../../../assets/DP.png";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { getUserDetails, updateUserDetails } from "../../../services/User";
 
 const MentorProfile = () => {
   const [mentorData, setMentorData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const fetchData = async () => {
-    try {
-      const params = {
-        userId: "4",
-      };
-      const data = await getUserDetails(params);
-      setMentorData(data.responseData[0]);
-      console.log("dsssss", data);
-    } catch (error) {
-      console.error("Error fetching mentor data:", error);
-    }
-  };
+  const userId = sessionStorage.getItem("user_id");
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const params = { userId };
+      const data = await getUserDetails(params);
+      setMentorData(data.responseData[0]);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching mentor data:", error);
+      setLoading(false);
+    }
+  };
 
   const handleFormSubmit = async (formData) => {
     try {
@@ -37,8 +40,12 @@ const MentorProfile = () => {
     }
   };
 
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
   if (!mentorData) {
-    return <div>Loading...</div>;
+    return <div>Error fetching mentor data. Please try again later.</div>;
   }
 
   const greet = {
@@ -78,11 +85,11 @@ const MentorProfile = () => {
   const profileData = {
     profilepic: profilepic,
     name: `${mentorData.firstName} ${mentorData.lastName}`,
-    college: mentorData.college.collegeName,
+    college: mentorData.college?.collegeName || "",
     email: mentorData.emailId,
   };
 
-  const Education = mentorData.qualifications;
+  const Education = mentorData.qualifications || "";
 
   return (
     <div>

@@ -28,17 +28,21 @@ import { getUserDetails } from "../../services/User";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import { SkillsProvider } from "./admin-skills/AdminSkillContext";
 import { RecoilRoot } from "recoil";
+import { toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
+  const userId = sessionStorage.getItem("user_id");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const params = {
-          userId: "4",
+          userId: "1",
         };
         const data = await getUserDetails(params);
         setUserData(data.responseData[0]);
@@ -58,7 +62,18 @@ const AdminContent = () => {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      console.log("clicked");
+      sessionStorage.clear(); 
+      navigate("/"); 
+      toast.success("LogOut Successful", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     },
     width: "full",
   };
@@ -133,7 +148,6 @@ const AdminContent = () => {
             />
           </div>
           <div className="statecontent">
-            <RecoilRoot>
               <SkillsProvider>
                 <Routes>
                   <Route path="student" element={<AdminStudent />} />
@@ -167,7 +181,6 @@ const AdminContent = () => {
                   />
                 </Routes>
               </SkillsProvider>
-            </RecoilRoot>
           </div>
         </div>
         <div className="footer">

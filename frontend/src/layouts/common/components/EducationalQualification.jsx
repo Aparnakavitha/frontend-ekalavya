@@ -5,9 +5,9 @@ import QualificationForm from "./QualificationForm";
 import DeleteBox from "./DeleteBox";
 
 const EducationalQualification = ({
-  qualifications,
+  qualifications=[],
   onFormSubmit,
-  userId = 1,
+  userId,
 }) => {
   const [isAddQualificationOpen, setIsAddQualificationOpen] = useState(false);
   const [isEditQualificationOpen, setIsEditQualificationOpen] = useState(false);
@@ -65,16 +65,16 @@ const EducationalQualification = ({
     }
   };
 
-  const handleRemove = async (index) => {
+  const handleRemove = async (editIndex) => {
     try {
-      const qualification = qualifications[index];
+      const qualification = qualifications[editIndex];
 
+      console.log("hello");
       const formData = {
         userId: userId,
         qualifications: [
           {
-            qualificationId: qualification.qualificationId,
-          },
+            qualificationId: qualification?.qualificationId, }
         ],
       };
 
@@ -105,7 +105,7 @@ const EducationalQualification = ({
   const editQualProps = {
     heading: "Edit Education Qualification",
     options: options,
-    initialValues: qualifications[editIndex],
+    initialValues: qualifications[editIndex] || {},
     onSubmit: handleFormSubmit,
   };
 
