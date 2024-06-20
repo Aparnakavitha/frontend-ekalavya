@@ -5,6 +5,8 @@ import BasicDetails from "../../common/components/BasicDetails";
 import profilepic from "../../../assets/DP.png";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
+import EducationalQualification from "../../common/components/EducationalQualification";
+import { updateUserDetails } from "../../../services/User";
 
 const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
   const navProps = {
@@ -38,6 +40,17 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
     handleCloseEditBasicDetails();
   };
 
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Sfgsdh", formData);
+      const response = await updateUserDetails(formData);
+      console.log("Update response:", response);
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
   const homeAddress =
   studentsData.addresses &&
   studentsData.addresses.find((address) => address.addressType === "home");
@@ -58,15 +71,18 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
           country: homeAddress ? homeAddress.country : "",
         },
       ],
-      aboutMe: studentsData.aboutMe,
+      aboutMe: studentsData.aboutMe ,
     },
     isEdit: true,
   };
 
   const aboutMeProps = {
     title: "About Me",
-    description: studentsData.aboutMe,
+    description: studentsData.aboutMe ? studentsData.aboutMe: "No content available for this section.",
   };
+
+  const Education = studentsData.qualifications;
+
 
   return (
     <div>
@@ -94,6 +110,11 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
       <AboutMe {...aboutMeProps} />
+      <EducationalQualification
+        qualifications={Education}
+        userId={studentsData.userId}
+        onFormSubmit={handleFormSubmit2}
+      />
     </div>
   );
 };
