@@ -3,7 +3,7 @@ import Education from "./Education";
 import Modal from "./Modal";
 import QualificationForm from "./QualificationForm";
 import DeleteBox from "./DeleteBox";
-
+ 
 const EducationalQualification = ({
   qualifications=[],
   onFormSubmit,
@@ -14,42 +14,42 @@ const EducationalQualification = ({
   const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] =
     useState(false);
   const [editIndex, setEditIndex] = useState(null);
-
+ 
   const handleOpenAddQualification = () => {
     setIsAddQualificationOpen(true);
   };
-
+ 
   const handleCloseAddQualification = () => {
     setIsAddQualificationOpen(false);
   };
-
+ 
   const handleOpenEditQualification = (index) => {
     setEditIndex(index);
     setIsEditQualificationOpen(true);
   };
-
+ 
   const handleCloseEditQualification = () => {
     setIsEditQualificationOpen(false);
   };
-
+ 
   const handleOpenDeleteQualification = () => {
     setIsDeleteQualificationOpen(true);
   };
-
+ 
   const handleCloseDeleteQualification = () => {
     setIsDeleteQualificationOpen(false);
   };
-
+ 
   const handleFormConfirm = (formData) => {
     console.log(formData, "Action Confirmed");
     handleCloseDeleteQualification();
   };
-
+ 
   const handleFormCancel = (formData) => {
     console.log(formData, "Action Cancelled");
     handleCloseDeleteQualification();
   };
-
+ 
   const handleFormSubmit = async (formData) => {
     try {
       const formDataToSend = {
@@ -65,11 +65,10 @@ const EducationalQualification = ({
     }
   };
 
-  const handleRemove = async (editIndex) => {
+  const handleRemove = async (index) => {
     try {
-      const qualification = qualifications[editIndex];
+      const qualification = qualifications[index];
 
-      console.log("hello");
       const formData = {
         userId: userId,
         qualifications: [
@@ -77,7 +76,7 @@ const EducationalQualification = ({
             qualificationId: qualification?.qualificationId, }
         ],
       };
-
+ 
       console.log("Form Data:", formData);
       console.log("Start Date:", formData.startDate);
       console.log("End Date:", formData.endDate);
@@ -87,47 +86,48 @@ const EducationalQualification = ({
       console.error("Error updating user details:", error);
     }
   };
-
+ 
   const options = [
     { value: "High School", label: "High School" },
     { value: "Bachelor's Degree", label: "Bachelor's Degree" },
     { value: "Master's Degree", label: "Master's Degree" },
     { value: "Ph.D.", label: "Ph.D." },
   ];
-
+ 
   const addQualProps = {
     heading: "Add New Education Qualification",
     options: options,
     initialValues: {},
     onSubmit: handleFormSubmit,
   };
-
+ 
   const editQualProps = {
     heading: "Edit Education Qualification",
     options: options,
     initialValues: qualifications[editIndex] || {},
     onSubmit: handleFormSubmit,
   };
-
+ 
   const deleteQualProps = {
     title: "Confirm deletion",
     message: "Remove this qualification?",
     buttonText: "Confirm",
     onConfirm: () => {
+      console.log("hello")
       if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
         handleRemove(editIndex);
       }
     },
     onCancel: handleFormCancel,
   };
-
+ 
   const educationProps = {
     qualifications,
     onClickAdd: handleOpenAddQualification,
     onClickEdit: handleOpenEditQualification,
     onClickDelete: handleOpenDeleteQualification,
   };
-
+ 
   return (
     <div>
       <Education {...educationProps} />
@@ -138,7 +138,7 @@ const EducationalQualification = ({
       >
         <QualificationForm {...addQualProps} />
       </Modal>
-
+ 
       <Modal
         isOpen={isEditQualificationOpen}
         widthVariant="medium"
@@ -146,7 +146,7 @@ const EducationalQualification = ({
       >
         <QualificationForm {...editQualProps} />
       </Modal>
-
+ 
       <Modal
         isOpen={isDeleteQualificationOpen}
         widthVariant="small"
@@ -157,5 +157,5 @@ const EducationalQualification = ({
     </div>
   );
 };
-
+ 
 export default EducationalQualification;

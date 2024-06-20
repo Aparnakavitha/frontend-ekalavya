@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { EventsDescription } from "../../common";
+import Modal from "../../common/components/Modal";
+import LoginBox from "../../common/components/LoginBox";
 
 const HomeEventDescription = ({ event }) => {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  const handleOpenLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
+
+  const handleCloseLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
+  const handleRegisterClick = () => {
+    handleOpenLoginModal();
+  };
+
   const handleButtonClick = (message) => {
     toast.success(message, {
       position: "top-center",
@@ -37,7 +53,15 @@ const HomeEventDescription = ({ event }) => {
     large: "view participants",
     type: "public",
     smaller: "Register",
-    onclick1: () => handleButtonClick("Event registered successfully!"),
+    onclick1: handleRegisterClick,
+  };
+
+  const loginBoxProps = {
+    title: "Please Log In",
+    message:
+      "You need to log in to register for this event. Please log in",
+    buttonText: "Log In with Google",
+    onCancel: handleCloseLoginModal,
   };
 
   return (
@@ -56,6 +80,14 @@ const HomeEventDescription = ({ event }) => {
         theme="dark"
         transition={Slide}
       />
+
+      <Modal
+        isOpen={isLoginModalOpen}
+        widthVariant="small"
+        onClose={handleCloseLoginModal}
+      >
+        <LoginBox {...loginBoxProps} />
+      </Modal>
     </div>
   );
 };

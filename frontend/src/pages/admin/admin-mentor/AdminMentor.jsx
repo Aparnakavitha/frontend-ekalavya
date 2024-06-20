@@ -54,25 +54,6 @@ const AdminMentor = () => {
   };
 
   useEffect(() => {
-    const fetchAdminData = async () => {
-      try {
-        const userId = sessionStorage.getItem("user_id");
-        const params = {
-          userId: userId,
-        };
-        const data = await getUserDetails(params);
-        if (data && data.responseData && data.responseData.length > 0) {
-          setAdminData(data.responseData[0]);
-        }
-      } catch (error) {
-        console.error("Error fetching admin data:", error);
-      }
-    };
-
-    fetchAdminData();
-  }, []);
-
-  useEffect(() => {
     fetchMentorData(setMentorData);
   }, []);
 
@@ -111,13 +92,11 @@ const AdminMentor = () => {
     }
   };
 
-  if (!adminData) {
-    return <LoadingSpinner />;
-  }
+  const loggedUserFirstName = sessionStorage.getItem("firstName");
 
   const greet = {
     welcome: "Welcome Back",
-    name: `${adminData.firstName}`,
+    name: loggedUserFirstName || "",
     info: "Here is the information about",
     profile: "Mentors",
     showButtons: false,
