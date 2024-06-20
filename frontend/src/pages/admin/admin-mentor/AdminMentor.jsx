@@ -54,24 +54,6 @@ const AdminMentor = () => {
   };
 
   useEffect(() => {
-    const fetchAdminData = async () => {
-      try {
-        const params = {
-          userId: "4",
-        };
-        const data = await getUserDetails(params);
-        if (data && data.responseData && data.responseData.length > 0) {
-          setAdminData(data.responseData[0]);
-        }
-      } catch (error) {
-        console.error("Error fetching admin data:", error);
-      }
-    };
-
-    fetchAdminData();
-  }, []);
-
-  useEffect(() => {
     fetchMentorData(setMentorData);
   }, []);
 
@@ -110,13 +92,11 @@ const AdminMentor = () => {
     }
   };
 
-  if (!adminData) {
-    return <LoadingSpinner />;
-  }
+  const loggedUserFirstName = sessionStorage.getItem("firstName");
 
   const greet = {
     welcome: "Welcome Back",
-    name: `${adminData.firstName}`,
+    name: loggedUserFirstName || "",
     info: "Here is the information about",
     profile: "Mentors",
     showButtons: false,
@@ -125,15 +105,15 @@ const AdminMentor = () => {
   const data = {
     data: mentorData.map((mentor) => ({
       studentImage: image,
-      studentName: `${mentor.firstName || "N/A"} ${mentor.lastName || "N/A"}`,
-      studentId: mentor.userId || "N/A",
+      studentName: `${mentor.firstName || "N/A"} ${mentor.lastName || ""}`,
+      studentId: mentor.userId || "",
       studentCollege: "",
-      studentMail: mentor.emailId || "N/A",
-      studentPhoneNumber: mentor.phoneNo || "N/A",
+      studentMail: mentor.emailId || "",
+      studentPhoneNumber: mentor.phoneNo || "",
       studentAddress:
         mentor.addresses && mentor.addresses.length > 0
           ? `${mentor.addresses[0].houseName}, ${mentor.addresses[0].city} - ${mentor.addresses[0].pinCode}, ${mentor.addresses[0].state}, ${mentor.addresses[0].country}`
-          : "N/A",
+          : "",
       canDelete: false,
     })),
     tableColumns: [

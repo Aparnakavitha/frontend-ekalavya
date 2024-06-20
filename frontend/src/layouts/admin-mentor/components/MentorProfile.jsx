@@ -6,6 +6,7 @@ import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
 import EducationalQualification from "../../common/components/EducationalQualification";
+import { addNewUser } from "../../../services/User";
 
 const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
@@ -36,7 +37,8 @@ const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Sfgsdh", formData);
-      await onformSubmit(formData);
+      const response = await addNewUser(formData);
+      console.log("Update response:", response);
       handleCloseEditBasicDetails();
     } catch (error) {
       console.error("Error updating user details:", error);
@@ -73,7 +75,7 @@ const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
 
   const aboutMeProps = {
     title: "About Me",
-    description: mentorData.aboutMe,
+    description: mentorData.aboutMe ? mentorData.aboutMe : "No content available for this section.",
   };
 
   const Education = mentorData.qualifications;

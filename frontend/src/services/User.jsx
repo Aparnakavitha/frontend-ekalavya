@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8888";
+const API_URL = "https://ekalavya.tarento.com";
 
 // Function to get user details
 export const getUserDetails = async (params) => {
@@ -16,7 +16,7 @@ export const getUserDetails = async (params) => {
 // Function to update user details
 export const updateUserDetails = async (data) => {
   try {
-    const response = await axios.put(`${API_URL}/users/${data.userId}`, data);
+    const response = await axios.post(`${API_URL}/users`, data);
     return response.data;
   } catch (error) {
     console.error("Error updating user details:", error);

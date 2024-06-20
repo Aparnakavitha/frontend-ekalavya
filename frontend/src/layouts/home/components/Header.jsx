@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import styles from "../Home.module.css";
 import { BsX, BsList } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import CustomGoogleLoginButton from "../../../services/CustomGoogleLoginButton";
 
 const Header = ({
   menuItems,
   imageSrc,
-  button,
   type,
   showMenu = true,
   showMenuInSidebar = true,
@@ -39,7 +39,11 @@ const Header = ({
                 {item.name}
               </a>
             ))}
-          <div className={`${styles["header-button"]}`}>{button}</div>
+          <div
+            className={`${styles["header-button"]} ${styles["button-resp"]}`}
+          >
+            <CustomGoogleLoginButton />
+          </div>
         </div>
 
         <div
@@ -94,8 +98,9 @@ const Header = ({
           )}
         </div>
       )}
-
-      <div className={`${styles["header-button"]}`}>{button}</div>
+      <div className={`${styles["header-button"]} ${styles["button"]}`}>
+        <CustomGoogleLoginButton />
+      </div>
     </div>
   );
 };

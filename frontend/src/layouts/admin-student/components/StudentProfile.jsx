@@ -5,6 +5,8 @@ import BasicDetails from "../../common/components/BasicDetails";
 import profilepic from "../../../assets/DP.png";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
+import EducationalQualification from "../../common/components/EducationalQualification";
+import { addNewUser } from "../../../services/User";
 
 const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
   const navProps = {
@@ -23,10 +25,9 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
   const handleFormSubmit = (formData) => {
     const { addresses, ...formDataWithoutAddresses } = formData;
 
-    // Prepare addresses with addressId included
     const updatedAddresses = addresses.map((address) => ({
       ...address,
-      addressId: address.addressId || "", // If addressId is not present, use empty string
+      addressId: address.addressId || "",
     }));
 
     onSubmit({
@@ -36,6 +37,17 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
     });
 
     handleCloseEditBasicDetails();
+  };
+
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Sfgsdh", formData);
+      const response = await addNewUser(formData);
+      console.log("Update response:", response);
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
   };
 
   const homeAddress =
@@ -58,15 +70,18 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
           country: homeAddress ? homeAddress.country : "",
         },
       ],
-      aboutMe: studentsData.aboutMe,
+      aboutMe: studentsData.aboutMe ,
     },
     isEdit: true,
   };
 
   const aboutMeProps = {
     title: "About Me",
-    description: studentsData.aboutMe,
+    description: studentsData.aboutMe ? studentsData.aboutMe: "No content available for this section.",
   };
+
+  const Education = studentsData.qualifications;
+
 
   return (
     <div>
@@ -94,6 +109,11 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
       <AboutMe {...aboutMeProps} />
+      <EducationalQualification
+        qualifications={Education}
+        userId={studentsData.userId}
+        onFormSubmit={handleFormSubmit2}
+      />
     </div>
   );
 };

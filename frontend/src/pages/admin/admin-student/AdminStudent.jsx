@@ -138,7 +138,7 @@ const AdminStudent = () => {
     };
 
     fetchCollegeData();
-  }, [location.state]);
+  }, []);
 
   useEffect(() => {
     fetchStudentsData(setStudentsData, params);
@@ -146,14 +146,17 @@ const AdminStudent = () => {
     fetchBatchParticipantsData(setParams, params);
   }, [params]);
 
-  if (!collegeData.length || !userData) {
+  // || !userData
+  if (!collegeData.length) {
     return <LoadingSpinner />;
   }
+
+  const loggedUserFirstName = sessionStorage.getItem("firstName");
 
   const AdminStudentData = {
     greetingData: {
       welcome: "Welcome Back",
-      name: userData.firstName,
+      name: loggedUserFirstName || "",
       info: "Here is the information about",
       profile: "Students",
       showButtons: true,

@@ -69,6 +69,16 @@ const AdminBatchList = () => {
     }
   };
 
+  const loggedUserFirstName = sessionStorage.getItem("firstName");
+
+  const greet = {
+    welcome: "Welcome Back",
+    name: loggedUserFirstName || "",
+    info: "Here is the information about",
+    profile: "batches",
+    showButtons: false,
+  };
+
   const filteredData = batchData?.filter((batch) =>
     batch.mainHeading?.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -97,7 +107,7 @@ const AdminBatchList = () => {
             { key: "Count", displayName: "Participant Count" },
           ]}
           toggle={true}
-          cardType="SkillBatchCardbatch"
+          cardType="SkillBatchCard"
           itemsPerPage={12}
         />
       ) : (

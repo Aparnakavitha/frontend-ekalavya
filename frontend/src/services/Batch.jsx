@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8888";
+const API_URL = "https://ekalavya.tarento.com";
 
 export const fetchbatches = async (params) => {
   try {
