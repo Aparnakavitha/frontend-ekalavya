@@ -45,7 +45,7 @@ export const deleteEventService = async (eventId) => {
 
 export const enrollParticipantService = async (eventId, participantId, attendance) => {
   try {
-    const response = await axios.get("http://localhost:8888/enrollment", {
+    const response = await axios.get("https://ekalavya.tarento.com/enrollment", {
   params: {
     eventId: eventId,
     participantId: participantId,
@@ -62,7 +62,7 @@ export const enrollParticipantService = async (eventId, participantId, attendanc
 
 export const addEnrollmentService  = async (eventId, eventData) => {
   try {
-    const response = await axios.post(`http://localhost:8888/enrollment?eventId=${eventId}`,eventData);
+    const response = await axios.post(`https://ekalavya.tarento.com/enrollment?eventId=${eventId}`,eventData);
     return response.data;
   } catch (error) {
     console.log("Error adding event:", error);
