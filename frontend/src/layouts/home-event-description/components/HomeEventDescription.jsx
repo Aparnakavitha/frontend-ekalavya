@@ -5,7 +5,7 @@ import { EventsDescription } from "../../common";
 import Modal from "../../common/components/Modal";
 import LoginBox from "../../common/components/LoginBox";
 
-const HomeEventDescription = ({ event }) => {
+const HomeEventDescription = ({ event, organizer }) => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleOpenLoginModal = () => {
@@ -45,7 +45,7 @@ const HomeEventDescription = ({ event }) => {
     link: event.link,
     speaker: event.speaker,
     speakerDescription: event.speakerDescription,
-    organizer: event.organizer,
+    organizer: organizer ? `${organizer.firstName} ${organizer.lastName}` : "",
     button: "Events",
     buttons: event.eventTitle,
     small: "edit",
