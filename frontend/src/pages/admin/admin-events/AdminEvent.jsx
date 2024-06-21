@@ -15,9 +15,7 @@ const AdminEvent = () => {
     eventMode: "",
   });
 
-
   const loggedUserFirstName = sessionStorage.getItem("firstName");
-
 
   const greeting = {
     welcome: "Welcome Back",
@@ -61,7 +59,7 @@ const AdminEvent = () => {
       mainHeading: event.eventTitle,
       startDate: event.startDate,
       endDate: event.endDate,
-      description: event.description,
+      Description: event.description,
       cardType: "Course",
       handleClick: () => handleClick(event),
     })),
