@@ -123,7 +123,7 @@ const AdminStudentDetails = () => {
         onSubmit={handleFormSubmit}
       />
       {/* <EducationalQualification/> */}
-      <SkillList studentId={studentsData.userId}/>
+      <SkillList />
       <EventList studentId={studentsData.userId} handleDelete={handleDelete} />
     </div>
   );

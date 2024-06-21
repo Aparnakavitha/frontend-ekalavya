@@ -15,8 +15,8 @@ import ProfileNotificationBox from "../../components/profilenotificationbox/Prof
 import Footer from "../../layouts/common/components/Footer";
 import StudentProfile from "./student-profile/StudentProfile";
 import StudentEvent from "./student-events/StudentEvents";
+import StudentEventDetails from "./student-events/StudentEventDetails";
 import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
-import StudentEventDescription from "../../layouts/student-event-description/components/StudentEventDescription";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import { getUserDetails } from "../../services/User";
 import { toast } from "react-toastify"; 
@@ -140,7 +140,7 @@ const StudentContent = () => {
               <Route exact path="/events" element={<StudentEvent />} />
               <Route
                 path="events/:eventId"
-                element={<StudentEventDescription />}
+                element={<StudentEventDetails />}
               />
               <Route exact path="skills" element={<SkillLayout />} />
             </Routes>

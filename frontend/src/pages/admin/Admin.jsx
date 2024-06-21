@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
-import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
 import {
   MdEvent,
@@ -30,6 +29,7 @@ import { SkillsProvider } from "./admin-skills/AdminSkillContext";
 import { RecoilRoot } from "recoil";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import image from "../../assets/DP.png"
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -40,6 +40,11 @@ const AdminContent = () => {
     const fetchData = async () => {
       try {
         const userId = sessionStorage.getItem("user_id");
+        if (!userId) {
+          console.error("User ID is not found in session storage");
+          return;
+        }
+        console.log("Fetched User ID:", userId); 
         const params = {
           userId: userId,
         };
@@ -114,7 +119,7 @@ const AdminContent = () => {
     ],
     profileBox: {
       name: `${userData.firstName} ${userData.lastName}`,
-      profilePic: userData.profilePicture,
+      profilePic: image,
       gmail: userData.emailId,
     },
   };
@@ -166,7 +171,7 @@ const AdminContent = () => {
                     element={<AdminSkillStudents />}
                   />
                   <Route
-                    path="batches/batch-details"
+                    path="batches/batch-details/:batchId"
                     element={<AdminBatchSelect />}
                   />
                   <Route

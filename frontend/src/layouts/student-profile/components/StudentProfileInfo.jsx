@@ -34,6 +34,7 @@ const StudentProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
     }
   };
 
+
   const editBox = {
     mainHeading: "Edit Basic Details",
     initialData: { ...EditableData },
@@ -49,6 +50,7 @@ const StudentProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
     onClickEdit: handleOpenEditBasicDetails,
     onClickDelete: handleOpenDeleteBasicDetails,
   };
+  
 
   return (
     <div>

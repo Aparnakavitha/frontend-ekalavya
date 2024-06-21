@@ -13,23 +13,23 @@ import { Userskillpost } from "../../../services/Skills";
 const SkillList = ({ studentId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const studentSkills = useRecoilValue(adminStudentSkillState);
+  const [setStudentSkills]=useRecoilState(adminStudentSkillState);
   const allSkills = useRecoilValue(studentSkillState);
-
+ 
   const addSkillOptions = allSkills.map((skill) => ({
     value: skill.id,
     label: skill.skillName,
   }));
-
+ 
   console.log("All defined skills:", addSkillOptions);
-  console.log("Student skills",studentSkills);
   const handleOpenModal = () => {
     setIsOpen(true);
   };
-
+ 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
-
+ 
   const handleFormSubmit = async (formData) => {
     console.log("Form submitted with data:", formData);
     const submitResponse = await Userskillpost({
@@ -39,7 +39,7 @@ const SkillList = ({ studentId }) => {
     console.log("Submission response",submitResponse);
     handleCloseModal();
   };
-
+ 
   const heading = {
     heading: "Skills",
     textbuttonprops: {
@@ -48,7 +48,7 @@ const SkillList = ({ studentId }) => {
       onClick: handleOpenModal,
     },
   };
-
+ 
   const addSkill = {
     mainHeading: "Add New Skill",
     isSelect: false,
@@ -56,12 +56,12 @@ const SkillList = ({ studentId }) => {
     buttonTitle: "Add Skill",
     options: [...addSkillOptions],
   };
-
+ 
   const skillcards = {
     card: "skill",
     cardData: [...studentSkills],
   };
-
+ 
   return (
     <div>
       <ShowCards {...heading} />
@@ -72,5 +72,5 @@ const SkillList = ({ studentId }) => {
     </div>
   );
 };
-
+ 
 export default SkillList;

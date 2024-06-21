@@ -6,17 +6,27 @@ import Button from "../components/buttons/PrimaryButton";
 import edunexa from "../assets/edunexa.png";
 import Footer from "../layouts/common/components/Footer";
 import { fetchEventsService } from "../services/Event";
+import { getUserDetails } from "../services/User"; // Import the getUserDetails function
 
 const EventDescription = () => {
   const { eventId } = useParams();
   const [eventData, setEventData] = useState(null);
+  const [organizer, setOrganizer] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getEvent = async () => {
       try {
         const response = await fetchEventsService({ eventId });
-        setEventData(response[0]); // Assuming the response is an array, and we need the first item
+        const event = response[0]; // Assuming the response is an array, and we need the first item
+        setEventData(event);
+
+        if (event && event.hostId) {
+          const organizerResponse = await getUserDetails({ userId: event.hostId });
+          const organizerData = organizerResponse.responseData[0];
+          setOrganizer(organizerData);
+        }
+
         setLoading(false);
       } catch (error) {
         console.log("Error fetching event:", error);
@@ -58,7 +68,7 @@ const EventDescription = () => {
           {loading ? (
             <p>Loading event details...</p>
           ) : (
-            <HomeEventDescription event={eventData} />
+            <HomeEventDescription event={eventData} organizer={organizer} />
           )}
         </div>
         <Footer {...footerdata} />

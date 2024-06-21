@@ -87,7 +87,7 @@ const Filter = ({
               key={index}
               onClick={() => handleOptionClick(content)}
             >
-              <a>{transformContent(content)}</a>
+              <a title={content}>{transformContent(content)}</a>
             </div>
           ))}
         </div>

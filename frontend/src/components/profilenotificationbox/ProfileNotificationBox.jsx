@@ -26,10 +26,10 @@ const ProfileNotificationBox = ({
       <FiBell className={styles.bellicon} onClick={onBellIconClick} />
       <img src={profilePic} alt="Profile" className={styles.profilepic} />
       <div className={styles.info}>
-        <span className={styles.name} onClick={onNameClick}>
+        <span className={styles.name} onClick={onNameClick} title={name}>
           {truncatedName}
         </span>
-        <span className={styles.gmail}>{truncatedGmail}</span>
+        <span className={styles.gmail} title={gmail}>{truncatedGmail}</span>
       </div>
     </div>
   );
