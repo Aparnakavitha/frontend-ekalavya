@@ -4,16 +4,21 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import styles from "../Common.module.css";
 import { format, parse } from "date-fns";
- 
-const Education = ({ qualifications, onClickAdd, onClickEdit, onClickDelete }) => {
+
+const Education = ({
+  qualifications,
+  onClickAdd,
+  onClickEdit,
+  onClickDelete,
+}) => {
   const formattedDate = (dateString) => {
-    if (!dateString) return ''; 
+    if (!dateString) return "";
     const date = parse(dateString, "yyyy-MM-dd", new Date());
     const day = format(date, "do");
     const monthYear = format(date, "MMMM, yyyy");
     return `${day} ${monthYear}`;
   };
-  
+
   return (
     <div className={`${styles["education-container"]} padding-bottom padding`}>
       <div className={`${styles["education-qualification"]}`}>
@@ -38,27 +43,39 @@ const Education = ({ qualifications, onClickAdd, onClickEdit, onClickDelete }) =
             <ol type="1" className={`${styles["education-list-box"]}`}>
               {qualifications && qualifications.length > 0 ? (
                 qualifications.map((qualification, index) => (
-                  <li key={qualification.qualificationId} className={`${styles["education-qualification-instance"]}`}>
+                  <li
+                    key={qualification.qualificationId}
+                    className={`${styles["education-qualification-instance"]}`}
+                  >
                     <div className={`${styles["education-maindiv"]}`}>
-                      <h3 className={`${styles["education-qualification-name"]}`}>
+                      <h3
+                        className={`${styles["education-qualification-name"]}`}
+                      >
                         {qualification.degree}
                       </h3>
                       <p>{qualification.institution}</p>
                       <p>Percentage: {qualification.percentage}</p>
                       <p>
-                        {formattedDate(qualification.startDate)} - {formattedDate(qualification.endDate)}
+                        {formattedDate(qualification.startDate)} -{" "}
+                        {formattedDate(qualification.endDate)}
                       </p>
                       <p>Specialization: {qualification.specialization}</p>
                     </div>
-                    <div className={`${styles["education-qualification-mod-buttons"]}`}>
-                      <div className={`${styles["education-qualification-button"]}`}>
+                    <div
+                      className={`${styles["education-qualification-mod-buttons"]}`}
+                    >
+                      <div
+                        className={`${styles["education-qualification-button"]}`}
+                      >
                         <TextButton
                           icon={<MdEdit />}
                           text="Edit"
                           onClick={() => onClickEdit(index)}
                         />
                       </div>
-                      <div className={`${styles["education-qualification-button"]}`}>
+                      <div
+                        className={`${styles["education-qualification-button"]}`}
+                      >
                         <TextButton
                           icon={<MdDelete />}
                           text="Delete"
@@ -69,7 +86,12 @@ const Education = ({ qualifications, onClickAdd, onClickEdit, onClickDelete }) =
                   </li>
                 ))
               ) : (
-                <li className={`${styles["education-no-qualifications"]}`}>No qualifications to display.</li>
+                <div
+                  style={{ textAlign: "left", color: "var(--neutral600)" }}
+                  className={`${styles["education-no-qualifications"]}`}
+                >
+                  No qualifications to display
+                </div>
               )}
             </ol>
           </div>
@@ -78,5 +100,5 @@ const Education = ({ qualifications, onClickAdd, onClickEdit, onClickDelete }) =
     </div>
   );
 };
- 
+
 export default Education;
