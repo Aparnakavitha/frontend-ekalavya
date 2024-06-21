@@ -253,7 +253,7 @@ const Home = () => {
 ];
 
 
-  const starperformer = { studentProfiles, heading: "Star Performers" };
+  const starperformer = { studentProfiles, heading: "Top Performers" };
 
   const testimonials = [
     {
