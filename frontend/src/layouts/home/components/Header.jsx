@@ -61,7 +61,7 @@ const Header = ({
                 {item.name}
               </a>
             ))}
-          <div className={`${styles["header-button"]}`}>{button}</div>
+          <div onClick={handleOpenLoginModal} className={`${styles["header-button"]}`}>{button}</div>
         </div>
 
         <div

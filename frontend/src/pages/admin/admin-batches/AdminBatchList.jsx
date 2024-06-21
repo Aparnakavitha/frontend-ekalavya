@@ -1,3 +1,4 @@
+// AdminBatchList.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataView, Greeting } from "../../../layouts/common";
@@ -23,21 +24,18 @@ const AdminBatchList = () => {
     try {
       const responseData = await fetchbatches();
       const data = responseData.responseData;
-      console.log(data);
 
       if (Array.isArray(data)) {
         const formattedData = data.map((item) => ({
-          miniHeading: `${item.batchId}`,
+          miniHeading: `B${item.batchId}`,
           mainHeading: item.batchName || "",
           Count: item.participantCount,
           cardType: "batch",
-          handleClick: () => handleClick(item),
+          handleClick: () => handleClick(item.batchId, item.batchName), // Pass batchName here
         }));
 
-        console.log("Formatted batchData is : ", formattedData);
         setBatchData(formattedData);
         setLoading(false);
-        console.log("Data fetched successfully:", formattedData);
       } else {
         throw new Error("Received data is not in expected format");
       }
@@ -53,17 +51,14 @@ const AdminBatchList = () => {
     setChanged((prev) => !prev);
   };
 
-  const handleClick = (item) => {
-    console.log("batch-----", item);
-    navigate(`/admin/batches/batch-details/${item.miniHeading}`);
+  const handleClick = (batchId, batchName) => {
+    navigate(`/admin/batches/batch-details/${batchId}`, { state: { batchName } }); // Navigate with state
   };
 
   const handleFormSubmit = async (formData) => {
     try {
       const { batchName } = formData;
       const response = await createBatch({ batchName: batchName });
-
-      console.log("Create batch response:", response);
       setBatchData([...(batchData || []), response[0]]);
       setChanged((prev) => !prev);
     } catch (error) {
@@ -71,12 +66,8 @@ const AdminBatchList = () => {
       setError(error);
     }
   };
-
+  
   const loggedUserFirstName = sessionStorage.getItem("firstName");
-
-  const filteredData = batchData?.filter((batch) =>
-    batch.mainHeading?.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   return (
     <div>
@@ -97,12 +88,12 @@ const AdminBatchList = () => {
         <LoadingSpinner />
       ) : batchData ? (
         <DataView
-          data={filteredData}
+          data={batchData}
           CardComponent={(props) => <SkillBatchCard {...props} />}
           tableColumns={[
             { key: "miniHeading", displayName: "Batch ID" },
             { key: "mainHeading", displayName: "Batch Name" },
-            { key: "Count", displayName: "Participant Count" },
+            { key: "count", displayName: "Participant Count" },
           ]}
           toggle={true}
           cardType="SkillBatchCard"
