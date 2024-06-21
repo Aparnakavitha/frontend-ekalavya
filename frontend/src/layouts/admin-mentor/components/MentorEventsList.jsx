@@ -108,7 +108,7 @@ const MentorEventsList = ({ events, handleDelete }) => {
           style={{
             textAlign: "left",
             color: "var(--neutral600)",
-            marginTop: "-21px",
+            marginTop: "-40px",
           }}
           className="padding"
         >

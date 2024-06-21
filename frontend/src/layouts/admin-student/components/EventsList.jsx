@@ -9,7 +9,13 @@ import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { DeleteBox } from "../../common";
 
-const EventList = ({ participantId, events, handleDelete, eventOptions, onSubmit }) => {
+const EventList = ({
+  participantId,
+  events,
+  handleDelete,
+  eventOptions,
+  onSubmit,
+}) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -45,7 +51,7 @@ const EventList = ({ participantId, events, handleDelete, eventOptions, onSubmit
 
   const handleFormSubmit = (formData) => {
     console.log("Form submitted with data:", formData);
-    onSubmit(formData); // Pass formData to parent component
+    onSubmit(formData);
     handleCloseModal();
   };
 
@@ -104,7 +110,7 @@ const EventList = ({ participantId, events, handleDelete, eventOptions, onSubmit
           style={{
             textAlign: "left",
             color: "var(--neutral600)",
-            marginTop: "-21px",
+            marginTop: "-40px",
           }}
           className="padding"
         >
