@@ -104,8 +104,15 @@ const MentorEventsList = ({ events, handleDelete }) => {
         <Addevent {...addevent} onSubmit={handleFormSubmit} />
       </Modal>
       {events.length === 0 ? (
-        <div style={{ textAlign: "left", color: "var(--neutral600)" }} className="padding">
-          No events found
+        <div
+          style={{
+            textAlign: "left",
+            color: "var(--neutral600)",
+            marginTop: "-21px",
+          }}
+          className="padding"
+        >
+          &nbsp;&nbsp;No events found
         </div>
       ) : (
         <CardRow {...eventcards} handleClick={handleClick} />
@@ -117,8 +124,16 @@ const MentorEventsList = ({ events, handleDelete }) => {
           </div>
         </div>
       </div>
-      <Modal isOpen={isDeleteOpen} widthVariant="small" onClose={handleCloseDelete}>
-        <DeleteBox {...deleteprops} onCancel={handleDeleteCancel} onConfirm={handleDeleteConfirm} />
+      <Modal
+        isOpen={isDeleteOpen}
+        widthVariant="small"
+        onClose={handleCloseDelete}
+      >
+        <DeleteBox
+          {...deleteprops}
+          onCancel={handleDeleteCancel}
+          onConfirm={handleDeleteConfirm}
+        />
       </Modal>
     </div>
   );
