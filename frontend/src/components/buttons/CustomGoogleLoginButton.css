@@ -10,6 +10,8 @@
     display: flex; /* Flexbox for aligning items */
     align-items: center; /* Center items vertically */
     justify-content: center; /* Center items horizontally */
+    display: flex;
+    gap: 5px;
   }
    
   .custom-google-login-button:hover {
