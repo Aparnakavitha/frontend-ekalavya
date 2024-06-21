@@ -169,7 +169,7 @@ const AdminEvent = () => {
         <DataView CardComponent={PrimaryCard} {...primaryCardData} />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No events available
+          No events to display
         </p>
       )}
     </div>
