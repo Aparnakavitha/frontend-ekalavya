@@ -11,9 +11,10 @@ import {
 } from "../../../services/User";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
-import { adminStudentSkillState } from "../../../states/Atoms";
+import { adminStudentSkillState, skillOpState } from "../../../states/Atoms";
 import { getSkillsForUser } from "../../../services/Skills";
 import { enrollParticipantService } from "../../../services/Event"; 
+
 
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
@@ -30,6 +31,7 @@ const fetchStudentDetails = async (userId, setStudentData) => {
 const AdminStudentDetails = () => {
   const [studentsData, setStudentData] = useState(null);
   const [studentSkills, setStudentSkills] = useRecoilState(adminStudentSkillState);
+  const [skillOpsState,setSkillOpsState]=useRecoilState(skillOpState);
   const [studentEvents, setStudentEvents] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
@@ -43,10 +45,11 @@ const AdminStudentDetails = () => {
         console.log("Skills API response:", response);
         
         if (response.length > 0 && response[0].skills) {
+          setSkillOpsState(response[0].skills);
+          console.log("Skills for Ops",skillOpsState);
           const skills = response[0].skills.map((skill) => ({
-            miniHeading: skill.skill_name, 
+            miniHeading: skill.id, 
             mainHeading: skill.skill_name,
-            count: skill.skill_level,
             cardType: "skill",
             canEdit: true,
             canDelete: true,
@@ -144,8 +147,7 @@ const AdminStudentDetails = () => {
         studentsData={studentsData}
         onSubmit={handleFormSubmit}
       />
-      {/* <EducationalQualification/> */}
-      <SkillList />
+      <SkillList studentId={studentsData.userId} />
       <EventList participantId={studentsData.userId} events={studentEvents} handleDelete={handleDelete} />
     </div>
   );

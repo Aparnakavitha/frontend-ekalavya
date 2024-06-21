@@ -38,6 +38,7 @@ const AdminSkillsList = ({ handleClick }) => {
         }));
         setSkills(capitalizedSkills);
         setStudentSkills(capitalizedSkills);
+        console.log("Student skill List --------------------",studentkills)
         setLoading(false);
       } catch (error) {
         setError(error.message);
