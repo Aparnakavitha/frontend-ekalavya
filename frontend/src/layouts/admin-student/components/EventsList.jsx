@@ -104,7 +104,7 @@ const EventList = ({ participantId, events, handleDelete }) => {
         <AddEvent {...addevent} onSubmit={handleFormSubmit} />
       </Modal>
       {events.length === 0 ? (
-        <div style={{ textAlign: "center", marginTop: 20, color: "#666" }}>
+        <div style={{ textAlign: "left", color: "var(--neutral600)" }} className="padding">
           No events found
         </div>
       ) : (
