@@ -51,7 +51,6 @@ const EventList = ({ participantId, events, handleDelete }) => {
 
   const handleCardClick = (eventId) => {
     navigate(`/admin/events/event-details/${eventId}`);
-    console.log("event",eventId);
   };
 
   const heading = {
@@ -104,7 +103,13 @@ const EventList = ({ participantId, events, handleDelete }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddEvent {...addevent} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...eventcards} handleClick={handleCardClick} />
+      {events.length === 0 ? (
+        <div style={{ textAlign: "center", marginTop: 20, color: "#666" }}>
+          No events found
+        </div>
+      ) : (
+        <CardRow {...eventcards} handleClick={handleCardClick} />
+      )}
       <div className="padding">
         <div className={`${styles["eventslist-container"]}`}>
           <div className={`${styles["eventslist-deletebutton"]}`}>
