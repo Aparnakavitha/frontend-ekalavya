@@ -100,7 +100,7 @@ const AdminBatchList = () => {
           itemsPerPage={12}
         />
       ) : (
-        <div>No batches found</div>
+        <div>No batches found.</div>
       )}
     </div>
   );
