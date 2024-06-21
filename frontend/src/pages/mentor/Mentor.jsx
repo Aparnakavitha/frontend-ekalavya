@@ -136,9 +136,9 @@ const MentorContent = () => {
               <Route path="/profile" element={<MentorProfile />} />
               <Route path="/events" element={<MentorEvents />} />
               <Route path="/skills" element={<MentorSkills />} />
-              <Route path="/event-creation" element={<MentorCreateEvent />} />
+              <Route path="/events/event-creation" element={<MentorCreateEvent />} />
               <Route
-                path="/event-details/:eventId"
+                path="/events/event-details/:eventId"
                 element={<MentorEventDetails />}
               />
             </Routes>

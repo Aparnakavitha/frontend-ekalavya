@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import DeleteButton from "../../../components/buttons/DeleteButton";
 import styles from "../AdminSkill.module.css";
 import Input from "../../../components/inputbox/InputBox";
 
@@ -57,11 +58,11 @@ const DeleteSkill = ({ onSubmit, onCancel }) => {
             onClick={onCancel}
             width="full"
           />
-          <PrimaryButton
-            variant="primary"
+          <DeleteButton
             content="Delete"
-            onClick={handleDeleteSkill}
+            variant="tertiary"
             width="full"
+            onClick={handleDeleteSkill}
           />
         </div>
       </div>

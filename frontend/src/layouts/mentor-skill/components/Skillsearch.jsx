@@ -6,7 +6,7 @@ import Modal from "../../common/components/Modal";
 import CombinedSkillForm from "../../common/components/CombinedSkillForm";
 import DeleteBox from "../../common/components/DeleteBox";
 import profilePic from "../../../assets/SkillUser.png";
-import { getSkillsForUser } from "../../../services/student/skills/StudentSkillService";
+import { getSkillsForUser } from "../../../services/Skills";
 
 const Skillsearch = () => {
   const [modalState, setModalState] = useState({
@@ -18,7 +18,7 @@ const Skillsearch = () => {
   const skillData = {
     heading: "Skills",
     subheading: "Add skills to students",
-    searchBarPlaceholder: "Student Name/Student ID",
+    searchBarPlaceholder: "Enter Student ID",
   };
 
   const options = [

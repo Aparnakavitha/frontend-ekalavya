@@ -6,7 +6,7 @@ import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
 import EducationalQualification from "../../common/components/EducationalQualification";
-import { updateUserDetails } from "../../../services/User";
+import { addNewUser } from "../../../services/User";
 
 const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
@@ -18,26 +18,35 @@ const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
 
   const handleFormSubmit = (formData) => {
     const { addresses, ...formDataWithoutAddresses } = formData;
-
-    // Prepare addresses with addressId included
-    const updatedAddresses = addresses.map((address) => ({
+  
+    // Check if any address fields have been updated
+    const addressesChanged = addresses.some(address => (
+      address.houseName ||
+      address.city ||
+      address.pinCode ||
+      address.state ||
+      address.country
+    ));
+  
+    // Prepare addresses with addressId included if they have changed
+    const updatedAddresses = addressesChanged ? addresses.map((address) => ({
       ...address,
       addressId: address.addressId || "", // If addressId is not present, use empty string
-    }));
-
+    })) : [];
+  
     onSubmit({
       userId: mentorData.userId,
       ...formDataWithoutAddresses,
       addresses: updatedAddresses,
     });
-
+  
     handleCloseEditBasicDetails();
   };
   
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Sfgsdh", formData);
-      const response = await updateUserDetails(formData);
+      const response = await addNewUser(formData);
       console.log("Update response:", response);
       handleCloseEditBasicDetails();
     } catch (error) {

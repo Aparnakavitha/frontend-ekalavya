@@ -9,8 +9,7 @@ import { DeleteBox } from "../../common";
 import styles from "../AdminMentor.module.css";
 import { useNavigate } from "react-router-dom";
 
-// EventData merged into the component
-const MentorEventsList = ({ handleDelete }) => {
+const MentorEventsList = ({ events, handleDelete }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -50,8 +49,8 @@ const MentorEventsList = ({ handleDelete }) => {
     handleCloseDelete();
   };
 
-  const handleClick = () => {
-    navigate(`/admin/events/event-details`);
+  const handleClick = (eventId) => {
+    navigate(`/admin/events/event-details/${eventId}`);
   };
 
   const props = {
@@ -67,7 +66,6 @@ const MentorEventsList = ({ handleDelete }) => {
     buttonText: "Confirm",
   };
 
-  // EventData
   const heading = {
     heading: "Events Handled",
     textbuttonprops: {
@@ -88,25 +86,15 @@ const MentorEventsList = ({ handleDelete }) => {
 
   const eventcards = {
     card: "event",
-    cardData: [
-      {
-        miniHeading: "Capstone 1",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        Description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-      },
-      {
-        miniHeading: "Capstone 2",
-        mainHeading: "Business Management",
-        startDate: "Feb 20, 2030",
-        endDate: "Apr 20, 2030",
-        Description: "A comprehensive course on business management strategies",
-        cardType: "Course",
-      },
-    ],
+    cardData: events.map((event) => ({
+      miniHeading: event.eventType,
+      mainHeading: event.eventTitle,
+      startDate: event.startDate,
+      endDate: event.endDate,
+      Description: event.description,
+      cardType: event.eventType,
+      eventId: event.eventId,
+    })),
   };
 
   return (
@@ -115,7 +103,13 @@ const MentorEventsList = ({ handleDelete }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <Addevent {...addevent} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...eventcards} handleClick={handleClick} />
+      {events.length === 0 ? (
+        <div style={{ textAlign: "left", color: "var(--neutral600)" }} className="padding">
+          No events found
+        </div>
+      ) : (
+        <CardRow {...eventcards} handleClick={handleClick} />
+      )}
       <div className="padding">
         <div className={`${styles["mentoreventslist-container"]}`}>
           <div className={`${styles["mentoreventslist-deletebutton"]}`}>

@@ -49,10 +49,10 @@ const SkillUser = (props) => {
             />
           </div>
           <div className={`${styles.heading}`}>
-            <div className={`${styles.cardsmainheading}`}>
+            <div className={`${styles.cardsmainheading}`} title={mainHeading}>
               {transformMainHeading(mainHeading)}
             </div>
-            <div className={`${styles.cardsminiheading}`}>
+            <div className={`${styles.cardsminiheading}`} title={miniHeading}>
               {transformMainHeading(miniHeading)}
             </div>
           </div>

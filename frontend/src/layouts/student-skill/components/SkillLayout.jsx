@@ -10,7 +10,7 @@ import {
   Userskillpost,
   SkillService,
   UserSkillDelete,
-} from "../../../services/student/skills/StudentSkillService";
+} from "../../../services/Skills";
 
 const Layout = () => {
   const [userSkills, setUserSkills] = useState([]);

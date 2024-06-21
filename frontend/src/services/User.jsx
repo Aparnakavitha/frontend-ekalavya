@@ -17,7 +17,7 @@ export const getUserDetails = async (params) => {
 // Function to update user details
 export const updateUserDetails = async (data) => {
   try {
-    const response = await axios.put(`${API_URL}/users/${data.userId}`, data);
+    const response = await axios.post(`${API_URL}/users`, data);
     return response.data;
   } catch (error) {
     console.error("Error updating user details:", error);
