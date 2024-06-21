@@ -4,6 +4,7 @@ import { DataView, Greeting } from "../../../layouts/common";
 import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import { fetchbatches, createBatch } from "../../../services/Batch";
 import AdminBatchAction from "../../../layouts/admin-batches/components/AdminBatchAction";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const AdminBatchList = () => {
   const navigate = useNavigate();
@@ -91,9 +92,9 @@ const AdminBatchList = () => {
         onSearchChange={handleSearchChange}
       />
       {loading ? (
-        <div>Loading...</div>
+        <LoadingSpinner />
       ) : error ? (
-        <div>Error: {error.message}</div>
+        <LoadingSpinner />
       ) : batchData ? (
         <DataView
           data={filteredData}
@@ -108,7 +109,7 @@ const AdminBatchList = () => {
           itemsPerPage={12}
         />
       ) : (
-        <div>No batches found.</div>
+        <div>No batches found</div>
       )}
     </div>
   );
