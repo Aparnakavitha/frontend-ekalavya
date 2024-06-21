@@ -12,7 +12,7 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
 import { getSkillsForUser } from "../../../services/Skills";
-import { enrollParticipantService, fetchEventsService, addEnrollmentService } from "../../../services/Event"; // Adjust the path as needed
+import { enrollParticipantService, fetchEventsService, addEnrollmentService } from "../../../services/Event"; 
 
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
@@ -80,13 +80,15 @@ const AdminStudentDetails = () => {
     }
   };
 
-  const fetchEventOptions = async () => {
+  const fetchEventOptions = async (enrolledEventIds) => {
     try {
       const eventData = await fetchEventsService({ completed: 0 });
-      const formattedOptions = eventData.map((event) => ({
-        value: event.eventId,
-        label: `${event.eventId}-${event.eventTitle}`,
-      }));
+      const formattedOptions = eventData
+        .filter(event => !enrolledEventIds.includes(event.eventId))
+        .map(event => ({
+          value: event.eventId,
+          label: `${event.eventId}-${event.eventTitle}`,
+        }));
       setEventOptions(formattedOptions);
     } catch (error) {
       console.error("Error fetching event options:", error);
@@ -103,8 +105,10 @@ const AdminStudentDetails = () => {
     if (studentsData?.userId) {
       fetchStudentDetails(studentsData.userId, setStudentData);
       fetchStudentSkills(studentsData.userId);
-      fetchStudentEvents(studentsData.userId);
-      fetchEventOptions(); // Fetch event options when student data is available
+      fetchStudentEvents(studentsData.userId).then(() => {
+        const enrolledEventIds = studentEvents.map(event => event.eventId);
+        fetchEventOptions(enrolledEventIds); 
+      });
     }
   }, [studentsData]);
 
@@ -128,8 +132,10 @@ const AdminStudentDetails = () => {
 
       fetchStudentDetails(userId, setStudentData);
       fetchStudentSkills(userId);
-      fetchStudentEvents(userId);
-      fetchEventOptions(); // Fetch event options after updating user details
+      fetchStudentEvents(userId).then(() => {
+        const enrolledEventIds = studentEvents.map(event => event.eventId);
+        fetchEventOptions(enrolledEventIds);
+      });
     } catch (error) {
       console.error("Error updating user details:", error);
     }
@@ -138,7 +144,10 @@ const AdminStudentDetails = () => {
   const handleEnrollSubmit = async (enrollmentData) => {
     try {
       await addEnrollmentService(enrollmentData.selectedEventId, { participantId: studentsData.userId });
-      fetchStudentEvents(studentsData.userId); // Refresh the events list after enrollment
+      fetchStudentEvents(studentsData.userId).then(() => {
+        const enrolledEventIds = studentEvents.map(event => event.eventId);
+        fetchEventOptions(enrolledEventIds);
+      });
     } catch (error) {
       console.error("Error enrolling in event:", error);
     }
@@ -173,8 +182,8 @@ const AdminStudentDetails = () => {
         participantId={studentsData.userId}
         events={studentEvents}
         handleDelete={handleDelete}
-        eventOptions={eventOptions} // Pass event options to EventList
-        onSubmit={handleEnrollSubmit} // Pass handleEnrollSubmit to EventList
+        eventOptions={eventOptions} 
+        onSubmit={handleEnrollSubmit} 
       />
     </div>
   );
