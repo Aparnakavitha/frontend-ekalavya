@@ -12,7 +12,7 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
 import { getSkillsForUser } from "../../../services/Skills";
-import { enrollParticipantService, fetchEventsService, addEnrollmentService } from "../../../services/Event"; // Adjust the path as needed
+import { enrollParticipantService, fetchEventsService, addEnrollmentService } from "../../../services/Event"; 
 
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
@@ -107,7 +107,7 @@ const AdminStudentDetails = () => {
       fetchStudentSkills(studentsData.userId);
       fetchStudentEvents(studentsData.userId).then(() => {
         const enrolledEventIds = studentEvents.map(event => event.eventId);
-        fetchEventOptions(enrolledEventIds); // Fetch event options after fetching enrolled events
+        fetchEventOptions(enrolledEventIds); 
       });
     }
   }, [studentsData]);
@@ -134,7 +134,7 @@ const AdminStudentDetails = () => {
       fetchStudentSkills(userId);
       fetchStudentEvents(userId).then(() => {
         const enrolledEventIds = studentEvents.map(event => event.eventId);
-        fetchEventOptions(enrolledEventIds); // Fetch event options after updating user details
+        fetchEventOptions(enrolledEventIds);
       });
     } catch (error) {
       console.error("Error updating user details:", error);
@@ -146,7 +146,7 @@ const AdminStudentDetails = () => {
       await addEnrollmentService(enrollmentData.selectedEventId, { participantId: studentsData.userId });
       fetchStudentEvents(studentsData.userId).then(() => {
         const enrolledEventIds = studentEvents.map(event => event.eventId);
-        fetchEventOptions(enrolledEventIds); // Fetch event options after enrolling
+        fetchEventOptions(enrolledEventIds);
       });
     } catch (error) {
       console.error("Error enrolling in event:", error);
@@ -182,8 +182,8 @@ const AdminStudentDetails = () => {
         participantId={studentsData.userId}
         events={studentEvents}
         handleDelete={handleDelete}
-        eventOptions={eventOptions} // Pass event options to EventList
-        onSubmit={handleEnrollSubmit} // Pass handleEnrollSubmit to EventList
+        eventOptions={eventOptions} 
+        onSubmit={handleEnrollSubmit} 
       />
     </div>
   );

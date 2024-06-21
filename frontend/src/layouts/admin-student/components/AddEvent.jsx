@@ -15,7 +15,6 @@ const AddEvent = ({ mainHeading, options, onSubmit }) => {
     onSubmit(data);
   };
 
-  // Adjust options to display "no events to display" if empty
   const dropdownOptions = options.length > 0 ? options : [{ value: '', label: 'no events to display' }];
 
   return (
@@ -38,7 +37,7 @@ const AddEvent = ({ mainHeading, options, onSubmit }) => {
                 label="Select Event(s)"
                 placeholder="Event ID"
                 options={dropdownOptions}
-                isDisabled={options.length === 0} // Disable the dropdown if no options are available
+                isDisabled={options.length === 0} 
               />
             )}
           />
