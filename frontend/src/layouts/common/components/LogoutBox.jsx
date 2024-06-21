@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
-import CustomGoogleLoginButton from "../../../components/buttons/CustomGoogleLoginButton";
 
-const LoginBox = ({ title, message, buttonText, onCancel }) => {
+const LogoutBox = ({ title, message, buttonText, onCancel, onLogout }) => {
   return (
     <div className={`${styles["deletebox-box"]}`}>
       <div className={`${styles["deletebox-content"]}`}>
@@ -20,17 +19,23 @@ const LoginBox = ({ title, message, buttonText, onCancel }) => {
           width="full"
           onClick={onCancel}
         />
-        <CustomGoogleLoginButton fullWidth />
+        <PrimaryButton
+          content={buttonText}
+          variant="primary"
+          width="full"
+          onClick={onLogout}
+        />
       </div>
     </div>
   );
 };
 
-LoginBox.propTypes = {
+LogoutBox.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   onCancel: PropTypes.func.isRequired,
+  onLogout: PropTypes.func.isRequired,
 };
 
-export default LoginBox;
+export default LogoutBox;

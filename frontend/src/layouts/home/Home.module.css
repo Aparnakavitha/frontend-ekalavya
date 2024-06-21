@@ -631,7 +631,7 @@
   .header-hamburger {
     cursor: pointer;
     font-size: 25px;
-    top: 40px;
+    top: 26px;
     color: var(--white);
     position: fixed;
     left: 25px;

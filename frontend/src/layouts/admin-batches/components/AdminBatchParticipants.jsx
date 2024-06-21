@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DataView from "../../common/components/DataView";
 import DeleteBox from "../../common/components/DeleteBox";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import Modal from "../../common/components/Modal";
-import batchParticipantsData from "../../../services/admin/batch/AdminBatchParticipantsData";
 import { useNavigate } from "react-router-dom";
+import { getUserDetails } from "../../../services/User";
 
-
-const AdminBatchParticipants = ({
-  onCardClick,
-  batchParticipantsData,
-}) => {
+const AdminBatchParticipants = ({ batchParticipantsData }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    if (batchParticipantsData && batchParticipantsData.data) {
+      setUsers(batchParticipantsData.data);
+    }
+  }, [batchParticipantsData]);
 
   const handleOpenModal = (user) => {
     setSelectedUser(user);
@@ -31,26 +34,46 @@ const AdminBatchParticipants = ({
         (user) => user.studentId !== selectedUser.studentId
       );
       setUsers(updatedUsers);
-      console.log("Deleted batch ID:", selectedUser.studentId);
+      console.log("Deleted student ID:", selectedUser.studentId);
     }
     handleCloseModal();
-    navigate(`/admin/batches`);
+    navigate("/admin/batches");
   };
 
-  const [users, setUsers] = useState(batchParticipantsData.data);
-
-  const usersData = {
-    ...batchParticipantsData,
-    data: users.map((user) => ({
-      ...user,
-      onClick: () => onCardClick(),
-      handleDelete: () => handleOpenModal(user),
-    })),
+  const handleCardClick = async (userId) => {
+    const selectedStudent = users.find(
+      (student) => student.studentId === userId
+    );
+    if (selectedStudent) {
+      try {
+        const response = await getUserDetails({ userId });
+        const userDetails = response.responseData[0];
+        if (userDetails) {
+          navigate(`/admin/student/student-details/${userId}`, {
+            state: { studentsData: userDetails },
+          });
+        } else {
+          console.error(`User with userId ${userId} not found.`);
+        }
+      } catch (error) {
+        console.error(`Error fetching user details for userId ${userId}:`, error);
+      }
+    } else {
+      console.error(`Student with userId ${userId} not found.`);
+    }
   };
 
   return (
     <div>
-      <DataView CardComponent={ProfileCard} {...usersData} />
+      <DataView
+        CardComponent={(props) => (
+          <ProfileCard
+            {...props}
+            onClick={() => handleCardClick(props.studentId)}
+          />
+        )}
+        {...batchParticipantsData}
+      />
       <Modal isOpen={isOpen} widthVariant="small" onClose={handleCloseModal}>
         <DeleteBox
           {...batchParticipantsData.deleteProps}

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../Common.module.css";
 import NavButton from "../../../components/buttons/NavButton";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
- 
+
 const EventsDescription = (props) => {
   const {
     eventTitle,
@@ -27,9 +27,8 @@ const EventsDescription = (props) => {
     onclick1,
     onclick2,
     onclick3,
-    showButton, // New prop to control button visibility
   } = props;
- 
+
   function formatDate(dateString) {
     const date = new Date(dateString);
     const month = date.toLocaleDateString("en-US", { month: "short" });
@@ -37,28 +36,28 @@ const EventsDescription = (props) => {
     const year = date.getFullYear();
     return `${month} ${day}, ${year}`;
   }
- 
+
   function formatTime(timeString) {
-    if (!timeString) return '';
+    if (!timeString) return "";
     const [hours, minutes] = timeString.split(":");
     const convertedHours = hours % 12 || 12;
     const amPm = hours < 12 ? "AM" : "PM";
     return `${convertedHours.toString().padStart(2, "0")}:${minutes} ${amPm}`;
   }
- 
+
   const locationLabel = eventMode === "Offline" ? "Location" : "Link";
   const locationValue = eventMode === "Offline" ? location : link;
- 
+
   return (
     <div className={`${styles["eventsdescription-container"]}`}>
       <div className={`${styles["eventsdescription-topleft"]}`}>
         <div className={`${styles["eventsdescription-navbutton"]}`}>
           <div>
-            <NavButton pageName={eventTitle}/>
+            <NavButton pageName={eventTitle} />
           </div>
         </div>
       </div>
- 
+
       <div className={`${styles["eventsdescription-description"]}`}>
         <div className={`${styles["eventsdescription-buttondiv"]}`}>
           <div className={`${styles["eventsdescription-buttondiv2"]}`}>
@@ -70,7 +69,7 @@ const EventsDescription = (props) => {
               </div>
               <div className={`${styles["eventsdescription-texted"]}`}>
                 <a className={`${styles["eventsdescription-text"]}`}>
-                  <b> Type : </b>
+                  Type : 
                   {eventType}
                 </a>
                 <a className={`${styles["eventsdescription-texts"]}`}>
@@ -78,8 +77,8 @@ const EventsDescription = (props) => {
                 </a>
               </div>
             </div>
- 
-            {type === "public" && showButton && (
+
+            {type === "public" && (
               <>
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div
@@ -96,8 +95,8 @@ const EventsDescription = (props) => {
                 </div>
               </>
             )}
- 
-            {type === "mentor" &&(
+
+            {type === "mentor" && (
               <>
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div
@@ -114,7 +113,7 @@ const EventsDescription = (props) => {
                 </div>
               </>
             )}
- 
+
             {type === "admin" && (
               <>
                 <div>
@@ -139,7 +138,7 @@ const EventsDescription = (props) => {
               </>
             )}
           </div>
- 
+
           <div className={`${styles["eventsdescription-gap"]}`}>
             <div className={`${styles["eventsdescription-headingcontent"]}`}>
               <h3>Description</h3>
@@ -148,7 +147,7 @@ const EventsDescription = (props) => {
               <p>{description}</p>
             </div>
           </div>
- 
+
           <div className={`${styles["eventsdescription-align"]}`}>
             <div className={`${styles["eventsdescription-gap"]}`}>
               <div className={`${styles["eventsdescription-headingcontent"]}`}>
@@ -156,39 +155,39 @@ const EventsDescription = (props) => {
               </div>
               <div className={`${styles["eventsdescription-timer"]}`}>
                 <a className={`${styles["eventsdescription-date"]}`}>
-                  • <b>Date : </b>
+                  <b>Date : </b>
                   {formatDate(startDate)} - {formatDate(endDate)}
                 </a>
                 <a className={`${styles["eventsdescription-time"]}`}>
-                  • <b>Time : </b>
+                  <b>Time : </b>
                   {formatTime(startTime)} - {formatTime(endTime)}
                 </a>
               </div>
             </div>
- 
+
             <div className={`${styles["eventsdescription-gap"]}`}>
               <div className={`${styles["eventsdescription-headingcontent"]}`}>
                 <h3>{locationLabel}</h3>
               </div>
               <div className={`${styles["eventsdescription-timer"]}`}>
                 <a className={`${styles["eventsdescription-venue"]}`}>
-                  • <b>{locationLabel} :</b> {locationValue}
+                  <b>{locationLabel} :</b> {locationValue}
                 </a>
               </div>
             </div>
           </div>
- 
+
           <div className={`${styles["eventsdescription-gap"]}`}>
             <div className={`${styles["eventsdescription-headingcontent"]}`}>
               <h3>Speakers</h3>
             </div>
             <div>
               <a className={`${styles["eventsdescription-speaker"]}`}>
-                • <b>{speaker} </b>, {speakerDescription}
+                <b>{speaker} </b>, {speakerDescription}
               </a>
             </div>
           </div>
- 
+
           {(type === "public" || type === "admin") && (
             <>
               <div>
@@ -197,10 +196,10 @@ const EventsDescription = (props) => {
                 >
                   <h3>Organizer</h3>
                 </div>
- 
+
                 <div>
                   <a className={`${styles["eventsdescription-speaker"]}`}>
-                    • {organizer}
+                    {organizer}
                   </a>
                 </div>
               </div>
@@ -211,6 +210,5 @@ const EventsDescription = (props) => {
     </div>
   );
 };
- 
+
 export default EventsDescription;
- 
