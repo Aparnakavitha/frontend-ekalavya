@@ -39,7 +39,7 @@ const Layout = () => {
   const fetchUserSkills = async () => {
     try {
       const skills = await getSkillsForUser(userId);
-      setUserSkills(skills);
+      setUserSkills(skills[0].skills);
       console.log("Fetched user skills:", skills);
     } catch (error) {
       console.error("Error fetching user skills", error);
@@ -101,7 +101,7 @@ const Layout = () => {
 
   const handleDeleteSkill = async () => {
     const skillToDelete = userSkills[deleteModal.index];
-
+    console.log("Skill id for skill to delete: ",deleteModal.index,userSkills);
     if (!skillToDelete) {
       console.error("Skill to delete not found");
       return;

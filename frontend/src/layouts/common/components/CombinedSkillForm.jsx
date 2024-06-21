@@ -84,7 +84,7 @@ const CombinedSkillForm = ({
                   {...field}
                   label="Level"
                   placeholder="Select level"
-                  options={[{value:1,label:"Level 1"}]}
+                  options={[{ value: 1, label: "Level 1" }]}
                 />
               )}
             />
@@ -121,7 +121,7 @@ const CombinedSkillForm = ({
                     {...field}
                     label="Level"
                     placeholder="Select level"
-                    options={[{value:1,label:"Level 1"}]}
+                    options={[{ value: 1, label: "Level 1" }]}
                   />
                 )}
               />

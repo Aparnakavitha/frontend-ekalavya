@@ -13,7 +13,6 @@ import { Userskillpost } from "../../../services/Skills";
 const SkillList = ({ studentId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const studentSkills = useRecoilValue(adminStudentSkillState);
-  const [setStudentSkills]=useRecoilState(adminStudentSkillState);
   const allSkills = useRecoilValue(studentSkillState);
 
   const addSkillOptions = allSkills.map((skill) => ({
