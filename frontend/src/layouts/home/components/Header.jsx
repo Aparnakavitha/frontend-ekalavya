@@ -2,20 +2,42 @@ import React, { useState } from "react";
 import styles from "../Home.module.css";
 import { BsX, BsList } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import CustomGoogleLoginButton from "../../../services/CustomGoogleLoginButton";
+import Modal from "../../common/components/Modal";
+import LoginBox from "../../common/components/LoginBox";
 
 const Header = ({
   menuItems,
   imageSrc,
+  button,
   type,
   showMenu = true,
   showMenuInSidebar = true,
   showResponsiveMenu = true,
 }) => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  const handleOpenLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
+
+  const handleCloseLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
+  };
+
+  const handleRegisterClick = () => {
+    handleOpenLoginModal();
+  };
+
+  const loginBoxProps = {
+    title: "Log In with Google",
+    buttonText: "Log In with Google",
+    onCancel: handleCloseLoginModal,
   };
 
   return (
@@ -39,11 +61,7 @@ const Header = ({
                 {item.name}
               </a>
             ))}
-          <div
-            className={`${styles["header-button"]} ${styles["button-resp"]}`}
-          >
-            <CustomGoogleLoginButton />
-          </div>
+          <div className={`${styles["header-button"]}`}>{button}</div>
         </div>
 
         <div
@@ -98,9 +116,15 @@ const Header = ({
           )}
         </div>
       )}
-      <div className={`${styles["header-button"]} ${styles["button"]}`}>
-        <CustomGoogleLoginButton />
-      </div>
+
+      <div onClick={handleOpenLoginModal} className={`${styles["header-button"]}`}>{button}</div>
+      <Modal
+        isOpen={isLoginModalOpen}
+        widthVariant="small"
+        onClose={handleCloseLoginModal}
+      >
+        <LoginBox {...loginBoxProps} />
+      </Modal>
     </div>
   );
 };
