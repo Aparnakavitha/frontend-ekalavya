@@ -3,17 +3,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 import SkillList from "../../../layouts/admin-student/components/SkillList";
 import EventList from "../../../layouts/admin-student/components/EventsList";
 import StudentProfileInfo from "../../../layouts/admin-student/components/StudentProfile";
-import {
-  getUserDetails,
-  addNewUser,
-  deleteUser,
-} from "../../../services/User";
+import { getUserDetails, addNewUser, deleteUser } from "../../../services/User";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
-import { adminStudentSkillState, skillOpState } from "../../../states/Atoms";
+import { adminStudentSkillState } from "../../../states/Atoms";
 import { getSkillsForUser } from "../../../services/Skills";
-import { enrollParticipantService, fetchEventsService, addEnrollmentService } from "../../../services/Event"; 
-
+import {
+  enrollParticipantService,
+  fetchEventsService,
+  addEnrollmentService,
+} from "../../../services/Event";
 
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
@@ -29,8 +28,9 @@ const fetchStudentDetails = async (userId, setStudentData) => {
 
 const AdminStudentDetails = () => {
   const [studentsData, setStudentData] = useState(null);
-  const [studentSkills, setStudentSkills] = useRecoilState(adminStudentSkillState);
-  const [skillOpsState,setSkillOpsState]=useRecoilState(skillOpState);
+  const [studentSkills, setStudentSkills] = useRecoilState(
+    adminStudentSkillState
+  );
   const [studentEvents, setStudentEvents] = useState([]);
   const [eventOptions, setEventOptions] = useState([]);
   const navigate = useNavigate();
@@ -43,13 +43,12 @@ const AdminStudentDetails = () => {
         const response = await getSkillsForUser(userId);
         console.log("Fetching skills for userId:", userId);
         console.log("Skills API response:", response);
-        
+
         if (response.length > 0 && response[0].skills) {
-          setSkillOpsState(response[0].skills);
-          console.log("Skills for Ops",skillOpsState);
           const skills = response[0].skills.map((skill) => ({
-            miniHeading: skill.id, 
+            miniHeading: skill.skill_name,
             mainHeading: skill.skill_name,
+            count: skill.skill_level,
             cardType: "skill",
             canEdit: true,
             canDelete: true,
@@ -67,7 +66,11 @@ const AdminStudentDetails = () => {
 
   const fetchStudentEvents = async (participantId) => {
     try {
-      const response = await enrollParticipantService(null, participantId, null);
+      const response = await enrollParticipantService(
+        null,
+        participantId,
+        null
+      );
       const events = response.responseData.enrolled.map((event) => ({
         miniHeading: event.eventType,
         mainHeading: event.eventTitle,
@@ -87,8 +90,8 @@ const AdminStudentDetails = () => {
     try {
       const eventData = await fetchEventsService({ completed: 0 });
       const formattedOptions = eventData
-        .filter(event => !enrolledEventIds.includes(event.eventId))
-        .map(event => ({
+        .filter((event) => !enrolledEventIds.includes(event.eventId))
+        .map((event) => ({
           value: event.eventId,
           label: `${event.eventId}-${event.eventTitle}`,
         }));
@@ -109,8 +112,8 @@ const AdminStudentDetails = () => {
       fetchStudentDetails(studentsData.userId, setStudentData);
       fetchStudentSkills(studentsData.userId);
       fetchStudentEvents(studentsData.userId).then(() => {
-        const enrolledEventIds = studentEvents.map(event => event.eventId);
-        fetchEventOptions(enrolledEventIds); 
+        const enrolledEventIds = studentEvents.map((event) => event.eventId);
+        fetchEventOptions(enrolledEventIds);
       });
     }
   }, [studentsData]);
@@ -136,7 +139,7 @@ const AdminStudentDetails = () => {
       fetchStudentDetails(userId, setStudentData);
       fetchStudentSkills(userId);
       fetchStudentEvents(userId).then(() => {
-        const enrolledEventIds = studentEvents.map(event => event.eventId);
+        const enrolledEventIds = studentEvents.map((event) => event.eventId);
         fetchEventOptions(enrolledEventIds);
       });
     } catch (error) {
@@ -146,9 +149,11 @@ const AdminStudentDetails = () => {
 
   const handleEnrollSubmit = async (enrollmentData) => {
     try {
-      await addEnrollmentService(enrollmentData.selectedEventId, { participantId: studentsData.userId });
+      await addEnrollmentService(enrollmentData.selectedEventId, {
+        participantId: studentsData.userId,
+      });
       fetchStudentEvents(studentsData.userId).then(() => {
-        const enrolledEventIds = studentEvents.map(event => event.eventId);
+        const enrolledEventIds = studentEvents.map((event) => event.eventId);
         fetchEventOptions(enrolledEventIds);
       });
     } catch (error) {
@@ -166,7 +171,10 @@ const AdminStudentDetails = () => {
         console.error("studentsData or studentsData.userId is not defined");
       }
     } catch (error) {
-      console.error(`Error deleting user with userId ${studentsData.userId}:`, error);
+      console.error(
+        `Error deleting user with userId ${studentsData.userId}:`,
+        error
+      );
     }
   };
 
@@ -181,7 +189,13 @@ const AdminStudentDetails = () => {
         onSubmit={handleFormSubmit}
       />
       <SkillList studentId={studentsData.userId} />
-      <EventList participantId={studentsData.userId} events={studentEvents} handleDelete={handleDelete} />
+      <EventList
+        participantId={studentsData.userId}
+        events={studentEvents}
+        handleDelete={handleDelete}
+        eventOptions={eventOptions}
+        onSubmit={handleEnrollSubmit}
+      />
     </div>
   );
 };
