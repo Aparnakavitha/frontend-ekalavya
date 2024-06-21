@@ -30,11 +30,16 @@ import { RecoilRoot } from "recoil";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import image from "../../assets/DP.png";
+import Modal from "../../layouts/common/components/Modal";
+import LogoutBox from "../../layouts/common/components/LogoutBox";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,29 +68,39 @@ const AdminContent = () => {
   if (!userData) {
     return <LoadingSpinner />;
   }
-
-  const sample = {
-    content: "Logout",
-    variant: "primary",
-    onClick: (r) => {
-      sessionStorage.clear();
-      navigate("/");
-      toast.success("LogOut Successful", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    },
-    width: "full",
+  const handleLogout = () => {
+    sessionStorage.clear();
+    navigate("/");
+    toast.success("Logout Successful", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
+  const handleCancelLogout = () => {
+    setIsLogoutModalOpen(false);
+  };
+
+  const handleOpenLogoutModal = () => {
+    setIsLogoutModalOpen(true);
+  };
+
+
   const sidebarContent = {
-    button: <Button {...sample} />,
+    button: (
+      <Button
+        content="Logout"
+        variant="primary"
+        width="full"
+        onClick={handleOpenLogoutModal}
+      />
+    ),
     listItems: [
       {
         icon: <MdAccountCircle />,
@@ -195,6 +210,19 @@ const AdminContent = () => {
           <Footer {...footercontent} />
         </div>
       </div>
+      <Modal
+        isOpen={isLogoutModalOpen}
+        widthVariant="small"
+        onClose={() => setIsLogoutModalOpen(false)}
+      >
+        <LogoutBox
+          title="Logout"
+          message="Are you sure you want to logout?"
+          onCancel={handleCancelLogout}
+          onLogout={handleLogout}
+          buttonText="Logout"
+        />
+      </Modal>
     </div>
   );
 };
