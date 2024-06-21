@@ -112,7 +112,7 @@ const MentorEventsList = ({ events, handleDelete }) => {
           }}
           className="padding"
         >
-          &nbsp;&nbsp;No events found
+          &nbsp;&nbsp;No events to display
         </div>
       ) : (
         <CardRow {...eventcards} handleClick={handleClick} />
