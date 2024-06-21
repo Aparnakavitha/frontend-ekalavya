@@ -6,9 +6,11 @@ import EducationalQualification from "../../../layouts/common/components/Educati
 import { getUserDetails, updateUserDetails } from "../../../services/User";
 import profilepic from "../../../assets/DP.png";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import { fetchEventsService } from "../../../services/Event";
 
 const StudentProfile = () => {
   const [studentData, setStudentData] = useState(null);
+  const [eventData, setEventData] = useState(null);
 
   const fetchData = async () => {
     try {
@@ -17,6 +19,10 @@ const StudentProfile = () => {
         userId: userId,
       };
       const data = await getUserDetails(params);
+      const eventdata = await fetchEventsService({ completed: 0 });
+      console.log(eventdata);
+      setEventData(eventdata);
+
       // // Assuming data.responseData is an array and we want the first element
       if (data.responseData[0]) {
         setStudentData(data.responseData[0]);
@@ -33,7 +39,6 @@ const StudentProfile = () => {
   useEffect(() => {
     fetchData();
   }, []); // Empty dependency array ensures useEffect runs once on component mount
-
   const handleFormSubmit = async (formData) => {
     try {
       console.log("Form Submitted with data:", formData);
@@ -49,6 +54,19 @@ const StudentProfile = () => {
   if (!studentData) {
     return <LoadingSpinner />; // Display a loading spinner while data is being fetched
   }
+  const transformEventData = (events) => {
+    return events.map(event => ({
+      eventId:event.eventId,
+      main: event.eventTitle,
+      sub: event.location,
+      start: new Date(`1970-01-01T${event.startTime}`).toLocaleTimeString([], { hour: '2-digit', hour12: true }).toLowerCase(),
+      end: new Date(`1970-01-01T${event.endTime}`).toLocaleTimeString([], { hour: '2-digit', hour12: true }).toLowerCase(),
+      status: "upcoming",
+      date: new Date(event.startDate).getDate(), // Extracting the day from startDate
+    }));
+  };
+  const transformedEventData = eventData ? transformEventData(eventData) : [];
+  console.log(transformedEventData);
 
   const about = {
     title: "About Me",
@@ -98,7 +116,7 @@ const StudentProfile = () => {
         onFormSubmit={handleFormSubmit}
       />
       <AboutMe {...about} />
-      <Upcoming />
+      <Upcoming events={transformedEventData}/>
     </div>
   );
 };

@@ -81,7 +81,7 @@ const EventList = ({ participantId, events, handleDelete }) => {
       endDate: event.endDate,
       Description: event.Description,
       cardType: event.cardType,
-      eventId: event.eventId, // Include eventId in the card data
+      eventId: event.eventId,
     })),
   };
 

@@ -178,7 +178,7 @@ const CardRow = ({ cardData, card, handleClick }) => {
 CardRow.propTypes = {
   cardData: PropTypes.array.isRequired,
   card: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired, // Corrected prop name
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default CardRow;

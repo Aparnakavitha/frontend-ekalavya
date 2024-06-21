@@ -20,18 +20,6 @@ const HomeEventDescription = ({ event, organizer }) => {
     handleOpenLoginModal();
   };
 
-  const handleButtonClick = (message) => {
-    toast.success(message, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
   const homeEvents = {
     eventTitle: event.eventTitle,
     eventType: event.eventType,
@@ -58,8 +46,7 @@ const HomeEventDescription = ({ event, organizer }) => {
 
   const loginBoxProps = {
     title: "Please Log In",
-    message:
-      "You need to log in to register for this event. Please log in",
+    message: "You need to log in to register for this event. Please log in",
     buttonText: "Log In with Google",
     onCancel: handleCloseLoginModal,
   };
@@ -67,20 +54,6 @@ const HomeEventDescription = ({ event, organizer }) => {
   return (
     <div className="padding padding-top padding-bottom">
       <EventsDescription {...homeEvents} />
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition={Slide}
-      />
-
       <Modal
         isOpen={isLoginModalOpen}
         widthVariant="small"

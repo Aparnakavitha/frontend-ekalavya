@@ -18,7 +18,7 @@ const Skillsearch = () => {
   const skillData = {
     heading: "Skills",
     subheading: "Add skills to students",
-    searchBarPlaceholder: "Student Name/Student ID",
+    searchBarPlaceholder: "Enter Student ID",
   };
 
   const options = [
