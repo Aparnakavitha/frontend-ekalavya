@@ -13,7 +13,8 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
 import { getSkillsForUser } from "../../../services/Skills";
- 
+import { enrollParticipantService } from "../../../services/Event"; 
+
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
     const params = { userId };
@@ -25,14 +26,15 @@ const fetchStudentDetails = async (userId, setStudentData) => {
     console.error("Error fetching student details:", error);
   }
 };
- 
+
 const AdminStudentDetails = () => {
   const [studentsData, setStudentData] = useState(null);
   const [studentSkills, setStudentSkills] = useRecoilState(adminStudentSkillState);
+  const [studentEvents, setStudentEvents] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
   const { studentsData: selectedStudent } = location.state || {};
- 
+
   const fetchStudentSkills = async (userId) => {
     if (userId) {
       try {
@@ -42,7 +44,7 @@ const AdminStudentDetails = () => {
         
         if (response.length > 0 && response[0].skills) {
           const skills = response[0].skills.map((skill) => ({
-            miniHeading: skill.skill_name,  // Use skill_name for miniHeading
+            miniHeading: skill.skill_name, 
             mainHeading: skill.skill_name,
             count: skill.skill_level,
             cardType: "skill",
@@ -59,7 +61,25 @@ const AdminStudentDetails = () => {
       }
     }
   };
- 
+
+  const fetchStudentEvents = async (participantId) => {
+    try {
+      const response = await enrollParticipantService(null, participantId, null);
+      const events = response.responseData.enrolled.map((event) => ({
+        miniHeading: event.eventType,
+        mainHeading: event.eventTitle,
+        startDate: event.startDate,
+        endDate: event.endDate,
+        Description: event.description,
+        cardType: event.eventType,
+        eventId: event.eventId,
+      }));
+      setStudentEvents(events);
+    } catch (error) {
+      console.error("Error fetching student events:", error);
+    }
+  };
+
   useEffect(() => {
     if (selectedStudent) {
       setStudentData(selectedStudent);
@@ -69,7 +89,8 @@ const AdminStudentDetails = () => {
   useEffect(() => {
     if (studentsData?.userId) {
       fetchStudentDetails(studentsData.userId, setStudentData);
-      fetchStudentSkills(studentsData.userId); // Fetch skills after setting student data
+      fetchStudentSkills(studentsData.userId); 
+      fetchStudentEvents(studentsData.userId); 
     }
   }, [studentsData]);
  
@@ -90,9 +111,10 @@ const AdminStudentDetails = () => {
       };
  
       await addNewUser(updatedData);
- 
+
       fetchStudentDetails(userId, setStudentData);
-      fetchStudentSkills(userId); // Fetch skills after updating student data
+      fetchStudentSkills(userId);
+      fetchStudentEvents(userId); 
     } catch (error) {
       console.error("Error updating user details:", error);
     }
@@ -124,7 +146,7 @@ const AdminStudentDetails = () => {
       />
       {/* <EducationalQualification/> */}
       <SkillList />
-      <EventList studentId={studentsData.userId} handleDelete={handleDelete} />
+      <EventList participantId={studentsData.userId} events={studentEvents} handleDelete={handleDelete} />
     </div>
   );
 };
