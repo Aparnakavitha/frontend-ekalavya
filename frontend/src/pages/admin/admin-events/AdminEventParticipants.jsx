@@ -49,12 +49,10 @@ const AdminEventParticipants = () => {
     edata.push(studentData);
   }
 
-  console.log(headings);
-
   return (
     <EventParticipantsList
       data={edata}
-      headings={headings}
+      headings={["Participant ID", "Name", "Email ID"]}
       onClick={handleNavButtonClick}
       pageNames={pageNames}
     />

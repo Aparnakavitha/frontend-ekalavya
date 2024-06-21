@@ -219,7 +219,6 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
-  width: 70%;
   flex-wrap: wrap;
 }
 
@@ -234,13 +233,11 @@
     display: flex;
     flex-direction: column;
     margin: 0%;
-    align-items: center;
   }
 
   .cardrow-skillcard {
     padding: 20px;
     height: fit-content;
-    margin-left: 10px;
   }
 }
 
@@ -248,14 +245,13 @@
   .cardrow-skillcontainer {
     flex-direction: column;
     margin: 0%;
-    align-items: center;
   }
 
   .cardrow-skillcard {
     flex-direction: column;
     padding: 10px;
     height: fit-content;
-    margin-left: 10px;
+    justify-content: center;
   }
 }
 
@@ -269,8 +265,7 @@
   .cardrow-skillcard {
     flex-direction: column;
     padding: 10px;
-    height: fit-content;
-    margin-left: 10px;
+    justify-content: center;
   }
 
   .cardrow-viewnext {
@@ -282,7 +277,6 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 905px;
 }
 
 .cardrow-pviewnext {
@@ -310,6 +304,9 @@
 
 @media (max-width: 767px) {
   .cardrow-cardscontainer {
+    justify-content: center;
+  }
+  .cardrow-skillcard {
     justify-content: center;
   }
 }

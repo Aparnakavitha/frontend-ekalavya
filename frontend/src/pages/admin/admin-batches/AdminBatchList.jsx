@@ -5,6 +5,7 @@ import { DataView, Greeting } from "../../../layouts/common";
 import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import { fetchbatches, createBatch } from "../../../services/Batch";
 import AdminBatchAction from "../../../layouts/admin-batches/components/AdminBatchAction";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const AdminBatchList = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const AdminBatchList = () => {
         const formattedData = data.map((item) => ({
           miniHeading: `B${item.batchId}`,
           mainHeading: item.batchName || "",
-          count: item.participantCount,
+          Count: item.participantCount,
           cardType: "batch",
           handleClick: () => handleClick(item.batchId, item.batchName), // Pass batchName here
         }));
@@ -65,12 +66,14 @@ const AdminBatchList = () => {
       setError(error);
     }
   };
+  
+  const loggedUserFirstName = sessionStorage.getItem("firstName");
 
   return (
     <div>
       <Greeting
         welcome="Welcome Back"
-        name={sessionStorage.getItem("firstName")}
+        name={loggedUserFirstName}
         info="Here is the information about"
         profile="Batches"
         showButtons={false}
@@ -80,9 +83,9 @@ const AdminBatchList = () => {
         onSearchChange={handleSearchChange}
       />
       {loading ? (
-        <div>Loading...</div>
+        <LoadingSpinner />
       ) : error ? (
-        <div>Error: {error.message}</div>
+        <LoadingSpinner />
       ) : batchData ? (
         <DataView
           data={batchData}
@@ -97,7 +100,7 @@ const AdminBatchList = () => {
           itemsPerPage={12}
         />
       ) : (
-        <div>No batches found.</div>
+        <div>No batches found</div>
       )}
     </div>
   );

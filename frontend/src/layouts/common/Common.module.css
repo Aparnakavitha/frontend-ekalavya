@@ -1405,7 +1405,7 @@
 .eventsdescription-align {
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  gap: 10vw;
 }
 
 .eventsdescription-speaker {
@@ -1977,3 +1977,48 @@
   }
 }
 /* ------------------------------- AboutMe.module.css ends here ------------------------------- */
+
+/* ------------------------------- NotFound.module.css starts here ------------------------------- */
+.container {
+  text-align: center;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+  height: 80vh;
+}
+
+.heading {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.paragraph {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.link{
+  color: var(--white);
+}
+
+.hero-image4 {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------- NotFound.module.css ends here ------------------------------- */
