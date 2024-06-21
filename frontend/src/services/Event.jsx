@@ -77,12 +77,20 @@ export const getEnrolledEventIds = async (participantId) => {
   try {
     const response = await axios.get("https://ekalavya.tarento.com/enrollment", {
       params: {
-        participantId:participantId
+        participantId: participantId
       }
     });
-    return response.data.responseData;
+    
+    if (response.data === null) {
+      throw new Error('Data is null');
+    }
+    return response;
   } catch (error) {
-    console.error("Error fetching enrolled event IDs:", error);
-    throw error;
+    if (error.response && error.response.data && error.response.data.errorMessage) {
+      throw new Error(error.response.data.errorMessage);
+    } else {
+      console.error("Error fetching skills for user:", error);
+      throw new Error("Error fetching skills for user.");
+    }
   }
 };
