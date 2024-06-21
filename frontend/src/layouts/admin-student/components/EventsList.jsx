@@ -9,8 +9,7 @@ import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { DeleteBox } from "../../common";
 
-// EventData merged into the component
-const EventList = ({ handleDelete }) => {
+const EventList = ({ participantId, events, handleDelete }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -50,8 +49,9 @@ const EventList = ({ handleDelete }) => {
     handleCloseDelete();
   };
 
-  const handleClick = () => {
-    navigate(`/admin/events/event-details`);
+  const handleCardClick = (eventId) => {
+    navigate(`/admin/events/event-details/${eventId}`);
+    console.log("event",eventId);
   };
 
   const heading = {
@@ -74,25 +74,15 @@ const EventList = ({ handleDelete }) => {
 
   const eventcards = {
     card: "event",
-    cardData: [
-      {
-        miniHeading: "Capstone 1",
-        mainHeading: "Health Management",
-        startDate: "Jan 15, 2030",
-        endDate: "Mar 15, 2030",
-        Description:
-          "Unlock the power of data with our comprehensive Introduction to Data",
-        cardType: "Course",
-      },
-      {
-        miniHeading: "Capstone 2",
-        mainHeading: "Business Management",
-        startDate: "Feb 20, 2030",
-        endDate: "Apr 20, 2030",
-        Description: "A comprehensive course on business management strategies",
-        cardType: "Course",
-      },
-    ],
+    cardData: events.map(event => ({
+      miniHeading: event.miniHeading,
+      mainHeading: event.mainHeading,
+      startDate: event.startDate,
+      endDate: event.endDate,
+      Description: event.Description,
+      cardType: event.cardType,
+      eventId: event.eventId, // Include eventId in the card data
+    })),
   };
 
   const deleteprops = {
@@ -114,7 +104,7 @@ const EventList = ({ handleDelete }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddEvent {...addevent} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...eventcards} handleClick={handleClick} />
+      <CardRow {...eventcards} handleClick={handleCardClick} />
       <div className="padding">
         <div className={`${styles["eventslist-container"]}`}>
           <div className={`${styles["eventslist-deletebutton"]}`}>

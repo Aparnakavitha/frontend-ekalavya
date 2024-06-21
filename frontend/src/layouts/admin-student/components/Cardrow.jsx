@@ -126,7 +126,7 @@ const CardRow = ({ cardData, card, handleClick }) => {
                   <div
                     key={index}
                     className={`${styles["cardrow-primarycard"]}`}
-                    onClick={() => handleClick(item.id)}
+                    onClick={() => handleClick(item.eventId)}
                   >
                     <PrimaryCard {...item} />
                   </div>
@@ -178,7 +178,7 @@ const CardRow = ({ cardData, card, handleClick }) => {
 CardRow.propTypes = {
   cardData: PropTypes.array.isRequired,
   card: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired, // Corrected prop name
 };
 
 export default CardRow;
