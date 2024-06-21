@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import EventMenus from "../../../layouts/common/components/EventMenus";
 import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
-import { getEnrolledEventIds, fetchEventsService } from "../../../../src/services/Event";
+import {
+  getEnrolledEventIds,
+  fetchEventsService,
+} from "../../../../src/services/Event";
 
 const StudentEvent = () => {
   const navigate = useNavigate();
@@ -31,11 +34,10 @@ const StudentEvent = () => {
       }
     } catch (error) {
       console.error("Error fetching enrolled events:", error);
-      // Check the error status and call fetchEventsService if it's a 404 error
       const eventdata = await fetchEventsService({ completed: 0 });
       console.log("Fetched Event Data:", eventdata);
       if (filter === "Upcoming") {
-        setEvents(eventdata||[]);
+        setEvents(eventdata || []);
       } else if (filter === "Enrolled") {
         setEvents([]);
       } else if (filter === "Completed") {
