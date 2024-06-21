@@ -8,7 +8,7 @@ import profilepic from "../../../assets/DP.png";
 import EducationalQualification from "../../common/components/EducationalQualification";
 import { addNewUser } from "../../../services/User";
 
-const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
+const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
 
   const navProps = { pageName: "Mentors List" };
@@ -19,11 +19,21 @@ const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
   const handleFormSubmit = (formData) => {
     const { addresses, ...formDataWithoutAddresses } = formData;
 
-    // Prepare addresses with addressId included
-    const updatedAddresses = addresses.map((address) => ({
-      ...address,
-      addressId: address.addressId || "", // If addressId is not present, use empty string
-    }));
+    const addressesChanged = addresses.some(
+      (address) =>
+        address.houseName ||
+        address.city ||
+        address.pinCode ||
+        address.state ||
+        address.country
+    );
+
+    const updatedAddresses = addressesChanged
+      ? addresses.map((address) => ({
+          ...address,
+          addressId: address.addressId || "",
+        }))
+      : [];
 
     onSubmit({
       userId: mentorData.userId,
@@ -33,7 +43,7 @@ const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
 
     handleCloseEditBasicDetails();
   };
-  
+
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Sfgsdh", formData);
@@ -75,7 +85,20 @@ const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
 
   const aboutMeProps = {
     title: "About Me",
-    description: mentorData.aboutMe ? mentorData.aboutMe : "No content available for this section.",
+    description: mentorData.aboutMe ? (
+      mentorData.aboutMe
+    ) : (
+      <div
+        style={{
+          textAlign: "left",
+          color: "var(--neutral600)",
+          marginTop: "10px",
+          fontSize: "15px",
+        }}
+      >
+        No data available
+      </div>
+    ),
   };
 
   const Education = mentorData.qualifications;

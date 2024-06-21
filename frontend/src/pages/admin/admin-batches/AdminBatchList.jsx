@@ -26,8 +26,8 @@ const AdminBatchList = () => {
 
       if (Array.isArray(data)) {
         const formattedData = data.map((item) => ({
-          miniHeading: `B${item.batchId}`,
-          mainHeading: item.batchName || "", 
+          miniHeading: `${item.batchId}`,
+          mainHeading: item.batchName || "",
           Count: item.participantCount,
           cardType: "batch",
           handleClick: () => handleClick(item),
@@ -48,12 +48,12 @@ const AdminBatchList = () => {
   };
 
   const handleSearchChange = (data) => {
-    setSearchQuery(data); 
-    setChanged((prev) => !prev); 
+    setSearchQuery(data);
+    setChanged((prev) => !prev);
   };
 
   const handleClick = (item) => {
-    console.log("batch-----",item);
+    console.log("batch-----", item);
     navigate(`/admin/batches/batch-details/${item.miniHeading}`);
   };
 
@@ -81,12 +81,15 @@ const AdminBatchList = () => {
     <div>
       <Greeting
         welcome="Welcome Back"
-        name= {loggedUserFirstName}
+        name={loggedUserFirstName}
         info="Here is the information about"
         profile="Batches"
         showButtons={false}
       />
-      <AdminBatchAction onSubmit={handleFormSubmit} onSearchChange={handleSearchChange} />
+      <AdminBatchAction
+        onSubmit={handleFormSubmit}
+        onSearchChange={handleSearchChange}
+      />
       {loading ? (
         <div>Loading...</div>
       ) : error ? (
