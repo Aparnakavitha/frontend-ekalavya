@@ -73,7 +73,7 @@ const EventList = ({ participantId, events, handleDelete }) => {
 
   const eventcards = {
     card: "event",
-    cardData: events.map(event => ({
+    cardData: events.map((event) => ({
       miniHeading: event.miniHeading,
       mainHeading: event.mainHeading,
       startDate: event.startDate,
@@ -104,8 +104,15 @@ const EventList = ({ participantId, events, handleDelete }) => {
         <AddEvent {...addevent} onSubmit={handleFormSubmit} />
       </Modal>
       {events.length === 0 ? (
-        <div style={{ textAlign: "left", color: "var(--neutral600)" }} className="padding">
-          No events found
+        <div
+          style={{
+            textAlign: "left",
+            color: "var(--neutral600)",
+            marginTop: "-21px",
+          }}
+          className="padding"
+        >
+          &nbsp;&nbsp;No events found
         </div>
       ) : (
         <CardRow {...eventcards} handleClick={handleCardClick} />
@@ -117,7 +124,11 @@ const EventList = ({ participantId, events, handleDelete }) => {
           </div>
         </div>
       </div>
-      <Modal isOpen={isDeleteOpen} widthVariant="small" onClose={handleCloseDelete}>
+      <Modal
+        isOpen={isDeleteOpen}
+        widthVariant="small"
+        onClose={handleCloseDelete}
+      >
         <DeleteBox
           {...deleteprops}
           onCancel={handleDeleteCancel}
