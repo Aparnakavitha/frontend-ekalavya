@@ -53,7 +53,7 @@ const StudentEvent = () => {
       mainHeading: event.eventTitle,
       startDate: event.startDate,
       endDate: event.endDate,
-      description: event.description,
+      Description: event.description,
       cardType: "Course",
       handleClick: () => {
         console.log("clicked");
