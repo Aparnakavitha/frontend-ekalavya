@@ -9,7 +9,7 @@ import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { DeleteBox } from "../../common";
 
-const EventList = ({ participantId, events, handleDelete }) => {
+const EventList = ({ participantId, events, handleDelete, eventOptions, onSubmit }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -45,8 +45,8 @@ const EventList = ({ participantId, events, handleDelete }) => {
 
   const handleFormSubmit = (formData) => {
     console.log("Form submitted with data:", formData);
+    onSubmit(formData); // Pass formData to parent component
     handleCloseModal();
-    handleCloseDelete();
   };
 
   const handleCardClick = (eventId) => {
@@ -64,16 +64,12 @@ const EventList = ({ participantId, events, handleDelete }) => {
 
   const addevent = {
     mainHeading: "Add Event",
-    options: [
-      { value: "abc", label: "ABC" },
-      { value: "xyz", label: "XYZ" },
-      { value: "pqr", label: "PQR" },
-    ],
+    options: eventOptions,
   };
 
   const eventcards = {
     card: "event",
-    cardData: events.map(event => ({
+    cardData: events.map((event) => ({
       miniHeading: event.miniHeading,
       mainHeading: event.mainHeading,
       startDate: event.startDate,
