@@ -3,7 +3,7 @@ import { Greeting } from "../../../layouts/common";
 import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBatchSearch";
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { fetchbatches, fetchBatchParticipants } from "../../../services/Batch";
+import { fetchBatchParticipants } from "../../../services/Batch";
 import { getUserDetails } from "../../../services/User";
 import image from "../../../assets/DP.png";
 
@@ -16,10 +16,9 @@ const greeting = {
 };
 
 const AdminBatchSelect = () => {
-
   const params = useParams();
   const location = useLocation();
-  const [batchName, setBatchName] = useState(location.state?.batchName || ""); 
+  const [batchName, setBatchName] = useState(location.state?.batchName || "");
   const [batchParticipantsData, setBatchParticipantsData] = useState([]);
 
   useEffect(() => {
@@ -33,13 +32,10 @@ const AdminBatchSelect = () => {
       const participantIds = participantsResponse.responseData;
 
       if (Array.isArray(participantIds) && participantIds.length > 0) {
-        const userIds = participantIds.map((id) => String(id));
-        const userDetailsResponses = await Promise.all(
-          userIds.map((userId) => getUserDetails({ userId }))
-        );
-        const userDetails = userDetailsResponses.map(
-          (response) => response.responseData[0]
-        );
+        const userId = participantIds.join(","); // Convert array to comma-separated string
+        const userDetailsResponse = await getUserDetails({ userId });
+        const userDetails = userDetailsResponse.responseData;
+
         console.log("userDetails:", userDetails);
 
         const BatchParticipantsData = userDetails.map((userDetail) => ({
@@ -61,17 +57,6 @@ const AdminBatchSelect = () => {
       console.error("Error fetching data:", error);
       setBatchParticipantsData([]);
     }
-  };
-  const batchDelete = () => {
-    // Implement batch deletion logic here if needed
-  };
-
-  const addParticipant = () => {
-    // Implement adding participant logic here if needed
-  };
-
-  const changeBatchName = () => {
-    // Implement changing batch name logic here if needed
   };
 
   return (
