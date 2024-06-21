@@ -80,13 +80,15 @@ const AdminStudentDetails = () => {
     }
   };
 
-  const fetchEventOptions = async () => {
+  const fetchEventOptions = async (enrolledEventIds) => {
     try {
       const eventData = await fetchEventsService({ completed: 0 });
-      const formattedOptions = eventData.map((event) => ({
-        value: event.eventId,
-        label: `${event.eventId}-${event.eventTitle}`,
-      }));
+      const formattedOptions = eventData
+        .filter(event => !enrolledEventIds.includes(event.eventId))
+        .map(event => ({
+          value: event.eventId,
+          label: `${event.eventId}-${event.eventTitle}`,
+        }));
       setEventOptions(formattedOptions);
     } catch (error) {
       console.error("Error fetching event options:", error);
@@ -103,8 +105,10 @@ const AdminStudentDetails = () => {
     if (studentsData?.userId) {
       fetchStudentDetails(studentsData.userId, setStudentData);
       fetchStudentSkills(studentsData.userId);
-      fetchStudentEvents(studentsData.userId);
-      fetchEventOptions(); // Fetch event options when student data is available
+      fetchStudentEvents(studentsData.userId).then(() => {
+        const enrolledEventIds = studentEvents.map(event => event.eventId);
+        fetchEventOptions(enrolledEventIds); // Fetch event options after fetching enrolled events
+      });
     }
   }, [studentsData]);
 
@@ -128,8 +132,10 @@ const AdminStudentDetails = () => {
 
       fetchStudentDetails(userId, setStudentData);
       fetchStudentSkills(userId);
-      fetchStudentEvents(userId);
-      fetchEventOptions(); // Fetch event options after updating user details
+      fetchStudentEvents(userId).then(() => {
+        const enrolledEventIds = studentEvents.map(event => event.eventId);
+        fetchEventOptions(enrolledEventIds); // Fetch event options after updating user details
+      });
     } catch (error) {
       console.error("Error updating user details:", error);
     }
@@ -138,7 +144,10 @@ const AdminStudentDetails = () => {
   const handleEnrollSubmit = async (enrollmentData) => {
     try {
       await addEnrollmentService(enrollmentData.selectedEventId, { participantId: studentsData.userId });
-      fetchStudentEvents(studentsData.userId); // Refresh the events list after enrollment
+      fetchStudentEvents(studentsData.userId).then(() => {
+        const enrolledEventIds = studentEvents.map(event => event.eventId);
+        fetchEventOptions(enrolledEventIds); // Fetch event options after enrolling
+      });
     } catch (error) {
       console.error("Error enrolling in event:", error);
     }
