@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SkillList from "../../../layouts/admin-student/components/SkillList";
 import EventList from "../../../layouts/admin-student/components/EventsList";
-import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
 import StudentProfileInfo from "../../../layouts/admin-student/components/StudentProfile";
 import {
   getUserDetails,
@@ -13,7 +12,7 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
 import { getSkillsForUser } from "../../../services/Skills";
-import { enrollParticipantService } from "../../../services/Event"; 
+import { enrollParticipantService, fetchEventsService, addEnrollmentService } from "../../../services/Event"; // Adjust the path as needed
 
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
@@ -31,6 +30,7 @@ const AdminStudentDetails = () => {
   const [studentsData, setStudentData] = useState(null);
   const [studentSkills, setStudentSkills] = useRecoilState(adminStudentSkillState);
   const [studentEvents, setStudentEvents] = useState([]);
+  const [eventOptions, setEventOptions] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
   const { studentsData: selectedStudent } = location.state || {};
@@ -80,20 +80,34 @@ const AdminStudentDetails = () => {
     }
   };
 
+  const fetchEventOptions = async () => {
+    try {
+      const eventData = await fetchEventsService({ completed: 0 });
+      const formattedOptions = eventData.map((event) => ({
+        value: event.eventId,
+        label: `${event.eventId}-${event.eventTitle}`,
+      }));
+      setEventOptions(formattedOptions);
+    } catch (error) {
+      console.error("Error fetching event options:", error);
+    }
+  };
+
   useEffect(() => {
     if (selectedStudent) {
       setStudentData(selectedStudent);
     }
   }, [selectedStudent]);
- 
+
   useEffect(() => {
     if (studentsData?.userId) {
       fetchStudentDetails(studentsData.userId, setStudentData);
-      fetchStudentSkills(studentsData.userId); 
-      fetchStudentEvents(studentsData.userId); 
+      fetchStudentSkills(studentsData.userId);
+      fetchStudentEvents(studentsData.userId);
+      fetchEventOptions(); // Fetch event options when student data is available
     }
   }, [studentsData]);
- 
+
   const handleFormSubmit = async (formData) => {
     try {
       const { dob, phoneNo, aboutMe, addresses, userId, education } = formData;
@@ -101,7 +115,7 @@ const AdminStudentDetails = () => {
         ...address,
         addressId: address.addressId || "",
       }));
- 
+
       const updatedData = {
         userId,
         dob,
@@ -109,17 +123,27 @@ const AdminStudentDetails = () => {
         aboutMe,
         addresses: updatedAddresses,
       };
- 
+
       await addNewUser(updatedData);
 
       fetchStudentDetails(userId, setStudentData);
       fetchStudentSkills(userId);
-      fetchStudentEvents(userId); 
+      fetchStudentEvents(userId);
+      fetchEventOptions(); // Fetch event options after updating user details
     } catch (error) {
       console.error("Error updating user details:", error);
     }
   };
- 
+
+  const handleEnrollSubmit = async (enrollmentData) => {
+    try {
+      await addEnrollmentService(enrollmentData.selectedEventId, { participantId: studentsData.userId });
+      fetchStudentEvents(studentsData.userId); // Refresh the events list after enrollment
+    } catch (error) {
+      console.error("Error enrolling in event:", error);
+    }
+  };
+
   const handleDelete = async () => {
     try {
       if (studentsData?.userId) {
@@ -133,11 +157,11 @@ const AdminStudentDetails = () => {
       console.error(`Error deleting user with userId ${studentsData.userId}:`, error);
     }
   };
- 
+
   if (!studentsData) {
     return <LoadingSpinner />;
   }
- 
+
   return (
     <div>
       <StudentProfileInfo
@@ -145,9 +169,15 @@ const AdminStudentDetails = () => {
         onSubmit={handleFormSubmit}
       />
       <SkillList />
-      <EventList participantId={studentsData.userId} events={studentEvents} handleDelete={handleDelete} />
+      <EventList
+        participantId={studentsData.userId}
+        events={studentEvents}
+        handleDelete={handleDelete}
+        eventOptions={eventOptions} // Pass event options to EventList
+        onSubmit={handleEnrollSubmit} // Pass handleEnrollSubmit to EventList
+      />
     </div>
   );
 };
- 
+
 export default AdminStudentDetails;
