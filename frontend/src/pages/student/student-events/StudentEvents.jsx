@@ -76,7 +76,7 @@ const StudentEvent = () => {
   console.log("primaryCardData:", primaryCardData.data);
 
   if (loading) {
-    return <LoadingSpinner/>;
+    return <LoadingSpinner />;
   }
 
   return (
@@ -97,6 +97,7 @@ const StudentEvent = () => {
           { name: "Completed", onClick: () => setFilter("Completed") },
         ]}
         title="Events"
+        activeFilter={filter} // Pass the current filter as a prop
       />
       {events.length > 0 ? (
         <DataView
