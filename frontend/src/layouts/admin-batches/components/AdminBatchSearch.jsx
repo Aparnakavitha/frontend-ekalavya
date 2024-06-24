@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import BatchSearch from "../../common/components/BatchSearch";
 import Modal from "../../common/components/Modal";
-// import AdminBatchSearchData from "./BatchSearchData";
 import UpdateSingleField from "../../common/components/UpdateSingleField";
 import DeleteBox from "../../common/components/DeleteBox";
 import { GoTrash } from "react-icons/go";
@@ -27,15 +26,15 @@ const AdminBatchSearch = ({
     textbuttonProps: {
       icon: <MdEdit />,
       text: "Edit Batch Name",
-      onClick: (e) => {
-        console.log("Edit clicked");
+      onClick: () => {
+        setIsUpdateSingleFieldOpen(true);
       },
     },
     textbuttonProps2: {
       icon: <GoTrash />,
       text: "Delete",
-      onClick: (e) => {
-        console.log("Delete clicked");
+      onClick: () => {
+        setIsDeleteBoxOpen(true);
       },
     },
     searchbarProps: {
@@ -47,6 +46,9 @@ const AdminBatchSearch = ({
       variant: "tertiary",
       content: "+ Add new Student",
       width: "full",
+      onClick: () => {
+        setIsBatchOperationsOpen(true);
+      },
     },
     newprops: {
       mainHeading: "Add Student",
@@ -59,7 +61,7 @@ const AdminBatchSearch = ({
       labelTitle: "Batch Name",
       placeHolder: batchName,
       buttonTitle: "Save",
-      initialData: { inputData: batchName},
+      initialData: { inputData: batchName },
     },
     deleteprops: {
       title: "Confirmation Required",
@@ -68,78 +70,42 @@ const AdminBatchSearch = ({
     },
   };
 
-  const handleOpenBatchOperations = () => {
-    setIsBatchOperationsOpen(true);
-  };
-
-  const handleCloseBatchOperations = () => {
-    setIsBatchOperationsOpen(false);
-  };
-
-  const handleOpenUpdateSingleField = () => {
-    setIsUpdateSingleFieldOpen(true);
-  };
-
-  const handleCloseUpdateSingleField = () => {
-    setIsUpdateSingleFieldOpen(false);
-  };
-
-  const handleOpenDeleteBox = () => {
-    setIsDeleteBoxOpen(true);
-  };
-
-  const handleCloseDeleteBox = () => {
-    setIsDeleteBoxOpen(false);
-  };
-
   const handleFormSubmit = (formData) => {
     console.log("Form submitted with data:", formData);
-    changeBatchName(formData);
-    handleCloseBatchOperations();
-    handleCloseUpdateSingleField();
-    handleCloseDeleteBox();
+    changeBatchName(formData.inputData);
+    handleCloseAllModals();
   };
 
   const addStdFormSubmit = (formData) => {
     console.log("Add student form submitted with data:", formData);
-    addParticipant(formData);
-    handleCloseBatchOperations();
-  };
-
-  const handleDeleteCancel = () => {
-    console.log("Delete canceled");
-    handleCloseDeleteBox();
+    addParticipant(formData.inputData);
+    handleCloseAllModals();
   };
 
   const handleDeleteConfirm = () => {
     batchDelete();
     console.log("Delete confirmed");
-    handleCloseDeleteBox();
+    handleCloseAllModals();
   };
 
-  const actionData = {
-    ...AdminBatchSearchData,
-    addbuttonProps: {
-      ...AdminBatchSearchData.addbuttonProps,
-      onClick: handleOpenBatchOperations,
-    },
-    textbuttonProps: {
-      ...AdminBatchSearchData.textbuttonProps,
-      onClick: handleOpenUpdateSingleField,
-    },
-    textbuttonProps2: {
-      ...AdminBatchSearchData.textbuttonProps2,
-      onClick: handleOpenDeleteBox,
-    },
+  const handleCloseAllModals = () => {
+    setIsBatchOperationsOpen(false);
+    setIsUpdateSingleFieldOpen(false);
+    setIsDeleteBoxOpen(false);
+  };
+
+  const handleDeleteCancel = () => {
+    console.log("Delete canceled");
+    setIsDeleteBoxOpen(false);
   };
 
   return (
     <div>
-      <BatchSearch {...actionData} />
+      <BatchSearch {...AdminBatchSearchData} />
       <Modal
         isOpen={isBatchOperationsOpen}
         widthVariant="medium"
-        onClose={handleCloseBatchOperations}
+        onClose={handleCloseAllModals}
       >
         <UpdateSingleField
           {...AdminBatchSearchData.newprops}
@@ -149,7 +115,7 @@ const AdminBatchSearch = ({
       <Modal
         isOpen={isUpdateSingleFieldOpen}
         widthVariant="medium"
-        onClose={handleCloseUpdateSingleField}
+        onClose={handleCloseAllModals}
       >
         <UpdateSingleField
           {...AdminBatchSearchData.editprops}
@@ -160,7 +126,7 @@ const AdminBatchSearch = ({
       <Modal
         isOpen={isDeleteBoxOpen}
         widthVariant="small"
-        onClose={handleCloseDeleteBox}
+        onClose={handleCloseAllModals}
       >
         <DeleteBox
           {...AdminBatchSearchData.deleteprops}

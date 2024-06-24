@@ -3,7 +3,7 @@ import { Greeting } from "../../../layouts/common";
 import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBatchSearch";
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { fetchBatchParticipants } from "../../../services/Batch";
+import { fetchBatchParticipants, updateBatch } from "../../../services/Batch";
 import { getUserDetails } from "../../../services/User";
 import image from "../../../assets/DP.png";
 
@@ -59,13 +59,24 @@ const AdminBatchSelect = () => {
     }
   };
 
+  const changeBatchName = async (newBatchName) => {
+    try {
+      const batchId = params.batchId;
+      await updateBatch({ batchId, batchName: newBatchName });
+      setBatchName(newBatchName);
+      console.log("Batch name updated successfully");
+    } catch (error) {
+      console.error("Error updating batch name:", error);
+    }
+  };
+
   return (
     <div>
       <Greeting {...greeting} />
       <AdminBatchSearch
         batchDelete={() => {}}
         addParticipant={() => {}}
-        changeBatchName={() => {}}
+        changeBatchName={changeBatchName}
         batchName={batchName}
       />
       {batchParticipantsData.length > 0 ? (
