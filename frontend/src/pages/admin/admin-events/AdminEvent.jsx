@@ -15,15 +15,13 @@ const AdminEvent = () => {
     eventMode: "",
   });
 
-
   const loggedUserFirstName = sessionStorage.getItem("firstName");
-
 
   const greeting = {
     welcome: "Welcome Back",
     name: loggedUserFirstName || "",
     info: "Here is the information about",
-    profile: "Mentors",
+    profile: "Events",
     showButtons: false,
   };
 
@@ -61,7 +59,7 @@ const AdminEvent = () => {
       mainHeading: event.eventTitle,
       startDate: event.startDate,
       endDate: event.endDate,
-      description: event.description,
+      Description: event.description,
       cardType: "Course",
       handleClick: () => handleClick(event),
     })),
@@ -171,7 +169,7 @@ const AdminEvent = () => {
         <DataView CardComponent={PrimaryCard} {...primaryCardData} />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No events available
+          No events to display
         </p>
       )}
     </div>

@@ -731,7 +731,7 @@
   border-radius: 40px;
   background: var(--background);
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
+  /* backdrop-filter: blur(45px); */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1405,7 +1405,7 @@
 .eventsdescription-align {
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  gap: 10vw;
 }
 
 .eventsdescription-speaker {

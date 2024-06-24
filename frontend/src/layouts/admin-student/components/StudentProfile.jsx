@@ -25,10 +25,21 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
   const handleFormSubmit = (formData) => {
     const { addresses, ...formDataWithoutAddresses } = formData;
 
-    const updatedAddresses = addresses.map((address) => ({
-      ...address,
-      addressId: address.addressId || "",
-    }));
+    const addressesChanged = addresses.some(
+      (address) =>
+        address.houseName ||
+        address.city ||
+        address.pinCode ||
+        address.state ||
+        address.country
+    );
+
+    const updatedAddresses = addressesChanged
+      ? addresses.map((address) => ({
+          ...address,
+          addressId: address.addressId || "",
+        }))
+      : [];
 
     onSubmit({
       userId: studentsData.userId,
@@ -38,7 +49,6 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
 
     handleCloseEditBasicDetails();
   };
-
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Sfgsdh", formData);
@@ -51,14 +61,13 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
   };
 
   const homeAddress =
-  studentsData.addresses &&
-  studentsData.addresses.find((address) => address.addressType === "home");
-
+    studentsData.addresses &&
+    studentsData.addresses.find((address) => address.addressType === "home");
 
   const editBox = {
     mainHeading: "Edit Basic Details",
     initialData: {
-      dob:studentsData.dob,
+      dob: studentsData.dob,
       phoneNo: studentsData.phoneNo,
       addresses: [
         {
@@ -70,18 +79,30 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
           country: homeAddress ? homeAddress.country : "",
         },
       ],
-      aboutMe: studentsData.aboutMe ,
+      aboutMe: studentsData.aboutMe,
     },
     isEdit: true,
   };
 
   const aboutMeProps = {
     title: "About Me",
-    description: studentsData.aboutMe ? studentsData.aboutMe: "No content available for this section.",
+    description: studentsData.aboutMe ? (
+      studentsData.aboutMe
+    ) : (
+      <div
+        style={{
+          textAlign: "left",
+          color: "var(--neutral600)",
+          marginTop: "10px",
+          fontSize: "15px",
+        }}
+      >
+        No data available
+      </div>
+    ),
   };
 
   const Education = studentsData.qualifications;
-
 
   return (
     <div>

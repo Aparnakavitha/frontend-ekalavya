@@ -9,3 +9,13 @@ export const adminStudentSkillState = atom({
   key: "adminStudentSkillState",
   default: [],
 });
+
+export const studentSkillState = atom({
+  key: "skillState",
+  default: [],
+});
+
+export const skillOpState = atom({
+  key: "skillOpState",
+  default: [],
+});
