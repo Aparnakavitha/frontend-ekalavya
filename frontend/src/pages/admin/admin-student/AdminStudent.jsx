@@ -30,12 +30,6 @@ const fetchStudentsData = async (setStudentsData, params) => {
         collegeId: params.College || "",
       };
     }
-    // if (params.StudentIds) {
-    //   filterParams = {
-    //     userId: params.StudentIds || "",
-    //   };
-    // }
-
     if (params.StudentIds && Number.isInteger(Number(params.StudentIds))) {
       filterParams = {
         userId: Number(params.StudentIds),
@@ -45,9 +39,6 @@ const fetchStudentsData = async (setStudentsData, params) => {
         name: params.StudentIds,
       };
     }
-
-    console.log("paramss------", params);
-
     if (params.Batch && !params.StudentIds) {
       setStudentsData([]);
       return;
