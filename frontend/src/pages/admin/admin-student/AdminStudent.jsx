@@ -146,7 +146,6 @@ const AdminStudent = () => {
     fetchBatchParticipantsData(setParams, params);
   }, [params]);
 
-  // || !userData
   if (!collegeData.length) {
     return <LoadingSpinner />;
   }
