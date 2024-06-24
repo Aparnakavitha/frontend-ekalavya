@@ -2,15 +2,22 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { EventsDescription } from "../../common";
-import { addEnrollment, deleteEvent } from "../../../services/eventService";
+import {
+  addEnrollmentService,
+  deleteEventService,
+} from "../../../services/Event";
 import { useNavigate } from "react-router-dom";
 
-const StudentEventDescription = ({ eventDetails, participantId, tab, organizerName }) => {
+const StudentEventDescription = ({
+  eventDetails,
+  participantId,
+  tab,
+  organizerName,
+}) => {
   const [isRegistered, setIsRegistered] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Initialize the registration state based on the tab or event details
     if (tab === "Enrolled") {
       setIsRegistered(true);
     }
@@ -20,10 +27,8 @@ const StudentEventDescription = ({ eventDetails, participantId, tab, organizerNa
     try {
       const eventData = { participantId };
 
-      // Call addEnrollment function
-      await addEnrollment(eventDetails.eventId, eventData);
+      await addEnrollmentService(eventDetails.eventId, eventData);
 
-      // Show success toast
       toast.success("Event registered successfully!", {
         position: "top-center",
         autoClose: 5000,
@@ -34,7 +39,6 @@ const StudentEventDescription = ({ eventDetails, participantId, tab, organizerNa
         progress: undefined,
       });
 
-      // Set isRegistered to true to update the button state
       setIsRegistered(true);
     } catch (error) {
       console.error("Error registering event:", error);
@@ -52,10 +56,8 @@ const StudentEventDescription = ({ eventDetails, participantId, tab, organizerNa
 
   const handleUnenroll = async () => {
     try {
-      // Call deleteEvent function to unenroll from the event
-      await deleteEvent(eventDetails.eventId, participantId);
+      await deleteEventService(eventDetails.eventId, participantId);
 
-      // Show success toast
       toast.success("Unregistered successfully!", {
         position: "top-center",
         autoClose: 5000,
@@ -66,7 +68,6 @@ const StudentEventDescription = ({ eventDetails, participantId, tab, organizerNa
         progress: undefined,
       });
 
-      // Update the registration state
       setIsRegistered(false);
     } catch (error) {
       console.error("Error unenrolling from event:", error);
@@ -99,8 +100,8 @@ const StudentEventDescription = ({ eventDetails, participantId, tab, organizerNa
   }
 
   let smallerButtonLabel = "";
-  let onClickAction = () => {}; // Default empty function
-  let showButton = true; // New prop to control button visibility
+  let onClickAction = () => {};
+  let showButton = true;
 
   switch (tab) {
     case "Upcoming":
@@ -114,11 +115,11 @@ const StudentEventDescription = ({ eventDetails, participantId, tab, organizerNa
     case "Completed":
       smallerButtonLabel = "Completed";
       onClickAction = handleCompleted;
-      showButton = false; // Hide button for completed events
+      showButton = false;
       break;
     default:
-      smallerButtonLabel = "Register"; // Default label for other cases
-      onClickAction = handleRegister; // Default action for other cases
+      smallerButtonLabel = "Register";
+      onClickAction = handleRegister;
       break;
   }
 
@@ -132,9 +133,10 @@ const StudentEventDescription = ({ eventDetails, participantId, tab, organizerNa
     startTime: eventDetails.startTime,
     endTime: eventDetails.endTime,
     link: eventDetails.link,
+    location: eventDetails.location,
     speaker: eventDetails.speaker,
     speakerDescription: eventDetails.speakerDescription,
-    organizer: organizerName, // Pass the organizer name
+    organizer: organizerName,
     button: "Events",
     buttons: eventDetails.eventTitle,
     small: "edit",
@@ -143,7 +145,7 @@ const StudentEventDescription = ({ eventDetails, participantId, tab, organizerNa
     type: "public",
     smaller: smallerButtonLabel,
     onclick1: onClickAction,
-    showButton, // Pass the showButton prop
+    showButton,
   };
 
   return (

@@ -39,7 +39,7 @@ const EventsDescription = (props) => {
   }
 
   function formatTime(timeString) {
-    if (!timeString) return ''; 
+    if (!timeString) return "";
     const [hours, minutes] = timeString.split(":");
     const convertedHours = hours % 12 || 12;
     const amPm = hours < 12 ? "AM" : "PM";
@@ -54,7 +54,7 @@ const EventsDescription = (props) => {
       <div className={`${styles["eventsdescription-topleft"]}`}>
         <div className={`${styles["eventsdescription-navbutton"]}`}>
           <div>
-            <NavButton pageName={eventTitle}/>
+            <NavButton pageName={eventTitle} />
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ const EventsDescription = (props) => {
               </div>
               <div className={`${styles["eventsdescription-texted"]}`}>
                 <a className={`${styles["eventsdescription-text"]}`}>
-                  <b> Type : </b>
+                  Type : 
                   {eventType}
                 </a>
                 <a className={`${styles["eventsdescription-texts"]}`}>
@@ -156,11 +156,11 @@ const EventsDescription = (props) => {
               </div>
               <div className={`${styles["eventsdescription-timer"]}`}>
                 <a className={`${styles["eventsdescription-date"]}`}>
-                  • <b>Date : </b>
+                  <b>Date : </b>
                   {formatDate(startDate)} - {formatDate(endDate)}
                 </a>
                 <a className={`${styles["eventsdescription-time"]}`}>
-                  • <b>Time : </b>
+                  <b>Time : </b>
                   {formatTime(startTime)} - {formatTime(endTime)}
                 </a>
               </div>
@@ -172,7 +172,7 @@ const EventsDescription = (props) => {
               </div>
               <div className={`${styles["eventsdescription-timer"]}`}>
                 <a className={`${styles["eventsdescription-venue"]}`}>
-                  • <b>{locationLabel} :</b> {locationValue}
+                  <b>{locationLabel} :</b> {locationValue}
                 </a>
               </div>
             </div>
@@ -184,7 +184,7 @@ const EventsDescription = (props) => {
             </div>
             <div>
               <a className={`${styles["eventsdescription-speaker"]}`}>
-                • <b>{speaker} </b>, {speakerDescription}
+                <b>{speaker} </b>, {speakerDescription}
               </a>
             </div>
           </div>
@@ -200,7 +200,7 @@ const EventsDescription = (props) => {
 
                 <div>
                   <a className={`${styles["eventsdescription-speaker"]}`}>
-                    • {organizer}
+                    {organizer}
                   </a>
                 </div>
               </div>

@@ -63,14 +63,14 @@ const ProfileCard = (props) => {
           )}
         </div>
         <div className={styles["titles-wrapper"]}>
-          <h1 className={styles.title1}>{transformName(studentName)}</h1>
-          <h2 className={styles.title2}>{transformName(studentId)}</h2>
-          <h3 className={styles.title3}>{transformCollege(studentCollege)}</h3>
+          <h1 className={styles.title1} title={studentName}>{transformName(studentName)}</h1>
+          <h2 className={styles.title2} title={studentId}>{transformName(studentId)}</h2>
+          <h3 className={styles.title3} title={studentCollege}>{transformCollege(studentCollege)}</h3>
         </div>
 
         <div className={styles["contact-info"]}>
-          <div className={styles.email}>{transformMainMail(studentMail)}</div>
-          <div className={styles.phone}>
+          <div className={styles.email} title={studentMail}>{transformMainMail(studentMail)}</div>
+          <div className={styles.phone} title={studentPhoneNumber}>
             {transformMainMail(studentPhoneNumber)}
           </div>
         </div>

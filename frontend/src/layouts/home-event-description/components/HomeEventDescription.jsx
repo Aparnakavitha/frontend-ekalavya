@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { EventsDescription } from "../../common";
+import Modal from "../../common/components/Modal";
+import LoginBox from "../../common/components/LoginBox";
 
-const HomeEventDescription = ({ event }) => {
-  const handleButtonClick = (message) => {
-    toast.success(message, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+const HomeEventDescription = ({ event, organizer }) => {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+  const handleOpenLoginModal = () => {
+    setIsLoginModalOpen(true);
+  };
+
+  const handleCloseLoginModal = () => {
+    setIsLoginModalOpen(false);
+  };
+
+  const handleRegisterClick = () => {
+    handleOpenLoginModal();
   };
 
   const homeEvents = {
@@ -29,7 +33,7 @@ const HomeEventDescription = ({ event }) => {
     link: event.link,
     speaker: event.speaker,
     speakerDescription: event.speakerDescription,
-    organizer: event.organizer,
+    organizer: organizer ? `${organizer.firstName} ${organizer.lastName}` : "",
     button: "Events",
     buttons: event.eventTitle,
     small: "edit",
@@ -37,25 +41,26 @@ const HomeEventDescription = ({ event }) => {
     large: "view participants",
     type: "public",
     smaller: "Register",
-    onclick1: () => handleButtonClick("Event registered successfully!"),
+    onclick1: handleRegisterClick,
+  };
+
+  const loginBoxProps = {
+    title: "Please Log In",
+    message: "You need to log in to register for this event.",
+    buttonText: "Log In with Google",
+    onCancel: handleCloseLoginModal,
   };
 
   return (
     <div className="padding padding-top padding-bottom">
       <EventsDescription {...homeEvents} />
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition={Slide}
-      />
+      <Modal
+        isOpen={isLoginModalOpen}
+        widthVariant="small"
+        onClose={handleCloseLoginModal}
+      >
+        <LoginBox {...loginBoxProps} />
+      </Modal>
     </div>
   );
 };

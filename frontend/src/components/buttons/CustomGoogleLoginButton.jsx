@@ -1,13 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./CustomGoogleLoginButton.css";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
 
-const clientId =
-  "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com"; // Replace with your actual Google Client ID
+const clientId = "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com"; // Replace with your actual Google Client ID
 
-const CustomGoogleLoginButton = () => {
+const CustomGoogleLoginButton = ({ fullWidth }) => {
   const navigate = useNavigate();
 
   const handleLoginSuccess = async (credentialResponse) => {
@@ -25,14 +26,11 @@ const CustomGoogleLoginButton = () => {
   };
 
   const fetchUserInfo = async (accessToken) => {
-    const response = await axios.get(
-      "https://www.googleapis.com/oauth2/v3/userinfo",
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const response = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
     console.log("User Info Response:", response.data);
     return response.data;
   };
@@ -44,9 +42,7 @@ const CustomGoogleLoginButton = () => {
     console.log("Picture URL:", picture);
     console.log("Participant ID:", participantId);
 
-    const response = await axios.post("https://ekalavya.tarento.com/login", {
-      email,
-    });
+    const response = await axios.post("https://ekalavya.tarento.com/login", { email });
     const { roleId, userId } = response.data.responseData;
     console.log("API Response Role ID:", roleId);
 
@@ -76,10 +72,22 @@ const CustomGoogleLoginButton = () => {
   });
 
   return (
-    <button onClick={() => login()} className="custom-google-login-button">
-      Login
+    <button
+      onClick={() => login()}
+      className={`custom-google-login-button ${fullWidth ? 'full-width' : ''}`}
+    >
+      <FaGoogle />
+    <a> Login</a> 
     </button>
   );
+};
+
+CustomGoogleLoginButton.propTypes = {
+  fullWidth: PropTypes.bool,
+};
+
+CustomGoogleLoginButton.defaultProps = {
+  fullWidth: false,
 };
 
 export default CustomGoogleLoginButton;

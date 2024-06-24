@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import MentorProfileInfo from "../../../layouts/admin-mentor/components/MentorProfile";
 import MentorEventsList from "../../../layouts/admin-mentor/components/MentorEventsList";
 import {
@@ -8,6 +8,8 @@ import {
   deleteUser,
   addNewUser,
 } from "../../../services/User";
+import { fetchEventsService } from "../../../services/Event";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const fetchMentorDetails = async (userId, setMentorData) => {
   try {
@@ -23,9 +25,11 @@ const fetchMentorDetails = async (userId, setMentorData) => {
 
 const AdminMentorDetails = () => {
   const [mentorData, setMentorData] = useState(null);
+  const [events, setEvents] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
   const { mentorData: selectedMentor } = location.state || {};
+  const { userId } = useParams();
 
   useEffect(() => {
     if (selectedMentor) {
@@ -34,9 +38,24 @@ const AdminMentorDetails = () => {
   }, [selectedMentor]);
 
   useEffect(() => {
-    if (mentorData && mentorData.userId) {
-      fetchMentorDetails(mentorData.userId, setMentorData);
+    if (userId) {
+      fetchMentorDetails(userId, setMentorData);
     }
+  }, [userId]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      if (mentorData && mentorData.userId) {
+        try {
+          const data = await fetchEventsService({ host: mentorData.userId });
+          setEvents(data);
+        } catch (error) {
+          console.error("Error fetching events:", error);
+        }
+      }
+    };
+
+    fetchEvents();
   }, [mentorData]);
 
   const handleFormSubmit = async (formData) => {
@@ -65,9 +84,6 @@ const AdminMentorDetails = () => {
       if (mentorData && mentorData.userId) {
         const params = { userId: mentorData.userId };
         await deleteUser(params);
-        console.log(
-          `User with userId ${mentorData.userId} deleted successfully.`
-        );
         navigate("/admin/mentor");
       } else {
         console.error("mentorData or mentorData.userId is not defined");
@@ -81,25 +97,14 @@ const AdminMentorDetails = () => {
   };
 
   if (!mentorData) {
-    return (
-      <div
-        style={{
-          padding: "20px",
-          fontSize: "24px",
-          color: "white",
-          textAlign: "center",
-        }}
-      >
-        Loading...
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (
     <div>
       <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} />
       <MentorEventsList
-        mentorId={mentorData.userId}
+        events={events}
         handleDelete={handleDelete}
       />
     </div>

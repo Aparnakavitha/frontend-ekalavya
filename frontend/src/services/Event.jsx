@@ -23,16 +23,17 @@ export const addEventService = async (eventData) => {
   }
 };
 
-export const deleteEventService = async (eventId) => {
+export const deleteEventService = async (eventId,participantId) => {
   try {
     const response = await axios.delete(BASE_URL, {
       params: {
         eventId: eventId,
-      },
+        participantId: participantId
+      }
     });
     return response.data;
   } catch (error) {
-    console.error("Error deleting event:", error);
+    console.error('Error deleting event enrollment:', error);
     throw error;
   }
 };
@@ -70,5 +71,26 @@ export const addEnrollmentService = async (eventId, eventData) => {
   } catch (error) {
     console.log("Error adding event:", error);
     throw error;
+  }
+};
+export const getEnrolledEventIds = async (participantId) => {
+  try {
+    const response = await axios.get("https://ekalavya.tarento.com/enrollment", {
+      params: {
+        participantId: participantId
+      }
+    });
+    
+    if (response.data === null) {
+      throw new Error('Data is null');
+    }
+    return response;
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.errorMessage) {
+      throw new Error(error.response.data.errorMessage);
+    } else {
+      console.error("Error fetching skills for user:", error);
+      throw new Error("Error fetching skills for user.");
+    }
   }
 };

@@ -58,7 +58,7 @@ const PrimaryCard = (props) => {
     >
       <div className={cardsClass} onClick={handleClick}>
         <a className={styles.cardsminiheading}>{miniHeading}</a>
-        <a className={styles.cardsmainheading}>
+        <a className={styles.cardsmainheading} title={mainHeading}>
           {transformMainHeading(mainHeading)}
         </a>
         <div className={styles.dateRow}>
@@ -68,7 +68,7 @@ const PrimaryCard = (props) => {
           </div>
           <a className={styles.cardsdate}>{formattedEndDate}</a>
         </div>
-        <a className={styles.cardsdiscription}>
+        <a className={styles.cardsdiscription} title={Description}>
           {transformMainDescription(Description)}
         </a>
       </div>
