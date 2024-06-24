@@ -16,7 +16,7 @@ const AddEvent = ({
   organizeroptions,
   onSubmit,
   isOrganizer,
-  fetchedFormData
+  fetchedFormData,
 }) => {
   const mergedDefaultValues = { ...fetchedFormData };
 
@@ -374,7 +374,7 @@ const AddEvent = ({
 
       {isOrganizer && (
         <Controller
-          name="organizer"
+          name="hostId"
           control={control}
           rules={{
             required: "Organizer is required",
