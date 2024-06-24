@@ -3,7 +3,7 @@ import { Greeting } from "../../../layouts/common";
 import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBatchSearch";
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { fetchBatchParticipants } from "../../../services/Batch";
+import { fetchBatchParticipants ,deleteBatch} from "../../../services/Batch";
 import { getUserDetails } from "../../../services/User";
 import image from "../../../assets/DP.png";
 
@@ -16,10 +16,13 @@ const greeting = {
 };
 
 const AdminBatchSelect = () => {
+  const { batchId } = useParams();
   const params = useParams();
   const location = useLocation();
   const [batchName, setBatchName] = useState(location.state?.batchName || "");
   const [batchParticipantsData, setBatchParticipantsData] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     fetchData();
@@ -58,12 +61,20 @@ const AdminBatchSelect = () => {
       setBatchParticipantsData([]);
     }
   };
-
+  const handleDeleteBatches = async () => {
+    try {
+      await deleteBatch(batchId);
+      console.log("Batch deleted successfully");
+      navigate(`/admin/batches`);
+    } catch (error) {
+      console.error("Error deleting batch:", error);
+    }
+  };
   return (
     <div>
       <Greeting {...greeting} />
       <AdminBatchSearch
-        batchDelete={() => {}}
+        batchDelete={handleDeleteBatches}
         addParticipant={() => {}}
         changeBatchName={() => {}}
         batchName={batchName}
