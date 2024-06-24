@@ -3,12 +3,13 @@ import { useParams, useLocation } from "react-router-dom";
 import StudentEventDescription from "../../../layouts/student-event-description/components/StudentEventDescription";
 import { fetchEventsService } from "../../../services/Event";
 import { getUserDetails } from "../../../services/User";
+import { enrollParticipantService } from "../../../services/Event";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const StudentEventDetails = () => {
   const { eventId } = useParams();
   const location = useLocation();
-  const { tab } = location.state || {};
-  console.log({ tab });
+  const [tab, setTab] = useState(location.state?.tab || "");
   const [eventDetails, setEventDetails] = useState(null);
   const [organizerName, setOrganizerName] = useState("");
   const [loading, setLoading] = useState(true);
@@ -34,6 +35,16 @@ const StudentEventDetails = () => {
           const organizerName = `${organizerData.responseData[0].firstName} ${organizerData.responseData[0].lastName}`;
           setOrganizerName(organizerName);
         }
+
+        const enrollmentResponse = await enrollParticipantService(
+          eventId,
+          participantId
+        );
+        if (enrollmentResponse) {
+          setTab("Enrolled");
+        } else {
+          setTab("Upcoming");
+        }
       } catch (error) {
         console.error("Error fetching event or organizer details:", error);
       } finally {
@@ -42,10 +53,10 @@ const StudentEventDetails = () => {
     };
 
     getEventAndOrganizerDetails();
-  }, [eventId]);
+  }, [eventId, participantId]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (
