@@ -9,6 +9,7 @@ import StudentContent from "../pages/student/Student";
 import NotFound from "../layouts/common/components/NotFound";
 
 const RouterComponent = () => {
+  const roleId = sessionStorage.getItem("role");
   return (
     <div>
       <BrowserRouter>
@@ -23,7 +24,6 @@ const RouterComponent = () => {
             path="/explore/event-details/:eventId"
             element={<EventDescription />}
           />
-           <Route path="/student/*" element={<StudentContent />} />
            <Route path="*" element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
