@@ -28,9 +28,7 @@ const fetchStudentDetails = async (userId, setStudentData) => {
 
 const AdminStudentDetails = () => {
   const [studentsData, setStudentData] = useState(null);
-  const [studentSkills, setStudentSkills] = useRecoilState(
-    adminStudentSkillState
-  );
+  const [studentSkills, setStudentSkills] = useRecoilState(adminStudentSkillState);
   const [studentEvents, setStudentEvents] = useState([]);
   const [eventOptions, setEventOptions] = useState([]);
   const navigate = useNavigate();
@@ -54,6 +52,7 @@ const AdminStudentDetails = () => {
             canDelete: true,
           }));
           console.log("Formatted skills:", skills);
+
           setStudentSkills(skills);
         } else {
           console.error("Unexpected response format:", response);
@@ -66,12 +65,8 @@ const AdminStudentDetails = () => {
 
   const fetchStudentEvents = async (participantId) => {
     try {
-      const response = await enrollParticipantService(
-        null,
-        participantId,
-        null
-      );
-      const events = response.responseData.enrolled.map((event) => ({
+      const response = await enrollParticipantService(null, participantId, null);
+      const enrolledEvents = response.responseData.enrolled.map((event) => ({
         miniHeading: event.eventType,
         mainHeading: event.eventTitle,
         startDate: event.startDate,
@@ -80,7 +75,16 @@ const AdminStudentDetails = () => {
         cardType: event.eventType,
         eventId: event.eventId,
       }));
-      setStudentEvents(events);
+      const completedEvents = response.responseData.completed.map((event) => ({
+        miniHeading: event.eventType,
+        mainHeading: event.eventTitle,
+        startDate: event.startDate,
+        endDate: event.endDate,
+        Description: event.description,
+        cardType: event.eventType,
+        eventId: event.eventId,
+      }));
+      setStudentEvents([...enrolledEvents, ...completedEvents]);
     } catch (error) {
       console.error("Error fetching student events:", error);
     }
@@ -171,10 +175,7 @@ const AdminStudentDetails = () => {
         console.error("studentsData or studentsData.userId is not defined");
       }
     } catch (error) {
-      console.error(
-        `Error deleting user with userId ${studentsData.userId}:`,
-        error
-      );
+      console.error(`Error deleting user with userId ${studentsData.userId}:`, error);
     }
   };
 
