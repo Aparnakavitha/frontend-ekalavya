@@ -78,7 +78,6 @@ const AdminEvent = () => {
 
   const formSubmit = async (data) => {
     data.contact = "7558845220";
-    data.hostId = "3";
     try {
       const response = await addEventService(data);
       console.log("Response from API:", response);
