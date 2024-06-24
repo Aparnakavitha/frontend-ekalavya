@@ -1,13 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactModal from "react-modal";
 import PropTypes from "prop-types";
 import styles from "../Common.module.css";
-
-const widthVariants = {
-  small: "549px",
-  medium: "704px",
-  large: "914px",
-};
 
 const Modal = ({
   children,
@@ -23,21 +17,30 @@ const Modal = ({
 }) => {
   const modalClass = `${styles["modal-modalContent"]} ${styles[`modal-width-${widthVariant}`]}`;
 
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleRequestClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+      setIsClosing(false);
+    }, closeTimeoutMS);
+  };
+
   ReactModal.setAppElement(ariaHideApp ? "#root" : "");
 
   return (
     <ReactModal
       isOpen={isOpen}
-      onRequestClose={onClose}
-      className={modalClass}
+      onRequestClose={handleRequestClose}
+      className={`${modalClass} ${isClosing ? styles["closing"] : ""}`}
       overlayClassName={overlayClassName}
       closeTimeoutMS={closeTimeoutMS}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
       shouldCloseOnEsc={shouldCloseOnEsc}
       {...otherProps}
     >
-       <div className={styles["modal-contentScrollable"]}>{children}
-       </div>
+      <div className={styles["modal-contentScrollable"]}>{children}</div>
     </ReactModal>
   );
 };
@@ -55,4 +58,3 @@ Modal.propTypes = {
 };
 
 export default Modal;
-

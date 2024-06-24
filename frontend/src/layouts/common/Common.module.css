@@ -209,7 +209,7 @@
 }
 
 .footer-img {
-  height: 35px;
+  height: 40px;
   width: 163px;
 }
 
@@ -383,10 +383,8 @@
 .basicdetails-form {
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  backdrop-filter: blur(45px);
+  background: var(--background);
   background-blend-mode: lighten;
   border-radius: 40px;
   color: var(--white);
@@ -502,12 +500,10 @@
 /* ------------------------------- combinedskillform.css starts here --------------------------- */
 
 .combinedskillform-form {
-  width: 100%;  
+  width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  backdrop-filter: blur(45px);
+  background: var(--background);
   background-blend-mode: lighten;
   border-radius: 40px;
   color: var(--white);
@@ -733,11 +729,9 @@
 .deletebox-box {
   max-width: 100%;
   border-radius: 40px;
+  background: var(--background);
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  backdrop-filter: blur(45px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -894,12 +888,10 @@
 /* ------------------------------- addstudent.css starts here --------------------------------- */
 
 .addstudent-form {
-  width: 100%;  
+  width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  backdrop-filter: blur(45px);
+  background: var(--background);
   background-blend-mode: lighten;
   border-radius: 40px;
   color: var(--white);
@@ -993,6 +985,7 @@
   height: fit-content;
   display: flex;
   flex-direction: column;
+  background-color: var(--background);
   border-radius: 40px;
   padding: 50px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
@@ -1078,6 +1071,8 @@
 
 /* -------------------------------- Modal.css starts here --------------------------------- */
 
+/* Common.module.css */
+
 .modal-modalOverlay {
   position: fixed;
   top: 0;
@@ -1090,6 +1085,7 @@
   align-items: center;
   z-index: 2000;
   overflow-y: auto;
+  animation: modalFadeIn 0.2s ease forwards;
 }
 
 .modal-modalContent {
@@ -1097,10 +1093,13 @@
   max-height: 90%;
   overflow-y: auto;
   outline: transparent;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: modalSlideIn 0.2s ease forwards, modalFadeIn 0.2s ease forwards;
 }
 
-.modal-modalContent::-webkit-scrollbar {
-  width: 0px;
+.modal-modalContent.closing {
+  animation: modalSlideOut 0.2s ease forwards, modalFadeOut 0.2s ease forwards;
 }
 
 .modal-width-small {
@@ -1115,6 +1114,46 @@
   width: 914px;
 }
 
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 480px) {
   .modal-modalContent {
     padding: 0 15px;
@@ -1126,6 +1165,7 @@
     padding: 0 35px;
   }
 }
+
 
 /* -------------------------------- Modal.css ends here ----------------------------------- */
 
@@ -1646,10 +1686,8 @@
 .qualification-form-form {
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  backdrop-filter: blur(45px);
+  background: var(--background);
   background-blend-mode: lighten;
   padding: 50px;
   border-radius: 40px;
