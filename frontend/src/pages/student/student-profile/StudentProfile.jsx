@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Greeting } from "../../../layouts/common";
 import AboutMe from "../../../layouts/common/components/AboutMe";
 import Upcoming from "../../../layouts/student-profile/components/Upcoming";
 import StudentProfileInfo from "../../../layouts/student-profile/components/StudentProfileInfo";
@@ -103,8 +104,15 @@ const StudentProfile = () => {
 
   const Education = studentData.qualifications || [];
 
+  const greet = {
+    welcome: "Welcome Back",
+    name: `${studentData.firstName}`,
+    showButtons: false,
+  };
+
   return (
     <div>
+      <Greeting {...greet} />
       <StudentProfileInfo
         profileData={profileData}
         EditableData={EditableData}
