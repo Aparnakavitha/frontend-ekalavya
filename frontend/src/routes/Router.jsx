@@ -17,14 +17,20 @@ const RouterComponent = () => {
           <Route path="/explore/description" element={<EventDescription />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/" element={<Home />} />
-          <Route path="/mentor/*" element={<MentorContent />} />
-          <Route path="/admin/*" element={<AdminContent />} />
-          <Route exact path="/student/*" element={<StudentContent />} />
+          {roleId === "2" && (
+            <Route path="/mentor/*" element={<MentorContent />} />
+          )}
+          {roleId === "1" && (
+            <Route path="/admin/*" element={<AdminContent />} />
+          )}
+          {roleId === "3" && (
+            <Route path="/student/*" element={<StudentContent />} />
+          )}
           <Route
             path="/explore/event-details/:eventId"
             element={<EventDescription />}
           />
-           <Route path="*" element={<NotFound/>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
