@@ -32,7 +32,30 @@ const MentorProfile = () => {
   const handleFormSubmit = async (formData) => {
     try {
       console.log("Form Submitted with data:", formData);
-      const response = await updateUserDetails(formData);
+
+      const { addresses, ...formDataWithoutAddresses } = formData;
+
+      const addressesChanged = addresses.some(
+        (address) =>
+          address.houseName ||
+          address.city ||
+          address.pinCode ||
+          address.state ||
+          address.country
+      );
+
+      const updatedAddresses = addressesChanged
+        ? addresses.map((address) => ({
+            ...address,
+            addressId: address.addressId || "",
+          }))
+        : [];
+      const response = await updateUserDetails({
+        userId: mentorData.userId,
+        ...formDataWithoutAddresses,
+        addresses: updatedAddresses,
+      });
+
       console.log("Update response:", response);
       fetchData();
     } catch (error) {
