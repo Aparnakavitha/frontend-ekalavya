@@ -10,9 +10,12 @@ import {
 } from "../../../states/Atoms";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { Userskillpost } from "../../../services/Skills";
+
 const SkillList = ({ studentId }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [studentSkills,setStudentSkills] = useRecoilState(adminStudentSkillState);
+  const [studentSkills, setStudentSkills] = useRecoilState(
+    adminStudentSkillState
+  );
   const allSkills = useRecoilValue(studentSkillState);
 
   const addSkillOptions = allSkills.map((skill) => ({
@@ -29,7 +32,6 @@ const SkillList = ({ studentId }) => {
   };
 
   const handleFormSubmit = async (formData) => {
-    console.log("Form submitted with data:", formData);
     const submitResponse = await Userskillpost({
       userId: studentId,
       skillId: formData.selectedSkills,
@@ -37,7 +39,7 @@ const SkillList = ({ studentId }) => {
     const selectedSkillName = addSkillOptions.find(
       (option) => option.value === formData.selectedSkills
     );
-    console.log("Skill added now is: ", selectedSkillName);
+
     const newSkillState = {
       miniHeading: formData.selectedSkills,
       mainHeading: selectedSkillName.label,
@@ -45,9 +47,7 @@ const SkillList = ({ studentId }) => {
       canDelete: true,
       cardType: "skill",
     };
-    setStudentSkills([...studentSkills,newSkillState]);
-    console.log("student skills after adding new skill", studentSkills);
-    console.log("Submission response", submitResponse);
+    setStudentSkills([...studentSkills, newSkillState]);
     handleCloseModal();
   };
 
@@ -79,7 +79,20 @@ const SkillList = ({ studentId }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...skillcards} />
+      {studentSkills.length === 0 ? (
+        <div
+          style={{
+            textAlign: "left",
+            color: "var(--neutral600)",
+            marginTop: "-40px",
+          }}
+          className="padding"
+        >
+          &nbsp;&nbsp;No skills to display
+        </div>
+      ) : (
+        <CardRow {...skillcards} />
+      )}
     </div>
   );
 };
