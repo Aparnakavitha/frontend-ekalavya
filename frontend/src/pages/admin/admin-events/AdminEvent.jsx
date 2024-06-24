@@ -21,7 +21,7 @@ const AdminEvent = () => {
     welcome: "Welcome Back",
     name: loggedUserFirstName || "",
     info: "Here is the information about",
-    profile: "Mentors",
+    profile: "Events",
     showButtons: false,
   };
 

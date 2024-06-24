@@ -3,8 +3,8 @@ import styles from "../Common.module.css";
 import Button from "../../../components/buttons/PrimaryButton";
 import TabButton from "../../../components/buttons/TabButton";
 
-const EventMenus = ({ explore, statuses, title }) => {
-  const [activeStatus, setActiveStatus] = useState(statuses[0].name);
+const EventMenus = ({ explore, statuses, title, activeFilter }) => {
+  const [activeStatus, setActiveStatus] = useState(activeFilter);
 
   const handleButtonClick = (status) => {
     setActiveStatus(status);

@@ -32,6 +32,7 @@ const fetchMentorData = async (setMentorData, value = 0) => {
 const AdminMentor = () => {
   const [adminData, setAdminData] = useState(null);
   const [mentorData, setMentorData] = useState([]);
+  const [cardAnimation, setCardAnimation] = useState(false);
   const [formData, setFormData] = useState({
     userId: "",
     firstName: "",
@@ -56,28 +57,6 @@ const AdminMentor = () => {
   useEffect(() => {
     fetchMentorData(setMentorData);
   }, []);
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const updatedFormData = {
-        userId: formData.userId,
-        firstName: formData.firstName,
-
-        emailId: formData.emailId,
-        collegeId: formData.collegeId,
-        roleId: formData.roleId,
-        addresses: formData.addresses,
-      };
-
-      await updateUserDetails(updatedFormData);
-      console.log("User details updated successfully!");
-      fetchMentorData(setMentorData);
-    } catch (error) {
-      console.error("Error updating user details:", error);
-    }
-  };
 
   const handleCardClick = (userId) => {
     const selectedMentor = mentorData.find(
@@ -115,6 +94,8 @@ const AdminMentor = () => {
           ? `${mentor.addresses[0].houseName}, ${mentor.addresses[0].city} - ${mentor.addresses[0].pinCode}, ${mentor.addresses[0].state}, ${mentor.addresses[0].country}`
           : "",
       canDelete: false,
+      viewAnimation: (cardAnimation && mentor.newEntry) || false,
+
     })),
     tableColumns: [
       { key: "studentId", displayName: "Mentor ID" },
@@ -135,7 +116,6 @@ const AdminMentor = () => {
     <div>
       <Greeting {...greet} />
       <AdminMentorAction
-        onSubmit={handleFormSubmit}
         onAddSuccess={() => fetchMentorData(setMentorData)}
         onSearchChange={handleSearchChange}
       />

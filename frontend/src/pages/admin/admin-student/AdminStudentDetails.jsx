@@ -3,16 +3,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 import SkillList from "../../../layouts/admin-student/components/SkillList";
 import EventList from "../../../layouts/admin-student/components/EventsList";
 import StudentProfileInfo from "../../../layouts/admin-student/components/StudentProfile";
-import {
-  getUserDetails,
-  addNewUser,
-  deleteUser,
-} from "../../../services/User";
+import { getUserDetails, addNewUser, deleteUser } from "../../../services/User";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
 import { getSkillsForUser } from "../../../services/Skills";
-import { enrollParticipantService, fetchEventsService, addEnrollmentService } from "../../../services/Event"; // Adjust the path as needed
+import {
+  enrollParticipantService,
+  fetchEventsService,
+  addEnrollmentService,
+} from "../../../services/Event";
 
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
@@ -41,10 +41,10 @@ const AdminStudentDetails = () => {
         const response = await getSkillsForUser(userId);
         console.log("Fetching skills for userId:", userId);
         console.log("Skills API response:", response);
-        
+
         if (response.length > 0 && response[0].skills) {
           const skills = response[0].skills.map((skill) => ({
-            miniHeading: skill.skill_name, 
+            miniHeading: skill.skill_name,
             mainHeading: skill.skill_name,
             count: skill.skill_level,
             cardType: "skill",
@@ -52,6 +52,7 @@ const AdminStudentDetails = () => {
             canDelete: true,
           }));
           console.log("Formatted skills:", skills);
+
           setStudentSkills(skills);
         } else {
           console.error("Unexpected response format:", response);
@@ -65,7 +66,7 @@ const AdminStudentDetails = () => {
   const fetchStudentEvents = async (participantId) => {
     try {
       const response = await enrollParticipantService(null, participantId, null);
-      const events = response.responseData.enrolled.map((event) => ({
+      const enrolledEvents = response.responseData.enrolled.map((event) => ({
         miniHeading: event.eventType,
         mainHeading: event.eventTitle,
         startDate: event.startDate,
@@ -74,19 +75,30 @@ const AdminStudentDetails = () => {
         cardType: event.eventType,
         eventId: event.eventId,
       }));
-      setStudentEvents(events);
+      const completedEvents = response.responseData.completed.map((event) => ({
+        miniHeading: event.eventType,
+        mainHeading: event.eventTitle,
+        startDate: event.startDate,
+        endDate: event.endDate,
+        Description: event.description,
+        cardType: event.eventType,
+        eventId: event.eventId,
+      }));
+      setStudentEvents([...enrolledEvents, ...completedEvents]);
     } catch (error) {
       console.error("Error fetching student events:", error);
     }
   };
 
-  const fetchEventOptions = async () => {
+  const fetchEventOptions = async (enrolledEventIds) => {
     try {
       const eventData = await fetchEventsService({ completed: 0 });
-      const formattedOptions = eventData.map((event) => ({
-        value: event.eventId,
-        label: `${event.eventId}-${event.eventTitle}`,
-      }));
+      const formattedOptions = eventData
+        .filter((event) => !enrolledEventIds.includes(event.eventId))
+        .map((event) => ({
+          value: event.eventId,
+          label: `${event.eventId}-${event.eventTitle}`,
+        }));
       setEventOptions(formattedOptions);
     } catch (error) {
       console.error("Error fetching event options:", error);
@@ -103,8 +115,10 @@ const AdminStudentDetails = () => {
     if (studentsData?.userId) {
       fetchStudentDetails(studentsData.userId, setStudentData);
       fetchStudentSkills(studentsData.userId);
-      fetchStudentEvents(studentsData.userId);
-      fetchEventOptions(); // Fetch event options when student data is available
+      fetchStudentEvents(studentsData.userId).then(() => {
+        const enrolledEventIds = studentEvents.map((event) => event.eventId);
+        fetchEventOptions(enrolledEventIds);
+      });
     }
   }, [studentsData]);
 
@@ -128,8 +142,10 @@ const AdminStudentDetails = () => {
 
       fetchStudentDetails(userId, setStudentData);
       fetchStudentSkills(userId);
-      fetchStudentEvents(userId);
-      fetchEventOptions(); // Fetch event options after updating user details
+      fetchStudentEvents(userId).then(() => {
+        const enrolledEventIds = studentEvents.map((event) => event.eventId);
+        fetchEventOptions(enrolledEventIds);
+      });
     } catch (error) {
       console.error("Error updating user details:", error);
     }
@@ -137,8 +153,13 @@ const AdminStudentDetails = () => {
 
   const handleEnrollSubmit = async (enrollmentData) => {
     try {
-      await addEnrollmentService(enrollmentData.selectedEventId, { participantId: studentsData.userId });
-      fetchStudentEvents(studentsData.userId); // Refresh the events list after enrollment
+      await addEnrollmentService(enrollmentData.selectedEventId, {
+        participantId: studentsData.userId,
+      });
+      fetchStudentEvents(studentsData.userId).then(() => {
+        const enrolledEventIds = studentEvents.map((event) => event.eventId);
+        fetchEventOptions(enrolledEventIds);
+      });
     } catch (error) {
       console.error("Error enrolling in event:", error);
     }
@@ -168,13 +189,13 @@ const AdminStudentDetails = () => {
         studentsData={studentsData}
         onSubmit={handleFormSubmit}
       />
-      <SkillList />
+      <SkillList studentId={studentsData.userId} />
       <EventList
         participantId={studentsData.userId}
         events={studentEvents}
         handleDelete={handleDelete}
-        eventOptions={eventOptions} // Pass event options to EventList
-        onSubmit={handleEnrollSubmit} // Pass handleEnrollSubmit to EventList
+        eventOptions={eventOptions}
+        onSubmit={handleEnrollSubmit}
       />
     </div>
   );
