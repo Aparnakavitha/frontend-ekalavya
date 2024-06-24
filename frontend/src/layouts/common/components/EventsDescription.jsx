@@ -39,6 +39,7 @@ const EventsDescription = (props) => {
   }
 
   function formatTime(timeString) {
+    if (!timeString) return ''; 
     const [hours, minutes] = timeString.split(":");
     const convertedHours = hours % 12 || 12;
     const amPm = hours < 12 ? "AM" : "PM";
@@ -53,7 +54,7 @@ const EventsDescription = (props) => {
       <div className={`${styles["eventsdescription-topleft"]}`}>
         <div className={`${styles["eventsdescription-navbutton"]}`}>
           <div>
-            <NavButton pageName={eventTitle} onClick={onclick1} />
+            <NavButton pageName={eventTitle}/>
           </div>
         </div>
       </div>

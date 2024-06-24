@@ -3,7 +3,11 @@ import { useForm, Controller } from "react-hook-form";
 import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Input from "../../../components/inputbox/InputBox";
-import { validateAndCleanInput,validateCountry,validateState } from "../../common/components/validation";
+import {
+  validateAndCleanInput,
+  validateCountry,
+  validateState,
+} from "../../common/components/validation";
 
 const AddCollege = ({ onSubmit }) => {
   const {
@@ -26,7 +30,7 @@ const AddCollege = ({ onSubmit }) => {
           <div className={`${styles["addcollege-head"]}`}>Add College</div>
           <div className={styles.field}>
             <Controller
-              name="collegename"
+              name="collegeName"
               control={control}
               rules={{
                 required: "College name is required",
@@ -41,15 +45,15 @@ const AddCollege = ({ onSubmit }) => {
                 />
               )}
             />
-            {errors.collegename && (
+            {errors.collegeName && (
               <p className={`${styles["addcollege-error"]}`}>
-                {errors.collegename.message}
+                {errors.collegeName.message}
               </p>
             )}
           </div>
           <div className={styles.field}>
             <Controller
-              name="Place"
+              name="collegePlace"
               control={control}
               rules={{
                 required: "Place is required",
@@ -64,15 +68,15 @@ const AddCollege = ({ onSubmit }) => {
                 />
               )}
             />
-            {errors.Place && (
+            {errors.collegePlace && (
               <p className={`${styles["addcollege-error"]}`}>
-                {errors.Place.message}
+                {errors.collegePlace.message}
               </p>
             )}
           </div>
           <div className={styles.field}>
             <Controller
-              name="District"
+              name="collegeDistrict"
               control={control}
               rules={{
                 required: "District is required",
@@ -87,15 +91,15 @@ const AddCollege = ({ onSubmit }) => {
                 />
               )}
             />
-            {errors.District && (
+            {errors.collegeDistrict && (
               <p className={`${styles["addcollege-error"]}`}>
-                {errors.District.message}
+                {errors.collegeDistrict.message}
               </p>
             )}
           </div>
           <div className={styles.field}>
             <Controller
-              name="State"
+              name="collegeState"
               control={control}
               rules={{
                 required: "State is required",
@@ -110,15 +114,15 @@ const AddCollege = ({ onSubmit }) => {
                 />
               )}
             />
-            {errors.State && (
+            {errors.collegeState && (
               <p className={`${styles["addcollege-error"]}`}>
-                {errors.State.message}
+                {errors.collegeState.message}
               </p>
             )}
           </div>
           <div className={styles.field}>
             <Controller
-              name="Country"
+              name="collegeCountry"
               control={control}
               rules={{
                 required: "Country is required",
@@ -133,9 +137,9 @@ const AddCollege = ({ onSubmit }) => {
                 />
               )}
             />
-            {errors.Country && (
+            {errors.collegeCountry && (
               <p className={`${styles["addcollege-error"]}`}>
-                {errors.Country.message}
+                {errors.collegeCountry.message}
               </p>
             )}
           </div>

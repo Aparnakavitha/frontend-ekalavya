@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import StudentEventDescription from '../../../layouts/student-event-description/components/StudentEventDescription';
-import { fetchEvents, fetchUserById } from '../../../services/eventService';
+import { fetchEvents } from '../../../services/eventService';
+import { getUserDetails } from '../../../services/User';
 
 const StudentEventDetails = () => {
   const { eventId } = useParams();
   const location = useLocation();
-  const { tab } = location.state || {}; 
-  console.log({tab})// Extract tab from location.state
+  const { tab } = location.state || {}; // Extract tab from location.state
+  console.log({ tab });
   const [eventDetails, setEventDetails] = useState(null);
   const [organizerName, setOrganizerName] = useState('');
   const [loading, setLoading] = useState(true);
@@ -25,9 +26,9 @@ const StudentEventDetails = () => {
 
         // Fetch organizer details using the hostId from eventDetails
         if (eventDetails.hostId) {
-          const organizerData = await fetchUserById(eventDetails.hostId);
-          console.log('Organizer Data:', organizerData);
-          const organizerName = `${organizerData.firstName} ${organizerData.lastName}`;
+          const organizerData = await getUserDetails({ userId: eventDetails.hostId });
+          console.log('Organizer Data:', organizerData.responseData[0].firstName);
+          const organizerName = `${organizerData.responseData[0].firstName} ${organizerData.responseData[0].lastName}`;
           setOrganizerName(organizerName);
         }
       } catch (error) {

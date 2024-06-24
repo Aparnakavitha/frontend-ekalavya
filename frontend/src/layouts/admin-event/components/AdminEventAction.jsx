@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import ActionComponent from "../../common/components/Action";
 import AddEvent from "./AddEvent";
 import Modal from "../../common/components/Modal";
-import AdminEventActionData from "./EventData";
 
-const AdminEventAction = () => {
+const AdminEventAction = ({formSubmit, AdminEventActionData, onFilterChange, onSearchChange}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -15,9 +14,10 @@ const AdminEventAction = () => {
     setIsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form submitted with data:", formData);
+  const handleFormSubmit = async (data) => {
+    console.log("Form submitted with data:", data);
     handleCloseModal();
+    formSubmit(data);
   };
 
   const actionData = {
@@ -26,11 +26,12 @@ const AdminEventAction = () => {
       ...AdminEventActionData.buttonProps,
       onClick: handleOpenModal,
     },
+    
   };
 
   return (
     <div>
-      <ActionComponent {...actionData} />
+      <ActionComponent {...actionData} onFilterChange={onFilterChange} onSearchChange={onSearchChange} />
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddEvent
           {...AdminEventActionData.addeventprops}

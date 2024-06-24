@@ -5,7 +5,7 @@ import { EventsDescription } from "../../common";
 import { addEnrollment, deleteEvent } from "../../../services/eventService";
 import { useNavigate } from "react-router-dom";
 
-const StudentEventDescription = ({ eventDetails, participantId, tab }) => {
+const StudentEventDescription = ({ eventDetails, participantId, tab, organizerName }) => {
   const [isRegistered, setIsRegistered] = useState(false);
   const navigate = useNavigate();
 
@@ -134,6 +134,7 @@ const StudentEventDescription = ({ eventDetails, participantId, tab }) => {
     link: eventDetails.link,
     speaker: eventDetails.speaker,
     speakerDescription: eventDetails.speakerDescription,
+    organizer: organizerName, // Pass the organizer name
     button: "Events",
     buttons: eventDetails.eventTitle,
     small: "edit",

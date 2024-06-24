@@ -16,21 +16,66 @@ import Footer from "../../layouts/common/components/Footer";
 import StudentProfile from "./student-profile/StudentProfile";
 import StudentEvent from "./student-events/StudentEvents";
 import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
-import EventDescription from "../EventDescription";
 import StudentEventDescription from "../../layouts/student-event-description/components/StudentEventDescription";
-import Explore from "../Explore";
 import StudentEventDetails from "./student-events/StudentEventDetails";
+import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
+import { getUserDetails } from "../../services/User";
+import { toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css"; 
 
 const StudentContent = () => {
+  const [userData, setUserData] =useState({
+    firstName: "",
+    lastName: "",
+    emailId: ""
+  });
   const location = useLocation();
-
   const navigate = useNavigate();
+
+  const userId = sessionStorage.getItem("user_id");
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const params = {
+          userId: userId,
+        };
+        const data = await getUserDetails(params);
+        setUserData(data.responseData[0]);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!userData) {
+    return <LoadingSpinner />;
+  }
+
+  const primaryData = {
+    name: `${userData.firstName} ${userData.lastName}`,
+    email: userData.emailId,
+  };
 
   const sample = {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      console.log("clicked");
+      sessionStorage.clear(); 
+      navigate("/"); 
+      toast.success("LogOut Successful", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     },
     width: "full",
   };
@@ -53,9 +98,9 @@ const StudentContent = () => {
       },
     ],
     profileBox: {
-      name: "Nazeem",
+      name: primaryData.name,
       profilePic: Dp,
-      gmail: "nazeem@gmail.com",
+      gmail: primaryData.email,
     },
   };
 

@@ -25,7 +25,7 @@ export const fetchEvents = async (params = {}) => {
  */
 export const getEnrolledEventIds = async (participantId) => {
   try {
-    const response = await axios.get("http://localhost:8888/enrollment", {
+    const response = await axios.get("https://ekalavya.tarento.com/enrollment", {
       params: {
         participantId: participantId
       }

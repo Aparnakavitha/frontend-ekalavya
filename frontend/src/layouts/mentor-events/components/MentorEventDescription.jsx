@@ -3,37 +3,39 @@ import EventsDescription from "../../common/components/EventsDescription";
 import EventDescriptionData from "./EventDescriptionData";
 import Modal from "../../common/components/Modal";
 import AddEvent from "../../admin-event/components/AddEvent";
-
-const MentorEventDescription = () => {
+ 
+const MentorEventDescription = ({ formSubmit, fetchedFormData}) => {
   const [isOpen, setIsOpen] = useState(false);
-
+ 
   const handleOpenModal = () => {
     setIsOpen(true);
   };
-
+ 
   const handleCloseModal = () => {
     setIsOpen(false);
   };
-
+ 
   const handleFormSubmit = (formData) => {
     console.log("Form Submitted with data:", formData);
     handleCloseModal();
+    formSubmit(formData);
   };
-
+ 
   const actionData = {
-    ...EventDescriptionData.defaultValues,
+    ...fetchedFormData,
     ...EventDescriptionData.buttonProps,
     onclick1: handleOpenModal,
   };
-
+ 
   return (
     <div className="padding padding-top">
       <EventsDescription {...actionData} />
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
-        <AddEvent {...EventDescriptionData} onSubmit={handleFormSubmit} />
+        <AddEvent {...EventDescriptionData} onSubmit={handleFormSubmit} fetchedFormData={fetchedFormData}/>
       </Modal>
     </div>
   );
 };
-
+ 
 export default MentorEventDescription;
+ 

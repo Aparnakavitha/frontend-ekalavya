@@ -1,5 +1,5 @@
 /* ------------------------------- EventsTable.css starts here ------------------------------- */
-
+ 
 .eventstable-container {
   display: flex;
   flex-direction: column;
@@ -7,62 +7,62 @@
   overflow-x: hidden;
   padding-top: 3vh;
 }
-
+ 
 .eventstable-topleft {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
   color: var(--primary-color);
 }
-
+ 
 .eventstable-font {
   color: var(--primary-color);
   text-decoration: underline;
 }
-
+ 
 .eventstable-table {
   width: 100%;
   overflow-x: auto;
 }
-
+ 
 .eventstable-table td div {
   display: flex;
   gap: 5px;
   flex-wrap: nowrap;
 }
-
+ 
 .eventstable-tablecontent {
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--neutral600) #ffffff00;
 }
-
+ 
 .eventstable-table {
   display: flex;
   flex-direction: column;
 }
-
+ 
 .global-attendance-buttons-container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
 }
-
+ 
 .select-all-text {
   font-weight: bold;
   color: var(--white);
 }
-
+ 
 .global-attendance-buttons {
   display: flex;
   gap: 4px;
 }
-
+ 
 /* ------------------------------- EventsTable.css ends here ------------------------------- */
-
+ 
 /* ------------------------------- EventsForm.css starts here ------------------------------- */
-
+ 
 .eventform-form {
   display: flex;
   flex-direction: column;
@@ -73,45 +73,45 @@
   color: var(--white);
   gap: 17px;
 }
-
+ 
 .eventform-eventtitlediv {
   width: 80%;
 }
-
+ 
 .eventform-eventmodediv {
   width: 20%;
 }
-
+ 
 .eventform-eventtitlemode {
   display: flex;
   justify-content: space-between;
   gap: 2%;
 }
-
+ 
 .eventform-datetimecontainer {
   display: flex;
   justify-content: space-between;
   gap: 2%;
 }
-
+ 
 .eventform-datetimecontainer .input-container {
   flex: 1;
 }
-
+ 
 .eventform-datetime {
   width: 100%;
 }
-
+ 
 .eventform-buttoncontainer {
   display: flex;
   width: 24%;
 }
-
+ 
 .eventform-buttondiv {
   display: flex;
   justify-content: flex-end;
 }
-
+ 
 .eventform-eventtitle,
 .eventform-eventmode,
 .eventform-eventtype,
@@ -121,75 +121,76 @@
 .eventform-speakerdescription {
   margin-bottom: 2%;
 }
-
+ 
 .eventform-error {
   margin-top: -12px;
   color: var(--primary-color);
   font-size: 0.875rem;
 }
-
+ 
 .eventform-eventtitlemode .eventform-error {
   margin-top: 5px;
 }
-
+ 
 .eventform-datetimecontainer .eventform-error {
   margin-top: 5px;
 }
-
-@media (min-width: 769) and (max-width: 992px) {
+ 
+@media (min-width: 990px) and (max-width: 992px) {
   .eventform-datetimecontainer {
     flex-direction: row;
     flex-wrap: wrap;
   }
-
+ 
   .eventform-datetimecontainer .input-container {
     flex: 1 1 48%;
   }
-
+ 
   .eventform-eventtitlemode {
     flex-direction: row;
     flex-wrap: wrap;
   }
-
+ 
   .eventform-eventtitlemode .input-container {
     flex: 1 1 48%;
   }
 }
-
-@media screen and (max-width: 768px) {
+ 
+@media screen and (max-width: 990px) {
   .eventform-form {
     width: 100%;
   }
-
+ 
   .eventform-datetimecontainer {
     flex-direction: column;
     gap: 17px;
   }
-
+ 
   .eventform-datetimecontainer .input-container {
     width: 100%;
   }
-
+ 
   .eventform-eventtitlemode {
     flex-direction: column;
     gap: 17px;
   }
-
+ 
   .eventform-eventtitlemode .input-container {
     width: 100%;
   }
-
+ 
   .eventform-eventtitlediv {
     width: 100%;
   }
-
+ 
   .eventform-eventmodediv {
     width: 100%;
   }
-
+ 
   .eventform-buttoncontainer {
     width: 100%;
   }
 }
-
+ 
 /* ------------------------------- EventsForm.css ends here ------------------------------- */
+ 

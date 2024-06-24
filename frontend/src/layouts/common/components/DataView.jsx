@@ -6,10 +6,11 @@ import { PiCards, PiListBullets } from "react-icons/pi";
 
 const DataView = ({
   CardComponent,
-  data,
-  tableColumns,
+  data = [],
+  tableColumns = [],
   toggle,
   itemsPerPage = 10,
+  cardType = "profilecard",
 }) => {
   const [isCardView, setIsCardView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,6 +43,9 @@ const DataView = ({
 
   const getComponentName = (item) => {
     let cardName = String(CardComponent.name).toLowerCase();
+    if (cardName === "undefined" || cardName === "cardcomponent") {
+      cardName = cardType;
+    }
     if (cardName === "skillbatchcard") {
       if (String(item.cardType).toLowerCase() === "skill") {
         cardName = "dataview-skillbatchcardskill";
@@ -110,6 +114,7 @@ const DataView = ({
               </div>
             ))}
             {!isMobileView &&
+              currentPage > 1 &&
               Array.from({ length: emptyBoxCount }).map((_, index) => (
                 <div
                   key={index}
@@ -121,6 +126,7 @@ const DataView = ({
           <div className={styles["dataview-tablecontainer"]}>
             <Table data={filteredTableData} headings={tableHeadings} />
             {!isMobileView &&
+              currentPage > 1 &&
               Array.from({ length: emptyBoxCount }).map((_, index) => (
                 <div
                   key={index}

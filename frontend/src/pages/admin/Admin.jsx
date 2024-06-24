@@ -1,36 +1,91 @@
-import React from 'react';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import SideBar from '../../layouts/common/components/SideBar';
-import Button from '../../components/buttons/PrimaryButton';
-import Dp from '../../../src/assets/DP.png';
-import edunexa from '../../../src/assets/edunexa.png';
-import { MdEvent, MdViewQuilt, MdAccountCircle, MdPsychology } from 'react-icons/md';
-import { RiContactsBook3Fill } from 'react-icons/ri';
-import ProfileNotificationBox from '../../components/profilenotificationbox/ProfileNotificationBox';
-import Footer from '../../layouts/common/components/Footer';
-import AdminStudent from './admin-student/AdminStudent';
-import AdminMentor from './admin-mentor/AdminMentor';
-import AdminEvent from './admin-events/AdminEvent';
-import AdminBatchList from './admin-batches/AdminBatchList';
-import AdminSkill from './admin-skills/AdminSkill';
-import AdminBatchSelect from './admin-batches/AdminBatchSelect';
-import AdminStudentDetails from './admin-student/AdminStudentDetails';
-import AdminMentorDetails from './admin-mentor/AdminMentorDetails';
-import AdminEventDetails from './admin-events/EventDetails';
-import AdminEventParticipants from './admin-events/AdminEventParticipants';
-import AdminSkillStudents from './admin-skills/AdminSkillStudents';
+import React, { useState, useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import SideBar from "../../layouts/common/components/SideBar";
+import Button from "../../components/buttons/PrimaryButton";
+import edunexa from "../../../src/assets/edunexa.png";
+import {
+  MdEvent,
+  MdViewQuilt,
+  MdAccountCircle,
+  MdPsychology,
+} from "react-icons/md";
+import { RiContactsBook3Fill } from "react-icons/ri";
+import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
+import Footer from "../../layouts/common/components/Footer";
+import AdminStudent from "./admin-student/AdminStudent";
+import AdminMentor from "./admin-mentor/AdminMentor";
+import AdminEvent from "./admin-events/AdminEvent";
+import AdminBatchList from "./admin-batches/AdminBatchList";
+import AdminSkill from "./admin-skills/AdminSkill";
+import AdminBatchSelect from "./admin-batches/AdminBatchSelect";
+import AdminStudentDetails from "./admin-student/AdminStudentDetails";
+import AdminMentorDetails from "./admin-mentor/AdminMentorDetails";
+import AdminEventDetails from "./admin-events/EventDetails";
+import AdminEventParticipants from "./admin-events/AdminEventParticipants";
+import AdminSkillStudents from "./admin-skills/AdminSkillStudents";
+import { getUserDetails } from "../../services/User";
+import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
+import { SkillsProvider } from "./admin-skills/AdminSkillContext";
+import { RecoilRoot } from "recoil";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import image from "../../assets/DP.png"
 
 const AdminContent = () => {
+  const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userId = sessionStorage.getItem("user_id");
+        if (!userId) {
+          console.error("User ID is not found in session storage");
+          return;
+        }
+        console.log("Fetched User ID:", userId); // Debug log
+        const params = {
+          userId: userId,
+        };
+        const data = await getUserDetails(params);
+        const firstName = data.responseData[0].firstName;
+        const lastName = data.responseData[0].lastName;
+        const emailId = data.responseData[0].emailId;
+        sessionStorage.setItem("firstName", firstName);
+        sessionStorage.setItem("lastName", lastName);
+        sessionStorage.setItem("emailId", emailId);
+        setUserData(data.responseData[0]);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (!userData) {
+    return <LoadingSpinner />;
+  }
+
   const sample = {
-    content: 'Logout',
-    variant: 'primary',
+    content: "Logout",
+    variant: "primary",
     onClick: (r) => {
-      console.log('clicked');
+      sessionStorage.clear();
+      navigate("/");
+      toast.success("LogOut Successful", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     },
-    width: 'full',
+    width: "full",
   };
 
   const sidebarContent = {
@@ -38,46 +93,48 @@ const AdminContent = () => {
     listItems: [
       {
         icon: <MdAccountCircle />,
-        name: 'Student',
+        name: "Student",
         viewIcon: true,
-        page: 'student',
+        page: "student",
       },
       {
         icon: <RiContactsBook3Fill />,
-        name: 'Mentor',
+        name: "Mentor",
         viewIcon: true,
-        page: 'mentor',
+        page: "mentor",
       },
-      { icon: <MdEvent />, name: 'Events', viewIcon: true, page: 'events' },
+      { icon: <MdEvent />, name: "Events", viewIcon: true, page: "events" },
       {
         icon: <MdViewQuilt />,
-        name: 'Batches',
+        name: "Batches",
         viewIcon: true,
-        page: 'batches',
+        page: "batches",
       },
       {
         icon: <MdPsychology />,
-        name: 'Skills',
+        name: "Skills",
         viewIcon: true,
-        page: 'skills',
+        page: "skills",
       },
     ],
     profileBox: {
-      name: 'Nazeem',
-      profilePic: Dp,
-      gmail: 'nazeem@gmail.com',
+      name: `${userData.firstName} ${userData.lastName}`,
+      profilePic: image,
+      gmail: userData.emailId,
     },
   };
 
   const handleSidebarItemClick = (page) => {
-    navigate(`/admin/${page}`);
+    navigate(`/admin/${page}`, {
+      state: { userData },
+    });
   };
 
   const footercontent = {
     Logo: edunexa,
-    quoteContent: 'Embark on Your Learning Journey Today!',
-    copyrightContent: 'All rights reserved © 2024 Tarento Group.',
-    copyrightContent2: ' | Privacy Policy',
+    quoteContent: "Embark on Your Learning Journey Today!",
+    copyrightContent: "All rights reserved © 2024 Tarento Group.",
+    copyrightContent2: " | Privacy Policy",
     isLeftALigned: true,
   };
 
@@ -101,19 +158,41 @@ const AdminContent = () => {
             />
           </div>
           <div className="statecontent">
-            <Routes>
-              <Route path="student" element={<AdminStudent />} />
-              <Route path="mentor" element={<AdminMentor />} />
-              <Route path="events" element={<AdminEvent />} />
-              <Route path="batches" element={<AdminBatchList />} />
-              <Route path="skills" element={<AdminSkill />} />
-              <Route path="skills/skill-participants" element={<AdminSkillStudents />} />
-              <Route path="batches/batch-details" element={<AdminBatchSelect />} />
-              <Route path="student/student-details" element={<AdminStudentDetails />} />
-              <Route path="mentor/mentor-details" element={<AdminMentorDetails />} />
-              <Route path="events/event-details" element={<AdminEventDetails />} />
-              <Route path="events/event-details/event-participants" element={<AdminEventParticipants />} />
-            </Routes>
+            <RecoilRoot>
+              <SkillsProvider>
+                <Routes>
+                  <Route path="student" element={<AdminStudent />} />
+                  <Route path="mentor" element={<AdminMentor />} />
+                  <Route path="events" element={<AdminEvent />} />
+                  <Route path="batches" element={<AdminBatchList />} />
+                  <Route path="skills" element={<AdminSkill />} />
+                  <Route
+                    path="skills/skill-participants"
+                    element={<AdminSkillStudents />}
+                  />
+                  <Route
+                    path="batches/batch-details"
+                    element={<AdminBatchSelect />}
+                  />
+                  <Route
+                    path="student/student-details/:userId"
+                    element={<AdminStudentDetails />}
+                  />
+                  <Route
+                    path="mentor/mentor-details/:userId"
+                    element={<AdminMentorDetails />}
+                  />
+                  <Route
+                    path="events/event-details/:eventId"
+                    element={<AdminEventDetails />}
+                  />
+                  <Route
+                    path="events/event-details/event-participants/:eventId"
+                    element={<AdminEventParticipants />}
+                  />
+                </Routes>
+              </SkillsProvider>
+            </RecoilRoot>
           </div>
         </div>
         <div className="footer">

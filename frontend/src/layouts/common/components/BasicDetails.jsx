@@ -38,6 +38,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
       return;
     }
     onSubmit(data);
+    console.log(data);
   };
 
   const handleTextButtonClick = () => {
@@ -68,7 +69,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
             )}
           />
           <Controller
-            name="phoneNumber"
+            name="phoneNo"
             control={control}
             rules={{ validate: validatePhone }}
             render={({ field }) => (
@@ -80,9 +81,9 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               />
             )}
           />
-          {errors.phoneNumber && (
+          {errors.phoneNo && (
             <p className={`${styles["basicdetails-error"]}`}>
-              {errors.phoneNumber.message}
+              {errors.phoneNo.message}
             </p>
           )}
           <Controller
@@ -187,7 +188,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
       </div>
       <div className={`${styles["basicdetails-containerinput-inter"]}`}>
         <Controller
-          name="houseName"
+          name="addresses[0].houseName"
           rules={{ validate: validateAndCleanInput }}
           control={control}
           render={({ field }) => (
@@ -201,11 +202,11 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
         />
         {errors.houseName && (
           <p className={`${styles["basicdetails-error"]}`}>
-            {errors.houseName.message}
+            {errors.addresses[0].houseName.message}
           </p>
         )}
         <Controller
-          name="city"
+          name="addresses[0].city"
           control={control}
           rules={{ validate: validateAndCleanInput }}
           render={({ field }) => (
@@ -218,9 +219,9 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
           </p>
         )}
         <Controller
-          name="pinCode"
+          name="addresses[0].pinCode"
           control={control}
-          rules={{ validate: validateNumber("postalCode") }}
+          // rules={{ validate: validateNumber("postalCode") }}
           render={({ field }) => (
             <Input {...field} placeholders={["Pincode"]} size="normal" />
           )}
@@ -231,7 +232,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
           </p>
         )}
         <Controller
-          name="state"
+          name="addresses[0].state"
           rules={{ validate: validateState }}
           control={control}
           render={({ field }) => (
@@ -244,7 +245,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
           </p>
         )}
         <Controller
-          name="country"
+          name="addresses[0].country"
           rules={{ validate: validateCountry }}
           control={control}
           render={({ field }) => (

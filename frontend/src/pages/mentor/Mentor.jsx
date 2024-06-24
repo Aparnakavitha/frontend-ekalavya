@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, Routes, Route } from "react-router-dom";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
@@ -12,17 +12,66 @@ import MentorEvents from "./mentor-events/MentorEvents";
 import MentorSkills from "./mentor-skills/MentorSkills";
 import MentorCreateEvent from "./mentor-events/MentorCreateEvent";
 import MentorEventDetails from "./mentor-events/MentorEventDetails";
+import { getUserDetails } from "../../services/User";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 
 const MentorContent = () => {
+  const [Data, setData] = useState({
+    firstName: "",
+    lastName: "",
+    emailId: "",
+  });
+
+  const userId = sessionStorage.getItem("user_id");
+
   const location = useLocation();
 
   const navigate = useNavigate();
+
+  const fetchData = async () => {
+    try {
+      const params = {
+        userId: userId,
+      };
+      const data = await getUserDetails(params);
+      setData(data.responseData[0]);
+      console.log("mentor data:", Data);
+    } catch (error) {
+      console.error("Error fetching mentor data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (!Data) {
+    return <LoadingSpinner />;
+  }
+
+  const primaryData = {
+    name: `${Data.firstName} ${Data.lastName}`,
+    email: Data.emailId,
+  };
 
   const sample = {
     content: "Logout",
     variant: "primary",
     onClick: (r) => {
-      console.log("clicked");
+      sessionStorage.clear();
+      navigate("/");
+      toast.success("LogOut Successful", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     },
     width: "full",
   };
@@ -45,9 +94,9 @@ const MentorContent = () => {
       },
     ],
     profileBox: {
-      name: "Nazeem",
+      name: primaryData.name,
       profilePic: Dp,
-      gmail: "nazeem@gmail.com",
+      gmail: primaryData.email,
     },
   };
 
@@ -88,7 +137,10 @@ const MentorContent = () => {
               <Route path="/events" element={<MentorEvents />} />
               <Route path="/skills" element={<MentorSkills />} />
               <Route path="/event-creation" element={<MentorCreateEvent />} />
-              <Route path="/event-details" element={<MentorEventDetails />} />
+              <Route
+                path="/event-details/:eventId"
+                element={<MentorEventDetails />}
+              />
             </Routes>
           </div>
         </div>

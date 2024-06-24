@@ -6,13 +6,13 @@ import DeleteBox from "../../common/components/DeleteBox";
 import AddEvent from "../../admin-event/components/AddEvent";
 import EventsDescriptionData from "./EventDescriptionData";
 
-const AdminEventDescription = () => {
+const AdminEventDescription = ({formSubmit, fetchedFormData ,onDelete, organizer,eventId}) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
 
   const handleClick = () => {
-    navigate(`/admin/events/event-details/event-participants`);
+    navigate(`/admin/events/event-details/event-participants/${eventId}`);
   };
 
   const handleOpenModal = () => {
@@ -34,6 +34,7 @@ const AdminEventDescription = () => {
   const handleFormSubmit = (formData) => {
     console.log(formData);
     handleCloseModal();
+    formSubmit(formData);
   };
 
   const handleDeleteCancel = () => {
@@ -44,10 +45,12 @@ const AdminEventDescription = () => {
   const handleDeleteConfirm = () => {
     console.log("Delete confirmed");
     handleCloseDeleteModal();
+    onDelete();
+    navigate(`/admin/events`);
   };
 
   const actionData = {
-    ...EventsDescriptionData.defaultValues,
+    ...fetchedFormData,
     ...EventsDescriptionData.buttonProps,
     onclick3: handleOpenModal,
     onclick2: handleOpenDeleteModal,
@@ -65,12 +68,13 @@ const AdminEventDescription = () => {
 
   return (
     <div>
-      <EventsDescription {...actionData} />
+      <EventsDescription {...actionData} organizer={organizer} />
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddEvent defaultValues={EventsDescriptionData.defaultValues}
           organizeroptions={organizeroptions}
           isOrganizer={true}
-          onSubmit={handleFormSubmit} />
+          onSubmit={handleFormSubmit} 
+          fetchedFormData={fetchedFormData}/>
       </Modal>
       <Modal
         isOpen={isDeleteOpen}
