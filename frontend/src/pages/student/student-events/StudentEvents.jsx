@@ -3,10 +3,8 @@ import { useNavigate } from "react-router-dom";
 import EventMenus from "../../../layouts/common/components/EventMenus";
 import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
-import {
-  getEnrolledEventIds,
-  fetchEventsService,
-} from "../../../../src/services/Event";
+import { getEnrolledEventIds, fetchEventsService } from "../../../../src/services/Event";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const StudentEvent = () => {
   const navigate = useNavigate();
@@ -78,7 +76,7 @@ const StudentEvent = () => {
   console.log("primaryCardData:", primaryCardData.data);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner/>;
   }
 
   return (
@@ -100,13 +98,26 @@ const StudentEvent = () => {
         ]}
         title="Events"
       />
-      <DataView
-        CardComponent={PrimaryCard}
-        data={primaryCardData.data}
-        tableColumns={primaryCardData.tableColumns}
-        toggle={primaryCardData.toggle}
-        itemsPerPage={primaryCardData.itemsPerPage}
-      />
+      {events.length > 0 ? (
+        <DataView
+          CardComponent={PrimaryCard}
+          data={primaryCardData.data}
+          tableColumns={primaryCardData.tableColumns}
+          toggle={primaryCardData.toggle}
+          itemsPerPage={primaryCardData.itemsPerPage}
+        />
+      ) : (
+        <div
+          style={{
+            textAlign: "left",
+            color: "var(--neutral600)",
+            marginTop: "-19px",
+          }}
+          className="padding"
+        >
+          &nbsp;&nbsp;No events to display
+        </div>
+      )}
     </div>
   );
 };
