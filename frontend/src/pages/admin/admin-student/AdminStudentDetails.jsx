@@ -39,6 +39,9 @@ const AdminStudentDetails = () => {
     if (userId) {
       try {
         const response = await getSkillsForUser(userId);
+        console.log("Fetching skills for userId:", userId);
+        console.log("Skills API response:", response);
+
         if (response.length > 0 && response[0].skills) {
           const skills = response[0].skills.map((skill) => ({
             miniHeading: skill.skill_name,
@@ -48,6 +51,8 @@ const AdminStudentDetails = () => {
             canEdit: true,
             canDelete: true,
           }));
+          console.log("Formatted skills:", skills);
+
           setStudentSkills(skills);
         } else {
           console.error("Unexpected response format:", response);
