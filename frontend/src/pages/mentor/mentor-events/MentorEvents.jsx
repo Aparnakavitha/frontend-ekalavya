@@ -5,17 +5,17 @@ import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { fetchEventsService } from "../../../services/Event";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
- 
+
 const MentorEvents = () => {
   const navigate = useNavigate();
- 
+
   const [events, setEvents] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("upcoming");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const userId = sessionStorage.getItem("user_id");
- 
+
   const fetchEventsByStatus = async (status) => {
     setLoading(true);
     setError(null);
@@ -30,11 +30,11 @@ const MentorEvents = () => {
       setLoading(false);
     }
   };
- 
+
   useEffect(() => {
     fetchEventsByStatus(selectedStatus);
   }, [selectedStatus]);
- 
+
   const createEvent = {
     content: "Create Event",
     variant: "secondary",
@@ -43,16 +43,16 @@ const MentorEvents = () => {
       navigate("/mentor/events/event-creation");
     },
   };
- 
+
   const handleStatusClick = (status) => {
     setSelectedStatus(status);
   };
- 
+
   const handleClick = (event) => {
     console.log(`Clicked on event ${event.eventId}`);
     navigate(`/mentor/events/event-details/${event.eventId}`);
   };
- 
+
   const primaryCardData = {
     data: events.map((event) => ({
       miniHeading: event.eventType,
@@ -73,7 +73,7 @@ const MentorEvents = () => {
     toggle: false,
     itemsPerPage: 8,
   };
- 
+
   return (
     <div>
       <EventMenus
@@ -84,14 +84,26 @@ const MentorEvents = () => {
         ]}
         title="Events"
       />
-      {loading && <LoadingSpinner/>}
+      {loading && <LoadingSpinner />}
       {error && <p>Error: {error}</p>}
       {!loading && !error && (
-        <DataView CardComponent={PrimaryCard} {...primaryCardData} />
+        events.length > 0 ? (
+          <DataView CardComponent={PrimaryCard} {...primaryCardData} />
+        ) : (
+          <div
+            style={{
+              textAlign: "left",
+              color: "var(--neutral600)",
+              marginTop: "-19px",
+            }}
+            className="padding"
+          >
+            &nbsp;&nbsp;No events to display
+          </div>
+        )
       )}
     </div>
   );
 };
- 
+
 export default MentorEvents;
- 
