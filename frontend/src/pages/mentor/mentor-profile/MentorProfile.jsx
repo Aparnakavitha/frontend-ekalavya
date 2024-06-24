@@ -51,8 +51,6 @@ const MentorProfile = () => {
   const greet = {
     welcome: "Welcome Back",
     name: `${mentorData.firstName}`,
-    info: "Here is the information about",
-    profile: "Students",
     showButtons: false,
   };
 
