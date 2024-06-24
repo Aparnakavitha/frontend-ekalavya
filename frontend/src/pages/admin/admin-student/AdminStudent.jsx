@@ -30,11 +30,24 @@ const fetchStudentsData = async (setStudentsData, params) => {
         collegeId: params.College || "",
       };
     }
-    if (params.StudentIds) {
+    // if (params.StudentIds) {
+    //   filterParams = {
+    //     userId: params.StudentIds || "",
+    //   };
+    // }
+
+    if (params.StudentIds && Number.isInteger(Number(params.StudentIds))) {
       filterParams = {
-        userId: params.StudentIds || "",
+        userId: Number(params.StudentIds),
+      };
+    } else if (params.StudentIds && typeof params.StudentIds === "string") {
+      filterParams = {
+        name: params.StudentIds,
       };
     }
+
+    console.log("paramss------", params);
+
     if (params.Batch && !params.StudentIds) {
       setStudentsData([]);
       return;
@@ -210,7 +223,7 @@ const AdminStudent = () => {
       viewCollege: true,
       heading: "Add New Student",
     },
-    searchPlaceholder: "Enter Student ID",
+    searchPlaceholder: "Enter Student ID/Name",
   };
 
   const dataView = {
