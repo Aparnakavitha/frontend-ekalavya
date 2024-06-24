@@ -27,7 +27,6 @@ const EventsDescription = (props) => {
     onclick1,
     onclick2,
     onclick3,
-    showButton, // New prop to control button visibility
   } = props;
 
   function formatDate(dateString) {
@@ -79,7 +78,7 @@ const EventsDescription = (props) => {
               </div>
             </div>
 
-            {type === "public" && showButton && (
+            {type === "public"  && (
               <>
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div
