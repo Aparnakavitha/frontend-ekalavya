@@ -108,11 +108,11 @@ const MentorEventsList = ({ events, handleDelete }) => {
           style={{
             textAlign: "left",
             color: "var(--neutral600)",
-            marginTop: "-21px",
+            marginTop: "-40px",
           }}
           className="padding"
         >
-          &nbsp;&nbsp;No events found
+          &nbsp;&nbsp;No events to display
         </div>
       ) : (
         <CardRow {...eventcards} handleClick={handleClick} />

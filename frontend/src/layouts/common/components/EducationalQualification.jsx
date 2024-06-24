@@ -81,7 +81,7 @@ const EducationalQualification = ({
       console.log("Start Date:", formData.startDate);
       console.log("End Date:", formData.endDate);
       await onFormSubmit(formData);
-      handleCloseEditQualification();
+      handleCloseDeleteQualification();
     } catch (error) {
       console.error("Error updating user details:", error);
     }
