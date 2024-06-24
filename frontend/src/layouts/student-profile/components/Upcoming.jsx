@@ -7,9 +7,6 @@ const Upcoming = (props) => {
   const { mode = "dark", events = [] } = props;
   const navigate = useNavigate();
 
-  // const handleClick = () => {
-  //   alert("View all events");
-  // };
   const handleClick = (event) => {
     console.log(`Clicked on event `);
     navigate(`/student/events`);
@@ -19,7 +16,7 @@ const Upcoming = (props) => {
     console.log(`Clicked on event ${eventId}`);
     navigate(`/student/events/${eventId}`);
   };
-  
+
   return (
     <div className={`padding padding-bottom`}>
       <div className={`${styles["upcoming-outer"]} ${styles[mode]}`}>
@@ -31,13 +28,12 @@ const Upcoming = (props) => {
         </div>
         <div className={`${styles["upcoming-event-cards-container"]}`}>
           {events.map((event, index) => (
-             <EventCard 
-             key={index} 
-             {...event} 
-             mode={mode} 
-             handleClick={() => handleClick2(event.eventId)} 
-           />
-            // <EventCard key={index} {...event} mode={mode} handleClick={handleClick2}/>
+            <EventCard
+              key={index}
+              {...event}
+              mode={mode}
+              handleClick={() => handleClick2(event.eventId)}
+            />
           ))}
         </div>
       </div>
