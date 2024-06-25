@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Table.module.css";
 
-const Table = ({ data, headings }) => (
+const Table = ({ data, headings ,noData}) => (
   <div className={styles["table-container"]}>
     <table>
       <thead>
@@ -12,13 +12,21 @@ const Table = ({ data, headings }) => (
         </tr>
       </thead>
       <tbody>
-        {data.map((row, index) => (
-          <tr key={index}>
-            {row.map((cell, index) => (
-              <td key={index}>{cell}</td>
-            ))}
+        {data && data.length > 0 ? (
+          data.map((row, index) => (
+            <tr key={index}>
+              {row.map((cell, index) => (
+                <td key={index}>{cell}</td>
+              ))}
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan={headings.length} className={styles["no-data"]}>
+            {noData}
+            </td>
           </tr>
-        ))}
+        )}
       </tbody>
     </table>
   </div>
