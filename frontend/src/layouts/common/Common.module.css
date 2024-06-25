@@ -1611,6 +1611,11 @@
 
 .eventmenus-tabbutton {
   display: flex;
+  margin-top: 30px;
+}
+
+.eventmenus-searchbar {
+  width: 35%;
 }
 
 @media (max-width: 767px) {
@@ -1633,11 +1638,19 @@
     align-items: center;
     padding: 0px 0px;
   }
+
+  .eventmenus-searchbar {
+    width: 100%;
+  }  
 }
 @media (min-width: 768px) and (max-width: 992px) {
   .eventmenus-explorebutton {
     width: 33%;
   }
+
+  .eventmenus-searchbar {
+    width: 100%;
+  }  
 }
 /* ------------------------------- EventMenus.css ends here ------------------------------- */
 

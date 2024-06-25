@@ -11,36 +11,63 @@ const StudentEvent = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("Upcoming");
+  const [searchTerm, setSearchTerm] = useState("");
   const participantId = sessionStorage.getItem("user_id");
 
   useEffect(() => {
     fetchEnrolledEvents();
-  }, [filter]);
+  }, [filter, searchTerm]);
 
   const fetchEnrolledEvents = async () => {
     setLoading(true);
     try {
-      const eventIds = await getEnrolledEventIds(participantId);
-      console.log("Enrolled Event IDs:", eventIds);
-
-      if (filter === "Upcoming") {
-        setEvents(eventIds.data.responseData.upcoming || []);
-      } else if (filter === "Enrolled") {
-        setEvents(eventIds.data.responseData.enrolled || []);
-      } else if (filter === "Completed") {
-        setEvents(eventIds.data.responseData.completed || []);
+      let eventIds;
+      if (participantId) {
+        eventIds = await getEnrolledEventIds(participantId);
+        console.log("Enrolled Event IDs:", eventIds);
+      } else {
+        // Handle case when participantId is not available
+        eventIds = await fetchEventsService({ completed: 0 });
+        console.log("Fetched Event Data:", eventIds);
       }
+
+      let filteredEvents = [];
+      if (filter === "Upcoming") {
+        filteredEvents = eventIds.data.responseData.upcoming || [];
+      } else if (filter === "Enrolled") {
+        filteredEvents = eventIds.data.responseData.enrolled || [];
+      } else if (filter === "Completed") {
+        filteredEvents = eventIds.data.responseData.completed || [];
+      }
+
+      if (searchTerm) {
+        filteredEvents = filteredEvents.filter(event =>
+          event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }
+
+      setEvents(filteredEvents);
     } catch (error) {
       console.error("Error fetching enrolled events:", error);
       const eventdata = await fetchEventsService({ completed: 0 });
       console.log("Fetched Event Data:", eventdata);
+
+      let filteredEvents = [];
       if (filter === "Upcoming") {
-        setEvents(eventdata || []);
+        filteredEvents = eventdata || [];
       } else if (filter === "Enrolled") {
-        setEvents([]);
+        filteredEvents = [];
       } else if (filter === "Completed") {
-        setEvents([]);
+        filteredEvents = [];
       }
+
+      if (searchTerm) {
+        filteredEvents = filteredEvents.filter(event =>
+          event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }
+
+      setEvents(filteredEvents);
     } finally {
       setLoading(false);
     }
@@ -97,7 +124,8 @@ const StudentEvent = () => {
           { name: "Completed", onClick: () => setFilter("Completed") },
         ]}
         title="Events"
-        activeFilter={filter} // Pass the current filter as a prop
+        activeFilter={filter}
+        onSearch={setSearchTerm}
       />
       {events.length > 0 ? (
         <DataView
