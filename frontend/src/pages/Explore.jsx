@@ -5,7 +5,6 @@ import {
 } from "react-icons/bs";
 
 import image from "../../src/assets/edunexa.png";
-import Dp from "../../src/assets/DP.png";
 import EventsExplore from "./EventsExplore";
 import Footer from "../layouts/common/components/Footer";
 
@@ -14,11 +13,6 @@ const Explore = () => {
     listItems: [
       { icon: <BsHouseFill />, name: "Events", viewIcon: false }
     ],
-    profileBox: {
-      name: "Sana Parvin",
-      profilePic: Dp,
-      gmail: "sanaparvin@gmail.com",
-    },
     user:"public"
   };
   const footerdata = {

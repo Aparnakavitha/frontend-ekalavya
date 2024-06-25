@@ -28,6 +28,7 @@
     "react-select": "^5.8.0",
     "react-session-api": "^1.1.0",
     "react-toastify": "^10.0.5",
+    "react-transition-group": "^4.4.5",
     "recoil": "^0.7.7",
     "sb": "^8.1.9",
     "swiper": "^11.1.3",
