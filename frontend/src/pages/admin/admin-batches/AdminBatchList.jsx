@@ -13,16 +13,24 @@ const AdminBatchList = () => {
   const [error, setError] = useState(null);
   const [changed, setChanged] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    fetchData({ batchName: searchQuery });
+    if (initialLoad) {
+      fetchData();
+      setInitialLoad(false);
+    } else if (searchQuery) {
+      fetchData({ batchName: searchQuery });
+    } else {
+      fetchData();
+    }
   }, [changed, searchQuery]);
 
   const fetchData = async (params) => {
     setLoading(true);
     setError(null);
     try {
-      const responseData = await fetchbatches(params);
+      const responseData = await fetchbatches(params || {});
       const data = responseData.responseData;
 
       if (Array.isArray(data)) {

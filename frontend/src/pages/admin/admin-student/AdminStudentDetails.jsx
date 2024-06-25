@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import SkillList from "../../../layouts/admin-student/components/SkillList";
 import EventList from "../../../layouts/admin-student/components/EventsList";
@@ -85,8 +85,10 @@ const AdminStudentDetails = () => {
         eventId: event.eventId,
       }));
       setStudentEvents([...enrolledEvents, ...completedEvents]);
+      return [...enrolledEvents, ...completedEvents];
     } catch (error) {
       console.error("Error fetching student events:", error);
+      return [];
     }
   };
 
@@ -112,14 +114,16 @@ const AdminStudentDetails = () => {
   }, [selectedStudent]);
 
   useEffect(() => {
-    if (studentsData?.userId) {
-      fetchStudentDetails(studentsData.userId, setStudentData);
-      fetchStudentSkills(studentsData.userId);
-      fetchStudentEvents(studentsData.userId).then(() => {
+    const fetchData = async () => {
+      if (studentsData?.userId) {
+        await fetchStudentDetails(studentsData.userId, setStudentData);
+        await fetchStudentSkills(studentsData.userId);
+        const studentEvents = await fetchStudentEvents(studentsData.userId);
         const enrolledEventIds = studentEvents.map((event) => event.eventId);
-        fetchEventOptions(enrolledEventIds);
-      });
-    }
+        await fetchEventOptions(enrolledEventIds);
+      }
+    };
+    fetchData();
   }, [studentsData]);
 
   const handleFormSubmit = async (formData) => {
@@ -140,12 +144,14 @@ const AdminStudentDetails = () => {
 
       await addNewUser(updatedData);
 
-      fetchStudentDetails(userId, setStudentData);
-      fetchStudentSkills(userId);
-      fetchStudentEvents(userId).then(() => {
+      const fetchData = async () => {
+        await fetchStudentDetails(userId, setStudentData);
+        await fetchStudentSkills(userId);
+        const studentEvents = await fetchStudentEvents(userId);
         const enrolledEventIds = studentEvents.map((event) => event.eventId);
-        fetchEventOptions(enrolledEventIds);
-      });
+        await fetchEventOptions(enrolledEventIds);
+      };
+      fetchData();
     } catch (error) {
       console.error("Error updating user details:", error);
     }
@@ -156,10 +162,10 @@ const AdminStudentDetails = () => {
       await addEnrollmentService(enrollmentData.selectedEventId, {
         participantId: studentsData.userId,
       });
-      fetchStudentEvents(studentsData.userId).then(() => {
-        const enrolledEventIds = studentEvents.map((event) => event.eventId);
-        fetchEventOptions(enrolledEventIds);
-      });
+      // Update student events list
+      const updatedEvents = await fetchStudentEvents(studentsData.userId);
+      const enrolledEventIds = updatedEvents.map((event) => event.eventId);
+      await fetchEventOptions(enrolledEventIds);
     } catch (error) {
       console.error("Error enrolling in event:", error);
     }

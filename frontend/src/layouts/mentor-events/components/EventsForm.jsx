@@ -62,7 +62,6 @@ const EventForm = ({ hostId, onSubmit }) => {
       description: data.description,
       startDate: data.startDate,
       endDate: data.endDate,
-      contact: '7558845722',
       link: data.link,
       eventType: data.eventType,
       speaker: data.speaker,
