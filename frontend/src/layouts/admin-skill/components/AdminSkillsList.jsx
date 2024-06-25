@@ -24,7 +24,7 @@ const AdminSkillsList = ({ handleClick }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [participants, setParticipants] = useRecoilState(participantsState);
-  const [studentkills,setStudentSkills]=useRecoilState(studentSkillState);
+  const [studentkills, setStudentSkills] = useRecoilState(studentSkillState);
 
   const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ const AdminSkillsList = ({ handleClick }) => {
         }));
         setSkills(capitalizedSkills);
         setStudentSkills(capitalizedSkills);
-        console.log("Student skill List --------------------",studentkills)
+        console.log("Student skill List --------------------", studentkills);
         setLoading(false);
       } catch (error) {
         setError(error.message);

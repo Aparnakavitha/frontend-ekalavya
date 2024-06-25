@@ -28,6 +28,7 @@ const fetchStudentDetails = async (userId, setStudentData) => {
 
 const AdminStudentDetails = () => {
   const [studentsData, setStudentData] = useState(null);
+
   const [studentSkills, setStudentSkills] = useRecoilState(
     adminStudentSkillState
   );
@@ -41,16 +42,21 @@ const AdminStudentDetails = () => {
     if (userId) {
       try {
         const response = await getSkillsForUser(userId);
-        console.log("Fetching skills for userId:", userId);
+        console.log(
+          "Fetching skills for userId:",
+          userId,
+          "Here are the skills",
+          studentSkills
+        );
         console.log("Skills API response:", response);
 
         if (response.length > 0 && response[0].skills) {
           const skills = response[0].skills.map((skill) => ({
-            miniHeading: skill.skill_name,
+            miniHeading: skill.id,
             mainHeading: skill.skill_name,
-            count: skill.skill_level,
+            skill_id: skill.id,
             cardType: "skill",
-            canEdit: true,
+            canEdit: false,
             canDelete: true,
           }));
           console.log("Formatted skills:", skills);

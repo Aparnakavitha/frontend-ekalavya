@@ -12,13 +12,15 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { Userskillpost } from "../../../services/Skills";
 const SkillList = ({ studentId }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [studentSkills,setStudentSkills] = useRecoilState(adminStudentSkillState);
+  const [studentSkills, setStudentSkills] = useRecoilState(
+    adminStudentSkillState
+  );
   const allSkills = useRecoilValue(studentSkillState);
 
   const addSkillOptions = allSkills.map((skill) => ({
     value: skill.id,
     label: skill.skillName,
-  }));
+  })).filter((skill)=>skill.value!==2);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -39,13 +41,14 @@ const SkillList = ({ studentId }) => {
     );
     console.log("Skill added now is: ", selectedSkillName);
     const newSkillState = {
-      miniHeading: formData.selectedSkills,
+      miniHeading: selectedSkillName.value,
       mainHeading: selectedSkillName.label,
+      skill_id: selectedSkillName.value,
       canEdit: true,
       canDelete: true,
       cardType: "skill",
     };
-    setStudentSkills([...studentSkills,newSkillState]);
+    setStudentSkills([...studentSkills, newSkillState]);
     console.log("student skills after adding new skill", studentSkills);
     console.log("Submission response", submitResponse);
     handleCloseModal();
@@ -79,7 +82,7 @@ const SkillList = ({ studentId }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...skillcards} />
+      <CardRow {...skillcards} userId={studentId} />
     </div>
   );
 };

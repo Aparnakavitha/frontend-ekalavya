@@ -9,14 +9,18 @@ import { MdOutlineKeyboardArrowUp } from "react-icons/md";
 import Modal from "../../../layouts/common/components/Modal";
 import DeleteBox from "../../../layouts/common/components/DeleteBox";
 import UpdateSingleField from "../../../layouts/common/components/UpdateSingleField";
+import { UserSkillDelete } from "../../../services/Skills";
+import { useRecoilState } from "recoil";
+import { adminStudentSkillState } from "../../../states/Atoms";
 
-const CardRow = ({ cardData, card, handleClick }) => {
+const CardRow = ({ cardData, card, handleClick ,userId}) => {
   const [cardnum, setCardnum] = useState(4);
   const [pcardnum, setPcardnum] = useState(4);
   const [showAllCards, setShowAllCards] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSkill, setCurrentSkill] = useState(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [studentSkills,setStudentSkills]=useRecoilState(adminStudentSkillState);
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,6 +71,10 @@ const CardRow = ({ cardData, card, handleClick }) => {
   };
 
   const confirmDelete = () => {
+    console.log("Selected skill Id to delete : ",currentSkill);
+    const response=UserSkillDelete(userId,currentSkill.skill_id);
+    setStudentSkills(studentSkills.filter((skills)=>(skills.skill_id!==currentSkill.skill_id)));
+    console.log("Delete student skill response",response);
     console.log("Delete confirmed for:", currentSkill);
     closeModal();
   };
