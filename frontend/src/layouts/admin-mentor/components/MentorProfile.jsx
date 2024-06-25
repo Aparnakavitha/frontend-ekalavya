@@ -44,7 +44,16 @@ const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
     handleCloseEditBasicDetails();
   };
 
- 
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Sfgsdh", formData);
+      const response = await addNewUser(formData);
+      console.log("Update response:", response);
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
 
   if (!mentorData) {
     return <div>No data found for mentor.</div>;
@@ -92,6 +101,7 @@ const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
     ),
   };
 
+  const Education = mentorData.qualifications;
 
   return (
     <div>
@@ -119,7 +129,11 @@ const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
       <AboutMe {...aboutMeProps} />
-     
+      <EducationalQualification
+        qualifications={Education}
+        userId={mentorData.userId}
+        onFormSubmit={handleFormSubmit2}
+      />
     </div>
   );
 };
