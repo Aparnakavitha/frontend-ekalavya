@@ -25,7 +25,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
   } = useForm({
     defaultValues: initialData,
   });
-
+  const isvisible = false;
   const [fileError, setFileError] = useState("");
   const [showProfileLinks, setShowProfileLinks] = useState(isEdit);
 
@@ -86,7 +86,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               {errors.phoneNo.message}
             </p>
           )}
-          <Controller
+          {isvisible && <Controller
             name="profilePhoto"
             control={control}
             render={({ field }) => (
@@ -107,11 +107,11 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                 }}
               />
             )}
-          />
+          />}
           {fileError && (
             <p className={`${styles["basicdetails-error"]}`}>{fileError}</p>
           )}
-          <div className={`${styles["basicdetails-icontext"]}`}>
+         {isvisible &&  <div className={`${styles["basicdetails-icontext"]}`}>
             <TextButton
               icon={showProfileLinks ? <FaMinus /> : <FaPlus />}
               text={
@@ -119,9 +119,9 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               }
               onClick={handleTextButtonClick}
             />
-          </div>
+          </div>}
         </div>
-        {showProfileLinks && (
+        {isvisible && showProfileLinks && (
           <div className={`${styles["basicdetails-containerinput-links"]}`}>
             <div className={`${styles["basicdetails-links"]}`}>
               <Controller

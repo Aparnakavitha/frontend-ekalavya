@@ -46,7 +46,7 @@ const HomeEventDescription = ({ event, organizer }) => {
 
   const loginBoxProps = {
     title: "Please Log In",
-    message: "You need to log in to register for this event. Please log in",
+    message: "You need to log in to register for this event.",
     buttonText: "Log In with Google",
     onCancel: handleCloseLoginModal,
   };

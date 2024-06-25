@@ -26,10 +26,10 @@ const PrimaryCard = (props) => {
     }
     return description;
   };
- 
+
   const formattedStartDate = format(new Date(startDate), "MMM dd, yyyy");
   const formattedEndDate = format(new Date(endDate), "MMM dd, yyyy");
- 
+
   const [isHover, setIsHover] = useState(false);
  
   const handleMouseEnter = () => {

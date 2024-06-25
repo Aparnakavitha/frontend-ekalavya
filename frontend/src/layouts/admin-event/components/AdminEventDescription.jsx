@@ -1,15 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EventsDescription from "../../common/components/EventsDescription";
 import Modal from "../../common/components/Modal";
 import DeleteBox from "../../common/components/DeleteBox";
 import AddEvent from "../../admin-event/components/AddEvent";
 import EventsDescriptionData from "./EventDescriptionData";
+import { getUserDetails } from "../../../services/User";
 
-const AdminEventDescription = ({formSubmit, fetchedFormData ,onDelete, organizer,eventId}) => {
+const AdminEventDescription = ({
+  formSubmit,
+  fetchedFormData,
+  onDelete,
+  organizer,
+  eventId,
+}) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [organizerOptions, setOrganizerOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchOrganizers = async () => {
+      try {
+        const response = await getUserDetails({ roleId: 2 });
+        const options = response.responseData.map((user) => ({
+          value: user.userId,
+          label: `${user.firstName} ${user.lastName}`,
+        }));
+        setOrganizerOptions(options);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
+    fetchOrganizers();
+  }, []);
 
   const handleClick = () => {
     navigate(`/admin/events/event-details/event-participants/${eventId}`);
@@ -54,27 +79,24 @@ const AdminEventDescription = ({formSubmit, fetchedFormData ,onDelete, organizer
     ...EventsDescriptionData.buttonProps,
     onclick3: handleOpenModal,
     onclick2: handleOpenDeleteModal,
-    onclick1: handleClick
+    onclick1: handleClick,
   };
-  
-  const organizeroptions = [
-    { value: "option1", label: "Option 1" },
-    { value: "option2", label: "Option 2" },
-    { value: "option3", label: "Option 3" },
-    { value: "option4", label: "Option 4" },
-  ];
-
-  const isOrganizer = false;
 
   return (
     <div>
       <EventsDescription {...actionData} organizer={organizer} />
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
-        <AddEvent defaultValues={EventsDescriptionData.defaultValues}
-          organizeroptions={organizeroptions}
+        <AddEvent
+          defaultValues={EventsDescriptionData.defaultValues}
+          organizeroptions={
+            organizer
+              ? [{ value: organizer.userId, label: organizer }]
+              : organizerOptions
+          }
           isOrganizer={true}
-          onSubmit={handleFormSubmit} 
-          fetchedFormData={fetchedFormData}/>
+          onSubmit={handleFormSubmit}
+          fetchedFormData={fetchedFormData}
+        />
       </Modal>
       <Modal
         isOpen={isDeleteOpen}

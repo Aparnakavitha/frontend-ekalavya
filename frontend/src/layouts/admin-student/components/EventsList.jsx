@@ -8,8 +8,15 @@ import AddEvent from "./AddEvent";
 import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { DeleteBox } from "../../common";
+import DeleteButton from "../../../components/buttons/DeleteButton";
 
-const EventList = ({ participantId, events, handleDelete }) => {
+const EventList = ({
+  participantId,
+  events,
+  handleDelete,
+  eventOptions,
+  onSubmit,
+}) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -45,8 +52,8 @@ const EventList = ({ participantId, events, handleDelete }) => {
 
   const handleFormSubmit = (formData) => {
     console.log("Form submitted with data:", formData);
+    onSubmit(formData);
     handleCloseModal();
-    handleCloseDelete();
   };
 
   const handleCardClick = (eventId) => {
@@ -64,16 +71,12 @@ const EventList = ({ participantId, events, handleDelete }) => {
 
   const addevent = {
     mainHeading: "Add Event",
-    options: [
-      { value: "abc", label: "ABC" },
-      { value: "xyz", label: "XYZ" },
-      { value: "pqr", label: "PQR" },
-    ],
+    options: eventOptions,
   };
 
   const eventcards = {
     card: "event",
-    cardData: events.map(event => ({
+    cardData: events.map((event) => ({
       miniHeading: event.miniHeading,
       mainHeading: event.mainHeading,
       startDate: event.startDate,
@@ -104,8 +107,15 @@ const EventList = ({ participantId, events, handleDelete }) => {
         <AddEvent {...addevent} onSubmit={handleFormSubmit} />
       </Modal>
       {events.length === 0 ? (
-        <div style={{ textAlign: "left", color: "var(--neutral600)" }} className="padding">
-          No events found
+        <div
+          style={{
+            textAlign: "left",
+            color: "var(--neutral600)",
+            marginTop: "-40px",
+          }}
+          className="padding"
+        >
+          &nbsp;&nbsp;No events to display
         </div>
       ) : (
         <CardRow {...eventcards} handleClick={handleCardClick} />
@@ -113,11 +123,15 @@ const EventList = ({ participantId, events, handleDelete }) => {
       <div className="padding">
         <div className={`${styles["eventslist-container"]}`}>
           <div className={`${styles["eventslist-deletebutton"]}`}>
-            <PrimaryButton {...props} />
+            <DeleteButton {...props} />
           </div>
         </div>
       </div>
-      <Modal isOpen={isDeleteOpen} widthVariant="small" onClose={handleCloseDelete}>
+      <Modal
+        isOpen={isDeleteOpen}
+        widthVariant="small"
+        onClose={handleCloseDelete}
+      >
         <DeleteBox
           {...deleteprops}
           onCancel={handleDeleteCancel}

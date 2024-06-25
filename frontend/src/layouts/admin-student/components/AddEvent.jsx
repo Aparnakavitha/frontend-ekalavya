@@ -3,19 +3,20 @@ import styles from "../AdminStudent.module.css";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
- 
-const Addevent = ({ mainHeading, options, onSubmit }) => {
+
+const AddEvent = ({ mainHeading, options, onSubmit }) => {
   const {
     handleSubmit,
     control,
-    getValues,
     formState: { errors },
   } = useForm();
- 
+
   const handleFormSubmit = (data) => {
     onSubmit(data);
   };
- 
+
+  const dropdownOptions = options.length > 0 ? options : [{ value: '', label: 'no events to display' }];
+
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
@@ -28,14 +29,15 @@ const Addevent = ({ mainHeading, options, onSubmit }) => {
             name="selectedEventId"
             control={control}
             rules={{
-              required: "Event ID is required",
+              required: options.length > 0 ? "Event ID is required" : false,
             }}
             render={({ field }) => (
               <InputDropdown
                 {...field}
                 label="Select Event(s)"
-                placeholder="Event ID"
-                options={options}
+                placeholder="Event ID-Event Name"
+                options={dropdownOptions}
+                isDisabled={options.length === 0} 
               />
             )}
           />
@@ -52,5 +54,5 @@ const Addevent = ({ mainHeading, options, onSubmit }) => {
     </form>
   );
 };
- 
-export default Addevent;
+
+export default AddEvent;
