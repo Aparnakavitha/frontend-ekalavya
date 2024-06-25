@@ -3,6 +3,12 @@ import ReactModal from "react-modal";
 import PropTypes from "prop-types";
 import styles from "../Common.module.css";
 
+const widthVariants = {
+  small: "549px",
+  medium: "704px",
+  large: "914px",
+};
+
 const Modal = ({
   children,
   isOpen,
@@ -27,7 +33,7 @@ const Modal = ({
     setIsVisible(false);
     setTimeout(onClose, closeTimeoutMS);
   };
-
+  
   const modalClass = `${styles["modal-modalContent"]} ${styles[`modal-width-${widthVariant}`]} ${isVisible ? styles["opening"] : styles["closing"]}`;
 
   ReactModal.setAppElement(ariaHideApp ? "#root" : "");

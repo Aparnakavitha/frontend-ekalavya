@@ -1077,6 +1077,10 @@
   opacity: 0;
 }
 
+.modal-modalContent::-webkit-scrollbar {
+  width: 0px;
+}
+
 .modal-width-small {
   width: 549px;
   border-radius: 40px;
