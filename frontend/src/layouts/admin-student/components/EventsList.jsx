@@ -8,6 +8,7 @@ import AddEvent from "./AddEvent";
 import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { DeleteBox } from "../../common";
+import DeleteButton from "../../../components/buttons/DeleteButton";
 
 const EventList = ({
   participantId,
@@ -122,7 +123,7 @@ const EventList = ({
       <div className="padding">
         <div className={`${styles["eventslist-container"]}`}>
           <div className={`${styles["eventslist-deletebutton"]}`}>
-            <PrimaryButton {...props} />
+            <DeleteButton {...props} />
           </div>
         </div>
       </div>

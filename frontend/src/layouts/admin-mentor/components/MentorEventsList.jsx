@@ -8,6 +8,7 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { DeleteBox } from "../../common";
 import styles from "../AdminMentor.module.css";
 import { useNavigate } from "react-router-dom";
+import DeleteButton from "../../../components/buttons/DeleteButton";
 
 const MentorEventsList = ({ events, handleDelete }) => {
   const navigate = useNavigate();
@@ -120,7 +121,7 @@ const MentorEventsList = ({ events, handleDelete }) => {
       <div className="padding">
         <div className={`${styles["mentoreventslist-container"]}`}>
           <div className={`${styles["mentoreventslist-deletebutton"]}`}>
-            <PrimaryButton {...props} />
+            <DeleteButton {...props} />
           </div>
         </div>
       </div>
