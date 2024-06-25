@@ -13,7 +13,7 @@ const UpdateSingleField = ({
   buttonTitle,
   initialData,
   onSubmit,
-  isSelect,
+  isSelect = true,
   options,
   message,
   skillId,
