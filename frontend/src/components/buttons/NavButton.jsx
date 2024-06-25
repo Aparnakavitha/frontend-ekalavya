@@ -8,8 +8,8 @@ const NavButton = ({ pageName, onClick }) => {
   };
 
   return (
-    <div className={styles.navButton}>
-      <IoIosArrowBack className={styles.backArrow} onClick={goBack} />
+    <div className={styles.navButton} onClick={goBack}>
+      <IoIosArrowBack className={styles.backArrow}/>
       <span className={styles.pageName} onClick={onClick}>
         {" "}
         {pageName}{" "}

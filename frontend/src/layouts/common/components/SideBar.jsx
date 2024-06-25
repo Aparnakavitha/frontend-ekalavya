@@ -19,7 +19,9 @@ const SideBar = ({ button, listItems, profileBox, onItemClick, location ,user })
   const handleItemClick = (index, page) => {
     setActiveIndex(index);
     setShowSidebar(false);
-    onItemClick(page);
+    if (onItemClick) {
+      onItemClick(page);
+    }
   };
 
   const toggleSidebar = () => {
