@@ -3,85 +3,52 @@ import { useNavigate } from "react-router-dom";
 import EventMenus from "../../../layouts/common/components/EventMenus";
 import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
-import { fetchEvents, getEnrolledEventIds } from "../../../../src/services/eventServices";
-
+import { getEnrolledEventIds } from "../../../../src/services/Event";
+ 
 const StudentEvent = () => {
   const navigate = useNavigate();
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const participantId = 11; // Manually set participantId for testing
-
+  const [event, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true); // Default to true to show loading initially
+  const [filter, setFilter] = useState("Upcoming");
+  const participantId = sessionStorage.getItem("user_id");
+ 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await fetchFilteredEvents("Upcoming"); // Fetch Upcoming events by default
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching events:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const fetchEnrolledEvents = async (participantId) => {
+    fetchEnrolledEvents();
+  }, [filter]);
+ 
+  const fetchEnrolledEvents = async () => {
+    setLoading(true); // Start loading
     try {
       const eventIds = await getEnrolledEventIds(participantId);
       console.log("Enrolled Event IDs:", eventIds);
-
-      // Fetch the details of events based on the enrolled event IDs
-      const allEvents = await fetchEvents({});
-      const enrolledEvents = allEvents.filter(event => eventIds.includes(event.eventId));
-      console.log("Enrolled Events:", enrolledEvents);
-      setEvents(enrolledEvents);
+      
+      if (filter === "Upcoming") {
+        setEvents(eventIds.upcoming);
+      } else if (filter === "Enrolled") {
+        setEvents(eventIds.enrolled);
+      } else if (filter === "Completed") {
+        setEvents(eventIds.completed);
+      }
     } catch (error) {
       console.error("Error fetching enrolled events:", error);
     }
+    setLoading(false); // Stop loading
   };
-
-  const fetchFilteredEvents = async (filter) => {
-    try {
-      const eventIds = await getEnrolledEventIds(participantId);
-      let filteredEvents = [];
-      const allEvents = await fetchEvents({});
-      
-      if (filter === "Completed") {
-        filteredEvents = allEvents.filter(event => event.completed === 1 && eventIds.includes(event.eventId));
-      } else if (filter === "Upcoming") {
-        filteredEvents = allEvents.filter(event => event.completed === 0 && !eventIds.includes(event.eventId));
-      }
-      
-      console.log(`${filter} Events:`, filteredEvents);
-      setEvents(filteredEvents);
-    } catch (error) {
-      console.error(`Error fetching ${filter.toLowerCase()} events:`, error);
-    }
-  };
-
-  const handleStatusClick = (status) => {
-    setLoading(true);
-    if (status === "Enrolled") {
-      fetchEnrolledEvents(participantId).then(() => setLoading(false));
-    } else if (status === "Completed") {
-      fetchFilteredEvents("Completed").then(() => setLoading(false));
-    } else if (status === "Upcoming") {
-      fetchFilteredEvents("Upcoming").then(() => setLoading(false));
-    }
-  };
-
+ 
   const primaryCardData = {
-    data: events.map((event) => ({
+    data: event.map((event) => ({
       id: event.eventId,
-      miniHeading: event.eventType, // Assuming event.eventType exists
+      miniHeading: event.eventType,
       mainHeading: event.eventTitle,
       startDate: event.startDate,
       endDate: event.endDate,
-      Description: event.description,
+      description: event.description,
       cardType: "Course",
       handleClick: () => {
         console.log("clicked");
-        navigate(`${event.eventId}`);
+        navigate(`${event.eventId}`, {
+          state: { eventId: event.eventId, tab: filter },
+        });
       },
     })),
     tableColumns: [
@@ -94,13 +61,13 @@ const StudentEvent = () => {
     toggle: false,
     itemsPerPage: 10,
   };
-
+ 
   console.log("primaryCardData:", primaryCardData.data);
-
+ 
   if (loading) {
     return <div>Loading...</div>;
   }
-
+ 
   return (
     <div>
       <EventMenus
@@ -114,9 +81,9 @@ const StudentEvent = () => {
           width: "half",
         }}
         statuses={[
-          { name: "Upcoming", onClick: () => handleStatusClick("Upcoming") },
-          { name: "Enrolled", onClick: () => handleStatusClick("Enrolled") },
-          { name: "Completed", onClick: () => handleStatusClick("Completed") },
+          { name: "Upcoming", onClick: () => setFilter("Upcoming") },
+          { name: "Enrolled", onClick: () => setFilter("Enrolled") },
+          { name: "Completed", onClick: () => setFilter("Completed") },
         ]}
         title="Events"
       />
@@ -130,5 +97,6 @@ const StudentEvent = () => {
     </div>
   );
 };
-
+ 
 export default StudentEvent;
+ 

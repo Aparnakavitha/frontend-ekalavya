@@ -13,11 +13,26 @@ const ProfileCard = (props) => {
     onClick,
     canDelete,
     handleDelete,
+    viewAnimation = false,
   } = props;
 
   const transformMainMail = (studentMail) => {
-    if (studentMail.length > 17) {
-      return studentMail.slice(0, 17) + "...";
+    if (studentMail.length > 20) {
+      return studentMail.slice(0, 20) + "...";
+    }
+    return studentMail;
+  };
+
+  const transformName = (studentMail) => {
+    if (studentMail.length > 15) {
+      return studentMail.slice(0, 15) + "...";
+    }
+    return studentMail;
+  };
+
+  const transformCollege = (studentMail) => {
+    if (studentMail.length > 26) {
+      return studentMail.slice(0, 26) + "...";
     }
     return studentMail;
   };
@@ -28,7 +43,10 @@ const ProfileCard = (props) => {
   };
 
   return (
-    <div className={styles.card} onClick={onClick}>
+    <div
+      className={`${styles.card} ${viewAnimation ? styles.highlight : ""}`}
+      onClick={onClick}
+    >
       <div className={styles["card-content"]}>
         <div className={styles["image-icon"]}>
           <img
@@ -45,14 +63,14 @@ const ProfileCard = (props) => {
           )}
         </div>
         <div className={styles["titles-wrapper"]}>
-          <h1 className={styles.title1}>{transformMainMail(studentName)}</h1>
-          <h2 className={styles.title2}>{transformMainMail(studentId)}</h2>
-          <h3 className={styles.title3}>{transformMainMail(studentCollege)}</h3>
+          <h1 className={styles.title1} title={studentName}>{transformName(studentName)}</h1>
+          <h2 className={styles.title2} title={studentId}>{transformName(studentId)}</h2>
+          <h3 className={styles.title3} title={studentCollege}>{transformCollege(studentCollege)}</h3>
         </div>
 
         <div className={styles["contact-info"]}>
-          <div className={styles.email}>{transformMainMail(studentMail)}</div>
-          <div className={styles.phone}>
+          <div className={styles.email} title={studentMail}>{transformMainMail(studentMail)}</div>
+          <div className={styles.phone} title={studentPhoneNumber}>
             {transformMainMail(studentPhoneNumber)}
           </div>
         </div>

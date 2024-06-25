@@ -1,80 +1,112 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
-import profilepic from "../../../assets/DP.png";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
+import profilepic from "../../../assets/DP.png";
+import EducationalQualification from "../../common/components/EducationalQualification";
+import { addNewUser } from "../../../services/User";
 
-const MentorProfileInfo = (props) => {
-  const navprops = {
-    pageName: "Mentors List",
-  };
-
-  const sample = {
-    role: "mentor",
-    profilepic: profilepic,
-    name: "Emma Watson",
-    college: "Christ University",
-    dob: "1990-01-01",
-    email: "emmawatson@gmail.com",
-    phoneNumber: 8755383632,
-    houseName: "Sample House",
-    city: "Sample City",
-    pinCode: "123456",
-    state: "Sample State",
-    country: "Sample Country",
-    hasDelete: false,
-    onClickEdit: () => {
-      handleOpenEditBasicDetails();
-    },
-  };
-
-  const aboutme = {
-    title: "About Me",
-    description:
-      "Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. My journey in [Your Field] has been fueled by a profound interest in [What Motivates You], and a commitment to achieving [Your Goals/Objectives]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. My journey in [Your Field] has been fueled by a profound interest in [What Motivates You], and a commitment to achieving [Your Goals/Objectives]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field].",
-  };
-
+const MentorProfileInfo = ({ mentorData, onSubmit,onformSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
 
-  const handleOpenEditBasicDetails = () => {
-    setIsEditDetailsOpen(true);
-  };
+  const navProps = { pageName: "Mentors List" };
 
-  const handleCloseEditBasicDetails = () => {
-    setIsEditDetailsOpen(false);
-  };
+  const handleOpenEditBasicDetails = () => setIsEditDetailsOpen(true);
+  const handleCloseEditBasicDetails = () => setIsEditDetailsOpen(false);
 
   const handleFormSubmit = (formData) => {
-    console.log("Form Submitted with data:", formData);
+    const { addresses, ...formDataWithoutAddresses } = formData;
+  
+    // Check if any address fields have been updated
+    const addressesChanged = addresses.some(address => (
+      address.houseName ||
+      address.city ||
+      address.pinCode ||
+      address.state ||
+      address.country
+    ));
+  
+    // Prepare addresses with addressId included if they have changed
+    const updatedAddresses = addressesChanged ? addresses.map((address) => ({
+      ...address,
+      addressId: address.addressId || "", // If addressId is not present, use empty string
+    })) : [];
+  
+    onSubmit({
+      userId: mentorData.userId,
+      ...formDataWithoutAddresses,
+      addresses: updatedAddresses,
+    });
+  
     handleCloseEditBasicDetails();
   };
+  
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Sfgsdh", formData);
+      const response = await addNewUser(formData);
+      console.log("Update response:", response);
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
+  if (!mentorData) {
+    return <div>No data found for mentor.</div>;
+  }
+
+  const homeAddress =
+    mentorData.addresses &&
+    mentorData.addresses.find((address) => address.addressType === "home");
 
   const editBox = {
     mainHeading: "Edit Basic Details",
     initialData: {
-      profilepic: sample.profilepic,
-      name: sample.name,
-      dob: sample.dob,
-      college: sample.college,
-      phoneNumber: sample.phoneNumber,
-      houseName: "Skyline villa",
-      city: "Bengaluru",
-      pinCode: "795432",
-      state: "Karnataka",
-      country: "India",
-      aboutMe: "Mumble mumble mumble",
+      dob: mentorData.dob,
+      phoneNo: mentorData.phoneNo,
+      addresses: [
+        {
+          addressId: homeAddress ? homeAddress.addressId : "",
+          houseName: homeAddress ? homeAddress.houseName : "",
+          city: homeAddress ? homeAddress.city : "",
+          pinCode: homeAddress ? homeAddress.pinCode : "",
+          state: homeAddress ? homeAddress.state : "",
+          country: homeAddress ? homeAddress.country : "",
+        },
+      ],
+      aboutMe: mentorData.aboutMe,
     },
     isEdit: true,
   };
 
+  const aboutMeProps = {
+    title: "About Me",
+    description: mentorData.aboutMe ? mentorData.aboutMe : "No content available for this section.",
+  };
+
+  const Education = mentorData.qualifications;
+
   return (
     <div>
       <div className="padding">
-        <NavButton {...navprops} />
+        <NavButton {...navProps} />
       </div>
-      <UserProfileInfo {...sample} />
+      <UserProfileInfo
+        userId={mentorData.userId}
+        role={mentorData.role ? mentorData.role.roleName : ""}
+        profilepic={profilepic}
+        name={`${mentorData.firstName || "N/A"} ${mentorData.lastName || "N/A"}`}
+        college={mentorData.college ? mentorData.college.collegeName : ""}
+        dob={mentorData.dob}
+        email={mentorData.emailId}
+        phoneNo={mentorData.phoneNo}
+        addresses={mentorData.addresses}
+        hasDelete={false}
+        onClickEdit={handleOpenEditBasicDetails}
+      />
       <Modal
         isOpen={isEditDetailsOpen}
         widthVariant="medium"
@@ -82,7 +114,12 @@ const MentorProfileInfo = (props) => {
       >
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
-      <AboutMe {...aboutme}/>
+      <AboutMe {...aboutMeProps} />
+      <EducationalQualification
+        qualifications={Education}
+        userId={mentorData.userId}
+        onFormSubmit={handleFormSubmit2}
+      />
     </div>
   );
 };

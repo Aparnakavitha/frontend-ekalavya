@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import ShowCards from "../../common/components/ShowCards";
-import EventData from "./EventData";
 import Modal from "../../common/components/Modal";
 import CardRow from "./Cardrow";
 import AddEvent from "./AddEvent";
 import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { DeleteBox } from "../../common";
-import { useNavigate } from "react-router-dom";
 
-const EventList = () => {
+const EventList = ({ participantId, events, handleDelete }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -37,6 +37,9 @@ const EventList = () => {
 
   const handleDeleteConfirm = () => {
     console.log("Delete confirmed");
+    if (handleDelete) {
+      handleDelete();
+    }
     handleCloseDelete();
   };
 
@@ -46,8 +49,45 @@ const EventList = () => {
     handleCloseDelete();
   };
 
-  const handleClick = () => {
-    navigate(`/admin/events/event-details`);
+  const handleCardClick = (eventId) => {
+    navigate(`/admin/events/event-details/${eventId}`);
+  };
+
+  const heading = {
+    heading: "Events Attended",
+    textbuttonprops: {
+      icon: <AiOutlinePlus />,
+      text: "Add Events",
+      onClick: handleOpenModal,
+    },
+  };
+
+  const addevent = {
+    mainHeading: "Add Event",
+    options: [
+      { value: "abc", label: "ABC" },
+      { value: "xyz", label: "XYZ" },
+      { value: "pqr", label: "PQR" },
+    ],
+  };
+
+  const eventcards = {
+    card: "event",
+    cardData: events.map(event => ({
+      miniHeading: event.miniHeading,
+      mainHeading: event.mainHeading,
+      startDate: event.startDate,
+      endDate: event.endDate,
+      Description: event.Description,
+      cardType: event.cardType,
+      eventId: event.eventId,
+    })),
+  };
+
+  const deleteprops = {
+    title: "Confirmation Required",
+    message: "Are you sure you want to delete this Student?",
+    buttonText: "Confirm",
   };
 
   const props = {
@@ -57,27 +97,19 @@ const EventList = () => {
     width: "full",
   };
 
-  const deleteprops = {
-    title: "Confirmation Required",
-    message: "Are you sure you want to delete this Student?",
-    buttonText: "Confirm",
-  };
-
-  const heading = {
-    ...EventData.heading,
-    textbuttonprops: {
-      ...EventData.heading.textbuttonprops,
-      onClick: handleOpenModal,
-    },
-  };
-
   return (
     <div>
       <ShowCards {...heading} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
-        <AddEvent {...EventData.addevent} onSubmit={handleFormSubmit} />
+        <AddEvent {...addevent} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...EventData.eventcards} handleClick={handleClick} />
+      {events.length === 0 ? (
+        <div style={{ textAlign: "left", color: "var(--neutral600)" }} className="padding">
+          No events found
+        </div>
+      ) : (
+        <CardRow {...eventcards} handleClick={handleCardClick} />
+      )}
       <div className="padding">
         <div className={`${styles["eventslist-container"]}`}>
           <div className={`${styles["eventslist-deletebutton"]}`}>
@@ -85,11 +117,7 @@ const EventList = () => {
           </div>
         </div>
       </div>
-      <Modal
-        isOpen={isDeleteOpen}
-        widthVariant="small"
-        onClose={handleCloseDelete}
-      >
+      <Modal isOpen={isDeleteOpen} widthVariant="small" onClose={handleCloseDelete}>
         <DeleteBox
           {...deleteprops}
           onCancel={handleDeleteCancel}

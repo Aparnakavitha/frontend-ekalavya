@@ -14,6 +14,7 @@ const SkillUser = (props) => {
     addSkill,
     deleteSkill,
   } = props;
+  const visible = false;
 
   const transformMainHeading = (heading) => {
     if (heading.length > 12) {
@@ -48,10 +49,10 @@ const SkillUser = (props) => {
             />
           </div>
           <div className={`${styles.heading}`}>
-            <div className={`${styles.cardsmainheading}`}>
+            <div className={`${styles.cardsmainheading}`} title={mainHeading}>
               {transformMainHeading(mainHeading)}
             </div>
-            <div className={`${styles.cardsminiheading}`}>
+            <div className={`${styles.cardsminiheading}`} title={miniHeading}>
               {transformMainHeading(miniHeading)}
             </div>
           </div>
@@ -63,13 +64,15 @@ const SkillUser = (props) => {
               {displayedSkills.map((skill, index) => (
                 <div key={index} className={`col-6 ${styles.button}`}>
                   {transformMiniHeading(skill)}
-                  <ImCross
-                    onClick={() => deleteSkill(index)}
-                    style={{
-                      cursor: "pointer",
-                      fontSize: "10px",
-                    }}
-                  />
+                  {visible && (
+                    <ImCross
+                      onClick={() => deleteSkill(index)}
+                      style={{
+                        cursor: "pointer",
+                        fontSize: "10px",
+                      }}
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -81,16 +84,21 @@ const SkillUser = (props) => {
                 {showAllSkills ? "View Less" : "View More"}
               </div>
             )}
-            <div className={`col-6 ${styles.addButtonContainer}`}>
-              <button className={`btn ${styles.addButton}`} onClick={addSkill}>
-                <FaPlus
-                  style={{
-                    cursor: "pointer",
-                    fontSize: "26px",
-                  }}
-                />
-              </button>
-            </div>
+            {visible && (
+              <div className={`col-6 ${styles.addButtonContainer}`}>
+                <button
+                  className={`btn ${styles.addButton}`}
+                  onClick={addSkill}
+                >
+                  <FaPlus
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "26px",
+                    }}
+                  />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

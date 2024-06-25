@@ -1,18 +1,17 @@
 import React from "react";
 import styles from "./EventCard.module.css";
 
+
 const EventCard = (props) => {
   const {
     main = "All hands meeting",
-    sub = "http:// www.zoom.com",
+    sub = "http://www.zoom.com",
     start = "10:30am",
     end = "11:30am",
     status = "due",
     mode = "dark",
     date = 17,
-    handleClick = () => {
-      alert("event card clicked!");
-    },
+    handleClick,
   } = props;
 
   const formatText = (text) => {
@@ -33,7 +32,7 @@ const EventCard = (props) => {
         </div>
         <div className={`${styles["event-details"]}`}>
           <div className={`${styles["details-left"]}`}>
-            <h1 className={`${styles.main}`}>{formatText(main)}</h1>
+            <h1 className={`${styles.main}`} title={main}>{formatText(main)}</h1>
 
             <h4 className={`${styles.sub}`}>
               <u>
@@ -42,6 +41,7 @@ const EventCard = (props) => {
                   onClick={(e) => {
                     e.stopPropagation();
                   }}
+                  title={sub}
                 >
                   {formatText(sub)}
                 </a>

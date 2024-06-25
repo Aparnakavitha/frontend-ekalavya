@@ -5,36 +5,40 @@ import Modal from "../../common/components/Modal";
 import AdminStudentActionData from "./StudentActionData";
 
 const AdminStudentAction = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsOpen(true);
+  const handleOpenAddStudentModal = () => {
+    setIsAddStudentOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsOpen(false);
+  const handleCloseAddStudentModal = () => {
+    setIsAddStudentOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
+  const handleAddStudentFormSubmit = (formData) => {
     console.log("Form submitted with data:", formData);
-    handleCloseModal();
+    handleCloseAddStudentModal();
   };
 
   const actionData = {
     ...AdminStudentActionData,
     buttonProps: {
       ...AdminStudentActionData.buttonProps,
-      onClick: handleOpenModal,
+      onClick: handleOpenAddStudentModal,
     },
   };
 
   return (
     <div>
       <ActionComponent {...actionData} />
-      <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
+      <Modal
+        isOpen={isAddStudentOpen}
+        widthVariant="medium"
+        onClose={handleCloseAddStudentModal}
+      >
         <AddUser
           {...AdminStudentActionData.adduserprops}
-          onSubmit={handleFormSubmit}
+          onSubmit={handleAddStudentFormSubmit}
         />
       </Modal>
     </div>

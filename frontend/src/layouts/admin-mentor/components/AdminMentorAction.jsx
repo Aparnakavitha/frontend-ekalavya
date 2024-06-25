@@ -3,8 +3,14 @@ import ActionComponent from "../../common/components/Action";
 import AddUser from "../../common/components/AddUser";
 import Modal from "../../common/components/Modal";
 import AdminMentorActionData from "./MentorData";
+import { addNewUser } from "../../../services/User";
 
-const AdminMentorAction = () => {
+const AdminMentorAction = ({
+  onSubmit,
+  onAddSuccess,
+  fetchData,
+  onSearchChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -15,22 +21,36 @@ const AdminMentorAction = () => {
     setIsOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form Submitted with data:", formData);
-    handleCloseModal();
-  };
+  const handleFormSubmit = async (formData) => {
+    try {
+      const userData = {
+        emailId: formData.emailId,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        collegeId: formData.collegeId || 1,
+        roleId: formData.roleId || 2,
+      };
 
-  const actionData = {
-    ...AdminMentorActionData,
-    buttonProps: {
-      ...AdminMentorActionData.buttonProps,
-      onClick: handleOpenModal,
-    },
+      await addNewUser(userData);
+      console.log("New user added successfully!");
+      onAddSuccess();
+      handleCloseModal();
+    } catch (error) {
+      console.error("Error adding new user:", error);
+    }
   };
 
   return (
     <div>
-      <ActionComponent {...actionData} />
+      <ActionComponent
+        {...AdminMentorActionData}
+        buttonProps={{
+          ...AdminMentorActionData.buttonProps,
+          onClick: handleOpenModal,
+        }}
+        searchbarProps={fetchData}
+        onSearchChange={onSearchChange}
+      />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddUser
           {...AdminMentorActionData.adduserprops}

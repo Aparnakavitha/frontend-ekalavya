@@ -6,6 +6,7 @@ import EventDescription from "../pages/EventDescription";
 import MentorContent from "../pages/mentor/Mentor";
 import AdminContent from "../pages/admin/Admin";
 import StudentContent from "../pages/student/Student";
+import NotFound from "../layouts/common/components/NotFound";
 
 const RouterComponent = () => {
   return (
@@ -14,18 +15,16 @@ const RouterComponent = () => {
         <Routes>
           <Route path="/explore/description" element={<EventDescription />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/*" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/mentor/*" element={<MentorContent />} />
           <Route path="/admin/*" element={<AdminContent />} />
+          <Route exact path="/student/*" element={<StudentContent />} />
           <Route
-            exact
-            path="/explore/description"
+            path="/explore/event-details/:eventId"
             element={<EventDescription />}
           />
-          <Route exact path="/explore" element={<Explore />} />
-          <Route exact path="/*" element={<Home />} />
-          <Route exact path="/mentor/*" element={<MentorContent />} />
-          <Route exact path="/student/*" element={<StudentContent />} />
+           <Route path="/student/*" element={<StudentContent />} />
+           <Route path="*" element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
     </div>

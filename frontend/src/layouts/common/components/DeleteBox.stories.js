@@ -10,7 +10,7 @@ const Template = (args) => <DeleteBox {...args} />;
 
 export const Deletebox = Template.bind({});
 Deletebox.args = {
-  title: "Confirmation Required",
+  title: "Login Required",
   message: "Are you sure you want to remove this skill?",
   buttonText: "Confirm",
 };

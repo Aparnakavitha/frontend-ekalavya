@@ -14,7 +14,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
     console.log("Form Data:", data);
     console.log("Start Date:", data.startDate);
     console.log("End Date:", data.endDate);
-    onSubmit(data); // Invoke the onSubmit callback
+    onSubmit(data); 
   };
 
   return (
@@ -50,7 +50,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
         )}
       />
       <Controller
-        name="university"
+        name="institution"
         control={control}
         render={({ field }) => (
           <Input
@@ -62,13 +62,13 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
         )}
       />
       <Controller
-        name="cgpa"
+        name="percentage"
         control={control}
         render={({ field }) => (
           <Input
             {...field}
             label="Percentage:"
-            placeholders={["cgpa"]}
+            placeholders={["percentage"]}
             size="normal"
           />
         )}

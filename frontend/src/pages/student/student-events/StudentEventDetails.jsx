@@ -1,86 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import StudentEventDescription from '../../../layouts/student-event-description/components/StudentEventDescription';
-import { fetchEvents, fetchUserById, getEnrolledEventIds, fetchAllEvents, fetchParticipantIdFromService } from '../../../services/eventServices';
+import { fetchEventsService } from '../../../services/Event'; // Import fetchAllEvents
 
 const StudentEventDetails = () => {
+  const [loading, setLoading] = useState(true);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
   const { eventId } = useParams();
   const location = useLocation();
   const { tab } = location.state || {};
-  
-  const [eventDetails, setEventDetails] = useState([]);
-  const [organizerName, setOrganizerName] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [participantId, setParticipantId] = useState(null);
 
-  // Function to fetch participant ID
-  const fetchParticipantId = async () => {
-    try {
-      const fetchedParticipantId = await fetchParticipantIdFromService(eventId);
-      return fetchedParticipantId;
-    } catch (error) {
-      console.error('Error fetching participant ID:', error);
-      return null; // Handle error gracefully
-    }
-  };
+  const participantId = sessionStorage.getItem("user_id");
 
   useEffect(() => {
-    const initializeComponent = async () => {
-      setLoading(true);
+    const fetchUpcomingEvents = async () => {
       try {
-        const fetchedParticipantId = await fetchParticipantId();
-        setParticipantId(fetchedParticipantId);
+        const eventData = await fetchEventsService(); // Use fetchAllEvents instead of fetchEvents
+        console.log('Fetched Event Data:', eventData);
+        setUpcomingEvents(eventData);
       } catch (error) {
-        console.error('Error initializing component:', error);
+        console.error('Error fetching upcoming events:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    initializeComponent();
+    fetchUpcomingEvents();
   }, []);
-
-  useEffect(() => {
-    const getEventAndOrganizerDetails = async () => {
-      if (!participantId) {
-        return;
-      }
-
-      setLoading(true);
-      try {
-        let eventData = [];
-
-        if (tab === "Upcoming") {
-          const enrolledEventIds = await getEnrolledEventIds(participantId);
-
-          if (enrolledEventIds.length === 0) {
-            eventData = await fetchAllEvents();
-          } else {
-            eventData = await fetchEvents({ eventIds: enrolledEventIds.join(",") });
-          }
-        } else {
-          eventData = await fetchEvents();
-        }
-
-        // Logging fetched event data
-        console.log("Fetched Event Data:", eventData);
-
-        setEventDetails(eventData);
-
-        if (eventData.length > 0 && eventData[0].hostId) {
-          const organizerData = await fetchUserById(eventData[0].hostId);
-          const organizerName = `${organizerData.firstName} ${organizerData.lastName}`;
-          setOrganizerName(organizerName);
-        }
-      } catch (error) {
-        console.error('Error fetching event or organizer details:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getEventAndOrganizerDetails();
-  }, [tab, participantId]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -88,18 +34,22 @@ const StudentEventDetails = () => {
 
   return (
     <div>
-      {eventDetails.length > 0 ? (
-        eventDetails.map(event => (
-          <StudentEventDescription
-            key={event.eventId}
-            eventDetails={event}
-            organizerName={organizerName}
-            tab={tab}
-          />
+      {upcomingEvents.length > 0 ? (
+        upcomingEvents.map(event => (
+          <div key={event.id}>
+            <h2>{event.title}</h2>
+            <p>{event.description}</p>
+          </div>
         ))
       ) : (
-        <div>No upcoming events available</div>
+        <div>No upcoming events found.</div>
       )}
+      <StudentEventDescription
+        upcomingEvents={upcomingEvents}
+        eventId={eventId}
+        participantId={participantId}
+        tab={tab}
+      />
     </div>
   );
 };

@@ -1,41 +1,17 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import UserProfileInfo from "../../common/components/UserProfileInfo";
 import Modal from "../../common/components/Modal";
 import BasicDetails from "../../common/components/BasicDetails";
 import profilepic from "../../../assets/DP.png";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
+import EducationalQualification from "../../common/components/EducationalQualification";
+import { addNewUser } from "../../../services/User";
 
-const StudentProfileInfo = (props) => {
-  const navprops = {
+const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
+  const navProps = {
     pageName: "Students List",
   };
-
-  const sample = {
-    role: "student",
-    profilepic: profilepic,
-    name: "Emma Watson",
-    college: "Christ University",
-    dob: "1990-01-01",
-    email: "emmawatson@gmail.com",
-    phoneNumber: 8755383632,
-    houseName: "Sample House",
-    city: "Sample City",
-    pinCode: "123456",
-    state: "Sample State",
-    country: "Sample Country",
-    hasDelete: false,
-    onClickEdit: () => {
-      handleOpenEditBasicDetails();
-    },
-  };
-
-  const aboutme = {
-    title: "About Me",
-    description:
-      "Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. My journey in [Your Field] has been fueled by a profound interest in [What Motivates You], and a commitment to achieving [Your Goals/Objectives]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. My journey in [Your Field] has been fueled by a profound interest in [What Motivates You], and a commitment to achieving [Your Goals/Objectives]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field]. Hey there! I'm Sam, a dedicated [Your Profession/Title] with [X] years of experience in [Your Industry/Field].",
-  };
-
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
 
   const handleOpenEditBasicDetails = () => {
@@ -47,34 +23,93 @@ const StudentProfileInfo = (props) => {
   };
 
   const handleFormSubmit = (formData) => {
-    console.log("Form Submitted with data:", formData);
+    const { addresses, ...formDataWithoutAddresses } = formData;
+  
+    // Check if any address fields have been updated
+    const addressesChanged = addresses.some(address => (
+      address.houseName ||
+      address.city ||
+      address.pinCode ||
+      address.state ||
+      address.country
+    ));
+  
+    // Prepare addresses with addressId included if they have changed
+    const updatedAddresses = addressesChanged ? addresses.map((address) => ({
+      ...address,
+      addressId: address.addressId || "", // If addressId is not present, use empty string
+    })) : [];
+  
+    onSubmit({
+      userId: studentsData.userId,
+      ...formDataWithoutAddresses,
+      addresses: updatedAddresses,
+    });
+  
     handleCloseEditBasicDetails();
   };
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Sfgsdh", formData);
+      const response = await addNewUser(formData);
+      console.log("Update response:", response);
+      handleCloseEditBasicDetails();
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
+  const homeAddress =
+  studentsData.addresses &&
+  studentsData.addresses.find((address) => address.addressType === "home");
+
 
   const editBox = {
     mainHeading: "Edit Basic Details",
     initialData: {
-      profilepic: sample.profilepic,
-      name: sample.name,
-      dob: sample.dob,
-      college: sample.college,
-      phoneNumber: sample.phoneNumber,
-      houseName: "Skyline villa",
-      city: "Bengaluru",
-      pinCode: "795432",
-      state: "Karnataka",
-      country: "India",
-      aboutMe: "Mumble mumble mumble",
+      dob:studentsData.dob,
+      phoneNo: studentsData.phoneNo,
+      addresses: [
+        {
+          addressId: homeAddress ? homeAddress.addressId : "",
+          houseName: homeAddress ? homeAddress.houseName : "",
+          city: homeAddress ? homeAddress.city : "",
+          pinCode: homeAddress ? homeAddress.pinCode : "",
+          state: homeAddress ? homeAddress.state : "",
+          country: homeAddress ? homeAddress.country : "",
+        },
+      ],
+      aboutMe: studentsData.aboutMe ,
     },
     isEdit: true,
   };
 
+  const aboutMeProps = {
+    title: "About Me",
+    description: studentsData.aboutMe ? studentsData.aboutMe: "No content available for this section.",
+  };
+
+  const Education = studentsData.qualifications;
+
+
   return (
     <div>
       <div className="padding">
-        <NavButton {...navprops} />
+        <NavButton {...navProps} />
       </div>
-      <UserProfileInfo {...sample} />
+      <UserProfileInfo
+        userId={studentsData.userId}
+        role={studentsData.role ? studentsData.role.roleName : ""}
+        profilepic={profilepic}
+        name={`${studentsData.firstName || "N/A"} ${studentsData.lastName || "N/A"}`}
+        college={studentsData.college ? studentsData.college.collegeName : ""}
+        dob={studentsData.dob}
+        email={studentsData.emailId}
+        phoneNo={studentsData.phoneNo}
+        addresses={studentsData.addresses}
+        hasDelete={false}
+        onClickEdit={handleOpenEditBasicDetails}
+      />
       <Modal
         isOpen={isEditDetailsOpen}
         widthVariant="medium"
@@ -82,8 +117,12 @@ const StudentProfileInfo = (props) => {
       >
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
-      <AboutMe {...aboutme}/>
-
+      <AboutMe {...aboutMeProps} />
+      <EducationalQualification
+        qualifications={Education}
+        userId={studentsData.userId}
+        onFormSubmit={handleFormSubmit2}
+      />
     </div>
   );
 };
