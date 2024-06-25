@@ -41,41 +41,14 @@ const MentorProfile = () => {
   const handleFormSubmit = async (formData) => {
     try {
       console.log("Form Submitted with data:", formData);
-
-      const { addresses, ...formDataWithoutAddresses } = formData;
-
-      const addressesChanged = addresses.some(
-        (address) =>
-          address.houseName ||
-          address.city ||
-          address.pinCode ||
-          address.state ||
-          address.country
-      );
-
-      const updatedAddresses = addressesChanged
-        ? addresses.map((address) => ({
-            ...address,
-            addressId: address.addressId || "",
-          }))
-        : [];
-
-      const response = await updateUserDetails({
-        userId: mentorData.userId,
-        ...formDataWithoutAddresses,
-        addresses: updatedAddresses,
-      });
-
+      const response = await updateUserDetails(formData);
       console.log("Update response:", response);
       fetchData();
     } catch (error) {
       console.error("Error updating user details:", error);
-      if (error.response && error.response.status === 404) {
-        navigate('/not-found'); // Navigate to NotFound page on 404 error
-      }
     }
   };
-
+  
   if (loading) {
     return <LoadingSpinner />;
   }
