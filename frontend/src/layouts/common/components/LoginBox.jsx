@@ -15,12 +15,12 @@ const LoginBox = ({ title, message, buttonText, onCancel }) => {
       </div>
       <div className={`${styles["deletebox-button"]}`}>
         <PrimaryButton
-          content="Cancel"
+          content="Close"
           variant="secondary"
           width="full"
           onClick={onCancel}
         />
-        <CustomGoogleLoginButton fullWidth />
+        <CustomGoogleLoginButton fullWidth/>
       </div>
     </div>
   );
