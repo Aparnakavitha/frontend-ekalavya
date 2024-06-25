@@ -209,7 +209,7 @@
 }
 
 .footer-img {
-  height: 35px;
+  height: 40px;
   width: 163px;
 }
 
@@ -382,13 +382,6 @@
 
 .basicdetails-form {
   width: 100%;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
-  background-blend-mode: lighten;
-  border-radius: 40px;
   color: var(--white);
   box-sizing: border-box;
   display: flex;
@@ -502,15 +495,8 @@
 /* ------------------------------- combinedskillform.css starts here --------------------------- */
 
 .combinedskillform-form {
-  width: 100%;  
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
-  background-blend-mode: lighten;
-  border-radius: 40px;
-  color: var(--white);
+  width: 100%;
+   color: var(--white);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -732,12 +718,6 @@
 
 .deletebox-box {
   max-width: 100%;
-  border-radius: 40px;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -894,14 +874,8 @@
 /* ------------------------------- addstudent.css starts here --------------------------------- */
 
 .addstudent-form {
-  width: 100%;  
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  width: 100%;
   background-blend-mode: lighten;
-  border-radius: 40px;
   color: var(--white);
   box-sizing: border-box;
   display: flex;
@@ -993,10 +967,7 @@
   height: fit-content;
   display: flex;
   flex-direction: column;
-  border-radius: 40px;
   padding: 50px;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
 }
 
 .adduser-field {
@@ -1096,7 +1067,14 @@
   position: relative;
   max-height: 90%;
   overflow-y: auto;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(20px);
+  background:
+  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
+  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
   outline: transparent;
+  transform: translateY(20px);
+  opacity: 0;
 }
 
 .modal-modalContent::-webkit-scrollbar {
@@ -1105,25 +1083,62 @@
 
 .modal-width-small {
   width: 549px;
+  border-radius: 40px;
 }
 
 .modal-width-medium {
   width: 704px;
+  border-radius: 40px;
+
 }
 
 .modal-width-large {
   width: 914px;
+  border-radius: 40px;
+
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+.opening {
+  animation: modalSlideIn 0.2s ease forwards, modalFadeIn 0.2s ease forwards;
+}
+
+.closing {
+  animation: modalSlideOut 0.2s ease forwards, modalFadeOut 0.2s ease forwards;
 }
 
 @media (max-width: 480px) {
   .modal-modalContent {
     padding: 0 15px;
+    border-radius: 30px;
   }
 }
 
 @media (min-width: 481px) and (max-width: 980px) {
   .modal-modalContent {
     padding: 0 35px;
+    border-radius: 30px;
   }
 }
 
@@ -1525,11 +1540,6 @@
 
 .addprofilelink-form {
   width: 100%;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
-  background-blend-mode: lighten;
-  border-radius: 40px;
   color: var(--white);
   box-sizing: border-box;
   display: flex;
@@ -1645,14 +1655,7 @@
 
 .qualification-form-form {
   width: 100%;
-  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
-  background-blend-mode: lighten;
   padding: 50px;
-  border-radius: 40px;
   color: var(--white);
   box-sizing: border-box;
   display: flex;
