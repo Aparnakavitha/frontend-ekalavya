@@ -31,12 +31,6 @@ const MentorEventsList = ({ events, handleDelete }) => {
     setIsDeleteOpen(false);
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form submitted with data:", formData);
-    handleCloseModal();
-    handleCloseDelete();
-  };
-
   const handleDeleteCancel = () => {
     console.log("Delete canceled");
     handleCloseDelete();
@@ -69,20 +63,7 @@ const MentorEventsList = ({ events, handleDelete }) => {
 
   const heading = {
     heading: "Events Handled",
-    textbuttonprops: {
-      icon: <AiOutlinePlus />,
-      text: "Add Events",
-      onClick: handleOpenModal,
-    },
-  };
-
-  const addevent = {
-    mainHeading: "Add Event",
-    options: [
-      { value: "abc", label: "ABC" },
-      { value: "xyz", label: "XYZ" },
-      { value: "pqr", label: "PQR" },
-    ],
+    textbuttonprops: {},
   };
 
   const eventcards = {
@@ -101,9 +82,7 @@ const MentorEventsList = ({ events, handleDelete }) => {
   return (
     <div>
       <ShowCards {...heading} />
-      <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
-        <Addevent {...addevent} onSubmit={handleFormSubmit} />
-      </Modal>
+
       {events.length === 0 ? (
         <div
           style={{
