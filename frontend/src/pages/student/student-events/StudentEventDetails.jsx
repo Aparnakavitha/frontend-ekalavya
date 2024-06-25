@@ -1,50 +1,64 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
-import StudentEventDescription from '../../../layouts/student-event-description/components/StudentEventDescription';
-import { fetchEventsService } from '../../../services/Event';
-import { getUserDetails } from '../../../services/User';
- 
+import React, { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import StudentEventDescription from "../../../layouts/student-event-description/components/StudentEventDescription";
+import { fetchEventsService } from "../../../services/Event";
+import { getUserDetails } from "../../../services/User";
+import { enrollParticipantService } from "../../../services/Event";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+
 const StudentEventDetails = () => {
   const { eventId } = useParams();
   const location = useLocation();
-  const { tab } = location.state || {}; // Extract tab from location.state
-  console.log({ tab });
+  const [tab, setTab] = useState(location.state?.tab || "");
   const [eventDetails, setEventDetails] = useState(null);
-  const [organizerName, setOrganizerName] = useState('');
+  const [organizerName, setOrganizerName] = useState("");
   const [loading, setLoading] = useState(true);
- 
-  // Mock participantId for demonstration, replace with actual logic to fetch participantId
-  const participantId = sessionStorage.getItem("user_id");; // Replace this with actual logic
- 
+
+  const participantId = sessionStorage.getItem("user_id");
+
   useEffect(() => {
     const getEventAndOrganizerDetails = async () => {
       try {
         const eventData = await fetchEventsService({ eventId });
-        const eventDetails = eventData[0]; // Assuming the response is an array with one event
-        console.log('Event Details:', eventDetails);
+        const eventDetails = eventData[0];
+        console.log("Event Details:", eventDetails);
         setEventDetails(eventDetails);
- 
-        // Fetch organizer details using the hostId from eventDetails
+
         if (eventDetails.hostId) {
-          const organizerData = await getUserDetails({ userId: eventDetails.hostId });
-          console.log('Organizer Data:', organizerData.responseData[0].firstName);
+          const organizerData = await getUserDetails({
+            userId: eventDetails.hostId,
+          });
+          console.log(
+            "Organizer Data:",
+            organizerData.responseData[0].firstName
+          );
           const organizerName = `${organizerData.responseData[0].firstName} ${organizerData.responseData[0].lastName}`;
           setOrganizerName(organizerName);
         }
+
+        const enrollmentResponse = await enrollParticipantService(
+          eventId,
+          participantId
+        );
+        if (enrollmentResponse) {
+          setTab("Enrolled");
+        } else {
+          setTab("Upcoming");
+        }
       } catch (error) {
-        console.error('Error fetching event or organizer details:', error);
+        console.error("Error fetching event or organizer details:", error);
       } finally {
         setLoading(false);
       }
     };
- 
+
     getEventAndOrganizerDetails();
-  }, [eventId]);
- 
+  }, [eventId, participantId]);
+
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
- 
+
   return (
     <div>
       <StudentEventDescription
@@ -52,11 +66,10 @@ const StudentEventDetails = () => {
         participantId={participantId}
         organizerName={organizerName}
         eventId={eventId}
-        tab={tab} // Pass the tab state to StudentEventDescription
+        tab={tab}
       />
     </div>
   );
 };
- 
+
 export default StudentEventDetails;
- 

@@ -6,10 +6,12 @@ import EducationalQualification from "../../../layouts/common/components/Educati
 import profilepic from "../../../assets/DP.png";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { getUserDetails, updateUserDetails } from "../../../services/User";
+import { useNavigate } from "react-router-dom";
 
 const MentorProfile = () => {
   const [mentorData, setMentorData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   const userId = sessionStorage.getItem("user_id");
 
@@ -21,22 +23,56 @@ const MentorProfile = () => {
     try {
       const params = { userId };
       const data = await getUserDetails(params);
+      if (data.responseData.length === 0) {
+        navigate('/notFound'); // Navigate to NotFound page if mentor data is not found
+        return;
+      }
       setMentorData(data.responseData[0]);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching mentor data:", error);
       setLoading(false);
+      if (error.response && error.response.status === 404) {
+        navigate('/notFound'); // Navigate to NotFound page on 404 error
+      }
     }
   };
 
   const handleFormSubmit = async (formData) => {
     try {
       console.log("Form Submitted with data:", formData);
-      const response = await updateUserDetails(formData);
+
+      const { addresses, ...formDataWithoutAddresses } = formData;
+
+      const addressesChanged = addresses.some(
+        (address) =>
+          address.houseName ||
+          address.city ||
+          address.pinCode ||
+          address.state ||
+          address.country
+      );
+
+      const updatedAddresses = addressesChanged
+        ? addresses.map((address) => ({
+            ...address,
+            addressId: address.addressId || "",
+          }))
+        : [];
+
+      const response = await updateUserDetails({
+        userId: mentorData.userId,
+        ...formDataWithoutAddresses,
+        addresses: updatedAddresses,
+      });
+
       console.log("Update response:", response);
       fetchData();
     } catch (error) {
       console.error("Error updating user details:", error);
+      if (error.response && error.response.status === 404) {
+        navigate('/not-found'); // Navigate to NotFound page on 404 error
+      }
     }
   };
 
@@ -51,8 +87,6 @@ const MentorProfile = () => {
   const greet = {
     welcome: "Welcome Back",
     name: `${mentorData.firstName}`,
-    info: "Here is the information about",
-    profile: "Students",
     showButtons: false,
   };
 

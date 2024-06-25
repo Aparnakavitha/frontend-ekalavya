@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Greeting } from "../../../layouts/common";
 import AboutMe from "../../../layouts/common/components/AboutMe";
 import Upcoming from "../../../layouts/student-profile/components/Upcoming";
 import StudentProfileInfo from "../../../layouts/student-profile/components/StudentProfileInfo";
@@ -23,46 +24,46 @@ const StudentProfile = () => {
       console.log(eventdata);
       setEventData(eventdata);
 
-      // // Assuming data.responseData is an array and we want the first element
       if (data.responseData[0]) {
         setStudentData(data.responseData[0]);
       } else {
         console.error("No student data found");
-        // Handle case where no student data is found
       }
       console.log("Student data:", data.responseData);
     } catch (error) {
       console.error("Error fetching student data:", error);
-      // Handle error state or display a message to the user
     }
   };
   useEffect(() => {
     fetchData();
-  }, []); // Empty dependency array ensures useEffect runs once on component mount
+  }, []);
   const handleFormSubmit = async (formData) => {
     try {
       console.log("Form Submitted with data:", formData);
       const response = await updateUserDetails(formData);
       console.log("Update response:", response);
-      fetchData(); // Refetch data after update
+      fetchData();
     } catch (error) {
       console.error("Error updating user details:", error);
-      // Handle error state or display a message to the user
     }
   };
 
   if (!studentData) {
-    return <LoadingSpinner />; // Display a loading spinner while data is being fetched
+    return <LoadingSpinner />;
   }
   const transformEventData = (events) => {
-    return events.map(event => ({
-      eventId:event.eventId,
+    return events.map((event) => ({
+      eventId: event.eventId,
       main: event.eventTitle,
       sub: event.location,
-      start: new Date(`1970-01-01T${event.startTime}`).toLocaleTimeString([], { hour: '2-digit', hour12: true }).toLowerCase(),
-      end: new Date(`1970-01-01T${event.endTime}`).toLocaleTimeString([], { hour: '2-digit', hour12: true }).toLowerCase(),
+      start: new Date(`1970-01-01T${event.startTime}`)
+        .toLocaleTimeString([], { hour: "2-digit", hour12: true })
+        .toLowerCase(),
+      end: new Date(`1970-01-01T${event.endTime}`)
+        .toLocaleTimeString([], { hour: "2-digit", hour12: true })
+        .toLowerCase(),
       status: "upcoming",
-      date: new Date(event.startDate).getDate(), // Extracting the day from startDate
+      date: new Date(event.startDate).getDate(),
     }));
   };
   const transformedEventData = eventData ? transformEventData(eventData) : [];
@@ -103,8 +104,15 @@ const StudentProfile = () => {
 
   const Education = studentData.qualifications || [];
 
+  const greet = {
+    welcome: "Welcome Back",
+    name: `${studentData.firstName}`,
+    showButtons: false,
+  };
+
   return (
     <div>
+      <Greeting {...greet} />
       <StudentProfileInfo
         profileData={profileData}
         EditableData={EditableData}
@@ -116,7 +124,7 @@ const StudentProfile = () => {
         onFormSubmit={handleFormSubmit}
       />
       <AboutMe {...about} />
-      <Upcoming events={transformedEventData}/>
+      <Upcoming events={transformedEventData} />
     </div>
   );
 };

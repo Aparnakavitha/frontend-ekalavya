@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import EventAction from "../layouts/home/components/EventAction";
 import CardLayout from "../layouts/home/components/CardLayout";
 import { fetchEventsService } from "../services/Event";
+import LoadingSpinner from "../components/loadingspinner/LoadingSpinner";
 
 const EventsExplore = () => {
   const navigate = useNavigate();
@@ -49,8 +50,6 @@ const EventsExplore = () => {
       ...prevParams,
       ...filters,
     }));
-    console.log("filterrrr",params);
-
   };
 
   const handleSearchChange = (value) => {
@@ -68,12 +67,21 @@ const EventsExplore = () => {
         searchPlaceholder="Search events"
       />
       {loading ? (
-        <p>Loading events...</p>
+        <LoadingSpinner />
       ) : (
-        <CardLayout events={events} onEventClick={handleClick} />
+        <>
+          {events.length === 0 ? (
+            <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+            No events available
+          </p>
+          ) : (
+            <CardLayout events={events} onEventClick={handleClick} />
+          )}
+        </>
       )}
     </div>
   );
 };
 
 export default EventsExplore;
+

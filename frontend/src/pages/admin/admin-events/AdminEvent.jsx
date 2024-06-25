@@ -21,7 +21,7 @@ const AdminEvent = () => {
     welcome: "Welcome Back",
     name: loggedUserFirstName || "",
     info: "Here is the information about",
-    profile: "Mentors",
+    profile: "Events",
     showButtons: false,
   };
 
@@ -78,7 +78,6 @@ const AdminEvent = () => {
 
   const formSubmit = async (data) => {
     data.contact = "7558845220";
-    data.hostId = "3";
     try {
       const response = await addEventService(data);
       console.log("Response from API:", response);
@@ -169,7 +168,7 @@ const AdminEvent = () => {
         <DataView CardComponent={PrimaryCard} {...primaryCardData} />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No events available
+          No events to display
         </p>
       )}
     </div>
