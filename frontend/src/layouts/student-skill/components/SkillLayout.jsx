@@ -21,7 +21,7 @@ const Layout = () => {
     index: null,
   });
   const [options, setOptions] = useState([]);
-  const userId = 1;
+  const userId =sessionStorage.getItem("user_id");
 
   useEffect(() => {
     fetchSkills();
@@ -39,6 +39,7 @@ const Layout = () => {
   const fetchUserSkills = async () => {
     try {
       const skills = await getSkillsForUser(userId);
+      console.log(skills)
       setUserSkills(skills);
       console.log("Fetched user skills:", skills);
     } catch (error) {
@@ -50,7 +51,7 @@ const Layout = () => {
     try {
       const skillsResponse = await SkillService();
       setOptions(
-        skillsResponse.map((skill) => ({
+        skillsResponse.skills.map((skill) => ({
           value: skill.id,
           label:
             skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1),
