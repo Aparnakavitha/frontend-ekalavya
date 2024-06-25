@@ -41,7 +41,12 @@ const StudentEventDetails = () => {
           participantId
         );
         if (enrollmentResponse) {
+          if(eventDetails.completed==1)
+          {
+            setTab("Completed");
+          }else{
           setTab("Enrolled");
+          }
         } else {
           setTab("Upcoming");
         }

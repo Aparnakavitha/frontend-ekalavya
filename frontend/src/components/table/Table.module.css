@@ -51,6 +51,10 @@
   width: 100%;
 }
 
+.noData{
+  border-bottom: 8px solid var(--neutral500);
+}
+
 @media screen and (min-width: 768px) and (max-width: 992px) {
   .table-container th,
   .table-container td {
