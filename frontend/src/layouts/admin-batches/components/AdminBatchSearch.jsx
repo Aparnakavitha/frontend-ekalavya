@@ -25,7 +25,7 @@ const AdminBatchSearch = ({
           roleId: 3,
         };
        
-        const data = await getUserDetails();
+        const data = await getUserDetails(filterParams);
         console.log(data);
         const userIds = data.responseData.map((user) => ({
           value: user.userId,
@@ -82,13 +82,14 @@ const AdminBatchSearch = ({
       placeHolder: "Student ID",
       buttonTitle: "Add",
       options:userIdOptions,
+      isSelect : true,
     },
     editprops: {
       mainHeading: "Edit Batch Name",
       labelTitle: "Batch Name",
       placeHolder: batchName,
       buttonTitle: "Save",
-      initialData: { inputData: batchName },
+      initialData: { },
     },
     deleteprops: {
       title: "Confirmation Required",
