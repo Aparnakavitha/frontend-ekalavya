@@ -21,3 +21,8 @@
   color: var(--white);
   cursor: pointer;
 }
+
+.pageName:hover {
+  color: var(--primary-color);
+  cursor: pointer;
+}
