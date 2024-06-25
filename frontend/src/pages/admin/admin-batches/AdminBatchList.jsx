@@ -48,7 +48,7 @@ const AdminBatchList = () => {
       }
     } catch (error) {
       console.error("Error fetching data:", error);
-      setError("Error loading batches. Please try again later.");
+      setError("No batches available");
     } finally {
       setLoading(false);
     }
