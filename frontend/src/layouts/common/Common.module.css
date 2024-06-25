@@ -1127,12 +1127,14 @@
 @media (max-width: 480px) {
   .modal-modalContent {
     padding: 0 15px;
+    border-radius: 30px;
   }
 }
 
 @media (min-width: 481px) and (max-width: 980px) {
   .modal-modalContent {
     padding: 0 35px;
+    border-radius: 30px;
   }
 }
 
