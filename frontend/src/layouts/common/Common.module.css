@@ -1071,8 +1071,6 @@
 
 /* -------------------------------- Modal.css starts here --------------------------------- */
 
-/* Common.module.css */
-
 .modal-modalOverlay {
   position: fixed;
   top: 0;
@@ -1085,7 +1083,6 @@
   align-items: center;
   z-index: 2000;
   overflow-y: auto;
-  animation: modalFadeIn 0.2s ease forwards;
 }
 
 .modal-modalContent {
@@ -1095,11 +1092,6 @@
   outline: transparent;
   transform: translateY(20px);
   opacity: 0;
-  animation: modalSlideIn 0.2s ease forwards, modalFadeIn 0.2s ease forwards;
-}
-
-.modal-modalContent.closing {
-  animation: modalSlideOut 0.2s ease forwards, modalFadeOut 0.2s ease forwards;
 }
 
 .modal-width-small {
@@ -1125,15 +1117,6 @@
   }
 }
 
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 @keyframes modalSlideOut {
   from {
     transform: translateY(0);
@@ -1145,13 +1128,12 @@
   }
 }
 
-@keyframes modalFadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+.opening {
+  animation: modalSlideIn 0.2s ease forwards, modalFadeIn 0.2s ease forwards;
+}
+
+.closing {
+  animation: modalSlideOut 0.2s ease forwards, modalFadeOut 0.2s ease forwards;
 }
 
 @media (max-width: 480px) {
@@ -1165,7 +1147,6 @@
     padding: 0 35px;
   }
 }
-
 
 /* -------------------------------- Modal.css ends here ----------------------------------- */
 
