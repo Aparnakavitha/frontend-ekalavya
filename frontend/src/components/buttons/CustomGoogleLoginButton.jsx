@@ -61,22 +61,35 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     }
   };
 
-  const handleLoginNavigation = () => {
-    const roleId = getRoleIdFromSessionStorage();
-    console.log("Stored Role ID:", roleId);
-
-    if (roleId !== null) {
-      navigateBasedOnRole(roleId);
-    } else {
-      console.error("Role ID not found in sessionStorage");
+  const handleLoginNavigation = async () => {
+    try {
+      const roleId = await getRoleIdFromSessionStorage();
+      console.log("Stored Role ID:", roleId);
+  
+      if (roleId !== null) {
+        navigateBasedOnRole(roleId);
+      } else {
+        console.error("Role ID not found in sessionStorage");
+      }
+    } catch (error) {
+      console.error("Error getting Role ID:", error);
     }
   };
-
-  const getRoleIdFromSessionStorage = () => {
-    const roleId = parseInt(sessionStorage.getItem("role"));
-    return isNaN(roleId) ? null : roleId;
+  
+  const getRoleIdFromSessionStorage = async () => {
+    return new Promise((resolve, reject) => {
+      try {
+        const roleId = parseInt(sessionStorage.getItem("role"));
+        if (isNaN(roleId)) {
+          throw new Error("Invalid role ID stored in sessionStorage");
+        }
+        resolve(roleId);
+      } catch (error) {
+        reject(error);
+      }
+    });
   };
-
+  
   const navigateBasedOnRole = (roleId) => {
     switch (roleId) {
       case 3:
@@ -93,7 +106,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
         break;
     }
   };
-
+  
 
   const login = useGoogleLogin({
     clientId,
