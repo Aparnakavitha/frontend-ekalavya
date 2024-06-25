@@ -96,3 +96,10 @@ body {
   justify-content: space-between;
   min-height: 100vh;
 }
+
+.nodata{
+ text-align: left;
+ color: var(--neutral600);
+ margin-top: 10px;
+ font-size: 15px;
+}
