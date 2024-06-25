@@ -9,13 +9,7 @@
   background-color: transparent;
   color: var(--white);
   gap: 17px;
-  padding: 50px;
-  border-radius: 40px;  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
- 
+  padding: 50px;  
 }
 
 .addevent-eventtitlediv {
@@ -74,7 +68,6 @@
   .addevent-form {
     width: 100%;
     padding: 30px;
-    border-radius: 30px;
   }
 
   .addevent-datetimecontainer {
@@ -100,7 +93,6 @@
   .addevent-form {
     width: 100%;
     padding: 30px;
-    border-radius: 30px;
   }
 
   .addevent-datetimecontainer {
