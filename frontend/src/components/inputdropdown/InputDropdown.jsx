@@ -13,6 +13,11 @@ function InputDropdown({
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
+  // Ensure value is initialized properly in case it's undefined
+  const selectedValue = isMulti
+    ? (value || []).map((val) => options.find((option) => option.value === val))
+    : options.find((option) => option.value === value) || null;
+
   const getControlStyles = (provided) => ({
     ...provided,
     minHeight: "57px",
@@ -75,11 +80,7 @@ function InputDropdown({
     <div>
       {label && <label className={styles.label}>{label}</label>}
       <Select
-        value={
-          isMulti
-            ? options.filter((option) => value.includes(option.value))
-            : options.find((option) => option.value === value) || null
-        }
+        value={selectedValue}
         onChange={(selectedOption) =>
           isMulti
             ? onChange(selectedOption.map((option) => option.value))
