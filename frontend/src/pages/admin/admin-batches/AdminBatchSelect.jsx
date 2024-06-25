@@ -9,7 +9,7 @@ import image from "../../../assets/DP.png";
 
 const greeting = {
   welcome: "Welcome Back",
-  name: "John", // Replace with actual logged-in user's name
+  name: sessionStorage.getItem("firstName"), 
   info: "Here is the information about",
   profile: "Batches",
   showButtons: false,
