@@ -2,6 +2,16 @@
 
 .addevent-form {
   width: 100%;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(20px);
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
+  background-blend-mode: lighten;
+  border-radius: 40px;
   color: var(--white);
   box-sizing: border-box;
   display: flex;
@@ -55,6 +65,7 @@
 @media (max-width: 767px) {
   .addevent-form {
     padding: 30px;
+    border-radius: 30px;
   }
 }
 
@@ -66,7 +77,10 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  border-radius: 40px;
   padding: 50px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
 }
 
 .addcollege-formgroup {
@@ -90,6 +104,7 @@
 @media (max-width: 768px) {
   .addcollege-container {
     padding: 30px;
+    border-radius: 30px;
     width: 100%;
     height: fit-content;
   }
@@ -129,7 +144,11 @@
   max-height: 100%;
   display: flex;
   flex-direction: column;
+
   padding: 50px;
+  border-radius: 40px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
   overflow: scroll;
 }
 
@@ -165,6 +184,7 @@
 @media (max-width: 768px) {
   .collegelist-container {
     padding: 30px;
+    border-radius: 30px;
     width: 100%;
     height: fit-content;
   }
@@ -177,6 +197,7 @@
 @media (max-width: 480px) {
   .collegelist-container {
     padding: 30px;
+    border-radius: 30px;
     width: 100%;
     height: fit-content;
   }
