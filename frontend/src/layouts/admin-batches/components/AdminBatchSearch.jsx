@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import BatchSearch from "../../common/components/BatchSearch";
 import Modal from "../../common/components/Modal";
 import UpdateSingleField from "../../common/components/UpdateSingleField";
 import DeleteBox from "../../common/components/DeleteBox";
 import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
+import { getUserDetails } from "../../../services/User";
 
 const AdminBatchSearch = ({
   batchDelete,
@@ -15,6 +16,31 @@ const AdminBatchSearch = ({
   const [isBatchOperationsOpen, setIsBatchOperationsOpen] = useState(false);
   const [isUpdateSingleFieldOpen, setIsUpdateSingleFieldOpen] = useState(false);
   const [isDeleteBoxOpen, setIsDeleteBoxOpen] = useState(false);
+  const [userIdOptions, setUserIdOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async (params) => {
+      try {
+        var filterParams = {
+          roleId: 3,
+        };
+       
+        const data = await getUserDetails();
+        console.log(data);
+        const userIds = data.responseData.map((user) => ({
+          value: user.userId,
+          label: user.userId,
+        }));
+        setUserIdOptions(userIds);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    // Example call to fetchData with initial params
+    fetchData(); // Adjust params as needed
+
+  }, []);
 
   const AdminBatchSearchData = {
     navbuttonProps: {
@@ -55,6 +81,7 @@ const AdminBatchSearch = ({
       labelTitle: "Add student ID",
       placeHolder: "Student ID",
       buttonTitle: "Add",
+      options:userIdOptions,
     },
     editprops: {
       mainHeading: "Edit Batch Name",
