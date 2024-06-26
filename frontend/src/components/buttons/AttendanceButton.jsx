@@ -9,7 +9,12 @@ const AttendanceButton = (props) => {
   }, [props.IsPresent]);
 
   const handleClick = () => {
-    setIsPresent(!isPresent);
+    if (isPresent) {
+      console.log("Already Present");
+      return;
+    }
+
+    setIsPresent(true);
     props.onClick();
   };
 
@@ -17,7 +22,7 @@ const AttendanceButton = (props) => {
 
   return (
     <div>
-      <div className={`${styles.button} ${buttonClass}`} onClick={handleClick}>
+      <div className={`${styles.button} ${buttonClass}`} onClick={handleClick} style={{ cursor: isPresent ? "not-allowed" : "pointer" }}>
         {props.content}
       </div>
     </div>

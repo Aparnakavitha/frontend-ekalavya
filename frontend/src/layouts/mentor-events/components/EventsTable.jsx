@@ -2,65 +2,75 @@ import React, { useState, useEffect } from "react";
 import styles from "../MentorEvents.module.css";
 import Table from "../../../components/table/Table";
 import AttendanceButton from "../../../components/buttons/AttendanceButton";
- 
+
 const EventsTable = (props) => {
   const { data, headings, onAttendanceUpdate } = props;
- 
+
   const [attendance, setAttendance] = useState(
     data.reduce((acc, [id, , , attendance]) => {
       acc[id] = attendance;
       return acc;
     }, {})
   );
- 
+
   useEffect(() => {
-   
     const newAttendance = data.reduce((acc, [id, , , newAttendance]) => {
       acc[id] = newAttendance;
       return acc;
     }, {});
- 
+
     setAttendance(newAttendance);
   }, [data]);
- 
+
   const handleAttendanceClick = (participantId, isPresent) => {
+    if (attendance[participantId] === isPresent) {
+      console.log(`Already ${isPresent ? "Present" : "Absent"}`);
+      return;
+    }
+
     const updatedAttendance = {
       ...attendance,
       [participantId]: isPresent,
     };
- 
+
     setAttendance(updatedAttendance);
- 
+
     const requestBody = {
       participantId: participantId,
       attendance: isPresent,
     };
- 
+
     if (onAttendanceUpdate) {
       onAttendanceUpdate(requestBody);
     }
   };
- 
+
   const handleGlobalAttendanceClick = (isPresent) => {
+    if ((isPresent && Object.values(attendance).every(value => value === true)) ||
+        (!isPresent && Object.values(attendance).every(value => value === false))) {
+      console.log(`Already all ${isPresent ? "Present" : "Absent"}`);
+      return;
+    }
+
     const newAttendance = {};
     for (const id in attendance) {
       newAttendance[id] = isPresent;
     }
- 
+
     setAttendance(newAttendance);
- 
+
     const requestBody = {
       attendance: isPresent,
     };
- 
+
     if (onAttendanceUpdate) {
       onAttendanceUpdate(requestBody);
     }
   };
- 
+
   const allPresent = Object.values(attendance).every((value) => value === true);
   const allAbsent = Object.values(attendance).every((value) => value === false);
- 
+
   const tableData = data.map(([participantId, name, userName]) => [
     participantId,
     name,
@@ -80,14 +90,14 @@ const EventsTable = (props) => {
       />
     </div>,
   ]);
- 
+
   const globalAttendanceButtons = (
     <div className={styles["global-attendance-buttons-container"]}>
       <span className={styles["select-all-text"]}>Select All:</span>
       <div className={styles["global-attendance-buttons"]}>
         <AttendanceButton
           content="Present"
-          IsPresent={allPresent && data.length > 0} 
+          IsPresent={allPresent && data.length > 0}
           onClick={() => handleGlobalAttendanceClick(true)}
         />
         <AttendanceButton
@@ -98,7 +108,7 @@ const EventsTable = (props) => {
       </div>
     </div>
   );
- 
+
   return (
     <div className={`${styles["eventstable-container"]} padding padding-bottom`}>
       <div className={styles["eventstable-topleft"]}>
@@ -110,14 +120,11 @@ const EventsTable = (props) => {
           <Table
             data={tableData}
             headings={headings.slice(0, 3).concat("Status")}
-            noData="No participants available"
           />
         </div>
       </div>
     </div>
   );
 };
- 
+
 export default EventsTable;
- 
- 
