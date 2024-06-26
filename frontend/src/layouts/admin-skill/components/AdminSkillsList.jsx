@@ -126,7 +126,7 @@ const AdminSkillsList = ({ handleClick }) => {
             labelTitle="Skill Name"
             placeHolder="Skill Name"
             buttonTitle="Save"
-            initialData={{ inputData: selectedSkill.skillName }}
+            initialData={selectedSkill.skillName}
             onSubmit={handleFormSubmit}
             isEdit={true}
             message="You are updating :"
