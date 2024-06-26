@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import Card from "../../../components/cards/SkillCard";
 import { GoPlus } from "react-icons/go";
@@ -49,8 +50,9 @@ const Layout = () => {
   const fetchSkills = async () => {
     try {
       const skillsResponse = await SkillService();
+      console.log("Skill respose", skillsResponse);
       setOptions(
-        skillsResponse.skills.map((skill) => ({
+        skillsResponse.map((skill) => ({
           value: skill.id,
           label:
             skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1),
@@ -77,11 +79,11 @@ const Layout = () => {
       const newSkillResponse = await Userskillpost(postData);
  
       const newSkill = {
-        skill_name:
+        skillName:
           options.find((opt) => opt.value === skill)?.originalName ||
           "undefined",
-        skill_level: 1,
-        skill_id: newSkillResponse.responseData[0].skill_id,
+        skillLevel: 1,
+        id: newSkillResponse.responseData[0].id,
         ...newSkillResponse,
       };
  
@@ -97,12 +99,17 @@ const Layout = () => {
   const handleFormSubmit = (formData) => {
     console.log("Here's the form data:", formData);
     handleAddSkill(formData);
-    
   };
  
   const handleDeleteSkill = async () => {
     const skillToDelete = userSkills[deleteModal.index];
-    console.log("Skill id for skill to delete: ",userSkills[deleteModal.index].id,userSkills,"Skill to delete from user skills",userSkills[deleteModal.index]);
+    console.log(
+      "Skill id for skill to delete: ",
+      userSkills[deleteModal.index].id,
+      userSkills,
+      "Skill to delete from user skills",
+      userSkills[deleteModal.index]
+    );
     if (!skillToDelete) {
       console.error("Skill to delete not found");
       return;
@@ -186,3 +193,4 @@ const Layout = () => {
 };
  
 export default Layout;
+ 
