@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import "./CustomGoogleLoginButton.css";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const clientId =
   "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com"; // Replace with your actual Google Client ID
@@ -20,6 +22,9 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     try {
       const userInfo = await fetchUserInfo(accessToken);
       await handleUserLogin(userInfo);
+
+      // Set session expiration timeout
+      setSessionTimeout();
     } catch (error) {
       console.error("Error during login process:", error);
     }
@@ -65,7 +70,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     try {
       const roleId = await getRoleIdFromSessionStorage();
       console.log("Stored Role ID:", roleId);
-  
+
       if (roleId !== null) {
         navigateBasedOnRole(roleId);
       } else {
@@ -75,7 +80,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
       console.error("Error getting Role ID:", error);
     }
   };
-  
+
   const getRoleIdFromSessionStorage = async () => {
     return new Promise((resolve, reject) => {
       try {
@@ -89,7 +94,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
       }
     });
   };
-  
+
   const navigateBasedOnRole = (roleId) => {
     switch (roleId) {
       case 3:
@@ -106,21 +111,48 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
         break;
     }
   };
-  
+
+  const setSessionTimeout = () => {
+    setTimeout(
+      () => {
+        clearSession();
+        navigate(`/`);
+        toast.info("Session expired. Please login again.");
+      },
+      12 * 60 * 60 * 1000
+    ); 
+  };
+
+  const clearSession = () => {
+    sessionStorage.clear();
+  };
 
   const login = useGoogleLogin({
     clientId,
     onSuccess: handleLoginSuccess,
-    onError: (error) => console.error("Login Failed:", error),
+    onError: (error) => {
+      console.error("Login Failed:", error);
+      toast.error("Login failed. Please try again.");
+    },
   });
 
   return (
-    <button
-      onClick={() => login()}
-      className={`custom-google-login-button ${fullWidth ? "full-width" : ""}`}
-    >
-      Login
-    </button>
+    <>
+      <button
+        onClick={() => login()}
+        className={`custom-google-login-button ${fullWidth ? "full-width" : ""}`}
+      >
+        Login
+      </button>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
+    </>
   );
 };
 

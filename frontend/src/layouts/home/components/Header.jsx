@@ -49,7 +49,7 @@ const Header = ({
 
   const loginBoxProps = {
     title: "Log In with Google",
-    buttonText: "Log In with Google",
+    buttonText: "LogIn",
     onCancel: handleCloseLoginModal,
   };
 
