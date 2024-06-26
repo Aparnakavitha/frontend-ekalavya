@@ -152,18 +152,6 @@ const AdminMentorDetails = () => {
     setIsEditEducationOpen(true);
   };
 
-  const handleCloseEditEducation = () => setIsEditEducationOpen(false);
-
-  const handleEducationFormSubmit = async (formData) => {
-    try {
-      console.log("Form Data", formData);
-      // Add your logic to update educational qualifications
-      handleCloseEditEducation();
-    } catch (error) {
-      console.error("Error updating educational qualifications:", error);
-    }
-  };
-
   return (
     <div>
       <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} />
@@ -173,17 +161,6 @@ const AdminMentorDetails = () => {
         onClose={handleCloseEditBasicDetails}
       >
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
-      </Modal>
-      <Modal
-        isOpen={isEditEducationOpen}
-        widthVariant="medium"
-        onClose={handleCloseEditEducation}
-      >
-        <EducationalQualification
-          qualifications={educationData}
-          userId={mentorData.userId}
-          onFormSubmit={handleEducationFormSubmit}
-        />
       </Modal>
       <EducationalQualification
         qualifications={Education}

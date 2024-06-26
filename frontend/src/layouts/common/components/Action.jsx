@@ -16,6 +16,7 @@ const ActionComponent = ({
   searchWidth = "full",
   onFilterChange,
   searchPlaceholder,
+  combinedFilter = true,
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [filterStates, setFilterStates] = useState(
@@ -37,6 +38,33 @@ const ActionComponent = ({
       selectedOption: option,
       selectedOptionValue: filterProps[index].Value[arrayIndex],
     };
+
+    if (!combinedFilter) {
+      if (filterProps[index].Heading === "College") {
+        const batchIndex = filterProps.findIndex(
+          (filter) => filter.Heading === "Batch"
+        );
+        if (batchIndex !== -1) {
+          newFilterStates[batchIndex] = {
+            heading: filterProps[batchIndex].Heading,
+            selectedOption: filterProps[batchIndex].defaultOption || "",
+            selectedOptionValue: filterProps[batchIndex].defaultValue || "",
+          };
+        }
+      } else if (filterProps[index].Heading === "Batch") {
+        const collegeIndex = filterProps.findIndex(
+          (filter) => filter.Heading === "College"
+        );
+        if (collegeIndex !== -1) {
+          newFilterStates[collegeIndex] = {
+            heading: filterProps[collegeIndex].Heading,
+            selectedOption: filterProps[collegeIndex].defaultOption || "",
+            selectedOptionValue: filterProps[collegeIndex].defaultValue || "",
+          };
+        }
+      }
+    }
+
     setFilterStates(newFilterStates);
     const filtersObject = {};
     newFilterStates.forEach((filter) => {
@@ -127,4 +155,3 @@ const ActionComponent = ({
 };
 
 export default ActionComponent;
-

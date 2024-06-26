@@ -5,7 +5,7 @@ import TextButton from "../../../components/buttons/TextButton";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { IoMdMail } from "react-icons/io";
 import { FaPhone, FaGithub, FaLinkedin } from "react-icons/fa";
- 
+
 const UserProfileInfo = (props) => {
   const {
     role,
@@ -22,10 +22,10 @@ const UserProfileInfo = (props) => {
     hasDelete,
     onClickEdit,
     onClickDelete,
-    addresses, 
+    addresses,
     ...rest
   } = props;
- 
+
   return (
     <div className={`${styles["userprofile-main"]} padding-top padding`}>
       <div className={`${styles["userprofile-user-details"]}`}>
@@ -50,7 +50,7 @@ const UserProfileInfo = (props) => {
             )}
           </div>
         </div>
- 
+
         <div className={`${styles["userprofile-details-section"]}`}>
           <div className={`${styles["userprofile-basic-info"]}`}>
             <div className={`${styles["userprofile-profile-picture"]}`}>
@@ -70,7 +70,7 @@ const UserProfileInfo = (props) => {
               <h4 className={`${styles["userprofile-dob"]}`}>DOB: {dob}</h4>
             </div>
           </div>
- 
+
           <div className={`${styles["userprofile-bio"]}`}>
             <h4 className={`${styles["userprofile-email"]}`}>
               <IoMdMail /> {email}
@@ -102,18 +102,43 @@ const UserProfileInfo = (props) => {
             <h4 className={`${styles["userprofile-address"]}`}>
               <b>Address:</b>
             </h4>
-            {addresses && addresses.length > 0 && (
+            {addresses && addresses.length > 0 ? (
               <div>
                 {addresses.map((address, index) => (
                   <h4
                     key={index}
                     className={`${styles["userprofile-address"]}`}
                   >
-                    {address.houseName}, {address.city} - {address.pinCode},{" "}
-                    {address.state}, {address.country}
+                    {address.houseName && (
+                      <>
+                        {address.houseName}
+                        {address.city && ` , `}
+                      </>
+                    )}
+                    {address.city && (
+                      <>
+                        {address.city}
+                        {address.pinCode && ` - `}
+                      </>
+                    )}
+                    {address.pinCode && (
+                      <>
+                        {address.pinCode}
+                        {address.state && `, `}
+                      </>
+                    )}
+                    {address.state && (
+                      <>
+                        {address.state}
+                        {address.country && `, `}
+                      </>
+                    )}
+                    {address.country && <>{address.country}</>}
                   </h4>
                 ))}
               </div>
+            ) : (
+              <div className="nodata"> No data available</div>
             )}
           </div>
         </div>
@@ -121,5 +146,5 @@ const UserProfileInfo = (props) => {
     </div>
   );
 };
- 
+
 export default UserProfileInfo;

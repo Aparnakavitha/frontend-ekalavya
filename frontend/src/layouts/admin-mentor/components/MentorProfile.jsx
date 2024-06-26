@@ -5,8 +5,6 @@ import BasicDetails from "../../common/components/BasicDetails";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
-import EducationalQualification from "../../common/components/EducationalQualification";
-import { addNewUser } from "../../../services/User";
 
 const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
@@ -43,8 +41,6 @@ const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
 
     handleCloseEditBasicDetails();
   };
-
- 
 
   if (!mentorData) {
     return <div>No data found for mentor.</div>;
@@ -91,7 +87,6 @@ const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
       </div>
     ),
   };
-
 
   return (
     <div>
