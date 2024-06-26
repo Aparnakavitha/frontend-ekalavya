@@ -15,7 +15,7 @@ const AdminSkill = () => {
     console.log("Data from skill card: ", skillData);
     if (!isValidSkill(skillData)) {
       setErrorMessage("Skill already exists.");
-      console.log("Error message set:", errorMessage); // Check if errorMessage is set
+      console.log("Error message set:", errorMessage); 
       return;
     }
 
@@ -25,8 +25,8 @@ const AdminSkill = () => {
   };
 
   const isValidSkill = (skillData) => {
-    // Example function to validate skill data (e.g., check if skill already exists)
-    return !AdminSkillData.skillExists(skillData); // Replace with actual check
+    
+    return !AdminSkillData.skillExists(skillData); 
   };
 
   const loggedUserFirstName = sessionStorage.getItem("firstName");
@@ -39,7 +39,7 @@ const AdminSkill = () => {
     showButtons: false,
   };
 
-  console.log("Rendering with errorMessage:", errorMessage); // Check if component renders with errorMessage
+  console.log("Rendering with errorMessage:", errorMessage); 
 
   return (
     <SkillsProvider>

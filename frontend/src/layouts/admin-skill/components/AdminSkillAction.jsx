@@ -14,6 +14,7 @@ import {
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
 
+
 const AdminSkillAction = () => {
   const { skills, setSkills, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
@@ -58,6 +59,7 @@ const AdminSkillAction = () => {
     } catch (error) {
       console.error("Error adding skill:", error);
       setError("Skill name already exists");
+      
     }
   };
 
