@@ -50,8 +50,6 @@ const EventsExplore = () => {
       ...prevParams,
       ...filters,
     }));
-    console.log("filterrrr",params);
-
   };
 
   const handleSearchChange = (value) => {
@@ -71,10 +69,19 @@ const EventsExplore = () => {
       {loading ? (
         <LoadingSpinner />
       ) : (
-        <CardLayout events={events} onEventClick={handleClick} />
+        <>
+          {events.length === 0 ? (
+            <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+            No events available
+          </p>
+          ) : (
+            <CardLayout events={events} onEventClick={handleClick} />
+          )}
+        </>
       )}
     </div>
   );
 };
 
 export default EventsExplore;
+

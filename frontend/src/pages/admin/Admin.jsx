@@ -40,7 +40,6 @@ const AdminContent = () => {
 
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -91,7 +90,6 @@ const AdminContent = () => {
     setIsLogoutModalOpen(true);
   };
 
-
   const sidebarContent = {
     button: (
       <Button
@@ -132,6 +130,7 @@ const AdminContent = () => {
       name: `${userData.firstName} ${userData.lastName}`,
       profilePic: image,
       gmail: userData.emailId,
+      onNameClick: () => navigate(`/admin/student`),
     },
   };
 
@@ -166,6 +165,7 @@ const AdminContent = () => {
               name={sidebarContent.profileBox.name}
               profilePic={sidebarContent.profileBox.profilePic}
               gmail={sidebarContent.profileBox.gmail}
+              onNameClick={sidebarContent.profileBox.onNameClick}
             />
           </div>
           <div className="statecontent">
