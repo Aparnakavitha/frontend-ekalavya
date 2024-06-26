@@ -4,7 +4,7 @@ import Table from "../../../components/table/Table";
 import AttendanceButton from "../../../components/buttons/AttendanceButton";
 
 const EventsTable = (props) => {
-  const { data, headings, onAttendanceUpdate } = props;
+  const { data, headings, onAttendanceUpdate, disableAttendance } = props;
 
   const [attendance, setAttendance] = useState(
     data.reduce((acc, [id, , , attendance]) => {
@@ -23,8 +23,8 @@ const EventsTable = (props) => {
   }, [data]);
 
   const handleAttendanceClick = (participantId, isPresent) => {
-    if (attendance[participantId] === isPresent) {
-      console.log(`Already ${isPresent ? "Present" : "Absent"}`);
+    if (disableAttendance) {
+      console.log("Attendance marking is disabled for this event");
       return;
     }
 
@@ -46,9 +46,8 @@ const EventsTable = (props) => {
   };
 
   const handleGlobalAttendanceClick = (isPresent) => {
-    if ((isPresent && Object.values(attendance).every(value => value === true)) ||
-        (!isPresent && Object.values(attendance).every(value => value === false))) {
-      console.log(`Already all ${isPresent ? "Present" : "Absent"}`);
+    if (disableAttendance) {
+      console.log("Global attendance marking is disabled for this event");
       return;
     }
 
@@ -80,13 +79,13 @@ const EventsTable = (props) => {
         content="Present"
         IsPresent={attendance[participantId] === true}
         onClick={() => handleAttendanceClick(participantId, true)}
-        disabled={attendance[participantId] === true}
+        disabled={attendance[participantId] === true || disableAttendance}
       />
       <AttendanceButton
         content="Absent"
         IsPresent={attendance[participantId] === false}
         onClick={() => handleAttendanceClick(participantId, false)}
-        disabled={attendance[participantId] === false}
+        disabled={attendance[participantId] === false || disableAttendance}
       />
     </div>,
   ]);
@@ -97,13 +96,15 @@ const EventsTable = (props) => {
       <div className={styles["global-attendance-buttons"]}>
         <AttendanceButton
           content="Present"
-          IsPresent={allPresent && data.length > 0}
+          IsPresent={allPresent}
           onClick={() => handleGlobalAttendanceClick(true)}
+          disabled={allPresent || disableAttendance}
         />
         <AttendanceButton
           content="Absent"
-          IsPresent={allAbsent && data.length > 0} 
+          IsPresent={allAbsent}
           onClick={() => handleGlobalAttendanceClick(false)}
+          disabled={allAbsent || disableAttendance}
         />
       </div>
     </div>
