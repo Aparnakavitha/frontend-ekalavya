@@ -18,6 +18,7 @@ const UpdateSingleField = ({
   message,
   skillId,
   isEdit,
+  submitError = "",
 }) => {
   const {
     handleSubmit,
@@ -26,15 +27,14 @@ const UpdateSingleField = ({
     formState: { errors },
   } = useForm({
     defaultValues: isSelect
-    ? {
-        studentIds: initialData?.studentIds || [], // Initialize with studentIds if it's a select field
-      }
-    : {
-        inputData: initialData || "", // Initialize with initialData for a simple input field
-      },
-});
-  console.log(initialData, isSelect);
-  console.log("aaaa", placeHolder);
+      ? {
+          studentIds: initialData?.studentIds || [],
+        }
+      : {
+          inputData: initialData || "",
+        },
+  });
+
   const handleFormSubmit = (data) => {
     onSubmit(data);
   };
@@ -99,9 +99,10 @@ const UpdateSingleField = ({
                   />
                 )}
               />
-              {errors.inputData && (
+
+              {(errors.inputData || submitError) && (
                 <p className={`${styles["addstudent-error"]}`}>
-                  {errors.inputData.message}
+                  {errors.inputData ? errors.inputData.message : submitError}
                 </p>
               )}
             </>
