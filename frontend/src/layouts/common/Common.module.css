@@ -1719,7 +1719,14 @@
 .qualification-form-button {
   padding-top: 10px;
 }
-
+.qualification-form-error {
+  color: var(--warning-color);
+  font-size: 0.875rem;
+  margin-top: -10px
+}
+.qualification-form-startdate-enddate .qualification-form-error{
+  margin-top: 1px;
+}
 @media screen and (max-width: 767px) {
   .qualification-form-startdate-enddate {
     flex-direction: column;
