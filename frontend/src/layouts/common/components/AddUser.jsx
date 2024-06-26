@@ -9,7 +9,13 @@ import {
   validateEmail,
 } from "../../common/components/validation";
 
-const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
+const AddUser = ({
+  options,
+  viewCollege,
+  heading,
+  onSubmit,
+  submitError = "",
+}) => {
   const {
     handleSubmit,
     control,
@@ -90,9 +96,9 @@ const AddUser = ({ options, viewCollege, heading, onSubmit }) => {
             />
           )}
         />
-        {errors.emailId && (
+        {(errors.emailId || submitError) && (
           <p className={`${styles["adduser-error"]}`}>
-            {errors.emailId.message}
+            {errors.emailId ? errors.emailId.message : submitError}
           </p>
         )}
         {viewCollege && (
