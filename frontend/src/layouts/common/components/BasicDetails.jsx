@@ -204,7 +204,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
             />
           )}
         />
-        {errors.houseName && (
+        {errors.addresses?.[0]?.houseName && (
           <p className={`${styles["basicdetails-error"]}`}>
             {errors.addresses[0].houseName.message}
           </p>
@@ -217,35 +217,35 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
             <Input {...field} placeholders={["City"]} size="normal" />
           )}
         />
-        {errors.city && (
+        {errors.addresses?.[0]?.city && (
           <p className={`${styles["basicdetails-error"]}`}>
-            {errors.city.message}
+            {errors.addresses[0].city.message}
           </p>
         )}
         <Controller
           name="addresses[0].pinCode"
           control={control}
-          // rules={{ validate: validateNumber("postalCode") }}
+          rules={{ validate: validateNumber("postalCode") }}
           render={({ field }) => (
             <Input {...field} placeholders={["Pincode"]} size="normal" />
           )}
         />
-        {errors.pinCode && (
+        {errors.addresses?.[0]?.pinCode && (
           <p className={`${styles["basicdetails-error"]}`}>
-            {errors.pinCode.message}
+            {errors.addresses[0].pinCode.message}
           </p>
         )}
         <Controller
           name="addresses[0].state"
-          rules={{ validate: validateState }}
+          rules={{ validate: {validateState,validateAndCleanInput} }}
           control={control}
           render={({ field }) => (
             <Input {...field} placeholders={["State"]} size="normal" />
           )}
         />
-        {errors.state && (
+        {errors.addresses?.[0]?.state && (
           <p className={`${styles["basicdetails-error"]}`}>
-            {errors.state.message}
+            {errors.addresses[0].state.message}
           </p>
         )}
         <Controller
@@ -256,9 +256,9 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
             <Input {...field} placeholders={["Country"]} size="normal" />
           )}
         />
-        {errors.country && (
+        {errors.addresses?.[0]?.country && (
           <p className={`${styles["basicdetails-error"]}`}>
-            {errors.country.message}
+            {errors.addresses[0].country.message}
           </p>
         )}
         <div className={`${styles["basicdetails-containerinput-in"]}`}>

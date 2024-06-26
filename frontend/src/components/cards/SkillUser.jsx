@@ -1,21 +1,19 @@
 import React, { useState } from "react";
 import styles from "./SkillUser.module.css";
 import { ImCross } from "react-icons/im";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa";
 
-const SkillUser = (props) => {
-  const {
-    miniHeading,
-    mainHeading,
-    alttext,
-    profilepic,
-    skills,
-    handleClick,
-    addSkill,
-    deleteSkill,
-  } = props;
-  const visible = false;
-
+const SkillUser = ({
+  miniHeading,
+  mainHeading,
+  alttext,
+  profilepic,
+  skills,
+  handleClick,
+  addSkill,
+  deleteSkill,
+}) => {
+  const isVisible = false;
   const transformMainHeading = (heading) => {
     if (heading.length > 12) {
       return heading.slice(0, 10) + "...";
@@ -31,15 +29,11 @@ const SkillUser = (props) => {
   };
 
   const [showAllSkills, setShowAllSkills] = useState(false);
-  const cardsClass = styles.CardOutline;
   const displayedSkills = showAllSkills ? skills : skills.slice(0, 4);
 
   return (
     <div className={`container ${styles.cards}`}>
-      <div
-        className={`row ${cardsClass} ${styles.cardsClass}`}
-        onClick={handleClick}
-      >
+      <div className={`row ${styles.cardsClass}`} onClick={handleClick}>
         <div className={`col-md-6 ${styles.profile}`}>
           <div className={`${styles.profilepiccontainer}`}>
             <img
@@ -53,7 +47,7 @@ const SkillUser = (props) => {
               {transformMainHeading(mainHeading)}
             </div>
             <div className={`${styles.cardsminiheading}`} title={miniHeading}>
-              {transformMainHeading(miniHeading)}
+              {transformMiniHeading(miniHeading)}
             </div>
           </div>
         </div>
@@ -63,8 +57,8 @@ const SkillUser = (props) => {
             <div className={`row ${styles.buttonsContainer}`}>
               {displayedSkills.map((skill, index) => (
                 <div key={index} className={`col-6 ${styles.button}`}>
-                  {transformMiniHeading(skill)}
-                  {visible && (
+                  {transformMiniHeading(skill.skillName)}
+                  {isVisible && (
                     <ImCross
                       onClick={() => deleteSkill(index)}
                       style={{
@@ -84,21 +78,17 @@ const SkillUser = (props) => {
                 {showAllSkills ? "View Less" : "View More"}
               </div>
             )}
-            {visible && (
-              <div className={`col-6 ${styles.addButtonContainer}`}>
-                <button
-                  className={`btn ${styles.addButton}`}
-                  onClick={addSkill}
-                >
-                  <FaPlus
-                    style={{
-                      cursor: "pointer",
-                      fontSize: "26px",
-                    }}
-                  />
-                </button>
-              </div>
-            )}
+            <div className={`col-6 ${styles.addButtonContainer}`}>
+            {isVisible && <button className={`btn ${styles.addButton}`} onClick={addSkill}>
+                <FaPlus
+                  style={{
+                    cursor: "pointer",
+                    fontSize: "26px",
+                  }}
+                />
+              </button>}
+              
+            </div>
           </div>
         </div>
       </div>

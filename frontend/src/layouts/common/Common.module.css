@@ -461,7 +461,7 @@
 }
 
 .basicdetails-error {
-  color: var(--primary-color);
+  color: var(--warning-color);
   font-size: 0.875rem;
 }
 
@@ -594,7 +594,7 @@
 
 .combinedskillform-error {
   margin-top: -5px;
-  color: var(--primary-color);
+  color: var(--warning-color);
   font-size: 0.875rem;
 }
 
@@ -965,7 +965,7 @@
 
 .addstudent-error {
   margin-top: -5px;
-  color: var(--primary-color);
+  color: var(--warning-color);
   font-size: 0.875rem;
 }
 
@@ -1041,7 +1041,7 @@
 }
 
 .adduser-error {
-  color: var(--primary-color);
+  color: var(--warning-color);
   font-size: 0.875rem;
 }
 
@@ -1610,6 +1610,7 @@
 .eventmenus-container {
   display: flex;
   flex-direction: column;
+  gap: 2vh;
 }
 
 .eventmenus-head {

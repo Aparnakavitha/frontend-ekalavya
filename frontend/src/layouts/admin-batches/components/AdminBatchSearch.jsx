@@ -6,17 +6,21 @@ import DeleteBox from "../../common/components/DeleteBox";
 import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
 import { getUserDetails } from "../../../services/User";
+import { updateBatch } from "../../../services/Batch";
 
 const AdminBatchSearch = ({
   batchDelete,
   addParticipant,
   changeBatchName,
+  setBatchName,
   batchName,
+  batchId,
 }) => {
   const [isBatchOperationsOpen, setIsBatchOperationsOpen] = useState(false);
   const [isUpdateSingleFieldOpen, setIsUpdateSingleFieldOpen] = useState(false);
   const [isDeleteBoxOpen, setIsDeleteBoxOpen] = useState(false);
   const [userIdOptions, setUserIdOptions] = useState([]);
+  const [submitError, setSubmitError] = useState(null);
 
   useEffect(() => {
     const fetchData = async (params) => {
@@ -96,10 +100,16 @@ const AdminBatchSearch = ({
     },
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form submitted with data:", formData);
-    changeBatchName(formData.inputData);
-    handleCloseAllModals();
+  const handleFormSubmit = async (formData) => {
+    try {
+      await updateBatch({ batchId, batchName: formData.inputData });
+      setBatchName(formData.inputData);
+      setSubmitError(null);
+      handleCloseAllModals();
+    } catch (error) {
+      setSubmitError("Batch name already exists");
+      console.error("Error updating batch name:", error);
+    }
   };
 
   const addStdFormSubmit = (formData) => {
@@ -147,6 +157,7 @@ const AdminBatchSearch = ({
           {...AdminBatchSearchData.editprops}
           onSubmit={handleFormSubmit}
           initialData={batchName}
+          submitError={submitError}
         />
       </Modal>
       <Modal

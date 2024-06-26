@@ -32,7 +32,7 @@ const AddSkill = ({ onSubmit, onCancel, error }) => {
       setLocalError(validationError);
       return;
     }
-    onSubmit(skill); // Call the onSubmit prop with the skill value
+    onSubmit(skill);
   };
 
   return (
