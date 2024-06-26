@@ -235,7 +235,7 @@ const EventForm = ({ hostId, onSubmit }) => {
               name='startDate'
               control={control}
               rules={{
-                validate: validateStartDate,
+                validate: validateStartDate("new"),
               }}
               render={({ field }) => (
                 <Input
