@@ -87,7 +87,7 @@ const StudentEvent = () => {
       { key: "mainHeading", displayName: "Title" },
       { key: "startDate", displayName: "Start Date" },
       { key: "endDate", displayName: "End Date" },
-      { key: "description", displayName: "Description" },
+      { key: "Description", displayName: "Description" },
     ],
     toggle: false,
     itemsPerPage: 10,

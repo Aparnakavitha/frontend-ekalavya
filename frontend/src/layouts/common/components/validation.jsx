@@ -59,9 +59,10 @@ export const validateNumber = (type) => (value) => {
     );
   }
   if (type === "postalCode") {
+    const valStr = value.toString();
     return (
       !value ||
-      (isNumeric(value) && value.length === 6) ||
+      (isNumeric(valStr) && valStr.length === 6) ||
       "This field should contain only digits and have a length of 6."
     );
   }

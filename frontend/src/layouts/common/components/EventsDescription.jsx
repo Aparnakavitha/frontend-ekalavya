@@ -27,6 +27,7 @@ const EventsDescription = (props) => {
     onclick1,
     onclick2,
     onclick3,
+    showButton,
   } = props;
  
   function formatDate(dateString) {
@@ -78,7 +79,7 @@ const EventsDescription = (props) => {
               </div>
             </div>
  
-            {type === "public"  && (
+            {type === "public"  && showButton && (
               <>
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div
