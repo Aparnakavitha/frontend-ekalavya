@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import EventMenus from "../../../layouts/common/components/EventMenus";
 import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
-import { getEnrolledEventIds, fetchEventsService } from "../../../../src/services/Event";
+import { getEnrolledEventIds, fetchEventsService } from "../../../services/Event";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const StudentEvent = () => {
@@ -11,40 +11,60 @@ const StudentEvent = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("Upcoming");
+  const [searchTerm, setSearchTerm] = useState("");
   const participantId = sessionStorage.getItem("user_id");
 
   useEffect(() => {
     fetchEnrolledEvents();
-  }, [filter]);
+  }, [filter, searchTerm]);
 
-  const fetchEnrolledEvents = async () => {
+  const fetchEnrolledEvents = useCallback(async () => {
     setLoading(true);
     try {
       const eventIds = await getEnrolledEventIds(participantId);
       console.log("Enrolled Event IDs:", eventIds);
 
+      let filteredEvents = [];
       if (filter === "Upcoming") {
-        setEvents(eventIds.data.responseData.upcoming || []);
+        filteredEvents = eventIds.data.responseData.upcoming || [];
       } else if (filter === "Enrolled") {
-        setEvents(eventIds.data.responseData.enrolled || []);
+        filteredEvents = eventIds.data.responseData.enrolled || [];
       } else if (filter === "Completed") {
-        setEvents(eventIds.data.responseData.completed || []);
+        filteredEvents = eventIds.data.responseData.completed || [];
       }
+
+      if (searchTerm) {
+        filteredEvents = filteredEvents.filter(event =>
+          event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }
+
+      setEvents(filteredEvents);
     } catch (error) {
       console.error("Error fetching enrolled events:", error);
       const eventdata = await fetchEventsService({ completed: 0 });
       console.log("Fetched Event Data:", eventdata);
+
+      let filteredEvents = [];
       if (filter === "Upcoming") {
-        setEvents(eventdata || []);
+        filteredEvents = eventdata || [];
       } else if (filter === "Enrolled") {
-        setEvents([]);
+        filteredEvents = [];
       } else if (filter === "Completed") {
-        setEvents([]);
+        filteredEvents = [];
       }
+
+      if (searchTerm) {
+        filteredEvents = filteredEvents.filter(event =>
+          event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }
+
+      setEvents(filteredEvents);
     } finally {
       setLoading(false);
     }
-  };
+  }, [participantId, filter, searchTerm]);
 
   const primaryCardData = {
     data: events.map((event) => ({
@@ -73,12 +93,6 @@ const StudentEvent = () => {
     itemsPerPage: 10,
   };
 
-  console.log("primaryCardData:", primaryCardData.data);
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-
   return (
     <div>
       <EventMenus
@@ -97,9 +111,14 @@ const StudentEvent = () => {
           { name: "Completed", onClick: () => setFilter("Completed") },
         ]}
         title="Events"
-        activeFilter={filter} // Pass the current filter as a prop
+        activeFilter={filter}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        buttonVisible={false}
       />
-      {events.length > 0 ? (
+      {loading ? (
+        <LoadingSpinner />
+      ) : events.length > 0 ? (
         <DataView
           CardComponent={PrimaryCard}
           data={primaryCardData.data}
