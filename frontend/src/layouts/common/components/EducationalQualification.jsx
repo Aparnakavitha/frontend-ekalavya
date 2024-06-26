@@ -11,8 +11,7 @@ const EducationalQualification = ({
 }) => {
   const [isAddQualificationOpen, setIsAddQualificationOpen] = useState(false);
   const [isEditQualificationOpen, setIsEditQualificationOpen] = useState(false);
-  const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] =
-    useState(false);
+  const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
  
   const handleOpenAddQualification = () => {
@@ -32,7 +31,8 @@ const EducationalQualification = ({
     setIsEditQualificationOpen(false);
   };
  
-  const handleOpenDeleteQualification = () => {
+  const handleOpenDeleteQualification = (index) => {
+    setEditIndex(index);
     setIsDeleteQualificationOpen(true);
   };
  
@@ -68,6 +68,8 @@ const EducationalQualification = ({
   const handleRemove = async (index) => {
     try {
       const qualification = qualifications[index];
+      console.log("check",qualification)
+
 
       const formData = {
         userId: userId,
@@ -75,6 +77,7 @@ const EducationalQualification = ({
           {
             qualificationId: qualification?.qualificationId, }
         ],
+
       };
  
       console.log("Form Data:", formData);
@@ -116,6 +119,8 @@ const EducationalQualification = ({
       console.log("hello")
       if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
         handleRemove(editIndex);
+      console.log("editIndex",editIndex)
+
       }
     },
     onCancel: handleFormCancel,
