@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ActionComponent from "../../common/components/Action";
 import Modal from "../../common/components/Modal";
-import AdminSkillActionData from "./SkillData";
 import AddSkill from "./AddSkill";
 import DeleteSkill from "./DeleteSkill";
 import {
@@ -72,33 +71,39 @@ const AdminSkillAction = () => {
     setSkills(searchedSkill);
   };
 
-  const actionData = {
-    ...AdminSkillActionData,
+  const AdminSkillActionData = {
+    heading: "Skills List",
     buttonProps: {
-      ...AdminSkillActionData.buttonProps,
+      variant: "tertiary",
+      content: "+ Add New Skill",
+      width: "full",
       onClick: handleOpenModal,
     },
     deleteProps: {
-      ...AdminSkillActionData.deleteProps,
+      variant: "primary",
+      content: "\u00A0Remove a Skill\u00A0",
+      width: "full",
       onClick: () => handleOpenDelete(deleteSkillId),
     },
+    showDelete: true,
+    searchWidth: "large",
+    searchbarProps: {
+      variant: "custom",
+      placeholder: "Skill",
+      onSearchChange: handleSearchChange,
+    },
+    showFiltersAndReset: false,
+    searchPlaceholder: "Enter Skill Name",
   };
 
   return (
     <div>
-      <ActionComponent {...actionData} onSearchChange={handleSearchChange} />
+      <ActionComponent {...AdminSkillActionData} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddSkill onSubmit={handleFormSubmit} onCancel={handleCloseModal} />
       </Modal>
-      <Modal
-        isOpen={isDeleteOpen}
-        widthVariant="medium"
-        onClose={handleCloseDelete}
-      >
-        <DeleteSkill
-          onSubmit={handleDeleteSubmit}
-          onCancel={handleCloseDelete}
-        />
+      <Modal isOpen={isDeleteOpen} widthVariant="medium" onClose={handleCloseDelete}>
+        <DeleteSkill onSubmit={handleDeleteSubmit} onCancel={handleCloseDelete} />
       </Modal>
     </div>
   );
