@@ -85,9 +85,9 @@ const AdminBatchSearch = ({
     editprops: {
       mainHeading: "Edit Batch Name",
       labelTitle: "Batch Name",
-      placeHolder: batchName,
+      placeHolder: "",
       buttonTitle: "Save",
-      initialData: {},
+      initialData: batchName,
     },
     deleteprops: {
       title: "Confirmation Required",
@@ -146,7 +146,7 @@ const AdminBatchSearch = ({
         <UpdateSingleField
           {...AdminBatchSearchData.editprops}
           onSubmit={handleFormSubmit}
-          placeHolder={batchName}
+          initialData={batchName}
         />
       </Modal>
       <Modal

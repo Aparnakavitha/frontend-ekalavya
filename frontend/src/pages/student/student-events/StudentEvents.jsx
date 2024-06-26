@@ -77,7 +77,9 @@ const StudentEvent = () => {
       cardType: "Course",
       handleClick: () => {
         console.log("clicked");
-        navigate(`/mentor/events/event-details/${event.eventId}`);
+        navigate(`${event.eventId}`, {
+          state: { eventId: event.eventId, tab: filter },
+        });
       },
     })),
     tableColumns: [
@@ -85,7 +87,7 @@ const StudentEvent = () => {
       { key: "mainHeading", displayName: "Title" },
       { key: "startDate", displayName: "Start Date" },
       { key: "endDate", displayName: "End Date" },
-      { key: "description", displayName: "Description" },
+      { key: "Description", displayName: "Description" },
     ],
     toggle: false,
     itemsPerPage: 10,

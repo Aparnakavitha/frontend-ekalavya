@@ -103,7 +103,7 @@ const AddCollege = ({ onSubmit }) => {
               control={control}
               rules={{
                 required: "State is required",
-                validate: validateState,
+                validate: {validateAndCleanInput,validateState},
               }}
               render={({ field }) => (
                 <Input

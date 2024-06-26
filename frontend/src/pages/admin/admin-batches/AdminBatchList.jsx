@@ -89,8 +89,10 @@ const AdminBatchList = () => {
         showButtons={false}
       />
       <AdminBatchAction
-        onSubmit={handleFormSubmit}
         onSearchChange={handleSearchChange}
+        setBatchData={setBatchData}
+        setChanged={setChanged}
+        batchData={batchData}
       />
       {loading ? (
         <LoadingSpinner />
