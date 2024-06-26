@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import styles from "./Searchbar.module.css";
 
-const SearchBar = ({ variant = "large", placeholder, onSearch }) => {
-  const [query, setQuery] = useState("");
+const SearchBar = ({ variant = "large", placeholder, onSearch, value }) => {
+  const [query, setQuery] = useState(value || "");
 
   const handleSearch = (e) => {
     e.preventDefault();
