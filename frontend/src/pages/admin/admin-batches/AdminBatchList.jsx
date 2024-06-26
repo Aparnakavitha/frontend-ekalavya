@@ -1,4 +1,3 @@
-// AdminBatchList.js
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { DataView, Greeting } from "../../../layouts/common";
@@ -14,15 +13,24 @@ const AdminBatchList = () => {
   const [error, setError] = useState(null);
   const [changed, setChanged] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    fetchData();
-  }, [changed]);
+    if (initialLoad) {
+      fetchData();
+      setInitialLoad(false);
+    } else if (searchQuery) {
+      fetchData({ batchName: searchQuery });
+    } else {
+      fetchData();
+    }
+  }, [changed, searchQuery]);
 
-  const fetchData = async () => {
+  const fetchData = async (params) => {
     setLoading(true);
+    setError(null);
     try {
-      const responseData = await fetchbatches();
+      const responseData = await fetchbatches(params || {});
       const data = responseData.responseData;
 
       if (Array.isArray(data)) {
@@ -31,17 +39,17 @@ const AdminBatchList = () => {
           mainHeading: item.batchName || "",
           Count: item.participantCount,
           cardType: "batch",
-          handleClick: () => handleClick(item.batchId, item.batchName), // Pass batchName here
+          handleClick: () => handleClick(item.batchId, item.batchName),
         }));
 
         setBatchData(formattedData);
-        setLoading(false);
       } else {
         throw new Error("Received data is not in expected format");
       }
     } catch (error) {
       console.error("Error fetching data:", error);
-      setError(error);
+      setError("No batches available");
+    } finally {
       setLoading(false);
     }
   };
@@ -52,7 +60,7 @@ const AdminBatchList = () => {
   };
 
   const handleClick = (batchId, batchName) => {
-    navigate(`/admin/batches/batch-details/${batchId}`, { state: { batchName } }); // Navigate with state
+    navigate(`/admin/batches/batch-details/${batchId}`, { state: { batchName } });
   };
 
   const handleFormSubmit = async (formData) => {
@@ -63,10 +71,10 @@ const AdminBatchList = () => {
       setChanged((prev) => !prev);
     } catch (error) {
       console.error("Error adding batch:", error);
-      setError(error);
+      setError("Error adding batch. Please try again later.");
     }
   };
-  
+
   const loggedUserFirstName = sessionStorage.getItem("firstName");
 
   return (
@@ -85,22 +93,26 @@ const AdminBatchList = () => {
       {loading ? (
         <LoadingSpinner />
       ) : error ? (
-        <LoadingSpinner />
-      ) : batchData ? (
+        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+          {error}
+        </p>
+      ) : batchData && batchData.length > 0 ? (
         <DataView
           data={batchData}
           CardComponent={(props) => <SkillBatchCard {...props} />}
           tableColumns={[
             { key: "miniHeading", displayName: "Batch ID" },
             { key: "mainHeading", displayName: "Batch Name" },
-            { key: "count", displayName: "Participant Count" },
+            { key: "Count", displayName: "Participant Count" },
           ]}
           toggle={true}
           cardType="SkillBatchCard"
           itemsPerPage={12}
         />
       ) : (
-        <div>No batches found.</div>
+        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+          No batches available
+        </p>
       )}
     </div>
   );

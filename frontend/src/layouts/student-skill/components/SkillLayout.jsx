@@ -101,7 +101,7 @@ const Layout = () => {
 
   const handleDeleteSkill = async () => {
     const skillToDelete = userSkills[deleteModal.index];
-    console.log("Skill id for skill to delete: ",deleteModal.index,userSkills,"Skill to delete from user skills",userSkills[deleteModal.index]);
+    console.log("Skill id for skill to delete: ",userSkills[deleteModal.index].skill_id,userSkills,"Skill to delete from user skills",userSkills[deleteModal.index]);
     if (!skillToDelete) {
       console.error("Skill to delete not found");
       return;

@@ -20,6 +20,10 @@ const HomeEventDescription = ({ event, organizer }) => {
     handleOpenLoginModal();
   };
 
+ if (!event) {
+    return null; 
+  }
+
   const homeEvents = {
     eventTitle: event.eventTitle,
     eventType: event.eventType,

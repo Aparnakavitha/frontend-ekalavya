@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import ShowCards from "../../common/components/ShowCards";
 import Modal from "../../common/components/Modal";
@@ -9,18 +9,21 @@ import {
   studentSkillState,
 } from "../../../states/Atoms";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { Userskillpost } from "../../../services/Skills";
+import { Userskillpost, getSkillsForUser } from "../../../services/Skills";
+import { Slide, ToastContainer, toast } from "react-toastify";
+
 const SkillList = ({ studentId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [studentSkills, setStudentSkills] = useRecoilState(
     adminStudentSkillState
   );
   const allSkills = useRecoilValue(studentSkillState);
+  console.log("Student skill state", allSkills);
 
   const addSkillOptions = allSkills.map((skill) => ({
     value: skill.id,
     label: skill.skillName,
-  })).filter((skill)=>skill.value!==2);
+  }));
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -31,27 +34,59 @@ const SkillList = ({ studentId }) => {
   };
 
   const handleFormSubmit = async (formData) => {
-    console.log("Form submitted with data:", formData);
-    const submitResponse = await Userskillpost({
-      userId: studentId,
-      skillId: formData.selectedSkills,
-    });
-    const selectedSkillName = addSkillOptions.find(
-      (option) => option.value === formData.selectedSkills
-    );
-    console.log("Skill added now is: ", selectedSkillName);
-    const newSkillState = {
-      miniHeading: selectedSkillName.value,
-      mainHeading: selectedSkillName.label,
-      skill_id: selectedSkillName.value,
-      canEdit: true,
-      canDelete: true,
-      cardType: "skill",
-    };
-    setStudentSkills([...studentSkills, newSkillState]);
-    console.log("student skills after adding new skill", studentSkills);
-    console.log("Submission response", submitResponse);
-    handleCloseModal();
+    try {
+      const submitResponse = await Userskillpost({
+        userId: studentId,
+        skillId: formData.selectedSkills,
+      });
+
+      if (
+        submitResponse.errorMessage === "User skill combination already exists"
+      ) {
+        toast.info("Skill already assigned to user", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        handleCloseModal();
+        return;
+      }
+
+      const selectedSkillName = addSkillOptions.find(
+        (option) => option.value === formData.selectedSkills
+      );
+
+      console.log("Selected skill details", selectedSkillName);
+
+      const newSkillState = {
+        miniHeading: selectedSkillName.value,
+        mainHeading: selectedSkillName.label,
+        skill_id: selectedSkillName.value,
+        canEdit: true,
+        canDelete: true,
+        cardType: "skill",
+      };
+      setStudentSkills([...studentSkills, newSkillState]);
+      console.log("student skills after adding new skill", studentSkills);
+      console.log("Submission response", submitResponse);
+      handleCloseModal();
+    } catch (error) {
+      console.error("Error submitting skill:", error);
+      handleCloseModal();
+      toast.error("An error occurred while adding the skill", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   const heading = {
@@ -83,6 +118,19 @@ const SkillList = ({ studentId }) => {
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
       <CardRow {...skillcards} userId={studentId} />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Slide}
+      />
     </div>
   );
 };

@@ -78,7 +78,7 @@ const EventsDescription = (props) => {
               </div>
             </div>
 
-            {type === "public" && (
+            {type === "public"  && (
               <>
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div
@@ -96,7 +96,7 @@ const EventsDescription = (props) => {
               </>
             )}
 
-            {type === "mentor" && (
+            {type === "mentor" &&(
               <>
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div

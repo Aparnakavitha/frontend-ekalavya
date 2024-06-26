@@ -209,7 +209,7 @@
 }
 
 .footer-img {
-  height: 40px;
+  height: 35px;
   width: 163px;
 }
 
@@ -383,8 +383,10 @@
 .basicdetails-form {
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
+  backdrop-filter: blur(20px);
+  background: 
+  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
+  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
   background-blend-mode: lighten;
   border-radius: 40px;
   color: var(--white);
@@ -500,10 +502,12 @@
 /* ------------------------------- combinedskillform.css starts here --------------------------- */
 
 .combinedskillform-form {
-  width: 100%;
+  width: 100%;  
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
+  backdrop-filter: blur(20px);
+  background: 
+  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
+  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
   background-blend-mode: lighten;
   border-radius: 40px;
   color: var(--white);
@@ -729,9 +733,11 @@
 .deletebox-box {
   max-width: 100%;
   border-radius: 40px;
-  background: var(--background);
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
+  backdrop-filter: blur(20px);
+  background: 
+  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
+  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -888,10 +894,12 @@
 /* ------------------------------- addstudent.css starts here --------------------------------- */
 
 .addstudent-form {
-  width: 100%;
+  width: 100%;  
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
+  backdrop-filter: blur(20px);
+  background: 
+  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
+  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
   background-blend-mode: lighten;
   border-radius: 40px;
   color: var(--white);
@@ -985,7 +993,6 @@
   height: fit-content;
   display: flex;
   flex-direction: column;
-  background-color: var(--background);
   border-radius: 40px;
   padding: 50px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
@@ -1639,8 +1646,10 @@
 .qualification-form-form {
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
-  backdrop-filter: blur(45px);
-  background: var(--background);
+  backdrop-filter: blur(20px);
+  background: 
+  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
+  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
   background-blend-mode: lighten;
   padding: 50px;
   border-radius: 40px;

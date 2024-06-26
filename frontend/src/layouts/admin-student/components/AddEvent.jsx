@@ -35,7 +35,7 @@ const AddEvent = ({ mainHeading, options, onSubmit }) => {
               <InputDropdown
                 {...field}
                 label="Select Event(s)"
-                placeholder="Event ID"
+                placeholder="Event ID-Event Name"
                 options={dropdownOptions}
                 isDisabled={options.length === 0} 
               />

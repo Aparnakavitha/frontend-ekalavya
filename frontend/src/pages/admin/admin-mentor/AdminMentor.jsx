@@ -7,14 +7,19 @@ import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
-const fetchMentorData = async (setMentorData, value = 0) => {
+const fetchMentorData = async (setMentorData, value = "") => {
   try {
     var params = {
       roleId: 2,
     };
-    if (value) {
+
+    if (value && Number.isInteger(Number(value))) {
       params = {
-        userId: value,
+        userId: Number(value),
+      };
+    } else if (value && typeof value === "string") {
+      params = {
+        name: value,
       };
     }
 
@@ -58,6 +63,7 @@ const AdminMentor = () => {
     fetchMentorData(setMentorData);
   }, []);
 
+
   const handleCardClick = (userId) => {
     const selectedMentor = mentorData.find(
       (mentor) => mentor.userId === userId
@@ -95,7 +101,6 @@ const AdminMentor = () => {
           : "",
       canDelete: false,
       viewAnimation: (cardAnimation && mentor.newEntry) || false,
-
     })),
     tableColumns: [
       { key: "studentId", displayName: "Mentor ID" },
