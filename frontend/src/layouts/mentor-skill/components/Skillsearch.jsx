@@ -1,103 +1,119 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import SearchBar from "../../../components/searchbar/Searchbar";
-import Card from "../../../components/cards/SkillUser";
+import SkillUser from "../../../components/cards/SkillUser";
 import styles from "../MentorSkill.module.css";
 import Modal from "../../common/components/Modal";
 import CombinedSkillForm from "../../common/components/CombinedSkillForm";
 import DeleteBox from "../../common/components/DeleteBox";
 import profilePic from "../../../assets/SkillUser.png";
 import { getSkillsForUser } from "../../../services/Skills";
-
+ 
+// Debounce function to limit the frequency of API calls
+const debounce = (func, delay) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(...args), delay);
+  };
+};
+ 
 const Skillsearch = () => {
   const [modalState, setModalState] = useState({
     isOpen: false,
     type: "",
     selectedIndex: null,
   });
-
+ 
   const skillData = {
     heading: "Skills",
     subheading: "View skills of students",
     searchBarPlaceholder: "Enter Student ID",
   };
-
+ 
   const options = [
     { value: "abc", label: "ABC" },
     { value: "xyz", label: "XYZ" },
     { value: "pqr", label: "PQR" },
   ];
-
-  const [searchResults, setSearchResults] = useState(null);
-  const [searchResult, setSearchResult] = useState(null);
+ 
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+ 
   const openModal = (type, index = null) =>
     setModalState({ isOpen: true, type, selectedIndex: index });
   const closeModal = () =>
     setModalState({ isOpen: false, type: "", selectedIndex: null });
-
+ 
   const handleAddSkill = (data) => {
     console.log("Form submitted with data:", data);
     closeModal();
   };
-
+ 
   const handleDeleteSkill = () => {
     console.log("Delete Skill");
     closeModal();
   };
-
+ 
   const handleSearch = async (userId) => {
     try {
+      setLoading(true);
       setError(null);
+      console.log("Fetching skills for user ID:", userId); // Debug log
       const skillsData = await getSkillsForUser(userId);
-      setSearchResults(skillsData[0].skills);
-      setSearchResult(skillsData[0].user_details);
+      console.log("Fetched skills data:", skillsData); // Debug log
+      setSearchResults(skillsData && skillsData.length > 0 ? skillsData : []);
     } catch (error) {
       console.error("Error fetching skills for user:", error.message);
-      setSearchResults(null);
-      setSearchResult(null);
+      setSearchResults([]);
       setError(error.message || "User not found or an error occurred.");
+    } finally {
+      setLoading(false);
     }
   };
-
+ 
+  const debouncedSearch = useCallback(debounce(handleSearch, 300), []);
+ 
   const clearSearch = () => {
-    setSearchResults(null);
-    setSearchResult(null);
+    setSearchResults([]);
     setError(null);
   };
-
+ 
   return (
-    <div
-      className={`${styles["skillsearch-skillssearch"]} padding padding-top padding-bottom`}
-    >
-      <h1 className={`${styles["skillsearch-skillsheading"]}`}>
-        {skillData.heading}
-      </h1>
-      <p className={`${styles["skillsearch-subheading"]}`}>
-        {skillData.subheading}
-      </p>
+    <div className={`${styles["skillsearch-skillssearch"]} padding padding-top padding-bottom`}>
+      <h1 className={`${styles["skillsearch-skillsheading"]}`}>{skillData.heading}</h1>
+      <p className={`${styles["skillsearch-subheading"]}`}>{skillData.subheading}</p>
       <div className={`${styles["skillsearch-searchbar"]}`}>
         <SearchBar
           placeholder={skillData.searchBarPlaceholder}
-          onSearch={handleSearch}
+          onSearch={debouncedSearch}
           onClear={clearSearch}
         />
       </div>
-
+ 
       <div className={`${styles["skillsearch-cardcontainer"]}`}>
+        {loading && <p>Loading...</p>}
         {error && <p className={`${styles["error-message"]}`}>{error}</p>}
-        {searchResults && searchResults.length > 0 && (
-          <Card
-            mainHeading={searchResult.user_name}
-            miniHeading="Student"
-            profilepic={profilePic}
-            skills={searchResults.map((skill) => skill.skillName)}
-            deleteSkill={() => openModal("delete")}
-            addSkill={() => openModal("add")}
-          />
-        )}
+        {searchResults.map((user, index) => (
+          <div key={index}>
+            {user.user_details && (
+              <SkillUser
+                mainHeading={user.user_details.user_name}
+                miniHeading="Student"
+                profilepic={profilePic}
+                skills={(user.skills || []).map((skill) => ({
+                  id: skill.id,
+                  skillName: skill.skillName,
+                  level: skill.count,
+                }))}
+                deleteSkill={() => openModal("delete", index)}
+                addSkill={() => openModal("add")}
+              />
+            )}
+          </div>
+        ))}
       </div>
-
+ 
       {modalState.isOpen && (
         <Modal
           isOpen={modalState.isOpen}
@@ -128,5 +144,6 @@ const Skillsearch = () => {
     </div>
   );
 };
-
+ 
 export default Skillsearch;
+ 
