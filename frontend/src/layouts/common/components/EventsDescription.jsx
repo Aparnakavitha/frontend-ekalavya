@@ -27,6 +27,7 @@ const EventsDescription = (props) => {
     onclick1,
     onclick2,
     onclick3,
+    showButton,
   } = props;
 
   function formatDate(dateString) {
@@ -69,8 +70,7 @@ const EventsDescription = (props) => {
               </div>
               <div className={`${styles["eventsdescription-texted"]}`}>
                 <a className={`${styles["eventsdescription-text"]}`}>
-                  Type : 
-                  {eventType}
+                  Type :{eventType}
                 </a>
                 <a className={`${styles["eventsdescription-texts"]}`}>
                   Event Mode : {eventMode}
@@ -78,7 +78,7 @@ const EventsDescription = (props) => {
               </div>
             </div>
 
-            {type === "public"  && (
+            {type === "public" && (
               <>
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div
@@ -96,7 +96,7 @@ const EventsDescription = (props) => {
               </>
             )}
 
-            {type === "mentor" &&(
+            {type === "mentor" && showButton && (
               <>
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div
