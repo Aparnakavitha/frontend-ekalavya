@@ -4,7 +4,7 @@ import EventDescriptionData from "./EventDescriptionData";
 import Modal from "../../common/components/Modal";
 import AddEvent from "../../admin-event/components/AddEvent";
  
-const MentorEventDescription = ({ formSubmit, fetchedFormData}) => {
+const MentorEventDescription = ({ formSubmit, fetchedFormData, showButton}) => {
   const [isOpen, setIsOpen] = useState(false);
  
   const handleOpenModal = () => {
@@ -29,7 +29,7 @@ const MentorEventDescription = ({ formSubmit, fetchedFormData}) => {
  
   return (
     <div className="padding padding-top">
-      <EventsDescription {...actionData} />
+      <EventsDescription {...actionData} showButton={showButton} />
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddEvent {...EventDescriptionData} onSubmit={handleFormSubmit} fetchedFormData={fetchedFormData}/>
       </Modal>
