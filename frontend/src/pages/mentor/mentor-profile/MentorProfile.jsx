@@ -7,6 +7,7 @@ import profilepic from "../../../assets/DP.png";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { getUserDetails, updateUserDetails } from "../../../services/User";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"; 
 
 const MentorProfile = () => {
   const [mentorData, setMentorData] = useState(null);
@@ -44,6 +45,7 @@ const MentorProfile = () => {
       const response = await updateUserDetails(formData);
       console.log("Update response:", response);
       fetchData();
+      toast.success("Details updated successfully!");
     } catch (error) {
       console.error("Error updating user details:", error);
     }
