@@ -100,13 +100,7 @@ const AdminBatchSelect = () => {
   return (
     <div>
       <Greeting {...greeting} />
-      <AdminBatchSearch
-        batchDelete={handleDeleteBatches}
-        addParticipant={addParticipant}
-        setBatchName={setBatchName}
-        batchName={batchName}
-        batchId={params.batchId}
-      />
+      
       {batchParticipantsData.length > 0 ? (
         <AdminBatchParticipants
           batchParticipantsData={{
