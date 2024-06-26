@@ -75,3 +75,4 @@ export const postColleges = async (collegeData) => {
     throw error;
   }
 };
+
