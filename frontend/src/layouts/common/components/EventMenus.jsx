@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import styles from "../Common.module.css";
 import Button from "../../../components/buttons/PrimaryButton";
 import TabButton from "../../../components/buttons/TabButton";
+import Searchbar from "../../../components/searchbar/Searchbar";
 
-const EventMenus = ({ explore, statuses, title, activeFilter }) => {
+const EventMenus = ({ explore, statuses, title, activeFilter, searchTerm, setSearchTerm ,buttonVisible=true}) => {
   const [activeStatus, setActiveStatus] = useState(activeFilter);
 
   const handleButtonClick = (status) => {
@@ -15,8 +16,15 @@ const EventMenus = ({ explore, statuses, title, activeFilter }) => {
       <div className={`${styles["eventmenus-head"]}`}>
         <h1 className={`${styles["eventmenus-title"]}`}>{title}</h1>
         <div className={`${styles["eventmenus-explorebutton"]}`}>
-          <Button {...explore} />
+          {buttonVisible && <Button {...explore} />}
         </div>
+      </div>
+      <div className={`${styles["eventmenus-searchbar"]}`}>
+      <Searchbar
+        placeholder="Search events"
+        onSearch={setSearchTerm}
+        value={searchTerm}
+      />
       </div>
       <div className={`${styles["eventmenus-tabbutton"]}`}>
         {statuses.map((status) => (
