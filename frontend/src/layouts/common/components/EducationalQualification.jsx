@@ -68,9 +68,6 @@ const EducationalQualification = ({
   const handleRemove = async (index) => {
     try {
       const qualification = qualifications[index];
-      console.log("check",qualification)
-
-
       const formData = {
         userId: userId,
         qualifications: [
@@ -119,8 +116,6 @@ const EducationalQualification = ({
       console.log("hello")
       if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
         handleRemove(editIndex);
-      console.log("editIndex",editIndex)
-
       }
     },
     onCancel: handleFormCancel,
