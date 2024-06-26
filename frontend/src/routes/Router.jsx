@@ -7,6 +7,8 @@ import MentorContent from "../pages/mentor/Mentor";
 import AdminContent from "../pages/admin/Admin";
 import StudentContent from "../pages/student/Student";
 import NotFound from "../layouts/common/components/NotFound";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RouterComponent = () => {
   const roleId = sessionStorage.getItem("role");
@@ -33,6 +35,18 @@ const RouterComponent = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer
+        position={"top-center"}
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick={true}
+        pauseOnHover={true}
+        draggable={true}
+        progress={undefined}
+        pauseOnFocusLoss
+        theme={"dark"}
+        transition={Slide}
+      />
     </div>
   );
 };
