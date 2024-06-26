@@ -103,8 +103,9 @@ const AdminBatchSelect = () => {
       <AdminBatchSearch
         batchDelete={handleDeleteBatches}
         addParticipant={addParticipant}
-        changeBatchName={changeBatchName}
+        setBatchName={setBatchName}
         batchName={batchName}
+        batchId={params.batchId}
       />
       {batchParticipantsData.length > 0 ? (
         <AdminBatchParticipants
