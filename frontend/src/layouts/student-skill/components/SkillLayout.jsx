@@ -50,7 +50,7 @@ const Layout = () => {
     try {
       const skillsResponse = await SkillService();
       setOptions(
-        skillsResponse.map((skill) => ({
+        skillsResponse.skills.map((skill) => ({
           value: skill.id,
           label:
             skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1),
