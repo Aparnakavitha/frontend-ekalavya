@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { EventMenus } from "../../../layouts/common";
+import EventMenus from "../../../layouts/common/components/EventMenus";
 import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { fetchEventsService } from "../../../services/Event";
@@ -11,7 +11,7 @@ const MentorEvents = () => {
 
   const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
-  const [selectedStatus, setSelectedStatus] = useState("upcoming");
+  const [selectedStatus, setSelectedStatus] = useState("Upcoming");
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -39,7 +39,6 @@ const MentorEvents = () => {
 
   useEffect(() => {
     fetchEventsByStatus(selectedStatus);
-    handleStatusClick("upcoming");
   }, [selectedStatus]);
 
   useEffect(() => {
@@ -102,6 +101,7 @@ const MentorEvents = () => {
           { name: "Completed", onClick: () => handleStatusClick("completed") },
         ]}
         title="Events"
+        activeFilter={selectedStatus}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
       />
