@@ -19,6 +19,7 @@
   opacity: 1;
   border-color: var(--primary-color);
   position: relative;
+  align-items: center;
 }
 
 .content {
@@ -30,12 +31,10 @@
 .title {
   font-size: 24px;
   font-weight: 600;
-  line-height: 22px;
   letter-spacing: -0.408px;
   margin-bottom: 0px;
   margin-top: 0px;
   color: var(--white);
-  height: 22px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -65,4 +64,9 @@
 .closeIcon:hover {
   cursor: pointer;
   color: var(--primary-color);
+}
+
+.iconContainer{
+  display: flex;
+  align-items: center;
 }

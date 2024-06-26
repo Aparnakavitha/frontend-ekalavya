@@ -83,10 +83,10 @@ const Layout = () => {
           options.find((opt) => opt.value === skill)?.originalName ||
           "undefined",
         skillLevel: 1,
-        id: newSkillResponse.responseData[0].id,
+        id: newSkillResponse.responseData[0].skill_id,
         ...newSkillResponse,
       };
- 
+      console.log("test ",newSkill)
       setUserSkills((prevSkills) => [...prevSkills, newSkill]);
       setSkillAdded(true);
       console.log("Skill added successfully:", newSkill);
