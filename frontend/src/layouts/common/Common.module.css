@@ -524,6 +524,7 @@
   justify-content: center;
   align-items: center;
   padding: 50px;
+  overflow: hidden;
 }
 
 .combinedskillform-head {
@@ -682,7 +683,7 @@
 @media (max-width: 767px) {
   .common-content {
     padding: 0;
-    gap: 20px;
+    /* gap: 20px; */
   }
 
   .common-top {
@@ -722,6 +723,10 @@
   .common-buttons {
     width: 100%;
     order: 4;
+  }
+
+  .common-deletebutton {
+    width: 100%;
   }
 
   .common-filter {
@@ -1714,7 +1719,14 @@
 .qualification-form-button {
   padding-top: 10px;
 }
-
+.qualification-form-error {
+  color: var(--warning-color);
+  font-size: 0.875rem;
+  margin-top: -10px
+}
+.qualification-form-startdate-enddate .qualification-form-error{
+  margin-top: 1px;
+}
 @media screen and (max-width: 767px) {
   .qualification-form-startdate-enddate {
     flex-direction: column;
