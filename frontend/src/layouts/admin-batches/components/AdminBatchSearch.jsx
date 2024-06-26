@@ -25,7 +25,7 @@ const AdminBatchSearch = ({
           roleId: 3,
         };
        
-        const data = await getUserDetails();
+        const data = await getUserDetails(filterParams);
         console.log(data);
         const userIds = data.responseData.map((user) => ({
           value: user.userId,

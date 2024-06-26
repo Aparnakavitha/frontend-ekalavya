@@ -3,15 +3,13 @@ import { Greeting } from "../../../layouts/common";
 import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBatchSearch";
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { fetchBatchParticipants, updateBatch , deleteBatch} from "../../../services/Batch";
+import { fetchBatchParticipants ,deleteBatch} from "../../../services/Batch";
 import { getUserDetails } from "../../../services/User";
 import image from "../../../assets/DP.png";
 
-const loggedUserFirstName = sessionStorage.getItem("firstName");
-
 const greeting = {
   welcome: "Welcome Back",
-  name: loggedUserFirstName || "",
+  name: "John", // Replace with actual logged-in user's name
   info: "Here is the information about",
   profile: "Batches",
   showButtons: false,
@@ -37,10 +35,11 @@ const AdminBatchSelect = () => {
       const participantIds = participantsResponse.responseData;
 
       if (Array.isArray(participantIds) && participantIds.length > 0) {
-        const userId = participantIds.join(","); 
+        const userId = participantIds.join(","); // Convert array to comma-separated string
         const userDetailsResponse = await getUserDetails({ userId });
         const userDetails = userDetailsResponse.responseData;
 
+        console.log("userDetails:", userDetails);
 
         const BatchParticipantsData = userDetails.map((userDetail) => ({
           studentImage: userDetail?.profilePicture || image,
@@ -62,20 +61,10 @@ const AdminBatchSelect = () => {
       setBatchParticipantsData([]);
     }
   };
-
-  const changeBatchName = async (newBatchName) => {
-    try {
-      const batchId = params.batchId;
-      await updateBatch({ batchId, batchName: newBatchName });
-      setBatchName(newBatchName);
-    } catch (error) {
-      console.error("Error updating batch name:", error);
-    }
-  };
-
   const handleDeleteBatches = async () => {
     try {
       await deleteBatch(batchId);
+      console.log("Batch deleted successfully");
       navigate(`/admin/batches`);
     } catch (error) {
       console.error("Error deleting batch:", error);
@@ -87,7 +76,7 @@ const AdminBatchSelect = () => {
       <AdminBatchSearch
         batchDelete={handleDeleteBatches}
         addParticipant={() => {}}
-        changeBatchName={changeBatchName}
+        changeBatchName={() => {}}
         batchName={batchName}
       />
       {batchParticipantsData.length > 0 ? (
