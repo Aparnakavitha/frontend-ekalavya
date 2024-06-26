@@ -4,13 +4,13 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import styles from "../AdminSkill.module.css";
 import Input from "../../../components/inputbox/InputBox";
 
-const AddSkill = ({ onSubmit, onCancel }) => {
+const AddSkill = ({ onSubmit, onCancel, error }) => {
   const [skill, setSkill] = useState("");
-  const [error, setError] = useState("");
+  const [localError, setLocalError] = useState("");
 
   const handleInputChange = (event) => {
     setSkill(event.target.value);
-    setError("");
+    setLocalError("");
   };
 
   const validateSkill = (skill) => {
@@ -29,10 +29,10 @@ const AddSkill = ({ onSubmit, onCancel }) => {
   const handleAddSkill = () => {
     const validationError = validateSkill(skill);
     if (validationError) {
-      setError(validationError);
+      setLocalError(validationError);
       return;
     }
-    onSubmit(skill); // Call the onSubmit prop with the skill value
+    onSubmit(skill);
   };
 
   return (
@@ -49,7 +49,7 @@ const AddSkill = ({ onSubmit, onCancel }) => {
             id="normal-input"
           />
         </div>
-        {error && <div className={`${styles["error-message"]}`}>{error}</div>}
+        {(localError || error) && <div className={`${styles["error-message"]}`}>{localError || error}</div>}
         <div className={`${styles["addskill-buttonrow"]}`}>
           <PrimaryButton
             variant="secondary"
@@ -72,6 +72,7 @@ const AddSkill = ({ onSubmit, onCancel }) => {
 AddSkill.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
+  error: PropTypes.string,
 };
 
 export default AddSkill;

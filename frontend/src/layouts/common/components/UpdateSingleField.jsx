@@ -18,6 +18,7 @@ const UpdateSingleField = ({
   message,
   skillId,
   isEdit,
+  submitError = "",
 }) => {
   const {
     handleSubmit,
@@ -27,9 +28,11 @@ const UpdateSingleField = ({
   } = useForm({
     defaultValues: isSelect
       ? {
-          studentIds: [],
+          studentIds: initialData?.studentIds || [],
         }
-      : initialData,
+      : {
+          inputData: initialData || "",
+        },
   });
 
   const handleFormSubmit = (data) => {
@@ -96,9 +99,10 @@ const UpdateSingleField = ({
                   />
                 )}
               />
-              {errors.inputData && (
+
+              {(errors.inputData || submitError) && (
                 <p className={`${styles["addstudent-error"]}`}>
-                  {errors.inputData.message}
+                  {errors.inputData ? errors.inputData.message : submitError}
                 </p>
               )}
             </>

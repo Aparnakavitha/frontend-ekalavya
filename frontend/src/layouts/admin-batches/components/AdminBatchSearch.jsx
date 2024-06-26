@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import BatchSearch from "../../common/components/BatchSearch";
 import Modal from "../../common/components/Modal";
 import UpdateSingleField from "../../common/components/UpdateSingleField";
@@ -6,17 +6,21 @@ import DeleteBox from "../../common/components/DeleteBox";
 import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
 import { getUserDetails } from "../../../services/User";
+import { updateBatch } from "../../../services/Batch";
 
 const AdminBatchSearch = ({
   batchDelete,
   addParticipant,
   changeBatchName,
+  setBatchName,
   batchName,
+  batchId,
 }) => {
   const [isBatchOperationsOpen, setIsBatchOperationsOpen] = useState(false);
   const [isUpdateSingleFieldOpen, setIsUpdateSingleFieldOpen] = useState(false);
   const [isDeleteBoxOpen, setIsDeleteBoxOpen] = useState(false);
   const [userIdOptions, setUserIdOptions] = useState([]);
+  const [submitError, setSubmitError] = useState(null);
 
   useEffect(() => {
     const fetchData = async (params) => {
@@ -24,7 +28,7 @@ const AdminBatchSearch = ({
         var filterParams = {
           roleId: 3,
         };
-       
+
         const data = await getUserDetails(filterParams);
         console.log(data);
         const userIds = data.responseData.map((user) => ({
@@ -37,9 +41,7 @@ const AdminBatchSearch = ({
       }
     };
 
-    // Example call to fetchData with initial params
-    fetchData(); // Adjust params as needed
-
+    fetchData();
   }, []);
 
   const AdminBatchSearchData = {
@@ -81,15 +83,15 @@ const AdminBatchSearch = ({
       labelTitle: "Add student ID",
       placeHolder: "Student ID",
       buttonTitle: "Add",
-      options:userIdOptions,
-      isSelect : true,
+      options: userIdOptions,
+      isSelect: true,
     },
     editprops: {
       mainHeading: "Edit Batch Name",
       labelTitle: "Batch Name",
-      placeHolder: batchName,
+      placeHolder: "",
       buttonTitle: "Save",
-      initialData: { },
+      initialData: batchName,
     },
     deleteprops: {
       title: "Confirmation Required",
@@ -98,15 +100,21 @@ const AdminBatchSearch = ({
     },
   };
 
-  const handleFormSubmit = (formData) => {
-    console.log("Form submitted with data:", formData);
-    changeBatchName(formData.inputData);
-    handleCloseAllModals();
+  const handleFormSubmit = async (formData) => {
+    try {
+      await updateBatch({ batchId, batchName: formData.inputData });
+      setBatchName(formData.inputData);
+      setSubmitError(null);
+      handleCloseAllModals();
+    } catch (error) {
+      setSubmitError("Batch name already exists");
+      console.error("Error updating batch name:", error);
+    }
   };
 
   const addStdFormSubmit = (formData) => {
     console.log("Add student form submitted with data:", formData);
-    addParticipant(formData.inputData);
+    addParticipant(formData.studentIds);
     handleCloseAllModals();
   };
 
@@ -148,7 +156,8 @@ const AdminBatchSearch = ({
         <UpdateSingleField
           {...AdminBatchSearchData.editprops}
           onSubmit={handleFormSubmit}
-          placeHolder={batchName}
+          initialData={batchName}
+          submitError={submitError}
         />
       </Modal>
       <Modal

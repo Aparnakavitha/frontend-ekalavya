@@ -54,14 +54,16 @@ export const validateImageFile = (file, setFileError, setError) => {
 //Number Validation
 export const validateNumber = (type) => (value) => {
   if (type === "others") {
+    const valStr = value.toString();
     return (
-      !value || isNumeric(value) || "This field should contain only digits."
+      !value || isNumeric(valStr) || "This field should contain only digits."
     );
   }
   if (type === "postalCode") {
+    const valStr = value.toString();
     return (
       !value ||
-      (isNumeric(value) && value.length === 6) ||
+      (isNumeric(valStr) && valStr.length === 6) ||
       "This field should contain only digits and have a length of 6."
     );
   }
@@ -69,35 +71,45 @@ export const validateNumber = (type) => (value) => {
 };
 
 //Start Date Validation
-export const validateStartDate = (value, allValues) => {
-  const currentDate = new Date();
-  const startDate = new Date(value);
+export const validateStartDate = (type) => (value, allValues) => {
+  if (type === "new") {
+    const currentDate = new Date();
+    const startDate = new Date(value);
 
-  if (isNaN(startDate.getTime())) {
-    return "Start date is required";
+    if (isNaN(startDate.getTime())) {
+      return "Start date is required";
+    }
+
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+    const currentDay = currentDate.getDate();
+
+    const startYear = startDate.getFullYear();
+    const startMonth = startDate.getMonth();
+    const startDay = startDate.getDate();
+    if (
+      startYear > currentYear ||
+      (startYear === currentYear && startMonth > currentMonth) ||
+      (startYear === currentYear &&
+        startMonth === currentMonth &&
+        startDay > currentDay) ||
+      (startYear === currentYear &&
+        startMonth === currentMonth &&
+        startDay === currentDay)
+    ) {
+      return true;
+    }
+
+    return "Start date must be on or after the current date.";
   }
-
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth();
-  const currentDay = currentDate.getDate();
-
-  const startYear = startDate.getFullYear();
-  const startMonth = startDate.getMonth();
-  const startDay = startDate.getDate();
-  if (
-    startYear > currentYear ||
-    (startYear === currentYear && startMonth > currentMonth) ||
-    (startYear === currentYear &&
-      startMonth === currentMonth &&
-      startDay > currentDay) ||
-    (startYear === currentYear &&
-      startMonth === currentMonth &&
-      startDay === currentDay)
-  ) {
+  if (type === "edit") {
+    const currentDate = new Date();
+    const startDate = new Date(value);
+    if (isNaN(startDate.getTime())) {
+      return "Start date is required";
+    }
     return true;
   }
-
-  return "Start date must be on or after the current date.";
 };
 
 //End Date Validation

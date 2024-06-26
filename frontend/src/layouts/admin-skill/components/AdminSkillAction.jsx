@@ -14,28 +14,34 @@ import {
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
 
+
 const AdminSkillAction = () => {
   const { skills, setSkills, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deleteSkillId, setDeleteSkillId] = useState(null);
+  const [error, setError] = useState("");
 
   const handleOpenModal = () => {
     setIsOpen(true);
+    setError("");
   };
 
   const handleCloseModal = () => {
+    setError("");
     setIsOpen(false);
   };
 
   const handleOpenDelete = (skillId) => {
     setDeleteSkillId(skillId);
     setIsDeleteOpen(true);
+    setError("");
   };
 
   const handleCloseDelete = () => {
     setIsDeleteOpen(false);
     setDeleteSkillId(null);
+    setError("");
   };
 
   const handleFormSubmit = async (skill) => {
@@ -49,8 +55,11 @@ const AdminSkillAction = () => {
       setSkills([...skills, newSkill]);
       setChanged(true);
       handleCloseModal();
+      setError("");
     } catch (error) {
       console.error("Error adding skill:", error);
+      setError("Skill name already exists");
+      
     }
   };
 
@@ -93,7 +102,11 @@ const AdminSkillAction = () => {
     <div>
       <ActionComponent {...actionData} onSearchChange={handleSearchChange} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
-        <AddSkill onSubmit={handleFormSubmit} onCancel={handleCloseModal} />
+        <AddSkill
+          onSubmit={handleFormSubmit}
+          error={error}
+          onCancel={handleCloseModal}
+        />
       </Modal>
       <Modal
         isOpen={isDeleteOpen}

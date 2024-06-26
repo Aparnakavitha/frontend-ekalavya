@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../pages/index";
 import Explore from "../pages/Explore";
@@ -7,17 +7,11 @@ import MentorContent from "../pages/mentor/Mentor";
 import AdminContent from "../pages/admin/Admin";
 import StudentContent from "../pages/student/Student";
 import NotFound from "../layouts/common/components/NotFound";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RouterComponent = () => {
-  const [roleId, setRoleId] = useState(null);
-
-  useEffect(() => {
-    const roleIdFromSessionStorage = sessionStorage.getItem("role");
-    if (roleIdFromSessionStorage !== null) {
-      setRoleId(roleIdFromSessionStorage);
-    }
-  }, []);
-
+  const roleId = sessionStorage.getItem("role");
   return (
     <div>
       <BrowserRouter>
@@ -41,6 +35,18 @@ const RouterComponent = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer
+        position={"top-center"}
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick={true}
+        pauseOnHover={true}
+        draggable={true}
+        progress={undefined}
+        pauseOnFocusLoss
+        theme={"dark"}
+        transition={Slide}
+      />
     </div>
   );
 };

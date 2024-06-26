@@ -4,9 +4,16 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import {
+  validateStartDate,
+  validateEndDate,
+  validateNumber,
+  validateAndCleanInput
+} from "./validation";
 
 const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
-  const { handleSubmit, control, setValue } = useForm({
+  const { handleSubmit, control, setValue,setError,
+    formState: { errors }, } = useForm({
     defaultValues: initialValues,
   });
 
@@ -28,6 +35,9 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
       <Controller
         name="degree"
         control={control}
+        rules={{
+          required: "Degree is required"
+        }}
         render={({ field }) => (
           <InputDropdown
             {...field}
@@ -37,9 +47,18 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
           />
         )}
       />
+      {errors.degree&& (
+            <p className={`${styles["qualification-form-error"]}`}>
+              {errors.degree.message}
+            </p>
+          )}
       <Controller
         name="specialization"
         control={control}
+        rules={{
+          required: "Specialization is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
@@ -49,35 +68,61 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
           />
         )}
       />
+      {errors.specialization&& (
+            <p className={`${styles["qualification-form-error"]}`}>
+              {errors.specialization.message}
+            </p>
+          )}
       <Controller
         name="institution"
         control={control}
+        rules={{
+          required: "Institution / University is required",
+          validate: validateAndCleanInput,
+        }}
         render={({ field }) => (
           <Input
             {...field}
-            label="Institution / University:"
+            label="Institution / University"
             placeholders={["university"]}
             size="normal"
           />
         )}
       />
+            {errors.institution&& (
+            <p className={`${styles["qualification-form-error"]}`}>
+              {errors.institution.message}
+            </p>
+          )}
       <Controller
         name="percentage"
         control={control}
+        rules={{
+          required : "Percentage is required ",
+          validate: validateNumber("others"),
+        }}
         render={({ field }) => (
           <Input
             {...field}
-            label="Percentage:"
+            label="Percentage"
             placeholders={["percentage"]}
             size="normal"
           />
         )}
       />
+        {errors.percentage&& (
+            <p className={`${styles["qualification-form-error"]}`}>
+              {errors.percentage.message}
+            </p>
+          )}
       <div className={`${styles["qualification-form-startdate-enddate"]}`}>
         <div className={`${styles["qualification-form-datebox"]}`}>
           <Controller
             name="startDate"
             control={control}
+            rules={{
+              validate: validateStartDate("edit"),
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -88,11 +133,19 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
               />
             )}
           />
+          {errors.startDate && (
+            <p className={`${styles["qualification-form-error"]}`}>
+              {errors.startDate.message}
+            </p>
+          )}
         </div>
         <div className={`${styles["qualification-form-datebox"]}`}>
           <Controller
             name="endDate"
             control={control}
+            rules={{
+              validate: validateEndDate,
+            }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -103,6 +156,11 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
               />
             )}
           />
+          {errors.endDate && (
+            <p className={`${styles["qualification-form-error"]}`}>
+              {errors.endDate.message}
+            </p>
+          )}
         </div>
       </div>
       <div className={`${styles["qualification-form-button"]}`}>
