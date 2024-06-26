@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Card from "../../../components/cards/SkillCard";
 import { GoPlus } from "react-icons/go";
@@ -193,4 +192,3 @@ const Layout = () => {
 };
  
 export default Layout;
- 
