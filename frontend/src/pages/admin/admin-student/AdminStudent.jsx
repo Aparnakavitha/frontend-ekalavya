@@ -166,8 +166,8 @@ const AdminStudent = () => {
       viewprops: {
         data: collegeData,
         headings: [
-          "ClgID",
-          "CollegeName",
+          "College ID",
+          "College Name",
           "Place",
           "District",
           "State",
@@ -214,6 +214,7 @@ const AdminStudent = () => {
       heading: "Add New Student",
     },
     searchPlaceholder: "Enter Student ID/Name",
+    combinedFilter: false,
   };
 
   const dataView = {
@@ -273,7 +274,10 @@ const AdminStudent = () => {
           setUserData(location.state.userData);
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        toast.error("Error creating college", {
+          position: "top-center",
+          autoClose: 5000,
+        });
       }
       toast.success("College Added", {
         position: "top-center",

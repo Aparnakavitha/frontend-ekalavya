@@ -82,13 +82,14 @@ const AdminBatchSearch = ({
       placeHolder: "Student ID",
       buttonTitle: "Add",
       options:userIdOptions,
+      isSelect : true,
     },
     editprops: {
       mainHeading: "Edit Batch Name",
       labelTitle: "Batch Name",
       placeHolder: batchName,
       buttonTitle: "Save",
-      initialData: { inputData: batchName },
+      initialData: { },
     },
     deleteprops: {
       title: "Confirmation Required",

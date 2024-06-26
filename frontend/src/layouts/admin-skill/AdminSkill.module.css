@@ -1,8 +1,14 @@
 /* ------------------------------- AddSkill.css starts here ------------------------------- */
 
 .addskill-boxcontainer {
+  border-radius: 30px;
   width: 100%;
-  padding: 50px;  
+  padding: 50px;  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(20px);
+  background: 
+  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
+  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+ 
 }
 
 .addskill-layoutcontainer {
@@ -31,6 +37,7 @@
 @media (max-width: 767px) {
   .addskill-boxcontainer {
     padding: 30px;
+    border-radius: 30px;
   }
 }
 
@@ -39,9 +46,15 @@
 /* ------------------------------- DeleteSkill.css starts here ------------------------------- */
 
 .deleteskill-boxcontainer {
+  border-radius: 30px;
   width: 100%;
   padding: 50px;  
-
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(20px);
+  background: 
+  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
+  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+ 
 }
 
 .deleteskill-layoutcontainer {
@@ -70,6 +83,7 @@
 @media (max-width: 767px) {
   .deleteskill-boxcontainer {
     padding: 30px;
+    border-radius: 30px;
   }
 }
 
