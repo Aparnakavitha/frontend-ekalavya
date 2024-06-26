@@ -12,6 +12,7 @@ import {
   useSkills,
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
+import { toast } from "react-toastify";
 
 const AdminSkillAction = () => {
   const { skills, setSkills, setChanged } = useSkills();
@@ -48,8 +49,10 @@ const AdminSkillAction = () => {
       setSkills([...skills, newSkill]);
       setChanged(true);
       handleCloseModal();
+      toast.success("Skill created successfully!");
     } catch (error) {
       console.error("Error adding skill:", error);
+      toast.error("Error adding skill!");
     }
   };
 
@@ -61,7 +64,9 @@ const AdminSkillAction = () => {
       );
       setChanged(true);
       handleCloseDelete();
+      toast.success("Skill deleted successfully!");
     } catch (error) {
+      toast.error("Error deleting skill!");
       console.error("Error deleting skill:", error);
     }
   };
@@ -102,8 +107,15 @@ const AdminSkillAction = () => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddSkill onSubmit={handleFormSubmit} onCancel={handleCloseModal} />
       </Modal>
-      <Modal isOpen={isDeleteOpen} widthVariant="medium" onClose={handleCloseDelete}>
-        <DeleteSkill onSubmit={handleDeleteSubmit} onCancel={handleCloseDelete} />
+      <Modal
+        isOpen={isDeleteOpen}
+        widthVariant="medium"
+        onClose={handleCloseDelete}
+      >
+        <DeleteSkill
+          onSubmit={handleDeleteSubmit}
+          onCancel={handleCloseDelete}
+        />
       </Modal>
     </div>
   );
