@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { participantsState, studentSkillState } from "../../../states/Atoms";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import { toast } from "react-toastify"; 
+
 
 const capitalizeFirstLetter = (string) => {
   return string.trim().charAt(0).toUpperCase() + string.slice(1);
@@ -74,7 +76,9 @@ const AdminSkillsList = ({ handleClick }) => {
             : skill
         );
         setSkills(updatedSkills);
+        toast.success("Skill updated successfully!");
       } catch (error) {
+        toast.error("Error updating skill!");
         console.error("Error updating skill: ", error);
       }
     }
@@ -126,7 +130,7 @@ const AdminSkillsList = ({ handleClick }) => {
             labelTitle="Skill Name"
             placeHolder="Skill Name"
             buttonTitle="Save"
-            initialData={{ inputData: selectedSkill.skillName }}
+            initialData={selectedSkill.skillName}
             onSubmit={handleFormSubmit}
             isEdit={true}
             message="You are updating :"

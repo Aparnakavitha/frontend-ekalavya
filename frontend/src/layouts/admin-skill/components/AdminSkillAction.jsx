@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ActionComponent from "../../common/components/Action";
 import Modal from "../../common/components/Modal";
+import AdminSkillActionData from "./SkillData";
 import AddSkill from "./AddSkill";
 import DeleteSkill from "./DeleteSkill";
 import {
@@ -19,23 +20,28 @@ const AdminSkillAction = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deleteSkillId, setDeleteSkillId] = useState(null);
+  const [error, setError] = useState("");
 
   const handleOpenModal = () => {
     setIsOpen(true);
+    setError("");
   };
 
   const handleCloseModal = () => {
+    setError("");
     setIsOpen(false);
   };
 
   const handleOpenDelete = (skillId) => {
     setDeleteSkillId(skillId);
     setIsDeleteOpen(true);
+    setError("");
   };
 
   const handleCloseDelete = () => {
     setIsDeleteOpen(false);
     setDeleteSkillId(null);
+    setError("");
   };
 
   const handleFormSubmit = async (skill) => {
@@ -64,9 +70,9 @@ const AdminSkillAction = () => {
       );
       setChanged(true);
       handleCloseDelete();
-      toast.success("Skill deleted successfully!");
+      toast.success("Skill removed successfully!");
     } catch (error) {
-      toast.error("Error deleting skill!");
+      toast.error("Error removing skill!");
       console.error("Error deleting skill:", error);
     }
   };
@@ -76,36 +82,27 @@ const AdminSkillAction = () => {
     setSkills(searchedSkill);
   };
 
-  const AdminSkillActionData = {
-    heading: "Skills List",
+  const actionData = {
+    ...AdminSkillActionData,
     buttonProps: {
-      variant: "tertiary",
-      content: "+ Add New Skill",
-      width: "full",
+      ...AdminSkillActionData.buttonProps,
       onClick: handleOpenModal,
     },
     deleteProps: {
-      variant: "primary",
-      content: "\u00A0Remove a Skill\u00A0",
-      width: "full",
+      ...AdminSkillActionData.deleteProps,
       onClick: () => handleOpenDelete(deleteSkillId),
     },
-    showDelete: true,
-    searchWidth: "large",
-    searchbarProps: {
-      variant: "custom",
-      placeholder: "Skill",
-      onSearchChange: handleSearchChange,
-    },
-    showFiltersAndReset: false,
-    searchPlaceholder: "Enter Skill Name",
   };
 
   return (
     <div>
-      <ActionComponent {...AdminSkillActionData} />
+      <ActionComponent {...actionData} onSearchChange={handleSearchChange} />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
-        <AddSkill onSubmit={handleFormSubmit} onCancel={handleCloseModal} />
+        <AddSkill
+          onSubmit={handleFormSubmit}
+          error={error}
+          onCancel={handleCloseModal}
+        />
       </Modal>
       <Modal
         isOpen={isDeleteOpen}
