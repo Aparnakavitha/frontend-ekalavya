@@ -3,24 +3,38 @@ import ActionComponent from "../../common/components/Action";
 import Modal from "../../common/components/Modal";
 import AdminBatchActionData from "./BatchActionData";
 import BatchOperations from "./BatchOperations";
+import { createBatch } from "../../../services/Batch";
 
-const AdminBatchAction = ({ onSubmit, onSearchChange }) => {
+const AdminBatchAction = ({
+  onSearchChange,
+  batchData,
+  setBatchData,
+  setChanged,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleOpenModal = () => {
+    setSubmitError("");
     setIsOpen(true);
   };
 
   const handleCloseModal = () => {
+    setSubmitError("");
     setIsOpen(false);
   };
 
   const handleFormSubmit = async (formData) => {
     try {
-      await onSubmit(formData);
+      const { batchName } = formData;
+      const response = await createBatch({ batchName: batchName });
+      setBatchData([...(batchData || []), response[0]]);
+      setChanged((prev) => !prev);
       setIsOpen(false);
+      setSubmitError("");
     } catch (error) {
-      console.error("Error submitting batch:", error);
+      console.error("Error adding batch:", error);
+      setSubmitError("Batch name already exists");
     }
   };
 
@@ -39,6 +53,7 @@ const AdminBatchAction = ({ onSubmit, onSearchChange }) => {
         <BatchOperations
           mainHeading="Create New Batch"
           onSubmit={handleFormSubmit}
+          submitError={submitError}
         />
       </Modal>
     </div>

@@ -2,16 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MentorEventDescription from "../../../layouts/mentor-events/components/MentorEventDescription";
 import EventsTable from "../../../layouts/mentor-events/components/EventsTable";
-import {
-  fetchEventsService,
-  addEventService,
-  enrollParticipant,
-  addEnrollment,
-} from "../../../services/Event";
-import {
-  addEnrollmentService,
-  enrollParticipantService,
-} from "../../../services/Event";
+import { fetchEventsService, addEventService, enrollParticipantService, addEnrollmentService } from "../../../services/Event";
 
 const MentorEventDetails = () => {
   const { eventId } = useParams();
@@ -19,12 +10,15 @@ const MentorEventDetails = () => {
   const [participants, setParticipants] = useState([]);
   const [showButton, setShowButton] = useState(false);
 
+  const [completed, setCompleted] = useState(false);
+
   const headings = ["Participant Id", "Name", "Email", "Attendance"];
 
   const fetchEventData = async () => {
     try {
       const eventDataResponse = await fetchEventsService({ eventId });
       setEventData(eventDataResponse[0]);
+      setCompleted(eventDataResponse[0].completed);
       if (eventDataResponse[0].completed == 0) {
         setShowButton(true);
       }
@@ -37,10 +31,8 @@ const MentorEventDetails = () => {
     try {
       const response = await enrollParticipantService(eventId);
       if (response.statusMessage === "success") {
-        const updatedParticipants = response.responseData.map((participant) => {
-          const existingParticipant = participants.find(
-            (p) => p.participantId === participant.participantId
-          );
+        const updatedParticipants = response.responseData.map(participant => {
+          const existingParticipant = participants.find(p => p.participantId === participant.participantId);
           if (existingParticipant) {
             return {
               ...existingParticipant,
@@ -50,7 +42,6 @@ const MentorEventDetails = () => {
             return participant;
           }
         });
-
         setParticipants(updatedParticipants);
       }
     } catch (error) {
@@ -58,10 +49,12 @@ const MentorEventDetails = () => {
     }
   };
 
+
   useEffect(() => {
     fetchEventData();
     fetchParticipants();
   }, [eventId]);
+
 
   const formSubmit = async (data) => {
     data.hostId = sessionStorage.getItem("user_id");
@@ -75,6 +68,7 @@ const MentorEventDetails = () => {
     }
   };
 
+
   const handleAttendanceUpdate = async (attendance) => {
     try {
       const response = await addEnrollmentService(eventId, attendance);
@@ -84,6 +78,7 @@ const MentorEventDetails = () => {
       console.error("Error updating enrollment:", error);
     }
   };
+
 
   const tableContent = {
     data: participants.map((participant) => [
@@ -95,7 +90,9 @@ const MentorEventDetails = () => {
     headings,
     logAttendance: () => {},
     onAttendanceUpdate: handleAttendanceUpdate,
+    disableAttendance: !completed,
   };
+
 
   return (
     <div>

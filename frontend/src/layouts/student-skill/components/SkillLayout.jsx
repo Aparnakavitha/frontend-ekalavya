@@ -11,7 +11,7 @@ import {
   SkillService,
   UserSkillDelete,
 } from "../../../services/Skills";
-
+ 
 const Layout = () => {
   const [userSkills, setUserSkills] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -22,20 +22,20 @@ const Layout = () => {
   });
   const [options, setOptions] = useState([]);
   const userId = sessionStorage.getItem("user_id");
-
+ 
   useEffect(() => {
     fetchSkills();
   }, []);
-
+ 
   useEffect(() => {
     fetchUserSkills();
   }, []);
-
+ 
   useEffect(() => {
     setUserSkills(userSkills);
     setSkillAdded(false);
   }, [skillAdded]);
-
+ 
   const fetchUserSkills = async () => {
     try {
       const skills = await getSkillsForUser(userId);
@@ -45,12 +45,12 @@ const Layout = () => {
       console.error("Error fetching user skills", error);
     }
   };
-
+ 
   const fetchSkills = async () => {
     try {
       const skillsResponse = await SkillService();
       setOptions(
-        skillsResponse.map((skill) => ({
+        skillsResponse.skills.map((skill) => ({
           value: skill.id,
           label:
             skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1),
@@ -61,12 +61,12 @@ const Layout = () => {
       console.error("Error fetching skills", error);
     }
   };
-
+ 
   const capitalizeFirstLetter = (str) => {
     if (!str) return "";
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
-
+ 
   const handleAddSkill = async (formData) => {
     try {
       const { skill } = formData;
@@ -75,7 +75,7 @@ const Layout = () => {
         skillId: skill,
       };
       const newSkillResponse = await Userskillpost(postData);
-
+ 
       const newSkill = {
         skill_name:
           options.find((opt) => opt.value === skill)?.originalName ||
@@ -84,7 +84,7 @@ const Layout = () => {
         skill_id: newSkillResponse.responseData[0].skill_id,
         ...newSkillResponse,
       };
-
+ 
       setUserSkills((prevSkills) => [...prevSkills, newSkill]);
       setSkillAdded(true);
       console.log("Skill added successfully:", newSkill);
@@ -93,31 +93,32 @@ const Layout = () => {
       console.error("Error adding skill:", error);
     }
   };
-
+ 
   const handleFormSubmit = (formData) => {
     console.log("Here's the form data:", formData);
     handleAddSkill(formData);
+    
   };
-
+ 
   const handleDeleteSkill = async () => {
     const skillToDelete = userSkills[deleteModal.index];
-    console.log("Skill id for skill to delete: ",deleteModal.index,userSkills,"Skill to delete from user skills",userSkills[deleteModal.index]);
+    console.log("Skill id for skill to delete: ",userSkills[deleteModal.index].id,userSkills,"Skill to delete from user skills",userSkills[deleteModal.index]);
     if (!skillToDelete) {
       console.error("Skill to delete not found");
       return;
     }
-
-    const { skill_id } = skillToDelete;
-
-    if (!skill_id) {
+ 
+    const { id } = skillToDelete;
+ 
+    if (!id) {
       console.error("Skill id undefined for skill:", skillToDelete);
       return;
     }
-
+ 
     try {
-      await UserSkillDelete(userId, skill_id);
+      await UserSkillDelete(userId, id);
       console.log("Skill deleted successfully");
-
+ 
       const updatedSkills = userSkills.filter(
         (_, index) => index !== deleteModal.index
       );
@@ -128,7 +129,7 @@ const Layout = () => {
       setDeleteModal({ isOpen: false, index: null });
     }
   };
-
+ 
   return (
     <div className={`${styles["skilllayout-container"]} padding-top padding`}>
       <div className={styles["skilllayout-skilltitle"]}>
@@ -137,8 +138,8 @@ const Layout = () => {
           {userSkills.map((skill, index) => (
             <div key={index} className={styles["skilllayout-skillcontainer"]}>
               <Card
-                subtitle={`Level ${skill.skill_level}`}
-                title={capitalizeFirstLetter(skill.skill_name)}
+                subtitle={`Level ${skill.skillLevel}`}
+                title={capitalizeFirstLetter(skill.skillName)}
                 showCloseIcon={true}
                 onClose={() => setDeleteModal({ isOpen: true, index: index })}
               />
@@ -183,5 +184,5 @@ const Layout = () => {
     </div>
   );
 };
-
+ 
 export default Layout;

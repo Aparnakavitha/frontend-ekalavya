@@ -26,12 +26,15 @@ const UpdateSingleField = ({
     formState: { errors },
   } = useForm({
     defaultValues: isSelect
-      ? {
-          studentIds: [],
-        }
-      : initialData,
-  });
-
+    ? {
+        studentIds: initialData?.studentIds || [], // Initialize with studentIds if it's a select field
+      }
+    : {
+        inputData: initialData || "", // Initialize with initialData for a simple input field
+      },
+});
+  console.log(initialData, isSelect);
+  console.log("aaaa", placeHolder);
   const handleFormSubmit = (data) => {
     onSubmit(data);
   };

@@ -58,7 +58,7 @@
 
 .addevent-error {
   margin-top: -5px;
-  color: var(--primary-color);
+  color: var(--warning-color);
   font-size: 0.875rem;
 }
 
@@ -103,7 +103,7 @@
 
 .addcollege-error {
   margin-top: 5px;
-  color: var(--primary-color);
+  color: var(--warning-color);
   font-size: 0.875rem;
 }
 
