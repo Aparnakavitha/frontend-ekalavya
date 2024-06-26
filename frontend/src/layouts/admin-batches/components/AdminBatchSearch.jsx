@@ -7,6 +7,7 @@ import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
 import { getUserDetails } from "../../../services/User";
 import { updateBatch } from "../../../services/Batch";
+import { toast } from "react-toastify";
 
 const AdminBatchSearch = ({
   batchDelete,
@@ -104,6 +105,7 @@ const AdminBatchSearch = ({
     try {
       await updateBatch({ batchId, batchName: formData.inputData });
       setBatchName(formData.inputData);
+      toast.success("Batch name updated successfully!");
       setSubmitError(null);
       handleCloseAllModals();
     } catch (error) {
