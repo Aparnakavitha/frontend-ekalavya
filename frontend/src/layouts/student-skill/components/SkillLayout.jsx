@@ -5,6 +5,7 @@ import styles from "../StudentSkill.module.css";
 import Modal from "../../common/components/Modal";
 import DeleteBox from "../../common/components/DeleteBox";
 import CombinedSkillForm from "../../common/components/CombinedSkillForm";
+import { toast } from "react-toastify";
 import {
   getSkillsForUser,
   Userskillpost,
@@ -96,8 +97,14 @@ const Layout = () => {
   };
  
   const handleFormSubmit = (formData) => {
+    try {
     console.log("Here's the form data:", formData);
     handleAddSkill(formData);
+    toast.success("New skill added successfully!");
+    } catch (error) {
+    toast.error("Error adding skill!");
+    }
+
   };
  
   const handleDeleteSkill = async () => {
@@ -129,8 +136,9 @@ const Layout = () => {
         (_, index) => index !== deleteModal.index
       );
       setUserSkills(updatedSkills);
+      toast.success("Skill deleted successfully!");
     } catch (error) {
-      console.error("Error deleting skill:", error);
+      toast.error("Error deleting skill!");
     } finally {
       setDeleteModal({ isOpen: false, index: null });
     }
