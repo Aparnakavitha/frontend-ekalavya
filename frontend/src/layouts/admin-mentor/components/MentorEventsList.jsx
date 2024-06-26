@@ -9,6 +9,7 @@ import { DeleteBox } from "../../common";
 import styles from "../AdminMentor.module.css";
 import { useNavigate } from "react-router-dom";
 import DeleteButton from "../../../components/buttons/DeleteButton";
+import { toast } from "react-toastify";
 
 const MentorEventsList = ({ events, handleDelete }) => {
   const navigate = useNavigate();
@@ -37,11 +38,16 @@ const MentorEventsList = ({ events, handleDelete }) => {
   };
 
   const handleDeleteConfirm = () => {
-    console.log("Delete confirmed");
-    if (handleDelete) {
-      handleDelete();
+    try {
+      console.log("Delete confirmed");
+      if (handleDelete) {
+        handleDelete();
+      }
+      handleCloseDelete();
+      toast.success("Mentor removed successfully!");
+    } catch {
+      toast.error("Error removing mentor");
     }
-    handleCloseDelete();
   };
 
   const handleClick = (eventId) => {

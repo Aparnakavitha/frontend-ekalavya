@@ -3,11 +3,14 @@ import { useParams } from "react-router-dom";
 import MentorEventDescription from "../../../layouts/mentor-events/components/MentorEventDescription";
 import EventsTable from "../../../layouts/mentor-events/components/EventsTable";
 import { fetchEventsService, addEventService, enrollParticipantService, addEnrollmentService } from "../../../services/Event";
+import { toast } from "react-toastify";
 
 const MentorEventDetails = () => {
   const { eventId } = useParams();
   const [eventData, setEventData] = useState({});
   const [participants, setParticipants] = useState([]);
+  const [showButton, setShowButton] = useState(false);
+
   const [completed, setCompleted] = useState(false);
 
   const headings = ["Participant Id", "Name", "Email", "Attendance"];
@@ -17,6 +20,9 @@ const MentorEventDetails = () => {
       const eventDataResponse = await fetchEventsService({ eventId });
       setEventData(eventDataResponse[0]);
       setCompleted(eventDataResponse[0].completed);
+      if (eventDataResponse[0].completed == 0) {
+        setShowButton(true);
+      }
     } catch (error) {
       console.log("Error fetching event data:", error);
     }
@@ -31,7 +37,7 @@ const MentorEventDetails = () => {
           if (existingParticipant) {
             return {
               ...existingParticipant,
-              attendance: participant.attendance
+              attendance: participant.attendance,
             };
           } else {
             return participant;
@@ -44,10 +50,12 @@ const MentorEventDetails = () => {
     }
   };
 
+
   useEffect(() => {
     fetchEventData();
     fetchParticipants();
   }, [eventId]);
+
 
   const formSubmit = async (data) => {
     data.hostId = sessionStorage.getItem("user_id");
@@ -56,10 +64,12 @@ const MentorEventDetails = () => {
       console.log("Response from API:", response);
       fetchEventData();
       fetchParticipants();
+      toast.success("Event edited successfully!");
     } catch (error) {
-      console.error("Error creating event:", error);
+      toast.error("Error updating event!");
     }
   };
+
 
   const handleAttendanceUpdate = async (attendance) => {
     try {
@@ -71,8 +81,9 @@ const MentorEventDetails = () => {
     }
   };
 
+
   const tableContent = {
-    data: participants.map(participant => [
+    data: participants.map((participant) => [
       participant.participantId,
       participant.name,
       participant.userName,
@@ -84,9 +95,14 @@ const MentorEventDetails = () => {
     disableAttendance: !completed,
   };
 
+
   return (
     <div>
-      <MentorEventDescription fetchedFormData={eventData} formSubmit={formSubmit} />
+      <MentorEventDescription
+        fetchedFormData={eventData}
+        formSubmit={formSubmit}
+        showButton={showButton}
+      />
       <EventsTable {...tableContent} />
     </div>
   );

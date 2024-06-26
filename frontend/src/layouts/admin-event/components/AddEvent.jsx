@@ -199,7 +199,7 @@ const AddEvent = ({
             name="startDate"
             control={control}
             rules={{
-              validate: validateStartDate,
+              validate: mergedDefaultValues.startDate ? validateStartDate('edit') : validateStartDate('new'),
             }}
             render={({ field }) => (
               <Input
