@@ -11,8 +11,7 @@ const EducationalQualification = ({
 }) => {
   const [isAddQualificationOpen, setIsAddQualificationOpen] = useState(false);
   const [isEditQualificationOpen, setIsEditQualificationOpen] = useState(false);
-  const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] =
-    useState(false);
+  const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
   const handleOpenAddQualification = () => {
@@ -31,7 +30,7 @@ const EducationalQualification = ({
   const handleCloseEditQualification = () => {
     setIsEditQualificationOpen(false);
   };
-
+ 
   const handleOpenDeleteQualification = (index) => {
     setEditIndex(index);
     setIsDeleteQualificationOpen(true);
@@ -66,25 +65,25 @@ const EducationalQualification = ({
     }
   };
 
-  const handleRemove = async () => {
-    if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
-      try {
-        const qualification = qualifications[editIndex];
+  const handleRemove = async (index) => {
+    try {
+      const qualification = qualifications[index];
+      const formData = {
+        userId: userId,
+        qualifications: [
+          {
+            qualificationId: qualification?.qualificationId, }
+        ],
 
-        const formData = {
-          userId: userId,
-          qualifications: [
-            {
-              qualificationId: qualification?.qualificationId,
-            }
-          ],
-        };
-
-        await onFormSubmit(formData);
-        handleCloseDeleteQualification();
-      } catch (error) {
-        console.error("Error updating user details:", error);
-      }
+      };
+ 
+      console.log("Form Data:", formData);
+      console.log("Start Date:", formData.startDate);
+      console.log("End Date:", formData.endDate);
+      await onFormSubmit(formData);
+      handleCloseDeleteQualification();
+    } catch (error) {
+      console.error("Error updating user details:", error);
     }
   };
 
