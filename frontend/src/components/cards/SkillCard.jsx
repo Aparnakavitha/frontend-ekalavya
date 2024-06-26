@@ -17,7 +17,7 @@ const SkillCard = ({ title, subtitle, showCloseIcon, onClose }) => {
           <h2 className={styles.title}>{title}</h2>
           <p className={styles.subtitle}>{subtitle}</p>
         </div>
-        <div>
+        <div className={styles.iconContainer}>
           {" "}
           {showCloseIcon && (
             <IoIosCloseCircle
