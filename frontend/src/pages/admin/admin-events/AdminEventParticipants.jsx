@@ -3,7 +3,7 @@ import EventParticipantsList from "../../../layouts/admin-event/components/Event
 import { enrollParticipantService } from "../../../services/Event";
 import { useParams } from "react-router-dom";
 
-const pageNames = ["Home", "Exploring Future", "Participants"];
+const pageNames = ["Participants"];
 
 const handleNavButtonClick = (pageName) => {
   console.log(`Navigating to ${pageName}`);
