@@ -46,7 +46,7 @@ const EventsDescription = (props) => {
   }
  
   const locationLabel = eventMode === "Offline" ? "Location" : "Link";
-  const locationValue = eventMode === "Offline" ? location : link;
+  const locationValue = eventMode === "Offline" ? location : <a style={{ color: "white" }}href={link}>{link}</a>;
  
   return (
     <div className={`${styles["eventsdescription-container"]}`}>
@@ -171,8 +171,7 @@ const EventsDescription = (props) => {
               </div>
               <div className={`${styles["eventsdescription-timer"]}`}>
                 <a className={`${styles["eventsdescription-venue"]}`}>
-                  <b>{locationLabel} :</b> <a style={{ color: "white" }}href={locationValue}>{locationValue}
-                  </a>
+                  <b>{locationLabel} :</b> {locationValue}
                 </a>
               </div>
             </div>
