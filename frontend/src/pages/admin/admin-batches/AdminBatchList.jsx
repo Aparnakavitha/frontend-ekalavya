@@ -60,7 +60,9 @@ const AdminBatchList = () => {
   };
 
   const handleClick = (batchId, batchName) => {
-    navigate(`/admin/batches/batch-details/${batchId}`, { state: { batchName } });
+    navigate(`/admin/batches/batch-details/${batchId}`, {
+      state: { batchName },
+    });
   };
 
   const handleFormSubmit = async (formData) => {
@@ -87,15 +89,13 @@ const AdminBatchList = () => {
         showButtons={false}
       />
       <AdminBatchAction
-        onSubmit={handleFormSubmit}
         onSearchChange={handleSearchChange}
+        setBatchData={setBatchData}
+        setChanged={setChanged}
+        batchData={batchData}
       />
       {loading ? (
         <LoadingSpinner />
-      ) : error ? (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          {error}
-        </p>
       ) : batchData && batchData.length > 0 ? (
         <DataView
           data={batchData}
@@ -106,7 +106,7 @@ const AdminBatchList = () => {
             { key: "Count", displayName: "Participant Count" },
           ]}
           toggle={true}
-          cardType="SkillBatchCard"
+          cardType="skillbatchcardbatch"
           itemsPerPage={12}
         />
       ) : (
