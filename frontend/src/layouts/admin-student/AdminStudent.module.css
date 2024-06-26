@@ -80,6 +80,12 @@
   border-radius: 40px;
   padding: 50px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
   backdrop-filter: blur(45px);
 }
 
@@ -144,7 +150,12 @@
   max-height: 100%;
   display: flex;
   flex-direction: column;
-
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
   padding: 50px;
   border-radius: 40px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));

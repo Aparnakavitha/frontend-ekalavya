@@ -89,13 +89,7 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
     description: studentsData.aboutMe ? (
       studentsData.aboutMe
     ) : (
-      <div
-        style={{
-          textAlign: "left",
-          color: "var(--neutral600)",
-          marginTop: "10px",
-          fontSize: "15px",
-        }}
+      <div className="nodata"
       >
         No data available
       </div>

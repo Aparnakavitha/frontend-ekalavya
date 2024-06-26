@@ -10,6 +10,9 @@ import {
 } from "../../../services/User";
 import { fetchEventsService } from "../../../services/Event";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
+import Modal from "../../../layouts/common/components/Modal";
+import BasicDetails from "../../../layouts/common/components/BasicDetails";
 
 const fetchMentorDetails = async (userId, setMentorData) => {
   try {
@@ -26,6 +29,10 @@ const fetchMentorDetails = async (userId, setMentorData) => {
 const AdminMentorDetails = () => {
   const [mentorData, setMentorData] = useState(null);
   const [events, setEvents] = useState([]);
+  const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
+  const [educationData, setEducationData] = useState(null);
+  const [isEditEducationOpen, setIsEditEducationOpen] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const { mentorData: selectedMentor } = location.state || {};
@@ -58,6 +65,20 @@ const AdminMentorDetails = () => {
     fetchEvents();
   }, [mentorData]);
 
+  const handleCloseEditBasicDetails = () => setIsEditDetailsOpen(false);
+
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Data", formData);
+      const response = await addNewUser(formData);
+      console.log("Update response:", response);
+      handleCloseEditBasicDetails();
+      fetchMentorDetails(userId, setMentorData);
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
   const handleFormSubmit = async (formData) => {
     try {
       const { dob, phoneNo, aboutMe, addresses, userId } = formData;
@@ -72,7 +93,7 @@ const AdminMentorDetails = () => {
         aboutMe,
         addresses: updatedAddresses,
       };
-      await addNewUser(updatedData);
+      await updateUserDetails(updatedData);
       fetchMentorDetails(userId, setMentorData);
     } catch (error) {
       console.error("Error updating user details:", error);
@@ -100,9 +121,53 @@ const AdminMentorDetails = () => {
     return <LoadingSpinner />;
   }
 
+  const Education = mentorData.qualifications;
+
+  const homeAddress =
+    mentorData.addresses &&
+    mentorData.addresses.find((address) => address.addressType === "home");
+
+  const editBox = {
+    mainHeading: "Edit Basic Details",
+    initialData: {
+      dob: mentorData.dob,
+      phoneNo: mentorData.phoneNo,
+      addresses: [
+        {
+          addressId: homeAddress ? homeAddress.addressId : "",
+          houseName: homeAddress ? homeAddress.houseName : "",
+          city: homeAddress ? homeAddress.city : "",
+          pinCode: homeAddress ? homeAddress.pinCode : "",
+          state: homeAddress ? homeAddress.state : "",
+          country: homeAddress ? homeAddress.country : "",
+        },
+      ],
+      aboutMe: mentorData.aboutMe,
+    },
+    isEdit: true,
+  };
+
+  const handleOpenEditEducation = () => {
+    setEducationData(mentorData.qualifications);
+    setIsEditEducationOpen(true);
+  };
+
   return (
     <div>
       <MentorProfileInfo mentorData={mentorData} onSubmit={handleFormSubmit} />
+      <Modal
+        isOpen={isEditDetailsOpen}
+        widthVariant="medium"
+        onClose={handleCloseEditBasicDetails}
+      >
+        <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
+      </Modal>
+      <EducationalQualification
+        qualifications={Education}
+        userId={mentorData.userId}
+        onFormSubmit={handleFormSubmit2}
+        onEditClick={handleOpenEditEducation}
+      />
       <MentorEventsList
         events={events}
         handleDelete={handleDelete}
