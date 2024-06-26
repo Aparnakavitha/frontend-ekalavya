@@ -5,10 +5,8 @@ import BasicDetails from "../../common/components/BasicDetails";
 import profilepic from "../../../assets/DP.png";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
-import EducationalQualification from "../../common/components/EducationalQualification";
-import { addNewUser } from "../../../services/User";
 
-const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
+const StudentProfileInfo = ({ studentsData, onSubmit }) => {
   const navProps = {
     pageName: "Students List",
   };
@@ -49,16 +47,6 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
 
     handleCloseEditBasicDetails();
   };
-  const handleFormSubmit2 = async (formData) => {
-    try {
-      console.log("Form Sfgsdh", formData);
-      const response = await addNewUser(formData);
-      console.log("Update response:", response);
-      handleCloseEditBasicDetails();
-    } catch (error) {
-      console.error("Error updating user details:", error);
-    }
-  };
 
   const homeAddress =
     studentsData.addresses &&
@@ -89,20 +77,12 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
     description: studentsData.aboutMe ? (
       studentsData.aboutMe
     ) : (
-      <div
-        style={{
-          textAlign: "left",
-          color: "var(--neutral600)",
-          marginTop: "10px",
-          fontSize: "15px",
-        }}
+      <div className="nodata"
       >
         No data available
       </div>
     ),
   };
-
-  const Education = studentsData.qualifications;
 
   return (
     <div>
@@ -130,11 +110,6 @@ const StudentProfileInfo = ({ studentsData, onSubmit, onformSubmit }) => {
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
       <AboutMe {...aboutMeProps} />
-      <EducationalQualification
-        qualifications={Education}
-        userId={studentsData.userId}
-        onFormSubmit={handleFormSubmit2}
-      />
     </div>
   );
 };

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   Routes,
   Route,
-  useParams,
   useNavigate,
   useLocation,
 } from "react-router-dom";
@@ -23,6 +22,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
+
 const StudentContent = () => {
   const [userData, setUserData] = useState({
     firstName: "",
@@ -51,9 +51,26 @@ const StudentContent = () => {
     fetchData();
   }, []);
 
-  if (!userData) {
-    return <LoadingSpinner />;
-  }
+  useEffect(() => {
+    const handleNavigation = () => {
+      console.log("Handling navigation...");
+      // Check session status here
+      const isLoggedIn = !!sessionStorage.getItem("user_id");
+      if (isLoggedIn) {
+        console.log("User is logged in, showing logout modal...");
+        setIsLogoutModalOpen(true);
+      }
+    };
+  
+    window.addEventListener("popstate", handleNavigation);
+  
+    console.log("Popstate event listener added.");
+  
+    return () => {
+      window.removeEventListener("popstate", handleNavigation);
+      console.log("Popstate event listener removed.");
+    };
+  }, []);
 
   const primaryData = {
     name: `${userData.firstName} ${userData.lastName}`,
@@ -111,6 +128,7 @@ const StudentContent = () => {
       name: primaryData.name,
       profilePic: Dp,
       gmail: primaryData.email,
+      onNameClick: () => navigate(`/student/profile`),
     },
   };
 
@@ -143,6 +161,7 @@ const StudentContent = () => {
               name={sidebarContent.profileBox.name}
               profilePic={sidebarContent.profileBox.profilePic}
               gmail={sidebarContent.profileBox.gmail}
+              onNameClick={sidebarContent.profileBox.onNameClick}
             />
           </div>
           <div className="statecontent">

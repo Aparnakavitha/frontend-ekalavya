@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BatchSearch from "../../common/components/BatchSearch";
 import Modal from "../../common/components/Modal";
 import UpdateSingleField from "../../common/components/UpdateSingleField";
 import DeleteBox from "../../common/components/DeleteBox";
 import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
+import { getUserDetails } from "../../../services/User";
 
 const AdminBatchSearch = ({
   batchDelete,
@@ -15,6 +16,29 @@ const AdminBatchSearch = ({
   const [isBatchOperationsOpen, setIsBatchOperationsOpen] = useState(false);
   const [isUpdateSingleFieldOpen, setIsUpdateSingleFieldOpen] = useState(false);
   const [isDeleteBoxOpen, setIsDeleteBoxOpen] = useState(false);
+  const [userIdOptions, setUserIdOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async (params) => {
+      try {
+        var filterParams = {
+          roleId: 3,
+        };
+
+        const data = await getUserDetails(filterParams);
+        console.log(data);
+        const userIds = data.responseData.map((user) => ({
+          value: user.userId,
+          label: user.userId,
+        }));
+        setUserIdOptions(userIds);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const AdminBatchSearchData = {
     navbuttonProps: {
@@ -55,13 +79,15 @@ const AdminBatchSearch = ({
       labelTitle: "Add student ID",
       placeHolder: "Student ID",
       buttonTitle: "Add",
+      options: userIdOptions,
+      isSelect: true,
     },
     editprops: {
       mainHeading: "Edit Batch Name",
       labelTitle: "Batch Name",
-      placeHolder: batchName,
+      placeHolder: "",
       buttonTitle: "Save",
-      initialData: { inputData: batchName },
+      initialData: batchName,
     },
     deleteprops: {
       title: "Confirmation Required",
@@ -78,7 +104,7 @@ const AdminBatchSearch = ({
 
   const addStdFormSubmit = (formData) => {
     console.log("Add student form submitted with data:", formData);
-    addParticipant(formData.inputData);
+    addParticipant(formData.studentIds);
     handleCloseAllModals();
   };
 
@@ -120,7 +146,7 @@ const AdminBatchSearch = ({
         <UpdateSingleField
           {...AdminBatchSearchData.editprops}
           onSubmit={handleFormSubmit}
-          placeHolder={batchName}
+          initialData={batchName}
         />
       </Modal>
       <Modal

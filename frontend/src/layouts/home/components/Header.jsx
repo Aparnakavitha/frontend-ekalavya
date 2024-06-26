@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../Home.module.css";
 import { BsX, BsList } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "../../common/components/Modal";
 import LoginBox from "../../common/components/LoginBox";
 
@@ -17,9 +17,22 @@ const Header = ({
   const [showSidebar, setShowSidebar] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleOpenLoginModal = () => {
-    setIsLoginModalOpen(true);
+    // Check if user is already logged in
+    const isLoggedIn = !!sessionStorage.getItem("user_id");
+
+    if (isLoggedIn) {
+      // Navigate based on role
+      const roleId = parseInt(sessionStorage.getItem("role"));
+      navigateBasedOnRole(roleId);
+    } else {
+      // Open login modal if not logged in
+      setIsLoginModalOpen(true);
+    }
   };
+
 
   const handleCloseLoginModal = () => {
     setIsLoginModalOpen(false);
@@ -38,6 +51,23 @@ const Header = ({
     title: "Log In with Google",
     buttonText: "Log In with Google",
     onCancel: handleCloseLoginModal,
+  };
+
+  const navigateBasedOnRole = (roleId) => {
+    switch (roleId) {
+      case 3:
+        navigate("/student/profile");
+        break;
+      case 2:
+        navigate("/mentor/profile");
+        break;
+      case 1:
+        navigate("/admin/student");
+        break;
+      default:
+        console.error("Unknown role ID:", roleId);
+        break;
+    }
   };
 
   return (

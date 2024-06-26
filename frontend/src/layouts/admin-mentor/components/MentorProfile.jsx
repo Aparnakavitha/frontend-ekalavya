@@ -5,10 +5,8 @@ import BasicDetails from "../../common/components/BasicDetails";
 import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
-import EducationalQualification from "../../common/components/EducationalQualification";
-import { addNewUser } from "../../../services/User";
 
-const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
+const MentorProfileInfo = ({ mentorData, onSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
 
   const navProps = { pageName: "Mentors List" };
@@ -42,17 +40,6 @@ const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
     });
 
     handleCloseEditBasicDetails();
-  };
-
-  const handleFormSubmit2 = async (formData) => {
-    try {
-      console.log("Form Sfgsdh", formData);
-      const response = await addNewUser(formData);
-      console.log("Update response:", response);
-      handleCloseEditBasicDetails();
-    } catch (error) {
-      console.error("Error updating user details:", error);
-    }
   };
 
   if (!mentorData) {
@@ -101,8 +88,6 @@ const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
     ),
   };
 
-  const Education = mentorData.qualifications;
-
   return (
     <div>
       <div className="padding">
@@ -129,11 +114,7 @@ const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
       <AboutMe {...aboutMeProps} />
-      <EducationalQualification
-        qualifications={Education}
-        userId={mentorData.userId}
-        onFormSubmit={handleFormSubmit2}
-      />
+     
     </div>
   );
 };

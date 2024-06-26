@@ -94,7 +94,7 @@ const AdminMentor = () => {
       studentId: mentor.userId || "",
       studentCollege: "",
       studentMail: mentor.emailId || "",
-      studentPhoneNumber: mentor.phoneNo || "",
+      studentPhoneNumber: mentor.phoneNo || "\u00A0",
       studentAddress:
         mentor.addresses && mentor.addresses.length > 0
           ? `${mentor.addresses[0].houseName}, ${mentor.addresses[0].city} - ${mentor.addresses[0].pinCode}, ${mentor.addresses[0].state}, ${mentor.addresses[0].country}`

@@ -384,9 +384,12 @@
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
   background-blend-mode: lighten;
   border-radius: 40px;
   color: var(--white);
@@ -502,12 +505,15 @@
 /* ------------------------------- combinedskillform.css starts here --------------------------- */
 
 .combinedskillform-form {
-  width: 100%;  
+  width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
   background-blend-mode: lighten;
   border-radius: 40px;
   color: var(--white);
@@ -518,6 +524,7 @@
   justify-content: center;
   align-items: center;
   padding: 50px;
+  overflow: hidden;
 }
 
 .combinedskillform-head {
@@ -676,7 +683,7 @@
 @media (max-width: 767px) {
   .common-content {
     padding: 0;
-    gap: 20px;
+    /* gap: 20px; */
   }
 
   .common-top {
@@ -718,6 +725,10 @@
     order: 4;
   }
 
+  .common-deletebutton {
+    width: 100%;
+  }
+
   .common-filter {
     display: flex;
     align-items: flex-start;
@@ -735,9 +746,12 @@
   border-radius: 40px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -894,12 +908,15 @@
 /* ------------------------------- addstudent.css starts here --------------------------------- */
 
 .addstudent-form {
-  width: 100%;  
+  width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
   background-blend-mode: lighten;
   border-radius: 40px;
   color: var(--white);
@@ -997,6 +1014,12 @@
   padding: 50px;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(45px);
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
 }
 
 .adduser-field {
@@ -1611,6 +1634,11 @@
 
 .eventmenus-tabbutton {
   display: flex;
+  margin-top: 30px;
+}
+
+.eventmenus-searchbar {
+  width: 35%;
 }
 
 @media (max-width: 767px) {
@@ -1633,11 +1661,19 @@
     align-items: center;
     padding: 0px 0px;
   }
+
+  .eventmenus-searchbar {
+    width: 100%;
+  }  
 }
 @media (min-width: 768px) and (max-width: 992px) {
   .eventmenus-explorebutton {
     width: 33%;
   }
+
+  .eventmenus-searchbar {
+    width: 100%;
+  }  
 }
 /* ------------------------------- EventMenus.css ends here ------------------------------- */
 
@@ -1647,9 +1683,12 @@
   width: 100%;
   filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
   background-blend-mode: lighten;
   padding: 50px;
   border-radius: 40px;
@@ -1680,7 +1719,14 @@
 .qualification-form-button {
   padding-top: 10px;
 }
-
+.qualification-form-error {
+  color: var(--warning-color);
+  font-size: 0.875rem;
+  margin-top: -10px
+}
+.qualification-form-startdate-enddate .qualification-form-error{
+  margin-top: 1px;
+}
 @media screen and (max-width: 767px) {
   .qualification-form-startdate-enddate {
     flex-direction: column;
@@ -2012,7 +2058,7 @@
   color: var(--primary-color);
 }
 
-.link{
+.link {
   color: var(--white);
 }
 
