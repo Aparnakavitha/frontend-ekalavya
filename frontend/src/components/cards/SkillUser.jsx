@@ -13,6 +13,7 @@ const SkillUser = ({
   addSkill,
   deleteSkill,
 }) => {
+  const isVisible = false;
   const transformMainHeading = (heading) => {
     if (heading.length > 12) {
       return heading.slice(0, 10) + "...";
@@ -42,16 +43,10 @@ const SkillUser = ({
             />
           </div>
           <div className={`${styles.heading}`}>
-            <div
-              className={`${styles.cardsmainheading}`}
-              title={mainHeading}
-            >
+            <div className={`${styles.cardsmainheading}`} title={mainHeading}>
               {transformMainHeading(mainHeading)}
             </div>
-            <div
-              className={`${styles.cardsminiheading}`}
-              title={miniHeading}
-            >
+            <div className={`${styles.cardsminiheading}`} title={miniHeading}>
               {transformMiniHeading(miniHeading)}
             </div>
           </div>
@@ -63,13 +58,15 @@ const SkillUser = ({
               {displayedSkills.map((skill, index) => (
                 <div key={index} className={`col-6 ${styles.button}`}>
                   {transformMiniHeading(skill.skillName)}
-                  <ImCross
-                    onClick={() => deleteSkill(index)}
-                    style={{
-                      cursor: "pointer",
-                      fontSize: "10px",
-                    }}
-                  />
+                  {isVisible && (
+                    <ImCross
+                      onClick={() => deleteSkill(index)}
+                      style={{
+                        cursor: "pointer",
+                        fontSize: "10px",
+                      }}
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -82,17 +79,15 @@ const SkillUser = ({
               </div>
             )}
             <div className={`col-6 ${styles.addButtonContainer}`}>
-              <button
-                className={`btn ${styles.addButton}`}
-                onClick={addSkill}
-              >
+            {isVisible && <button className={`btn ${styles.addButton}`} onClick={addSkill}>
                 <FaPlus
                   style={{
                     cursor: "pointer",
                     fontSize: "26px",
                   }}
                 />
-              </button>
+              </button>}
+              
             </div>
           </div>
         </div>
