@@ -27,8 +27,8 @@ const Skillsearch = () => {
     { value: "pqr", label: "PQR" },
   ];
 
-  const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [searchResults, setSearchResults] = useState(null);
+  const [searchResult, setSearchResult] = useState(null);
   const [error, setError] = useState(null);
 
   const openModal = (type, index = null) =>
@@ -48,21 +48,21 @@ const Skillsearch = () => {
 
   const handleSearch = async (userId) => {
     try {
-      setLoading(true);
       setError(null);
       const skillsData = await getSkillsForUser(userId);
-      setSearchResults(skillsData && skillsData.length > 0 ? skillsData : []);
+      setSearchResults(skillsData[0].skills);
+      setSearchResult(skillsData[0].user_details);
     } catch (error) {
       console.error("Error fetching skills for user:", error.message);
-      setSearchResults([]);
+      setSearchResults(null);
+      setSearchResult(null);
       setError(error.message || "User not found or an error occurred.");
-    } finally {
-      setLoading(false);
     }
   };
 
   const clearSearch = () => {
-    setSearchResults([]);
+    setSearchResults(null);
+    setSearchResult(null);
     setError(null);
   };
 
@@ -85,22 +85,17 @@ const Skillsearch = () => {
       </div>
 
       <div className={`${styles["skillsearch-cardcontainer"]}`}>
-        {loading && <p>Loading...</p>}
         {error && <p className={`${styles["error-message"]}`}>{error}</p>}
-        {searchResults.map((user, index) => (
-          <div key={index}>
-            {user.user_details && (
-              <Card
-                mainHeading={user.user_details.user_name}
-                miniHeading="Student"
-                profilepic={profilePic}
-                skills={user.skills.map((skill) => skill.skill_name)}
-                deleteSkill={() => openModal("delete", index)}
-                addSkill={() => openModal("add")}
-              />
-            )}
-          </div>
-        ))}
+        {searchResults && searchResults.length > 0 && (
+          <Card
+            mainHeading={searchResult.user_name}
+            miniHeading="Student"
+            profilepic={profilePic}
+            skills={searchResults.map((skill) => skill.skillName)}
+            deleteSkill={() => openModal("delete")}
+            addSkill={() => openModal("add")}
+          />
+        )}
       </div>
 
       {modalState.isOpen && (
