@@ -96,6 +96,10 @@ const AdminBatchList = () => {
       />
       {loading ? (
         <LoadingSpinner />
+      ) : error ? (
+        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+          {error}
+        </p>
       ) : batchData && batchData.length > 0 ? (
         <DataView
           data={batchData}
