@@ -126,6 +126,7 @@ const AdminBatchSelect = () => {
               buttonText: "Confirm",
             },
           }}
+          batchId={batchId}
         />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
