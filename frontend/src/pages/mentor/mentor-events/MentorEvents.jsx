@@ -33,6 +33,7 @@ const MentorEvents = () => {
 
   useEffect(() => {
     fetchEventsByStatus(selectedStatus);
+    handleStatusClick("upcoming");
   }, [selectedStatus]);
 
   const createEvent = {
