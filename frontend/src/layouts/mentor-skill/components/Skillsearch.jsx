@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import SearchBar from "../../../components/searchbar/Searchbar";
 import SkillUser from "../../../components/cards/SkillUser";
 import styles from "../MentorSkill.module.css";
@@ -7,6 +7,15 @@ import CombinedSkillForm from "../../common/components/CombinedSkillForm";
 import DeleteBox from "../../common/components/DeleteBox";
 import profilePic from "../../../assets/SkillUser.png";
 import { getSkillsForUser } from "../../../services/Skills";
+
+// Debounce function to limit the frequency of API calls
+const debounce = (func, delay) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(...args), delay);
+  };
+};
 
 const Skillsearch = () => {
   const [modalState, setModalState] = useState({
@@ -50,7 +59,9 @@ const Skillsearch = () => {
     try {
       setLoading(true);
       setError(null);
+      console.log("Fetching skills for user ID:", userId); // Debug log
       const skillsData = await getSkillsForUser(userId);
+      console.log("Fetched skills data:", skillsData); // Debug log
       setSearchResults(skillsData && skillsData.length > 0 ? skillsData : []);
     } catch (error) {
       console.error("Error fetching skills for user:", error.message);
@@ -60,6 +71,8 @@ const Skillsearch = () => {
       setLoading(false);
     }
   };
+
+  const debouncedSearch = useCallback(debounce(handleSearch, 300), []);
 
   const clearSearch = () => {
     setSearchResults([]);
@@ -73,7 +86,7 @@ const Skillsearch = () => {
       <div className={`${styles["skillsearch-searchbar"]}`}>
         <SearchBar
           placeholder={skillData.searchBarPlaceholder}
-          onSearch={handleSearch}
+          onSearch={debouncedSearch}
           onClear={clearSearch}
         />
       </div>
@@ -88,7 +101,7 @@ const Skillsearch = () => {
                 mainHeading={user.user_details.user_name}
                 miniHeading="Student"
                 profilepic={profilePic}
-                skills={user.skills.map((skill) => ({
+                skills={(user.skills || []).map((skill) => ({
                   id: skill.id,
                   skillName: skill.skillName,
                   level: skill.count,

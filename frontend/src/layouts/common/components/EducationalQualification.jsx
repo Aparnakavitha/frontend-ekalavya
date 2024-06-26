@@ -5,7 +5,7 @@ import QualificationForm from "./QualificationForm";
 import DeleteBox from "./DeleteBox";
  
 const EducationalQualification = ({
-  qualifications = [],
+  qualifications=[],
   onFormSubmit,
   userId,
 }) => {
@@ -77,11 +77,13 @@ const EducationalQualification = ({
 
       };
  
-        await onFormSubmit(formData);
-        handleCloseDeleteQualification();
-      } catch (error) {
-        console.error("Error updating user details:", error);
-      }
+      console.log("Form Data:", formData);
+      console.log("Start Date:", formData.startDate);
+      console.log("End Date:", formData.endDate);
+      await onFormSubmit(formData);
+      handleCloseDeleteQualification();
+    } catch (error) {
+      console.error("Error updating user details:", error);
     }
   };
  
@@ -110,7 +112,12 @@ const EducationalQualification = ({
     title: "Confirm deletion",
     message: "Remove this qualification?",
     buttonText: "Confirm",
-    onConfirm: handleRemove,
+    onConfirm: () => {
+      console.log("hello")
+      if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
+        handleRemove(editIndex);
+      }
+    },
     onCancel: handleFormCancel,
   };
  
