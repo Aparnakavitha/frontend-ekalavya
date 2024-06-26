@@ -86,40 +86,44 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               {errors.phoneNo.message}
             </p>
           )}
-          {isvisible && <Controller
-            name="profilePhoto"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                label="Profile Photo"
-                placeholders={["profile photo"]}
-                size="normal"
-                isFileInput="true"
-                accept="image/*"
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  if (validateImageFile(file, setFileError, setError)) {
-                    setValue("profilePhoto", file);
-                  } else {
-                    setValue("profilePhoto", null);
-                  }
-                }}
-              />
-            )}
-          />}
+          {isvisible && (
+            <Controller
+              name="profilePhoto"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  label="Profile Photo"
+                  placeholders={["profile photo"]}
+                  size="normal"
+                  isFileInput="true"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (validateImageFile(file, setFileError, setError)) {
+                      setValue("profilePhoto", file);
+                    } else {
+                      setValue("profilePhoto", null);
+                    }
+                  }}
+                />
+              )}
+            />
+          )}
           {fileError && (
             <p className={`${styles["basicdetails-error"]}`}>{fileError}</p>
           )}
-         {isvisible &&  <div className={`${styles["basicdetails-icontext"]}`}>
-            <TextButton
-              icon={showProfileLinks ? <FaMinus /> : <FaPlus />}
-              text={
-                showProfileLinks ? "Close Profile Links" : "Add Profile Links"
-              }
-              onClick={handleTextButtonClick}
-            />
-          </div>}
+          {isvisible && (
+            <div className={`${styles["basicdetails-icontext"]}`}>
+              <TextButton
+                icon={showProfileLinks ? <FaMinus /> : <FaPlus />}
+                text={
+                  showProfileLinks ? "Close Profile Links" : "Add Profile Links"
+                }
+                onClick={handleTextButtonClick}
+              />
+            </div>
+          )}
         </div>
         {isvisible && showProfileLinks && (
           <div className={`${styles["basicdetails-containerinput-links"]}`}>

@@ -6,7 +6,7 @@ import NavButton from "../../../components/buttons/NavButton";
 import AboutMe from "../../common/components/AboutMe";
 import profilepic from "../../../assets/DP.png";
 
-const MentorProfileInfo = ({ mentorData, onSubmit, onformSubmit }) => {
+const MentorProfileInfo = ({ mentorData, onSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
 
   const navProps = { pageName: "Mentors List" };

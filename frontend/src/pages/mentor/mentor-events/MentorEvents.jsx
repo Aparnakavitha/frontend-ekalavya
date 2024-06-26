@@ -10,7 +10,9 @@ const MentorEvents = () => {
   const navigate = useNavigate();
 
   const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("upcoming");
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -20,9 +22,13 @@ const MentorEvents = () => {
     setLoading(true);
     setError(null);
     try {
-      const eventList = await fetchEventsService({ host: userId, completed: status === "completed" ? 1 : 0 });
+      const eventList = await fetchEventsService({
+        host: userId,
+        completed: status === "completed" ? 1 : 0,
+      });
       console.log(`Fetched ${status} events:`, eventList);
       setEvents(eventList);
+      setFilteredEvents(eventList);
     } catch (error) {
       console.error(`Error fetching ${status} events:`, error);
       setError(error.message || "Failed to fetch events");
@@ -34,6 +40,18 @@ const MentorEvents = () => {
   useEffect(() => {
     fetchEventsByStatus(selectedStatus);
   }, [selectedStatus]);
+
+  useEffect(() => {
+    if (searchTerm === "") {
+      setFilteredEvents(events);
+    } else {
+      setFilteredEvents(
+        events.filter((event) =>
+          event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [searchTerm, events]);
 
   const createEvent = {
     content: "Create Event",
@@ -54,7 +72,7 @@ const MentorEvents = () => {
   };
 
   const primaryCardData = {
-    data: events.map((event) => ({
+    data: filteredEvents.map((event) => ({
       miniHeading: event.eventType,
       mainHeading: event.eventTitle,
       startDate: event.startDate,
@@ -83,11 +101,13 @@ const MentorEvents = () => {
           { name: "Completed", onClick: () => handleStatusClick("completed") },
         ]}
         title="Events"
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
       />
       {loading && <LoadingSpinner />}
       {error && <p>Error: {error}</p>}
       {!loading && !error && (
-        events.length > 0 ? (
+        filteredEvents.length > 0 ? (
           <DataView CardComponent={PrimaryCard} {...primaryCardData} />
         ) : (
           <div

@@ -6,7 +6,7 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { useForm, Controller } from "react-hook-form";
 import { validateAndCleanInput } from "../../common/components/validation";
 
-const BatchOperations = ({ mainHeading, onSubmit, options }) => {
+const BatchOperations = ({ mainHeading, onSubmit, submitError, options }) => {
   const {
     handleSubmit,
     control,
@@ -19,7 +19,7 @@ const BatchOperations = ({ mainHeading, onSubmit, options }) => {
   });
 
   const handleFormSubmit = (formData) => {
-    onSubmit(formData); 
+    onSubmit(formData);
   };
 
   return (
@@ -48,11 +48,12 @@ const BatchOperations = ({ mainHeading, onSubmit, options }) => {
               />
             )}
           />
-          {errors.batchName && (
+          {(errors.batchName || submitError) && (
             <p className={`${styles["batchoperations-error"]}`}>
-              {errors.batchName.message}
+              {errors.batchName ? errors.batchName.message : submitError}
             </p>
           )}
+
           {/*Input dropdown omitted temporarily*/}
 
           {/* <Controller
@@ -77,7 +78,12 @@ const BatchOperations = ({ mainHeading, onSubmit, options }) => {
         </div>
       </div>
       <div className={`${styles["batchoperations-buttoncontainer"]}`}>
-        <PrimaryButton type="submit" variant="primary" content="Create Batch" width="full" />
+        <PrimaryButton
+          type="submit"
+          variant="primary"
+          content="Create Batch"
+          width="full"
+        />
       </div>
     </form>
   );
