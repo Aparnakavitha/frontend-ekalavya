@@ -38,38 +38,6 @@ const AdminStudentDetails = () => {
   const location = useLocation();
   const { studentsData: selectedStudent } = location.state || {};
 
-  const fetchStudentSkills = async (userId) => {
-    if (userId) {
-      try {
-        const response = await getSkillsForUser(userId);
-        console.log(
-          "Fetching skills for userId:",
-          userId,
-          "Here are the skills",
-          studentSkills
-        );
-        console.log("Skills API response----------------:", response);
-
-        if (response.length > 0 && response[0].skills) {
-          const skills = response[0].skills.map((skill) => ({
-            miniHeading: skill.skill_id,
-            mainHeading: skill.skill_name,
-            skill_id: skill.id,
-            cardType: "skill",
-            canEdit: false,
-            canDelete: true,
-          }));
-          console.log("Formatted skills:", skills);
-
-          setStudentSkills(skills);
-        } else {
-          console.error("Unexpected response format:", response);
-        }
-      } catch (error) {
-        console.error("Error fetching student skills:", error);
-      }
-    }
-  };
 
   const fetchStudentEvents = async (participantId) => {
     try {
@@ -129,7 +97,6 @@ const AdminStudentDetails = () => {
     const fetchData = async () => {
       if (studentsData?.userId) {
         await fetchStudentDetails(studentsData.userId, setStudentData);
-        await fetchStudentSkills(studentsData.userId);
         const studentEvents = await fetchStudentEvents(studentsData.userId);
         const enrolledEventIds = studentEvents.map((event) => event.eventId);
         await fetchEventOptions(enrolledEventIds);
@@ -158,7 +125,6 @@ const AdminStudentDetails = () => {
 
       const fetchData = async () => {
         await fetchStudentDetails(userId, setStudentData);
-        await fetchStudentSkills(userId);
         const studentEvents = await fetchStudentEvents(userId);
         const enrolledEventIds = studentEvents.map((event) => event.eventId);
         await fetchEventOptions(enrolledEventIds);

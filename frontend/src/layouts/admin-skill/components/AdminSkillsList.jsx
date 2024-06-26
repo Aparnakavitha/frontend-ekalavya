@@ -89,6 +89,7 @@ const AdminSkillsList = ({ handleClick }) => {
       Count: skill.count,
       canEdit: true,
       cardType: "skill",
+      showCount:true,
       handleClick: async () => {
         try {
           const response = await getUsersCountForSkill(skill.id);

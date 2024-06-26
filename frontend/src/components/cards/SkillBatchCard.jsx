@@ -14,6 +14,7 @@ const SkillBatchCard = (props) => {
     handleEditClick,
     canEdit,
     canDelete,
+    showCount
   } = props;
 
   const transformMainHeading = (heading = "", cardType) => {
@@ -74,7 +75,7 @@ const SkillBatchCard = (props) => {
             >
               {transformMainHeading(mainHeading, cardType)}
             </a>
-            <a className={styles.cardsdiscription}>{formattedCount}</a>
+            {showCount && <a className={styles.cardsdiscription}>{formattedCount}</a>}
           </div>
           {cardType === "skill" && (
             <>

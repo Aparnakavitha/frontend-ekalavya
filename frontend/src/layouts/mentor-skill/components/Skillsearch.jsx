@@ -51,6 +51,7 @@ const Skillsearch = () => {
       setLoading(true);
       setError(null);
       const skillsData = await getSkillsForUser(userId);
+      console.log("aaaaaaa", skillsData)
       setSearchResults(skillsData && skillsData.length > 0 ? skillsData : []);
     } catch (error) {
       console.error("Error fetching skills for user:", error.message);
