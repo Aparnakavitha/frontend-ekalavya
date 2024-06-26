@@ -32,7 +32,6 @@ const AdminMentorDetails = () => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
   const [educationData, setEducationData] = useState(null);
   const [isEditEducationOpen, setIsEditEducationOpen] = useState(false);
-
   const navigate = useNavigate();
   const location = useLocation();
   const { mentorData: selectedMentor } = location.state || {};
@@ -121,7 +120,7 @@ const AdminMentorDetails = () => {
     return <LoadingSpinner />;
   }
 
-  const Education = mentorData.qualifications;
+  const Education = mentorData ? mentorData.qualifications : [];
 
   const homeAddress =
     mentorData.addresses &&

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import SkillList from "../../../layouts/admin-student/components/SkillList";
 import EventList from "../../../layouts/admin-student/components/EventsList";
 import StudentProfileInfo from "../../../layouts/admin-student/components/StudentProfile";
@@ -13,6 +13,7 @@ import {
   fetchEventsService,
   addEnrollmentService,
 } from "../../../services/Event";
+import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
 
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
@@ -31,6 +32,10 @@ const AdminStudentDetails = () => {
   const [studentSkills, setStudentSkills] = useRecoilState(adminStudentSkillState);
   const [studentEvents, setStudentEvents] = useState([]);
   const [eventOptions, setEventOptions] = useState([]);
+  const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
+  const [educationData, setEducationData] = useState(null);
+  const [isEditEducationOpen, setIsEditEducationOpen] = useState(false);
+  const { userId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const { studentsData: selectedStudent } = location.state || {};
@@ -107,6 +112,21 @@ const AdminStudentDetails = () => {
     }
   };
 
+  const handleCloseEditBasicDetails = () => setIsEditDetailsOpen(false);
+
+
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Data", formData);
+      const response = await addNewUser(formData);
+      console.log("Update response:", response);
+      handleCloseEditBasicDetails();
+      fetchStudentDetails(userId, setStudentData);
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
   useEffect(() => {
     if (selectedStudent) {
       setStudentData(selectedStudent);
@@ -171,6 +191,9 @@ const AdminStudentDetails = () => {
     }
   };
 
+  const Education = studentsData ? studentsData.qualifications : [];
+
+
   const handleDelete = async () => {
     try {
       if (studentsData?.userId) {
@@ -189,11 +212,22 @@ const AdminStudentDetails = () => {
     return <LoadingSpinner />;
   }
 
+  const handleOpenEditEducation = () => {
+    setEducationData(studentsData.qualifications);
+    setIsEditEducationOpen(true);
+  };
+
   return (
     <div>
       <StudentProfileInfo
         studentsData={studentsData}
         onSubmit={handleFormSubmit}
+      />
+      <EducationalQualification
+        qualifications={Education}
+        userId={studentsData.userId}
+        onFormSubmit={handleFormSubmit2}
+        onEditClick={handleOpenEditEducation}
       />
       <SkillList studentId={studentsData.userId} />
       <EventList

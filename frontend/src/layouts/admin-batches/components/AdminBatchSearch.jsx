@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import BatchSearch from "../../common/components/BatchSearch";
 import Modal from "../../common/components/Modal";
 import UpdateSingleField from "../../common/components/UpdateSingleField";
@@ -24,7 +24,7 @@ const AdminBatchSearch = ({
         var filterParams = {
           roleId: 3,
         };
-       
+
         const data = await getUserDetails(filterParams);
         console.log(data);
         const userIds = data.responseData.map((user) => ({
@@ -37,9 +37,7 @@ const AdminBatchSearch = ({
       }
     };
 
-    // Example call to fetchData with initial params
-    fetchData(); // Adjust params as needed
-
+    fetchData();
   }, []);
 
   const AdminBatchSearchData = {
@@ -81,15 +79,15 @@ const AdminBatchSearch = ({
       labelTitle: "Add student ID",
       placeHolder: "Student ID",
       buttonTitle: "Add",
-      options:userIdOptions,
-      isSelect : true,
+      options: userIdOptions,
+      isSelect: true,
     },
     editprops: {
       mainHeading: "Edit Batch Name",
       labelTitle: "Batch Name",
       placeHolder: batchName,
       buttonTitle: "Save",
-      initialData: { },
+      initialData: {},
     },
     deleteprops: {
       title: "Confirmation Required",
@@ -106,7 +104,7 @@ const AdminBatchSearch = ({
 
   const addStdFormSubmit = (formData) => {
     console.log("Add student form submitted with data:", formData);
-    addParticipant(formData.inputData);
+    addParticipant(formData.studentIds);
     handleCloseAllModals();
   };
 
