@@ -76,8 +76,8 @@ const AdminMentorDetails = () => {
       fetchMentorDetails(userId, setMentorData);
       toast.success("Details updated successfully!");
     } catch (error) {
-      console.error("Error updating user details:", error);
-      toast.error("Error updating details!");
+      console.error("Error adding  user details:", error);
+      toast.error("Error updated details!");
     }
   };
 
