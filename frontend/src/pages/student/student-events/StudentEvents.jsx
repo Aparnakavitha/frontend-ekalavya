@@ -77,7 +77,9 @@ const StudentEvent = () => {
       cardType: "Course",
       handleClick: () => {
         console.log("clicked");
-        navigate(`/mentor/events/event-details/${event.eventId}`);
+        navigate(`${event.eventId}`, {
+          state: { eventId: event.eventId, tab: filter },
+        });
       },
     })),
     tableColumns: [
