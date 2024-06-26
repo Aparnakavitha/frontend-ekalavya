@@ -109,6 +109,7 @@ const AdminStudent = () => {
   const [studentsData, setStudentsData] = useState([]);
   const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
   const [cardAnimation, setCardAnimation] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
   const [params, setParams] = useState({
     College: "",
     Batch: "",
@@ -304,10 +305,12 @@ const AdminStudent = () => {
 
   const handleOpenAddStudentModal = () => {
     setCardAnimation(false);
+    setSubmitError(null);
     setIsAddStudentOpen(true);
   };
 
   const handleCloseAddStudentModal = () => {
+    setSubmitError(null);
     setIsAddStudentOpen(false);
   };
 
@@ -331,10 +334,11 @@ const AdminStudent = () => {
       newStudent.newEntry = true;
       setCardAnimation(true);
       setStudentsData((prevStudentsData) => [newStudent, ...prevStudentsData]);
-
+      setSubmitError(null);
       handleCloseAddStudentModal();
     } catch (error) {
       console.error("Error adding student:", error);
+      setSubmitError("Email ID already registered");
     }
   };
 
@@ -401,6 +405,7 @@ const AdminStudent = () => {
         <AddUser
           {...AdminStudentData.adduserprops}
           onSubmit={handleAddStudentFormSubmit}
+          submitError={submitError}
         />
       </Modal>
 
