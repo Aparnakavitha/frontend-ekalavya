@@ -1,67 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUserDetails, updateUserDetails } from "../../../services/User";
+import { getUserDetails } from "../../../services/User";
 import AdminMentorAction from "../../../layouts/admin-mentor/components/AdminMentorAction";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
-const fetchMentorData = async (setMentorData, value = "") => {
-  try {
-    var params = {
-      roleId: 2,
-    };
-
-    if (value && Number.isInteger(Number(value))) {
-      params = {
-        userId: Number(value),
-      };
-    } else if (value && typeof value === "string") {
-      params = {
-        name: value,
-      };
-    }
-
-    const data = await getUserDetails(params);
-    const mentorsOnly =
-      data.responseData?.filter(
-        (item) => item.role && item.role.roleId === 2
-      ) || [];
-    setMentorData(mentorsOnly);
-  } catch (error) {
-    console.error("Error fetching mentor data:", error);
-  }
-};
-
 const AdminMentor = () => {
-  const [adminData, setAdminData] = useState(null);
   const [mentorData, setMentorData] = useState([]);
   const [cardAnimation, setCardAnimation] = useState(false);
-  const [formData, setFormData] = useState({
-    userId: "",
-    firstName: "",
-    emailId: "",
-    collegeId: "defaultCollegeId",
-    roleId: "defaultRoleId",
-  });
+  const [loading, setLoading] = useState(true); // State for loading spinner
   const navigate = useNavigate();
 
-  const fetchData = async (Data) => {
+  const fetchMentorData = async (value = "") => {
     try {
-      const params = {
-        userId: Data,
+      var params = {
+        roleId: 2,
       };
+
+      if (value && Number.isInteger(Number(value))) {
+        params = {
+          userId: Number(value),
+        };
+      } else if (value && typeof value === "string") {
+        params = {
+          name: value,
+        };
+      }
+
       const data = await getUserDetails(params);
-      setMentorData(data.responseData);
+      const mentorsOnly =
+        data.responseData?.filter(
+          (item) => item.role && item.role.roleId === 2
+        ) || [];
+      setMentorData(mentorsOnly);
     } catch (error) {
       console.error("Error fetching mentor data:", error);
+    } finally {
+      setLoading(false); // Hide loading spinner regardless of success or failure
     }
   };
 
   useEffect(() => {
-    fetchMentorData(setMentorData);
-  }, []);
+    fetchMentorData();
+  }, []); // Fetch data on component mount
 
   const handleCardClick = (userId) => {
     const selectedMentor = mentorData.find(
@@ -113,20 +96,23 @@ const AdminMentor = () => {
   };
 
   const handleSearchChange = (value) => {
-    fetchMentorData(setMentorData, value);
+    setLoading(true); // Show loading spinner on search
+    fetchMentorData(value);
   };
 
   return (
     <div>
       <Greeting {...greet} />
       <AdminMentorAction
-        onAddSuccess={() => fetchMentorData(setMentorData)}
+        onAddSuccess={() => fetchMentorData()}
         onSearchChange={handleSearchChange}
         setMentorData={setMentorData}
         setCardAnimation={setCardAnimation}
       />
 
-      {mentorData.length > 0 ? (
+      {loading ? ( // Display loading spinner when data is being fetched
+        <LoadingSpinner />
+      ) : mentorData.length > 0 ? (
         <DataView
           CardComponent={(props) => (
             <ProfileCard
