@@ -9,6 +9,11 @@ const AttendanceButton = (props) => {
   }, [props.IsPresent]);
 
   const handleClick = () => {
+    if (props.disabled) {
+      console.log(`Button is disabled: ${props.content}`);
+      return;
+    }
+
     if (isPresent) {
       console.log("Already Present");
       return;
@@ -22,7 +27,7 @@ const AttendanceButton = (props) => {
 
   return (
     <div>
-      <div className={`${styles.button} ${buttonClass}`} onClick={handleClick} style={{ cursor: isPresent ? "not-allowed" : "pointer" }}>
+      <div className={`${styles.button} ${buttonClass}`} onClick={handleClick} style={{ cursor: props.disabled ? "not-allowed" : "pointer" }}>
         {props.content}
       </div>
     </div>
