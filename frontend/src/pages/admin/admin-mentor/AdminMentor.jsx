@@ -10,8 +10,8 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 const AdminMentor = () => {
   const [mentorData, setMentorData] = useState([]);
   const [cardAnimation, setCardAnimation] = useState(false);
-  const [loading, setLoading] = useState(true); // State for loading spinner
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true); // State for loading spinner
 
   const fetchMentorData = async (value = "") => {
     try {
@@ -31,18 +31,41 @@ const AdminMentor = () => {
 
       const data = await getUserDetails(params);
       const mentorsOnly =
-        data.responseData?.filter(
-          (item) => item.role && item.role.roleId === 2
-        ) || [];
+        data.responseData?.filter((item) => item.role && item.role.roleId === 2) || [];
       setMentorData(mentorsOnly);
+      setLoading(false); // Set loading to false after data is fetched
     } catch (error) {
       console.error("Error fetching mentor data:", error);
-    } finally {
-      setLoading(false); // Hide loading spinner regardless of success or failure
+      if (error.response && error.response.status === 500) {
+        await retryFetch(value);
+      } else {
+        // Handle other errors accordingly
+        console.error("Non-retryable error occurred:", error);
+        setLoading(false); // Set loading to false if an error occurs
+      }
+    }
+  };
+
+  const retryFetch = async (value, retriesLeft = 3, delay = 1000) => {
+    if (retriesLeft === 0) {
+      console.error("Failed to fetch mentor data after multiple attempts.");
+      setLoading(false); // Set loading to false after multiple failed attempts
+      return;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, delay));
+
+    try {
+      await fetchMentorData(value);
+    } catch (error) {
+      console.error(`Error on attempt ${4 - retriesLeft}:`, error);
+      const nextDelay = delay * 2; // Exponential backoff
+      await retryFetch(value, retriesLeft - 1, nextDelay);
     }
   };
 
   useEffect(() => {
+    setLoading(true);
     fetchMentorData();
   }, []); // Fetch data on component mount
 
@@ -58,6 +81,10 @@ const AdminMentor = () => {
       console.error(`Mentor with userId ${userId} not found.`);
     }
   };
+
+  if (loading || !mentorData) {
+    return <LoadingSpinner />;
+  }
 
   const loggedUserFirstName = sessionStorage.getItem("firstName");
 
@@ -96,7 +123,6 @@ const AdminMentor = () => {
   };
 
   const handleSearchChange = (value) => {
-    setLoading(true); // Show loading spinner on search
     fetchMentorData(value);
   };
 
@@ -110,9 +136,7 @@ const AdminMentor = () => {
         setCardAnimation={setCardAnimation}
       />
 
-      {loading ? ( // Display loading spinner when data is being fetched
-        <LoadingSpinner />
-      ) : mentorData.length > 0 ? (
+      {mentorData.length > 0 ? (
         <DataView
           CardComponent={(props) => (
             <ProfileCard
