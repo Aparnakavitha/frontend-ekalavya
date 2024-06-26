@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import EventMenus from "../../../layouts/common/components/EventMenus";
 import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
-import { getEnrolledEventIds, fetchEventsService } from "../../../../src/services/Event";
+import { getEnrolledEventIds, fetchEventsService } from "../../../services/Event";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const StudentEvent = () => {
@@ -18,18 +18,11 @@ const StudentEvent = () => {
     fetchEnrolledEvents();
   }, [filter, searchTerm]);
 
-  const fetchEnrolledEvents = async () => {
+  const fetchEnrolledEvents = useCallback(async () => {
     setLoading(true);
     try {
-      let eventIds;
-      if (participantId) {
-        eventIds = await getEnrolledEventIds(participantId);
-        console.log("Enrolled Event IDs:", eventIds);
-      } else {
-        // Handle case when participantId is not available
-        eventIds = await fetchEventsService({ completed: 0 });
-        console.log("Fetched Event Data:", eventIds);
-      }
+      const eventIds = await getEnrolledEventIds(participantId);
+      console.log("Enrolled Event IDs:", eventIds);
 
       let filteredEvents = [];
       if (filter === "Upcoming") {
@@ -71,7 +64,7 @@ const StudentEvent = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [participantId, filter, searchTerm]);
 
   const primaryCardData = {
     data: events.map((event) => ({
@@ -84,9 +77,7 @@ const StudentEvent = () => {
       cardType: "Course",
       handleClick: () => {
         console.log("clicked");
-        navigate(`${event.eventId}`, {
-          state: { eventId: event.eventId, tab: filter },
-        });
+        navigate(`/mentor/events/event-details/${event.eventId}`);
       },
     })),
     tableColumns: [
@@ -99,12 +90,6 @@ const StudentEvent = () => {
     toggle: false,
     itemsPerPage: 10,
   };
-
-  console.log("primaryCardData:", primaryCardData.data);
-
-  if (loading) {
-    return <LoadingSpinner />;
-  }
 
   return (
     <div>
@@ -125,9 +110,13 @@ const StudentEvent = () => {
         ]}
         title="Events"
         activeFilter={filter}
-        onSearch={setSearchTerm}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        buttonVisible={false}
       />
-      {events.length > 0 ? (
+      {loading ? (
+        <LoadingSpinner />
+      ) : events.length > 0 ? (
         <DataView
           CardComponent={PrimaryCard}
           data={primaryCardData.data}

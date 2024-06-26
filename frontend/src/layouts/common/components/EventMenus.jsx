@@ -4,27 +4,27 @@ import Button from "../../../components/buttons/PrimaryButton";
 import TabButton from "../../../components/buttons/TabButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
 
-const EventMenus = ({ explore, statuses, title, activeFilter, onSearch }) => {
+const EventMenus = ({ explore, statuses, title, activeFilter, searchTerm, setSearchTerm ,buttonVisible=true}) => {
   const [activeStatus, setActiveStatus] = useState(activeFilter);
 
   const handleButtonClick = (status) => {
     setActiveStatus(status);
   };
 
-  const handleSearchChange = (value) => {
-    onSearch(value);
-  };
-
   return (
     <div className={`${styles["eventmenus-container"]} padding`}>
       <div className={`${styles["eventmenus-head"]}`}>
         <h1 className={`${styles["eventmenus-title"]}`}>{title}</h1>
-        {/* <div className={`${styles["eventmenus-explorebutton"]}`}>
-          <Button {...explore} />
-        </div> */}
+        <div className={`${styles["eventmenus-explorebutton"]}`}>
+          {buttonVisible && <Button {...explore} />}
+        </div>
       </div>
       <div className={`${styles["eventmenus-searchbar"]}`}>
-        <Searchbar onSearch={handleSearchChange} />
+      <Searchbar
+        placeholder="Search events"
+        onSearch={setSearchTerm}
+        value={searchTerm}
+      />
       </div>
       <div className={`${styles["eventmenus-tabbutton"]}`}>
         {statuses.map((status) => (
