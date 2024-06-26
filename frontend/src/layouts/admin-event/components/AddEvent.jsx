@@ -377,8 +377,7 @@ const AddEvent = ({
           name="hostId"
           control={control}
           rules={{
-            required: "Organizer is required",
-            validate: validateAndCleanInput,
+            required: "Organizer is required"
           }}
           render={({ field }) => (
             <InputDropdown
@@ -392,9 +391,9 @@ const AddEvent = ({
           )}
         />
       )}
-      {errors.organizer && (
+      {errors.hostId && (
         <p className={`${styles["addevent-error"]}`}>
-          {errors.organizer.message}
+          {errors.hostId.message}
         </p>
       )}
 

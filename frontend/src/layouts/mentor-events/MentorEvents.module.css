@@ -124,7 +124,7 @@
  
 .eventform-error {
   margin-top: -12px;
-  color: var(--primary-color);
+  color: var(--warning-color);
   font-size: 0.875rem;
 }
  
@@ -136,7 +136,7 @@
   margin-top: 5px;
 }
  
-@media (min-width: 990px) and (max-width: 992px) {
+@media (min-width: 990) and (max-width: 992px) {
   .eventform-datetimecontainer {
     flex-direction: row;
     flex-wrap: wrap;
