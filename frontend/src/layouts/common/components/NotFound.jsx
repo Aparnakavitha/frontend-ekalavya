@@ -6,7 +6,6 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner"; 
 
 const NotFound = () => {
   const [loading, setLoading] = useState(true);
-  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     const delay = setTimeout(() => {

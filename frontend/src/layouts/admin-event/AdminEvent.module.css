@@ -58,7 +58,7 @@
 
 .addevent-error {
   margin-top: -12px;
-  color: var(--primary-color);
+  color: var(--warning-color);
   font-size: 0.875rem;
 }
 
