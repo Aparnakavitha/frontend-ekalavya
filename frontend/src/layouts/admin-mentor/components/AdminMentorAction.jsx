@@ -40,9 +40,6 @@ const AdminMentorAction = ({
       newMentor.newEntry = true;
       setCardAnimation(true);
       setMentorData((prevMentorsData) => [newMentor, ...prevMentorsData]);
-      // onAddSuccess();
-
-      console.log("mentorr-----", response, "---------", newMentor);
       handleCloseModal();
     } catch (error) {
       console.error("Error adding new user:", error);

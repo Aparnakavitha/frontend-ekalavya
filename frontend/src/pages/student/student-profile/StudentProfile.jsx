@@ -8,6 +8,7 @@ import { getUserDetails, updateUserDetails } from "../../../services/User";
 import profilepic from "../../../assets/DP.png";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { fetchEventsService } from "../../../services/Event";
+import { toast } from "react-toastify";
 
 const StudentProfile = () => {
   const [studentData, setStudentData] = useState(null);
@@ -43,8 +44,9 @@ const StudentProfile = () => {
       const response = await updateUserDetails(formData);
       console.log("Update response:", response);
       fetchData();
+      toast.success("Details updated successfully!");
     } catch (error) {
-      console.error("Error updating user details:", error);
+      toast.error("Error updating user details!");
     }
   };
 
@@ -118,12 +120,12 @@ const StudentProfile = () => {
         EditableData={EditableData}
         onFormSubmit={handleFormSubmit}
       />
+      <AboutMe {...about} />
       <EducationalQualification
         qualifications={Education}
         userId={studentData.userId}
         onFormSubmit={handleFormSubmit}
       />
-      <AboutMe {...about} />
       <Upcoming events={transformedEventData} />
     </div>
   );

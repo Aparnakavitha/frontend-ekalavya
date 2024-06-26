@@ -121,7 +121,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
             name="startDate"
             control={control}
             rules={{
-              validate: validateStartDate,
+              validate: validateStartDate("edit"),
             }}
             render={({ field }) => (
               <Input
