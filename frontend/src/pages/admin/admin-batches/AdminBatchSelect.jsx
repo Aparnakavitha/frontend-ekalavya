@@ -3,7 +3,12 @@ import { Greeting } from "../../../layouts/common";
 import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBatchSearch";
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { fetchBatchParticipants, updateBatch , deleteBatch} from "../../../services/Batch";
+import {
+  fetchBatchParticipants,
+  updateBatch,
+  deleteBatch,
+  postUserIds,
+} from "../../../services/Batch";
 import { getUserDetails } from "../../../services/User";
 import image from "../../../assets/DP.png";
 
@@ -25,7 +30,6 @@ const AdminBatchSelect = () => {
   const [batchParticipantsData, setBatchParticipantsData] = useState([]);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -37,14 +41,15 @@ const AdminBatchSelect = () => {
       const participantIds = participantsResponse.responseData;
 
       if (Array.isArray(participantIds) && participantIds.length > 0) {
-        const userId = participantIds.join(","); 
+        const userId = participantIds.join(",");
         const userDetailsResponse = await getUserDetails({ userId });
         const userDetails = userDetailsResponse.responseData;
 
-
         const BatchParticipantsData = userDetails.map((userDetail) => ({
           studentImage: userDetail?.profilePicture || image,
-          studentName: `${userDetail?.firstName || ""} ${userDetail?.lastName || ""}`,
+          studentName: `${userDetail?.firstName || ""} ${
+            userDetail?.lastName || ""
+          }`,
           studentId: userDetail.userId || "",
           studentCollege: userDetail?.college?.collegeName || "N/A",
           studentMail: userDetail?.emailId || "N/A",
@@ -81,12 +86,23 @@ const AdminBatchSelect = () => {
       console.error("Error deleting batch:", error);
     }
   };
+
+  const addParticipant = async (studentIds) => {
+    try {
+      const batchId = params.batchId;
+      await postUserIds({ batchId, userIds: studentIds });
+      fetchData();
+    } catch (error) {
+      console.error("Error adding participant:", error);
+    }
+  };
+
   return (
     <div>
       <Greeting {...greeting} />
       <AdminBatchSearch
         batchDelete={handleDeleteBatches}
-        addParticipant={() => {}}
+        addParticipant={addParticipant}
         changeBatchName={changeBatchName}
         batchName={batchName}
       />
