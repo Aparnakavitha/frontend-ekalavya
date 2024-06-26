@@ -63,7 +63,6 @@ const AdminMentor = () => {
     fetchMentorData(setMentorData);
   }, []);
 
-
   const handleCardClick = (userId) => {
     const selectedMentor = mentorData.find(
       (mentor) => mentor.userId === userId
@@ -123,6 +122,8 @@ const AdminMentor = () => {
       <AdminMentorAction
         onAddSuccess={() => fetchMentorData(setMentorData)}
         onSearchChange={handleSearchChange}
+        setMentorData={setMentorData}
+        setCardAnimation={setCardAnimation}
       />
 
       {mentorData.length > 0 ? (
