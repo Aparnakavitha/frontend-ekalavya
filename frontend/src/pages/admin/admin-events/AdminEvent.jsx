@@ -5,6 +5,7 @@ import AdminEventAction from "../../../layouts/admin-event/components/AdminEvent
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { addEventService } from "../../../services/Event";
 import { fetchEventsService } from "../../../services/Event";
+import { toast } from "react-toastify"; 
 
 const AdminEvent = () => {
   const [events, setEvents] = useState([]);
@@ -77,12 +78,12 @@ const AdminEvent = () => {
   console.log("primaryCardData:", primaryCardData);
 
   const formSubmit = async (data) => {
-    data.contact = "7558845220";
     try {
       const response = await addEventService(data);
       console.log("Response from API:", response);
+      toast.success("Event created successfully!");
     } catch (error) {
-      console.error("Error creating event:", error);
+      toast.error("Error creating event:", error);
     }
   };
   const handleFilterChange = (filters) => {

@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { participantsState, studentSkillState } from "../../../states/Atoms";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import { toast } from "react-toastify"; 
+
 
 const capitalizeFirstLetter = (string) => {
   return string.trim().charAt(0).toUpperCase() + string.slice(1);
@@ -74,7 +76,9 @@ const AdminSkillsList = ({ handleClick }) => {
             : skill
         );
         setSkills(updatedSkills);
+        toast.success("Skill updated successfully!");
       } catch (error) {
+        toast.error("Error updating skill!");
         console.error("Error updating skill: ", error);
       }
     }
@@ -89,6 +93,7 @@ const AdminSkillsList = ({ handleClick }) => {
       Count: skill.count,
       canEdit: true,
       cardType: "skill",
+      showCount: true,
       handleClick: async () => {
         try {
           const response = await getUsersCountForSkill(skill.id);
@@ -118,7 +123,14 @@ const AdminSkillsList = ({ handleClick }) => {
 
   return (
     <div>
-      <DataView CardComponent={SkillBatchCard} {...skillData} />
+     {skillData.data && skillData.data.length > 0 ? (
+        <DataView CardComponent={SkillBatchCard} {...skillData} />
+      ) : (
+        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+          No skills available
+        </p>
+      )}
+ 
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         {selectedSkill && (
           <UpdateSingleField
@@ -126,7 +138,7 @@ const AdminSkillsList = ({ handleClick }) => {
             labelTitle="Skill Name"
             placeHolder="Skill Name"
             buttonTitle="Save"
-            initialData={{ inputData: selectedSkill.skillName }}
+            initialData={selectedSkill.skillName}
             onSubmit={handleFormSubmit}
             isEdit={true}
             message="You are updating :"
