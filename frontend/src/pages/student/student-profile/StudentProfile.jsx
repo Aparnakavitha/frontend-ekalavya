@@ -106,7 +106,7 @@ const StudentProfile = () => {
   const Education = studentData.qualifications || [];
 
   const greet = {
-    welcome: "Welcome Back",
+    welcome: "Welcome back",
     name: `${studentData.firstName}`,
     showButtons: false,
   };

@@ -19,7 +19,7 @@ const AdminEvent = () => {
   const loggedUserFirstName = sessionStorage.getItem("firstName");
 
   const greeting = {
-    welcome: "Welcome Back",
+    welcome: "Welcome back",
     name: loggedUserFirstName || "",
     info: "Here is the information about",
     profile: "Events",
