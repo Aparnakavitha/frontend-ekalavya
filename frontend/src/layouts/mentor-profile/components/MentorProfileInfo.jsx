@@ -32,7 +32,7 @@ const MentorProfileInfo = ({ profileData, EditableData, onFormSubmit }) => {
       toast.success("Details updated successfully!");
       handleCloseEditBasicDetails();
     } catch (error) {
-      console.error("Error updating user details:", error);
+      toast.error("Error updating user details!");
     }
   };
 
