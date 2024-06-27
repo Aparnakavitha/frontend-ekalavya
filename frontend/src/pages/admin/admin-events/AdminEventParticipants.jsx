@@ -2,20 +2,32 @@ import { React, useEffect, useState } from "react";
 import EventParticipantsList from "../../../layouts/admin-event/components/EventParticipantsList";
 import { enrollParticipantService } from "../../../services/Event";
 import { useParams } from "react-router-dom";
+import { fetchEventsService } from "../../../services/Event";
 
-const pageNames = ["Participants"];
 
-const handleNavButtonClick = (pageName) => {
-  console.log(`Navigating to ${pageName}`);
-};
 
 const AdminEventParticipants = () => {
   const { eventId } = useParams();
   const [enrollData, setEnrollData] = useState([]);
   const [headings, setHeadings] = useState([]);
+  const [eventName,setEventName]=useState("");
+  const pageNames = [`${eventName}`,"participants"];
+  const handleNavButtonClick = (pageName) => {
+    console.log(`Navigating to ${pageName}`);
+  };
 
   useEffect(() => {
     fetchEnrollData();
+    const fetchEventName= async () => {
+      try {
+        const eventDataResponse = await fetchEventsService({ eventId });
+        const event = eventDataResponse[0];
+        setEventName(event.eventTitle);        
+      } catch (error) {
+        console.error("Error fetching event data:", error);
+      }
+    };
+    fetchEventName();
   }, [eventId]);
 
   const fetchEnrollData = async () => {
