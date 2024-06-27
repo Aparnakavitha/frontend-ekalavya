@@ -97,3 +97,24 @@
 .rightCard:hover .editIcon {
   color: var(--black);
 }
+
+@keyframes highlight {
+  0% {
+    transform: scale(1);
+    background-color: var(--white);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.rightCard.highlight {
+  animation: highlight 2s ease-in-out;
+}
+
+.leftCard.highlight {
+  animation: highlight 2s ease-in-out;
+}

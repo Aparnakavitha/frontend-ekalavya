@@ -14,7 +14,8 @@ const SkillBatchCard = (props) => {
     handleEditClick,
     canEdit,
     canDelete,
-    showCount
+    showCount,
+    viewAnimation = false,
   } = props;
 
   const transformMainHeading = (heading = "", cardType) => {
@@ -62,7 +63,11 @@ const SkillBatchCard = (props) => {
     <div className="row">
       <div className={`col-lg-2 col-md-3 col-sm-4 col-xs-6 ${styles.cards}`}>
         <div
-          className={cardType === "skill" ? styles.rightCard : styles.leftCard}
+          className={
+            cardType === "skill"
+              ? `${styles.rightCard} ${viewAnimation ? styles.highlight : ""}`
+              : `${styles.leftCard} ${viewAnimation ? styles.highlight : ""}`
+          }
           onClick={handleClick}
         >
           <div className={styles.titleContainer}>
@@ -75,7 +80,9 @@ const SkillBatchCard = (props) => {
             >
               {transformMainHeading(mainHeading, cardType)}
             </a>
-            {showCount && <a className={styles.cardsdiscription}>{formattedCount}</a>}
+            {showCount && (
+              <a className={styles.cardsdiscription}>{formattedCount}</a>
+            )}
           </div>
           {cardType === "skill" && (
             <>
