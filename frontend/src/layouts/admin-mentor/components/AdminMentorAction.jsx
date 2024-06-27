@@ -10,6 +10,8 @@ const AdminMentorAction = ({
   onAddSuccess,
   fetchData,
   onSearchChange,
+  setMentorData,
+  setCardAnimation,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -31,9 +33,13 @@ const AdminMentorAction = ({
         roleId: formData.roleId || 2,
       };
 
-      await addNewUser(userData);
+      const response = await addNewUser(userData);
+      const newMentor = response.responseData;
       console.log("New user added successfully!");
-      onAddSuccess();
+
+      newMentor.newEntry = true;
+      setCardAnimation(true);
+      setMentorData((prevMentorsData) => [newMentor, ...prevMentorsData]);
       handleCloseModal();
     } catch (error) {
       console.error("Error adding new user:", error);

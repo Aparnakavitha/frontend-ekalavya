@@ -4,6 +4,7 @@ import Modal from "../../common/components/Modal";
 import AdminBatchActionData from "./BatchActionData";
 import BatchOperations from "./BatchOperations";
 import { createBatch } from "../../../services/Batch";
+import { toast } from "react-toastify"; 
 
 const AdminBatchAction = ({
   onSearchChange,
@@ -32,7 +33,9 @@ const AdminBatchAction = ({
       setChanged((prev) => !prev);
       setIsOpen(false);
       setSubmitError("");
+      toast.success("Batch created successfully!");
     } catch (error) {
+      toast.error("Error adding batch!");
       console.error("Error adding batch:", error);
       setSubmitError("Batch name already exists");
     }
