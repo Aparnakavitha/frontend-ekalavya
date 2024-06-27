@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
-// import Searchbar from "../../../components/searchbar/Searchbar";
+import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
 import NavButton from "../../../components/buttons/NavButton";
 import TextButton from "../../../components/buttons/TextButton";
@@ -89,9 +89,9 @@ const BatchSearch = ({
           )}
         </div>
         <div className={`${styles["batchsearch-bottom"]}`}>
-          {/* <div className={`${styles["batchsearch-search"]}`}>
+          <div className={`${styles["batchsearch-search"]}`}>
             <Searchbar {...searchbarProps} onSearch={handleSearchChange} />
-          </div> */}
+          </div>
           <div className={`${styles["batchsearch-right"]}`}>
             {showFiltersAndReset && (
               <div className={`${styles["batchsearch-filter"]}`}>
