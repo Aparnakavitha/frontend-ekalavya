@@ -8,17 +8,21 @@ const NotFound = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const delay = setTimeout(() => {
+    const hasReloaded = localStorage.getItem('hasReloaded');
+
+    if (!hasReloaded) {
+      const delay = setTimeout(() => {
+        localStorage.setItem('hasReloaded', 'true');
+        window.location.reload();
+      }, 3000);
+
+      return () => clearTimeout(delay);
+    } else {
       setLoading(false);
-    }, 100);
-    setTimeout(() => {
-      window.location.reload();
-    }, 10); 
-    
-
-    return () => clearTimeout(delay);
+      localStorage.removeItem('hasReloaded');
+    }
   }, []);
-
+  
   return (
     <div className={styles.container}>
       {loading ? (
