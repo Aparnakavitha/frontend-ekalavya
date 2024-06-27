@@ -4,7 +4,7 @@ import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBat
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-
+ 
 import {
   fetchBatchParticipants,
   updateBatch,
@@ -13,17 +13,17 @@ import {
 } from "../../../services/Batch";
 import { getUserDetails } from "../../../services/User";
 import image from "../../../assets/DP.png";
-
+ 
 const loggedUserFirstName = sessionStorage.getItem("firstName");
-
+ 
 const greeting = {
-  welcome: "Welcome Back",
+  welcome: "Welcome back",
   name: loggedUserFirstName || "",
   info: "Here is the information about",
   profile: "Batches",
   showButtons: false,
 };
-
+ 
 const AdminBatchSelect = () => {
   const { batchId } = useParams();
   const params = useParams();
@@ -31,22 +31,22 @@ const AdminBatchSelect = () => {
   const [batchName, setBatchName] = useState(location.state?.batchName || "");
   const [batchParticipantsData, setBatchParticipantsData] = useState([]);
   const navigate = useNavigate();
-
+ 
   useEffect(() => {
     fetchData();
   }, []);
-
+ 
   const fetchData = async () => {
     try {
       const batchId = params.batchId;
       const participantsResponse = await fetchBatchParticipants({ batchId });
       const participantIds = participantsResponse.responseData;
-
+ 
       if (Array.isArray(participantIds) && participantIds.length > 0) {
         const userId = participantIds.join(",");
         const userDetailsResponse = await getUserDetails({ userId });
         const userDetails = userDetailsResponse.responseData;
-
+ 
         const BatchParticipantsData = userDetails.map((userDetail) => ({
           studentImage: userDetail?.profilePicture || image,
           studentName: `${userDetail?.firstName || ""} ${
@@ -59,7 +59,7 @@ const AdminBatchSelect = () => {
           canDelete: true,
           viewAnimation: false,
         }));
-
+ 
         setBatchParticipantsData(BatchParticipantsData);
       } else {
         setBatchParticipantsData([]);
@@ -69,7 +69,7 @@ const AdminBatchSelect = () => {
       setBatchParticipantsData([]);
     }
   };
-
+ 
   const changeBatchName = async (newBatchName) => {
     try {
       const batchId = params.batchId;
@@ -81,7 +81,7 @@ const AdminBatchSelect = () => {
       toast.error("rror updating batch name!");
     }
   };
-
+ 
   const handleDeleteBatches = async () => {
     try {
       await deleteBatch(batchId);
@@ -92,7 +92,7 @@ const AdminBatchSelect = () => {
       console.error("Error deleting batch:", error);
     }
   };
-
+ 
   const addParticipant = async (studentIds) => {
     try {
       const batchId = params.batchId;
@@ -104,7 +104,7 @@ const AdminBatchSelect = () => {
       console.error("Error adding participant:", error);
     }
   };
-
+ 
   return (
     <div>
       <Greeting {...greeting} />
@@ -145,5 +145,6 @@ const AdminBatchSelect = () => {
     </div>
   );
 };
-
+ 
 export default AdminBatchSelect;
+ 
