@@ -14,6 +14,7 @@ import StarPerformer from "../layouts/home/components/StarPerformer";
 import image from "../../src/assets/DP.png";
 import Testimonials from "../layouts/home/components/Testimonials";
 import Footer from "../layouts/common/components/Footer";
+import CustomGoogleLoginButton from "../components/buttons/CustomGoogleLoginButton";
 
 const Home = () => {
   const starPerformerRef = useRef(null);
@@ -83,7 +84,7 @@ const Home = () => {
       },
     ],
     imageSrc: edunexa,
-    button: <Button {...sample} />,
+    button: <CustomGoogleLoginButton/>
   };
 
   const partners = {

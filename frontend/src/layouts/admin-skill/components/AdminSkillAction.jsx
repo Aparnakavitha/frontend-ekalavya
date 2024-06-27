@@ -13,7 +13,7 @@ import {
   useSkills,
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
-
+import {toast} from "react-toastify";
 
 const AdminSkillAction = () => {
   const { skills, setSkills, setChanged } = useSkills();
@@ -77,8 +77,14 @@ const AdminSkillAction = () => {
   };
 
   const handleSearchChange = async (value) => {
-    const searchedSkill = await filterSkills(value);
-    setSkills(searchedSkill);
+    try {
+      const searchedSkill = await filterSkills(value);
+      console.log("search response from search skills", searchedSkill);
+      setSkills(searchedSkill);
+    } catch (error) {
+      console.error("Error occured in skill search",error);
+      toast.info("No match found");
+    }
   };
 
   const actionData = {
