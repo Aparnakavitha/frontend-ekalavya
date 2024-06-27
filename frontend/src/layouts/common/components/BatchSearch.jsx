@@ -18,6 +18,7 @@ const BatchSearch = ({
   showTextButton,
   showReset,
   showAdd,
+  showSearch = true,
   onSearchChange,
   onFilterChange,
 }) => {
@@ -89,9 +90,11 @@ const BatchSearch = ({
           )}
         </div>
         <div className={`${styles["batchsearch-bottom"]}`}>
-          <div className={`${styles["batchsearch-search"]}`}>
-            <Searchbar {...searchbarProps} onSearch={handleSearchChange} />
-          </div>
+          {showSearch && (
+            <div className={`${styles["batchsearch-search"]}`}>
+              <Searchbar {...searchbarProps} onSearch={handleSearchChange} />
+            </div>
+          )}
           <div className={`${styles["batchsearch-right"]}`}>
             {showFiltersAndReset && (
               <div className={`${styles["batchsearch-filter"]}`}>

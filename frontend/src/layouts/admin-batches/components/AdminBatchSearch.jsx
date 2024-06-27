@@ -65,6 +65,7 @@ const AdminBatchSearch = ({
         setIsDeleteBoxOpen(true);
       },
     },
+    showSearch: false,
     showFiltersAndReset: false,
     addbuttonProps: {
       variant: "tertiary",
