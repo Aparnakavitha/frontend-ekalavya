@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import SkillList from "../../../layouts/admin-student/components/SkillList";
 import EventList from "../../../layouts/admin-student/components/EventsList";
@@ -16,22 +16,21 @@ import {
 } from "../../../services/Event";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
 
-const fetchStudentDetails = async (userId) => {
+const fetchStudentDetails = async (userId, setStudentData) => {
   try {
     const params = { userId };
     const data = await getUserDetails(params);
     if (data && data.responseData && data.responseData.length > 0) {
-      return data.responseData[0];
+      setStudentData(data.responseData[0]);
     }
-    return null;
   } catch (error) {
     console.error("Error fetching student details:", error);
-    return null;
   }
 };
 
 const AdminStudentDetails = () => {
   const [studentsData, setStudentData] = useState(null);
+
   const [studentSkills, setStudentSkills] = useRecoilState(
     adminStudentSkillState
   );
@@ -45,27 +44,6 @@ const AdminStudentDetails = () => {
   const location = useLocation();
   const { studentsData: selectedStudent } = location.state || {};
 
-  useEffect(() => {
-    const fetchData = async () => {
-      let fetchedStudentData = null;
-      if (selectedStudent) {
-        fetchedStudentData = selectedStudent;
-      } else {
-        fetchedStudentData = await fetchStudentDetails(userId);
-      }
-
-      if (fetchedStudentData) {
-        setStudentData(fetchedStudentData);
-
-        const studentEvents = await fetchStudentEvents(
-          fetchedStudentData.userId
-        );
-        const enrolledEventIds = studentEvents.map((event) => event.eventId);
-        await fetchEventOptions(enrolledEventIds);
-      }
-    };
-    fetchData();
-  }, [userId, selectedStudent]);
 
   const fetchStudentEvents = async (participantId) => {
     try {
@@ -115,6 +93,39 @@ const AdminStudentDetails = () => {
     }
   };
 
+  const handleCloseEditBasicDetails = () => setIsEditDetailsOpen(false);
+
+
+  const handleFormSubmit2 = async (formData) => {
+    try {
+      console.log("Form Data", formData);
+      const response = await addNewUser(formData);
+      console.log("Update response:", response);
+      handleCloseEditBasicDetails();
+      fetchStudentDetails(userId, setStudentData);
+    } catch (error) {
+      console.error("Error updating user details:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedStudent) {
+      setStudentData(selectedStudent);
+    }
+  }, [selectedStudent]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (studentsData?.userId) {
+        await fetchStudentDetails(studentsData.userId, setStudentData);
+        const studentEvents = await fetchStudentEvents(studentsData.userId);
+        const enrolledEventIds = studentEvents.map((event) => event.eventId);
+        await fetchEventOptions(enrolledEventIds);
+      }
+    };
+    fetchData();
+  }, [studentsData]);
+
   const handleFormSubmit = async (formData) => {
     try {
       const { dob, phoneNo, aboutMe, addresses, userId, education } = formData;
@@ -133,17 +144,14 @@ const AdminStudentDetails = () => {
 
       await addNewUser(updatedData);
 
-      const updatedStudentData = await fetchStudentDetails(userId);
-      if (updatedStudentData) {
-        setStudentData(updatedStudentData);
-
+      const fetchData = async () => {
+        await fetchStudentDetails(userId, setStudentData);
         const studentEvents = await fetchStudentEvents(userId);
         const enrolledEventIds = studentEvents.map((event) => event.eventId);
         await fetchEventOptions(enrolledEventIds);
-        toast.success("Details updated successfully!");
-      } else {
-        toast.error("Failed to fetch updated user details.");
-      }
+      };
+      fetchData();
+      toast.success("Details updated successfully!");
     } catch (error) {
       toast.error("Error updating user details!");
     }
@@ -163,6 +171,9 @@ const AdminStudentDetails = () => {
     }
   };
 
+  const Education = studentsData ? studentsData.qualifications : [];
+
+
   const handleDelete = async () => {
     try {
       if (studentsData?.userId) {
@@ -174,20 +185,20 @@ const AdminStudentDetails = () => {
         console.error("studentsData or studentsData.userId is not defined");
       }
     } catch (error) {
-      toast.error(`Error deleting user with userId ${studentsData.userId}:`);
+      toast.error(
+        `Error deleting user with userId ${studentsData.userId}:`,
+      );
     }
-  };
-
-  const handleOpenEditEducation = () => {
-    setEducationData(studentsData.qualifications);
-    setIsEditEducationOpen(true);
   };
 
   if (!studentsData) {
     return <LoadingSpinner />;
   }
 
-  const Education = studentsData ? studentsData.qualifications : [];
+  const handleOpenEditEducation = () => {
+    setEducationData(studentsData.qualifications);
+    setIsEditEducationOpen(true);
+  };
 
   return (
     <div>
@@ -198,7 +209,7 @@ const AdminStudentDetails = () => {
       <EducationalQualification
         qualifications={Education}
         userId={studentsData.userId}
-        onFormSubmit={handleFormSubmit}
+        onFormSubmit={handleFormSubmit2}
         onEditClick={handleOpenEditEducation}
       />
       <SkillList studentId={studentsData.userId} />
