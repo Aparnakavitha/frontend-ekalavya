@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import ShowCards from "../../common/components/ShowCards";
 import Modal from "../../common/components/Modal";
@@ -9,7 +9,9 @@ import {
   studentSkillState,
 } from "../../../states/Atoms";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { Userskillpost } from "../../../services/Skills";
+import { Userskillpost, getSkillsForUser } from "../../../services/Skills";
+import { Slide, ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 const SkillList = ({ studentId }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +25,47 @@ const SkillList = ({ studentId }) => {
     label: skill.skillName,
   }));
 
+  useEffect(() => {
+    const fetchSkills = async () => {
+      if (studentId) {
+        try {
+          // const response = await getSkillsForUser(studentId);
+          const skills = await axios.get(
+            `https://ekalavya.tarento.com/skills?userId=${studentId}`
+          );
+          const response = skills.data.responseData;
+          console.log(
+            "Fetching skills for userId (Skill list):",
+            studentId,
+            "Here are the skills (Skill list):",
+            studentSkills
+          );
+          console.log("Skills API response:(SKill List)", response);
+
+          if (response.length > 0 && response[0].skills) {
+            const skills = response[0].skills.map((skill) => ({
+              miniHeading: skill.id,
+              mainHeading: skill.skillName,
+              skill_id: skill.id,
+              cardType: "skill",
+              canEdit: false,
+              canDelete: true,
+              showCount: false,
+            }));
+            console.log("Formatted skills:", skills);
+            setStudentSkills(skills);
+          } else {
+            console.error("Unexpected response format:", response);
+          }
+        } catch (error) {
+          console.error("Error fetching student skills:", error);
+        }
+      }
+    };
+
+    fetchSkills();
+  }, [studentId, setStudentSkills]);
+
   const handleOpenModal = () => {
     setIsOpen(true);
   };
@@ -32,23 +75,56 @@ const SkillList = ({ studentId }) => {
   };
 
   const handleFormSubmit = async (formData) => {
-    const submitResponse = await Userskillpost({
-      userId: studentId,
-      skillId: formData.selectedSkills,
-    });
-    const selectedSkillName = addSkillOptions.find(
-      (option) => option.value === formData.selectedSkills
-    );
+    try {
+      const submitResponse = await Userskillpost({
+        userId: studentId,
+        skillId: formData.selectedSkills,
+      });
 
-    const newSkillState = {
-      miniHeading: formData.selectedSkills,
-      mainHeading: selectedSkillName.label,
-      canEdit: true,
-      canDelete: true,
-      cardType: "skill",
-    };
-    setStudentSkills([...studentSkills, newSkillState]);
-    handleCloseModal();
+      if (
+        submitResponse.errorMessage === "User skill combination already exists"
+      ) {
+        toast.info("Skill already assigned to user", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        handleCloseModal();
+        return;
+      }
+
+      const selectedSkillName = addSkillOptions.find(
+        (option) => option.value === formData.selectedSkills
+      );
+
+      const newSkillState = {
+        miniHeading: selectedSkillName.value,
+        mainHeading: selectedSkillName.label,
+        skill_id: selectedSkillName.value,
+        canEdit: false,
+        canDelete: true,
+        cardType: "skill",
+        showCount: false,
+      };
+      setStudentSkills((prevSkills) => [...prevSkills, newSkillState]);
+      handleCloseModal();
+    } catch (error) {
+      console.error("Error submitting skill:", error);
+      handleCloseModal();
+      toast.error("An error occurred while adding the skill,please try again", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   const heading = {
@@ -68,6 +144,8 @@ const SkillList = ({ studentId }) => {
     options: [...addSkillOptions],
   };
 
+  console.log("From skillList, student skills---", studentSkills);
+
   const skillcards = {
     card: "skill",
     cardData: [...studentSkills],
@@ -79,20 +157,20 @@ const SkillList = ({ studentId }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
-      {studentSkills.length === 0 ? (
-        <div
-          style={{
-            textAlign: "left",
-            color: "var(--neutral600)",
-            marginTop: "-40px",
-          }}
-          className="padding"
-        >
-          &nbsp;&nbsp;No skills to display
-        </div>
-      ) : (
-        <CardRow {...skillcards} />
-      )}
+      <CardRow {...skillcards} userId={studentId} />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Slide}
+      />
     </div>
   );
 };

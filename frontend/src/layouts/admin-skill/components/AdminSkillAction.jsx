@@ -13,7 +13,7 @@ import {
   useSkills,
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
-
+import { toast } from "react-toastify";
 
 const AdminSkillAction = () => {
   const { skills, setSkills, setChanged } = useSkills();
@@ -55,11 +55,10 @@ const AdminSkillAction = () => {
       setSkills([...skills, newSkill]);
       setChanged(true);
       handleCloseModal();
-      setError("");
+      toast.success("Skill created successfully!");
     } catch (error) {
       console.error("Error adding skill:", error);
-      setError("Skill name already exists");
-      
+      toast.error("Error adding skill!");
     }
   };
 
@@ -71,14 +70,21 @@ const AdminSkillAction = () => {
       );
       setChanged(true);
       handleCloseDelete();
+      toast.success("Skill removed successfully!");
     } catch (error) {
+      toast.error("Error removing skill!");
       console.error("Error deleting skill:", error);
     }
   };
 
   const handleSearchChange = async (value) => {
-    const searchedSkill = await filterSkills(value);
-    setSkills(searchedSkill);
+    try {
+      const searchedSkill = await filterSkills(value);
+      console.log("search response from search skills", searchedSkill);
+      setSkills(searchedSkill);
+    } catch (error) {
+      console.error("Error occured in skill search",error);
+    }
   };
 
   const actionData = {
