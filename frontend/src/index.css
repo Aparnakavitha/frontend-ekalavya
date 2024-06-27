@@ -1,15 +1,15 @@
-@font-face {
+/* @font-face {
   font-family: "Urbanist";
   src: url("../../frontend/src/fonts/Urbanist-VariableFont_wght.ttf")
     format("truetype");
-}
+} */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Urbanist", sans-serif;
   scroll-behavior: smooth;
+  font-family: 'Urbanist', sans-serif;
 }
 
 :root {
