@@ -93,6 +93,7 @@ const AdminSkillsList = ({ handleClick }) => {
       Count: skill.count,
       canEdit: true,
       cardType: "skill",
+      showCount: true,
       handleClick: async () => {
         try {
           const response = await getUsersCountForSkill(skill.id);
@@ -122,7 +123,14 @@ const AdminSkillsList = ({ handleClick }) => {
 
   return (
     <div>
-      <DataView CardComponent={SkillBatchCard} {...skillData} />
+     {skillData.data && skillData.data.length > 0 ? (
+        <DataView CardComponent={SkillBatchCard} {...skillData} />
+      ) : (
+        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+          No skills available
+        </p>
+      )}
+ 
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         {selectedSkill && (
           <UpdateSingleField

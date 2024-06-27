@@ -3,6 +3,7 @@ import Education from "./Education";
 import Modal from "./Modal";
 import QualificationForm from "./QualificationForm";
 import DeleteBox from "./DeleteBox";
+import { toast } from "react-toastify";
  
 const EducationalQualification = ({
   qualifications=[],
@@ -60,8 +61,9 @@ const EducationalQualification = ({
       handleCloseEditQualification();
       handleCloseDeleteQualification();
       handleCloseAddQualification();
+      toast.success("Qualification updated successfully!");
     } catch (error) {
-      console.error("Error updating user details:", error);
+      toast.error("Error updating user Qualification!");
     }
   };
 
@@ -81,9 +83,10 @@ const EducationalQualification = ({
       console.log("Start Date:", formData.startDate);
       console.log("End Date:", formData.endDate);
       await onFormSubmit(formData);
+      toast.success("Qualification deleted successfully!");
       handleCloseDeleteQualification();
     } catch (error) {
-      console.error("Error updating user details:", error);
+      console.error("Error deleting qualification!");
     }
   };
  

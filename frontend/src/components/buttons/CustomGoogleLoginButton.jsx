@@ -4,9 +4,10 @@ import "./CustomGoogleLoginButton.css";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const clientId =
-  "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com"; // Replace with your actual Google Client ID
+  "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com";
 
 const CustomGoogleLoginButton = ({ fullWidth }) => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
       await handleUserLogin(userInfo);
     } catch (error) {
       console.error("Error during login process:", error);
+      toast.error("Login failed! Please try again.");
     }
   };
 
@@ -52,66 +54,50 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
       const { roleId, userId } = response.data.responseData;
       console.log("API Response Role ID:", roleId);
 
-      sessionStorage.setItem("role", roleId);
-      sessionStorage.setItem("user_id", userId);
-
-      handleLoginNavigation();
+      if (typeof roleId === "undefined") {
+        toast.error("Login failed! Please try again.");
+      } else {
+        sessionStorage.setItem("role", roleId);
+        sessionStorage.setItem("user_id", userId);
+        handleLoginNavigation(roleId);
+      }
     } catch (error) {
       console.error("Error logging in:", error);
+      toast.error("Login failed! Please try again.");
     }
   };
 
-  const handleLoginNavigation = async () => {
-    try {
-      const roleId = await getRoleIdFromSessionStorage();
-      console.log("Stored Role ID:", roleId);
-  
-      if (roleId !== null) {
-        navigateBasedOnRole(roleId);
-      } else {
-        console.error("Role ID not found in sessionStorage");
-      }
-    } catch (error) {
-      console.error("Error getting Role ID:", error);
-    }
+  const handleLoginNavigation = (roleId) => {
+    toast.success("Login Successful");
+    navigateBasedOnRole(roleId);
   };
-  
-  const getRoleIdFromSessionStorage = async () => {
-    return new Promise((resolve, reject) => {
-      try {
-        const roleId = parseInt(sessionStorage.getItem("role"));
-        if (isNaN(roleId)) {
-          throw new Error("Invalid role ID stored in sessionStorage");
-        }
-        resolve(roleId);
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
-  
+
   const navigateBasedOnRole = (roleId) => {
-    switch (roleId) {
-      case 3:
-        navigate(`/student/profile`);
-        break;
-      case 2:
-        navigate(`/mentor/profile`);
-        break;
-      case 1:
-        navigate("/admin/student");
-        break;
-      default:
-        console.error("Unknown role ID:", roleId);
-        break;
-    }
+    setTimeout(() => {
+      switch (roleId) {
+        case 3:
+          navigate(`/student/profile`);
+          break;
+        case 2:
+          navigate(`/mentor/profile`);
+          break;
+        case 1:
+          navigate("/admin/student");
+          break;
+        default:
+          console.error("Unknown role ID:", roleId);
+          break;
+      }
+    }, 1000);
   };
-  
 
   const login = useGoogleLogin({
     clientId,
     onSuccess: handleLoginSuccess,
-    onError: (error) => console.error("Login Failed:", error),
+    onError: (error) => {
+      console.error("Login Failed:", error);
+      toast.error("Login failed! Please try again.");
+    },
   });
 
   return (

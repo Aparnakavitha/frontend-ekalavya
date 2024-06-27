@@ -8,6 +8,7 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
 import { getSkillsForUser } from "../../../services/Skills";
+import { toast } from "react-toastify";
 import {
   enrollParticipantService,
   fetchEventsService,
@@ -29,7 +30,10 @@ const fetchStudentDetails = async (userId, setStudentData) => {
 
 const AdminStudentDetails = () => {
   const [studentsData, setStudentData] = useState(null);
-  const [studentSkills, setStudentSkills] = useRecoilState(adminStudentSkillState);
+
+  const [studentSkills, setStudentSkills] = useRecoilState(
+    adminStudentSkillState
+  );
   const [studentEvents, setStudentEvents] = useState([]);
   const [eventOptions, setEventOptions] = useState([]);
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
@@ -40,37 +44,14 @@ const AdminStudentDetails = () => {
   const location = useLocation();
   const { studentsData: selectedStudent } = location.state || {};
 
-  const fetchStudentSkills = async (userId) => {
-    if (userId) {
-      try {
-        const response = await getSkillsForUser(userId);
-        console.log("Fetching skills for userId:", userId);
-        console.log("Skills API response:", response);
-
-        if (response.length > 0 && response[0].skills) {
-          const skills = response[0].skills.map((skill) => ({
-            miniHeading: skill.skill_name,
-            mainHeading: skill.skill_name,
-            count: skill.skill_level,
-            cardType: "skill",
-            canEdit: true,
-            canDelete: true,
-          }));
-          console.log("Formatted skills:", skills);
-
-          setStudentSkills(skills);
-        } else {
-          console.error("Unexpected response format:", response);
-        }
-      } catch (error) {
-        console.error("Error fetching student skills:", error);
-      }
-    }
-  };
 
   const fetchStudentEvents = async (participantId) => {
     try {
-      const response = await enrollParticipantService(null, participantId, null);
+      const response = await enrollParticipantService(
+        null,
+        participantId,
+        null
+      );
       const enrolledEvents = response.responseData.enrolled.map((event) => ({
         miniHeading: event.eventType,
         mainHeading: event.eventTitle,
@@ -137,7 +118,6 @@ const AdminStudentDetails = () => {
     const fetchData = async () => {
       if (studentsData?.userId) {
         await fetchStudentDetails(studentsData.userId, setStudentData);
-        await fetchStudentSkills(studentsData.userId);
         const studentEvents = await fetchStudentEvents(studentsData.userId);
         const enrolledEventIds = studentEvents.map((event) => event.eventId);
         await fetchEventOptions(enrolledEventIds);
@@ -166,14 +146,14 @@ const AdminStudentDetails = () => {
 
       const fetchData = async () => {
         await fetchStudentDetails(userId, setStudentData);
-        await fetchStudentSkills(userId);
         const studentEvents = await fetchStudentEvents(userId);
         const enrolledEventIds = studentEvents.map((event) => event.eventId);
         await fetchEventOptions(enrolledEventIds);
       };
       fetchData();
+      toast.success("Details updated successfully!");
     } catch (error) {
-      console.error("Error updating user details:", error);
+      toast.error("Error updating user details!");
     }
   };
 
@@ -182,12 +162,12 @@ const AdminStudentDetails = () => {
       await addEnrollmentService(enrollmentData.selectedEventId, {
         participantId: studentsData.userId,
       });
-      // Update student events list
       const updatedEvents = await fetchStudentEvents(studentsData.userId);
       const enrolledEventIds = updatedEvents.map((event) => event.eventId);
       await fetchEventOptions(enrolledEventIds);
+      toast.success("Event added successfully!");
     } catch (error) {
-      console.error("Error enrolling in event:", error);
+      toast.error("Error enrolling in event!");
     }
   };
 
@@ -200,11 +180,14 @@ const AdminStudentDetails = () => {
         const params = { userId: studentsData.userId };
         await deleteUser(params);
         navigate("/admin/student");
+        toast.success("Student deleted successfully!");
       } else {
         console.error("studentsData or studentsData.userId is not defined");
       }
     } catch (error) {
-      console.error(`Error deleting user with userId ${studentsData.userId}:`, error);
+      toast.error(
+        `Error deleting user with userId ${studentsData.userId}:`,
+      );
     }
   };
 
