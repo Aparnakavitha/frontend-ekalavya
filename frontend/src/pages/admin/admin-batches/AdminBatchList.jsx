@@ -112,6 +112,7 @@ const AdminBatchList = () => {
           toggle={true}
           cardType="skillbatchcardbatch"
           itemsPerPage={12}
+          showCount={true}
         />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>

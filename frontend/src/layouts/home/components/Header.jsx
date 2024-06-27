@@ -148,13 +148,6 @@ const Header = ({
       )}
 
       <div onClick={handleOpenLoginModal} className={`${styles["header-button"]}`}>{button}</div>
-      <Modal
-        isOpen={isLoginModalOpen}
-        widthVariant="small"
-        onClose={handleCloseLoginModal}
-      >
-        <LoginBox {...loginBoxProps} />
-      </Modal>
     </div>
   );
 };
