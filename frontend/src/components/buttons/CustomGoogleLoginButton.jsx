@@ -28,16 +28,22 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
   };
 
   const fetchUserInfo = async (accessToken) => {
-    const response = await axios.get(
-      "https://www.googleapis.com/oauth2/v3/userinfo",
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    console.log("User Info Response:", response.data);
-    return response.data;
+    try {
+      const response = await axios.get(
+        "https://www.googleapis.com/oauth2/v3/userinfo",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log("User Info Response:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+      toast.error("Failed to fetch user info. Please try again.");
+      throw error;
+    }
   };
 
   const handleUserLogin = async (userInfo) => {
@@ -55,7 +61,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
       console.log("API Response Role ID:", roleId);
 
       if (typeof roleId === "undefined") {
-        toast.error("Login failed! Please try again.");
+        throw new Error("Role ID is undefined");
       } else {
         sessionStorage.setItem("role", roleId);
         sessionStorage.setItem("user_id", userId);
@@ -63,7 +69,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
       }
     } catch (error) {
       console.error("Error logging in:", error);
-      toast.error("Login failed! Please try again.");
+      throw error;
     }
   };
 
@@ -96,7 +102,6 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     onSuccess: handleLoginSuccess,
     onError: (error) => {
       console.error("Login Failed:", error);
-      toast.error("Login failed! Please try again.");
     },
   });
 
