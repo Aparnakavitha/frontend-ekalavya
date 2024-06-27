@@ -64,7 +64,6 @@
 }
 
 .copyrightContent {
-  font-family: Urbanist;
   color: var(--white);
   font-size: 16px;
   font-weight: 400;
@@ -72,7 +71,6 @@
 }
 
 .copyrightContent2 {
-  font-family: Urbanist;
   color: var(--white);
   font-size: 16px;
   font-weight: 400;
@@ -97,7 +95,6 @@
 
 @media (max-width: 767px) {
   .copyrightContent {
-    font-family: Urbanist;
     color: var(--white);
     font-size: 10px;
     font-weight: 400;
