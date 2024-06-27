@@ -92,9 +92,9 @@ const AdminBatchSearch = ({
       initialData: batchName,
     },
     deleteprops: {
-      title: "Confirmation Required",
-      message: "Are you sure you want to remove this batch?",
-      buttonText: "Confirm",
+      title: "Delete Batch",
+      message: "Are you sure you want to delete this batch?",
+      buttonText: "Delete",
     },
   };
 
