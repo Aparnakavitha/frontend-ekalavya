@@ -78,8 +78,13 @@ const AdminSkillAction = () => {
   };
 
   const handleSearchChange = async (value) => {
-    const searchedSkill = await filterSkills(value);
-    setSkills(searchedSkill);
+    try {
+      const searchedSkill = await filterSkills(value);
+      console.log("search response from search skills", searchedSkill);
+      setSkills(searchedSkill);
+    } catch (error) {
+      console.error("Error occured in skill search",error);
+    }
   };
 
   const actionData = {
