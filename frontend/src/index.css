@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Urbanist";
-  src: url("../../frontend/public/Fonts/Urbanist-VariableFont_wght.ttf")
+  src: url("../../frontend/src/fonts/Urbanist-VariableFont_wght.ttf")
     format("truetype");
 }
 

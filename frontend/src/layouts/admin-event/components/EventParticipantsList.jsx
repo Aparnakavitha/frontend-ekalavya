@@ -12,7 +12,7 @@ const EventParticipantsList = ({ data, headings, onClick, pageNames }) => {
         ))}
       </div>
       <div className={styles["eventparticipantslist-table"]}>
-        <Table data={data} headings={headings} />
+        <Table data={data} headings={headings} noData={"No participants available"}/>
       </div>
     </div>
   );
