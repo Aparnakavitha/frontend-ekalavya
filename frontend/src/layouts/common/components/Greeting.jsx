@@ -17,14 +17,13 @@ const Greeting = (props) => {
       <div
         className={`${styles["common-body"]} ${["padding"]}`}
       >
-        <div className={`${styles["common-info"]}`}>
-            {welcome} {name}
-          </div>
-       
-        <div className={`${styles["common-header"]}`}>
         <div className={`${styles["common-welcome"]}`}>
-        {info} {profile}
+          {welcome} {name}
         </div>
+        <div className={`${styles["common-header"]}`}>
+          <div className={`${styles["common-info"]}`}>
+            {info} {profile}
+          </div>
           {showButtons ? (
             <div className={`${styles["common-greenlink"]}`}>
               <a href="#" onClick={handleClick}>
