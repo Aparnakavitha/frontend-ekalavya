@@ -13,8 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { participantsState, studentSkillState } from "../../../states/Atoms";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
-import { toast } from "react-toastify"; 
-
+import { toast } from "react-toastify";
 
 const capitalizeFirstLetter = (string) => {
   return string.trim().charAt(0).toUpperCase() + string.slice(1);
