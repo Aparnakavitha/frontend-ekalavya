@@ -6,8 +6,9 @@ import Modal from "../../common/components/Modal";
 import { useNavigate } from "react-router-dom";
 import { getUserDetails } from "../../../services/User";
 import { batchDelete } from "../../../services/Batch";
+import { toast } from "react-toastify";
 
-const AdminBatchParticipants = ({ batchParticipantsData, batchId }) => {
+const AdminBatchParticipants = ({ batchParticipantsData, batchId, fetchData }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -33,12 +34,16 @@ const AdminBatchParticipants = ({ batchParticipantsData, batchId }) => {
     if (selectedUser) {
       try {
         await batchDelete(batchId, selectedUser.studentId);
+        fetchData();
         const updatedUsers = users.filter(
           (user) => user.studentId !== selectedUser.studentId
         );
         setUsers(updatedUsers);
         console.log("Deleted student ID:", selectedUser.studentId);
+        toast.success("Batch participant deleted successfully!");
       } catch (error) {
+        toast.error("Error deleting Batch participant!");
+
         console.error("Error deleting user from batches:", error);
       }
     }
@@ -62,7 +67,10 @@ const AdminBatchParticipants = ({ batchParticipantsData, batchId }) => {
           console.error(`User with userId ${userId} not found.`);
         }
       } catch (error) {
-        console.error(`Error fetching user details for userId ${userId}:`, error);
+        console.error(
+          `Error fetching user details for userId ${userId}:`,
+          error
+        );
       }
     } else {
       console.error(`Student with userId ${userId} not found.`);

@@ -135,6 +135,7 @@ const AdminBatchSelect = () => {
             },
           }}
           batchId={batchId}
+          fetchData={fetchData}
         />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
