@@ -24,17 +24,16 @@ const AdminBatchSearch = ({
   const [submitError, setSubmitError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async (params) => {
+    const fetchData = async () => {
       try {
-        var filterParams = {
+        const filterParams = {
           roleId: 3,
         };
 
         const data = await getUserDetails(filterParams);
-        console.log(data);
         const userIds = data.responseData.map((user) => ({
           value: user.userId,
-          label: user.userId,
+          label: `${user.firstName} ${user.lastName} (${user.userId})`,
         }));
         setUserIdOptions(userIds);
       } catch (error) {
