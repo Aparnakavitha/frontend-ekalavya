@@ -127,8 +127,8 @@ const EventsDescription = (props) => {
                 </div>
               </>
             )}
-
-            {type === "mentor" && (
+ 
+            {type === "mentor" && showButton &&(
               <>
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div

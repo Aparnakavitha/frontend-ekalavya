@@ -79,7 +79,7 @@ const AdminMentor = () => {
   const loggedUserFirstName = sessionStorage.getItem("firstName");
 
   const greet = {
-    welcome: "Welcome Back",
+    welcome: "Welcome back",
     name: loggedUserFirstName || "",
     info: "Here is the information about",
     profile: "Mentors",

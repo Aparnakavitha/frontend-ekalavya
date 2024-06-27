@@ -39,6 +39,7 @@ const AdminBatchList = () => {
           mainHeading: item.batchName || "",
           Count: item.participantCount,
           cardType: "batch",
+          showCount: true,
           handleClick: () => handleClick(item.batchId, item.batchName),
         }));
 
@@ -82,7 +83,7 @@ const AdminBatchList = () => {
   return (
     <div>
       <Greeting
-        welcome="Welcome Back"
+        welcome="Welcome back"
         name={loggedUserFirstName}
         info="Here is the information about"
         profile="Batches"
@@ -112,6 +113,7 @@ const AdminBatchList = () => {
           toggle={true}
           cardType="skillbatchcardbatch"
           itemsPerPage={12}
+          showCount={true}
         />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>

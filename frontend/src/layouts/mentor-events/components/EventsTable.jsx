@@ -121,6 +121,7 @@ const EventsTable = (props) => {
           <Table
             data={tableData}
             headings={headings.slice(0, 3).concat("Status")}
+            noData = {"No participants available"}
           />
         </div>
       </div>

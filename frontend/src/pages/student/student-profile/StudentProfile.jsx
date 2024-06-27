@@ -53,10 +53,10 @@ const StudentProfile = () => {
     return <LoadingSpinner />;
   }
   const transformEventData = (events) => {
-    return events.map((event) => ({
+    return events.slice(0, 4).map((event) => ({
       eventId: event.eventId,
       main: event.eventTitle,
-      sub: event.location,
+      sub: event.description,
       start: new Date(`1970-01-01T${event.startTime}`)
         .toLocaleTimeString([], { hour: "2-digit", hour12: true })
         .toLowerCase(),
@@ -67,6 +67,7 @@ const StudentProfile = () => {
       date: new Date(event.startDate).getDate(),
     }));
   };
+  
   const transformedEventData = eventData ? transformEventData(eventData) : [];
   console.log(transformedEventData);
 
@@ -106,7 +107,7 @@ const StudentProfile = () => {
   const Education = studentData.qualifications || [];
 
   const greet = {
-    welcome: "Welcome Back",
+    welcome: "Welcome back",
     name: `${studentData.firstName}`,
     showButtons: false,
   };

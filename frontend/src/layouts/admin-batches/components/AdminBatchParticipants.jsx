@@ -48,7 +48,7 @@ const AdminBatchParticipants = ({ batchParticipantsData, batchId, fetchData }) =
       }
     }
     handleCloseModal();
-    navigate("/admin/batches/batch-details/${batchId}");
+    navigate(`/admin/batches/batch-details/${batchId}`);
   };
 
   const handleCardClick = async (userId) => {

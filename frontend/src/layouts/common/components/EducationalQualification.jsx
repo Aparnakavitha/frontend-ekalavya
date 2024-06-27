@@ -112,9 +112,9 @@ const EducationalQualification = ({
   };
  
   const deleteQualProps = {
-    title: "Confirm deletion",
-    message: "Remove this qualification?",
-    buttonText: "Confirm",
+    title: "Delete Qualification",
+    message: "Are you sure you want to delete this qualification?",
+    buttonText: "Delete",
     onConfirm: () => {
       console.log("hello")
       if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {

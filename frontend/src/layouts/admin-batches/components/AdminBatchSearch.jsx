@@ -7,6 +7,7 @@ import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
 import { getUserDetails } from "../../../services/User";
 import { updateBatch } from "../../../services/Batch";
+import { toast } from "react-toastify";
 
 const AdminBatchSearch = ({
   batchDelete,
@@ -91,9 +92,9 @@ const AdminBatchSearch = ({
       initialData: batchName,
     },
     deleteprops: {
-      title: "Confirmation Required",
-      message: "Are you sure you want to remove this batch?",
-      buttonText: "Confirm",
+      title: "Delete Batch",
+      message: "Are you sure you want to delete this batch?",
+      buttonText: "Delete",
     },
   };
 
@@ -101,6 +102,7 @@ const AdminBatchSearch = ({
     try {
       await updateBatch({ batchId, batchName: formData.inputData });
       setBatchName(formData.inputData);
+      toast.success("Batch name updated successfully!");
       setSubmitError(null);
       handleCloseAllModals();
     } catch (error) {
