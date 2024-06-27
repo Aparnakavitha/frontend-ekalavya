@@ -3,6 +3,8 @@ import { Greeting } from "../../../layouts/common";
 import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBatchSearch";
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import {
   fetchBatchParticipants,
   updateBatch,
@@ -73,8 +75,10 @@ const AdminBatchSelect = () => {
       const batchId = params.batchId;
       await updateBatch({ batchId, batchName: newBatchName });
       setBatchName(newBatchName);
+      toast.success("Batch name updated successfully!");
     } catch (error) {
       console.error("Error updating batch name:", error);
+      toast.error("rror updating batch name!");
     }
   };
 
@@ -82,7 +86,9 @@ const AdminBatchSelect = () => {
     try {
       await deleteBatch(batchId);
       navigate(`/admin/batches`);
+      toast.success("Batch deleted successfully!");
     } catch (error) {
+      toast.error("Error deleting batch!");
       console.error("Error deleting batch:", error);
     }
   };
@@ -92,7 +98,9 @@ const AdminBatchSelect = () => {
       const batchId = params.batchId;
       await postUserIds({ batchId, userIds: studentIds });
       fetchData();
+      toast.success("Added new student successfully!");
     } catch (error) {
+      toast.error("Error adding participant!");
       console.error("Error adding participant:", error);
     }
   };
