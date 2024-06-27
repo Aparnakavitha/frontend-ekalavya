@@ -159,9 +159,9 @@ const CardRow = ({ cardData, card, handleClick, userId }) => {
 
       <Modal isOpen={isModalOpen} widthVariant="small" onClose={closeModal}>
         <DeleteBox
-          title="Confirmation Required"
-          message="Are you sure you want to remove this skill?"
-          buttonText="Confirm"
+          title="Delete Skill"
+          message="Are you sure you want to delete this skill?"
+          buttonText="Delete"
           onConfirm={confirmDelete}
           onCancel={closeModal}
         />
