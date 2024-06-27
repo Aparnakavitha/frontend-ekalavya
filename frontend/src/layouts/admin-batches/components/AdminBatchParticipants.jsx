@@ -5,8 +5,10 @@ import ProfileCard from "../../../components/cards/ProfileCard";
 import Modal from "../../common/components/Modal";
 import { useNavigate } from "react-router-dom";
 import { getUserDetails } from "../../../services/User";
+import { batchDelete } from "../../../services/Batch";
+import { toast } from "react-toastify";
 
-const AdminBatchParticipants = ({ batchParticipantsData }) => {
+const AdminBatchParticipants = ({ batchParticipantsData, batchId, fetchData }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -28,16 +30,25 @@ const AdminBatchParticipants = ({ batchParticipantsData }) => {
     setSelectedUser(null);
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = async () => {
     if (selectedUser) {
-      const updatedUsers = users.filter(
-        (user) => user.studentId !== selectedUser.studentId
-      );
-      setUsers(updatedUsers);
-      console.log("Deleted student ID:", selectedUser.studentId);
+      try {
+        await batchDelete(batchId, selectedUser.studentId);
+        fetchData();
+        const updatedUsers = users.filter(
+          (user) => user.studentId !== selectedUser.studentId
+        );
+        setUsers(updatedUsers);
+        console.log("Deleted student ID:", selectedUser.studentId);
+        toast.success("Batch participant deleted successfully!");
+      } catch (error) {
+        toast.error("Error deleting Batch participant!");
+
+        console.error("Error deleting user from batches:", error);
+      }
     }
     handleCloseModal();
-    navigate("/admin/batches");
+    navigate(`/admin/batches/batch-details/${batchId}`);
   };
 
   const handleCardClick = async (userId) => {
@@ -56,7 +67,10 @@ const AdminBatchParticipants = ({ batchParticipantsData }) => {
           console.error(`User with userId ${userId} not found.`);
         }
       } catch (error) {
-        console.error(`Error fetching user details for userId ${userId}:`, error);
+        console.error(
+          `Error fetching user details for userId ${userId}:`,
+          error
+        );
       }
     } else {
       console.error(`Student with userId ${userId} not found.`);
@@ -70,6 +84,7 @@ const AdminBatchParticipants = ({ batchParticipantsData }) => {
           <ProfileCard
             {...props}
             onClick={() => handleCardClick(props.studentId)}
+            handleDelete={() => handleOpenModal(props)}
           />
         )}
         {...batchParticipantsData}

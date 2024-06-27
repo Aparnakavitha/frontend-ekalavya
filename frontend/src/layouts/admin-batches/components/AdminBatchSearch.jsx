@@ -65,10 +65,7 @@ const AdminBatchSearch = ({
         setIsDeleteBoxOpen(true);
       },
     },
-    searchbarProps: {
-      variant: "custom",
-      placeholder: "Student Name",
-    },
+    showSearch: false,
     showFiltersAndReset: false,
     addbuttonProps: {
       variant: "tertiary",

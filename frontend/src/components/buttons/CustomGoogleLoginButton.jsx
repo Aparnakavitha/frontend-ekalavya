@@ -4,9 +4,10 @@ import "./CustomGoogleLoginButton.css";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const clientId =
-  "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com"; // Replace with your actual Google Client ID
+  "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com";
 
 const CustomGoogleLoginButton = ({ fullWidth }) => {
   const navigate = useNavigate();
@@ -22,20 +23,27 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
       await handleUserLogin(userInfo);
     } catch (error) {
       console.error("Error during login process:", error);
+      toast.error("Login failed! Please try again.");
     }
   };
 
   const fetchUserInfo = async (accessToken) => {
-    const response = await axios.get(
-      "https://www.googleapis.com/oauth2/v3/userinfo",
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
-    console.log("User Info Response:", response.data);
-    return response.data;
+    try {
+      const response = await axios.get(
+        "https://www.googleapis.com/oauth2/v3/userinfo",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log("User Info Response:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+      toast.error("Failed to fetch user info. Please try again.");
+      throw error;
+    }
   };
 
   const handleUserLogin = async (userInfo) => {
@@ -52,66 +60,49 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
       const { roleId, userId } = response.data.responseData;
       console.log("API Response Role ID:", roleId);
 
-      sessionStorage.setItem("role", roleId);
-      sessionStorage.setItem("user_id", userId);
-
-      handleLoginNavigation();
+      if (typeof roleId === "undefined") {
+        throw new Error("Role ID is undefined");
+      } else {
+        sessionStorage.setItem("role", roleId);
+        sessionStorage.setItem("user_id", userId);
+        handleLoginNavigation(roleId);
+      }
     } catch (error) {
       console.error("Error logging in:", error);
+      throw error;
     }
   };
 
-  const handleLoginNavigation = async () => {
-    try {
-      const roleId = await getRoleIdFromSessionStorage();
-      console.log("Stored Role ID:", roleId);
-  
-      if (roleId !== null) {
-        navigateBasedOnRole(roleId);
-      } else {
-        console.error("Role ID not found in sessionStorage");
-      }
-    } catch (error) {
-      console.error("Error getting Role ID:", error);
-    }
+  const handleLoginNavigation = (roleId) => {
+    toast.success("Login Successful");
+    navigateBasedOnRole(roleId);
   };
-  
-  const getRoleIdFromSessionStorage = async () => {
-    return new Promise((resolve, reject) => {
-      try {
-        const roleId = parseInt(sessionStorage.getItem("role"));
-        if (isNaN(roleId)) {
-          throw new Error("Invalid role ID stored in sessionStorage");
-        }
-        resolve(roleId);
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
-  
+
   const navigateBasedOnRole = (roleId) => {
-    switch (roleId) {
-      case 3:
-        navigate(`/student/profile`);
-        break;
-      case 2:
-        navigate(`/mentor/profile`);
-        break;
-      case 1:
-        navigate("/admin/student");
-        break;
-      default:
-        console.error("Unknown role ID:", roleId);
-        break;
-    }
+    setTimeout(() => {
+      switch (roleId) {
+        case 3:
+          navigate(`/student/profile`);
+          break;
+        case 2:
+          navigate(`/mentor/profile`);
+          break;
+        case 1:
+          navigate("/admin/student");
+          break;
+        default:
+          console.error("Unknown role ID:", roleId);
+          break;
+      }
+    }, 1000);
   };
-  
 
   const login = useGoogleLogin({
     clientId,
     onSuccess: handleLoginSuccess,
-    onError: (error) => console.error("Login Failed:", error),
+    onError: (error) => {
+      console.error("Login Failed:", error);
+    },
   });
 
   return (

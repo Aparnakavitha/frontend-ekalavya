@@ -96,3 +96,19 @@ export const userBatchDelete = async (userId) => {
     throw error;
   }
 };
+
+export const batchDelete = async (batchId, userId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/batches/participants`, {
+      params: {
+        batchId: batchId,
+        userId: userId
+      }
+    });
+    console.log("Delete response:", response);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    throw error;
+  }
+};

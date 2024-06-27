@@ -59,7 +59,7 @@ const MentorProfile = () => {
   }
 
   const greet = {
-    welcome: "Welcome Back",
+    welcome: "Welcome back",
     name: `${mentorData.firstName}`,
     showButtons: false,
   };
