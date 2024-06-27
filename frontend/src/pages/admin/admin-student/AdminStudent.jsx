@@ -13,6 +13,7 @@ import {
   getColleges,
   postColleges,
   getUserDetails,
+  updateUserDetails,
   addNewUser,
 } from "../../../services/User";
 import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
@@ -115,7 +116,7 @@ const AdminStudent = () => {
     Batch: "",
     StudentIds: "",
   });
-  const [loading, setLoading] = useState(true); // State for loading spinner
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -138,8 +139,6 @@ const AdminStudent = () => {
         }
       } catch (error) {
         console.error("Error fetching college data:", error);
-      } finally {
-        setLoading(false); // Hide loading spinner regardless of success or failure
       }
     };
 
@@ -147,14 +146,12 @@ const AdminStudent = () => {
   }, []);
 
   useEffect(() => {
-    setLoading(true); // Show loading spinner while fetching data
     fetchStudentsData(setStudentsData, params);
     fetchBatchData(setBatchData, params);
     fetchBatchParticipantsData(setParams, params);
-    setLoading(false); // Hide loading spinner after data fetching completes
   }, [params]);
 
-  if (loading || !collegeData.length) {
+  if (!collegeData.length) {
     return <LoadingSpinner />;
   }
 
@@ -297,6 +294,7 @@ const AdminStudent = () => {
       console.error("Error adding college:", error);
     }
   };
+
   const GreetingData = {
     ...AdminStudentData.greetingData,
     handleClick: handleOpenView,

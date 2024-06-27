@@ -1,73 +1,67 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUserDetails } from "../../../services/User";
+import { getUserDetails, updateUserDetails } from "../../../services/User";
 import AdminMentorAction from "../../../layouts/admin-mentor/components/AdminMentorAction";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
+const fetchMentorData = async (setMentorData, value = "") => {
+  try {
+    var params = {
+      roleId: 2,
+    };
+
+    if (value && Number.isInteger(Number(value))) {
+      params = {
+        userId: Number(value),
+      };
+    } else if (value && typeof value === "string") {
+      params = {
+        name: value,
+      };
+    }
+
+    const data = await getUserDetails(params);
+    const mentorsOnly =
+      data.responseData?.filter(
+        (item) => item.role && item.role.roleId === 2
+      ) || [];
+    setMentorData(mentorsOnly);
+  } catch (error) {
+    console.error("Error fetching mentor data:", error);
+  }
+};
+
 const AdminMentor = () => {
+  const [adminData, setAdminData] = useState(null);
   const [mentorData, setMentorData] = useState([]);
   const [cardAnimation, setCardAnimation] = useState(false);
+  const [formData, setFormData] = useState({
+    userId: "",
+    firstName: "",
+    emailId: "",
+    collegeId: "defaultCollegeId",
+    roleId: "defaultRoleId",
+  });
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true); // State for loading spinner
 
-  const fetchMentorData = async (value = "") => {
+  const fetchData = async (Data) => {
     try {
-      var params = {
-        roleId: 2,
+      const params = {
+        userId: Data,
       };
-
-      if (value && Number.isInteger(Number(value))) {
-        params = {
-          userId: Number(value),
-        };
-      } else if (value && typeof value === "string") {
-        params = {
-          name: value,
-        };
-      }
-
       const data = await getUserDetails(params);
-      const mentorsOnly =
-        data.responseData?.filter((item) => item.role && item.role.roleId === 2) || [];
-      setMentorData(mentorsOnly);
-      setLoading(false); // Set loading to false after data is fetched
+      setMentorData(data.responseData);
     } catch (error) {
       console.error("Error fetching mentor data:", error);
-      if (error.response && error.response.status === 500) {
-        await retryFetch(value);
-      } else {
-        // Handle other errors accordingly
-        console.error("Non-retryable error occurred:", error);
-        setLoading(false); // Set loading to false if an error occurs
-      }
-    }
-  };
-
-  const retryFetch = async (value, retriesLeft = 3, delay = 1000) => {
-    if (retriesLeft === 0) {
-      console.error("Failed to fetch mentor data after multiple attempts.");
-      setLoading(false); // Set loading to false after multiple failed attempts
-      return;
-    }
-
-    await new Promise((resolve) => setTimeout(resolve, delay));
-
-    try {
-      await fetchMentorData(value);
-    } catch (error) {
-      console.error(`Error on attempt ${4 - retriesLeft}:`, error);
-      const nextDelay = delay * 2; // Exponential backoff
-      await retryFetch(value, retriesLeft - 1, nextDelay);
     }
   };
 
   useEffect(() => {
-    setLoading(true);
-    fetchMentorData();
-  }, []); // Fetch data on component mount
+    fetchMentorData(setMentorData);
+  }, []);
 
   const handleCardClick = (userId) => {
     const selectedMentor = mentorData.find(
@@ -81,10 +75,6 @@ const AdminMentor = () => {
       console.error(`Mentor with userId ${userId} not found.`);
     }
   };
-
-  if (loading || !mentorData) {
-    return <LoadingSpinner />;
-  }
 
   const loggedUserFirstName = sessionStorage.getItem("firstName");
 
@@ -123,14 +113,14 @@ const AdminMentor = () => {
   };
 
   const handleSearchChange = (value) => {
-    fetchMentorData(value);
+    fetchMentorData(setMentorData, value);
   };
 
   return (
     <div>
       <Greeting {...greet} />
       <AdminMentorAction
-        onAddSuccess={() => fetchMentorData()}
+        onAddSuccess={() => fetchMentorData(setMentorData)}
         onSearchChange={handleSearchChange}
         setMentorData={setMentorData}
         setCardAnimation={setCardAnimation}
