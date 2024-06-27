@@ -5,7 +5,7 @@ import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import { fetchbatches, createBatch } from "../../../services/Batch";
 import AdminBatchAction from "../../../layouts/admin-batches/components/AdminBatchAction";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
- 
+
 const AdminBatchList = () => {
   const navigate = useNavigate();
   const [batchData, setBatchData] = useState(null);
@@ -14,7 +14,7 @@ const AdminBatchList = () => {
   const [changed, setChanged] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [initialLoad, setInitialLoad] = useState(true);
- 
+
   useEffect(() => {
     if (initialLoad) {
       fetchData();
@@ -25,23 +25,24 @@ const AdminBatchList = () => {
       fetchData();
     }
   }, [changed, searchQuery]);
- 
+
   const fetchData = async (params) => {
     setLoading(true);
     setError(null);
     try {
       const responseData = await fetchbatches(params || {});
       const data = responseData.responseData;
- 
+
       if (Array.isArray(data)) {
         const formattedData = data.map((item) => ({
           miniHeading: `B${item.batchId}`,
           mainHeading: item.batchName || "",
           Count: item.participantCount,
           cardType: "batch",
+          showCount: true,
           handleClick: () => handleClick(item.batchId, item.batchName),
         }));
- 
+
         setBatchData(formattedData);
       } else {
         throw new Error("Received data is not in expected format");
@@ -53,18 +54,18 @@ const AdminBatchList = () => {
       setLoading(false);
     }
   };
- 
+
   const handleSearchChange = (data) => {
     setSearchQuery(data);
     setChanged((prev) => !prev);
   };
- 
+
   const handleClick = (batchId, batchName) => {
     navigate(`/admin/batches/batch-details/${batchId}`, {
       state: { batchName },
     });
   };
- 
+
   const handleFormSubmit = async (formData) => {
     try {
       const { batchName } = formData;
@@ -76,13 +77,13 @@ const AdminBatchList = () => {
       setError("Error adding batch. Please try again later.");
     }
   };
- 
+
   const loggedUserFirstName = sessionStorage.getItem("firstName");
- 
+
   return (
     <div>
       <Greeting
-        welcome="Welcome Back"
+        welcome="Welcome back"
         name={loggedUserFirstName}
         info="Here is the information about"
         profile="Batches"
@@ -112,6 +113,7 @@ const AdminBatchList = () => {
           toggle={true}
           cardType="skillbatchcardbatch"
           itemsPerPage={12}
+          showCount={true}
         />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
@@ -121,6 +123,5 @@ const AdminBatchList = () => {
     </div>
   );
 };
- 
+
 export default AdminBatchList;
- 
