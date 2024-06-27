@@ -44,9 +44,8 @@ const StudentProfile = () => {
       const response = await updateUserDetails(formData);
       console.log("Update response:", response);
       fetchData();
-      toast.success("Details updated successfully!");
     } catch (error) {
-      toast.error("Error updating user details!");
+      console.error("Error updating user details:",error);
     }
   };
 
