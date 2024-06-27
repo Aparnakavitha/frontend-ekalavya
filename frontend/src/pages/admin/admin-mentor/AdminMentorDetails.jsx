@@ -13,6 +13,7 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
 import Modal from "../../../layouts/common/components/Modal";
 import BasicDetails from "../../../layouts/common/components/BasicDetails";
+import { toast } from "react-toastify"; 
 
 const fetchMentorDetails = async (userId, setMentorData) => {
   try {
@@ -73,8 +74,10 @@ const AdminMentorDetails = () => {
       console.log("Update response:", response);
       handleCloseEditBasicDetails();
       fetchMentorDetails(userId, setMentorData);
+      toast.success("Details updated successfully!");
     } catch (error) {
-      console.error("Error updating user details:", error);
+      console.error("Error adding  user details:", error);
+      toast.error("Error updated details!");
     }
   };
 
@@ -94,7 +97,9 @@ const AdminMentorDetails = () => {
       };
       await updateUserDetails(updatedData);
       fetchMentorDetails(userId, setMentorData);
+      toast.success("Details updated successfully!");
     } catch (error) {
+      toast.error("error updating details!");
       console.error("Error updating user details:", error);
     }
   };
@@ -167,10 +172,7 @@ const AdminMentorDetails = () => {
         onFormSubmit={handleFormSubmit2}
         onEditClick={handleOpenEditEducation}
       />
-      <MentorEventsList
-        events={events}
-        handleDelete={handleDelete}
-      />
+      <MentorEventsList events={events} handleDelete={handleDelete} />
     </div>
   );
 };

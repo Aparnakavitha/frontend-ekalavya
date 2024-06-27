@@ -49,6 +49,7 @@ const AdminContent = () => {
           return;
         }
         console.log("Fetched User ID:", userId);
+        console.log("UserId is of type:",typeof(userId));
         const params = {
           userId: userId,
         };
