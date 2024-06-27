@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const clientId =
-  "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com"; // Replace with your actual Google Client ID
+  "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com";
 
 const CustomGoogleLoginButton = ({ fullWidth }) => {
   const navigate = useNavigate();
