@@ -8,6 +8,7 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
 import { getSkillsForUser } from "../../../services/Skills";
+import { toast } from "react-toastify";
 import {
   enrollParticipantService,
   fetchEventsService,
@@ -150,8 +151,9 @@ const AdminStudentDetails = () => {
         await fetchEventOptions(enrolledEventIds);
       };
       fetchData();
+      toast.success("Details updated successfully!");
     } catch (error) {
-      console.error("Error updating user details:", error);
+      toast.error("Error updating user details!");
     }
   };
 
@@ -160,12 +162,12 @@ const AdminStudentDetails = () => {
       await addEnrollmentService(enrollmentData.selectedEventId, {
         participantId: studentsData.userId,
       });
-      // Update student events list
       const updatedEvents = await fetchStudentEvents(studentsData.userId);
       const enrolledEventIds = updatedEvents.map((event) => event.eventId);
       await fetchEventOptions(enrolledEventIds);
+      toast.success("Event added successfully!");
     } catch (error) {
-      console.error("Error enrolling in event:", error);
+      toast.error("Error enrolling in event!");
     }
   };
 
@@ -178,13 +180,13 @@ const AdminStudentDetails = () => {
         const params = { userId: studentsData.userId };
         await deleteUser(params);
         navigate("/admin/student");
+        toast.success("Student deleted successfully!");
       } else {
         console.error("studentsData or studentsData.userId is not defined");
       }
     } catch (error) {
-      console.error(
+      toast.error(
         `Error deleting user with userId ${studentsData.userId}:`,
-        error
       );
     }
   };
