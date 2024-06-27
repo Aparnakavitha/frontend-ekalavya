@@ -88,9 +88,9 @@ const EventList = ({
   };
 
   const deleteprops = {
-    title: "Confirmation Required",
+    title: "Delete Student",
     message: "Are you sure you want to delete this Student?",
-    buttonText: "Confirm",
+    buttonText: "Delete",
   };
 
   const props = {
