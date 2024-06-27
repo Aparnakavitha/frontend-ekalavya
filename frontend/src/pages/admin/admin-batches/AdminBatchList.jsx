@@ -82,7 +82,7 @@ const AdminBatchList = () => {
   return (
     <div>
       <Greeting
-        welcome="Welcome Back"
+        welcome="Welcome back"
         name={loggedUserFirstName}
         info="Here is the information about"
         profile="Batches"
