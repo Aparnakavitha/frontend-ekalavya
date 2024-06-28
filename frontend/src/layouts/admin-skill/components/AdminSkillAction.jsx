@@ -83,7 +83,8 @@ const AdminSkillAction = () => {
       setSkills(searchedSkill);
     } catch (error) {
       console.error("Error occured in skill search",error);
-      toast.info("No match found");
+      setSkills([]); 
+      // toast.info("No match found");
     }
   };
 
