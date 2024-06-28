@@ -44,7 +44,6 @@ const AdminStudentDetails = () => {
   const location = useLocation();
   const { studentsData: selectedStudent } = location.state || {};
 
-
   const fetchStudentEvents = async (participantId) => {
     try {
       const response = await enrollParticipantService(
@@ -95,7 +94,6 @@ const AdminStudentDetails = () => {
 
   const handleCloseEditBasicDetails = () => setIsEditDetailsOpen(false);
 
-
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Data", formData);
@@ -109,22 +107,22 @@ const AdminStudentDetails = () => {
   };
 
   useEffect(() => {
-    if (selectedStudent) {
-      setStudentData(selectedStudent);
-    }
-  }, [selectedStudent]);
-
-  useEffect(() => {
     const fetchData = async () => {
+      if (selectedStudent) {
+        setStudentData(selectedStudent);
+      }
       if (studentsData?.userId) {
-        await fetchStudentDetails(studentsData.userId, setStudentData);
-        const studentEvents = await fetchStudentEvents(studentsData.userId);
+        const studentEvents = await fetchStudentEvents(
+          studentsData.userId,
+          setStudentEvents
+        );
         const enrolledEventIds = studentEvents.map((event) => event.eventId);
-        await fetchEventOptions(enrolledEventIds);
+        await fetchEventOptions(enrolledEventIds, setEventOptions);
       }
     };
+
     fetchData();
-  }, [studentsData]);
+  }, [userId, selectedStudent, studentsData?.userId]);
 
   const handleFormSubmit = async (formData) => {
     try {
@@ -173,7 +171,6 @@ const AdminStudentDetails = () => {
 
   const Education = studentsData ? studentsData.qualifications : [];
 
-
   const handleDelete = async () => {
     try {
       if (studentsData?.userId) {
@@ -185,9 +182,7 @@ const AdminStudentDetails = () => {
         console.error("studentsData or studentsData.userId is not defined");
       }
     } catch (error) {
-      toast.error(
-        `Error deleting user with userId ${studentsData.userId}:`,
-      );
+      toast.error(`Error deleting user with userId ${studentsData.userId}:`);
     }
   };
 
