@@ -90,7 +90,8 @@ const AdminEvent = () => {
   const formSubmit = async (data) => {
     try {
       const response = await addEventService(data);
-      console.log("Response from API:", response);
+      const updatedEvents = [data,...events];
+      setEvents(updatedEvents);
       toast.success("Event created successfully!");
     } catch (error) {
       toast.error("Error creating event:", error);
