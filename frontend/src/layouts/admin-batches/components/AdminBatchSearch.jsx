@@ -6,7 +6,7 @@ import DeleteBox from "../../common/components/DeleteBox";
 import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
 import { getUserDetails } from "../../../services/User";
-import { updateBatch } from "../../../services/Batch";
+import { fetchBatchParticipants, updateBatch } from "../../../services/Batch";
 import { toast } from "react-toastify";
 
 const AdminBatchSearch = ({
@@ -23,26 +23,32 @@ const AdminBatchSearch = ({
   const [userIdOptions, setUserIdOptions] = useState([]);
   const [submitError, setSubmitError] = useState(null);
 
-  useEffect(() => {
     const fetchData = async () => {
       try {
         const filterParams = {
           roleId: 3,
         };
-
-        const data = await getUserDetails(filterParams);
-        const userIds = data.responseData.map((user) => ({
+        const allUsersData = await getUserDetails(filterParams);
+        const allUsers = allUsersData.responseData.map((user) => ({
           value: user.userId,
           label: `${user.firstName} ${user.lastName} (${user.userId})`,
         }));
-        setUserIdOptions(userIds);
+        const participantsResponse = await fetchBatchParticipants({ batchId });
+        const participantIds = participantsResponse.responseData;
+
+        const availableUsers = allUsers.filter(
+          (user) => !participantIds.includes(user.value)
+        );
+
+        setUserIdOptions(availableUsers);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
-    fetchData();
-  }, []);
+    useEffect(() => {
+      fetchData();
+    }, [batchId]);
+  
 
   const AdminBatchSearchData = {
     navbuttonProps: {
@@ -96,6 +102,7 @@ const AdminBatchSearch = ({
       buttonText: "Delete",
     },
   };
+  
 
   const handleFormSubmit = async (formData) => {
     try {
@@ -110,10 +117,18 @@ const AdminBatchSearch = ({
     }
   };
 
-  const addStdFormSubmit = (formData) => {
-    console.log("Add student form submitted with data:", formData);
-    addParticipant(formData.studentIds);
-    handleCloseAllModals();
+  const addStdFormSubmit = async (formData) => {
+    try {
+      console.log("Add student form submitted with data:", formData);
+      await addParticipant(formData.studentIds);
+      
+      // After adding participants, fetch data again to update userIdOptions
+      fetchData();
+      
+      handleCloseAllModals();
+    } catch (error) {
+      console.error("Error adding participant:", error);
+    }
   };
 
   const handleDeleteConfirm = () => {

@@ -101,9 +101,9 @@ const AdminBatchSelect = () => {
 
       if (
         response.statusCode === 200 &&
-        response.errorMessage.match(/\[(.*?)\]/)[1]
+        response.errorMessage
       ) {
-        const errorMessage = response.errorMessage.match(/\[(.*?)\]/)[1];
+        const errorMessage = response.errorMessage
         toast.error(errorMessage);
         console.error("Error adding participant:", response.errorMessage);
       } else {
