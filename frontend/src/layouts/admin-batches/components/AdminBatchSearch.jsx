@@ -16,12 +16,14 @@ const AdminBatchSearch = ({
   setBatchName,
   batchName,
   batchId,
+  batchParticipantsData,
 }) => {
   const [isBatchOperationsOpen, setIsBatchOperationsOpen] = useState(false);
   const [isUpdateSingleFieldOpen, setIsUpdateSingleFieldOpen] = useState(false);
   const [isDeleteBoxOpen, setIsDeleteBoxOpen] = useState(false);
   const [userIdOptions, setUserIdOptions] = useState([]);
   const [submitError, setSubmitError] = useState(null);
+  console.log("parts----", batchParticipantsData);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,10 +33,17 @@ const AdminBatchSearch = ({
         };
 
         const data = await getUserDetails(filterParams);
-        const userIds = data.responseData.map((user) => ({
-          value: user.userId,
-          label: `${user.firstName} ${user.lastName} (${user.userId})`,
-        }));
+        console.log("users-------", data.responseData);
+        const batchParticipantIds = batchParticipantsData.map(
+          (participant) => participant.studentId
+        );
+        const userIds = data.responseData
+          .filter((user) => !batchParticipantIds.includes(user.userId))
+          .map((user) => ({
+            value: user.userId,
+            label: `${user.firstName} ${user.lastName} (${user.userId})`,
+          }));
+
         setUserIdOptions(userIds);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -42,7 +51,7 @@ const AdminBatchSearch = ({
     };
 
     fetchData();
-  }, []);
+  }, [batchParticipantsData]);
 
   const AdminBatchSearchData = {
     navbuttonProps: {
