@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "https://ekalavya.tarento.com/skills";
-const BASEURL = "https://ekalavya.tarento.com/skills/user";
+const BASEURL = "https://ekalavya.tarento.com/skills/users";
 
 /**
  * Fetches skills from the API.
@@ -141,8 +141,16 @@ export const Userskillpost = async (data) => {
     const response = await axios.post(BASEURL, data);
     return response.data;
   } catch (error) {
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.errorMessage
+    ) {
+      throw new Error(error.response.data.errorMessage);
+    } else {
     console.error("Error posting skill:", error);
     throw error;
+    }
   }
 };
 

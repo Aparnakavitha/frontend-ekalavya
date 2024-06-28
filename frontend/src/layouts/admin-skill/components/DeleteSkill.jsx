@@ -3,51 +3,53 @@ import PropTypes from "prop-types";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import DeleteButton from "../../../components/buttons/DeleteButton";
 import styles from "../AdminSkill.module.css";
-import Input from "../../../components/inputbox/InputBox";
+import InputDropdown from "../../../components/inputdropdown/InputDropdown";
+import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 
 const DeleteSkill = ({ onSubmit, onCancel }) => {
-  const [skill, setSkill] = useState("");
+  const { skills } = useSkills();
+  const [selectedSkill, setSelectedSkill] = useState(null); 
   const [error, setError] = useState("");
 
-  const handleInputChange = (event) => {
-    setSkill(event.target.value);
-    setError("");
+  const handleInputChange = (selectedSkill) => {
+    setSelectedSkill(selectedSkill); 
+    setError(""); 
   };
 
-  const validateSkill = (skill) => {
-    if (!skill.trim()) {
-      return "Skill ID cannot be empty.";
+  const validateSkill = () => {
+    if (!selectedSkill) {
+      return "Please select a skill.";
     }
-    if (/^\s/.test(skill)) {
-      return "Skill ID cannot start with a space.";
-    }
-    // if (!/[a-zA-Z]/.test(skill)) {
-    //   return "Skill ID must contain at least one letter.";
-    // }
     return "";
   };
 
   const handleDeleteSkill = () => {
-    const validationError = validateSkill(skill);
+    const validationError = validateSkill();
     if (validationError) {
       setError(validationError);
       return;
     }
-    onSubmit(skill);
+    onSubmit(selectedSkill); 
+    console.log(selectedSkill) ;
   };
+
+  const options = skills.map((skill) => ({
+    label: `${skill.skillName} (${skill.id})`,
+    value: skill.id,
+  }));
+  
 
   return (
     <div className={`${styles["deleteskill-boxcontainer"]}`}>
       <div className={`${styles["deleteskill-layoutcontainer"]}`}>
         <p>Delete Skill</p>
         <div className={`${styles["deleteskill-inputbox"]}`}>
-          <Input
-            size="normal"
-            label="Enter Skill ID"
-            placeholders={["Skill ID"]}
-            value={skill}
+          <InputDropdown
+            label="Select Skill"
+            placeholder="Select skill..."
+            options={options}
+            value={selectedSkill}
             onChange={handleInputChange}
-            id="normal-input"
           />
         </div>
         {error && <div className={`${styles["error-message"]}`}>{error}</div>}
