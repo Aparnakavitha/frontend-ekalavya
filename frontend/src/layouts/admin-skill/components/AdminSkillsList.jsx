@@ -38,6 +38,10 @@ const AdminSkillsList = ({ handleClick }) => {
           ...skill,
           skillName: capitalizeFirstLetter(skill.skillName),
         }));
+        capitalizedSkills.sort((skill1, skill2) =>
+          skill1.skillName > skill2.skillName ? 1 : skill1.skillName < skill2.skillName ? -1 : 0
+        );
+        console.log("All defined skills[+]", capitalizedSkills);
         setSkills(capitalizedSkills);
         setStudentSkills(capitalizedSkills);
         console.log("Student skill List --------------------", studentkills);
@@ -50,7 +54,7 @@ const AdminSkillsList = ({ handleClick }) => {
 
     fetchSkills();
     setChanged(false);
-  }, [changed, setSkills, setChanged]);
+  }, [changed, setChanged]);
 
   const handleOpenModal = (skill) => {
     setSelectedSkill(skill);
@@ -71,7 +75,7 @@ const AdminSkillsList = ({ handleClick }) => {
         });
         const updatedSkills = skills.map((skill) =>
           skill.id === selectedSkill.id
-            ? { ...skill, skillName: capitalizeFirstLetter(data.inputData) }
+            ? { skillName: capitalizeFirstLetter(data.inputData), ...skill }
             : skill
         );
         setSkills(updatedSkills);
@@ -122,14 +126,14 @@ const AdminSkillsList = ({ handleClick }) => {
 
   return (
     <div>
-     {skillData.data && skillData.data.length > 0 ? (
+      {skillData.data && skillData.data.length > 0 ? (
         <DataView CardComponent={SkillBatchCard} {...skillData} />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No skills available
         </p>
       )}
- 
+
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         {selectedSkill && (
           <UpdateSingleField

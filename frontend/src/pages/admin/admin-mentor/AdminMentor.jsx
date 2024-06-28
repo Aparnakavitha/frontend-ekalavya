@@ -28,7 +28,17 @@ const fetchMentorData = async (setMentorData, value = "") => {
       data.responseData?.filter(
         (item) => item.role && item.role.roleId === 2
       ) || [];
-    setMentorData(mentorsOnly);
+      var sortedMentors = null;
+      if (mentorsOnly) {
+        sortedMentors = [...mentorsOnly].sort((a, b) => {
+          const nameA = a.firstName.toLowerCase();
+          const nameB = b.firstName.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+      }
+    setMentorData(sortedMentors);
   } catch (error) {
     console.error("Error fetching mentor data:", error);
   }
@@ -85,7 +95,7 @@ const AdminMentor = () => {
     profile: "Mentors",
     showButtons: false,
   };
-
+  
   const data = {
     data: mentorData.map((mentor) => ({
       studentImage: image,

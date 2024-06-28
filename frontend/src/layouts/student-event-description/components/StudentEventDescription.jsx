@@ -13,6 +13,7 @@ const StudentEventDescription = ({
   participantId,
   tab,
   organizerName,
+  role, 
 }) => {
   const [isRegistered, setIsRegistered] = useState(false);
   const navigate = useNavigate();
@@ -146,6 +147,8 @@ const StudentEventDescription = ({
     smaller: smallerButtonLabel,
     onclick1: onClickAction,
     showButton,
+    isRegistered,
+    role,
   };
 
   return (
@@ -169,3 +172,4 @@ const StudentEventDescription = ({
 };
 
 export default StudentEventDescription;
+

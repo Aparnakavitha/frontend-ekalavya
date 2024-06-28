@@ -52,8 +52,7 @@ const AdminSkillAction = () => {
         id: response.responseData[0].id,
         count: response.responseData[0].count,
       };
-      setSkills([...skills, newSkill]);
-      setChanged(true);
+      setSkills([newSkill,...skills]);
       handleCloseModal();
       setError("");
     } catch (error) {
@@ -83,7 +82,8 @@ const AdminSkillAction = () => {
       setSkills(searchedSkill);
     } catch (error) {
       console.error("Error occured in skill search",error);
-      toast.info("No match found");
+      setSkills([]); 
+      // toast.info("No match found");
     }
   };
 

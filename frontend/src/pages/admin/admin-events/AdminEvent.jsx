@@ -39,7 +39,17 @@ const AdminEvent = () => {
         );
         console.log("Fetching events with params:", filteredParams);
         const response = await fetchEventsService(filteredParams);
-        setEvents(response || []);
+        var sortedEvents = null;
+        if (response) {
+          sortedEvents = [...response].sort((a, b) => {
+            const nameA = a.eventTitle.toLowerCase();
+            const nameB = b.eventTitle.toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+          });
+        }
+        setEvents(sortedEvents || []);
         console.log("Fetched events:", response);
       } catch (error) {
         console.log("Error fetching events:", error);
