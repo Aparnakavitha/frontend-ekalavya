@@ -128,7 +128,7 @@ const AdminBatchSelect = () => {
         toast.success("Added new student successfully!");
         console.log("Participant added successfully.");
       } else {
-        // Handle error messages here
+    
         const errorMessage = response?.errorMessage?.match(/\[(.*?)\]/)?.[1] || "Unknown error";
         toast.error(errorMessage);
         console.error("Error adding participant:", errorMessage);
