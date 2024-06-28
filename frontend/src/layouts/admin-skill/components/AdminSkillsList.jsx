@@ -19,7 +19,7 @@ const capitalizeFirstLetter = (string) => {
   return string.trim().charAt(0).toUpperCase() + string.slice(1);
 };
 
-const AdminSkillsList = ({ handleClick }) => {
+const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
   const { skills, setSkills, changed, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
@@ -39,7 +39,11 @@ const AdminSkillsList = ({ handleClick }) => {
           skillName: capitalizeFirstLetter(skill.skillName),
         }));
         capitalizedSkills.sort((skill1, skill2) =>
-          skill1.skillName > skill2.skillName ? 1 : skill1.skillName < skill2.skillName ? -1 : 0
+          skill1.skillName > skill2.skillName
+            ? 1
+            : skill1.skillName < skill2.skillName
+              ? -1
+              : 0
         );
         console.log("All defined skills[+]", capitalizedSkills);
         setSkills(capitalizedSkills);
@@ -97,6 +101,7 @@ const AdminSkillsList = ({ handleClick }) => {
       canEdit: true,
       cardType: "skill",
       showCount: true,
+      viewAnimation: (cardAnimation && skill.newEntry) || false,
       handleClick: async () => {
         try {
           const response = await getUsersCountForSkill(skill.id);
