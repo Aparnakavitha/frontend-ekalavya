@@ -14,4 +14,3 @@ export const studentSkillState = atom({
   key: "skillState",
   default: [],
 });
-

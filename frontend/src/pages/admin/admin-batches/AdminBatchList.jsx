@@ -42,6 +42,7 @@ const AdminBatchList = () => {
           showCount: true,
           handleClick: () => handleClick(item.batchId, item.batchName),
         }));
+
         var sortedBatches = null;
         if (formattedData) {
           sortedBatches = [...formattedData].sort((a, b) => {
