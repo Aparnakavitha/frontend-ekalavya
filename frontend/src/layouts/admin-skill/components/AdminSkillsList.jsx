@@ -83,6 +83,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
             : skill
         );
         setSkills(updatedSkills);
+        setChanged(true);
         toast.success("Skill updated successfully!");
       } catch (error) {
         toast.error("Error updating skill!");
@@ -142,7 +143,10 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
   return (
     <div>
       {skillData.data && skillData.data.length > 0 ? (
-        <DataView CardComponent={SkillBatchCard} {...skillData} />
+        <div>
+          <p className="padding" style={{color:"#baff66"}}>Total skills:{skills.length}</p>
+          <DataView CardComponent={SkillBatchCard} {...skillData} />
+        </div>
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No skills available
