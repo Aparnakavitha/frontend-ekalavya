@@ -141,8 +141,16 @@ export const Userskillpost = async (data) => {
     const response = await axios.post(BASEURL, data);
     return response.data;
   } catch (error) {
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.errorMessage
+    ) {
+      throw new Error(error.response.data.errorMessage);
+    } else {
     console.error("Error posting skill:", error);
     throw error;
+    }
   }
 };
 
