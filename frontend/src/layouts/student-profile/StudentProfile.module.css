@@ -11,23 +11,23 @@
 }
 
 .upcoming-head-container {
-  width: 350px;
+  width: 358px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: min-content;
+  padding: 16px;
+  padding-bottom: 0px;
 }
 
 .upcoming-head {
   font-size: medium;
-  margin-left: 12px;
   margin-right: auto;
   color: var(--white);
 }
 
 .upcoming-link {
   font-size: 13px;
-  margin: 12px;
   cursor: pointer;
 }
 

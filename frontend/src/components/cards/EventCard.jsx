@@ -15,8 +15,8 @@ const EventCard = (props) => {
   } = props;
 
   const formatText = (text) => {
-    if (text.length > 24) {
-      text = text.slice(0, 21) + "... ";
+    if (text.length > 20) {
+      text = text.slice(0, 17) + "... ";
     }
     return text;
   };
