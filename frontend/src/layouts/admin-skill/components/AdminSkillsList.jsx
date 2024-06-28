@@ -92,33 +92,43 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
     handleCloseModal();
   };
 
-  const skillData = {
-    data: skills.map((skill) => ({
-      ...skill,
-      mainHeading: capitalizeFirstLetter(skill.skillName),
-      miniHeading: skill.id,
-      Count: skill.count,
-      canEdit: true,
-      cardType: "skill",
-      showCount: true,
-      viewAnimation: (cardAnimation && skill.newEntry) || false,
-      handleClick: async () => {
-        try {
-          const response = await getUsersCountForSkill(skill.id);
-          const participantData = response.users.map((user) => [
-            user.userId,
-            user.UserName,
-            user.emailId,
-          ]);
+  let firstTrueAnimationSet = false;
 
-          setParticipants(participantData);
-          navigate(`/admin/skills/skill-participants`);
-        } catch (error) {
-          console.error("Error fetching skill participants: ", error);
-        }
-      },
-      handleEditClick: () => handleOpenModal(skill),
-    })),
+  const skillData = {
+    data: skills.map((skill) => {
+      let viewAnimation = false;
+      if (!firstTrueAnimationSet && cardAnimation && skill.newEntry) {
+        viewAnimation = true;
+        firstTrueAnimationSet = true;
+      }
+
+      return {
+        ...skill,
+        mainHeading: capitalizeFirstLetter(skill.skillName),
+        miniHeading: skill.id,
+        Count: skill.count,
+        canEdit: true,
+        cardType: "skill",
+        showCount: true,
+        viewAnimation,
+        handleClick: async () => {
+          try {
+            const response = await getUsersCountForSkill(skill.id);
+            const participantData = response.users.map((user) => [
+              user.userId,
+              user.UserName,
+              user.emailId,
+            ]);
+
+            setParticipants(participantData);
+            navigate(`/admin/skills/skill-participants`);
+          } catch (error) {
+            console.error("Error fetching skill participants: ", error);
+          }
+        },
+        handleEditClick: () => handleOpenModal(skill),
+      };
+    }),
   };
 
   if (loading) {

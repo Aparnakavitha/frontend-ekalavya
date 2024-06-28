@@ -25,6 +25,7 @@ const AdminSkillAction = ({ setCardAnimation }) => {
   const handleOpenModal = () => {
     setIsOpen(true);
     setError("");
+    setCardAnimation(false);
   };
 
   const handleCloseModal = () => {
@@ -36,12 +37,14 @@ const AdminSkillAction = ({ setCardAnimation }) => {
     setDeleteSkillId(skillId);
     setIsDeleteOpen(true);
     setError("");
+    setCardAnimation(false);
   };
 
   const handleCloseDelete = () => {
     setIsDeleteOpen(false);
     setDeleteSkillId(null);
     setError("");
+    setCardAnimation(false);
   };
 
   const handleFormSubmit = async (skill) => {
