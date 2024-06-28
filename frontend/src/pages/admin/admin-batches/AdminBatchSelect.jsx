@@ -60,6 +60,7 @@ const AdminBatchSelect = () => {
           viewAnimation: false,
         }));
  
+        BatchParticipantsData.sort((a, b) => a.studentName.localeCompare(b.studentName));
         setBatchParticipantsData(BatchParticipantsData);
       } else {
         setBatchParticipantsData([]);
