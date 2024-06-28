@@ -6,7 +6,7 @@ import DeleteBox from "../../common/components/DeleteBox";
 import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
 import { getUserDetails } from "../../../services/User";
-import { fetchBatchParticipants, updateBatch } from "../../../services/Batch";
+import { updateBatch } from "../../../services/Batch";
 import { toast } from "react-toastify";
 
 const AdminBatchSearch = ({
@@ -16,39 +16,42 @@ const AdminBatchSearch = ({
   setBatchName,
   batchName,
   batchId,
+  batchParticipantsData,
 }) => {
   const [isBatchOperationsOpen, setIsBatchOperationsOpen] = useState(false);
   const [isUpdateSingleFieldOpen, setIsUpdateSingleFieldOpen] = useState(false);
   const [isDeleteBoxOpen, setIsDeleteBoxOpen] = useState(false);
   const [userIdOptions, setUserIdOptions] = useState([]);
   const [submitError, setSubmitError] = useState(null);
+  console.log("parts----", batchParticipantsData);
 
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const filterParams = {
           roleId: 3,
         };
-        const allUsersData = await getUserDetails(filterParams);
-        const allUsers = allUsersData.responseData.map((user) => ({
-          value: user.userId,
-          label: `${user.firstName} ${user.lastName} (${user.userId})`,
-        }));
-        const participantsResponse = await fetchBatchParticipants({ batchId });
-        const participantIds = participantsResponse.responseData;
 
-        const availableUsers = allUsers.filter(
-          (user) => !participantIds.includes(user.value)
+        const data = await getUserDetails(filterParams);
+        console.log("users-------", data.responseData);
+        const batchParticipantIds = batchParticipantsData.map(
+          (participant) => participant.studentId
         );
+        const userIds = data.responseData
+          .filter((user) => !batchParticipantIds.includes(user.userId))
+          .map((user) => ({
+            value: user.userId,
+            label: `${user.firstName} ${user.lastName} (${user.userId})`,
+          }));
 
-        setUserIdOptions(availableUsers);
+        setUserIdOptions(userIds);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-    useEffect(() => {
-      fetchData();
-    }, [batchId]);
-  
+
+    fetchData();
+  }, [batchParticipantsData]);
 
   const AdminBatchSearchData = {
     navbuttonProps: {
@@ -102,7 +105,6 @@ const AdminBatchSearch = ({
       buttonText: "Delete",
     },
   };
-  
 
   const handleFormSubmit = async (formData) => {
     try {
@@ -117,18 +119,10 @@ const AdminBatchSearch = ({
     }
   };
 
-  const addStdFormSubmit = async (formData) => {
-    try {
-      console.log("Add student form submitted with data:", formData);
-      await addParticipant(formData.studentIds);
-      
-      // After adding participants, fetch data again to update userIdOptions
-      fetchData();
-      
-      handleCloseAllModals();
-    } catch (error) {
-      console.error("Error adding participant:", error);
-    }
+  const addStdFormSubmit = (formData) => {
+    console.log("Add student form submitted with data:", formData);
+    addParticipant(formData.studentIds);
+    handleCloseAllModals();
   };
 
   const handleDeleteConfirm = () => {
