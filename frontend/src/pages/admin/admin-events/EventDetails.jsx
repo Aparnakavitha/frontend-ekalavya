@@ -4,18 +4,21 @@ import AdminEventDescription from "../../../layouts/admin-event/components/Admin
 import { addEventService, fetchEventsService, deleteEventService } from "../../../services/Event";
 import { getUserDetails } from "../../../services/User";
 import { toast } from "react-toastify"; 
-
+import { eventNameState } from "../admin-student/Atom";
+import { useRecoilState } from 'recoil';
 
 const AdminEventDetails = () => {
   const { eventId } = useParams();
   const [eventData, setEventData] = useState(null);
   const [organizerData, setOrganizerData] = useState(null);
+  const [eventName, setEventName] = useRecoilState(eventNameState); 
 
   const fetchEventData = async () => {
     try {
       const eventDataResponse = await fetchEventsService({ eventId });
       const event = eventDataResponse[0];
       setEventData(event);
+      setEventName(event.eventTitle);
       if (event?.hostId) {
         await fetchOrganizerData(event.hostId);
       }

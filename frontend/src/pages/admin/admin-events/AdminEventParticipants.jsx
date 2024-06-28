@@ -3,14 +3,15 @@ import EventParticipantsList from "../../../layouts/admin-event/components/Event
 import { enrollParticipantService } from "../../../services/Event";
 import { useParams } from "react-router-dom";
 import { fetchEventsService } from "../../../services/Event";
-
+import { eventNameState } from "../admin-student/Atom"; 
+import { useRecoilValue } from 'recoil';
 
 
 const AdminEventParticipants = () => {
   const { eventId } = useParams();
+  const eventName = useRecoilValue(eventNameState); 
   const [enrollData, setEnrollData] = useState([]);
   const [headings, setHeadings] = useState([]);
-  const [eventName,setEventName]=useState("");
   const pageNames = [`${eventName}`,"participants"];
   const handleNavButtonClick = (pageName) => {
     console.log(`Navigating to ${pageName}`);
@@ -18,16 +19,6 @@ const AdminEventParticipants = () => {
 
   useEffect(() => {
     fetchEnrollData();
-    const fetchEventName= async () => {
-      try {
-        const eventDataResponse = await fetchEventsService({ eventId });
-        const event = eventDataResponse[0];
-        setEventName(event.eventTitle);        
-      } catch (error) {
-        console.error("Error fetching event data:", error);
-      }
-    };
-    fetchEventName();
   }, [eventId]);
 
   const fetchEnrollData = async () => {
