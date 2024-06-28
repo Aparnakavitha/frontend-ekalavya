@@ -50,7 +50,7 @@ const AdminEvent = () => {
           });
         }
         setEvents(sortedEvents || []);
-        console.log("Fetched events sadwedwefwe:", sortedEvents);
+        console.log("Fetched events:", response);
       } catch (error) {
         console.log("Error fetching events:", error);
       }
