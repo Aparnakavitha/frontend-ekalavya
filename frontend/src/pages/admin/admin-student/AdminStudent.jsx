@@ -52,8 +52,17 @@ const fetchStudentsData = async (setStudentsData, params) => {
       data.responseData?.filter(
         (item) => item.role && item.role.roleId === 3
       ) || [];
-
-    setStudentsData(studentsOnly);
+      var sortedStudents = null;
+      if (studentsOnly) {
+        sortedStudents = [...studentsOnly].sort((a, b) => {
+          const nameA = a.firstName.toLowerCase();
+          const nameB = b.firstName.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+      }
+    setStudentsData(sortedStudents);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
