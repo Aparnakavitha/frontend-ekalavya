@@ -15,6 +15,7 @@ const StudentEventDetails = () => {
   const [loading, setLoading] = useState(true);
 
   const participantId = sessionStorage.getItem("user_id");
+  const role = sessionStorage.getItem("role");
 
   useEffect(() => {
     const getEventAndOrganizerDetails = async () => {
@@ -41,11 +42,10 @@ const StudentEventDetails = () => {
           participantId
         );
         if (enrollmentResponse) {
-          if(eventDetails.completed==1)
-          {
+          if (eventDetails.completed == 1) {
             setTab("Completed");
-          }else{
-          setTab("Enrolled");
+          } else {
+            setTab("Enrolled");
           }
         } else {
           setTab("Upcoming");
@@ -72,6 +72,7 @@ const StudentEventDetails = () => {
         organizerName={organizerName}
         eventId={eventId}
         tab={tab}
+        role={role}
       />
     </div>
   );

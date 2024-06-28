@@ -4,7 +4,7 @@ import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBat
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
- 
+
 import {
   fetchBatchParticipants,
   updateBatch,
@@ -13,9 +13,9 @@ import {
 } from "../../../services/Batch";
 import { getUserDetails } from "../../../services/User";
 import image from "../../../assets/DP.png";
- 
+
 const loggedUserFirstName = sessionStorage.getItem("firstName");
- 
+
 const greeting = {
   welcome: "Welcome back",
   name: loggedUserFirstName || "",
@@ -23,7 +23,7 @@ const greeting = {
   profile: "Batches",
   showButtons: false,
 };
- 
+
 const AdminBatchSelect = () => {
   const { batchId } = useParams();
   const params = useParams();
@@ -31,24 +31,24 @@ const AdminBatchSelect = () => {
   const [batchName, setBatchName] = useState(location.state?.batchName || "");
   const [batchParticipantsData, setBatchParticipantsData] = useState([]);
   const navigate = useNavigate();
- 
+
   useEffect(() => {
     fetchData();
   }, []);
- 
+
   const fetchData = async () => {
     try {
       const batchId = params.batchId;
       const participantsResponse = await fetchBatchParticipants({ batchId });
       const participantIds = participantsResponse.responseData;
- 
+
       if (Array.isArray(participantIds) && participantIds.length > 0) {
         const userId = participantIds.join(",");
         const userDetailsResponse = await getUserDetails({ userId });
         const userDetails = userDetailsResponse.responseData;
- 
+
         const BatchParticipantsData = userDetails.map((userDetail) => ({
-          studentImage: userDetail?.profilePicture || image,
+          studentImage: image,
           studentName: `${userDetail?.firstName || ""} ${
             userDetail?.lastName || ""
           }`,
@@ -60,6 +60,7 @@ const AdminBatchSelect = () => {
           viewAnimation: false,
         }));
  
+        BatchParticipantsData.sort((a, b) => a.studentName.localeCompare(b.studentName));
         setBatchParticipantsData(BatchParticipantsData);
       } else {
         setBatchParticipantsData([]);
@@ -69,7 +70,7 @@ const AdminBatchSelect = () => {
       setBatchParticipantsData([]);
     }
   };
- 
+
   const changeBatchName = async (newBatchName) => {
     try {
       const batchId = params.batchId;
@@ -81,7 +82,7 @@ const AdminBatchSelect = () => {
       toast.error("rror updating batch name!");
     }
   };
- 
+
   const handleDeleteBatches = async () => {
     try {
       await deleteBatch(batchId);
@@ -92,33 +93,33 @@ const AdminBatchSelect = () => {
       console.error("Error deleting batch:", error);
     }
   };
- const addParticipant = async (studentIds) => {
-  try {
-    const batchId = params.batchId;
-    const response = await postUserIds({ batchId, userIds: studentIds });
-    fetchData(); // Assuming fetchData() retrieves updated data after adding participant
+  const addParticipant = async (studentIds) => {
+    try {
+      const batchId = params.batchId;
+      const response = await postUserIds({ batchId, userIds: studentIds });
+      fetchData();
 
-    // Check if response status is 200 and contains specific error message
-    if (response.statusCode === 200 && response.errorMessage.match(/\[(.*?)\]/)[1]) {
-      const errorMessage = response.errorMessage.match(/\[(.*?)\]/)[1];
-      toast.error(errorMessage);
-      console.error("Error adding participant:", response.errorMessage);
-    } else {
-      toast.success("Added new student successfully!");
-      console.log("Participant added successfully.");
+      if (
+        response.statusCode === 200 &&
+        response.errorMessage.match(/\[(.*?)\]/)[1]
+      ) {
+        const errorMessage = response.errorMessage.match(/\[(.*?)\]/)[1];
+        toast.error(errorMessage);
+        console.error("Error adding participant:", response.errorMessage);
+      } else {
+        toast.success("Added new student successfully!");
+        console.log("Participant added successfully.");
+      }
+
+      console.log("Response data:", response.data);
+      return response.data;
+    } catch (error) {
+      toast.error("Error adding participant!");
+      console.error("Error adding participant:", error);
+      throw error;
     }
+  };
 
-    // Handle response data if needed
-    console.log("Response data:", response.data); // Adjust based on actual response structure
-    return response.data; // Optionally return response data for further use
-  } catch (error) {
-    toast.error("Error adding participant!");
-    console.error("Error adding participant:", error);
-    throw error; // Re-throw error to propagate it further if necessary
-  }
-};
-
- 
   return (
     <div>
       <Greeting {...greeting} />
@@ -159,6 +160,5 @@ const AdminBatchSelect = () => {
     </div>
   );
 };
- 
+
 export default AdminBatchSelect;
- 
