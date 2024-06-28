@@ -42,17 +42,8 @@ const AdminBatchList = () => {
           showCount: true,
           handleClick: () => handleClick(item.batchId, item.batchName),
         }));
-        var sortedBatches = null;
-        if (formattedData) {
-          sortedBatches = [...formattedData].sort((a, b) => {
-            const nameA = a.mainHeading.toLowerCase();
-            const nameB = b.mainHeading.toLowerCase();
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
-            return 0;
-          });
-        }
-        setBatchData(sortedBatches);
+
+        setBatchData(formattedData);
       } else {
         throw new Error("Received data is not in expected format");
       }
