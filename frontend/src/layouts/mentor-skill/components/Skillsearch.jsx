@@ -35,10 +35,14 @@ const Skillsearch = () => {
   useEffect(() => {
     async function fetchInitialSkills() {
       try {
-        setError(null);
         const skillsData = await getSkillsForUser("");
         const results = skillsData.responseData || skillsData;
+        if(results && results.length>0){
         setuserSkillData(results && results.length > 0 ? results : []);
+        setError(null);
+        }else{
+          setError("No students found");
+        }
       } catch (error) {
         setuserSkillData([]);
         setError("Failed to fetch student skills.");
@@ -69,7 +73,12 @@ const Skillsearch = () => {
         .toLowerCase()
         .includes(searchTerm.toLowerCase())
     );
-    setsearchResults(filtered);
+    if(filtered && filtered.length > 0){
+      setsearchResults(filtered);
+      setError(null);
+    }else{
+      setError(`Student ${searchTerm} not found`);
+    }
   };
  
   const clearSearch = () => {
