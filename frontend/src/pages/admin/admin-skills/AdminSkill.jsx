@@ -10,12 +10,13 @@ import { SkillsProvider, setParticipants } from "./AdminSkillContext";
 const AdminSkill = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+  const [cardAnimation, setCardAnimation] = useState(false);
 
   const handleClick = (skillData) => {
     console.log("Data from skill card: ", skillData);
     if (!isValidSkill(skillData)) {
       setErrorMessage("Skill already exists.");
-      console.log("Error message set:", errorMessage); 
+      console.log("Error message set:", errorMessage);
       return;
     }
 
@@ -25,8 +26,7 @@ const AdminSkill = () => {
   };
 
   const isValidSkill = (skillData) => {
-    
-    return !AdminSkillData.skillExists(skillData); 
+    return !AdminSkillData.skillExists(skillData);
   };
 
   const loggedUserFirstName = sessionStorage.getItem("firstName");
@@ -39,15 +39,19 @@ const AdminSkill = () => {
     showButtons: false,
   };
 
-  console.log("Rendering with errorMessage:", errorMessage); 
+  console.log("Rendering with errorMessage:", errorMessage);
 
   return (
     <SkillsProvider>
       <div>
         <Greeting {...greet} />
-        <AdminSkillAction />
-        
-        <AdminSkillsList handleClick={handleClick} />
+        <AdminSkillAction setCardAnimation={setCardAnimation} />
+
+        <AdminSkillsList
+          handleClick={handleClick}
+          cardAnimation={cardAnimation}
+          setCardAnimation={setCardAnimation}
+        />
         {errorMessage && <div className="error-message">{errorMessage}</div>}
       </div>
     </SkillsProvider>

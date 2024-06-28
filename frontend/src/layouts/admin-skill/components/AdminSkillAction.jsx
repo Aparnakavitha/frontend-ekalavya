@@ -13,9 +13,9 @@ import {
   useSkills,
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
-const AdminSkillAction = () => {
+const AdminSkillAction = ({ setCardAnimation }) => {
   const { skills, setSkills, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -52,13 +52,14 @@ const AdminSkillAction = () => {
         id: response.responseData[0].id,
         count: response.responseData[0].count,
       };
-      setSkills([newSkill,...skills]);
+      newSkill.newEntry = true;
+      setCardAnimation(true);
+      setSkills([newSkill, ...skills]);
       handleCloseModal();
       setError("");
     } catch (error) {
       console.error("Error adding skill:", error);
       setError("Skill name already exists");
-      
     }
   };
 
@@ -81,8 +82,8 @@ const AdminSkillAction = () => {
       console.log("search response from search skills", searchedSkill);
       setSkills(searchedSkill);
     } catch (error) {
-      console.error("Error occured in skill search",error);
-      setSkills([]); 
+      console.error("Error occured in skill search", error);
+      setSkills([]);
       // toast.info("No match found");
     }
   };
