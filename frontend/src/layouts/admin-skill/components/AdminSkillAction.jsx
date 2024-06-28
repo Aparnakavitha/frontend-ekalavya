@@ -52,8 +52,7 @@ const AdminSkillAction = () => {
         id: response.responseData[0].id,
         count: response.responseData[0].count,
       };
-      setSkills([...skills, newSkill]);
-      setChanged(true);
+      setSkills([newSkill,...skills]);
       handleCloseModal();
       setError("");
     } catch (error) {
