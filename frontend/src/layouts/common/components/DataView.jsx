@@ -9,7 +9,7 @@ const DataView = ({
   data = [],
   tableColumns = [],
   toggle,
-  itemsPerPage = 10,
+  itemsPerPage = 15,
   cardType = "profilecard",
 }) => {
   const [isCardView, setIsCardView] = useState(true);

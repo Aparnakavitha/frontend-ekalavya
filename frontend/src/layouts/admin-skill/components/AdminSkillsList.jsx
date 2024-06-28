@@ -39,7 +39,11 @@ const AdminSkillsList = ({ handleClick }) => {
           skillName: capitalizeFirstLetter(skill.skillName),
         }));
         capitalizedSkills.sort((skill1, skill2) =>
-          skill1.skillName > skill2.skillName ? 1 : skill1.skillName < skill2.skillName ? -1 : 0
+          skill1.skillName > skill2.skillName
+            ? 1
+            : skill1.skillName < skill2.skillName
+              ? -1
+              : 0
         );
         console.log("All defined skills[+]", capitalizedSkills);
         setSkills(capitalizedSkills);
@@ -79,6 +83,7 @@ const AdminSkillsList = ({ handleClick }) => {
             : skill
         );
         setSkills(updatedSkills);
+        setChanged(true);
         toast.success("Skill updated successfully!");
       } catch (error) {
         toast.error("Error updating skill!");
@@ -127,7 +132,10 @@ const AdminSkillsList = ({ handleClick }) => {
   return (
     <div>
       {skillData.data && skillData.data.length > 0 ? (
-        <DataView CardComponent={SkillBatchCard} {...skillData} />
+        <div>
+          <p className="padding" style={{color:"#baff66"}}>Total skills:{skills.length}</p>
+          <DataView CardComponent={SkillBatchCard} {...skillData} />
+        </div>
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No skills available
