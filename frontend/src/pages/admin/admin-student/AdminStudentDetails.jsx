@@ -112,12 +112,10 @@ const AdminStudentDetails = () => {
         setStudentData(selectedStudent);
       }
       if (studentsData?.userId) {
-        const studentEvents = await fetchStudentEvents(
-          studentsData.userId,
-          setStudentEvents
-        );
+        await fetchStudentDetails(studentsData.userId, setStudentData);
+        const studentEvents = await fetchStudentEvents(studentsData.userId);
         const enrolledEventIds = studentEvents.map((event) => event.eventId);
-        await fetchEventOptions(enrolledEventIds, setEventOptions);
+        await fetchEventOptions(enrolledEventIds);
       }
     };
 
