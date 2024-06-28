@@ -96,9 +96,8 @@ const AdminBatchSelect = () => {
     try {
       const batchId = params.batchId;
       const response = await postUserIds({ batchId, userIds: studentIds });
-      fetchData(); // Assuming fetchData() retrieves updated data after adding participant
+      fetchData();
 
-      // Check if response status is 200 and contains specific error message
       if (
         response.statusCode === 200 &&
         response.errorMessage.match(/\[(.*?)\]/)[1]
@@ -111,13 +110,12 @@ const AdminBatchSelect = () => {
         console.log("Participant added successfully.");
       }
 
-      // Handle response data if needed
-      console.log("Response data:", response.data); // Adjust based on actual response structure
-      return response.data; // Optionally return response data for further use
+      console.log("Response data:", response.data);
+      return response.data;
     } catch (error) {
       toast.error("Error adding participant!");
       console.error("Error adding participant:", error);
-      throw error; // Re-throw error to propagate it further if necessary
+      throw error;
     }
   };
 
