@@ -4,9 +4,9 @@ import Modal from "./Modal";
 import QualificationForm from "./QualificationForm";
 import DeleteBox from "./DeleteBox";
 import { toast } from "react-toastify";
- 
+
 const EducationalQualification = ({
-  qualifications=[],
+  qualifications = [],
   onFormSubmit,
   userId,
 }) => {
@@ -14,43 +14,43 @@ const EducationalQualification = ({
   const [isEditQualificationOpen, setIsEditQualificationOpen] = useState(false);
   const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
- 
+
   const handleOpenAddQualification = () => {
     setIsAddQualificationOpen(true);
   };
- 
+
   const handleCloseAddQualification = () => {
     setIsAddQualificationOpen(false);
   };
- 
+
   const handleOpenEditQualification = (index) => {
     setEditIndex(index);
     setIsEditQualificationOpen(true);
   };
- 
+
   const handleCloseEditQualification = () => {
     setIsEditQualificationOpen(false);
   };
- 
+
   const handleOpenDeleteQualification = (index) => {
     setEditIndex(index);
     setIsDeleteQualificationOpen(true);
   };
- 
+
   const handleCloseDeleteQualification = () => {
     setIsDeleteQualificationOpen(false);
   };
- 
+
   const handleFormConfirm = (formData) => {
     console.log(formData, "Action Confirmed");
     handleCloseDeleteQualification();
   };
- 
+
   const handleFormCancel = (formData) => {
     console.log(formData, "Action Cancelled");
     handleCloseDeleteQualification();
   };
- 
+
   const handleFormSubmit = async (formData) => {
     try {
       const formDataToSend = {
@@ -74,14 +74,12 @@ const EducationalQualification = ({
         userId: userId,
         qualifications: [
           {
-            qualificationId: qualification?.qualificationId, }
+            qualificationId: qualification?.qualificationId,
+          },
         ],
-
       };
- 
+
       console.log("Form Data:", formData);
-      console.log("Start Date:", formData.startDate);
-      console.log("End Date:", formData.endDate);
       await onFormSubmit(formData);
       toast.success("Qualification deleted successfully!");
       handleCloseDeleteQualification();
@@ -89,48 +87,51 @@ const EducationalQualification = ({
       console.error("Error deleting qualification!");
     }
   };
- 
+
   const options = [
     { value: "High School", label: "High School" },
     { value: "Bachelor's Degree", label: "Bachelor's Degree" },
     { value: "Master's Degree", label: "Master's Degree" },
     { value: "Ph.D.", label: "Ph.D." },
   ];
- 
+
   const addQualProps = {
     heading: "Add New Education Qualification",
     options: options,
     initialValues: {},
     onSubmit: handleFormSubmit,
   };
- 
+
   const editQualProps = {
     heading: "Edit Education Qualification",
     options: options,
     initialValues: qualifications[editIndex] || {},
     onSubmit: handleFormSubmit,
   };
- 
+
   const deleteQualProps = {
     title: "Delete Qualification",
     message: "Are you sure you want to delete this qualification?",
     buttonText: "Delete",
     onConfirm: () => {
-      console.log("hello")
+      console.log("hello");
       if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
         handleRemove(editIndex);
       }
     },
     onCancel: handleFormCancel,
   };
- 
+
   const educationProps = {
-    qualifications,
+    qualifications: qualifications.sort((a, b) => {
+      const order = ["Ph.D.", "Master's Degree", "Bachelor's Degree", "High School"];
+      return order.indexOf(a.degree) - order.indexOf(b.degree);
+    }),
     onClickAdd: handleOpenAddQualification,
     onClickEdit: handleOpenEditQualification,
     onClickDelete: handleOpenDeleteQualification,
   };
- 
+
   return (
     <div>
       <Education {...educationProps} />
@@ -141,7 +142,7 @@ const EducationalQualification = ({
       >
         <QualificationForm {...addQualProps} />
       </Modal>
- 
+
       <Modal
         isOpen={isEditQualificationOpen}
         widthVariant="medium"
@@ -149,7 +150,7 @@ const EducationalQualification = ({
       >
         <QualificationForm {...editQualProps} />
       </Modal>
- 
+
       <Modal
         isOpen={isDeleteQualificationOpen}
         widthVariant="small"
@@ -160,5 +161,5 @@ const EducationalQualification = ({
     </div>
   );
 };
- 
+
 export default EducationalQualification;

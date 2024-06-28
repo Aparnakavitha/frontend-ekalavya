@@ -92,18 +92,32 @@ const AdminBatchSelect = () => {
       console.error("Error deleting batch:", error);
     }
   };
- 
-  const addParticipant = async (studentIds) => {
-    try {
-      const batchId = params.batchId;
-      await postUserIds({ batchId, userIds: studentIds });
-      fetchData();
+ const addParticipant = async (studentIds) => {
+  try {
+    const batchId = params.batchId;
+    const response = await postUserIds({ batchId, userIds: studentIds });
+    fetchData(); // Assuming fetchData() retrieves updated data after adding participant
+
+    // Check if response status is 200 and contains specific error message
+    if (response.statusCode === 200 && response.errorMessage.match(/\[(.*?)\]/)[1]) {
+      const errorMessage = response.errorMessage.match(/\[(.*?)\]/)[1];
+      toast.error(errorMessage);
+      console.error("Error adding participant:", response.errorMessage);
+    } else {
       toast.success("Added new student successfully!");
-    } catch (error) {
-      toast.error("Error adding participant!");
-      console.error("Error adding participant:", error);
+      console.log("Participant added successfully.");
     }
-  };
+
+    // Handle response data if needed
+    console.log("Response data:", response.data); // Adjust based on actual response structure
+    return response.data; // Optionally return response data for further use
+  } catch (error) {
+    toast.error("Error adding participant!");
+    console.error("Error adding participant:", error);
+    throw error; // Re-throw error to propagate it further if necessary
+  }
+};
+
  
   return (
     <div>
