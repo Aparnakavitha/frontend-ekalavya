@@ -19,6 +19,7 @@ const SkillList = ({ studentId }) => {
     adminStudentSkillState
   );
   const allSkills = useRecoilValue(studentSkillState);
+  console.log("All defined skills",allSkills);
 
   const addSkillOptions = allSkills.map((skill) => ({
     value: skill.id,
@@ -110,7 +111,7 @@ const SkillList = ({ studentId }) => {
         cardType: "skill",
         showCount: false,
       };
-      setStudentSkills((prevSkills) => [...prevSkills, newSkillState]);
+      setStudentSkills((prevSkills) => [newSkillState,...prevSkills]);
       handleCloseModal();
     } catch (error) {
       console.error("Error submitting skill:", error);
