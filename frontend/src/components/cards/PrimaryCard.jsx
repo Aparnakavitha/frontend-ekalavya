@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./PrimaryCard.module.css";
 import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
 import { format } from "date-fns";
-
+ 
 const PrimaryCard = (props) => {
   const {
     miniHeading,
@@ -20,29 +20,29 @@ const PrimaryCard = (props) => {
     }
     return heading;
   };
-
+ 
   const transformMainDescription = (description) => {
     if (description && description.length > 34) {
       return description.slice(0, 70) + "...";
     }
     return description;
   };
-
+ 
   const formattedStartDate = format(new Date(startDate), "MMM dd, yyyy");
   const formattedEndDate = format(new Date(endDate), "MMM dd, yyyy");
-
+ 
   const [isHover, setIsHover] = useState(false);
   const [animationTimeoutId, setAnimationTimeoutId] = useState(null);
-
+ 
   useEffect(() => {
     if (viewAnimations) {
       const timeoutId = setTimeout(() => {
         setViewAnimation(false);
       }, 2000);
-
+ 
       setAnimationTimeoutId(timeoutId);
     }
-
+ 
     return () => {
       if (animationTimeoutId) {
         clearTimeout(animationTimeoutId);
@@ -52,11 +52,11 @@ const PrimaryCard = (props) => {
   const handleMouseEnter = () => {
     setIsHover(true);
   };
-
+ 
   const handleMouseLeave = () => {
     setIsHover(false);
   };
-
+ 
   const leftCardClass = viewAnimations
     ? `${styles.leftCardHover}`
     : isHover
@@ -102,9 +102,9 @@ const PrimaryCard = (props) => {
     : isHover
       ? styles.cardOutlineHover
       : styles.cardOutline;
-
+ 
   const cardClass = viewAnimations ? `${styles.highlight}` : styles.cards;
-
+ 
   return (
     <div
       className={cardClass}
@@ -142,5 +142,5 @@ const PrimaryCard = (props) => {
     </div>
   );
 };
-
+ 
 export default PrimaryCard;

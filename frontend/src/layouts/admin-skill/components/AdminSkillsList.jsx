@@ -19,7 +19,7 @@ const capitalizeFirstLetter = (string) => {
   return string.trim().charAt(0).toUpperCase() + string.slice(1);
 };
 
-const AdminSkillsList = ({ handleClick }) => {
+const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
   const { skills, setSkills, changed, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
@@ -39,7 +39,11 @@ const AdminSkillsList = ({ handleClick }) => {
           skillName: capitalizeFirstLetter(skill.skillName),
         }));
         capitalizedSkills.sort((skill1, skill2) =>
-          skill1.skillName > skill2.skillName ? 1 : skill1.skillName < skill2.skillName ? -1 : 0
+          skill1.skillName > skill2.skillName
+            ? 1
+            : skill1.skillName < skill2.skillName
+              ? -1
+              : 0
         );
         console.log("All defined skills[+]", capitalizedSkills);
         setSkills(capitalizedSkills);
@@ -79,6 +83,7 @@ const AdminSkillsList = ({ handleClick }) => {
             : skill
         );
         setSkills(updatedSkills);
+        setChanged(true);
         toast.success("Skill updated successfully!");
       } catch (error) {
         toast.error("Error updating skill!");
@@ -88,32 +93,43 @@ const AdminSkillsList = ({ handleClick }) => {
     handleCloseModal();
   };
 
-  const skillData = {
-    data: skills.map((skill) => ({
-      ...skill,
-      mainHeading: capitalizeFirstLetter(skill.skillName),
-      miniHeading: skill.id,
-      Count: skill.count,
-      canEdit: true,
-      cardType: "skill",
-      showCount: true,
-      handleClick: async () => {
-        try {
-          const response = await getUsersCountForSkill(skill.id);
-          const participantData = response.users.map((user) => [
-            user.userId,
-            user.UserName,
-            user.emailId,
-          ]);
+  let firstTrueAnimationSet = false;
 
-          setParticipants(participantData);
-          navigate(`/admin/skills/skill-participants`);
-        } catch (error) {
-          console.error("Error fetching skill participants: ", error);
-        }
-      },
-      handleEditClick: () => handleOpenModal(skill),
-    })),
+  const skillData = {
+    data: skills.map((skill) => {
+      let viewAnimation = false;
+      if (!firstTrueAnimationSet && cardAnimation && skill.newEntry) {
+        viewAnimation = true;
+        firstTrueAnimationSet = true;
+      }
+
+      return {
+        ...skill,
+        mainHeading: capitalizeFirstLetter(skill.skillName),
+        miniHeading: skill.id,
+        Count: skill.count,
+        canEdit: true,
+        cardType: "skill",
+        showCount: true,
+        viewAnimation,
+        handleClick: async () => {
+          try {
+            const response = await getUsersCountForSkill(skill.id);
+            const participantData = response.users.map((user) => [
+              user.userId,
+              user.UserName,
+              user.emailId,
+            ]);
+
+            setParticipants(participantData);
+            navigate(`/admin/skills/skill-participants`);
+          } catch (error) {
+            console.error("Error fetching skill participants: ", error);
+          }
+        },
+        handleEditClick: () => handleOpenModal(skill),
+      };
+    }),
   };
 
   if (loading) {
@@ -127,7 +143,10 @@ const AdminSkillsList = ({ handleClick }) => {
   return (
     <div>
       {skillData.data && skillData.data.length > 0 ? (
-        <DataView CardComponent={SkillBatchCard} {...skillData} />
+        <div>
+          <p className="padding" style={{color:"#baff66"}}>Total skills:{skills.length}</p>
+          <DataView CardComponent={SkillBatchCard} {...skillData} />
+        </div>
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No skills available

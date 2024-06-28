@@ -158,14 +158,22 @@ const AdminStudentDetails = () => {
       await addEnrollmentService(enrollmentData.selectedEventId, {
         participantId: studentsData.userId,
       });
-      const updatedEvents = await fetchStudentEvents(studentsData.userId);
-      const enrolledEventIds = updatedEvents.map((event) => event.eventId);
+  
+      const newEvents = await fetchStudentEvents(studentsData.userId);
+      
+      const newEventDetails = newEvents.find(event => event.eventId === enrollmentData.selectedEventId);
+  
+      setStudentEvents([newEventDetails, ...newEvents.filter(event => event.eventId !== enrollmentData.selectedEventId)]);
+  
+      const enrolledEventIds = newEvents.map((event) => event.eventId);
       await fetchEventOptions(enrolledEventIds);
+  
       toast.success("Event added successfully!");
     } catch (error) {
       toast.error("Error enrolling in event!");
     }
   };
+  
 
   const Education = studentsData ? studentsData.qualifications : [];
 
