@@ -61,7 +61,9 @@ const AdminBatchSelect = () => {
           viewAnimation: false,
         }));
 
-        BatchParticipantsData.sort((a, b) => a.studentName.localeCompare(b.studentName));
+        BatchParticipantsData.sort((a, b) =>
+          a.studentName.localeCompare(b.studentName)
+        );
         setBatchParticipantsData(BatchParticipantsData);
         setNewParticipantsData([]);
       } else {
@@ -100,11 +102,13 @@ const AdminBatchSelect = () => {
     try {
       const batchId = params.batchId;
       const response = await postUserIds({ batchId, userIds: studentIds });
-  
+
       const newParticipantIds = studentIds.join(",");
-      const newParticipantsResponse = await getUserDetails({ userId: newParticipantIds });
+      const newParticipantsResponse = await getUserDetails({
+        userId: newParticipantIds,
+      });
       const newParticipants = newParticipantsResponse.responseData;
-  
+
       const newParticipantsData = newParticipants.map((userDetail) => ({
         studentImage: image,
         studentName: `${userDetail?.firstName || ""} ${
@@ -117,23 +121,23 @@ const AdminBatchSelect = () => {
         canDelete: true,
         viewAnimation: false,
       }));
-  
+
       setNewParticipantsData(newParticipantsData);
       setBatchParticipantsData((prevData) => [
         ...newParticipantsData,
         ...prevData,
       ]);
-  
+
       if (response.statusCode === 200) {
         toast.success("Added new student successfully!");
         console.log("Participant added successfully.");
       } else {
-    
-        const errorMessage = response?.errorMessage?.match(/\[(.*?)\]/)?.[1] || "Unknown error";
+        const errorMessage =
+          response?.errorMessage?.match(/\[(.*?)\]/)?.[1] || "Unknown error";
         toast.error(errorMessage);
         console.error("Error adding participant:", errorMessage);
       }
-  
+
       console.log("Response data:", response.data);
       return response.data;
     } catch (error) {
@@ -142,7 +146,6 @@ const AdminBatchSelect = () => {
       throw error;
     }
   };
-  
 
   return (
     <div>
@@ -153,6 +156,7 @@ const AdminBatchSelect = () => {
         setBatchName={setBatchName}
         batchName={batchName}
         batchId={params.batchId}
+        batchParticipantsData={batchParticipantsData}
       />
       {batchParticipantsData.length > 0 ? (
         <AdminBatchParticipants
