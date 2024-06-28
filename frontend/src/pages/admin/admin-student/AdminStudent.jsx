@@ -229,17 +229,27 @@ const AdminStudent = () => {
     combinedFilter: false,
   };
 
+  let firstTrueAnimationSet = false;
+
   const dataView = {
-    data: studentsData.map((student) => ({
-      studentImage: image,
-      studentName: `${student.firstName || ""} ${student.lastName || ""}`,
-      studentId: student.userId || "",
-      studentCollege: student.college.collegeName || "",
-      studentMail: student.emailId || "",
-      studentPhoneNumber: student.phoneNo || "",
-      canDelete: false,
-      viewAnimation: (cardAnimation && student.newEntry) || false,
-    })),
+    data: studentsData.map((student) => {
+      const viewAnimation =
+        !firstTrueAnimationSet && cardAnimation && student.newEntry;
+      if (viewAnimation) {
+        firstTrueAnimationSet = true;
+      }
+
+      return {
+        studentImage: image,
+        studentName: `${student.firstName || ""} ${student.lastName || ""}`,
+        studentId: student.userId || "",
+        studentCollege: student.college.collegeName || "",
+        studentMail: student.emailId || "",
+        studentPhoneNumber: student.phoneNo || "",
+        canDelete: false,
+        viewAnimation: viewAnimation,
+      };
+    }),
     tableColumns: [
       { key: "studentId", displayName: "Student ID" },
       { key: "studentName", displayName: "Name" },
