@@ -30,7 +30,7 @@ const Skillsearch = () => {
 
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
-  const [skilldataCard, setSkilldataCard]=useState([]);
+  const [skilldataCard, setSkilldataCard] = useState([]);
 
   useEffect(() => {
     async function fetchInitialSkills() {
@@ -48,7 +48,7 @@ const Skillsearch = () => {
             level: skill.skillLevel || "",
           })),
         }));
-        
+
         setSkilldataCard(skillcard);
         setSearchResults(results && results.length > 0 ? results : []);
         console.log("Fetched skillcard data:", skillcard);
@@ -84,7 +84,7 @@ const Skillsearch = () => {
   };
 
   console.log("SkilldataCard state:", skilldataCard);
-  
+
   const skillCardData = {
     data: skilldataCard,
     tableColumns: [
@@ -94,6 +94,7 @@ const Skillsearch = () => {
     ],
     toggle: false,
     itemsPerPage: 8,
+    cardType: "skilluser",
   };
   console.log("SkillCardData for DataView:", skillCardData);
 
