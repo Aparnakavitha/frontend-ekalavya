@@ -106,7 +106,8 @@ export const getUsersCountForSkill = async (skillId) => {
 
 export const getSkillsForUser = async (userId) => {
   try {
-    const response = await axios.get(`${BASE_URL}?userId=${userId}`);
+    const type = userId ? "" : "all";
+    const response = await axios.get(`${BASE_URL}?userId=${userId}&type=${type}`);
 
     // Check if response data is an array
     if (Array.isArray(response.data)) {
