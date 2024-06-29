@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./SkillUser.module.css";
 import { ImCross } from "react-icons/im";
 import { FaPlus } from "react-icons/fa";
@@ -30,8 +30,8 @@ const SkillUser = ({
   };
 
   const transformSkillName = (heading) => {
-    if (heading.length > 10) {
-      return heading.slice(0, 8) + "...";
+    if (heading.length > 8) {
+      return heading.slice(0, 6) + "...";
     }
     return heading;
   };
@@ -39,16 +39,27 @@ const SkillUser = ({
   const [showAllSkills, setShowAllSkills] = useState(false);
   const [overlap, setOverlap] = useState(false);
 
-  const displayedSkills = showAllSkills ? skills : skills.slice(0, 2);
+  const cardRef = useRef(null);
 
   useEffect(() => {
-    // This code will execute whenever 'overlap' state changes
-    console.log("Overlap state changed:", overlap);
-    // Additional logic or side effects can be placed here
-  }, [overlap]); // Dependency array ensures useEffect runs only when 'overlap' changes
+    const handleClickOutside = (event) => {
+      if (cardRef.current && !cardRef.current.contains(event.target)) {
+        setOverlap(false);
+        setShowAllSkills(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const displayedSkills = showAllSkills ? skills : skills.slice(0, 2);
 
   return (
-    <div className={`container ${styles.cards} ${overlap ? styles.overlapClass : ''}`}>
+    <div ref={cardRef} className={`container ${styles.cards} ${overlap ? styles.overlapClass : ''}`}>
       <div className={`row ${styles.cardsClass}`} onClick={handleClick}>
         <div className={`col-md-6 ${styles.profile}`}>
           <div className={`${styles.profilepiccontainer}`}>
@@ -71,20 +82,24 @@ const SkillUser = ({
         <div className={`col-md-6 ${styles.lower}`}>
           <div className={styles.buttons}>
             <div className={`row ${styles.buttonsContainer}`}>
-              {displayedSkills.map((skill, index) => (
-                <div key={index} className={`col-6 ${styles.button}`} title={skill.skillName}>
-                  {transformSkillName(skill.skillName)}
-                  {isVisible && (
-                    <ImCross
-                      onClick={() => deleteSkill(index)}
-                      style={{
-                        cursor: "pointer",
-                        fontSize: "10px",
-                      }}
-                    />
-                  )}
-                </div>
-              ))}
+              {skills.length > 0 ? (
+                displayedSkills.map((skill, index) => (
+                  <div key={index} className={`col-6 ${styles.button}`} title={skill.skillName}>
+                    {transformSkillName(skill.skillName)}
+                    {isVisible && (
+                      <ImCross
+                        onClick={() => deleteSkill(index)}
+                        style={{
+                          cursor: "pointer",
+                          fontSize: "10px",
+                        }}
+                      />
+                    )}
+                  </div>
+                ))
+              ) : (
+                <div className={`${styles.noSkills}`}>No Skills Available</div>
+              )}
             </div>
             {skills.length > 2 && (
               <div
@@ -99,7 +114,10 @@ const SkillUser = ({
             )}
             <div className={`col-6 ${styles.addButtonContainer}`}>
               {isVisible && (
-                <button className={`btn ${styles.addButton}`} onClick={addSkill}>
+                <button
+                  className={`btn ${styles.addButton}`}
+                  onClick={addSkill}
+                >
                   <FaPlus
                     style={{
                       cursor: "pointer",

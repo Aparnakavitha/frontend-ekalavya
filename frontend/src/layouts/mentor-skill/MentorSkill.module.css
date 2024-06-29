@@ -22,6 +22,10 @@
   width: 100%;
 }
 
+.skillsearch-cardcont{
+  margin: 0vh -4vw;
+}
+
 .error-message {
   color: var(--white);
 }

@@ -7,6 +7,7 @@
   border-radius: 25px;
   background-color: var(--background);
   border: 1px solid var(--neutral500);
+  transition: transform 0.3s ease-in-out;
 }
 
 .cardsClass {
@@ -46,11 +47,13 @@
 .cardsmainheading {
   font-size: 24px;
   font-weight: 700;
-  line-height: 21.6px;
+  line-height: 27.6px;
   letter-spacing: -0.41px;
-  max-height: 22px;
+  max-height: 42px;
   overflow: hidden;
   color: var(--white);
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .cardsminiheading {
@@ -64,7 +67,8 @@
 .overlapClass{
   transform: scale(1.05);
   z-index: 100;
-  box-shadow: 5px 4px 28px rgba(255, 255, 255, 0.13);
+  box-shadow: 5px 4px 28px rgba(255, 255, 255, 0.089);
+  transition: transform 0.3s ease-in-out;
 }
 
 .lower {
@@ -139,4 +143,8 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
+}
+
+.noSkills {
+  color: var(--primary-color);
 }

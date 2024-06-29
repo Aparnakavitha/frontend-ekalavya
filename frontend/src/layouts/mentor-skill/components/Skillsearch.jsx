@@ -28,32 +28,23 @@ const Skillsearch = () => {
     { value: "pqr", label: "PQR" },
   ];
 
-  const [searchResults, setSearchResults] = useState([]);
+  const [userSkillData, setuserSkillData] = useState([]);
+  const [searchResults, setsearchResults] = useState([]);
   const [error, setError] = useState(null);
-  const [skilldataCard, setSkilldataCard] = useState([]);
 
   useEffect(() => {
     async function fetchInitialSkills() {
       try {
-        setError(null);
         const skillsData = await getSkillsForUser("");
-        const results = skillsData;
-        const skillcard = results.map((user) => ({
-          mainHeading: `${user?.firstName || ""} ${user?.lastName || ""}`,
-          miniHeading: "Student",
-          profilepic: profilePic || "",
-          skills: (user?.skills || []).map((skill) => ({
-            id: skill.id || "",
-            skillName: skill.skillName || "",
-            level: skill.skillLevel || "",
-          })),
-        }));
-
-        setSkilldataCard(skillcard);
-        setSearchResults(results && results.length > 0 ? results : []);
-        console.log("Fetched skillcard data:", skillcard);
+        const results = skillsData.responseData || skillsData;
+        if (results && results.length > 0) {
+          setuserSkillData(results && results.length > 0 ? results : []);
+          setError(null);
+        } else {
+          setError("No students found");
+        }
       } catch (error) {
-        setSearchResults([]);
+        setuserSkillData([]);
         setError("Failed to fetch student skills.");
       }
     }
@@ -76,91 +67,99 @@ const Skillsearch = () => {
     closeModal();
   };
 
-  const handleSearch = async () => {};
+  const handleSearch = (searchTerm) => {
+    const filtered = userSkillData.filter((user) =>
+      `${user.firstName} ${user.lastName}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    );
+    if (filtered && filtered.length > 0) {
+      setsearchResults(filtered);
+      setError(null);
+    } else {
+      setError(`Student ${searchTerm} not found`);
+    }
+  };
 
   const clearSearch = () => {
-    setSearchResults([]);
+    setsearchResults([]);
     setError(null);
   };
 
-  console.log("SkilldataCard state:", skilldataCard);
-
-  const skillCardData = {
-    data: skilldataCard,
-    tableColumns: [
-      { key: "miniHeading", displayName: "Student" },
-      { key: "mainHeading", displayName: "Name" },
-      { key: "skills", displayName: "Skills" },
-    ],
-    toggle: false,
-    itemsPerPage: 8,
-    cardType: "skilluser",
-  };
-  console.log("SkillCardData for DataView:", skillCardData);
-
   return (
-    <div
-      className={`${styles["skillsearch-skillssearch"]} padding padding-top padding-bottom`}
-    >
-      <h1 className={`${styles["skillsearch-skillsheading"]}`}>
-        {skillData.heading}
-      </h1>
-      <p className={`${styles["skillsearch-subheading"]}`}>
-        {skillData.subheading}
-      </p>
-      <div className={`${styles["skillsearch-searchbar"]}`}>
-        <SearchBar
-          placeholder={skillData.searchBarPlaceholder}
-          onSearch={handleSearch}
-          onClear={clearSearch}
-        />
-      </div>
+    <div className="padding padding-top padding-bottom">
+      <div className={`${styles["skillsearch-skillssearch"]}`}>
+        <h1 className={`${styles["skillsearch-skillsheading"]}`}>
+          {skillData.heading}
+        </h1>
+        <p className={`${styles["skillsearch-subheading"]}`}>
+          {skillData.subheading}
+        </p>
+        <div className={`${styles["skillsearch-searchbar"]}`}>
+          <SearchBar
+            placeholder={skillData.searchBarPlaceholder}
+            onSearch={handleSearch}
+            onClear={clearSearch}
+          />
+        </div>
 
-      <div className={`${styles["skillsearch-cardcontainer"]}`}>
-        {error && <p className={`${styles["error-message"]}`}>{error}</p>}
-        {skilldataCard.length > 0 ? (
-          <DataView
-            CardComponent={(props) => (
-              <SkillUser
-                {...props}
-                deleteSkill={() => openModal("delete", props.index)}
-                addSkill={() => openModal("add")}
+        <div className={`${styles["skillsearch-cardcontainer"]}`}>
+          {error && <p className={`${styles["error-message"]}`}>{error}</p>}
+          <div className={`${styles["skillsearch-cardcont"]}`}>
+            <DataView
+              key={searchResults.length > 0 ? searchResults : userSkillData}
+              CardComponent={(props) => (
+                <SkillUser
+                  {...props}
+                  mainHeading={`${props.firstName} ${props.lastName}`}
+                  miniHeading="Student"
+                  profilepic={profilePic}
+                  skills={(props.skills || []).map((skill) => ({
+                    id: skill.id,
+                    skillName: skill.skillName,
+                    level: skill.skillLevel,
+                  }))}
+                  deleteSkill={() => openModal("delete", props.index)}
+                  addSkill={() => openModal("add")}
+                />
+              )}
+              itemsPerPage={15}
+              cardType={"skilluser"}
+              data={searchResults.length > 0 ? searchResults : userSkillData}
+              filter={(user) => user.skills && user.skills.length > 0}
+              className={`${styles["skillsearch-cardcont"]}`}
+            />
+          </div>
+        </div>
+
+        {modalState.isOpen && (
+          <Modal
+            isOpen={modalState.isOpen}
+            widthVariant={modalState.type === "add" ? "medium" : "small"}
+            onClose={closeModal}
+          >
+            {modalState.type === "add" ? (
+              <CombinedSkillForm
+                mainHeading="Add New Skill"
+                isSelect={true}
+                isEditlevel={false}
+                displaytext="This skill is only to be placed at level 1"
+                buttonTitle="Add Skill"
+                options={options}
+                onSubmit={handleAddSkill}
+              />
+            ) : (
+              <DeleteBox
+                title="Delete Skill"
+                message="Are you sure you want to delete this skill?"
+                buttonText="Delete"
+                onCancel={closeModal}
+                onConfirm={handleDeleteSkill}
               />
             )}
-            {...skillCardData}
-          />
-        ) : (
-          <p>Loading data...</p>
+          </Modal>
         )}
       </div>
-
-      {modalState.isOpen && (
-        <Modal
-          isOpen={modalState.isOpen}
-          widthVariant={modalState.type === "add" ? "medium" : "small"}
-          onClose={closeModal}
-        >
-          {modalState.type === "add" ? (
-            <CombinedSkillForm
-              mainHeading="Add New Skill"
-              isSelect={true}
-              isEditlevel={false}
-              displaytext="This skill is only to be placed at level 1"
-              buttonTitle="Add Skill"
-              options={options}
-              onSubmit={handleAddSkill}
-            />
-          ) : (
-            <DeleteBox
-              title="Delete Skill"
-              message="Are you sure you want to delete this skill?"
-              buttonText="Delete"
-              onCancel={closeModal}
-              onConfirm={handleDeleteSkill}
-            />
-          )}
-        </Modal>
-      )}
     </div>
   );
 };
