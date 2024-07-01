@@ -172,6 +172,7 @@ const AdminEvent = () => {
     <div>
       <Greeting {...greeting} />
       <AdminEventAction
+        count={events.length}
         formSubmit={formSubmit}
         AdminEventActionData={AdminEventActionData}
         onFilterChange={handleFilterChange}

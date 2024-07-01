@@ -139,6 +139,7 @@ const AdminMentor = () => {
     <div>
       <Greeting {...greet} />
       <AdminMentorAction
+        count={mentorData.length}
         onAddSuccess={() => fetchMentorData(setMentorData)}
         onSearchChange={handleSearchChange}
         setMentorData={setMentorData}
