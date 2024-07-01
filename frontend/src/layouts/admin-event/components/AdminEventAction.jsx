@@ -9,6 +9,7 @@ const AdminEventAction = ({
   AdminEventActionData,
   onFilterChange,
   onSearchChange,
+  count,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [organizerOptions, setOrganizerOptions] = useState([]);
@@ -46,6 +47,7 @@ const AdminEventAction = ({
 
   const actionData = {
     ...AdminEventActionData,
+    count,
     buttonProps: {
       ...AdminEventActionData.buttonProps,
       onClick: handleOpenModal,

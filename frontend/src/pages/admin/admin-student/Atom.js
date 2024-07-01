@@ -9,3 +9,9 @@ export const eventNameState = atom({
   key: 'eventNameState',
   default: '',
 });
+
+export const eventCompleted = atom({
+  key: 'eventCompleted',
+  default: '',
+});
+

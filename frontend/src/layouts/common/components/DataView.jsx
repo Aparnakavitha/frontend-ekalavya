@@ -24,6 +24,10 @@ const DataView = ({
     }
   }, [currentPage, totalPages]);
 
+  if (isMobileView) {
+    itemsPerPage = 5;
+  }
+
   const showCardView = () => {
     setIsCardView(true);
   };
