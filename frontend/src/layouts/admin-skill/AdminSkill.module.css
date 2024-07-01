@@ -94,6 +94,12 @@
 .adminskillparticipants-container {
   width: 100%;
 }
+.adminskillparticipants-header  {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 .adminskillparticipants-navbuttons {
   display: flex;
@@ -106,6 +112,7 @@
   width: 100%;
   overflow-x: auto;
   scrollbar-width: thin;
+  color: white;
   scrollbar-color: var(--neutral600) #ffffff00;
 }
 

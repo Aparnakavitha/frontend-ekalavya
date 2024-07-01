@@ -11,7 +11,7 @@ import {
 import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { participantsState, studentSkillState } from "../../../states/Atoms";
+import { participantsState, studentSkillState, skillState } from "../../../states/Atoms";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { toast } from "react-toastify";
 
@@ -27,6 +27,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
   const [error, setError] = useState(null);
   const [participants, setParticipants] = useRecoilState(participantsState);
   const [studentkills, setStudentSkills] = useRecoilState(studentSkillState);
+  const [skillsData, setSkillsData] = useRecoilState(skillState);
 
   const navigate = useNavigate();
 
@@ -119,7 +120,11 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
               user.UserName,
               user.emailId,
             ]);
-
+            const skillsData = {
+              id: skill.id,
+              skillName: skill.skillName,
+            };
+            setSkillsData(skillsData);
             setParticipants(participantData);
             navigate(`/admin/skills/skill-participants`);
           } catch (error) {
