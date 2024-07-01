@@ -39,7 +39,7 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
 
   const handleDeleteConfirm = async () => {
     try {
-      await deleteSkill(deleteSkillId); // Assuming deleteSkillId is set correctly
+      await deleteSkill(deleteSkillId);
       console.log("Delete confirmed");
       handleCloseDelete();
       toast.success("Skill removed successfully!");
@@ -96,7 +96,7 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
         {participants && participants.length > 0 ? (
           <Table data={participants} headings={headings} />
         ) : (
-          <p>No participants in this batch.</p>
+          <p className="nodata" >No participants in this batch.</p>
         )}
       </div>
     </div>

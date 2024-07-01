@@ -54,7 +54,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     console.log("Participant ID:", participantId);
 
     try {
-      const response = await axios.post("https://ekalavya.tarento.com/login", {
+      const response = await axios.post("https://ekalavya.tarento.com/api/login", {
         email,
       });
       const { roleId, userId } = response.data.responseData;
@@ -65,7 +65,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
       } else {
         sessionStorage.setItem("role", roleId);
         sessionStorage.setItem("user_id", userId);
-        handleLoginNavigation(roleId);
+        handleLoginNavigation(roleId); 
       }
     } catch (error) {
       console.error("Error logging in:", error);
@@ -74,27 +74,25 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
   };
 
   const handleLoginNavigation = (roleId) => {
-    toast.success("Login Successful");
-    navigateBasedOnRole(roleId);
+    switch (roleId) {
+      case 3:
+        navigateAndReload(`/student/profile`);
+        break;
+      case 2:
+        navigateAndReload(`/mentor/profile`);
+        break;
+      case 1:
+        navigateAndReload(`/admin/student`);
+        break;
+      default:
+        console.error("Unknown role ID:", roleId);
+        break;
+    }
   };
 
-  const navigateBasedOnRole = (roleId) => {
-    setTimeout(() => {
-      switch (roleId) {
-        case 3:
-          navigate(`/student/profile`);
-          break;
-        case 2:
-          navigate(`/mentor/profile`);
-          break;
-        case 1:
-          navigate("/admin/student");
-          break;
-        default:
-          console.error("Unknown role ID:", roleId);
-          break;
-      }
-    }, 1000);
+  const navigateAndReload = (route) => {
+    navigate(route);
+    window.location.reload(); 
   };
 
   const login = useGoogleLogin({

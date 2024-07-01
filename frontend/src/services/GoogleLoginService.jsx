@@ -30,7 +30,7 @@ const GoogleLoginService = async () => {
           const participantId = userInfoResponse.data.sub;
           console.log("Participant ID:", participantId);
 
-          const apiResponse = await axios.get("http://localhost:8888/enrollment", {
+          const apiResponse = await axios.get("https://ekalavya.tarento.com/api/enrollment", {
             params: { participantId: participantId }
           });
           console.log("API Response:", apiResponse.data);

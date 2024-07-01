@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./SkillUser.module.css";
 import { ImCross } from "react-icons/im";
 import { FaPlus } from "react-icons/fa";
@@ -14,6 +14,7 @@ const SkillUser = ({
   deleteSkill,
 }) => {
   const isVisible = false;
+
   const transformMainHeading = (heading) => {
     if (heading.length > 12) {
       return heading.slice(0, 10) + "...";
@@ -28,11 +29,37 @@ const SkillUser = ({
     return heading;
   };
 
+  const transformSkillName = (heading) => {
+    if (heading.length > 8) {
+      return heading.slice(0, 6) + "...";
+    }
+    return heading;
+  };
+
   const [showAllSkills, setShowAllSkills] = useState(false);
-  const displayedSkills = showAllSkills ? skills : skills.slice(0, 4);
+  const [overlap, setOverlap] = useState(false);
+
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (cardRef.current && !cardRef.current.contains(event.target)) {
+        setOverlap(false);
+        setShowAllSkills(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const displayedSkills = showAllSkills ? skills : skills.slice(0, 2);
 
   return (
-    <div className={`container ${styles.cards}`}>
+    <div ref={cardRef} className={`container ${styles.cards} ${overlap ? styles.overlapClass : ''}`}>
       <div className={`row ${styles.cardsClass}`} onClick={handleClick}>
         <div className={`col-md-6 ${styles.profile}`}>
           <div className={`${styles.profilepiccontainer}`}>
@@ -55,39 +82,50 @@ const SkillUser = ({
         <div className={`col-md-6 ${styles.lower}`}>
           <div className={styles.buttons}>
             <div className={`row ${styles.buttonsContainer}`}>
-              {displayedSkills.map((skill, index) => (
-                <div key={index} className={`col-6 ${styles.button}`}>
-                  {transformMiniHeading(skill.skillName)}
-                  {isVisible && (
-                    <ImCross
-                      onClick={() => deleteSkill(index)}
-                      style={{
-                        cursor: "pointer",
-                        fontSize: "10px",
-                      }}
-                    />
-                  )}
-                </div>
-              ))}
+              {skills.length > 0 ? (
+                displayedSkills.map((skill, index) => (
+                  <div key={index} className={`col-6 ${styles.button}`} title={skill.skillName}>
+                    {transformSkillName(skill.skillName)}
+                    {isVisible && (
+                      <ImCross
+                        onClick={() => deleteSkill(index)}
+                        style={{
+                          cursor: "pointer",
+                          fontSize: "10px",
+                        }}
+                      />
+                    )}
+                  </div>
+                ))
+              ) : (
+                <div className={`${styles.noSkills}`}>No Skills Available</div>
+              )}
             </div>
-            {skills.length > 4 && (
+            {skills.length > 2 && (
               <div
                 className={`btn ${styles.viewButton}`}
-                onClick={() => setShowAllSkills(!showAllSkills)}
+                onClick={() => {
+                  setShowAllSkills(!showAllSkills);
+                  setOverlap(!overlap);
+                }}
               >
                 {showAllSkills ? "View Less" : "View More"}
               </div>
             )}
             <div className={`col-6 ${styles.addButtonContainer}`}>
-            {isVisible && <button className={`btn ${styles.addButton}`} onClick={addSkill}>
-                <FaPlus
-                  style={{
-                    cursor: "pointer",
-                    fontSize: "26px",
-                  }}
-                />
-              </button>}
-              
+              {isVisible && (
+                <button
+                  className={`btn ${styles.addButton}`}
+                  onClick={addSkill}
+                >
+                  <FaPlus
+                    style={{
+                      cursor: "pointer",
+                      fontSize: "26px",
+                    }}
+                  />
+                </button>
+              )}
             </div>
           </div>
         </div>

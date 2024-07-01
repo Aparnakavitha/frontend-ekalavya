@@ -8,7 +8,7 @@ import AboutMe from "../../common/components/AboutMe";
 
 const StudentProfileInfo = ({ studentsData, onSubmit }) => {
   const navProps = {
-    pageName: "Students List",
+    pageName: "Profile",
   };
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
 
