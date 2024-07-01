@@ -6,6 +6,7 @@ import AdminMentorActionData from "./MentorData";
 import { addNewUser } from "../../../services/User";
 
 const AdminMentorAction = ({
+  count,
   onSubmit,
   onAddSuccess,
   fetchData,
@@ -53,6 +54,7 @@ const AdminMentorAction = ({
     <div>
       <ActionComponent
         {...AdminMentorActionData}
+        count={count}
         buttonProps={{
           ...AdminMentorActionData.buttonProps,
           onClick: handleOpenModal,
