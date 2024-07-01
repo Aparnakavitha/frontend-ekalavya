@@ -12,7 +12,7 @@ import {
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
 
-const AdminSkillAction = ({ setCardAnimation }) => {
+const AdminSkillAction = ({ setCardAnimation, count }) => {
   const { skills, setSkills, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
@@ -57,8 +57,8 @@ const AdminSkillAction = ({ setCardAnimation }) => {
       console.log("search response from search skills", searchedSkill);
       setSkills(searchedSkill);
     } catch (error) {
-      console.error("Error occured in skill search",error);
-      setSkills([]); 
+      console.error("Error occured in skill search", error);
+      setSkills([]);
     }
   };
 
@@ -91,6 +91,7 @@ const AdminSkillAction = ({ setCardAnimation }) => {
 
   const actionData = {
     ...AdminSkillActionData,
+    count,
     buttonProps: {
       ...AdminSkillActionData.buttonProps,
       onClick: handleOpenModal,
@@ -99,7 +100,11 @@ const AdminSkillAction = ({ setCardAnimation }) => {
 
   return (
     <div>
-      <ActionComponent {...actionData} onSearchChange={handleSearchChange} />
+      <ActionComponent
+        {...actionData}
+        count={skills.length}
+        onSearchChange={handleSearchChange}
+      />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddSkill
           onSubmit={handleFormSubmit}
