@@ -177,6 +177,7 @@ const AdminEvent = () => {
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
       />
+       <p className="padding" style={{color:"#baff66"}}>Total events:{events.length}</p>
       {events.length > 0 ? (
         <DataView CardComponent={PrimaryCard} {...primaryCardData} />
       ) : (
