@@ -603,9 +603,9 @@
 }
 
 .common-heading {
-  color: white;
+  color: var(--primary-color);
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
   align-items: flex-end;
 }
 
@@ -857,7 +857,7 @@
 
 .dataview-skilluser {
   flex-basis: 262px;
-  height: 166px;
+  height: 186px;
 }
 
 @media (max-width: 767px) {
