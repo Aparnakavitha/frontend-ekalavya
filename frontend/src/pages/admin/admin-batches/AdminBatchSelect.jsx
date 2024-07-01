@@ -108,7 +108,7 @@ const AdminBatchSelect = () => {
         userId: newParticipantIds,
       });
       const newParticipants = newParticipantsResponse.responseData;
-      if (batchParticipantsData[0].viewAnimation) {
+      if (batchParticipantsData[0]?.viewAnimation !== undefined) {
         batchParticipantsData[0].viewAnimation = false;
       }
 

@@ -144,7 +144,6 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
     <div>
       {skillData.data && skillData.data.length > 0 ? (
         <div>
-          <p className="padding" style={{color:"#baff66"}}>Total skills:{skills.length}</p>
           <DataView CardComponent={SkillBatchCard} {...skillData} />
         </div>
       ) : (

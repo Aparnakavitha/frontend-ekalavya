@@ -4,13 +4,14 @@ import Modal from "../../common/components/Modal";
 import AdminBatchActionData from "./BatchActionData";
 import BatchOperations from "./BatchOperations";
 import { createBatch } from "../../../services/Batch";
-import { toast } from "react-toastify"; 
+import { toast } from "react-toastify";
 
 const AdminBatchAction = ({
   onSearchChange,
   batchData,
   setBatchData,
   setChanged,
+  count,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -43,6 +44,7 @@ const AdminBatchAction = ({
 
   const actionData = {
     ...AdminBatchActionData,
+    count,
     buttonProps: {
       ...AdminBatchActionData.buttonProps,
       onClick: handleOpenModal,
