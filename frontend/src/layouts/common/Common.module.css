@@ -58,7 +58,6 @@
     left: -820px;
     width: 100%;
   }
-
   .sidebar-headingin img {
     display: flex;
     line-height: 0px;
@@ -68,7 +67,6 @@
     height: auto;
     align-items: center;
   }
-
   .sidebar-headingout img {
     display: flex;
     justify-content: center;
@@ -77,7 +75,6 @@
     height: auto;
     align-items: center;
   }
-
   .sidebar-headerresp {
     display: flex;
     align-items: center;
@@ -87,7 +84,6 @@
     padding: 10px;
     width: 100%;
   }
-
   .sidebar-headercontainer {
     display: flex;
     flex-direction: row;
@@ -96,17 +92,14 @@
     width: 100%;
     padding: 10px;
   }
-
   .sidebar-headercontainerout {
     display: flex;
     flex-direction: row;
   }
-
   .sidebar-toggle {
     display: flex;
     cursor: pointer;
   }
-
   .sidebar-list {
     padding-top: 40px;
     display: flex;
@@ -114,23 +107,19 @@
     padding-left: 0px;
     gap: 0px;
   }
-
   .sidebar-hamburger {
     cursor: pointer;
     font-size: 25px;
     color: white;
   }
-
   .sidebar-crossicon {
     cursor: pointer;
     font-size: 30px;
     color: white;
   }
-
   .sidebar.show {
     left: 0;
   }
-
   .sidebar-card {
     display: flex;
     position: absolute;
@@ -138,13 +127,11 @@
     justify-content: center;
     padding-left: 10px;
   }
-
   .sidebar-headerbutton {
     position: absolute;
     bottom: 120px;
     left: 34px;
   }
-
   .sidebarcontainer {
     width: 100%;
     height: 65px;
@@ -155,12 +142,10 @@
   .sidebar {
     width: 190px;
   }
-
   .sidebar-headingin img {
     width: 120px;
     height: auto;
   }
-
   .sidebarcontainer {
     width: 190px;
   }
@@ -280,39 +265,32 @@
     font-size: 10px;
     font-weight: 400;
   }
-
   .footer-copyrightcontent2 {
     font-size: 10px;
   }
-
   .footer-copyright,
   .footer-copyrightleft {
     flex-direction: column;
     align-items: center;
   }
-
   .footer-quote {
     padding: 10px;
     font-size: 24px;
   }
-
   .footer-quoteleft {
     padding: 10px;
     font-size: 24px;
     text-align: center;
   }
-
   .footer-containerleft {
     padding-left: 0px;
     align-items: center;
   }
-
   .footer-logoboxleft {
     padding-left: 0px;
     align-items: center;
     padding: 0px 3vw;
   }
-
   .footer-copyrightleft {
     padding-left: 0px;
     justify-content: center;
@@ -364,7 +342,6 @@
     flex-direction: column;
     gap: 25px;
   }
-
   .common-greenlink {
     display: flex;
     flex-direction: column;
@@ -487,11 +464,9 @@
     padding: 30px;
     border-radius: 30px;
   }
-
   .basicdetails-containerinput-links {
     flex-direction: column;
   }
-
   .basicdetails-links {
     width: 100%;
   }
@@ -628,9 +603,9 @@
 }
 
 .common-heading {
-  color: white;
+  color: var(--primary-color);
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
   align-items: flex-end;
 }
 
@@ -650,27 +625,22 @@
     align-items: flex-start;
     gap: 5px;
   }
-
   .common-bottom {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-
   .common-heading {
     font-size: 18px;
   }
-
   .common-search.common-large,
   .common-search.common-medium,
   .common-search.common-small {
     width: 100%;
   }
-
   .common-buttons {
     width: 100%;
   }
-
   .common-right {
     width: 100%;
     justify-content: space-between;
@@ -682,29 +652,24 @@
     padding: 0;
     /* gap: 20px; */
   }
-
   .common-top {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
   }
-
   .common-heading {
     font-size: 18px;
     order: 1;
   }
-
   .common-bottom {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-
   .common-search {
     width: 100%;
     order: 2;
   }
-
   .common-right {
     width: 100%;
     display: flex;
@@ -712,20 +677,16 @@
     align-items: flex-start;
     order: 3;
   }
-
   .common-reset {
     width: 100%;
   }
-
   .common-buttons {
     width: 100%;
     order: 4;
   }
-
   .common-deletebutton {
     width: 100%;
   }
-
   .common-filter {
     display: flex;
     align-items: flex-start;
@@ -894,6 +855,11 @@
   height: 321px;
 }
 
+.dataview-skilluser {
+  flex-basis: 262px;
+  height: 186px;
+}
+
 @media (max-width: 767px) {
   .dataview-cardscontainer {
     justify-content: center;
@@ -924,6 +890,7 @@
   justify-content: center;
   align-items: center;
   padding: 50px;
+  overflow: hidden;
 }
 
 .addstudent-head {
@@ -1057,11 +1024,9 @@
     width: 100%;
     height: fit-content;
   }
-
   .adduser-head {
     font-size: 18px;
   }
-
   .adduser-form {
     gap: 20px;
   }
@@ -1074,21 +1039,17 @@
     width: 100%;
     height: fit-content;
   }
-
   .adduser-head {
     font-size: 16px;
   }
-
   .adduser-form {
     gap: 15px;
   }
-
   .adduser-field {
     display: flex;
     flex-direction: column;
     gap: 0px;
   }
-
   .adduser-name {
     width: 100%;
   }
@@ -1241,33 +1202,27 @@
     flex-direction: column;
     gap: 5px;
   }
-
   .batchsearch-heading {
     display: flex;
     width: 100%;
   }
-
   .batchsearch-textbutton {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
   }
-
   .batchsearch-bottom {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-
   .batchsearch-right {
     width: 100%;
     justify-content: space-between;
   }
-
   .batchsearch-search {
     width: 100%;
   }
-
   .batchsearch-button {
     width: 100%;
   }
@@ -1280,7 +1235,6 @@
     gap: 10px;
     padding: 0;
   }
-
   .batchsearch-top {
     display: flex;
     flex-direction: column;
@@ -1288,7 +1242,6 @@
     gap: 5px;
     padding: 0;
   }
-
   .batchsearch-textbutton {
     width: 100%;
     display: flex;
@@ -1297,25 +1250,20 @@
     justify-content: space-between;
     padding: 0px 7px;
   }
-
   .batchsearch-bottom {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
-
   .batchsearch-heading {
     font-size: 18px;
   }
-
   .batchsearch-search {
     width: 100%;
   }
-
   .batchsearch-button {
     width: 100%;
   }
-
   .batchsearch-right {
     display: flex;
     flex-direction: row;
@@ -1475,18 +1423,15 @@
   .eventsdescription-hiddenbutton {
     display: none;
   }
-
   .eventsdescription-topleft {
     flex-direction: column;
     align-items: center;
     gap: 10px;
   }
-
   .eventsdescription-align {
     flex-direction: column;
     gap: 20px;
   }
-
   .eventsdescription-primarydiv {
     display: flex;
     justify-content: center;
@@ -1495,7 +1440,6 @@
     flex-direction: column;
     align-items: flex-start;
   }
-
   .eventsdescription-buttondiv2 {
     flex-direction: column;
   }
@@ -1507,12 +1451,10 @@
     align-items: center;
     gap: 10px;
   }
-
   .eventsdescription-align {
     flex-direction: column;
     gap: 20px;
   }
-
   .eventsdescription-primarydiv {
     position: static;
     justify-content: center;
@@ -1527,12 +1469,10 @@
     flex-direction: row;
     justify-content: space-between;
   }
-
   .eventsdescription-align {
     flex-direction: row;
     gap: 50px;
   }
-
   .eventsdescription-primarydiv {
     position: static;
     justify-content: flex-end;
@@ -1604,6 +1544,7 @@
 /* ------------------------------- addprofilelink.css ends here ---------------------------- */
 
 /* ------------------------------- EventMenus.css starts here ------------------------------- */
+
 .eventmenus-container {
   display: flex;
   flex-direction: column;
@@ -1644,35 +1585,32 @@
     flex-direction: row;
     justify-content: space-between;
   }
-
   .eventmenus-title {
     font-size: 23px;
     text-align: left;
   }
-
   .eventmenus-explorebutton {
     width: 53%;
   }
-
   .eventmenus-tabbutton {
     flex-direction: row;
     align-items: center;
     padding: 0px 0px;
   }
-
   .eventmenus-searchbar {
     width: 100%;
   }
 }
+
 @media (min-width: 768px) and (max-width: 992px) {
   .eventmenus-explorebutton {
     width: 33%;
   }
-
   .eventmenus-searchbar {
     width: 100%;
   }
 }
+
 /* ------------------------------- EventMenus.css ends here ------------------------------- */
 
 /* ------------------------------- QualificationForm.css starts here ------------------------------- */
@@ -1717,14 +1655,17 @@
 .qualification-form-button {
   padding-top: 10px;
 }
+
 .qualification-form-error {
   color: var(--warning-color);
   font-size: 0.875rem;
   margin-top: -10px;
 }
+
 .qualification-form-startdate-enddate .qualification-form-error {
   margin-top: 1px;
 }
+
 @media screen and (max-width: 767px) {
   .qualification-form-startdate-enddate {
     flex-direction: column;
@@ -1737,7 +1678,6 @@
   .qualification-form-datebox {
     width: 100%;
   }
-
   .qualification-form-form {
     padding: 30px;
     border-radius: 30px;
@@ -1747,6 +1687,7 @@
 /* --------------------------------------------------- QualificationForm.css ends here ----------------------------------------------------------------------- */
 
 /*-----------------------------------------------------User profile layout css begins here------------------------------------------------------------------------*/
+
 .userprofile-main {
   display: flex;
   flex-direction: column;
@@ -1944,41 +1885,31 @@
     align-items: center;
     margin-bottom: 1rem;
   }
-
   .userprofile-details-section {
     flex-direction: column;
   }
-
   .userprofile-bio {
     align-items: flex-start;
     margin: 0;
   }
-
   .userprofile-title {
     margin-bottom: 1.5rem;
   }
-
   .userprofile-profile-picture {
     margin: 0;
     margin-bottom: 1rem;
   }
-
   .userprofile-basic-info {
     align-items: flex-start;
   }
-
   /*---------------------------------------------------------Media queries for User profile ends here-------------------------------------------------------------*/
-
   /*---------------------------------------------------------Media queries for education starts here--------------------------------------------------------------*/
-
   .education-title2 {
     margin: 0;
   }
-
   .education-qualification-content {
     flex-direction: column;
   }
-
   .education-qualification-instance {
     margin-top: 1rem;
     flex-direction: column;
@@ -2029,9 +1960,11 @@
     padding-left: 5px;
   }
 }
+
 /* ------------------------------- AboutMe.module.css ends here ------------------------------- */
 
 /* ------------------------------- NotFound.module.css starts here ------------------------------- */
+
 .container {
   text-align: center;
   margin-top: 50px;
@@ -2068,7 +2001,6 @@
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }

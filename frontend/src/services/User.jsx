@@ -1,7 +1,7 @@
 // service
 import axios from "axios";
 
-const API_URL = "https://ekalavya.tarento.com";
+const API_URL = "https://ekalavya.tarento.com/api";
 
 // Function to get user details
 export const getUserDetails = async (params) => {

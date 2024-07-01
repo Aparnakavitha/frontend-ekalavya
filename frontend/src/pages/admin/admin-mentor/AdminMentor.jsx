@@ -28,7 +28,17 @@ const fetchMentorData = async (setMentorData, value = "") => {
       data.responseData?.filter(
         (item) => item.role && item.role.roleId === 2
       ) || [];
-    setMentorData(mentorsOnly);
+    var sortedMentors = null;
+    if (mentorsOnly) {
+      sortedMentors = [...mentorsOnly].sort((a, b) => {
+        const nameA = a.firstName.toLowerCase();
+        const nameB = b.firstName.toLowerCase();
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      });
+    }
+    setMentorData(sortedMentors);
   } catch (error) {
     console.error("Error fetching mentor data:", error);
   }
@@ -86,21 +96,30 @@ const AdminMentor = () => {
     showButtons: false,
   };
 
+  let firstTrueAnimationSet = false;
+
   const data = {
-    data: mentorData.map((mentor) => ({
-      studentImage: image,
-      studentName: `${mentor.firstName || "N/A"} ${mentor.lastName || ""}`,
-      studentId: mentor.userId || "",
-      studentCollege: "",
-      studentMail: mentor.emailId || "",
-      studentPhoneNumber: mentor.phoneNo || "\u00A0",
-      studentAddress:
-        mentor.addresses && mentor.addresses.length > 0
-          ? `${mentor.addresses[0].houseName}, ${mentor.addresses[0].city} - ${mentor.addresses[0].pinCode}, ${mentor.addresses[0].state}, ${mentor.addresses[0].country}`
-          : "",
-      canDelete: false,
-      viewAnimation: (cardAnimation && mentor.newEntry) || false,
-    })),
+    data: mentorData.map((mentor) => {
+      const viewAnimation =
+        !firstTrueAnimationSet && cardAnimation && mentor.newEntry;
+      if (viewAnimation) {
+        firstTrueAnimationSet = true;
+      }
+      return {
+        studentImage: image,
+        studentName: `${mentor.firstName || "N/A"} ${mentor.lastName || ""}`,
+        studentId: mentor.userId || "",
+        studentCollege: "",
+        studentMail: mentor.emailId || "",
+        studentPhoneNumber: mentor.phoneNo || "\u00A0",
+        studentAddress:
+          mentor.addresses && mentor.addresses.length > 0
+            ? `${mentor.addresses[0].houseName}, ${mentor.addresses[0].city} - ${mentor.addresses[0].pinCode}, ${mentor.addresses[0].state}, ${mentor.addresses[0].country}`
+            : "",
+        canDelete: false,
+        viewAnimation: viewAnimation,
+      };
+    }),
     tableColumns: [
       { key: "studentId", displayName: "Mentor ID" },
       { key: "studentName", displayName: "Name" },

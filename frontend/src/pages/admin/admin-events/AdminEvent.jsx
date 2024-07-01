@@ -5,7 +5,7 @@ import AdminEventAction from "../../../layouts/admin-event/components/AdminEvent
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { addEventService } from "../../../services/Event";
 import { fetchEventsService } from "../../../services/Event";
-import { toast } from "react-toastify"; 
+import { toast } from "react-toastify";
 
 const AdminEvent = () => {
   const [events, setEvents] = useState([]);
@@ -39,7 +39,17 @@ const AdminEvent = () => {
         );
         console.log("Fetching events with params:", filteredParams);
         const response = await fetchEventsService(filteredParams);
-        setEvents(response || []);
+        var sortedEvents = null;
+        if (response) {
+          sortedEvents = [...response].sort((a, b) => {
+            const nameA = a.eventTitle.toLowerCase();
+            const nameB = b.eventTitle.toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+          });
+        }
+        setEvents(sortedEvents || []);
         console.log("Fetched events:", response);
       } catch (error) {
         console.log("Error fetching events:", error);
@@ -80,7 +90,8 @@ const AdminEvent = () => {
   const formSubmit = async (data) => {
     try {
       const response = await addEventService(data);
-      console.log("Response from API:", response);
+      const updatedEvents = [data, ...events];
+      setEvents(updatedEvents);
       toast.success("Event created successfully!");
     } catch (error) {
       toast.error("Error creating event:", error);

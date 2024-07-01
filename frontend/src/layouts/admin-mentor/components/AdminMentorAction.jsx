@@ -14,6 +14,7 @@ const AdminMentorAction = ({
   setCardAnimation,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -40,9 +41,11 @@ const AdminMentorAction = ({
       newMentor.newEntry = true;
       setCardAnimation(true);
       setMentorData((prevMentorsData) => [newMentor, ...prevMentorsData]);
+      setSubmitError("");
       handleCloseModal();
     } catch (error) {
       console.error("Error adding new user:", error);
+      setSubmitError("Email ID already registered");
     }
   };
 
@@ -61,6 +64,7 @@ const AdminMentorAction = ({
         <AddUser
           {...AdminMentorActionData.adduserprops}
           onSubmit={handleFormSubmit}
+          submitError={submitError}
         />
       </Modal>
     </div>

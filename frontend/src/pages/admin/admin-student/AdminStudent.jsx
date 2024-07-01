@@ -53,7 +53,18 @@ const fetchStudentsData = async (setStudentsData, params) => {
         (item) => item.role && item.role.roleId === 3
       ) || [];
 
-    setStudentsData(studentsOnly);
+    var sortedStudents = null;
+    if (studentsOnly) {
+      sortedStudents = [...studentsOnly].sort((a, b) => {
+        const nameA = a.firstName.toLowerCase();
+        const nameB = b.firstName.toLowerCase();
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+      });
+    }
+
+    setStudentsData(sortedStudents);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -218,17 +229,27 @@ const AdminStudent = () => {
     combinedFilter: false,
   };
 
+  let firstTrueAnimationSet = false;
+
   const dataView = {
-    data: studentsData.map((student) => ({
-      studentImage: image,
-      studentName: `${student.firstName || ""} ${student.lastName || ""}`,
-      studentId: student.userId || "",
-      studentCollege: student.college.collegeName || "",
-      studentMail: student.emailId || "",
-      studentPhoneNumber: student.phoneNo || "",
-      canDelete: false,
-      viewAnimation: (cardAnimation && student.newEntry) || false,
-    })),
+    data: studentsData.map((student) => {
+      const viewAnimation =
+        !firstTrueAnimationSet && cardAnimation && student.newEntry;
+      if (viewAnimation) {
+        firstTrueAnimationSet = true;
+      }
+
+      return {
+        studentImage: image,
+        studentName: `${student.firstName || ""} ${student.lastName || ""}`,
+        studentId: student.userId || "",
+        studentCollege: student.college.collegeName || "",
+        studentMail: student.emailId || "",
+        studentPhoneNumber: student.phoneNo || "",
+        canDelete: false,
+        viewAnimation: viewAnimation,
+      };
+    }),
     tableColumns: [
       { key: "studentId", displayName: "Student ID" },
       { key: "studentName", displayName: "Name" },
@@ -320,8 +341,8 @@ const AdminStudent = () => {
   const handleAddStudentFormSubmit = async (formData) => {
     try {
       formData.roleId = 3;
-      formData.profilePicture =
-        "https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg";
+      // formData.profilePicture =
+      //   "https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg";
 
       const response = await addNewUser(formData);
       const newStudent = response.responseData;

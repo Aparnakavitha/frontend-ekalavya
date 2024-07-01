@@ -90,8 +90,10 @@ const Layout = () => {
       setUserSkills((prevSkills) => [...prevSkills, newSkill]);
       setSkillAdded(true);
       console.log("Skill added successfully:", newSkill);
+      toast.success("New skill added successfully!");
       setIsOpen(false);
     } catch (error) {
+      toast.info(error.message || "Error adding skill!");
       console.error("Error adding skill:", error);
     }
   };
@@ -100,7 +102,6 @@ const Layout = () => {
     try {
     console.log("Here's the form data:", formData);
     handleAddSkill(formData);
-    toast.success("New skill added successfully!");
     } catch (error) {
     toast.error("Error adding skill!");
     }

@@ -44,7 +44,6 @@ const AdminStudentDetails = () => {
   const location = useLocation();
   const { studentsData: selectedStudent } = location.state || {};
 
-
   const fetchStudentEvents = async (participantId) => {
     try {
       const response = await enrollParticipantService(
@@ -95,7 +94,6 @@ const AdminStudentDetails = () => {
 
   const handleCloseEditBasicDetails = () => setIsEditDetailsOpen(false);
 
-
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Data", formData);
@@ -109,13 +107,10 @@ const AdminStudentDetails = () => {
   };
 
   useEffect(() => {
-    if (selectedStudent) {
-      setStudentData(selectedStudent);
-    }
-  }, [selectedStudent]);
-
-  useEffect(() => {
     const fetchData = async () => {
+      if (selectedStudent) {
+        setStudentData(selectedStudent);
+      }
       if (studentsData?.userId) {
         await fetchStudentDetails(studentsData.userId, setStudentData);
         const studentEvents = await fetchStudentEvents(studentsData.userId);
@@ -123,8 +118,9 @@ const AdminStudentDetails = () => {
         await fetchEventOptions(enrolledEventIds);
       }
     };
+
     fetchData();
-  }, [studentsData]);
+  }, [userId, selectedStudent, studentsData?.userId]);
 
   const handleFormSubmit = async (formData) => {
     try {
@@ -162,17 +158,24 @@ const AdminStudentDetails = () => {
       await addEnrollmentService(enrollmentData.selectedEventId, {
         participantId: studentsData.userId,
       });
-      const updatedEvents = await fetchStudentEvents(studentsData.userId);
-      const enrolledEventIds = updatedEvents.map((event) => event.eventId);
+  
+      const newEvents = await fetchStudentEvents(studentsData.userId);
+      
+      const newEventDetails = newEvents.find(event => event.eventId === enrollmentData.selectedEventId);
+  
+      setStudentEvents([newEventDetails, ...newEvents.filter(event => event.eventId !== enrollmentData.selectedEventId)]);
+  
+      const enrolledEventIds = newEvents.map((event) => event.eventId);
       await fetchEventOptions(enrolledEventIds);
+  
       toast.success("Event added successfully!");
     } catch (error) {
       toast.error("Error enrolling in event!");
     }
   };
+  
 
   const Education = studentsData ? studentsData.qualifications : [];
-
 
   const handleDelete = async () => {
     try {
@@ -185,9 +188,7 @@ const AdminStudentDetails = () => {
         console.error("studentsData or studentsData.userId is not defined");
       }
     } catch (error) {
-      toast.error(
-        `Error deleting user with userId ${studentsData.userId}:`,
-      );
+      toast.error(`Error deleting user with userId ${studentsData.userId}:`);
     }
   };
 
