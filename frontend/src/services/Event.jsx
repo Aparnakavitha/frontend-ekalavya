@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://ekalavya.tarento.com/events";
+const BASE_URL = "https://ekalavya.tarento.com/api/events";
 
 export const fetchEventsService = async (params = {}) => {
   try {

@@ -28,8 +28,8 @@ const Skillsearch = () => {
     { value: "pqr", label: "PQR" },
   ];
 
-  const [userSkillData, setuserSkillData] = useState([]);
-  const [searchResults, setsearchResults] = useState([]);
+  const [userSkillData, setUserSkillData] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -38,13 +38,16 @@ const Skillsearch = () => {
         const skillsData = await getSkillsForUser("");
         const results = skillsData.responseData || skillsData;
         if (results && results.length > 0) {
-          setuserSkillData(results && results.length > 0 ? results : []);
+          const sortedSkills = results.sort((a, b) =>
+            a.firstName.localeCompare(b.firstName)
+          );
+          setUserSkillData(sortedSkills);
           setError(null);
         } else {
           setError("No students found");
         }
       } catch (error) {
-        setuserSkillData([]);
+        setUserSkillData([]);
         setError("Failed to fetch student skills.");
       }
     }
@@ -74,7 +77,7 @@ const Skillsearch = () => {
         .includes(searchTerm.toLowerCase())
     );
     if (filtered && filtered.length > 0) {
-      setsearchResults(filtered);
+      setSearchResults(filtered);
       setError(null);
     } else {
       setError(`Student ${searchTerm} not found`);
@@ -82,7 +85,7 @@ const Skillsearch = () => {
   };
 
   const clearSearch = () => {
-    setsearchResults([]);
+    setSearchResults([]);
     setError(null);
   };
 

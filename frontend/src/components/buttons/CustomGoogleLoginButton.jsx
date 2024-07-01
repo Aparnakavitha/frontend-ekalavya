@@ -54,7 +54,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     console.log("Participant ID:", participantId);
 
     try {
-      const response = await axios.post("https://ekalavya.tarento.com/login", {
+      const response = await axios.post("https://ekalavya.tarento.com/api/login", {
         email,
       });
       const { roleId, userId } = response.data.responseData;
