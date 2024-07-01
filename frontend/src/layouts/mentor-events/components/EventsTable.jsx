@@ -6,7 +6,7 @@ import TextButton from "../../../components/buttons/TextButton";
 import { TfiExport } from "react-icons/tfi";
 
 const EventsTable = (props) => {
-  const { data, headings, onAttendanceUpdate, disableAttendance } = props;
+  const { data, headings, onAttendanceUpdate, disableAttendance, eventName } = props;
 
   const [attendance, setAttendance] = useState(
     data.reduce((acc, [id, , , attendance]) => {
@@ -86,7 +86,7 @@ const EventsTable = (props) => {
 
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", "attendance.csv");
+    link.setAttribute("download", `${eventName}.csv`); 
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

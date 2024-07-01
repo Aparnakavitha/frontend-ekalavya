@@ -6,6 +6,7 @@ import {
   addEnrollmentService,
 } from "../../../services/Event";
 import { eventNameState } from "../admin-student/Atom";
+import { eventCompleted } from "../admin-student/Atom";
 import { useRecoilValue } from "recoil";
 import { toast } from "react-toastify";
 import NavButton from "../../../components/buttons/NavButton";
@@ -13,6 +14,7 @@ import NavButton from "../../../components/buttons/NavButton";
 const AdminEventParticipants = () => {
   const { eventId } = useParams();
   const eventName = useRecoilValue(eventNameState);
+  const eventComp = useRecoilValue(eventCompleted);
   const [participants, setParticipants] = useState([]);
   const [headings, setHeadings] = useState([]);
   const pageNames = [`${eventName}`, "participants"];
@@ -68,19 +70,19 @@ const AdminEventParticipants = () => {
     headings: ["Participant ID", "Name", "Email ID", "Attendance"],
     logAttendance: () => {},
     onAttendanceUpdate: handleAttendanceUpdate,
-    disableAttendance: false,
+    disableAttendance: eventComp === 0, 
     onClick: handleNavButtonClick,
-    pageNames: { pageNames },
+    pageNames: pageNames.join(' > '), 
   };
 
   return (
     <div>
-      <div style={{ display: 'flex', gap: '10px', paddingLeft: '4vw' }}>
+      <div style={{ display: "flex", gap: "10px", paddingLeft: "4vw" }}>
         <NavButton pageName={eventName} />
         <NavButton pageName="Participants" />
       </div>
 
-      <EventsTable {...tableContent} />
+      <EventsTable {...tableContent} eventName={eventName} />
     </div>
   );
 };
