@@ -83,6 +83,7 @@ const AdminEvent = () => {
     ],
     toggle: true,
     itemsPerPage: 8,
+    cardType: "primarycard",
   };
 
   console.log("primaryCardData:", primaryCardData);
