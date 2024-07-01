@@ -18,7 +18,7 @@ const loggedUserFirstName = sessionStorage.getItem("firstName");
 
 const greeting = {
   welcome: "Welcome back",
-  name: loggedUserFirstName || "",
+  name: loggedUserFirstName,
   info: "Here is the information about",
   profile: "Batches",
   showButtons: false,
