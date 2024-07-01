@@ -16,30 +16,35 @@ const AdminBatchAction = ({
   const [isOpen, setIsOpen] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const navigate = useNavigate();
- 
+
   const handleOpenModal = () => {
     setSubmitError("");
     setIsOpen(true);
   };
- 
+
   const handleCloseModal = () => {
     setSubmitError("");
     setIsOpen(false);
   };
- 
+
   const handleFormSubmit = async (formData) => {
     try {
       const { batchName } = formData;
       const response = await createBatch({ batchName: batchName });
+      if (batchData[0]?.viewAnimation !== undefined) {
+        batchData[0].viewAnimation = false;
+      }
       const newBatch = {
         miniHeading: `B${response[0].batchId}`,
         mainHeading: response[0].batchName || "",
         Count: response[0].participantCount,
         cardType: "batch",
         showCount: true,
-        handleClick: () => handleClick(response[0].batchId, response[0].batchName),
+        viewAnimation: true,
+        handleClick: () =>
+          handleClick(response[0].batchId, response[0].batchName),
       };
-    
+
       setBatchData([newBatch, ...(batchData || [])]);
       setIsOpen(false);
       setSubmitError("");
@@ -55,7 +60,7 @@ const AdminBatchAction = ({
       state: { batchName },
     });
   };
- 
+
   const actionData = {
     ...AdminBatchActionData,
     count,
@@ -64,7 +69,7 @@ const AdminBatchAction = ({
       onClick: handleOpenModal,
     },
   };
- 
+
   return (
     <div>
       <ActionComponent {...actionData} onSearchChange={onSearchChange} />
@@ -78,5 +83,5 @@ const AdminBatchAction = ({
     </div>
   );
 };
- 
+
 export default AdminBatchAction;
