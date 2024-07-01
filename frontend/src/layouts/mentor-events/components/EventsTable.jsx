@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "../MentorEvents.module.css";
 import Table from "../../../components/table/Table";
 import AttendanceButton from "../../../components/buttons/AttendanceButton";
+import TextButton from "../../../components/buttons/TextButton";
+import { TfiExport } from "react-icons/tfi";
 
 const EventsTable = (props) => {
   const { data, headings, onAttendanceUpdate, disableAttendance } = props;
@@ -67,6 +69,29 @@ const EventsTable = (props) => {
     }
   };
 
+  const handleExportClick = () => {
+    const csvData = [["Participant ID", "Name", "Username", "Attendance"]];
+    data.forEach(([participantId, name, userName]) => {
+      csvData.push([
+        participantId,
+        name,
+        userName,
+        attendance[participantId] ? "Present" : "Absent",
+      ]);
+    });
+
+    const csvContent = csvData.map((e) => e.join(",")).join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "attendance.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const allPresent = Object.values(attendance).every((value) => value === true);
   const allAbsent = Object.values(attendance).every((value) => value === false);
 
@@ -114,6 +139,7 @@ const EventsTable = (props) => {
     <div className={`${styles["eventstable-container"]} padding padding-bottom`}>
       <div className={styles["eventstable-topleft"]}>
         <h2>Mark Attendance</h2>
+        <TextButton text="Export" icon={<TfiExport />} onClick={handleExportClick} />
       </div>
       <div className={styles["eventstable-table"]}>
         <div>{globalAttendanceButtons}</div>
@@ -121,7 +147,7 @@ const EventsTable = (props) => {
           <Table
             data={tableData}
             headings={headings.slice(0, 3).concat("Status")}
-            noData = {"No participants available"}
+            noData={"No participants available"}
           />
         </div>
       </div>

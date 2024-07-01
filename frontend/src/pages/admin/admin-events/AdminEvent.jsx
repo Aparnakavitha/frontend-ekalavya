@@ -83,6 +83,7 @@ const AdminEvent = () => {
     ],
     toggle: true,
     itemsPerPage: 8,
+    cardType: "primarycard",
   };
 
   console.log("primaryCardData:", primaryCardData);
@@ -171,6 +172,7 @@ const AdminEvent = () => {
     <div>
       <Greeting {...greeting} />
       <AdminEventAction
+        count={events.length}
         formSubmit={formSubmit}
         AdminEventActionData={AdminEventActionData}
         onFilterChange={handleFilterChange}

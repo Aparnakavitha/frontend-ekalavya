@@ -4,7 +4,7 @@ import styles from "../Common.module.css";
 
 const ShowCards = ({ heading, textbuttonprops }) => {
   return (
-    <div className="padding padding-top padding-bottom">
+    <div className="padding padding-top">
       <div className={`${styles["showcards-container"]}`}>
         <div className={`${styles["showcards-heading"]}`}>{heading}</div>
         <div className={`${styles["showcards-addbutton"]}`}>
