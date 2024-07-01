@@ -413,6 +413,7 @@ const AdminStudent = () => {
 
       <ActionComponent
         {...actionData}
+        count={studentsData.length}
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
       />

@@ -100,6 +100,7 @@ const AdminBatchList = () => {
         showButtons={false}
       />
       <AdminBatchAction
+        count={batchData ? batchData.length : 0}
         onSearchChange={handleSearchChange}
         setBatchData={setBatchData}
         setChanged={setChanged}

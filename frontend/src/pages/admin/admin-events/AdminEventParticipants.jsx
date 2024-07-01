@@ -1,64 +1,89 @@
-import { React, useEffect, useState } from "react";
-import EventParticipantsList from "../../../layouts/admin-event/components/EventParticipantsList";
-import { enrollParticipantService } from "../../../services/Event";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchEventsService } from "../../../services/Event";
-import { eventNameState } from "../admin-student/Atom"; 
-import { useRecoilValue } from 'recoil';
-
+import EventsTable from "../../../layouts/mentor-events/components/EventsTable";
+import {
+  enrollParticipantService,
+  addEnrollmentService,
+} from "../../../services/Event";
+import { eventNameState } from "../admin-student/Atom";
+import { eventCompleted } from "../admin-student/Atom";
+import { useRecoilValue } from "recoil";
+import { toast } from "react-toastify";
+import NavButton from "../../../components/buttons/NavButton";
 
 const AdminEventParticipants = () => {
   const { eventId } = useParams();
-  const eventName = useRecoilValue(eventNameState); 
-  const [enrollData, setEnrollData] = useState([]);
+  const eventName = useRecoilValue(eventNameState);
+  const eventComp = useRecoilValue(eventCompleted);
+  const [participants, setParticipants] = useState([]);
   const [headings, setHeadings] = useState([]);
-  const pageNames = [`${eventName}`,"participants"];
+  const pageNames = [`${eventName}`, "participants"];
+
   const handleNavButtonClick = (pageName) => {
     console.log(`Navigating to ${pageName}`);
   };
 
   useEffect(() => {
-    fetchEnrollData();
+    fetchParticipants();
   }, [eventId]);
 
-  const fetchEnrollData = async () => {
+  const fetchParticipants = async () => {
     try {
-      const enroll = await enrollParticipantService(eventId);
-      setEnrollData(enroll.responseData);
-      console.log(" successful");
-      if (enroll.responseData.length > 0) {
-        const firstObject = enroll.responseData[0];
-        const keys = Object.keys(firstObject);
-        const filteredHeadings = keys.filter((key) => key !== "attendance");
-        const formattedHeadings = filteredHeadings.map((key) => {
-          return key.replace(/([A-Z])/g, " $1").trim();
+      const response = await enrollParticipantService(eventId);
+      if (response.statusMessage === "success") {
+        const updatedParticipants = response.responseData.map((participant) => {
+          return participant;
         });
+        setParticipants(updatedParticipants);
 
-        setHeadings(formattedHeadings);
+        if (updatedParticipants.length > 0) {
+          const keys = Object.keys(updatedParticipants[0]);
+          const filteredHeadings = keys.filter((key) => key !== "attendance");
+          const formattedHeadings = filteredHeadings.map((key) => {
+            return key.replace(/([A-Z])/g, " $1").trim();
+          });
+          setHeadings(formattedHeadings);
+        }
       }
     } catch (error) {
-      console.log("Error getting participants:", error);
+      console.error("Error fetching participants:", error);
     }
   };
 
-  const edata = [];
+  const handleAttendanceUpdate = async (attendance) => {
+    try {
+      const response = await addEnrollmentService(eventId, attendance);
+      console.log("Enrollment response:", response);
+      fetchParticipants();
+    } catch (error) {
+      console.error("Error updating enrollment:", error);
+    }
+  };
 
-  for (let i = 0; i < enrollData.length; i++) {
-    const studentData = [
-      enrollData[i].participantId,
-      enrollData[i].name,
-      enrollData[i].userName,
-    ];
-    edata.push(studentData);
-  }
+  const tableContent = {
+    data: participants.map((participant) => [
+      participant.participantId,
+      participant.name,
+      participant.userName,
+      participant.attendance,
+    ]),
+    headings: ["Participant ID", "Name", "Email ID", "Attendance"],
+    logAttendance: () => {},
+    onAttendanceUpdate: handleAttendanceUpdate,
+    disableAttendance: eventComp === 0, 
+    onClick: handleNavButtonClick,
+    pageNames: pageNames.join(' > '), 
+  };
 
   return (
-    <EventParticipantsList
-      data={edata}
-      headings={["Participant ID", "Name", "Email ID"]}
-      onClick={handleNavButtonClick}
-      pageNames={pageNames}
-    />
+    <div>
+      <div style={{ display: "flex", gap: "10px", paddingLeft: "4vw" }}>
+        <NavButton pageName={eventName} />
+        <NavButton pageName="Participants" />
+      </div>
+
+      <EventsTable {...tableContent} eventName={eventName} />
+    </div>
   );
 };
 
