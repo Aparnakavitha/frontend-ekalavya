@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "https://ekalavya.tarento.com/skills";
-const BASEURL = "https://ekalavya.tarento.com/skills/users";
+const BASE_URL = "https://ekalavya.tarento.com/api/skills";
+const BASEURL = "https://ekalavya.tarento.com/api/skills/users";
 
 /**
  * Fetches skills from the API.
