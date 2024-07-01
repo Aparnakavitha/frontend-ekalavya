@@ -3,6 +3,8 @@ import { Greeting } from "../../../layouts/common";
 import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBatchSearch";
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+
 import {
   fetchBatchParticipants,
   updateBatch,
@@ -15,8 +17,8 @@ import image from "../../../assets/DP.png";
 const loggedUserFirstName = sessionStorage.getItem("firstName");
 
 const greeting = {
-  welcome: "Welcome Back",
-  name: loggedUserFirstName || "",
+  welcome: "Welcome back",
+  name: loggedUserFirstName,
   info: "Here is the information about",
   profile: "Batches",
   showButtons: false,
@@ -28,6 +30,7 @@ const AdminBatchSelect = () => {
   const location = useLocation();
   const [batchName, setBatchName] = useState(location.state?.batchName || "");
   const [batchParticipantsData, setBatchParticipantsData] = useState([]);
+  const [newParticipantsData, setNewParticipantsData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -46,7 +49,7 @@ const AdminBatchSelect = () => {
         const userDetails = userDetailsResponse.responseData;
 
         const BatchParticipantsData = userDetails.map((userDetail) => ({
-          studentImage: userDetail?.profilePicture || image,
+          studentImage: image,
           studentName: `${userDetail?.firstName || ""} ${
             userDetail?.lastName || ""
           }`,
@@ -58,7 +61,11 @@ const AdminBatchSelect = () => {
           viewAnimation: false,
         }));
 
+        BatchParticipantsData.sort((a, b) =>
+          a.studentName.localeCompare(b.studentName)
+        );
         setBatchParticipantsData(BatchParticipantsData);
+        setNewParticipantsData([]);
       } else {
         setBatchParticipantsData([]);
       }
@@ -73,8 +80,10 @@ const AdminBatchSelect = () => {
       const batchId = params.batchId;
       await updateBatch({ batchId, batchName: newBatchName });
       setBatchName(newBatchName);
+      toast.success("Batch name updated successfully!");
     } catch (error) {
       console.error("Error updating batch name:", error);
+      toast.error("Error updating batch name!");
     }
   };
 
@@ -82,7 +91,9 @@ const AdminBatchSelect = () => {
     try {
       await deleteBatch(batchId);
       navigate(`/admin/batches`);
+      toast.success("Batch deleted successfully!");
     } catch (error) {
+      toast.error("Error deleting batch!");
       console.error("Error deleting batch:", error);
     }
   };
@@ -90,10 +101,52 @@ const AdminBatchSelect = () => {
   const addParticipant = async (studentIds) => {
     try {
       const batchId = params.batchId;
-      await postUserIds({ batchId, userIds: studentIds });
-      fetchData();
+      const response = await postUserIds({ batchId, userIds: studentIds });
+
+      const newParticipantIds = studentIds.join(",");
+      const newParticipantsResponse = await getUserDetails({
+        userId: newParticipantIds,
+      });
+      const newParticipants = newParticipantsResponse.responseData;
+      if (batchParticipantsData[0]?.viewAnimation !== undefined) {
+        batchParticipantsData[0].viewAnimation = false;
+      }
+
+      const newParticipantsData = newParticipants.map((userDetail) => ({
+        studentImage: image,
+        studentName: `${userDetail?.firstName || ""} ${
+          userDetail?.lastName || ""
+        }`,
+        studentId: userDetail.userId || "",
+        studentCollege: userDetail?.college?.collegeName || "N/A",
+        studentMail: userDetail?.emailId || "N/A",
+        studentPhoneNumber: userDetail?.phoneNo || "N/A",
+        canDelete: true,
+        viewAnimation: true,
+      }));
+
+      setNewParticipantsData(newParticipantsData);
+      setBatchParticipantsData((prevData) => [
+        ...newParticipantsData,
+        ...prevData,
+      ]);
+
+      if (response.statusCode === 200) {
+        toast.success("Added new student successfully!");
+        console.log("Participant added successfully.");
+      } else {
+        const errorMessage =
+          response?.errorMessage?.match(/\[(.*?)\]/)?.[1] || "Unknown error";
+        toast.error(errorMessage);
+        console.error("Error adding participant:", errorMessage);
+      }
+
+      console.log("Response data:", response.data);
+      return response.data;
     } catch (error) {
+      toast.error("Error adding participant!");
       console.error("Error adding participant:", error);
+      throw error;
     }
   };
 
@@ -106,6 +159,7 @@ const AdminBatchSelect = () => {
         setBatchName={setBatchName}
         batchName={batchName}
         batchId={params.batchId}
+        batchParticipantsData={batchParticipantsData}
       />
       {batchParticipantsData.length > 0 ? (
         <AdminBatchParticipants
@@ -121,11 +175,13 @@ const AdminBatchSelect = () => {
             toggle: true,
             itemsPerPage: 15,
             deleteProps: {
-              title: "Confirmation Required",
-              message: "Are you sure you want to remove this user?",
-              buttonText: "Confirm",
+              title: "Delete Participant",
+              message: "Are you sure you want to delete this participant?",
+              buttonText: "Delete",
             },
           }}
+          batchId={batchId}
+          fetchData={fetchData}
         />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>

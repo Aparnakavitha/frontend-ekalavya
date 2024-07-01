@@ -49,6 +49,7 @@ const AdminContent = () => {
           return;
         }
         console.log("Fetched User ID:", userId);
+        console.log("UserId is of type:",typeof(userId));
         const params = {
           userId: userId,
         };
@@ -143,8 +144,8 @@ const AdminContent = () => {
   const footercontent = {
     Logo: edunexa,
     quoteContent: "Embark on Your Learning Journey Today!",
-    copyrightContent: "All rights reserved © 2024 Tarento Group.",
-    copyrightContent2: " | Privacy Policy",
+    copyrightContent: "All rights reserved © 2024 Tarento Group. |",
+    copyrightContent2: "Privacy Policy",
     isLeftALigned: true,
   };
 

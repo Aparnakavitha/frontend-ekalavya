@@ -13,8 +13,9 @@ import {
   useSkills,
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
+import { toast } from "react-toastify";
 
-const AdminSkillAction = () => {
+const AdminSkillAction = ({ setCardAnimation, count }) => {
   const { skills, setSkills, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -24,6 +25,7 @@ const AdminSkillAction = () => {
   const handleOpenModal = () => {
     setIsOpen(true);
     setError("");
+    setCardAnimation(false);
   };
 
   const handleCloseModal = () => {
@@ -35,12 +37,14 @@ const AdminSkillAction = () => {
     setDeleteSkillId(skillId);
     setIsDeleteOpen(true);
     setError("");
+    setCardAnimation(false);
   };
 
   const handleCloseDelete = () => {
     setIsDeleteOpen(false);
     setDeleteSkillId(null);
     setError("");
+    setCardAnimation(false);
   };
 
   const handleFormSubmit = async (skill) => {
@@ -51,8 +55,9 @@ const AdminSkillAction = () => {
         id: response.responseData[0].id,
         count: response.responseData[0].count,
       };
-      setSkills([...skills, newSkill]);
-      setChanged(true);
+      newSkill.newEntry = true;
+      setCardAnimation(true);
+      setSkills([newSkill, ...skills]);
       handleCloseModal();
       setError("");
     } catch (error) {
@@ -75,12 +80,19 @@ const AdminSkillAction = () => {
   };
 
   const handleSearchChange = async (value) => {
-    const searchedSkill = await filterSkills(value);
-    setSkills(searchedSkill);
+    try {
+      const searchedSkill = await filterSkills(value);
+      console.log("search response from search skills", searchedSkill);
+      setSkills(searchedSkill);
+    } catch (error) {
+      console.error("Error occured in skill search", error);
+      setSkills([]);
+    }
   };
 
   const actionData = {
     ...AdminSkillActionData,
+    count,
     buttonProps: {
       ...AdminSkillActionData.buttonProps,
       onClick: handleOpenModal,
@@ -93,7 +105,11 @@ const AdminSkillAction = () => {
 
   return (
     <div>
-      <ActionComponent {...actionData} onSearchChange={handleSearchChange} />
+      <ActionComponent
+        {...actionData}
+        count={skills.length}
+        onSearchChange={handleSearchChange}
+      />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddSkill
           onSubmit={handleFormSubmit}

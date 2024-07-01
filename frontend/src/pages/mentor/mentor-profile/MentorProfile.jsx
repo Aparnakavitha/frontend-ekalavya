@@ -45,7 +45,6 @@ const MentorProfile = () => {
       const response = await updateUserDetails(formData);
       console.log("Update response:", response);
       fetchData();
-      toast.success("Details updated successfully!");
     } catch (error) {
       console.error("Error updating user details:", error);
     }
@@ -60,7 +59,7 @@ const MentorProfile = () => {
   }
 
   const greet = {
-    welcome: "Welcome Back",
+    welcome: "Welcome back",
     name: `${mentorData.firstName}`,
     showButtons: false,
   };

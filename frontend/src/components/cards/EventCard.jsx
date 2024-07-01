@@ -5,7 +5,7 @@ import styles from "./EventCard.module.css";
 const EventCard = (props) => {
   const {
     main = "All hands meeting",
-    sub = "http://www.zoom.com",
+    sub = "",
     start = "10:30am",
     end = "11:30am",
     status = "due",
@@ -15,7 +15,7 @@ const EventCard = (props) => {
   } = props;
 
   const formatText = (text) => {
-    if (text.length > 17) {
+    if (text.length > 20) {
       text = text.slice(0, 17) + "... ";
     }
     return text;
@@ -35,17 +35,7 @@ const EventCard = (props) => {
             <h1 className={`${styles.main}`} title={main}>{formatText(main)}</h1>
 
             <h4 className={`${styles.sub}`}>
-              <u>
-                <a
-                  href={`${sub}`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                  title={sub}
-                >
                   {formatText(sub)}
-                </a>
-              </u>
             </h4>
           </div>
 

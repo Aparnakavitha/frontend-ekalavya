@@ -10,12 +10,13 @@ import { SkillsProvider, setParticipants } from "./AdminSkillContext";
 const AdminSkill = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+  const [cardAnimation, setCardAnimation] = useState(false);
 
   const handleClick = (skillData) => {
     console.log("Data from skill card: ", skillData);
     if (!isValidSkill(skillData)) {
       setErrorMessage("Skill already exists.");
-      console.log("Error message set:", errorMessage); // Check if errorMessage is set
+      console.log("Error message set:", errorMessage);
       return;
     }
 
@@ -25,29 +26,32 @@ const AdminSkill = () => {
   };
 
   const isValidSkill = (skillData) => {
-    // Example function to validate skill data (e.g., check if skill already exists)
-    return !AdminSkillData.skillExists(skillData); // Replace with actual check
+    return !AdminSkillData.skillExists(skillData);
   };
 
   const loggedUserFirstName = sessionStorage.getItem("firstName");
 
   const greet = {
-    welcome: "Welcome Back",
+    welcome: "Welcome back",
     name: loggedUserFirstName || "",
     info: "Here is the information about",
     profile: "skills",
     showButtons: false,
   };
 
-  console.log("Rendering with errorMessage:", errorMessage); // Check if component renders with errorMessage
+  console.log("Rendering with errorMessage:", errorMessage);
 
   return (
     <SkillsProvider>
       <div>
         <Greeting {...greet} />
-        <AdminSkillAction />
-        
-        <AdminSkillsList handleClick={handleClick} />
+        <AdminSkillAction setCardAnimation={setCardAnimation} />
+
+        <AdminSkillsList
+          handleClick={handleClick}
+          cardAnimation={cardAnimation}
+          setCardAnimation={setCardAnimation}
+        />
         {errorMessage && <div className="error-message">{errorMessage}</div>}
       </div>
     </SkillsProvider>

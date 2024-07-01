@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AdminEventDescription from "../../../layouts/admin-event/components/AdminEventDescription";
-import { addEventService, fetchEventsService, deleteEventService } from "../../../services/Event";
+import {
+  addEventService,
+  fetchEventsService,
+  deleteEventService,
+} from "../../../services/Event";
 import { getUserDetails } from "../../../services/User";
+import { toast } from "react-toastify";
+import { eventNameState } from "../admin-student/Atom";
+import { eventCompleted } from "../admin-student/Atom";
+import { useRecoilState } from "recoil";
 
 const AdminEventDetails = () => {
   const { eventId } = useParams();
   const [eventData, setEventData] = useState(null);
   const [organizerData, setOrganizerData] = useState(null);
+  const [eventComplete, setEventComplete] = useRecoilState(eventCompleted);
+  const [eventName, setEventName] = useRecoilState(eventNameState);
 
   const fetchEventData = async () => {
     try {
       const eventDataResponse = await fetchEventsService({ eventId });
       const event = eventDataResponse[0];
       setEventData(event);
+      setEventName(event.eventTitle);
+      setEventComplete(event.completed);
       if (event?.hostId) {
         await fetchOrganizerData(event.hostId);
       }
@@ -41,14 +53,15 @@ const AdminEventDetails = () => {
   }, [eventId]);
 
   const formSubmit = async (data) => {
-    data.contact = "7558845220";
     data.hostId = eventData.hostId;
     try {
       const response = await addEventService(data);
       console.log("Response from API:", response);
       fetchEventData();
+      toast.success("Event updated successfully!");
     } catch (error) {
-      console.error("Error creating event:", error);
+      console.error("Error updating event:", error);
+      toast.error("Error updating event:", error);
     }
   };
 
@@ -56,15 +69,21 @@ const AdminEventDetails = () => {
     try {
       await deleteEventService(eventId);
       console.log("Event deleted successfully");
+      toast.success("Event deleted successfully!");
     } catch (error) {
       console.error("Error deleting event:", error);
+      toast.error("Error deleting event:", error);
     }
   };
 
   return (
     <div className="padding">
       <AdminEventDescription
-        organizer={organizerData ? `${organizerData.firstName} ${organizerData.lastName}` : ""}
+        organizer={
+          organizerData
+            ? `${organizerData.firstName} ${organizerData.lastName}`
+            : ""
+        }
         eventId={eventId}
         onDelete={handleDeleteEvent}
         fetchedFormData={eventData}

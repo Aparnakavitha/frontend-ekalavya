@@ -6,12 +6,16 @@ import AdminMentorActionData from "./MentorData";
 import { addNewUser } from "../../../services/User";
 
 const AdminMentorAction = ({
+  count,
   onSubmit,
   onAddSuccess,
   fetchData,
   onSearchChange,
+  setMentorData,
+  setCardAnimation,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -31,12 +35,18 @@ const AdminMentorAction = ({
         roleId: formData.roleId || 2,
       };
 
-      await addNewUser(userData);
+      const response = await addNewUser(userData);
+      const newMentor = response.responseData;
       console.log("New user added successfully!");
-      onAddSuccess();
+
+      newMentor.newEntry = true;
+      setCardAnimation(true);
+      setMentorData((prevMentorsData) => [newMentor, ...prevMentorsData]);
+      setSubmitError("");
       handleCloseModal();
     } catch (error) {
       console.error("Error adding new user:", error);
+      setSubmitError("Email ID already registered");
     }
   };
 
@@ -44,6 +54,7 @@ const AdminMentorAction = ({
     <div>
       <ActionComponent
         {...AdminMentorActionData}
+        count={count}
         buttonProps={{
           ...AdminMentorActionData.buttonProps,
           onClick: handleOpenModal,
@@ -55,6 +66,7 @@ const AdminMentorAction = ({
         <AddUser
           {...AdminMentorActionData.adduserprops}
           onSubmit={handleFormSubmit}
+          submitError={submitError}
         />
       </Modal>
     </div>

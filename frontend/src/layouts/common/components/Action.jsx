@@ -5,6 +5,7 @@ import Searchbar from "../../../components/searchbar/Searchbar";
 import Filter from "../../../components/filter/Filter";
 
 const ActionComponent = ({
+  count,
   onSearchChange,
   buttonProps,
   showDelete,
@@ -98,14 +99,19 @@ const ActionComponent = ({
     <div className="padding">
       <div className={styles["common-content"]}>
         <div className={styles["common-top"]}>
-          <div className={styles["common-heading"]}>{heading}</div>
+          <div className={styles["common-heading"]}>
+            <span>{heading}</span>
+            <span className={styles["common-count"]}> (Count : {count})</span>
+          </div>
           <div className={styles["common-buttons"]}>
             <PrimaryButton {...buttonProps} />
           </div>
         </div>
         <div className={styles["common-bottom"]}>
           <div
-            className={`${styles["common-search"]} ${styles[`common-${searchWidth}`]}`}
+            className={`${styles["common-search"]} ${
+              styles[`common-${searchWidth}`]
+            }`}
           >
             <Searchbar
               placeholder={searchPlaceholder}

@@ -5,6 +5,7 @@ import AdminEventAction from "../../../layouts/admin-event/components/AdminEvent
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { addEventService } from "../../../services/Event";
 import { fetchEventsService } from "../../../services/Event";
+import { toast } from "react-toastify";
 
 const AdminEvent = () => {
   const [events, setEvents] = useState([]);
@@ -18,7 +19,7 @@ const AdminEvent = () => {
   const loggedUserFirstName = sessionStorage.getItem("firstName");
 
   const greeting = {
-    welcome: "Welcome Back",
+    welcome: "Welcome back",
     name: loggedUserFirstName || "",
     info: "Here is the information about",
     profile: "Events",
@@ -38,7 +39,17 @@ const AdminEvent = () => {
         );
         console.log("Fetching events with params:", filteredParams);
         const response = await fetchEventsService(filteredParams);
-        setEvents(response || []);
+        var sortedEvents = null;
+        if (response) {
+          sortedEvents = [...response].sort((a, b) => {
+            const nameA = a.eventTitle.toLowerCase();
+            const nameB = b.eventTitle.toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+          });
+        }
+        setEvents(sortedEvents || []);
         console.log("Fetched events:", response);
       } catch (error) {
         console.log("Error fetching events:", error);
@@ -72,17 +83,19 @@ const AdminEvent = () => {
     ],
     toggle: true,
     itemsPerPage: 8,
+    cardType: "primarycard",
   };
 
   console.log("primaryCardData:", primaryCardData);
 
   const formSubmit = async (data) => {
-    data.contact = "7558845220";
     try {
       const response = await addEventService(data);
-      console.log("Response from API:", response);
+      const updatedEvents = [data, ...events];
+      setEvents(updatedEvents);
+      toast.success("Event created successfully!");
     } catch (error) {
-      console.error("Error creating event:", error);
+      toast.error("Error creating event:", error);
     }
   };
   const handleFilterChange = (filters) => {
@@ -159,6 +172,7 @@ const AdminEvent = () => {
     <div>
       <Greeting {...greeting} />
       <AdminEventAction
+        count={events.length}
         formSubmit={formSubmit}
         AdminEventActionData={AdminEventActionData}
         onFilterChange={handleFilterChange}

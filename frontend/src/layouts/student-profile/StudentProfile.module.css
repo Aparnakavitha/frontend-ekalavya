@@ -1,6 +1,3 @@
-/*Upcoming events layout css begins here*/
-@import url("https://fonts.upcoming-googleapis.upcoming-com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap");
-
 .upcoming-outer {
   width: 358px;
   border-radius: 5px;
@@ -14,25 +11,23 @@
 }
 
 .upcoming-head-container {
-  width: 350px;
+  width: 358px;
   display: flex;
   justify-content: center;
   align-items: center;
   height: min-content;
+  padding: 16px;
+  padding-bottom: 0px;
 }
 
 .upcoming-head {
   font-size: medium;
-  font-family: "Urbanist", "Sans-serif";
-  margin-left: 12px;
   margin-right: auto;
   color: var(--white);
 }
 
 .upcoming-link {
   font-size: 13px;
-  font-family: "Urbanist", "Sans-serif";
-  margin: 12px;
   cursor: pointer;
 }
 

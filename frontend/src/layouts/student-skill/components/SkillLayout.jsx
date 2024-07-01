@@ -5,6 +5,7 @@ import styles from "../StudentSkill.module.css";
 import Modal from "../../common/components/Modal";
 import DeleteBox from "../../common/components/DeleteBox";
 import CombinedSkillForm from "../../common/components/CombinedSkillForm";
+import { toast } from "react-toastify";
 import {
   getSkillsForUser,
   Userskillpost,
@@ -82,22 +83,29 @@ const Layout = () => {
           options.find((opt) => opt.value === skill)?.originalName ||
           "undefined",
         skillLevel: 1,
-        id: newSkillResponse.responseData[0].id,
+        id: newSkillResponse.responseData[0].skill_id,
         ...newSkillResponse,
       };
- 
+      console.log("test ",newSkill)
       setUserSkills((prevSkills) => [...prevSkills, newSkill]);
       setSkillAdded(true);
       console.log("Skill added successfully:", newSkill);
+      toast.success("New skill added successfully!");
       setIsOpen(false);
     } catch (error) {
+      toast.info(error.message || "Error adding skill!");
       console.error("Error adding skill:", error);
     }
   };
  
   const handleFormSubmit = (formData) => {
+    try {
     console.log("Here's the form data:", formData);
     handleAddSkill(formData);
+    } catch (error) {
+    toast.error("Error adding skill!");
+    }
+
   };
  
   const handleDeleteSkill = async () => {
@@ -129,8 +137,9 @@ const Layout = () => {
         (_, index) => index !== deleteModal.index
       );
       setUserSkills(updatedSkills);
+      toast.success("Skill deleted successfully!");
     } catch (error) {
-      console.error("Error deleting skill:", error);
+      toast.error("Error deleting skill!");
     } finally {
       setDeleteModal({ isOpen: false, index: null });
     }

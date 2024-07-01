@@ -7,6 +7,7 @@ import { GoTrash } from "react-icons/go";
 import { MdEdit } from "react-icons/md";
 import { getUserDetails } from "../../../services/User";
 import { updateBatch } from "../../../services/Batch";
+import { toast } from "react-toastify";
 
 const AdminBatchSearch = ({
   batchDelete,
@@ -15,26 +16,34 @@ const AdminBatchSearch = ({
   setBatchName,
   batchName,
   batchId,
+  batchParticipantsData,
 }) => {
   const [isBatchOperationsOpen, setIsBatchOperationsOpen] = useState(false);
   const [isUpdateSingleFieldOpen, setIsUpdateSingleFieldOpen] = useState(false);
   const [isDeleteBoxOpen, setIsDeleteBoxOpen] = useState(false);
   const [userIdOptions, setUserIdOptions] = useState([]);
   const [submitError, setSubmitError] = useState(null);
+  console.log("parts----", batchParticipantsData);
 
   useEffect(() => {
-    const fetchData = async (params) => {
+    const fetchData = async () => {
       try {
-        var filterParams = {
+        const filterParams = {
           roleId: 3,
         };
 
         const data = await getUserDetails(filterParams);
-        console.log(data);
-        const userIds = data.responseData.map((user) => ({
-          value: user.userId,
-          label: user.userId,
-        }));
+        console.log("users-------", data.responseData);
+        const batchParticipantIds = batchParticipantsData.map(
+          (participant) => participant.studentId
+        );
+        const userIds = data.responseData
+          .filter((user) => !batchParticipantIds.includes(user.userId))
+          .map((user) => ({
+            value: user.userId,
+            label: `${user.firstName} ${user.lastName} (${user.userId})`,
+          }));
+
         setUserIdOptions(userIds);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -42,7 +51,7 @@ const AdminBatchSearch = ({
     };
 
     fetchData();
-  }, []);
+  }, [batchParticipantsData]);
 
   const AdminBatchSearchData = {
     navbuttonProps: {
@@ -65,10 +74,7 @@ const AdminBatchSearch = ({
         setIsDeleteBoxOpen(true);
       },
     },
-    searchbarProps: {
-      variant: "custom",
-      placeholder: "Student Name",
-    },
+    showSearch: false,
     showFiltersAndReset: false,
     addbuttonProps: {
       variant: "tertiary",
@@ -94,9 +100,9 @@ const AdminBatchSearch = ({
       initialData: batchName,
     },
     deleteprops: {
-      title: "Confirmation Required",
-      message: "Are you sure you want to remove this batch?",
-      buttonText: "Confirm",
+      title: "Delete Batch",
+      message: "Are you sure you want to delete this batch?",
+      buttonText: "Delete",
     },
   };
 
@@ -104,6 +110,7 @@ const AdminBatchSearch = ({
     try {
       await updateBatch({ batchId, batchName: formData.inputData });
       setBatchName(formData.inputData);
+      toast.success("Batch name updated successfully!");
       setSubmitError(null);
       handleCloseAllModals();
     } catch (error) {

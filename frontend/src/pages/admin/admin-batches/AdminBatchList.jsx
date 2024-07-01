@@ -39,10 +39,21 @@ const AdminBatchList = () => {
           mainHeading: item.batchName || "",
           Count: item.participantCount,
           cardType: "batch",
+          showCount: true,
           handleClick: () => handleClick(item.batchId, item.batchName),
         }));
 
-        setBatchData(formattedData);
+        var sortedBatches = null;
+        if (formattedData) {
+          sortedBatches = [...formattedData].sort((a, b) => {
+            const nameA = a.mainHeading.toLowerCase();
+            const nameB = b.mainHeading.toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+          });
+        }
+        setBatchData(sortedBatches);
       } else {
         throw new Error("Received data is not in expected format");
       }
@@ -82,13 +93,14 @@ const AdminBatchList = () => {
   return (
     <div>
       <Greeting
-        welcome="Welcome Back"
+        welcome="Welcome back"
         name={loggedUserFirstName}
         info="Here is the information about"
         profile="Batches"
         showButtons={false}
       />
       <AdminBatchAction
+        count={batchData ? batchData.length : 0}
         onSearchChange={handleSearchChange}
         setBatchData={setBatchData}
         setChanged={setChanged}
@@ -112,6 +124,7 @@ const AdminBatchList = () => {
           toggle={true}
           cardType="skillbatchcardbatch"
           itemsPerPage={12}
+          showCount={true}
         />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>

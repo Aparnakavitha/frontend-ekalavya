@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import MentorEventDescription from "../../../layouts/mentor-events/components/MentorEventDescription";
 import EventsTable from "../../../layouts/mentor-events/components/EventsTable";
 import { fetchEventsService, addEventService, enrollParticipantService, addEnrollmentService } from "../../../services/Event";
+import { toast } from "react-toastify";
 
 const MentorEventDetails = () => {
   const { eventId } = useParams();
@@ -63,8 +64,9 @@ const MentorEventDetails = () => {
       console.log("Response from API:", response);
       fetchEventData();
       fetchParticipants();
+      toast.success("Event edited successfully!");
     } catch (error) {
-      console.error("Error creating event:", error);
+      toast.error("Error updating event!");
     }
   };
 

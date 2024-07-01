@@ -6,12 +6,12 @@ import BatchOperations from "./BatchOperations";
 import { createBatch } from "../../../services/Batch";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
- 
- 
+
 const AdminBatchAction = ({
   onSearchChange,
   batchData,
-  setBatchData
+  setBatchData,
+  count,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -58,6 +58,7 @@ const AdminBatchAction = ({
  
   const actionData = {
     ...AdminBatchActionData,
+    count,
     buttonProps: {
       ...AdminBatchActionData.buttonProps,
       onClick: handleOpenModal,

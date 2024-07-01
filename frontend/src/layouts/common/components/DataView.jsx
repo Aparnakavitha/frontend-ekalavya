@@ -9,7 +9,7 @@ const DataView = ({
   data = [],
   tableColumns = [],
   toggle,
-  itemsPerPage = 10,
+  itemsPerPage = 15,
   cardType = "profilecard",
 }) => {
   const [isCardView, setIsCardView] = useState(true);
@@ -23,6 +23,10 @@ const DataView = ({
       setCurrentPage(totalPages);
     }
   }, [currentPage, totalPages]);
+
+  if (isMobileView) {
+    itemsPerPage = 5;
+  }
 
   const showCardView = () => {
     setIsCardView(true);

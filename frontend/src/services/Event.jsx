@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://ekalavya.tarento.com/events";
+const BASE_URL = "https://ekalavya.tarento.com/api/events";
 
 export const fetchEventsService = async (params = {}) => {
   try {
@@ -45,7 +45,7 @@ export const enrollParticipantService = async (
 ) => {
   try {
     const response = await axios.get(
-      "https://ekalavya.tarento.com/enrollment",
+      "https://ekalavya.tarento.com/api/enrollment",
       {
         params: {
           eventId: eventId,
@@ -64,7 +64,7 @@ export const enrollParticipantService = async (
 export const addEnrollmentService = async (eventId, eventData) => {
   try {
     const response = await axios.post(
-      `https://ekalavya.tarento.com/enrollment?eventId=${eventId}`,
+      `https://ekalavya.tarento.com/api/enrollment?eventId=${eventId}`,
       eventData
     );
     return response.data;
@@ -75,7 +75,7 @@ export const addEnrollmentService = async (eventId, eventData) => {
 };
 export const getEnrolledEventIds = async (participantId) => {
   try {
-    const response = await axios.get("https://ekalavya.tarento.com/enrollment", {
+    const response = await axios.get("https://ekalavya.tarento.com/api/enrollment", {
       params: {
         participantId: participantId
       }
