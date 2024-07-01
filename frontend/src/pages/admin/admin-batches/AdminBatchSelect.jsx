@@ -108,6 +108,9 @@ const AdminBatchSelect = () => {
         userId: newParticipantIds,
       });
       const newParticipants = newParticipantsResponse.responseData;
+      if (batchParticipantsData[0].viewAnimation) {
+        batchParticipantsData[0].viewAnimation = false;
+      }
 
       const newParticipantsData = newParticipants.map((userDetail) => ({
         studentImage: image,
@@ -119,7 +122,7 @@ const AdminBatchSelect = () => {
         studentMail: userDetail?.emailId || "N/A",
         studentPhoneNumber: userDetail?.phoneNo || "N/A",
         canDelete: true,
-        viewAnimation: false,
+        viewAnimation: true,
       }));
 
       setNewParticipantsData(newParticipantsData);
