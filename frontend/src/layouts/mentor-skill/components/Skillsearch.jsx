@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import SearchBar from "../../../components/searchbar/Searchbar";
 import SkillUser from "../../../components/cards/SkillUser";
 import styles from "../MentorSkill.module.css";
@@ -7,133 +7,113 @@ import CombinedSkillForm from "../../common/components/CombinedSkillForm";
 import DeleteBox from "../../common/components/DeleteBox";
 import profilePic from "../../../assets/SkillUser.png";
 import { getSkillsForUser } from "../../../services/Skills";
-import DataView from "../../common/components/DataView";
-
+ 
+// Debounce function to limit the frequency of API calls
+const debounce = (func, delay) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(...args), delay);
+  };
+};
+ 
 const Skillsearch = () => {
   const [modalState, setModalState] = useState({
     isOpen: false,
     type: "",
     selectedIndex: null,
   });
-
+ 
   const skillData = {
     heading: "Skills",
     subheading: "View skills of students",
-    searchBarPlaceholder: "Enter Student Name",
+    searchBarPlaceholder: "Enter Student ID",
   };
-
+ 
   const options = [
     { value: "abc", label: "ABC" },
     { value: "xyz", label: "XYZ" },
     { value: "pqr", label: "PQR" },
   ];
-
+ 
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [skilldataCard, setSkilldataCard] = useState([]);
-
-  useEffect(() => {
-    async function fetchInitialSkills() {
-      try {
-        setError(null);
-        const skillsData = await getSkillsForUser("");
-        const results = skillsData;
-        const skillcard = results.map((user) => ({
-          mainHeading: `${user?.firstName || ""} ${user?.lastName || ""}`,
-          miniHeading: "Student",
-          profilepic: profilePic || "",
-          skills: (user?.skills || []).map((skill) => ({
-            id: skill.id || "",
-            skillName: skill.skillName || "",
-            level: skill.skillLevel || "",
-          })),
-        }));
-
-        setSkilldataCard(skillcard);
-        setSearchResults(results && results.length > 0 ? results : []);
-        console.log("Fetched skillcard data:", skillcard);
-      } catch (error) {
-        setSearchResults([]);
-        setError("Failed to fetch student skills.");
-      }
-    }
-
-    fetchInitialSkills();
-  }, []);
-
+ 
   const openModal = (type, index = null) =>
     setModalState({ isOpen: true, type, selectedIndex: index });
   const closeModal = () =>
     setModalState({ isOpen: false, type: "", selectedIndex: null });
-
+ 
   const handleAddSkill = (data) => {
     console.log("Form submitted with data:", data);
     closeModal();
   };
-
+ 
   const handleDeleteSkill = () => {
     console.log("Delete Skill");
     closeModal();
   };
-
-  const handleSearch = async () => {};
-
+ 
+  const handleSearch = async (userId) => {
+    try {
+      setLoading(true);
+      setError(null);
+      console.log("Fetching skills for user ID:", userId); // Debug log
+      const skillsData = await getSkillsForUser(userId);
+      console.log("Fetched skills data:", skillsData); // Debug log
+      setSearchResults(skillsData && skillsData.length > 0 ? skillsData : []);
+    } catch (error) {
+      console.error("Error fetching skills for user:", error.message);
+      setSearchResults([]);
+      setError(error.message || "User not found or an error occurred.");
+    } finally {
+      setLoading(false);
+    }
+  };
+ 
+  const debouncedSearch = useCallback(debounce(handleSearch, 300), []);
+ 
   const clearSearch = () => {
     setSearchResults([]);
     setError(null);
   };
-
-  console.log("SkilldataCard state:", skilldataCard);
-
-  const skillCardData = {
-    data: skilldataCard,
-    tableColumns: [
-      { key: "miniHeading", displayName: "Student" },
-      { key: "mainHeading", displayName: "Name" },
-      { key: "skills", displayName: "Skills" },
-    ],
-    toggle: false,
-    itemsPerPage: 8,
-    cardType: "skilluser",
-  };
-  console.log("SkillCardData for DataView:", skillCardData);
-
+ 
   return (
-    <div
-      className={`${styles["skillsearch-skillssearch"]} padding padding-top padding-bottom`}
-    >
-      <h1 className={`${styles["skillsearch-skillsheading"]}`}>
-        {skillData.heading}
-      </h1>
-      <p className={`${styles["skillsearch-subheading"]}`}>
-        {skillData.subheading}
-      </p>
+    <div className={`${styles["skillsearch-skillssearch"]} padding padding-top padding-bottom`}>
+      <h1 className={`${styles["skillsearch-skillsheading"]}`}>{skillData.heading}</h1>
+      <p className={`${styles["skillsearch-subheading"]}`}>{skillData.subheading}</p>
       <div className={`${styles["skillsearch-searchbar"]}`}>
         <SearchBar
           placeholder={skillData.searchBarPlaceholder}
-          onSearch={handleSearch}
+          onSearch={debouncedSearch}
           onClear={clearSearch}
         />
       </div>
-
+ 
       <div className={`${styles["skillsearch-cardcontainer"]}`}>
+        {loading && <p>Loading...</p>}
         {error && <p className={`${styles["error-message"]}`}>{error}</p>}
-        {skilldataCard.length > 0 ? (
-          <DataView
-            CardComponent={(props) => (
+        {searchResults.map((user, index) => (
+          <div key={index}>
+            {user.user_details && (
               <SkillUser
-                {...props}
-                deleteSkill={() => openModal("delete", props.index)}
+                mainHeading={user.user_details.user_name}
+                miniHeading="Student"
+                profilepic={profilePic}
+                skills={(user.skills || []).map((skill) => ({
+                  id: skill.id,
+                  skillName: skill.skillName,
+                  level: skill.count,
+                }))}
+                deleteSkill={() => openModal("delete", index)}
                 addSkill={() => openModal("add")}
               />
             )}
-            {...skillCardData}
-          />
-        ) : (
-          <p>Loading data...</p>
-        )}
+          </div>
+        ))}
       </div>
-
+ 
       {modalState.isOpen && (
         <Modal
           isOpen={modalState.isOpen}
@@ -164,5 +144,6 @@ const Skillsearch = () => {
     </div>
   );
 };
-
+ 
 export default Skillsearch;
+ 
