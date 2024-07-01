@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "../MentorEvents.module.css";
 import Table from "../../../components/table/Table";
 import AttendanceButton from "../../../components/buttons/AttendanceButton";
+import TextButton from "../../../components/buttons/TextButton";
+import { TfiExport } from "react-icons/tfi";
 
 const EventsTable = (props) => {
   const { data, headings, onAttendanceUpdate, disableAttendance } = props;
@@ -114,6 +116,7 @@ const EventsTable = (props) => {
     <div className={`${styles["eventstable-container"]} padding padding-bottom`}>
       <div className={styles["eventstable-topleft"]}>
         <h2>Mark Attendance</h2>
+        <TextButton text="Export" icon={<TfiExport/>}/>
       </div>
       <div className={styles["eventstable-table"]}>
         <div>{globalAttendanceButtons}</div>
