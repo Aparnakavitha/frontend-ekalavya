@@ -6,19 +6,21 @@ import Button from "../components/buttons/PrimaryButton";
 import edunexa from "../assets/edunexa.png";
 import Footer from "../layouts/common/components/Footer";
 import { fetchEventsService } from "../services/Event";
-import { getUserDetails } from "../services/User"; // Import the getUserDetails function
+import { getUserDetails } from "../services/User"; 
+import LoadingSpinner from "../components/loadingspinner/LoadingSpinner";
 
 const EventDescription = () => {
   const { eventId } = useParams();
   const [eventData, setEventData] = useState(null);
   const [organizer, setOrganizer] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [exploreEvent, setExploreEvent]=useState(false);
 
   useEffect(() => {
     const getEvent = async () => {
       try {
         const response = await fetchEventsService({ eventId });
-        const event = response[0]; // Assuming the response is an array, and we need the first item
+        const event = response[0]; 
         setEventData(event);
 
         if (event && event.hostId) {
@@ -35,6 +37,7 @@ const EventDescription = () => {
     };
 
     getEvent();
+    setExploreEvent(true);
   }, [eventId]);
 
   const sample = {
@@ -66,9 +69,9 @@ const EventDescription = () => {
       <div className="spacebtw">
         <div className="padding public common">
           {loading ? (
-            <p>Loading event details...</p>
+            <LoadingSpinner/>
           ) : (
-            <HomeEventDescription event={eventData} organizer={organizer} />
+            <HomeEventDescription event={eventData} organizer={organizer} exploreEvent={exploreEvent} />
           )}
         </div>
         <Footer {...footerdata} />

@@ -5,6 +5,7 @@ import PrimaryButton from "../../../components/buttons/PrimaryButton";
 
 const EventsDescription = (props) => {
   const {
+    exploreEvent,
     eventTitle,
     eventType,
     eventMode,
@@ -52,7 +53,7 @@ const EventsDescription = (props) => {
   let locationValue = eventMode === "Offline" ? location : link;
 
   if (eventMode === "Online") {
-    if (role == 3) {
+    if (role == 3 || exploreEvent){
       locationValue = isRegistered ? (
         <p>
           <b>{locationLabel} :</b>{" "}
