@@ -32,7 +32,7 @@ const SkillList = ({ studentId }) => {
         try {
           // const response = await getSkillsForUser(studentId);
           const skills = await axios.get(
-            `https://ekalavya.tarento.com/skills?userId=${studentId}`
+            `https://ekalavya.tarento.com/api/skills?userId=${studentId}`
           );
           const response = skills.data.responseData;
           console.log(
