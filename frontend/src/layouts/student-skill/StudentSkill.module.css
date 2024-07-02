@@ -43,18 +43,26 @@
     align-items: left;
     display: flex;
   }
+
+  .skilllayout-layoutcontainer{
+    display: flex;
+    justify-content: flex-start;
+  }
  
   .skilllayout-skillcontainer {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
   }
  
   .skilllayout-plusicon {
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 8%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .skilllayout-addbutton{
+    display: flex;
+    justify-content: center;
   }
 }
  
