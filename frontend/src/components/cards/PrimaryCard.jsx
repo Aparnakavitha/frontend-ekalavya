@@ -13,7 +13,6 @@ const PrimaryCard = (props) => {
     handleClick,
     viewAnimation = false,
   } = props;
-  console.log("1Animeali------",viewAnimation);
   const [viewAnimations, setViewAnimation] = useState(viewAnimation);
   const transformMainHeading = (heading) => {
     if (heading && heading.length > 17) {

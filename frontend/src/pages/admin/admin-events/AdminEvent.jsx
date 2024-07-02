@@ -172,13 +172,14 @@ const AdminEvent = () => {
     <div>
       <Greeting {...greeting} />
       <AdminEventAction
+        count={events.length}
         formSubmit={formSubmit}
         AdminEventActionData={AdminEventActionData}
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
       />
       {events.length > 0 ? (
-        <DataView CardComponent={PrimaryCard} {...primaryCardData} />
+        <DataView cardType= "primarycard"  CardComponent={PrimaryCard} {...primaryCardData} />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No events to display
