@@ -1,4 +1,4 @@
 @Library("centralized-jenkins") _
-   sbt_build {
+   yarn-docker-build {
 
     }
