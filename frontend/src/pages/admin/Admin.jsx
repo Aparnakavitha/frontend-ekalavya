@@ -32,6 +32,7 @@ import "react-toastify/dist/ReactToastify.css";
 import image from "../../assets/DP.png";
 import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -43,19 +44,24 @@ const AdminContent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = sessionStorage.getItem("user_id");
+        const userSession = secureLocalStorage.getItem("userSession") || {};
+        const userId = userSession.userId;
         if (!userId) {
           console.error("User ID is not found in session storage");
           return;
         }
         console.log("Fetched User ID:", userId);
-        console.log("UserId is of type:",typeof(userId));
+        console.log("UserId is of type:", typeof userId);
         const params = {
           userId: userId,
         };
         const data = await getUserDetails(params);
         const firstName = data.responseData[0].firstName;
-        sessionStorage.setItem("firstName", firstName);
+        const updatedSession = {
+          ...userSession,
+          firstName: firstName,
+        };
+        secureLocalStorage.setItem("userSession", updatedSession);
         setUserData(data.responseData[0]);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -69,7 +75,7 @@ const AdminContent = () => {
     return <LoadingSpinner />;
   }
   const handleLogout = () => {
-    sessionStorage.clear();
+    secureLocalStorage.removeItem("userSession");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",

@@ -9,9 +9,12 @@ import StudentContent from "../pages/student/Student";
 import NotFound from "../layouts/common/components/NotFound";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import secureLocalStorage from "react-secure-storage";
 
 const RouterComponent = () => {
-  const roleId = sessionStorage.getItem("role");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const roleId = userSession.roleId;
+
   return (
     <div>
       <BrowserRouter>

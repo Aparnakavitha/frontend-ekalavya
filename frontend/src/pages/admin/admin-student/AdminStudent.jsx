@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast, Slide } from "react-toastify";
+import secureLocalStorage from "react-secure-storage";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
 import Greeting from "../../../layouts/common/components/Greeting";
@@ -166,7 +167,8 @@ const AdminStudent = () => {
     return <LoadingSpinner />;
   }
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession");
+  const loggedUserFirstName = userSession.firstName;
 
   const AdminStudentData = {
     greetingData: {

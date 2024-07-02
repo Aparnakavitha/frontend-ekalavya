@@ -23,6 +23,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
+import secureLocalStorage from "react-secure-storage";
+
 const StudentContent = () => {
   const [userData, setUserData] = useState({
     firstName: "",
@@ -33,7 +35,8 @@ const StudentContent = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const userId = sessionStorage.getItem("user_id");
+  const userSession = secureLocalStorage.getItem("userSession");
+  const userId = userSession.userId;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,7 +64,7 @@ const StudentContent = () => {
   };
 
   const handleLogout = () => {
-    sessionStorage.clear();
+    secureLocalStorage.removeItem("userSession");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",
@@ -151,10 +154,7 @@ const StudentContent = () => {
             <Routes>
               <Route exact path="/profile" element={<StudentProfile />} />
               <Route exact path="/events" element={<StudentEvent />} />
-              <Route
-                path="events/:eventId"
-                element={<StudentEventDetails />}
-              />
+              <Route path="events/:eventId" element={<StudentEventDetails />} />
               <Route exact path="skills" element={<SkillLayout />} />
             </Routes>
           </div>

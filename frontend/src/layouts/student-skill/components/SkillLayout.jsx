@@ -12,7 +12,8 @@ import {
   SkillService,
   UserSkillDelete,
 } from "../../../services/Skills";
- 
+import secureLocalStorage from "react-secure-storage";
+
 const Layout = () => {
   const [userSkills, setUserSkills] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -22,21 +23,23 @@ const Layout = () => {
     index: null,
   });
   const [options, setOptions] = useState([]);
-  const userId = sessionStorage.getItem("user_id");
- 
+
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const userId = userSession.userId;
+
   useEffect(() => {
     fetchSkills();
   }, []);
- 
+
   useEffect(() => {
     fetchUserSkills();
   }, []);
- 
+
   useEffect(() => {
     setUserSkills(userSkills);
     setSkillAdded(false);
   }, [skillAdded]);
- 
+
   const fetchUserSkills = async () => {
     try {
       const skills = await getSkillsForUser(userId);
@@ -46,7 +49,7 @@ const Layout = () => {
       console.error("Error fetching user skills", error);
     }
   };
- 
+
   const fetchSkills = async () => {
     try {
       const skillsResponse = await SkillService();
@@ -63,12 +66,12 @@ const Layout = () => {
       console.error("Error fetching skills", error);
     }
   };
- 
+
   const capitalizeFirstLetter = (str) => {
     if (!str) return "";
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
- 
+
   const handleAddSkill = async (formData) => {
     try {
       const { skill } = formData;
@@ -77,7 +80,7 @@ const Layout = () => {
         skillId: skill,
       };
       const newSkillResponse = await Userskillpost(postData);
- 
+
       const newSkill = {
         skillName:
           options.find((opt) => opt.value === skill)?.originalName ||
@@ -86,7 +89,7 @@ const Layout = () => {
         id: newSkillResponse.responseData[0].skill_id,
         ...newSkillResponse,
       };
-      console.log("test ",newSkill)
+      console.log("test ", newSkill);
       setUserSkills((prevSkills) => [...prevSkills, newSkill]);
       setSkillAdded(true);
       console.log("Skill added successfully:", newSkill);
@@ -97,17 +100,16 @@ const Layout = () => {
       console.error("Error adding skill:", error);
     }
   };
- 
+
   const handleFormSubmit = (formData) => {
     try {
-    console.log("Here's the form data:", formData);
-    handleAddSkill(formData);
+      console.log("Here's the form data:", formData);
+      handleAddSkill(formData);
     } catch (error) {
-    toast.error("Error adding skill!");
+      toast.error("Error adding skill!");
     }
-
   };
- 
+
   const handleDeleteSkill = async () => {
     const skillToDelete = userSkills[deleteModal.index];
     console.log(
@@ -121,18 +123,18 @@ const Layout = () => {
       console.error("Skill to delete not found");
       return;
     }
- 
+
     const { id } = skillToDelete;
- 
+
     if (!id) {
       console.error("Skill id undefined for skill:", skillToDelete);
       return;
     }
- 
+
     try {
       await UserSkillDelete(userId, id);
       console.log("Skill deleted successfully");
- 
+
       const updatedSkills = userSkills.filter(
         (_, index) => index !== deleteModal.index
       );
@@ -144,7 +146,7 @@ const Layout = () => {
       setDeleteModal({ isOpen: false, index: null });
     }
   };
- 
+
   return (
     <div className={`${styles["skilllayout-container"]} padding-top padding`}>
       <div className={styles["skilllayout-skilltitle"]}>
@@ -199,5 +201,5 @@ const Layout = () => {
     </div>
   );
 };
- 
+
 export default Layout;

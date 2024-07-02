@@ -3,8 +3,12 @@ import { useNavigate } from "react-router-dom";
 import EventMenus from "../../../layouts/common/components/EventMenus";
 import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
-import { getEnrolledEventIds, fetchEventsService } from "../../../services/Event";
+import {
+  getEnrolledEventIds,
+  fetchEventsService,
+} from "../../../services/Event";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import secureLocalStorage from "react-secure-storage";
 
 const StudentEvent = () => {
   const navigate = useNavigate();
@@ -12,7 +16,9 @@ const StudentEvent = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("Upcoming");
   const [searchTerm, setSearchTerm] = useState("");
-  const participantId = sessionStorage.getItem("user_id");
+
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const participantId = userSession.userId;
 
   useEffect(() => {
     fetchEnrolledEvents();
@@ -34,7 +40,7 @@ const StudentEvent = () => {
       }
 
       if (searchTerm) {
-        filteredEvents = filteredEvents.filter(event =>
+        filteredEvents = filteredEvents.filter((event) =>
           event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
         );
       }
@@ -55,7 +61,7 @@ const StudentEvent = () => {
       }
 
       if (searchTerm) {
-        filteredEvents = filteredEvents.filter(event =>
+        filteredEvents = filteredEvents.filter((event) =>
           event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
         );
       }

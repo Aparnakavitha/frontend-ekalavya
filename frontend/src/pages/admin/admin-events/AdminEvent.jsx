@@ -6,6 +6,7 @@ import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { addEventService } from "../../../services/Event";
 import { fetchEventsService } from "../../../services/Event";
 import { toast } from "react-toastify";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminEvent = () => {
   const [events, setEvents] = useState([]);
@@ -16,7 +17,8 @@ const AdminEvent = () => {
     eventMode: "",
   });
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const loggedUserFirstName = userSession.firstName;
 
   const greeting = {
     welcome: "Welcome back",
@@ -179,7 +181,11 @@ const AdminEvent = () => {
         onSearchChange={handleSearchChange}
       />
       {events.length > 0 ? (
-        <DataView cardType= "primarycard"  CardComponent={PrimaryCard} {...primaryCardData} />
+        <DataView
+          cardType="primarycard"
+          CardComponent={PrimaryCard}
+          {...primaryCardData}
+        />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No events to display

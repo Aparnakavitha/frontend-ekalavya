@@ -6,6 +6,7 @@ import AdminSkillAction from "../../../layouts/admin-skill/components/AdminSkill
 import AdminSkillsList from "../../../layouts/admin-skill/components/AdminSkillsList";
 import { getUsersCountForSkill } from "../../../services/Skills";
 import { SkillsProvider, setParticipants } from "./AdminSkillContext";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminSkill = () => {
   const navigate = useNavigate();
@@ -29,7 +30,8 @@ const AdminSkill = () => {
     return !AdminSkillData.skillExists(skillData);
   };
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const loggedUserFirstName = userSession.firstName;
 
   const greet = {
     welcome: "Welcome back",

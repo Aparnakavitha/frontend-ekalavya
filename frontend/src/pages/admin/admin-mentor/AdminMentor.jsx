@@ -6,6 +6,7 @@ import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import secureLocalStorage from "react-secure-storage";
 
 const fetchMentorData = async (setMentorData, value = "") => {
   try {
@@ -86,7 +87,8 @@ const AdminMentor = () => {
     }
   };
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const loggedUserFirstName = userSession.firstName;
 
   const greet = {
     welcome: "Welcome back",

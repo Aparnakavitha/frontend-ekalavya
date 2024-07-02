@@ -5,6 +5,7 @@ import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import { fetchbatches, createBatch } from "../../../services/Batch";
 import AdminBatchAction from "../../../layouts/admin-batches/components/AdminBatchAction";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminBatchList = () => {
   const navigate = useNavigate();
@@ -88,7 +89,8 @@ const AdminBatchList = () => {
     }
   };
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const loggedUserFirstName = userSession.firstName;
 
   return (
     <div>

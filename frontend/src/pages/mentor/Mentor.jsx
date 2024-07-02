@@ -18,6 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
+import secureLocalStorage from "react-secure-storage";
 
 const MentorContent = () => {
   const [Data, setData] = useState({
@@ -27,7 +28,8 @@ const MentorContent = () => {
   });
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
 
-  const userId = sessionStorage.getItem("user_id");
+  const userSession = secureLocalStorage.getItem("userSession");
+  const userId = userSession.userId;
 
   const location = useLocation();
 
@@ -60,7 +62,7 @@ const MentorContent = () => {
   };
 
   const handleLogout = () => {
-    sessionStorage.clear();
+    secureLocalStorage.removeItem("userSession");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",
@@ -81,7 +83,6 @@ const MentorContent = () => {
   const handleOpenLogoutModal = () => {
     setIsLogoutModalOpen(true);
   };
-
 
   const sidebarContent = {
     button: (
@@ -152,7 +153,10 @@ const MentorContent = () => {
               <Route path="/profile" element={<MentorProfile />} />
               <Route path="/events" element={<MentorEvents />} />
               <Route path="/skills" element={<MentorSkills />} />
-              <Route path="/events/event-creation" element={<MentorCreateEvent />} />
+              <Route
+                path="/events/event-creation"
+                element={<MentorCreateEvent />}
+              />
               <Route
                 path="/events/event-details/:eventId"
                 element={<MentorEventDetails />}
