@@ -71,7 +71,7 @@ const AdminEvent = () => {
       startDate: event.startDate,
       endDate: event.endDate,
       Description: event.description,
-      cardType: "Course",
+      // cardType: "Course",
       handleClick: () => handleClick(event),
     })),
     tableColumns: [
@@ -86,7 +86,7 @@ const AdminEvent = () => {
     cardType: "primarycard",
   };
 
-  console.log("primaryCardData:", primaryCardData);
+  console.log("primaryCardData:", primaryCardData.cardType);
 
   const formSubmit = async (data) => {
     try {
@@ -179,7 +179,7 @@ const AdminEvent = () => {
         onSearchChange={handleSearchChange}
       />
       {events.length > 0 ? (
-        <DataView CardComponent={PrimaryCard} {...primaryCardData} />
+        <DataView cardType= "primarycard" CardComponent={PrimaryCard} {...primaryCardData} />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No events to display
