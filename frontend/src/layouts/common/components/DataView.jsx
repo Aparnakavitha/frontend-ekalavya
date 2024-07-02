@@ -16,8 +16,7 @@ const DataView = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileView, setIsMobileView] = useState(false);
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-  console.log("card",cardType);
+  const totalPages = Math.ceil((data?.length || 0) / itemsPerPage);
 
   useEffect(() => {
     if (currentPage > totalPages) {
@@ -41,16 +40,14 @@ const DataView = ({
     setCurrentPage(pageNumber);
   };
 
-  const currentData = data.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const currentData = data
+    ? data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    : [];
 
   const getComponentName = (item) => {
     let cardName = String(CardComponent.name).toLowerCase();
     if (cardName === "undefined" || cardName === "cardcomponent") {
       cardName = cardType;
-      
     }
     if (cardName === "skillbatchcard") {
       if (String(item.cardType).toLowerCase() === "skill") {
@@ -144,7 +141,7 @@ const DataView = ({
         )}
       </div>
 
-      {data.length > itemsPerPage && (
+      {data?.length > itemsPerPage && (
         <div className={styles["dataview-pagination"]}>
           <Pagination
             totalPages={totalPages}
