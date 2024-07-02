@@ -5,12 +5,12 @@ import styles from "../Common.module.css";
 import { PiCards, PiListBullets } from "react-icons/pi";
 
 const DataView = ({
+  cardType = "profilecard",
   CardComponent,
   data = [],
   tableColumns = [],
   toggle,
   itemsPerPage = 15,
-  cardType = "profilecard",
 }) => {
   const [isCardView, setIsCardView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
