@@ -27,8 +27,9 @@ const MentorEvents = () => {
         completed: status === "completed" ? 1 : 0,
       });
       console.log(`Fetched ${status} events:`, eventList);
-      setEvents(eventList);
-      setFilteredEvents(eventList);
+      const reversedEventList = eventList.reverse();   
+      setEvents(reversedEventList);
+      setFilteredEvents(reversedEventList);
     } catch (error) {
       console.error(`Error fetching ${status} events:`, error);
       setError(error.message || "Failed to fetch events");
