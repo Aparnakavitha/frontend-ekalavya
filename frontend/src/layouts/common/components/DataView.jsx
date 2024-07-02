@@ -5,18 +5,19 @@ import styles from "../Common.module.css";
 import { PiCards, PiListBullets } from "react-icons/pi";
 
 const DataView = ({
+  cardType = "profilecard",
   CardComponent,
   data = [],
   tableColumns = [],
   toggle,
   itemsPerPage = 15,
-  cardType = "profilecard",
 }) => {
   const [isCardView, setIsCardView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileView, setIsMobileView] = useState(false);
 
   const totalPages = Math.ceil(data.length / itemsPerPage);
+  console.log("card",cardType);
 
   useEffect(() => {
     if (currentPage > totalPages) {
@@ -49,6 +50,7 @@ const DataView = ({
     let cardName = String(CardComponent.name).toLowerCase();
     if (cardName === "undefined" || cardName === "cardcomponent") {
       cardName = cardType;
+      
     }
     if (cardName === "skillbatchcard") {
       if (String(item.cardType).toLowerCase() === "skill") {
