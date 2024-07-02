@@ -95,7 +95,7 @@ const AdminEvent = () => {
       setEvents(updatedEvents);
       toast.success("Event created successfully!");
     } catch (error) {
-      toast.error("Error creating event:", error);
+      toast.error("Error creating event!");
     }
   };
   const handleFilterChange = (filters) => {

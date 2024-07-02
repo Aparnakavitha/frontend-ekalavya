@@ -22,6 +22,7 @@ const AdminStudentAction = () => {
 
   const actionData = {
     ...AdminStudentActionData,
+    count,
     buttonProps: {
       ...AdminStudentActionData.buttonProps,
       onClick: handleOpenAddStudentModal,

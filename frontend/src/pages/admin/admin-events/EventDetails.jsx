@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AdminEventDescription from "../../../layouts/admin-event/components/AdminEventDescription";
-import { addEventService, fetchEventsService, deleteEventService } from "../../../services/Event";
+import {
+  addEventService,
+  fetchEventsService,
+  deleteEventService,
+} from "../../../services/Event";
 import { getUserDetails } from "../../../services/User";
-import { toast } from "react-toastify"; 
+import { toast } from "react-toastify";
 import { eventNameState } from "../admin-student/Atom";
-import { useRecoilState } from 'recoil';
+import { eventCompleted } from "../admin-student/Atom";
+import { useRecoilState } from "recoil";
 
 const AdminEventDetails = () => {
   const { eventId } = useParams();
   const [eventData, setEventData] = useState(null);
   const [organizerData, setOrganizerData] = useState(null);
-  const [eventName, setEventName] = useRecoilState(eventNameState); 
+  const [eventComplete, setEventComplete] = useRecoilState(eventCompleted);
+  const [eventName, setEventName] = useRecoilState(eventNameState);
 
   const fetchEventData = async () => {
     try {
@@ -19,6 +25,7 @@ const AdminEventDetails = () => {
       const event = eventDataResponse[0];
       setEventData(event);
       setEventName(event.eventTitle);
+      setEventComplete(event.completed);
       if (event?.hostId) {
         await fetchOrganizerData(event.hostId);
       }
@@ -52,7 +59,6 @@ const AdminEventDetails = () => {
       console.log("Response from API:", response);
       fetchEventData();
       toast.success("Event updated successfully!");
-
     } catch (error) {
       console.error("Error updating event:", error);
       toast.error("Error updating event:", error);
@@ -66,14 +72,18 @@ const AdminEventDetails = () => {
       toast.success("Event deleted successfully!");
     } catch (error) {
       console.error("Error deleting event:", error);
-      toast.error("Error deleting event:", error);
+      toast.info("Completed events cannot be deleted");
     }
   };
 
   return (
     <div className="padding">
       <AdminEventDescription
-        organizer={organizerData ? `${organizerData.firstName} ${organizerData.lastName}` : ""}
+        organizer={
+          organizerData
+            ? `${organizerData.firstName} ${organizerData.lastName}`
+            : ""
+        }
         eventId={eventId}
         onDelete={handleDeleteEvent}
         fetchedFormData={eventData}

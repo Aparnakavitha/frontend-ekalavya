@@ -206,11 +206,14 @@ const AdminStudent = () => {
         Content: collegeData.map((college) => college[1]),
         Value: collegeData.map((college) => college[0]),
       },
-      {
-        Heading: "Batch",
-        Content: batchData.map((batch) => batch[1]),
-        Value: batchData.map((batch) => batch[0]),
-      },
+
+      //Don't Remove below code
+
+      // {
+      //   Heading: "Batch",
+      //   Content: batchData.map((batch) => batch[1]),
+      //   Value: batchData.map((batch) => batch[0]),
+      // },
     ],
     resetProps: {
       variant: "secondary",
@@ -413,6 +416,7 @@ const AdminStudent = () => {
 
       <ActionComponent
         {...actionData}
+        count={studentsData.length}
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
       />
