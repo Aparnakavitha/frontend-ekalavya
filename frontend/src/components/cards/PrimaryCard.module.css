@@ -1,5 +1,7 @@
 .cards {
   position: relative;
+  width: 287px;
+  height: 193px;
 }
 
 .dateRow {

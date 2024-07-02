@@ -5,16 +5,17 @@ import AdminBatchActionData from "./BatchActionData";
 import BatchOperations from "./BatchOperations";
 import { createBatch } from "../../../services/Batch";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AdminBatchAction = ({
   onSearchChange,
   batchData,
   setBatchData,
-  setChanged,
   count,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const navigate = useNavigate();
 
   const handleOpenModal = () => {
     setSubmitError("");
@@ -30,8 +31,21 @@ const AdminBatchAction = ({
     try {
       const { batchName } = formData;
       const response = await createBatch({ batchName: batchName });
-      setBatchData([...(batchData || []), response[0]]);
-      setChanged((prev) => !prev);
+      if (batchData[0]?.viewAnimation !== undefined) {
+        batchData[0].viewAnimation = false;
+      }
+      const newBatch = {
+        miniHeading: `B${response[0].batchId}`,
+        mainHeading: response[0].batchName || "",
+        Count: response[0].participantCount,
+        cardType: "batch",
+        showCount: true,
+        viewAnimation: true,
+        handleClick: () =>
+          handleClick(response[0].batchId, response[0].batchName),
+      };
+
+      setBatchData([newBatch, ...(batchData || [])]);
       setIsOpen(false);
       setSubmitError("");
       toast.success("Batch created successfully!");
@@ -40,6 +54,11 @@ const AdminBatchAction = ({
       console.error("Error adding batch:", error);
       setSubmitError("Batch name already exists");
     }
+  };
+  const handleClick = (batchId, batchName) => {
+    navigate(`/admin/batches/batch-details/${batchId}`, {
+      state: { batchName },
+    });
   };
 
   const actionData = {
