@@ -72,7 +72,7 @@ const AdminEventDetails = () => {
       toast.success("Event deleted successfully!");
     } catch (error) {
       console.error("Error deleting event:", error);
-      toast.error("Error deleting event:", error);
+      toast.info("Completed events cannot be deleted");
     }
   };
 
