@@ -108,10 +108,18 @@ const AdminBatchSelect = () => {
         userId: newParticipantIds,
       });
       const newParticipants = newParticipantsResponse.responseData;
-      if (batchParticipantsData[0]?.viewAnimation !== undefined) {
-        batchParticipantsData[0].viewAnimation = false;
-      }
 
+      if (Array.isArray(batchParticipantsData)) {
+        batchParticipantsData.forEach((participant) => {
+          if (
+            participant &&
+            typeof participant === "object" &&
+            participant.viewAnimation !== undefined
+          ) {
+            participant.viewAnimation = false;
+          }
+        });
+      }
       const newParticipantsData = newParticipants.map((userDetail) => ({
         studentImage: image,
         studentName: `${userDetail?.firstName || ""} ${
