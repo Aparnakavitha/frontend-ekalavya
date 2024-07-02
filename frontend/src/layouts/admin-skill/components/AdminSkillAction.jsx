@@ -102,7 +102,7 @@ const AdminSkillAction = ({ setCardAnimation, count }) => {
     <div>
       <ActionComponent
         {...actionData}
-        count={skills.length}
+        count={skills.length===null?0:skills.length}
         onSearchChange={handleSearchChange}
       />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>

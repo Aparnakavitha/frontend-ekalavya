@@ -12,8 +12,10 @@ import { DeleteBox } from "../../common";
 import { useNavigate } from "react-router-dom";
 
 const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
-  const participants = useRecoilValue(participantsState);
   const skillsData = useRecoilValue(skillState);
+  const skillParticipantDetails = JSON.parse(
+    localStorage.getItem("skillParticipantDetails")
+  );
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deleteSkillId, setDeleteSkillId] = useState(null);
   const [error, setError] = useState("");
@@ -25,6 +27,8 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
     setIsDeleteOpen(true);
     setError("");
   };
+
+  console.log("Participant page data", skillParticipantDetails);
 
   const handleCloseDelete = () => {
     setIsDeleteOpen(false);
@@ -72,7 +76,7 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
           {pageName.map((name, index) => (
             <NavButton
               key={index}
-              pageName={skillsData.skillName}
+              pageName={skillParticipantDetails.title}
               onClick={onClick}
             />
           ))}
@@ -93,10 +97,14 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
         </Modal>
       </div>
       <div className={`${styles["adminskillparticipants-table"]}`}>
-        {participants && participants.length > 0 ? (
-          <Table data={participants} headings={headings} />
+        {skillParticipantDetails &&
+        skillParticipantDetails.participantDetails.length > 0 ? (
+          <Table
+            data={skillParticipantDetails.participantDetails}
+            headings={headings}
+          />
         ) : (
-          <p className="nodata" >No participants in this batch.</p>
+          <p className="nodata">No achievers yet.</p>
         )}
       </div>
     </div>
