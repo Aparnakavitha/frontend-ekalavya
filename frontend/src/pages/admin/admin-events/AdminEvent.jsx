@@ -71,7 +71,7 @@ const AdminEvent = () => {
       startDate: event.startDate,
       endDate: event.endDate,
       Description: event.description,
-      // cardType: "Course",
+      cardType: "Course",
       handleClick: () => handleClick(event),
     })),
     tableColumns: [
