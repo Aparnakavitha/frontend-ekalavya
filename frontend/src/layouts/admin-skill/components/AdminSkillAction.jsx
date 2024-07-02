@@ -13,7 +13,6 @@ import {
   useSkills,
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
-import { toast } from "react-toastify";
 
 const AdminSkillAction = ({ setCardAnimation, count }) => {
   const { skills, setSkills, setChanged } = useSkills();

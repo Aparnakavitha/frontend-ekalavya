@@ -115,13 +115,19 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
         handleClick: async () => {
           try {
             const response = await getUsersCountForSkill(skill.id);
+            console.log("Participant data from skilll list",response);
             const participantData = response.users.map((user) => [
               user.userId,
               user.UserName,
               user.emailId,
             ]);
+          
+            const skillParticipants={
+              title:capitalizeFirstLetter(skill.skillName),
+              skillParticipants:participantData
+            }
 
-            setParticipants(participantData);
+            setParticipants(skillParticipants);
             navigate(`/admin/skills/skill-participants`);
           } catch (error) {
             console.error("Error fetching skill participants: ", error);
