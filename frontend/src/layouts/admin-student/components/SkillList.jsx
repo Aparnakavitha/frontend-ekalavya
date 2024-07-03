@@ -33,6 +33,7 @@ const SkillList = ({ studentId }) => {
           const skills = await axios.get(
             `https://ekalavya.tarento.com/api/skills?userId=${studentId}`
           );
+          const response = skills.data.responseData;
           const options = await axios.get(
             `https://ekalavya.tarento.com/api/skills`
           );
@@ -152,13 +153,9 @@ const SkillList = ({ studentId }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
-      {studentSkills.length > 0 ? (
-        <CardRow {...skillcards} userId={studentId} />
-      ) : (
-        <p className="nodata padding padding-top padding-bottom">
-          No skills achieved yet
-        </p>
-      )}
+     {studentSkills.length>0 ? (<CardRow {...skillcards} userId={studentId} />): (
+      <p className="nodata padding padding-top padding-bottom" >No skills achieved yet</p>
+     )}
       <ToastContainer
         position="top-center"
         autoClose={5000}
