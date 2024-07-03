@@ -1099,6 +1099,7 @@
 @media (max-width: 480px) {
     .modal-modalContent {
         padding: 0 15px;
+        width: 100%; 
     }
 }
 
