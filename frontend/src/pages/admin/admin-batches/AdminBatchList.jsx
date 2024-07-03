@@ -113,6 +113,7 @@ const AdminBatchList = () => {
           {error}
         </p>
       ) : batchData && batchData.length > 0 ? (
+        <div>
         <DataView
           data={batchData}
           CardComponent={(props) => <SkillBatchCard {...props} />}
@@ -126,6 +127,7 @@ const AdminBatchList = () => {
           itemsPerPage={12}
           showCount={true}
         />
+        </div>
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No batches available

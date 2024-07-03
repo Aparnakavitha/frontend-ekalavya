@@ -36,6 +36,12 @@
   border-radius: 50%;
   background-color: var(--neutral600);
 }
+
+.skilllayout-nodata{
+  text-align: left;
+ color: var(--neutral600);
+ font-size: 15px;
+}
  
 @media (max-width: 768px) {
   .skilllayout-skilltitle {

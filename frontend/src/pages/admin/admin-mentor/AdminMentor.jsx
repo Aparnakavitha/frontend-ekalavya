@@ -147,6 +147,7 @@ const AdminMentor = () => {
       />
 
       {mentorData.length > 0 ? (
+        <div>
         <DataView
           CardComponent={(props) => (
             <ProfileCard
@@ -156,6 +157,7 @@ const AdminMentor = () => {
           )}
           {...data}
         />
+        </div>
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No mentors available
