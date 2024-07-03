@@ -9,7 +9,7 @@ import profilepic from "../../../assets/DP.png";
 const MentorProfileInfo = ({ mentorData, onSubmit }) => {
   const [isEditDetailsOpen, setIsEditDetailsOpen] = useState(false);
 
-  const navProps = { pageName: "Mentors List" };
+  const navProps = { pageName: "Profile" };
 
   const handleOpenEditBasicDetails = () => setIsEditDetailsOpen(true);
   const handleCloseEditBasicDetails = () => setIsEditDetailsOpen(false);
@@ -97,7 +97,9 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
         userId={mentorData.userId}
         role={mentorData.role ? mentorData.role.roleName : ""}
         profilepic={profilepic}
-        name={`${mentorData.firstName || "N/A"} ${mentorData.lastName || "N/A"}`}
+        name={`${mentorData.firstName || "N/A"} ${
+          mentorData.lastName || "N/A"
+        }`}
         college={mentorData.college ? mentorData.college.collegeName : ""}
         dob={mentorData.dob}
         email={mentorData.emailId}
@@ -114,7 +116,6 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
         <BasicDetails {...editBox} onSubmit={handleFormSubmit} />
       </Modal>
       <AboutMe {...aboutMeProps} />
-     
     </div>
   );
 };

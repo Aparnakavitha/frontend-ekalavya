@@ -80,6 +80,7 @@ const Skillsearch = () => {
       setSearchResults(filtered);
       setError(null);
     } else {
+      setSearchResults([]);
       setError(`Student ${searchTerm} not found`);
     }
   };

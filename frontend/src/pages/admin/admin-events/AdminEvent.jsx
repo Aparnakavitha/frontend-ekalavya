@@ -95,7 +95,7 @@ const AdminEvent = () => {
       setEvents(updatedEvents);
       toast.success("Event created successfully!");
     } catch (error) {
-      toast.error("Error creating event:", error);
+      toast.error("Error creating event!");
     }
   };
   const handleFilterChange = (filters) => {
@@ -172,13 +172,15 @@ const AdminEvent = () => {
     <div>
       <Greeting {...greeting} />
       <AdminEventAction
+        count={events.length}
         formSubmit={formSubmit}
         AdminEventActionData={AdminEventActionData}
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
       />
+       <p className="padding" style={{color:"#baff66"}}>Total events:{events.length}</p>
       {events.length > 0 ? (
-        <DataView CardComponent={PrimaryCard} {...primaryCardData} />
+        <DataView cardType= "primarycard"  CardComponent={PrimaryCard} {...primaryCardData} />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No events to display

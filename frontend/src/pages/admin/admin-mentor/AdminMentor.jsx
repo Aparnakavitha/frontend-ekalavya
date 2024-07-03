@@ -139,6 +139,7 @@ const AdminMentor = () => {
     <div>
       <Greeting {...greet} />
       <AdminMentorAction
+        count={mentorData.length}
         onAddSuccess={() => fetchMentorData(setMentorData)}
         onSearchChange={handleSearchChange}
         setMentorData={setMentorData}
@@ -146,6 +147,8 @@ const AdminMentor = () => {
       />
 
       {mentorData.length > 0 ? (
+        <div>
+          <p className="padding" style={{color:"#baff66"}}>Total mentors:{mentorData.length}</p>
         <DataView
           CardComponent={(props) => (
             <ProfileCard
@@ -155,6 +158,7 @@ const AdminMentor = () => {
           )}
           {...data}
         />
+        </div>
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No mentors available

@@ -23,6 +23,7 @@ const CardLayout = ({ events, onEventClick }) => {
     ],
     toggle: false,
     itemsPerPage: 8,
+    cardType : "primarycard"
   };
 
   return (
@@ -30,7 +31,7 @@ const CardLayout = ({ events, onEventClick }) => {
       <div className="padding">
         <div className={`${styles["cardlayout-heading"]}`}>Events</div>
       </div>
-      <DataView CardComponent={PrimaryCard} {...cardData} />
+      <DataView  cardType = "primarycard" CardComponent={PrimaryCard} {...cardData} />
     </div>
   );
 };

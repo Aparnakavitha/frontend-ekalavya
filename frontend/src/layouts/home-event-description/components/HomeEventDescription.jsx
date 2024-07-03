@@ -5,7 +5,7 @@ import { EventsDescription } from "../../common";
 import Modal from "../../common/components/Modal";
 import LoginBox from "../../common/components/LoginBox";
 
-const HomeEventDescription = ({ event, organizer }) => {
+const HomeEventDescription = ({ event, organizer , exploreEvent}) => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleOpenLoginModal = () => {
@@ -57,7 +57,7 @@ const HomeEventDescription = ({ event, organizer }) => {
 
   return (
     <div className="padding padding-top padding-bottom">
-      <EventsDescription {...homeEvents} />
+      <EventsDescription {...homeEvents} exploreEvent={exploreEvent}/>
       <Modal
         isOpen={isLoginModalOpen}
         widthVariant="small"

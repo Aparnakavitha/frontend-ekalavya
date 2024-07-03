@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import ActionComponent from "../../common/components/Action";
 import Modal from "../../common/components/Modal";
-import AdminSkillActionData from "./SkillData";
 import AddSkill from "./AddSkill";
-import DeleteSkill from "./DeleteSkill";
 import {
   createSkill,
   deleteSkill,
@@ -13,13 +11,10 @@ import {
   useSkills,
   setSkills,
 } from "../../../pages/admin/admin-skills/AdminSkillContext";
-import { toast } from "react-toastify";
 
-const AdminSkillAction = ({ setCardAnimation }) => {
+const AdminSkillAction = ({ setCardAnimation, count }) => {
   const { skills, setSkills, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [deleteSkillId, setDeleteSkillId] = useState(null);
   const [error, setError] = useState("");
 
   const handleOpenModal = () => {
@@ -33,19 +28,7 @@ const AdminSkillAction = ({ setCardAnimation }) => {
     setIsOpen(false);
   };
 
-  const handleOpenDelete = (skillId) => {
-    setDeleteSkillId(skillId);
-    setIsDeleteOpen(true);
-    setError("");
-    setCardAnimation(false);
-  };
 
-  const handleCloseDelete = () => {
-    setIsDeleteOpen(false);
-    setDeleteSkillId(null);
-    setError("");
-    setCardAnimation(false);
-  };
 
   const handleFormSubmit = async (skill) => {
     try {
@@ -66,18 +49,7 @@ const AdminSkillAction = ({ setCardAnimation }) => {
     }
   };
 
-  const handleDeleteSubmit = async (deleteSkillId) => {
-    try {
-      await deleteSkill(deleteSkillId);
-      setSkills((prevSkills) =>
-        prevSkills.filter((skill) => skill.id !== deleteSkillId)
-      );
-      setChanged(true);
-      handleCloseDelete();
-    } catch (error) {
-      console.error("Error deleting skill:", error);
-    }
-  };
+ 
 
   const handleSearchChange = async (value) => {
     try {
@@ -85,26 +57,54 @@ const AdminSkillAction = ({ setCardAnimation }) => {
       console.log("search response from search skills", searchedSkill);
       setSkills(searchedSkill);
     } catch (error) {
-      console.error("Error occured in skill search",error);
-      setSkills([]); 
+      console.error("Error occured in skill search", error);
+      setSkills([]);
     }
+  };
+
+  const AdminSkillActionData = {
+    heading: "Skills List",
+    buttonProps: {
+      variant: "tertiary",
+      content: "+ Add New Skill",
+      width: "full",
+    },
+    deleteProps: {
+      variant: "tertiary",
+      content: "Delete Skill",
+      width: "full",
+    },
+    showDelete: false,
+    deleteProps: {
+      variant: "primary",
+      content: "\u00A0Remove a Skill\u00A0",
+      width: "full",
+    },
+    searchWidth: "large",
+    searchbarProps: {
+      variant: "custom",
+      placeholder: "Skill",
+    },
+    showFiltersAndReset: false,
+    searchPlaceholder: "Enter Skill Name",
   };
 
   const actionData = {
     ...AdminSkillActionData,
+    count,
     buttonProps: {
       ...AdminSkillActionData.buttonProps,
       onClick: handleOpenModal,
-    },
-    deleteProps: {
-      ...AdminSkillActionData.deleteProps,
-      onClick: () => handleOpenDelete(deleteSkillId),
-    },
+    }
   };
 
   return (
     <div>
-      <ActionComponent {...actionData} onSearchChange={handleSearchChange} />
+      <ActionComponent
+        {...actionData}
+        count={skills.length===null?0:skills.length}
+        onSearchChange={handleSearchChange}
+      />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddSkill
           onSubmit={handleFormSubmit}
@@ -112,16 +112,7 @@ const AdminSkillAction = ({ setCardAnimation }) => {
           onCancel={handleCloseModal}
         />
       </Modal>
-      <Modal
-        isOpen={isDeleteOpen}
-        widthVariant="medium"
-        onClose={handleCloseDelete}
-      >
-        <DeleteSkill
-          onSubmit={handleDeleteSubmit}
-          onCancel={handleCloseDelete}
-        />
-      </Modal>
+     
     </div>
   );
 };
