@@ -111,11 +111,11 @@ const EventList = ({
           style={{
             textAlign: "left",
             color: "var(--neutral600)",
-            marginTop: "-40px",
+            marginTop: "-26px",
           }}
           className="padding"
         >
-          &nbsp;&nbsp;No events to display
+          &nbsp;&nbsp;No events available
         </div>
       ) : (
         <CardRow {...eventcards} handleClick={handleCardClick} />
