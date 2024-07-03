@@ -27,18 +27,18 @@ const CardRow = ({ cardData, card, handleClick, userId }) => {
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
-      if (windowWidth <= 780) {
+      if (windowWidth <= 857) {
         setCardnum(1);
         setPcardnum(1);
-      } else if (windowWidth >= 768 && windowWidth <= 1170) {
+      } else if (windowWidth >= 768 && windowWidth <= 1254) {
         setCardnum(2);
         setPcardnum(2);
-      } else if (windowWidth <= 1530 && windowWidth >= 992) {
+      } else if (windowWidth <= 1557 && windowWidth >= 992) {
         setCardnum(3);
-        setPcardnum(2);
-      } else {
-        setCardnum(4);
         setPcardnum(3);
+      } else {
+        setCardnum(5);
+        setPcardnum(4);
       }
     };
 

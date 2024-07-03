@@ -11,7 +11,11 @@ import {
 import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { participantsState, studentSkillState, skillState } from "../../../states/Atoms";
+import {
+  participantsState,
+  studentSkillState,
+  skillState,
+} from "../../../states/Atoms";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { toast } from "react-toastify";
 
@@ -116,6 +120,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
         handleClick: async () => {
           try {
             const response = await getUsersCountForSkill(skill.id);
+            console.log("Participant data from skilll list", response);
             const participantData = response.users.map((user) => [
               user.userId,
               user.UserName,
@@ -125,6 +130,14 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
               id: skill.id,
               skillName: skill.skillName,
             };
+            const skillParticipantDetails = {
+              title: skillsData.skillName,
+              participantDetails: participantData,
+            };
+            localStorage.setItem(
+              "skillParticipantDetails",
+              JSON.stringify(skillParticipantDetails)
+            );
             setSkillsData(skillsData);
             setParticipants(participantData);
             navigate(`/admin/skills/skill-participants`);
