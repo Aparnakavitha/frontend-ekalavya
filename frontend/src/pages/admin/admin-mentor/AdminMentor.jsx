@@ -128,7 +128,7 @@ const AdminMentor = () => {
       { key: "studentAddress", displayName: "Address" },
     ],
     toggle: true,
-    itemsPerPage: 18,
+    itemsPerPage: 15,
   };
 
   const handleSearchChange = (value) => {
