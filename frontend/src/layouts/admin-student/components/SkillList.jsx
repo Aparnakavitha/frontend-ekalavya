@@ -33,18 +33,9 @@ const SkillList = ({ studentId }) => {
           const skills = await axios.get(
             `https://ekalavya.tarento.com/api/skills?userId=${studentId}`
           );
-          const response = skills.data.responseData;
-          console.log(
-            "Fetching skills for userId (Skill list):",
-            studentId,
-            "Here are the skills (Skill list):",
-            studentSkills
-          );
-          console.log("Skills API response:(SKill List)", response);
           const options = await axios.get(
             `https://ekalavya.tarento.com/api/skills`
           );
-          console.log("Options to be set in skill list",options.data.responseData);
           setAllSkills(options.data.responseData);
           if (response.length > 0 && response[0].skills) {
             const skills = response[0].skills.map((skill) => ({
