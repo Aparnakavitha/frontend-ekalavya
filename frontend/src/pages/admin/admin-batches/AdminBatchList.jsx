@@ -114,7 +114,6 @@ const AdminBatchList = () => {
         </p>
       ) : batchData && batchData.length > 0 ? (
         <div>
-        <p className="padding" style={{color:"#baff66"}}>Total batches:{batchData.length}</p>
         <DataView
           data={batchData}
           CardComponent={(props) => <SkillBatchCard {...props} />}
