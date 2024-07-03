@@ -158,7 +158,9 @@ const SkillList = ({ studentId }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...skillcards} userId={studentId} />
+     {studentSkills.length>0 ? (<CardRow {...skillcards} userId={studentId} />): (
+      <p className="nodata padding padding-top padding-bottom" >No skills achieved yet</p>
+     )}
       <ToastContainer
         position="top-center"
         autoClose={5000}
