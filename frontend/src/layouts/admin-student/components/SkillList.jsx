@@ -18,19 +18,18 @@ const SkillList = ({ studentId }) => {
   const [studentSkills, setStudentSkills] = useRecoilState(
     adminStudentSkillState
   );
-  const allSkills = useRecoilValue(studentSkillState);
-  console.log("All defined skills",allSkills);
+  const [allSkills, setAllSkills] = useRecoilState(studentSkillState);
+  console.log("All defined skills", allSkills);
 
   const addSkillOptions = allSkills.map((skill) => ({
     value: skill.id,
-    label:`${skill.skillName}  (${skill.id})`,
+    label: `${skill.skillName}`,
   }));
 
   useEffect(() => {
     const fetchSkills = async () => {
       if (studentId) {
         try {
-          // const response = await getSkillsForUser(studentId);
           const skills = await axios.get(
             `https://ekalavya.tarento.com/api/skills?userId=${studentId}`
           );
@@ -42,7 +41,11 @@ const SkillList = ({ studentId }) => {
             studentSkills
           );
           console.log("Skills API response:(SKill List)", response);
-
+          const options = await axios.get(
+            `https://ekalavya.tarento.com/api/skills`
+          );
+          console.log("Options to be set in skill list",options.data.responseData);
+          setAllSkills(options.data.responseData);
           if (response.length > 0 && response[0].skills) {
             const skills = response[0].skills.map((skill) => ({
               miniHeading: skill.id,
@@ -111,7 +114,7 @@ const SkillList = ({ studentId }) => {
         cardType: "skill",
         showCount: false,
       };
-      setStudentSkills((prevSkills) => [newSkillState,...prevSkills]);
+      setStudentSkills((prevSkills) => [newSkillState, ...prevSkills]);
       handleCloseModal();
     } catch (error) {
       console.error("Error submitting skill:", error);
@@ -158,9 +161,13 @@ const SkillList = ({ studentId }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
-     {studentSkills.length>0 ? (<CardRow {...skillcards} userId={studentId} />): (
-      <p className="nodata padding padding-top padding-bottom" >No skills achieved yet</p>
-     )}
+      {studentSkills.length > 0 ? (
+        <CardRow {...skillcards} userId={studentId} />
+      ) : (
+        <p className="nodata padding padding-top padding-bottom">
+          No skills achieved yet
+        </p>
+      )}
       <ToastContainer
         position="top-center"
         autoClose={5000}
