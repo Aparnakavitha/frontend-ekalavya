@@ -23,7 +23,7 @@ const SkillList = ({ studentId }) => {
 
   const addSkillOptions = allSkills.map((skill) => ({
     value: skill.id,
-    label: skill.skillName,
+    label:`${skill.skillName}  (${skill.id})`,
   }));
 
   useEffect(() => {

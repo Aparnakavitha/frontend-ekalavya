@@ -12,7 +12,7 @@ import {
   SkillService,
   UserSkillDelete,
 } from "../../../services/Skills";
- 
+
 const Layout = () => {
   const [userSkills, setUserSkills] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -23,20 +23,20 @@ const Layout = () => {
   });
   const [options, setOptions] = useState([]);
   const userId = sessionStorage.getItem("user_id");
- 
+
   useEffect(() => {
     fetchSkills();
   }, []);
- 
+
   useEffect(() => {
     fetchUserSkills();
   }, []);
- 
+
   useEffect(() => {
     setUserSkills(userSkills);
     setSkillAdded(false);
   }, [skillAdded]);
- 
+
   const fetchUserSkills = async () => {
     try {
       const skills = await getSkillsForUser(userId);
@@ -46,7 +46,7 @@ const Layout = () => {
       console.error("Error fetching user skills", error);
     }
   };
- 
+
   const fetchSkills = async () => {
     try {
       const skillsResponse = await SkillService();
@@ -55,20 +55,20 @@ const Layout = () => {
         skillsResponse.map((skill) => ({
           value: skill.id,
           label:
-            skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1),
-          originalName: skill.skillName.toLowerCase(),
+            `${skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1)}  (${skill.id})`,
+          originalName: skill.skillName.toLowerCase(), 
         }))
       );
     } catch (error) {
       console.error("Error fetching skills", error);
     }
   };
- 
+
   const capitalizeFirstLetter = (str) => {
     if (!str) return "";
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
- 
+
   const handleAddSkill = async (formData) => {
     try {
       const { skill } = formData;
@@ -77,7 +77,7 @@ const Layout = () => {
         skillId: skill,
       };
       const newSkillResponse = await Userskillpost(postData);
- 
+
       const newSkill = {
         skillName:
           options.find((opt) => opt.value === skill)?.originalName ||
@@ -86,7 +86,7 @@ const Layout = () => {
         id: newSkillResponse.responseData[0].skill_id,
         ...newSkillResponse,
       };
-      console.log("test ",newSkill)
+      console.log("test ", newSkill);
       setUserSkills((prevSkills) => [...prevSkills, newSkill]);
       setSkillAdded(true);
       console.log("Skill added successfully:", newSkill);
@@ -97,17 +97,16 @@ const Layout = () => {
       console.error("Error adding skill:", error);
     }
   };
- 
+
   const handleFormSubmit = (formData) => {
     try {
-    console.log("Here's the form data:", formData);
-    handleAddSkill(formData);
+      console.log("Here's the form data:", formData);
+      handleAddSkill(formData);
     } catch (error) {
-    toast.error("Error adding skill!");
+      toast.error("Error adding skill!");
     }
-
   };
- 
+
   const handleDeleteSkill = async () => {
     const skillToDelete = userSkills[deleteModal.index];
     console.log(
@@ -121,18 +120,18 @@ const Layout = () => {
       console.error("Skill to delete not found");
       return;
     }
- 
+
     const { id } = skillToDelete;
- 
+
     if (!id) {
       console.error("Skill id undefined for skill:", skillToDelete);
       return;
     }
- 
+
     try {
       await UserSkillDelete(userId, id);
       console.log("Skill deleted successfully");
- 
+
       const updatedSkills = userSkills.filter(
         (_, index) => index !== deleteModal.index
       );
@@ -144,26 +143,26 @@ const Layout = () => {
       setDeleteModal({ isOpen: false, index: null });
     }
   };
- 
+
   return (
     <div className={`${styles["skilllayout-container"]} padding-top padding`}>
       <div className={styles["skilllayout-skilltitle"]}>
         <h3>Skills </h3>
         <div className={styles["skilllayout-layoutcontainer"]}>
-        {userSkills.length > 0 ? (
-          userSkills.map((skill, index) => (
-            <div key={index} className={styles["skilllayout-skillcontainer"]}>
-              <Card
-                subtitle={`Level ${skill.skillLevel}`}
-                title={capitalizeFirstLetter(skill.skillName)}
-                showCloseIcon={true}
-                onClose={() => setDeleteModal({ isOpen: true, index: index })}
-              />
-            </div>
-          ))
-        ) : (
-          <p className={styles["skilllayout-nodata"]}>No skills available</p>
-        )}
+          {userSkills.length > 0 ? (
+            userSkills.map((skill, index) => (
+              <div key={index} className={styles["skilllayout-skillcontainer"]}>
+                <Card
+                  subtitle={`Level ${skill.skillLevel}`}
+                  title={capitalizeFirstLetter(skill.skillName)}
+                  showCloseIcon={true}
+                  onClose={() => setDeleteModal({ isOpen: true, index: index })}
+                />
+              </div>
+            ))
+          ) : (
+            <p className={styles["skilllayout-nodata"]}>No skills available</p>
+          )}
           <div className={styles["skilllayout-addbutton"]}>
             <GoPlus
               className={styles["skilllayout-plusicon"]}
@@ -203,5 +202,5 @@ const Layout = () => {
     </div>
   );
 };
- 
+
 export default Layout;
