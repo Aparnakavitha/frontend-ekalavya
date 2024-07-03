@@ -148,7 +148,6 @@ const AdminMentor = () => {
 
       {mentorData.length > 0 ? (
         <div>
-          <p className="padding" style={{color:"#baff66"}}>Total mentors:{mentorData.length}</p>
         <DataView
           CardComponent={(props) => (
             <ProfileCard

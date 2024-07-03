@@ -101,7 +101,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
   let firstTrueAnimationSet = false;
 
   const skillData = {
-    data: skills.map((skill) => {
+    data:skills && skills.map((skill) => {
       let viewAnimation = false;
       if (!firstTrueAnimationSet && cardAnimation && skill.newEntry) {
         viewAnimation = true;

@@ -150,7 +150,8 @@ const Layout = () => {
       <div className={styles["skilllayout-skilltitle"]}>
         <h3>Skills </h3>
         <div className={styles["skilllayout-layoutcontainer"]}>
-          {userSkills.map((skill, index) => (
+        {userSkills.length > 0 ? (
+          userSkills.map((skill, index) => (
             <div key={index} className={styles["skilllayout-skillcontainer"]}>
               <Card
                 subtitle={`Level ${skill.skillLevel}`}
@@ -159,7 +160,10 @@ const Layout = () => {
                 onClose={() => setDeleteModal({ isOpen: true, index: index })}
               />
             </div>
-          ))}
+          ))
+        ) : (
+          <p className={styles["skilllayout-nodata"]}>No skills available</p>
+        )}
           <div className={styles["skilllayout-addbutton"]}>
             <GoPlus
               className={styles["skilllayout-plusicon"]}

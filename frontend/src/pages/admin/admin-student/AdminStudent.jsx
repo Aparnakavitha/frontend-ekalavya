@@ -434,7 +434,6 @@ const AdminStudent = () => {
 
       {studentsData.length > 0 ? (
         <div>
-          <p className="padding" style={{color:"#baff66"}}>Total students:{studentsData.length}</p>
         <DataView
           CardComponent={(props) => (
             <ProfileCard

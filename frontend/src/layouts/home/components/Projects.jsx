@@ -108,6 +108,7 @@ const Project = ({ projects, heading1, heading2, carouselId }) => {
             <div key={chunkIndex} className={`${styles["carousel-chunk"]}`}>
               {chunk.map((project, index) => (
                 <PrimaryCard
+                carousel ={true}
                   key={index}
                   miniHeading={project.miniHeading}
                   mainHeading={project.mainHeading}

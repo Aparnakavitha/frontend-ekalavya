@@ -28,8 +28,6 @@ const AdminSkillAction = ({ setCardAnimation, count }) => {
     setIsOpen(false);
   };
 
-
-
   const handleFormSubmit = async (skill) => {
     try {
       const response = await createSkill({ skillName: skill });
@@ -48,8 +46,6 @@ const AdminSkillAction = ({ setCardAnimation, count }) => {
       setError("Skill name already exists");
     }
   };
-
- 
 
   const handleSearchChange = async (value) => {
     try {
@@ -95,14 +91,14 @@ const AdminSkillAction = ({ setCardAnimation, count }) => {
     buttonProps: {
       ...AdminSkillActionData.buttonProps,
       onClick: handleOpenModal,
-    }
+    },
   };
 
   return (
     <div>
       <ActionComponent
         {...actionData}
-        count={skills.length===null?0:skills.length}
+        count={skills !== null ? skills.length : 0}
         onSearchChange={handleSearchChange}
       />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
@@ -112,7 +108,6 @@ const AdminSkillAction = ({ setCardAnimation, count }) => {
           onCancel={handleCloseModal}
         />
       </Modal>
-     
     </div>
   );
 };
