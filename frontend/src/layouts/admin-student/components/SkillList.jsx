@@ -159,7 +159,16 @@ const SkillList = ({ studentId }) => {
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
      {studentSkills.length>0 ? (<CardRow {...skillcards} userId={studentId} />): (
-      <p className="nodata padding padding-top padding-bottom" >No skills achieved yet</p>
+      <div
+      style={{
+        textAlign: "left",
+        color: "var(--neutral600)",
+        marginTop: "-26px",
+      }}
+      className="padding"
+    >
+      &nbsp;&nbsp;No skills available
+    </div>
      )}
       <ToastContainer
         position="top-center"

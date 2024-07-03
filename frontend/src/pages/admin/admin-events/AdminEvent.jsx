@@ -82,7 +82,7 @@ const AdminEvent = () => {
       { key: "description", displayName: "Description" },
     ],
     toggle: true,
-    itemsPerPage: 8,
+    itemsPerPage: 12,
     cardType: "primarycard",
   };
 
