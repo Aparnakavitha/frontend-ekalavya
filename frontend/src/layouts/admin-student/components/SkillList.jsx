@@ -18,31 +18,26 @@ const SkillList = ({ studentId }) => {
   const [studentSkills, setStudentSkills] = useRecoilState(
     adminStudentSkillState
   );
-  const allSkills = useRecoilValue(studentSkillState);
-  console.log("All defined skills",allSkills);
+  const [allSkills, setAllSkills] = useRecoilState(studentSkillState);
+  console.log("All defined skills", allSkills);
 
   const addSkillOptions = allSkills.map((skill) => ({
     value: skill.id,
-    label:`${skill.skillName}  (${skill.id})`,
+    label: `${skill.skillName}`,
   }));
 
   useEffect(() => {
     const fetchSkills = async () => {
       if (studentId) {
         try {
-          // const response = await getSkillsForUser(studentId);
           const skills = await axios.get(
             `https://ekalavya.tarento.com/api/skills?userId=${studentId}`
           );
           const response = skills.data.responseData;
-          console.log(
-            "Fetching skills for userId (Skill list):",
-            studentId,
-            "Here are the skills (Skill list):",
-            studentSkills
+          const options = await axios.get(
+            `https://ekalavya.tarento.com/api/skills`
           );
-          console.log("Skills API response:(SKill List)", response);
-
+          setAllSkills(options.data.responseData);
           if (response.length > 0 && response[0].skills) {
             const skills = response[0].skills.map((skill) => ({
               miniHeading: skill.id,
@@ -111,7 +106,7 @@ const SkillList = ({ studentId }) => {
         cardType: "skill",
         showCount: false,
       };
-      setStudentSkills((prevSkills) => [newSkillState,...prevSkills]);
+      setStudentSkills((prevSkills) => [newSkillState, ...prevSkills]);
       handleCloseModal();
     } catch (error) {
       console.error("Error submitting skill:", error);
@@ -159,16 +154,7 @@ const SkillList = ({ studentId }) => {
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
      {studentSkills.length>0 ? (<CardRow {...skillcards} userId={studentId} />): (
-      <div
-      style={{
-        textAlign: "left",
-        color: "var(--neutral600)",
-        marginTop: "-26px",
-      }}
-      className="padding"
-    >
-      &nbsp;&nbsp;No skills available
-    </div>
+      <p className="nodata padding padding-top padding-bottom" >No skills achieved yet</p>
      )}
       <ToastContainer
         position="top-center"
