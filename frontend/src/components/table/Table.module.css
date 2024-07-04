@@ -41,7 +41,7 @@
   line-height: 22px;
   letter-spacing: 0.41px;
   color: var(--neutral500);
-  max-width: 10vw;
+  max-width: 20vw;
 }
 
 .table-container tbody tr {
