@@ -79,10 +79,10 @@ const AdminEvent = () => {
       { key: "mainHeading", displayName: "Title" },
       { key: "startDate", displayName: "Start Date" },
       { key: "endDate", displayName: "End Date" },
-      { key: "description", displayName: "Description" },
+      { key: "Description", displayName: "Description" },
     ],
     toggle: true,
-    itemsPerPage: 8,
+    itemsPerPage: 12,
     cardType: "primarycard",
   };
 
