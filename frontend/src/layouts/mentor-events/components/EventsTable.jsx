@@ -100,18 +100,22 @@ const EventsTable = (props) => {
     name,
     userName,
     <div style={{ display: "flex", width: "120px", gap: "2px" }} key={participantId}>
-      <AttendanceButton
-        content="Present"
-        IsPresent={attendance[participantId] === true}
-        onClick={() => handleAttendanceClick(participantId, true)}
-        disabled={attendance[participantId] === true || disableAttendance}
-      />
-      <AttendanceButton
-        content="Absent"
-        IsPresent={attendance[participantId] === false}
-        onClick={() => handleAttendanceClick(participantId, false)}
-        disabled={attendance[participantId] === false || disableAttendance}
-      />
+      <div title={disableAttendance ? "Event not completed" : ""}>
+        <AttendanceButton
+          content="Present"
+          IsPresent={attendance[participantId] === true}
+          onClick={() => handleAttendanceClick(participantId, true)}
+          disabled={attendance[participantId] === true || disableAttendance}
+        />
+      </div>
+      <div title={disableAttendance ? "Event not completed" : ""}>
+        <AttendanceButton
+          content="Absent"
+          IsPresent={attendance[participantId] === false}
+          onClick={() => handleAttendanceClick(participantId, false)}
+          disabled={attendance[participantId] === false || disableAttendance}
+        />
+      </div>
     </div>,
   ]);
 
@@ -119,18 +123,22 @@ const EventsTable = (props) => {
     <div className={styles["global-attendance-buttons-container"]}>
       <span className={styles["select-all-text"]}>Select All:</span>
       <div className={styles["global-attendance-buttons"]}>
-        <AttendanceButton
-          content="Present"
-          IsPresent={allPresent}
-          onClick={() => handleGlobalAttendanceClick(true)}
-          disabled={allPresent || disableAttendance}
-        />
-        <AttendanceButton
-          content="Absent"
-          IsPresent={allAbsent}
-          onClick={() => handleGlobalAttendanceClick(false)}
-          disabled={allAbsent || disableAttendance}
-        />
+        <div title={disableAttendance ? "Event not completed" : ""}>
+          <AttendanceButton
+            content="Present"
+            IsPresent={allPresent}
+            onClick={() => handleGlobalAttendanceClick(true)}
+            disabled={allPresent || disableAttendance}
+          />
+        </div>
+        <div title={disableAttendance ? "Event not completed" : ""}>
+          <AttendanceButton
+            content="Absent"
+            IsPresent={allAbsent}
+            onClick={() => handleGlobalAttendanceClick(false)}
+            disabled={allAbsent || disableAttendance}
+          />
+        </div>
       </div>
     </div>
   );

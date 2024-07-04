@@ -70,7 +70,7 @@ const AdminEvent = () => {
       mainHeading: event.eventTitle,
       startDate: event.startDate,
       endDate: event.endDate,
-      Description: event.description,
+      description: event.description,
       cardType: "Course",
       handleClick: () => handleClick(event),
     })),
@@ -82,7 +82,7 @@ const AdminEvent = () => {
       { key: "description", displayName: "Description" },
     ],
     toggle: true,
-    itemsPerPage: 8,
+    itemsPerPage: 12,
     cardType: "primarycard",
   };
 
@@ -178,7 +178,6 @@ const AdminEvent = () => {
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
       />
-       <p className="padding" style={{color:"#baff66"}}>Total events:{events.length}</p>
       {events.length > 0 ? (
         <DataView cardType= "primarycard"  CardComponent={PrimaryCard} {...primaryCardData} />
       ) : (

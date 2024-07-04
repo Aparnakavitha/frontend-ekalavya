@@ -128,7 +128,7 @@ const AdminMentor = () => {
       { key: "studentAddress", displayName: "Address" },
     ],
     toggle: true,
-    itemsPerPage: 18,
+    itemsPerPage: 15,
   };
 
   const handleSearchChange = (value) => {
@@ -148,7 +148,6 @@ const AdminMentor = () => {
 
       {mentorData.length > 0 ? (
         <div>
-          <p className="padding" style={{color:"#baff66"}}>Total mentors:{mentorData.length}</p>
         <DataView
           CardComponent={(props) => (
             <ProfileCard
