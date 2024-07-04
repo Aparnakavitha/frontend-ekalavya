@@ -15,18 +15,18 @@ const DataView = ({
   const [isCardView, setIsCardView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileView, setIsMobileView] = useState(false);
+  const [mobileItemsPerPage, setMobileItemsPerPage] = useState(5);
 
-  const totalPages = Math.ceil((data?.length || 0) / itemsPerPage);
+  const getItemsPerPage = () =>
+    isMobileView ? mobileItemsPerPage : itemsPerPage;
+
+  const totalPages = Math.ceil((data?.length || 0) / getItemsPerPage());
 
   useEffect(() => {
     if (currentPage > totalPages) {
       setCurrentPage(totalPages);
     }
   }, [currentPage, totalPages]);
-
-  if (isMobileView) {
-    itemsPerPage = 5;
-  }
 
   const showCardView = () => {
     setIsCardView(true);
@@ -41,7 +41,10 @@ const DataView = ({
   };
 
   const currentData = data
-    ? data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+    ? data.slice(
+        (currentPage - 1) * getItemsPerPage(),
+        currentPage * getItemsPerPage()
+      )
     : [];
 
   const getComponentName = (item) => {
@@ -66,7 +69,7 @@ const DataView = ({
   );
 
   const tableHeadings = tableColumns.map((column) => column.displayName);
-  const emptyBoxCount = itemsPerPage - currentData.length;
+  const emptyBoxCount = getItemsPerPage() - currentData.length;
 
   const lastCardClass =
     currentData.length > 0
@@ -141,7 +144,7 @@ const DataView = ({
         )}
       </div>
 
-      {data?.length > itemsPerPage && (
+      {data?.length > getItemsPerPage() && (
         <div className={styles["dataview-pagination"]}>
           <Pagination
             totalPages={totalPages}
