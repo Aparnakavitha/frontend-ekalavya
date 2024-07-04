@@ -433,6 +433,7 @@ const AdminStudent = () => {
       </Modal>
 
       {studentsData.length > 0 ? (
+        <div>
         <DataView
           CardComponent={(props) => (
             <ProfileCard
@@ -442,6 +443,7 @@ const AdminStudent = () => {
           )}
           {...dataView}
         />
+        </div>
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
           No students available

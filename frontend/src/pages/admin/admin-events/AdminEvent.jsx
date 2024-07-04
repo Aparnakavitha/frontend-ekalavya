@@ -70,7 +70,7 @@ const AdminEvent = () => {
       mainHeading: event.eventTitle,
       startDate: event.startDate,
       endDate: event.endDate,
-      Description: event.description,
+      description: event.description,
       cardType: "Course",
       handleClick: () => handleClick(event),
     })),
@@ -82,7 +82,7 @@ const AdminEvent = () => {
       { key: "description", displayName: "Description" },
     ],
     toggle: true,
-    itemsPerPage: 8,
+    itemsPerPage: 12,
     cardType: "primarycard",
   };
 

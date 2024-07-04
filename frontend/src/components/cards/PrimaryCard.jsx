@@ -5,6 +5,7 @@ import { format } from "date-fns";
  
 const PrimaryCard = (props) => {
   const {
+    carousel= false,
     miniHeading,
     mainHeading,
     startDate,
@@ -103,8 +104,8 @@ const PrimaryCard = (props) => {
       ? styles.cardOutlineHover
       : styles.cardOutline;
  
-  const cardClass = viewAnimations ? `${styles.highlight}` : styles.cards;
- 
+      const cardClass = carousel ? `${styles.carousel}` : (viewAnimations ? `${styles.highlight}` : styles.cards);
+
   return (
     <div
       className={cardClass}
