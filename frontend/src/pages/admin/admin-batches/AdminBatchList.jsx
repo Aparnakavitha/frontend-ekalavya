@@ -92,13 +92,13 @@ const AdminBatchList = () => {
 
   return (
     <div>
-      <Greeting
+      {/* <Greeting
         welcome="Welcome back"
         name={loggedUserFirstName}
         info="Here is the information about"
         profile="Batches"
         showButtons={false}
-      />
+      /> */}
       <AdminBatchAction
         count={batchData ? batchData.length : 0}
         onSearchChange={handleSearchChange}
