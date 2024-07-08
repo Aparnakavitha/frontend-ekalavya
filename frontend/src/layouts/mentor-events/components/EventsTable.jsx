@@ -47,28 +47,6 @@ const EventsTable = (props) => {
     }
   };
 
-  const handleGlobalAttendanceClick = (isPresent) => {
-    if (disableAttendance) {
-      console.log("Global attendance marking is disabled for this event");
-      return;
-    }
-
-    const newAttendance = {};
-    for (const id in attendance) {
-      newAttendance[id] = isPresent;
-    }
-
-    setAttendance(newAttendance);
-
-    const requestBody = {
-      attendance: isPresent,
-    };
-
-    if (onAttendanceUpdate) {
-      onAttendanceUpdate(requestBody);
-    }
-  };
-
   const handleExportClick = () => {
     const csvData = [["Participant ID", "Name", "Username", "Attendance"]];
     data.forEach(([participantId, name, userName]) => {
@@ -91,9 +69,6 @@ const EventsTable = (props) => {
     link.click();
     document.body.removeChild(link);
   };
-
-  const allPresent = Object.values(attendance).every((value) => value === true);
-  const allAbsent = Object.values(attendance).every((value) => value === false);
 
   const tableData = data.map(([participantId, name, userName]) => [
     participantId,
@@ -119,30 +94,6 @@ const EventsTable = (props) => {
     </div>,
   ]);
 
-  const globalAttendanceButtons = (
-    <div className={styles["global-attendance-buttons-container"]}>
-      <span className={styles["select-all-text"]}>Select All:</span>
-      <div className={styles["global-attendance-buttons"]}>
-        <div title={disableAttendance ? "Event not completed" : ""}>
-          <AttendanceButton
-            content="Present"
-            IsPresent={allPresent}
-            onClick={() => handleGlobalAttendanceClick(true)}
-            disabled={allPresent || disableAttendance}
-          />
-        </div>
-        <div title={disableAttendance ? "Event not completed" : ""}>
-          <AttendanceButton
-            content="Absent"
-            IsPresent={allAbsent}
-            onClick={() => handleGlobalAttendanceClick(false)}
-            disabled={allAbsent || disableAttendance}
-          />
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div className={`${styles["eventstable-container"]} padding padding-bottom`}>
       <div className={styles["eventstable-topleft"]}>
@@ -150,7 +101,6 @@ const EventsTable = (props) => {
         <TextButton text="Export" icon={<TfiExport />} onClick={handleExportClick} />
       </div>
       <div className={styles["eventstable-table"]}>
-        <div>{globalAttendanceButtons}</div>
         <div className={styles["eventstable-tablecontent"]}>
           <Table
             data={tableData}
