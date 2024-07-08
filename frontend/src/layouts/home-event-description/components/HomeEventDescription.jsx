@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ToastContainer, toast, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { EventsDescription } from "../../common";
 import Modal from "../../common/components/Modal";
