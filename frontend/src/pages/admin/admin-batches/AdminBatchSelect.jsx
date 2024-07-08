@@ -187,9 +187,9 @@ const AdminBatchSelect = () => {
             toggle: true,
             itemsPerPage: 15,
             deleteProps: {
-              title: "Delete Participant",
-              message: "Are you sure you want to delete this participant?",
-              buttonText: "Delete",
+              title: "Remove Participant",
+              message: "Are you sure you want to Remove this participant ?",
+              buttonText: "Remove",
             },
           }}
           batchId={batchId}

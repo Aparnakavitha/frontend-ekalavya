@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ProfileCard.module.css";
-import { MdDelete } from "react-icons/md";
+import { MdDeleteOutline } from "react-icons/md";
 
 const ProfileCard = (props) => {
   const {
@@ -55,9 +55,9 @@ const ProfileCard = (props) => {
             className={styles["student-image"]}
           />
           {canDelete && (
-            <MdDelete
+            <MdDeleteOutline 
               className={styles["delete-icon"]}
-              title="Delete"
+              title="Remove"
               onClick={handleDeleteIcon}
             />
           )}
