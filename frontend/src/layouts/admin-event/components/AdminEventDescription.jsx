@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import EventsDescription from "../../common/components/EventsDescription";
 import Modal from "../../common/components/Modal";
 import DeleteBox from "../../common/components/DeleteBox";
 import AddEvent from "../../admin-event/components/AddEvent";
 import EventsDescriptionData from "./EventDescriptionData";
+import { enrollParticipantService } from "../../../services/Event";
 
 const AdminEventDescription = ({
   formSubmit,
@@ -16,6 +17,41 @@ const AdminEventDescription = ({
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [participants, setParticipants] = useState([]);
+  const [headings, setHeadings] = useState([]);
+  const [attendanceFraction, setAttendanceFraction] = useState("0/0");
+  const [attendancePercentage, setAttendancePercentage] = useState("0%");
+
+  useEffect(() => {
+    const fetchParticipants = async () => {
+      try {
+        const response = await enrollParticipantService(eventId);
+        if (response.statusMessage === "success") {
+          const updatedParticipants = response.responseData.map((participant) => {
+            return participant;
+          });
+          setParticipants(updatedParticipants);
+
+          if (updatedParticipants.length > 0) {
+            const presentCount = updatedParticipants.filter(participant => participant.attendance === true).length;
+            const totalParticipants = updatedParticipants.length;
+
+            // Calculate attendance fraction
+            const fraction = `${presentCount}/${totalParticipants}`;
+            setAttendanceFraction(fraction);
+
+            // Calculate attendance percentage
+            const percentage = `${Math.round((presentCount / totalParticipants) * 100)}%`;
+            setAttendancePercentage(percentage);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching participants:", error);
+      }
+    };
+
+    fetchParticipants(); // Fetch participants when the component mounts or eventId changes
+  }, [eventId]);
 
   const handleClick = () => {
     navigate(`/admin/events/event-details/event-participants/${eventId}`);
@@ -63,9 +99,12 @@ const AdminEventDescription = ({
     onclick1: handleClick,
   };
 
+  console.log("Participants:", participants); // Log participants here
+
   return (
     <div>
-      <EventsDescription {...actionData} organizer={organizer} />
+      <EventsDescription {...actionData} organizer={organizer} fraction ={attendanceFraction} percentage = {attendancePercentage}/>
+
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddEvent
           defaultValues={EventsDescriptionData.defaultValues}
