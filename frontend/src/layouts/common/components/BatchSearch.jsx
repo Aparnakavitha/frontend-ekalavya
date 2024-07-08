@@ -7,6 +7,7 @@ import NavButton from "../../../components/buttons/NavButton";
 import TextButton from "../../../components/buttons/TextButton";
 
 const BatchSearch = ({
+  participantCount,
   textbuttonProps,
   textbuttonProps2,
   navbuttonProps,
@@ -76,7 +77,7 @@ const BatchSearch = ({
       <div className={`${styles["batchsearch-content"]}`}>
         <div className={`${styles["batchsearch-top"]}`}>
           <div className={`${styles["batchsearch-heading"]}`}>
-            <NavButton {...navbuttonProps} />
+          <b><NavButton {...navbuttonProps} /></b> <a style={{ fontSize: '16px' }}> (Count: {participantCount})</a>
           </div>
           {showTextButton && (
             <div className={`${styles["batchsearch-textbutton"]}`}>

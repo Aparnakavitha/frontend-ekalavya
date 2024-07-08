@@ -1190,6 +1190,9 @@
     font-size: 24px;
     font-weight: 500;
     align-items: flex-end;
+    display: flex;
+    align-items: center;
+    gap:5px;
 }
 
 .batchsearch-filter {
