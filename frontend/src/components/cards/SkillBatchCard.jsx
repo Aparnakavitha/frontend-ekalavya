@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./SkillBatchCard.module.css";
 import { FaTrash } from "react-icons/fa6";
 import { MdModeEdit } from "react-icons/md";
+import { TiDeleteOutline } from "react-icons/ti";
+import TextButton from "../buttons/TextButton";
 
 const SkillBatchCard = (props) => {
   const {
@@ -71,7 +73,35 @@ const SkillBatchCard = (props) => {
           onClick={handleClick}
         >
           <div className={styles.titleContainer}>
-            <a className={styles.cardsminiheading}>{miniHeading}</a>
+            <div className={styles.miniheadingDelete}>
+              <a className={styles.cardsminiheading}>{miniHeading}</a>
+              {cardType === "skill" && (
+                <div className={styles.cardsDeleteEdit}>
+                  {canDelete ? (
+                    <TextButton
+                      onClick={handleDeleteIconClick}
+                      isDelete={true}
+                      className={styles.deleteTextIcon}
+                      icon={<TiDeleteOutline size={19} />}
+                      text=" Remove"
+                    />
+                  ) : canEdit ? (
+                    <MdModeEdit
+                      className={styles.deleteIcon}
+                      onClick={handleEditIconClick}
+                      title="Edit"
+                    />
+                  ) : null}
+                  {canEdit && canDelete && (
+                    <MdModeEdit
+                      className={styles.editIcon}
+                      onClick={handleEditIconClick}
+                      title="Edit"
+                    />
+                  )}
+                </div>
+              )}
+            </div>
             <a
               className={styles.cardsmainheading}
               style={
@@ -84,30 +114,6 @@ const SkillBatchCard = (props) => {
               <a className={styles.cardsdiscription}>{formattedCount}</a>
             )}
           </div>
-          {cardType === "skill" && (
-            <>
-              {canDelete ? (
-                <FaTrash
-                  className={styles.deleteIcon}
-                  onClick={handleDeleteIconClick}
-                  title="Delete"
-                />
-              ) : canEdit ? (
-                <MdModeEdit
-                  className={styles.deleteIcon}
-                  onClick={handleEditIconClick}
-                  title="Edit"
-                />
-              ) : null}
-              {canEdit && canDelete && (
-                <MdModeEdit
-                  className={styles.editIcon}
-                  onClick={handleEditIconClick}
-                  title="Edit"
-                />
-              )}
-            </>
-          )}
         </div>
       </div>
     </div>

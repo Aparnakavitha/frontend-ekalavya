@@ -10,6 +10,7 @@ import { updateBatch } from "../../../services/Batch";
 import { toast } from "react-toastify";
 
 const AdminBatchSearch = ({
+  participantCount,
   batchDelete,
   addParticipant,
   changeBatchName,
@@ -54,6 +55,7 @@ const AdminBatchSearch = ({
   }, [batchParticipantsData]);
 
   const AdminBatchSearchData = {
+    participantCount:participantCount,
     navbuttonProps: {
       pageName: batchName,
     },

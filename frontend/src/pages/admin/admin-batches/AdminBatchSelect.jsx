@@ -25,6 +25,7 @@ const greeting = {
 };
 
 const AdminBatchSelect = () => {
+  const [participantCount, setParticipantCount] = useState(0);
   const { batchId } = useParams();
   const params = useParams();
   const location = useLocation();
@@ -42,6 +43,8 @@ const AdminBatchSelect = () => {
       const batchId = params.batchId;
       const participantsResponse = await fetchBatchParticipants({ batchId });
       const participantIds = participantsResponse.responseData;
+      const count = participantIds.length;
+      setParticipantCount(count);
 
       if (Array.isArray(participantIds) && participantIds.length > 0) {
         const userId = participantIds.join(",");
@@ -160,8 +163,9 @@ const AdminBatchSelect = () => {
 
   return (
     <div>
-      <Greeting {...greeting} />
+      {/* <Greeting {...greeting} /> */}
       <AdminBatchSearch
+        participantCount={participantCount}
         batchDelete={handleDeleteBatches}
         addParticipant={addParticipant}
         setBatchName={setBatchName}
@@ -183,9 +187,9 @@ const AdminBatchSelect = () => {
             toggle: true,
             itemsPerPage: 15,
             deleteProps: {
-              title: "Delete Participant",
-              message: "Are you sure you want to delete this participant?",
-              buttonText: "Delete",
+              title: "Remove Participant",
+              message: "Are you sure you want to Remove this participant ?",
+              buttonText: "Remove",
             },
           }}
           batchId={batchId}
