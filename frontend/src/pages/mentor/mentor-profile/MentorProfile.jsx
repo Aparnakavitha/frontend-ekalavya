@@ -114,7 +114,7 @@ const MentorProfile = () => {
 
   return (
     <div>
-      <Greeting {...greet} />
+      {/* <Greeting {...greet} /> */}
       <MentorProfileInfo
         profileData={profileData}
         EditableData={EditableData}

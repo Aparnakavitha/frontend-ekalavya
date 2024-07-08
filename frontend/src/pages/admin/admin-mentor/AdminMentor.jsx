@@ -137,7 +137,7 @@ const AdminMentor = () => {
 
   return (
     <div>
-      <Greeting {...greet} />
+      {/* <Greeting {...greet} /> */}
       <AdminMentorAction
         count={mentorData.length}
         onAddSuccess={() => fetchMentorData(setMentorData)}

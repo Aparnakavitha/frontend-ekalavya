@@ -170,7 +170,7 @@ const AdminEvent = () => {
 
   return (
     <div>
-      <Greeting {...greeting} />
+      {/* <Greeting {...greeting} /> */}
       <AdminEventAction
         count={events.length}
         formSubmit={formSubmit}

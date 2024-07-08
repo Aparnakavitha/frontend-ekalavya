@@ -127,7 +127,7 @@ const StudentProfile = () => {
 
   return (
     <div>
-      <Greeting {...greet} />
+      {/* <Greeting {...greet} /> */}
       <StudentProfileInfo
         profileData={profileData}
         EditableData={EditableData}

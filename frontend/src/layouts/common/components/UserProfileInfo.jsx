@@ -35,7 +35,7 @@ const UserProfileInfo = (props) => {
             <div className={`${styles["userprofile-controlbutton"]}`}>
               <TextButton
                 icon={<MdEdit />}
-                text="Update"
+                text="Edit"
                 onClick={onClickEdit}
               />
             </div>
@@ -67,7 +67,7 @@ const UserProfileInfo = (props) => {
                   {college}
                 </h4>
               )}
-              <h4 className={`${styles["userprofile-dob"]}`}>DOB: {dob}</h4>
+              <h4 className={`${styles["userprofile-dob"]}`}>DOB: {dob? dob : <a className="nodata">N/A</a>}</h4>
             </div>
           </div>
 
@@ -76,7 +76,7 @@ const UserProfileInfo = (props) => {
               <IoMdMail /> {email}
             </h4>
             <h4 className={`${styles["userprofile-phone"]}`}>
-              <FaPhone /> {phoneNo}
+              <FaPhone /> {phoneNo ? phoneNo : <a className="nodata">N/A</a>}
             </h4>
             {linkedin && (
               <h4 className={`${styles["userprofile-linkedin"]}`}>
@@ -138,7 +138,7 @@ const UserProfileInfo = (props) => {
                 ))}
               </div>
             ) : (
-              <div className="nodata"> No data available</div>
+              <div className="nodata"> N/A</div>
             )}
           </div>
         </div>

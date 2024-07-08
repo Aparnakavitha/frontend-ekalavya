@@ -120,11 +120,13 @@ const CardRow = ({ cardData, card, handleClick, userId }) => {
                 ))}
             </div>
             <div className={styles["cardrow-viewnext"]}>
-              {showAllCards ? (
-                <TextButton {...upbutton} />
-              ) : (
-                <TextButton {...downbutton} />
-              )}
+              {cardData.length > cardnum  ? (
+                showAllCards ? (
+                  <TextButton {...upbutton} />
+                ) : (
+                  <TextButton {...downbutton} />
+                )
+              ) : null}
             </div>
           </div>
         </div>
@@ -147,11 +149,13 @@ const CardRow = ({ cardData, card, handleClick, userId }) => {
                 ))}
             </div>
             <div className={styles["cardrow-pviewnext"]}>
-              {showAllCards ? (
-                <TextButton {...upbutton} />
-              ) : (
-                <TextButton {...downbutton} />
-              )}
+              {cardData.length > pcardnum  ? (
+                showAllCards ? (
+                  <TextButton {...upbutton} />
+                ) : (
+                  <TextButton {...downbutton} />
+                )
+              ) : null}
             </div>
           </div>
         </div>
