@@ -138,9 +138,9 @@
 }
 
 .rightCard.highlight {
-  animation: highlight 2s ease-in-out;
+  animation: highlight 3s ease-in-out;
 }
 
 .leftCard.highlight {
-  animation: highlight 2s ease-in-out;
+  animation: highlight 3s ease-in-out;
 }
