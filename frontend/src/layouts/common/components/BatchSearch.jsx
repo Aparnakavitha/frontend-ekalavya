@@ -22,6 +22,7 @@ const BatchSearch = ({
   showSearch = true,
   onSearchChange,
   onFilterChange,
+  searchTerm, setSearchTerm
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [filterStates, setFilterStates] = useState(
@@ -85,7 +86,7 @@ const BatchSearch = ({
                 <TextButton {...textbuttonProps} />
               </div>
               <div>
-                <TextButton {...textbuttonProps2} />
+                <TextButton isDelete= "true" {...textbuttonProps2} />
               </div>
             </div>
           )}
@@ -93,7 +94,7 @@ const BatchSearch = ({
         <div className={`${styles["batchsearch-bottom"]}`}>
           {showSearch && (
             <div className={`${styles["batchsearch-search"]}`}>
-              <Searchbar {...searchbarProps} onSearch={handleSearchChange} />
+              <Searchbar {...searchbarProps} onSearch={setSearchTerm}  value={searchTerm}/>
             </div>
           )}
           <div className={`${styles["batchsearch-right"]}`}>
