@@ -135,14 +135,17 @@ const AdminStudent = () => {
     const fetchCollegeData = async () => {
       try {
         const data = await getColleges();
-        const transformedData = data.responseData.map((college) => [
-          college.collegeId,
-          college.collegeName,
-          college.collegePlace,
-          college.collegeDistrict,
-          college.collegeState,
-          college.collegeCountry,
-        ]);
+        const transformedData = data.responseData
+          .map((college) => [
+            college.collegeId,
+            college.collegeName,
+            college.collegePlace,
+            college.collegeDistrict,
+            college.collegeState,
+            college.collegeCountry,
+          ])
+          .sort((a, b) => a[1].localeCompare(b[1]));
+
         setCollegeData(transformedData);
 
         if (location.state && location.state.userData) {
@@ -434,15 +437,15 @@ const AdminStudent = () => {
 
       {studentsData.length > 0 ? (
         <div>
-        <DataView
-          CardComponent={(props) => (
-            <ProfileCard
-              {...props}
-              onClick={() => handleCardClick(props.studentId)}
-            />
-          )}
-          {...dataView}
-        />
+          <DataView
+            CardComponent={(props) => (
+              <ProfileCard
+                {...props}
+                onClick={() => handleCardClick(props.studentId)}
+              />
+            )}
+            {...dataView}
+          />
         </div>
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
