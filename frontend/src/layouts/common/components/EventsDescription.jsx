@@ -241,7 +241,7 @@ const EventsDescription = (props) => {
                 </div>
             </>
           )}
-          {(type === "public" || type === "admin" || type === "mentor") && (
+          {(type === "admin") && (
             <>
               <div className={`${styles["eventsdescription-gap"]}`}>
                 <div

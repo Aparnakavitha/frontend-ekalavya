@@ -64,11 +64,15 @@ const EventsTable = (props) => {
 
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", `${eventName}.csv`); 
+    link.setAttribute("download", `${eventName}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
+
+  const totalParticipants = data.length;
+  const presentParticipants = totalParticipants ? Object.values(attendance).filter(isPresent => isPresent).length : 0;
+  const attendancePercentage = totalParticipants ? Math.round((presentParticipants / totalParticipants) * 100) : 0;
 
   const tableData = data.map(([participantId, name, userName]) => [
     participantId,
@@ -93,11 +97,11 @@ const EventsTable = (props) => {
       </div>
     </div>,
   ]);
-
   return (
     <div className={`${styles["eventstable-container"]} padding padding-bottom`}>
       <div className={styles["eventstable-topleft"]}>
-        <h2>Mark Attendance</h2>
+        <h2>Mark Attendance</h2> <h3>{`${presentParticipants}/${totalParticipants} present`}</h3>
+        <h3>{`${attendancePercentage}% attendance`}</h3>
         <TextButton text="Export" icon={<TfiExport />} onClick={handleExportClick} />
       </div>
       <div className={styles["eventstable-table"]}>
