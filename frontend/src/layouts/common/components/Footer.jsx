@@ -25,6 +25,10 @@ const Footer = (props) => {
   return (
     <div className={styles["footer-footer"]}>
       <div className={containerClass}>
+      <div className={styles["footer-footerline"]}>
+      <div className={styles["footer-line"]}></div>
+
+      </div>
         <div className={logoBoxClass}>
           <img src={Logo} alt="Logo" className={styles["footer-img"]} />
           <span className={quoteclass}>{quoteContent}</span>

@@ -28,10 +28,15 @@
 }
 
 .delete-icon {
-  color: var(--primary-color);
+  /* color: var(--primary-color); */
   cursor: pointer;
   height: 25px;
   width: 25px;
+  display: none;
+}
+.card:hover .delete-icon {
+  display: block; 
+  color:  var(--warning-color);
 }
 
 .card .student-image {
@@ -100,8 +105,7 @@
   color: var(--neutral600);
 }
 
-.card:hover .contact-info,
-.card:hover .delete-icon {
+.card:hover .contact-info{
   color: var(--neutral800);
 }
 
@@ -109,8 +113,7 @@
   background-color: var(--neutral800);
 }
 
-.card:hover .contact-info,
-.card:hover .delete-icon {
+.card:hover .contact-info {
   color: var(--neutral800);
 }
 
@@ -132,5 +135,5 @@
 }
 
 .card.highlight {
-  animation: highlight 2s ease-in-out;
+  animation: highlight 3s ease-in-out;
 }

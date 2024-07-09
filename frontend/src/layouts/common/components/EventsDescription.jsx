@@ -19,6 +19,8 @@ const EventsDescription = (props) => {
     speaker,
     speakerDescription,
     organizer,
+    fraction,
+    percentage,
     button,
     small,
     medium,
@@ -30,7 +32,7 @@ const EventsDescription = (props) => {
     onclick3,
     showButton,
     isRegistered,
-    role, 
+    role,
   } = props;
 
   function formatDate(dateString) {
@@ -53,7 +55,7 @@ const EventsDescription = (props) => {
   let locationValue = eventMode === "Offline" ? location : link;
 
   if (eventMode === "Online") {
-    if (role == 3 || exploreEvent){
+    if (role == 3 || exploreEvent) {
       locationValue = isRegistered ? (
         <p>
           <b>{locationLabel} :</b>{" "}
@@ -79,7 +81,8 @@ const EventsDescription = (props) => {
       <p>
         <b>{locationLabel} :</b>
         {location}
-      </p>)
+      </p>
+    );
   }
 
   return (
@@ -128,8 +131,8 @@ const EventsDescription = (props) => {
                 </div>
               </>
             )}
- 
-            {type === "mentor" && showButton &&(
+
+            {type === "mentor" && showButton && (
               <>
                 <div className={`${styles["eventsdescription-primarydiv"]}`}>
                   <div
@@ -223,16 +226,37 @@ const EventsDescription = (props) => {
 
           {(type === "public" || type === "admin") && (
             <>
-              <div>
+                <div className={`${styles["eventsdescription-gap"]}`}>
+                  <div
+                    className={`${styles["eventsdescription-headingcontent"]}`}
+                  >
+                    <h3>Organizer</h3>
+                  </div>
+
+                  <div>
+                    <a className={`${styles["eventsdescription-speaker"]}`}>
+                      {organizer}
+                    </a>
+                  </div>
+                </div>
+            </>
+          )}
+          {(type === "admin") && (
+            <>
+              <div className={`${styles["eventsdescription-gap"]}`}>
                 <div
                   className={`${styles["eventsdescription-headingcontent"]}`}
                 >
-                  <h3>Organizer</h3>
+                  <h3>Attendance</h3>
                 </div>
 
                 <div>
                   <a className={`${styles["eventsdescription-speaker"]}`}>
-                    {organizer}
+                    <b>Percentage : </b>
+                    {percentage}
+                    <br />
+                    <b>Attendance Count : </b>
+                    {fraction}
                   </a>
                 </div>
               </div>

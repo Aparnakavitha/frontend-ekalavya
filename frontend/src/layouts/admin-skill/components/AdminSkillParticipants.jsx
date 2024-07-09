@@ -4,12 +4,12 @@ import Table from "../../../components/table/Table";
 import NavButton from "../../../components/buttons/NavButton";
 import { useRecoilValue } from "recoil";
 import { participantsState, skillState } from "../../../states/Atoms";
-import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { deleteSkill } from "../../../services/Skills";
 import Modal from "../../common/components/Modal";
 import { toast } from "react-toastify";
 import { DeleteBox } from "../../common";
 import { useNavigate } from "react-router-dom";
+import DeleteButton from "../../../components/buttons/DeleteButton";
 
 const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
   const skillsData = useRecoilValue(skillState);
@@ -82,7 +82,7 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
           ))}
         </div>
         <div className={`${styles["adminskillparticipants-deletebutton"]}`}>
-          <PrimaryButton {...props} />
+          <DeleteButton {...props} />
         </div>
         <Modal
           isOpen={isDeleteOpen}

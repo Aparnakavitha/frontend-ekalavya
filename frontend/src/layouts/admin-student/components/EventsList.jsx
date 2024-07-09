@@ -61,7 +61,7 @@ const EventList = ({
   };
 
   const heading = {
-    heading: "Events Attended",
+    heading: "Events Assigned",
     textbuttonprops: {
       icon: <AiOutlinePlus />,
       text: "Add Events",
