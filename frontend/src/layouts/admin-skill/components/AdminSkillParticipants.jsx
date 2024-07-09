@@ -4,7 +4,6 @@ import Table from "../../../components/table/Table";
 import NavButton from "../../../components/buttons/NavButton";
 import { useRecoilValue } from "recoil";
 import { participantsState, skillState } from "../../../states/Atoms";
-import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { deleteSkill } from "../../../services/Skills";
 import Modal from "../../common/components/Modal";
 import { toast } from "react-toastify";
