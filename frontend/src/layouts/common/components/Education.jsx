@@ -79,6 +79,7 @@ const Education = ({
                         <TextButton
                           icon={<MdDelete />}
                           text="Delete"
+                          variant="redHover"
                           onClick={() => onClickDelete(index)}
                         />
                       </div>
