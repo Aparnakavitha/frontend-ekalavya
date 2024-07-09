@@ -32,10 +32,16 @@
   color: var(--warning-color);
 }
 
-/* New variant styles */
+.redHover .text,
+.redHover .icon,
+.redHover .dtext,
+.redHover .dicon {
+  color: red;
+}
+
 .redHover:hover .text,
 .redHover:hover .icon,
 .redHover:hover .dtext,
 .redHover:hover .dicon {
-  color: red;
+  color: white;
 }
