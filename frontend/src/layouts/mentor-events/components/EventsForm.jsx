@@ -420,7 +420,7 @@ const EventForm = ({ hostId, onSubmit }) => {
           </div>
         </div>
       </form>
-      <ToastContainer
+      {/* <ToastContainer
         position='top-center'
         autoClose={5000}
         hideProgressBar={true}
@@ -431,7 +431,7 @@ const EventForm = ({ hostId, onSubmit }) => {
         draggable
         pauseOnHover
         theme='dark'
-      />
+      /> */}
     </div>
   );
 };

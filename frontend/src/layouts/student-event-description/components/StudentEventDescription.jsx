@@ -154,7 +154,7 @@ const StudentEventDescription = ({
   return (
     <div className="padding padding-top padding-bottom">
       <EventsDescription {...eventData} />
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={true}
@@ -166,7 +166,7 @@ const StudentEventDescription = ({
         pauseOnHover
         theme="dark"
         transition={Slide}
-      />
+      /> */}
     </div>
   );
 };

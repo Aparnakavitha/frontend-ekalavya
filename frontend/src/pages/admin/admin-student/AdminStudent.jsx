@@ -452,7 +452,7 @@ const AdminStudent = () => {
           No students available
         </p>
       )}
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={true}
@@ -464,7 +464,7 @@ const AdminStudent = () => {
         pauseOnHover
         theme="dark"
         transition={Slide}
-      />
+      /> */}
     </div>
   );
 };
