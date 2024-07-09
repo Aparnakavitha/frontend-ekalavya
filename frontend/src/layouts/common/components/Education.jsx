@@ -4,6 +4,7 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import styles from "../Common.module.css";
 import { format, parse } from "date-fns";
+import { MdDeleteOutline } from "react-icons/md";
 
 const Education = ({
   qualifications,
@@ -77,7 +78,9 @@ const Education = ({
                         className={`${styles["education-qualification-button"]}`}
                       >
                         <TextButton
-                          icon={<MdDelete />}
+                          icon={
+                            <MdDeleteOutline style={{ fontSize: "18px" }} />
+                          }
                           text="Delete"
                           variant="redHover"
                           onClick={() => onClickDelete(index)}

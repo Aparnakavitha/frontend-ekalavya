@@ -49,6 +49,7 @@ const EventAction = ({ onSearchChange, onFilterChange }) => {
   return (
     <div>
       <BatchSearch
+        explorepage="true"
         {...EventActionData}
         onSearchChange={onSearchChange}
         onFilterChange={onFilterChange}

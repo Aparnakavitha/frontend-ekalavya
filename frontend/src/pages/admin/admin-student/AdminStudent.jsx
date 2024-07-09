@@ -402,7 +402,7 @@ const AdminStudent = () => {
 
   return (
     <div>
-      {/* <Greeting {...GreetingData} /> */}
+      <Greeting {...GreetingData} />
       <Modal isOpen={isViewOpen} widthVariant="large" onClose={handleCloseView}>
         {collegeData.length > 0 ? (
           <CollegeList {...AdminStudentData.greetingData.viewprops} />
