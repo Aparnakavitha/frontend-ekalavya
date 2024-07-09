@@ -22,6 +22,7 @@ const BatchSearch = ({
   showSearch = true,
   onSearchChange,
   onFilterChange,
+  searchTerm, setSearchTerm
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [filterStates, setFilterStates] = useState(
@@ -93,7 +94,7 @@ const BatchSearch = ({
         <div className={`${styles["batchsearch-bottom"]}`}>
           {showSearch && (
             <div className={`${styles["batchsearch-search"]}`}>
-              <Searchbar {...searchbarProps} onSearch={handleSearchChange} />
+              <Searchbar {...searchbarProps} onSearch={setSearchTerm}  value={searchTerm}/>
             </div>
           )}
           <div className={`${styles["batchsearch-right"]}`}>
