@@ -86,7 +86,7 @@ const BatchSearch = ({
                 <TextButton {...textbuttonProps} />
               </div>
               <div>
-                <TextButton {...textbuttonProps2} />
+                <TextButton isDelete= "true" {...textbuttonProps2} />
               </div>
             </div>
           )}
