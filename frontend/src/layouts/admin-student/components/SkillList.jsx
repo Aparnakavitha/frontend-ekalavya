@@ -162,7 +162,7 @@ const SkillList = ({ studentId }) => {
           No skills achieved yet
         </p>
       )}
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={true}
@@ -174,7 +174,7 @@ const SkillList = ({ studentId }) => {
         pauseOnHover
         theme="dark"
         transition={Slide}
-      />
+      /> */}
     </div>
   );
 };
