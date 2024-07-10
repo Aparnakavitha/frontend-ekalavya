@@ -5,7 +5,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { FaGoogle } from "react-icons/fa";
 const clientId =
   "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com";
 
@@ -108,6 +108,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
       onClick={() => login()}
       className={`custom-google-login-button ${fullWidth ? "full-width" : ""}`}
     >
+            <FaGoogle/>
       Login
     </button>
   );
