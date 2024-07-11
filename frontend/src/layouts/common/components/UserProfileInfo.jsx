@@ -67,7 +67,7 @@ const UserProfileInfo = (props) => {
                   {college}
                 </h4>
               )}
-              <h4 className={`${styles["userprofile-dob"]}`}>DOB: {dob? dob : <a className="nodata">N/A</a>}</h4>
+              <h4 className={`${styles["userprofile-dob"]}`}><b>DOB:</b> {dob? dob : <a className="nodata">N/A</a>}</h4>
             </div>
           </div>
 
