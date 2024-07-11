@@ -11,7 +11,7 @@ function AdminSkillStudents() {
     ["STD006", "Davis", "davis211@gmail.com"],
   ];
 
-  const headings = ["StudentID", "StudentName", "email ID"];
+  const headings = ["Student ID", "Student Name", "Email ID"];
 
   const pageName = ["Skill Name"];
 
