@@ -63,7 +63,7 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
 
   const deleteprops = {
     title: "Delete Skill ",
-    message: "Are you sure you want to delete this skill?",
+    message: "Are you sure you want to Delete this skill?",
     buttonText: "Delete",
   };
 

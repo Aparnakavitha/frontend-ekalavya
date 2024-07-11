@@ -33,7 +33,7 @@ const EventsDescriptionData = {
     },
     deleteeventprops: {
         title: "Delete Event",
-        message: "Are you sure you want to delete this event?",
+        message: "Are you sure you want to Delete this event?",
         buttonText: "Delete",
     },
 };

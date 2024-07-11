@@ -80,7 +80,7 @@ const Education = ({
                         className={`${styles["education-qualification-button"]}`}
                       >
                       
-                     <TextButton  icon= {<GoTrash />} isDelete="true"   text="Delete" />
+                     <TextButton onClick={onClickDelete} icon= {<GoTrash />} isDelete="true"   text="Delete" />
 
                       </div>
                     </div>

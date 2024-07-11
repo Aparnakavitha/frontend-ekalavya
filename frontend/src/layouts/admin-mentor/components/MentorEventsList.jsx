@@ -63,7 +63,7 @@ const MentorEventsList = ({ events, handleDelete }) => {
 
   const deleteprops = {
     title: "Delete Mentor",
-    message: "Are you sure you want to delete this Mentor?",
+    message: "Are you sure you want to Delete this Mentor?",
     buttonText: "Delete",
   };
 
