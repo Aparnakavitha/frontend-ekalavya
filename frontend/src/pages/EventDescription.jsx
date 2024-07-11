@@ -8,6 +8,7 @@ import Footer from "../layouts/common/components/Footer";
 import { fetchEventsService } from "../services/Event";
 import { getUserDetails } from "../services/User"; 
 import LoadingSpinner from "../components/loadingspinner/LoadingSpinner";
+import CustomGoogleLoginButton from "../components/buttons/CustomGoogleLoginButton";
 
 const EventDescription = () => {
   const { eventId } = useParams();
@@ -40,19 +41,10 @@ const EventDescription = () => {
     setExploreEvent(true);
   }, [eventId]);
 
-  const sample = {
-    content: "Login",
-    variant: "primary",
-    onClick: () => {
-      console.log("Button clicked");
-    },
-    width: "full",
-  };
-
   const headdata = {
     menuItems: [],
     imageSrc: edunexa,
-    button: <Button {...sample} />,
+    button: <CustomGoogleLoginButton/>,
   };
 
   const footerdata = {
