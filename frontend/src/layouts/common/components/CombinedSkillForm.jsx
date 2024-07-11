@@ -83,7 +83,7 @@ const CombinedSkillForm = ({
                 <InputDropdown
                   {...field}
                   label="Level"
-                  placeholder="Select level"
+                  placeholder="Select Level"
                   options={[{ value: 1, label: "Level 1" }]}
                 />
               )}
@@ -100,7 +100,7 @@ const CombinedSkillForm = ({
                   <InputDropdown
                     {...field}
                     label="Select Skills"
-                    placeholder="Select your skill"
+                    placeholder="Select Your Skill"
                     options={options}
                   />
                 )}
@@ -120,7 +120,7 @@ const CombinedSkillForm = ({
                   <InputDropdown
                     {...field}
                     label="Level"
-                    placeholder="Select level"
+                    placeholder="Select Level"
                     options={[{ value: 1, label: "Level 1" }]}
                   />
                 )}

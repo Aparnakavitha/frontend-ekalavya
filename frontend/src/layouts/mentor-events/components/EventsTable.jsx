@@ -100,8 +100,8 @@ const EventsTable = (props) => {
   return (
     <div className={`${styles["eventstable-container"]} padding padding-bottom`}>
       <div className={styles["eventstable-topleft"]}>
-        <h2>Mark Attendance</h2> <h3>{`${presentParticipants}/${totalParticipants} present`}</h3>
-        <h3>{`${attendancePercentage}% attendance`}</h3>
+        <h2>Mark Attendance</h2> <h3>{`${presentParticipants}/${totalParticipants} Present`}</h3>
+        <h3>{`${attendancePercentage}% Attendance`}</h3>
         <TextButton text="Export" icon={<TfiExport />} onClick={handleExportClick} />
       </div>
       <div className={styles["eventstable-table"]}>

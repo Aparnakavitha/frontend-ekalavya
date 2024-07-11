@@ -21,7 +21,7 @@ const EventMenus = ({ explore, statuses, title, activeFilter, searchTerm, setSea
       </div>
       <div className={`${styles["eventmenus-searchbar"]}`}>
       <Searchbar
-        placeholder="Search events"
+        placeholder="Search Events"
         onSearch={setSearchTerm}
         value={searchTerm}
       />
