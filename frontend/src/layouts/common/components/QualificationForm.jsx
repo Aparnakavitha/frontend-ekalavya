@@ -4,6 +4,7 @@ import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../Common.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import { isAfter } from "date-fns";
 import {
   validateStartDate,
   validateEndDate,
@@ -12,6 +13,7 @@ import {
 } from "./validation";
 
 const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
+  const today = new Date();
   const { handleSubmit, control, setValue,setError,
     formState: { errors }, } = useForm({
     defaultValues: initialValues,
@@ -22,6 +24,10 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
     console.log("Start Date:", data.startDate);
     console.log("End Date:", data.endDate);
     onSubmit(data); 
+  };
+
+  const validateStartDateBeforeToday = (value) => {
+    return isAfter(today, new Date(value)) || "Start Date should be before today";
   };
 
   return (
@@ -121,7 +127,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
             name="startDate"
             control={control}
             rules={{
-              validate: validateStartDate("edit"),
+              validate: validateStartDateBeforeToday,
             }}
             render={({ field }) => (
               <Input

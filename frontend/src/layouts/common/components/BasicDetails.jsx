@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../common/Common.module.css";
 import { useForm, Controller } from "react-hook-form";
+import { subDays, format } from "date-fns"; 
 import Input from "../../../components/inputbox/InputBox";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import TextButton from "../../../components/buttons/TextButton";
@@ -16,6 +17,7 @@ import {
 } from "./validation";
 
 const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
+  const today = new Date();
   const {
     handleSubmit,
     control,
@@ -32,6 +34,11 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
   useEffect(() => {
     setShowProfileLinks(isEdit);
   }, [isEdit]);
+
+  const validateDOB = (value) => {
+    const todayMinus15Years = subDays(today, 15 * 365);
+    return value && value <= todayMinus15Years || "Date should be 15 years before today";
+  }
 
   const handleFormSubmit = (data) => {
     if (fileError) {
@@ -55,9 +62,10 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
           {mainHeading}
         </header>
         <div className={`${styles["basicdetails-containerinput-out"]}`}>
-          <Controller
+        <Controller
             name="dob"
             control={control}
+            rules={{ validate: validateDOB }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -68,6 +76,11 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               />
             )}
           />
+          {errors.dob && (
+            <p className={`${styles["basicdetails-error"]}`}>
+              {errors.dob.message}
+            </p>
+          )}
           <Controller
             name="phoneNo"
             control={control}
