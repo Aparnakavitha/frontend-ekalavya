@@ -449,7 +449,7 @@ const AdminStudent = () => {
         </div>
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No students available
+          No Students Available
         </p>
       )}
       {/* <ToastContainer

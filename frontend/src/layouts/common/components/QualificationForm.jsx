@@ -42,7 +42,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
           <InputDropdown
             {...field}
             label="Degree of Education:"
-            placeholder="Select degree"
+            placeholder="Select Degree"
             options={options}
           />
         )}
@@ -63,7 +63,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
           <Input
             {...field}
             label="Specialization:"
-            placeholders={["specialization"]}
+            placeholders={["Specialization"]}
             size="normal"
           />
         )}
@@ -84,7 +84,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
           <Input
             {...field}
             label="Institution / University"
-            placeholders={["university"]}
+            placeholders={["University"]}
             size="normal"
           />
         )}
@@ -105,7 +105,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
           <Input
             {...field}
             label="Percentage"
-            placeholders={["percentage"]}
+            placeholders={["Percentage"]}
             size="normal"
           />
         )}
