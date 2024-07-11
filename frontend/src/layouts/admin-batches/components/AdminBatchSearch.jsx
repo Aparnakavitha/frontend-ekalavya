@@ -107,7 +107,7 @@ const AdminBatchSearch = ({
     },
     deleteprops: {
       title: "Delete Batch",
-      message: "Are you sure you want to delete this batch?",
+      message: "Are you sure you want to Delete this batch?",
       buttonText: "Delete",
     },
   };

@@ -101,6 +101,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
   let firstTrueAnimationSet = false;
 
   const skillData = {
+    itemsPerPage : 20,
     data:skills && skills.map((skill) => {
       let viewAnimation = false;
       if (!firstTrueAnimationSet && cardAnimation && skill.newEntry) {
