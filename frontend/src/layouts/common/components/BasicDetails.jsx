@@ -76,7 +76,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               <Input
                 {...field}
                 label="Phone Number"
-                placeholders={["phone number"]}
+                placeholders={["Phone number"]}
                 size="normal"
               />
             )}
@@ -94,7 +94,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                 <Input
                   {...field}
                   label="Profile Photo"
-                  placeholders={["profile photo"]}
+                  placeholders={["Profile photo"]}
                   size="normal"
                   isFileInput="true"
                   accept="image/*"
@@ -136,7 +136,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                   <Input
                     {...field}
                     label="GitHub Link"
-                    placeholders={["link"]}
+                    placeholders={["Link"]}
                     size="normal"
                   />
                 )}
@@ -156,7 +156,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                   <Input
                     {...field}
                     label="LinkedIn Link"
-                    placeholders={["link"]}
+                    placeholders={["Link"]}
                     size="normal"
                   />
                 )}
@@ -176,7 +176,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                   <Input
                     {...field}
                     label="Other Link"
-                    placeholders={["link"]}
+                    placeholders={["Link"]}
                     size="normal"
                   />
                 )}
@@ -269,7 +269,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               <Input
                 {...field}
                 label="About Me"
-                placeholders={["about me"]}
+                placeholders={["About me"]}
                 size="large"
               />
             )}
