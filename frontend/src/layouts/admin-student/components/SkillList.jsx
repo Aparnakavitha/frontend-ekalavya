@@ -129,7 +129,7 @@ const SkillList = ({ studentId }) => {
     heading: "Skills",
     textbuttonprops: {
       icon: <AiOutlinePlus />,
-      text: "Add new Skill",
+      text: "Add New Skill",
       onClick: handleOpenModal,
     },
   };
