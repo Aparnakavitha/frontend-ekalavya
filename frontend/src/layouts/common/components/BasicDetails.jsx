@@ -36,8 +36,8 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
   }, [isEdit]);
 
   const validateDOB = (value) => {
-    const todayMinus18Years = subDays(today, 15 * 365);
-    return value && value <= todayMinus18Years || "Date should be 15 years before today";
+    const todayMinus15Years = subDays(today, 15 * 365);
+    return value && value <= todayMinus15Years || "Date should be 15 years before today";
   }
 
   const handleFormSubmit = (data) => {
