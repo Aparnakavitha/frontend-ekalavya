@@ -84,7 +84,7 @@ const AdminBatchSearch = ({
     showFiltersAndReset: false,
     addbuttonProps: {
       variant: "tertiary",
-      content: "+ Add new Student",
+      content: "+ Add New Student",
       width: "full",
       onClick: () => {
         setIsBatchOperationsOpen(true);

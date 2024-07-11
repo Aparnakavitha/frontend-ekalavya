@@ -41,7 +41,7 @@ const AddCollege = ({ onSubmit }) => {
                   {...field}
                   label="College Name"
                   size="normal"
-                  placeholders={["College name"]}
+                  placeholders={["College Name"]}
                 />
               )}
             />
