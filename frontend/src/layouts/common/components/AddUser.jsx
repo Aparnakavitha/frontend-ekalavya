@@ -90,7 +90,7 @@ const AddUser = ({
           render={({ field }) => (
             <Input
               {...field}
-              label="Enter email ID"
+              label="Enter Email ID"
               size="normal"
               placeholders={["Email ID"]}
             />

@@ -76,7 +76,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               <Input
                 {...field}
                 label="Phone Number"
-                placeholders={["Phone number"]}
+                placeholders={["Phone Number"]}
                 size="normal"
               />
             )}
@@ -94,7 +94,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                 <Input
                   {...field}
                   label="Profile Photo"
-                  placeholders={["Profile photo"]}
+                  placeholders={["Profile Photo"]}
                   size="normal"
                   isFileInput="true"
                   accept="image/*"
@@ -269,7 +269,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               <Input
                 {...field}
                 label="About Me"
-                placeholders={["About me"]}
+                placeholders={["About Me"]}
                 size="large"
               />
             )}
