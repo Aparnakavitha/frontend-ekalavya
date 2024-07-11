@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./ProfileCard.module.css";
-import { MdDeleteOutline } from "react-icons/md";
+import { GoTrash } from "react-icons/go";
+
 
 const ProfileCard = (props) => {
   const {
@@ -55,7 +56,7 @@ const ProfileCard = (props) => {
             className={styles["student-image"]}
           />
           {canDelete && (
-            <MdDeleteOutline 
+            <GoTrash 
               className={styles["delete-icon"]}
               title="Remove"
               onClick={handleDeleteIcon}
