@@ -42,7 +42,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
           <InputDropdown
             {...field}
             label="Degree of Education:"
-            placeholder="Select degree"
+            placeholder="Select Degree"
             options={options}
           />
         )}

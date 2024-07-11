@@ -18,7 +18,6 @@ const InputBox = ({
 }) => {
   const [clicked, setClicked] = useState(false);
   const [fileName, setFileName] = useState("");
-
   const handleFocus = () => {
     setClicked(true);
   };
