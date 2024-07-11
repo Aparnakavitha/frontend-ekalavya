@@ -52,9 +52,11 @@ const SkillList = ({ studentId }) => {
             setStudentSkills(skills);
           } else {
             console.error("Unexpected response format:", response);
+            setStudentSkills([]);
           }
         } catch (error) {
           console.error("Error fetching student skills:", error);
+          setStudentSkills([]);
         }
       }
     };
@@ -153,13 +155,17 @@ const SkillList = ({ studentId }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
-     {studentSkills.length>0 ? (<CardRow {...skillcards} userId={studentId} />): (
-      <p className="nodata padding padding-top padding-bottom" >No skills achieved yet</p>
-     )}
-      <ToastContainer
+      {studentSkills.length > 0 ? (
+        <CardRow {...skillcards} userId={studentId} />
+      ) : (
+        <p className="nodata padding padding-top padding-bottom">
+          No skills achieved yet
+        </p>
+      )}
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
-        hideProgressBar={false}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}
@@ -168,7 +174,7 @@ const SkillList = ({ studentId }) => {
         pauseOnHover
         theme="dark"
         transition={Slide}
-      />
+      /> */}
     </div>
   );
 };

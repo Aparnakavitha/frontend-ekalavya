@@ -70,7 +70,7 @@ const AdminEvent = () => {
       mainHeading: event.eventTitle,
       startDate: event.startDate,
       endDate: event.endDate,
-      description: event.description,
+      Description: event.description,
       cardType: "Course",
       handleClick: () => handleClick(event),
     })),
@@ -79,7 +79,7 @@ const AdminEvent = () => {
       { key: "mainHeading", displayName: "Title" },
       { key: "startDate", displayName: "Start Date" },
       { key: "endDate", displayName: "End Date" },
-      { key: "description", displayName: "Description" },
+      { key: "Description", displayName: "Description" },
     ],
     toggle: true,
     itemsPerPage: 12,
@@ -170,7 +170,7 @@ const AdminEvent = () => {
 
   return (
     <div>
-      <Greeting {...greeting} />
+      {/* <Greeting {...greeting} /> */}
       <AdminEventAction
         count={events.length}
         formSubmit={formSubmit}
