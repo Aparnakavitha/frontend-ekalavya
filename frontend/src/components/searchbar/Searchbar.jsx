@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import { IoIosCloseCircle } from "react-icons/io";
+import { IoIosCloseCircle, IoIosSearch } from "react-icons/io";
 import styles from "./Searchbar.module.css";
-
+ 
 const SearchBar = ({ variant = "large", placeholder, onSearch, value }) => {
   const [query, setQuery] = useState(value || "");
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    onSearch(query);
-    console.log(query, "searched");
+ 
+  const handleSearchChange = (e) => {
+    const searchQuery = e.target.value;
+    setQuery(searchQuery);
+    onSearch(searchQuery);
   };
-
-  const clearSearch = (e) => {
+ 
+  const clearSearch = () => {
     setQuery("");
     onSearch("");
   };
-
+ 
   let boxClassName;
   if (variant === "large") {
     boxClassName = styles.box;
@@ -26,34 +26,31 @@ const SearchBar = ({ variant = "large", placeholder, onSearch, value }) => {
   } else {
     boxClassName = styles.none;
   }
-
+ 
   return (
     <div className={boxClassName}>
-      <form onSubmit={handleSearch}>
-        <div className={styles["search-box"]}>
-          <input
-            type="text"
-            className={styles["search-input"]}
-            placeholder={placeholder}
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          {query && (
-            <button
-              type="button"
-              className={styles["clear-button"]}
-              onClick={clearSearch}
-            >
-              <IoIosCloseCircle className={`${styles.icon}`} />
-            </button>
+      <div className={styles["search-box"]}>
+        <input
+          type="text"
+          className={styles["search-input"]}
+          placeholder={placeholder}
+          value={query}
+          onChange={handleSearchChange}
+        />
+         <button
+          type="button"
+          className={styles["icon-button"]}
+          onClick={query ? clearSearch : () => onSearch(query)}
+        >
+          {query ? (
+            <IoIosCloseCircle className={styles.icon} />
+          ) : (
+            <IoIosSearch className={styles.icon} />
           )}
-          <button type="submit" className={styles["search-button"]}>
-            Search
-          </button>
-        </div>
-      </form>
+        </button>
+      </div>
     </div>
   );
 };
-
+ 
 export default SearchBar;
