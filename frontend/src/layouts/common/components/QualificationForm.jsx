@@ -47,7 +47,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
         render={({ field }) => (
           <InputDropdown
             {...field}
-            label="Degree of Education:"
+            label="Degree of Education"
             placeholder="Select Degree"
             options={options}
           />
@@ -68,7 +68,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
         render={({ field }) => (
           <Input
             {...field}
-            label="Specialization:"
+            label="Specialization"
             placeholders={["Specialization"]}
             size="normal"
           />
