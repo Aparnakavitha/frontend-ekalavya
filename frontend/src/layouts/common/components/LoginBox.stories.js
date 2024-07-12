@@ -8,8 +8,8 @@ export default {
 
 const Template = (args) => <LoginBox {...args} />;
 
-export const Deletebox = Template.bind({});
-Deletebox.args = {
+export const Loginbox = Template.bind({});
+Loginbox.args = {
   title: "Confirmation Required",
   message: "Are you sure you want to remove this skill?",
   buttonText: "Confirm",
