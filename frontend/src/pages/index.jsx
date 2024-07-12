@@ -69,7 +69,7 @@ const Home = () => {
         atag: "https://www.tarento.com",
       },
       {
-        name: "Top performers",
+        name: "Top Performers",
         onClick: () => {
           scrollToCenter(starPerformerRef);
         },
