@@ -19,7 +19,7 @@ const Skillsearch = () => {
   const skillData = {
     heading: "Skills",
     subheading: "View skills of students",
-    searchBarPlaceholder: "Enter Student Name",
+    searchBarPlaceholder: "Search Student Name",
   };
 
   const options = [

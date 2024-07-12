@@ -11,7 +11,7 @@ const EventAction = ({ onSearchChange, onFilterChange, participantCount }) => {
     showReset: true,
     searchbarProps: {
       variant: "custom",
-      placeholder: "Event",
+      placeholder: "Search Events",
     },
     showFiltersAndReset: true,
     filterProps: [

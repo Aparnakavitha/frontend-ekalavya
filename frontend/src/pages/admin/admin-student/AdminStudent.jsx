@@ -231,7 +231,7 @@ const AdminStudent = () => {
       viewCollege: true,
       heading: "Add New Student",
     },
-    searchPlaceholder: "Enter Student ID/Name",
+    searchPlaceholder: "Search Student ID/Name",
     combinedFilter: false,
   };
 
