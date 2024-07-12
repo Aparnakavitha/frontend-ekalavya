@@ -80,20 +80,20 @@ const EventsTable = (props) => {
     userName,
     <div style={{ display: "flex", width: "120px", gap: "2px" }} key={participantId}>
       <div title={disableAttendance ? "Event not completed" : ""}>
-        <AttendanceButton
-          content="Present"
-          IsPresent={attendance[participantId] === true}
-          onClick={() => handleAttendanceClick(participantId, true)}
-          disabled={attendance[participantId] === true || disableAttendance}
-        />
+      <AttendanceButton
+        content="Present"
+        isActive={attendance[participantId] === true}
+        onClick={() => handleAttendanceClick(participantId, true)}
+        disabled={disableAttendance}
+      />
       </div>
       <div title={disableAttendance ? "Event not completed" : ""}>
         <AttendanceButton
-          content="Absent"
-          IsPresent={attendance[participantId] === false}
-          onClick={() => handleAttendanceClick(participantId, false)}
-          disabled={attendance[participantId] === false || disableAttendance}
-        />
+        content="Absent"
+        isActive={attendance[participantId] === false}
+        onClick={() => handleAttendanceClick(participantId, false)}
+        disabled={disableAttendance}
+      />
       </div>
     </div>,
   ]);
