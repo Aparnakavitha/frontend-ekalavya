@@ -82,7 +82,7 @@ const AdminSkillAction = ({ setCardAnimation, count }) => {
       placeholder: "Skill",
     },
     showFiltersAndReset: false,
-    searchPlaceholder: "Enter Skill Name",
+    searchPlaceholder: "Search Skill Name",
   };
 
   const actionData = {

@@ -79,7 +79,7 @@ const AdminBatchSearch = ({
     },
     showSearch: true,
     searchbarProps:{
-      placeholder:"Enter Student Name"
+      placeholder:"Search Student Name"
     },
     showFiltersAndReset: false,
     addbuttonProps: {
