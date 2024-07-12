@@ -54,10 +54,6 @@ const AdminBatchSelect = () => {
   };
   
   useEffect(() => {
-    fetchBatchName(batchId);
-  }, [batchId]); 
-  
-  useEffect(() => {
     if (searchTerm === "") {
       setFilteredUserdetails(batchParticipantsData);
     } else {
@@ -67,7 +63,8 @@ const AdminBatchSelect = () => {
         )
       );
     }
-  }, [searchTerm, batchParticipantsData]); // Filtering based on searchTerm and batchParticipantsData changes
+    fetchBatchName(batchId);
+  }, [searchTerm, batchParticipantsData,batchId]); 
   
 
   const fetchData = async () => {
