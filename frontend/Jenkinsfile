@@ -30,6 +30,8 @@ try {
 			docker login -u dockeradmin -p "$(cat registry_pass.txt)" docker.idc.tarento.com
 			docker push docker.idc.tarento.com/$docker_repo:$commit_id
 			rm -rf registry_pass.txt
+			docker rmi -f $docker_server/$docker_repo:$commit_id  
+
 
                 
 		     '''
