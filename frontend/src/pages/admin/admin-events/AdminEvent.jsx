@@ -6,9 +6,15 @@ import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { addEventService } from "../../../services/Event";
 import { fetchEventsService } from "../../../services/Event";
 import { toast } from "react-toastify";
+import EventMenus from "../../../layouts/common/components/EventMenus";
+import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 
 const AdminEvent = () => {
   const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [selectedStatus, setSelectedStatus] = useState("Upcoming");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [params, setParams] = useState({
     eventTitle: "",
@@ -26,38 +32,49 @@ const AdminEvent = () => {
     showButtons: false,
   };
 
-  useEffect(() => {
-    const getEvents = async () => {
-      try {
-        const filterParams = {
-          eventTitle: params.eventTitle || "",
-          eventType: params.Type || "",
-          eventMode: params.Mode || "",
-        };
-        const filteredParams = Object.fromEntries(
-          Object.entries(filterParams).filter(([key, value]) => value !== "")
-        );
-        console.log("Fetching events with params:", filteredParams);
-        const response = await fetchEventsService(filteredParams);
-        var sortedEvents = null;
-        if (response) {
-          sortedEvents = [...response].sort((a, b) => {
-            const nameA = a.eventTitle.toLowerCase();
-            const nameB = b.eventTitle.toLowerCase();
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
-            return 0;
-          });
-        }
-        setEvents(sortedEvents || []);
-        console.log("Fetched events:", response);
-      } catch (error) {
-        console.log("Error fetching events:", error);
+  const getEventsByStatus = async (status) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const filterParams = {
+        eventTitle: params.eventTitle || "",
+        eventType: params.eventType || "",
+        eventMode: params.eventMode || "",
+      };
+      const filteredParams = Object.fromEntries(
+        Object.entries(filterParams).filter(([key, value]) => value !== "")
+      );
+      console.log("Fetching events with params:", filteredParams);
+      const response = await fetchEventsService(filteredParams);
+      var sortedEvents = null;
+      if (response) {
+        sortedEvents = [...response].sort((a, b) => {
+          const nameA = a.eventTitle.toLowerCase();
+          const nameB = b.eventTitle.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
       }
-    };
+      const now = new Date();
+      const eventsByStatus = sortedEvents?.filter((event) => {
+        const eventEndDate = new Date(event.endDate);
+        return status === "Upcoming" ? eventEndDate >= now : eventEndDate < now;
+      });
+      setEvents(eventsByStatus || []);
+      setFilteredEvents(eventsByStatus || []);
+      console.log("Fetched events:", response);
+    } catch (error) {
+      console.log("Error fetching events:", error);
+      setError(error.message || "Failed to fetch events");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    getEvents();
-  }, [params]);
+  useEffect(() => {
+    getEventsByStatus(selectedStatus);
+  }, [params, selectedStatus]);
 
   const handleClick = (event) => {
     console.log(`Clicked on event ${event.eventId}`);
@@ -65,7 +82,7 @@ const AdminEvent = () => {
   };
 
   const primaryCardData = {
-    data: events.map((event) => ({
+    data: filteredEvents.map((event) => ({
       miniHeading: event.eventType,
       mainHeading: event.eventTitle,
       startDate: event.startDate,
@@ -168,6 +185,10 @@ const AdminEvent = () => {
     searchPlaceholder: "Search Events",
   };
 
+  const handleStatusClick = (status) => {
+    setSelectedStatus(status);
+  };
+
   return (
     <div>
       {/* <Greeting {...greeting} /> */}
@@ -178,12 +199,26 @@ const AdminEvent = () => {
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
       />
-      {events.length > 0 ? (
-        <DataView cardType= "primarycard"  CardComponent={PrimaryCard} {...primaryCardData} />
-      ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No events to display
-        </p>
+      <div style={{ marginTop: '-30px' }}>
+      <EventMenus
+        statuses={[
+          { name: "Upcoming", onClick: () => handleStatusClick("Upcoming") },
+          { name: "Completed", onClick: () => handleStatusClick("Completed") },
+        ]}
+        showButton={false}
+        showSearchBar={false}
+      />
+      </div>
+      {loading && <LoadingSpinner />}
+      {error && <p>Error: {error}</p>}
+      {!loading && !error && (
+        filteredEvents.length > 0 ? (
+          <DataView cardType="primarycard" CardComponent={PrimaryCard} {...primaryCardData} />
+        ) : (
+          <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+            No events to display
+          </p>
+        )
       )}
     </div>
   );
