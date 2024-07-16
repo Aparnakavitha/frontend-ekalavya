@@ -35,8 +35,10 @@ EventEditForm.args = {
     startTime: "10:00",
     endTime: "12:00",
     link: "https://mockevent.com",
-    speaker: "Mock Speaker",
-    speakerDescrition: "Mock Speaker Description",
+    speakers: [
+      { speaker: "Mock Speaker 1", speakerDescription: "Mock Speaker Description 1" },
+      { speaker: "Mock Speaker 2", speakerDescription: "Mock Speaker Description 2" }
+    ],
     organizer: "option1",
     location: "wqdwdfrefer",
   },

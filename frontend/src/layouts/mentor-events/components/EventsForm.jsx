@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller,useFieldArray } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Input from '../../../components/inputbox/InputBox';
@@ -13,7 +13,10 @@ import {
   validateEndDate,
   validateAndCleanInput,
 } from '../../common/components/validation';
- 
+import TextButton from "../../../components/buttons/TextButton";
+import { MdEdit, MdDelete } from "react-icons/md";
+import { GoTrash,GoPlusCircle } from "react-icons/go";
+
 const EventForm = ({ hostId, onSubmit }) => {
   const {
     handleSubmit,
@@ -33,9 +36,15 @@ const EventForm = ({ hostId, onSubmit }) => {
       startTime: '',
       endTime: '',
       location: '',
-      speaker: '',
-      speakerDescription: '',
+      // speaker: '',
+      // speakerDescription: '',
+      speakers: [{ name: '', description: '' }], // Initializing with an array containing one speaker
+
     },
+  });
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'speakers',
   });
  
   const [eventMode, setEventMode] = useState('Offline');
@@ -64,11 +73,12 @@ const EventForm = ({ hostId, onSubmit }) => {
       endDate: data.endDate,
       link: data.link,
       eventType: data.eventType,
-      speaker: data.speaker,
+      // speaker: data.speaker,
+      speakers: data.speakers, // Changed to use speakers array
       startTime: data.startTime,
       endTime: data.endTime,
       location: data.location,
-      speakerDescription: data.speakerDescription,
+      // speakerDescription: data.speakerDescription,
       eventMode: data.eventMode,
       organizer: hostId,
     };
@@ -361,52 +371,98 @@ const EventForm = ({ hostId, onSubmit }) => {
             {errors.location.message}
           </p>
         )}
- 
+
+ <div className={`${styles['eventform-speakers']}`}>
+          {/* <label>Speakers</label> */}
+          {fields.map((speaker, index) => (
+            <div key={speaker.id} className={`${styles['eventform-speaker']}`}>
+           
         <Controller
-          name='speaker'
+          // name='speaker'
+          name={`speakers[${index}].name`}
+
           control={control}
           rules={{
-            required: 'Speaker is required',
-            validate: validateAndCleanInput,
+            required: 'Speaker Name is required',
+
+            // required: 'Speaker is required',
+            // validate: validateAndCleanInput,
           }}
           render={({ field }) => (
             <Input
               {...field}
-              label='Speaker'
+              // label='Speaker'
+              label={`Speaker ${index + 1}`}  // Modified label
+
               size='normal'
-              placeholders={['Speaker']}
+              // placeholders={['Speaker']}
+              placeholders={['Speaker Name']}
+
               className={`${styles['eventform-speaker']}`}
+              // className={`${styles['eventform-speakername']}`}
+
             />
           )}
         />
-        {errors.speaker && (
+        {/* {errors.speaker && ( */}
+        {errors.speakers?.[index]?.name && (
+
           <p className={`${styles['eventform-error']}`}>
-            {errors.speaker.message}
+            {/* {errors.speaker.message} */}
+            {errors.speakers[index].name.message}
+
           </p>
         )}
  
         <Controller
-          name='speakerDescription'
+          // name='speakerDescription'
+          name={`speakers[${index}].description`}
+
           control={control}
           rules={{
             required: 'Speaker Description is required',
-            validate: validateAndCleanInput,
+            // validate: validateAndCleanInput,
           }}
           render={({ field }) => (
             <Input
               {...field}
-              label='Speaker Description'
+              label={`Speaker Description ${index + 1}`}  // Modified label
               size='normal'
               placeholders={['Speaker Description']}
               className={`${styles['eventform-speakerdescription']}`}
             />
           )}
         />
-        {errors.speakerDescription && (
+        {/* {errors.speakerDescription && ( */}
+        {errors.speakers?.[index]?.description && (
+
           <p className={`${styles['eventform-error']}`}>
-            {errors.speakerDescription.message}
+            {/* {errors.speakerDescription.message} */}
+            {errors.speakers[index].description.message}
+
           </p>
-        )}
+        )}    
+        {fields.length > 1 && (
+        <TextButton                  
+        icon={<GoTrash />}
+        onClick={() => remove(index)}
+        text="Remove Speaker"
+              />
+              )}
+            </div>
+          ))}
+          
+          <TextButton
+            type='button'
+            icon={<GoPlusCircle/>}
+
+            onClick={() => append({ name: '', description: '' })}
+            text="Add Speaker"
+
+          >
+            Add Speaker
+          </TextButton>
+        </div>
  
         <div className={`${styles['eventform-buttondiv']}`}>
           <div className={`${styles['eventform-buttoncontainer']}`}>
