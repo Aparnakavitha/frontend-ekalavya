@@ -15,9 +15,8 @@ import {
 } from '../../common/components/validation';
 import TextButton from "../../../components/buttons/TextButton";
 import { MdEdit, MdDelete } from "react-icons/md";
-import { GoTrash,GoPlusCircle } from "react-icons/go";
-
-const EventForm = ({ hostId, onSubmit }) => {
+import { GoPlusCircle } from "react-icons/go";
+import { FiMinusCircle } from 'react-icons/fi';const EventForm = ({ hostId, onSubmit }) => {
   const {
     handleSubmit,
     control,
@@ -392,7 +391,7 @@ const EventForm = ({ hostId, onSubmit }) => {
             <Input
               {...field}
               // label='Speaker'
-              label={`Speaker ${index + 1}`}  // Modified label
+              label={fields.length > 1 ? `Speaker ${index + 1}` : 'Speaker'}
 
               size='normal'
               // placeholders={['Speaker']}
@@ -426,7 +425,7 @@ const EventForm = ({ hostId, onSubmit }) => {
           render={({ field }) => (
             <Input
               {...field}
-              label={`Speaker Description ${index + 1}`}  // Modified label
+              label={fields.length > 1 ? `Speaker Description ${index + 1}` : 'Speaker Description'}
               size='normal'
               placeholders={['Speaker Description']}
               className={`${styles['eventform-speakerdescription']}`}
@@ -444,9 +443,13 @@ const EventForm = ({ hostId, onSubmit }) => {
         )}    
         {fields.length > 1 && (
         <TextButton                  
-        icon={<GoTrash />}
+        icon={<FiMinusCircle />}
+        // isDelete="true"
         onClick={() => remove(index)}
-        text="Remove Speaker"
+        // text="Remove Speaker"
+        variant='textbutton-delete'
+        redSpeaker // Add hover effect for "Remove Speaker"
+        className={`${styles['textbutton-removespeaker']}`} // Replace 'custom-class-name' with your desired CSS class
               />
               )}
             </div>
@@ -458,9 +461,10 @@ const EventForm = ({ hostId, onSubmit }) => {
 
             onClick={() => append({ name: '', description: '' })}
             text="Add Speaker"
+            
 
           >
-            Add Speaker
+            
           </TextButton>
         </div>
  

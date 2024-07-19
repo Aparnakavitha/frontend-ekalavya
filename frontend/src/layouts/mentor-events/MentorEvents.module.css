@@ -137,6 +137,11 @@
   margin-top: 5px;
 }
  
+.textbutton-removespeaker {
+    margin-right: 4px;
+}
+
+
 @media (min-width: 990) and (max-width: 992px) {
   .eventform-datetimecontainer {
     flex-direction: row;
