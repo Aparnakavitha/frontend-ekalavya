@@ -144,6 +144,14 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   color: var(--primary-color);
 }
 
+
+.input-label-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+
 @media screen and (max-width: 768px) {
   .large-size,
   .normal-size,
