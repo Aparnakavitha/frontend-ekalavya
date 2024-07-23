@@ -49,7 +49,7 @@ const AdminContent = () => {
           return;
         }
         console.log("Fetched User ID:", userId);
-        console.log("UserId is of type:",typeof(userId));
+        console.log("UserId is of type:", typeof userId);
         const params = {
           userId: userId,
         };
@@ -88,6 +88,7 @@ const AdminContent = () => {
   };
 
   const handleOpenLogoutModal = () => {
+    console.log("sda");
     setIsLogoutModalOpen(true);
   };
 
@@ -131,7 +132,7 @@ const AdminContent = () => {
       name: `${userData.firstName} ${userData.lastName}`,
       profilePic: image,
       gmail: userData.emailId,
-      onNameClick: () => navigate(`/admin/student`),
+      onProfileClick: () => navigate(`/admin/student`),
     },
   };
 
@@ -166,7 +167,8 @@ const AdminContent = () => {
               name={sidebarContent.profileBox.name}
               profilePic={sidebarContent.profileBox.profilePic}
               gmail={sidebarContent.profileBox.gmail}
-              onNameClick={sidebarContent.profileBox.onNameClick}
+              onProfileClick={sidebarContent.profileBox.onProfileClick}
+              onLogoutClick={handleOpenLogoutModal}
             />
           </div>
           <div className="statecontent">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styles from "./ProfileNotificationBox.module.css";
 import { FiBell } from "react-icons/fi";
@@ -8,22 +8,28 @@ const ProfileNotificationBox = ({
   profilePic,
   gmail,
   onBellIconClick,
+  onProfileClick,
+  onLogoutClick,
 }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 767);
+  const dropdownRef = useRef(null);
+  const profileNotificationBoxRef = useRef(null);
 
   const handleNameClick = (event) => {
     event.stopPropagation();
-    if (isWideScreen) {
-      setDropdownVisible((prevVisible) => !prevVisible);
-    }
+    setDropdownVisible((prevVisible) => !prevVisible);
   };
 
   const handleClickOutside = (event) => {
-    if (event.target.closest(`.${styles.profilenotificationbox}`)) {
-      return;
+    if (
+      profileNotificationBoxRef.current &&
+      dropdownRef.current &&
+      !profileNotificationBoxRef.current.contains(event.target) &&
+      !dropdownRef.current.contains(event.target)
+    ) {
+      setDropdownVisible(false);
     }
-    setDropdownVisible(false);
   };
 
   useEffect(() => {
@@ -63,7 +69,11 @@ const ProfileNotificationBox = ({
 
   return (
     <div>
-      <div className={styles.profilenotificationbox}>
+      <div
+        className={styles.profilenotificationbox}
+        onClick={handleNameClick}
+        ref={profileNotificationBoxRef}
+      >
         <FiBell className={styles.bellicon} onClick={onBellIconClick} />
         <img src={profilePic} alt="Profile" className={styles.profilepic} />
         <div className={styles.info}>
@@ -76,14 +86,30 @@ const ProfileNotificationBox = ({
         </div>
       </div>
       {dropdownVisible && isWideScreen && (
-        <div className={styles.dropdowncontainer}>
+        <div className={styles.dropdowncontainer} ref={dropdownRef}>
           <div className={styles.pointer}></div>
           <div className={styles.dropdown}>
-            <div className={styles.button} onClick={handleNameClick}>
+            <div
+              className={styles.button}
+              onClick={(event) => {
+                event.stopPropagation();
+                onProfileClick();
+                setDropdownVisible(false); 
+              }}
+            >
               Profile
             </div>
             <div className={styles.line}></div>
-            <div className={styles.button}>Logout</div>
+            <div
+              className={styles.button}
+              onClick={(event) => {
+                event.stopPropagation();
+                onLogoutClick();
+                setDropdownVisible(false); 
+              }}
+            >
+              Logout
+            </div>
           </div>
         </div>
       )}
@@ -96,6 +122,8 @@ ProfileNotificationBox.propTypes = {
   profilePic: PropTypes.string.isRequired,
   gmail: PropTypes.string,
   onBellIconClick: PropTypes.func,
+  onProfileClick: PropTypes.func.isRequired,
+  onLogoutClick: PropTypes.func.isRequired,
 };
 
 export default ProfileNotificationBox;

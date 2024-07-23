@@ -111,7 +111,7 @@ const StudentContent = () => {
       name: primaryData.name,
       profilePic: Dp,
       gmail: primaryData.email,
-      onNameClick: () => navigate(`/student/profile`),
+      onProfileClick: () => navigate(`/student/profile`),
     },
   };
 
@@ -144,7 +144,8 @@ const StudentContent = () => {
               name={sidebarContent.profileBox.name}
               profilePic={sidebarContent.profileBox.profilePic}
               gmail={sidebarContent.profileBox.gmail}
-              onNameClick={sidebarContent.profileBox.onNameClick}
+              onProfileClick={sidebarContent.profileBox.onProfileClick}
+              onLogoutClick={handleOpenLogoutModal}
             />
           </div>
           <div className="statecontent">

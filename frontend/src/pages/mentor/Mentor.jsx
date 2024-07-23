@@ -111,7 +111,7 @@ const MentorContent = () => {
       name: primaryData.name,
       profilePic: Dp,
       gmail: primaryData.email,
-      onNameClick: () => navigate(`/mentor/profile`),
+      onProfileClick: () => navigate(`/mentor/profile`),
     },
   };
 
@@ -144,7 +144,8 @@ const MentorContent = () => {
               name={sidebarContent.profileBox.name}
               profilePic={sidebarContent.profileBox.profilePic}
               gmail={sidebarContent.profileBox.gmail}
-              onNameClick={sidebarContent.profileBox.onNameClick}
+              onProfileClick={sidebarContent.profileBox.onProfileClick}
+              onLogoutClick={handleOpenLogoutModal}
             />
           </div>
           <div className="statecontent">
