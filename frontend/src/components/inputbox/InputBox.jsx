@@ -14,12 +14,12 @@ const InputBox = ({
   isFileInput,
   isDropdown,
   options,
+  icon,
   ...rest
 }) => {
   const [clicked, setClicked] = useState(false);
   const [fileName, setFileName] = useState("");
   const handleFocus = () => {
-    
     setClicked(true);
   };
 
@@ -49,9 +49,12 @@ const InputBox = ({
     <div
       className={`${styles["input-container"]} ${clicked ? styles.clicked : ""}`}
     >
-      <label htmlFor={rest.id} className={styles["input-label"]}>
-        {label}
-      </label>
+      <div className={styles["input-label-container"]}>
+        <label htmlFor={rest.id} className={styles["input-label"]}>
+          {label}
+        </label>
+        {icon && <span className={styles["input-icon"]}>{icon}</span>}
+      </div>
       {placeholders.map((placeholder, index) => (
         <React.Fragment key={index}>
           {isDatePicker ? (

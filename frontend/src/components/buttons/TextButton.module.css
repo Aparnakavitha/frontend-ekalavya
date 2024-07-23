@@ -57,5 +57,5 @@
 .redSpeaker:hover .icon,
 .redSpeaker:hover .dtext,
 .redSpeaker:hover .dicon {
-  color:  var(--warning-color);
+  color:  var(--warning-color);  
 }

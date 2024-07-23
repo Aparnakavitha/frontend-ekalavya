@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useForm, Controller,useFieldArray } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Input from '../../../components/inputbox/InputBox';
-import InputDropdown from '../../../components/inputdropdown/InputDropdown';
-import styles from '../MentorEvents.module.css';
-import PrimaryButton from '../../../components/buttons/PrimaryButton';
-import NavButton from '../../../components/buttons/NavButton';
+import React, { useState, useEffect } from "react";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Input from "../../../components/inputbox/InputBox";
+import InputDropdown from "../../../components/inputdropdown/InputDropdown";
+import styles from "../MentorEvents.module.css";
+import PrimaryButton from "../../../components/buttons/PrimaryButton";
+import NavButton from "../../../components/buttons/NavButton";
 import {
   validateURL,
   validateStartDate,
   validateEndDate,
   validateAndCleanInput,
-} from '../../common/components/validation';
+} from "../../common/components/validation";
 import TextButton from "../../../components/buttons/TextButton";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { GoPlusCircle } from "react-icons/go";
-import { FiMinusCircle } from 'react-icons/fi';const EventForm = ({ hostId, onSubmit }) => {
+import { FiMinusCircle } from "react-icons/fi";
+const EventForm = ({ hostId, onSubmit }) => {
   const {
     handleSubmit,
     control,
@@ -26,44 +27,41 @@ import { FiMinusCircle } from 'react-icons/fi';const EventForm = ({ hostId, onSu
     formState: { errors },
   } = useForm({
     defaultValues: {
-      eventTitle: '',
-      eventMode: '',
-      eventType: '',
-      description: '',
-      startDate: '',
-      endDate: '',
-      startTime: '',
-      endTime: '',
-      location: '',
-      // speaker: '',
-      // speakerDescription: '',
-      speakers: [{ name: '', description: '' }], // Initializing with an array containing one speaker
-
+      eventTitle: "",
+      eventMode: "",
+      eventType: "",
+      description: "",
+      startDate: "",
+      endDate: "",
+      startTime: "",
+      endTime: "",
+      location: "",
+      speakers: [{ name: "", description: "" }],
     },
   });
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'speakers',
+    name: "speakers",
   });
- 
-  const [eventMode, setEventMode] = useState('Offline');
- 
+
+  const [eventMode, setEventMode] = useState("Offline");
+
   const onSubmitForm = async (data) => {
     const ensureFullTimeFormat = (time) => {
       return time && time.length === 5 ? `${time}:00` : time;
     };
- 
+
     data.startTime = ensureFullTimeFormat(data.startTime);
     data.endTime = ensureFullTimeFormat(data.endTime);
-    if (data.eventMode === 'Online') {
+    if (data.eventMode === "Online") {
       if (!data.location) {
-        data.link = '';
+        data.link = "";
       } else {
         data.link = data.location;
       }
       delete data.location;
     }
- 
+
     const formData = {
       eventTitle: data.eventTitle,
       hostId: hostId,
@@ -72,29 +70,27 @@ import { FiMinusCircle } from 'react-icons/fi';const EventForm = ({ hostId, onSu
       endDate: data.endDate,
       link: data.link,
       eventType: data.eventType,
-      // speaker: data.speaker,
-      speakers: data.speakers, // Changed to use speakers array
+      speakers: data.speakers,
       startTime: data.startTime,
       endTime: data.endTime,
       location: data.location,
-      // speakerDescription: data.speakerDescription,
       eventMode: data.eventMode,
       organizer: hostId,
     };
- 
-    console.log('Form Data:', formData);
+
+    console.log("Form Data:", formData);
     try {
       await onSubmit(formData);
-      handleToastMessage('Event created successfully!');
+      handleToastMessage("Event created successfully!");
       reset();
     } catch (error) {
-      console.error('Error creating event:', error);
+      console.error("Error creating event:", error);
     }
   };
- 
+
   const handleToastMessage = (message) => {
     toast.success(message, {
-      position: 'top-center',
+      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -103,145 +99,145 @@ import { FiMinusCircle } from 'react-icons/fi';const EventForm = ({ hostId, onSu
       progress: undefined,
     });
   };
- 
+
   const options = [
-    { value: 'Online', label: 'Online' },
-    { value: 'Offline', label: 'Offline' },
+    { value: "Online", label: "Online" },
+    { value: "Offline", label: "Offline" },
   ];
- 
-  const selectedEventMode = watch('eventMode', eventMode);
- 
+
+  const selectedEventMode = watch("eventMode", eventMode);
+
   const handleEventModeChange = (selectedOption) => {
     const newValue = selectedOption.value;
     setEventMode(newValue);
-    setValue('eventMode', newValue);
+    setValue("eventMode", newValue);
   };
- 
+
   useEffect(() => {
-    if (selectedEventMode === 'Online') {
-      setValue('location', '');
+    if (selectedEventMode === "Online") {
+      setValue("location", "");
     }
   }, [selectedEventMode, setValue]);
- 
+
   const typeoptions = [
-    { value: 'Hackathon', label: 'Hackathon' },
-    { value: 'Workshop', label: 'Workshop' },
-    { value: 'Session', label: 'Session' },
-    { value: 'Conference', label: 'Conference' },
-    { value: 'Contest', label: 'Contest' },
-    { value: 'Webinar', label: 'Webinar' },
+    { value: "Hackathon", label: "Hackathon" },
+    { value: "Workshop", label: "Workshop" },
+    { value: "Session", label: "Session" },
+    { value: "Conference", label: "Conference" },
+    { value: "Contest", label: "Contest" },
+    { value: "Webinar", label: "Webinar" },
   ];
- 
+
   return (
     <div>
       <form
         onSubmit={handleSubmit(onSubmitForm)}
-        className={`${styles['eventform-form']} padding padding-top padding-bottom`}
+        className={`${styles["eventform-form"]} padding padding-top padding-bottom`}
       >
-        <NavButton pageName='Create Event' onClick={() => {}} />
-        <div className={`${styles['eventform-eventtitlemode']}`}>
-          <div className={`${styles['eventform-eventtitlediv']}`}>
+        <NavButton pageName="Create Event" onClick={() => {}} />
+        <div className={`${styles["eventform-eventtitlemode"]}`}>
+          <div className={`${styles["eventform-eventtitlediv"]}`}>
             <Controller
-              name='eventTitle'
+              name="eventTitle"
               control={control}
               rules={{
-                required: 'Event Title is required',
+                required: "Event Title is required",
                 validate: validateAndCleanInput,
               }}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label='Event Title'
-                  size='normal'
-                  placeholders={['Event Title']}
-                  className={`${styles['eventform-eventtitle']}`}
+                  label="Event Title"
+                  size="normal"
+                  placeholders={["Event Title"]}
+                  className={`${styles["eventform-eventtitle"]}`}
                 />
               )}
             />
             {errors.eventTitle && (
-              <p className={`${styles['eventform-error']}`}>
+              <p className={`${styles["eventform-error"]}`}>
                 {errors.eventTitle.message}
               </p>
             )}
           </div>
- 
-          <div className={`${styles['eventform-eventmodediv']}`}>
+
+          <div className={`${styles["eventform-eventmodediv"]}`}>
             <Controller
-              name='eventMode'
+              name="eventMode"
               control={control}
               rules={{
-                required: 'Event Mode is required',
+                required: "Event Mode is required",
                 validate: validateAndCleanInput,
               }}
               render={({ field }) => (
                 <InputDropdown
                   {...field}
-                  label='Event Mode'
-                  placeholder='Event Mode'
+                  label="Event Mode"
+                  placeholder="Event Mode"
                   options={options}
-                  className={`${styles['eventform-eventmode']}`}
+                  className={`${styles["eventform-eventmode"]}`}
                 />
               )}
             />
             {errors.eventMode && (
-              <p className={`${styles['eventform-error']}`}>
+              <p className={`${styles["eventform-error"]}`}>
                 {errors.eventMode.message}
               </p>
             )}
           </div>
         </div>
- 
+
         <Controller
-          name='eventType'
+          name="eventType"
           control={control}
           rules={{
-            required: 'Event Type is required',
+            required: "Event Type is required",
             validate: validateAndCleanInput,
           }}
           render={({ field }) => (
             <InputDropdown
               {...field}
-              label='Event Type'
-              size='normal'
-              placeholder={['Event Type']}
+              label="Event Type"
+              size="normal"
+              placeholder={["Event Type"]}
               options={typeoptions}
-              className={`${styles['eventform-eventtype']}`}
+              className={`${styles["eventform-eventtype"]}`}
             />
           )}
         />
         {errors.eventType && (
-          <p className={`${styles['eventform-error']}`}>
+          <p className={`${styles["eventform-error"]}`}>
             {errors.eventType.message}
           </p>
         )}
- 
+
         <Controller
-          name='description'
+          name="description"
           control={control}
           rules={{
-            required: 'Description is required',
+            required: "Description is required",
             validate: validateAndCleanInput,
           }}
           render={({ field }) => (
             <Input
               {...field}
-              label='Description'
-              size='large'
-              placeholders={['Description']}
-              className={`${styles['eventform-description']}`}
+              label="Description"
+              size="large"
+              placeholders={["Description"]}
+              className={`${styles["eventform-description"]}`}
             />
           )}
         />
         {errors.description && (
-          <p className={`${styles['eventform-error']}`}>
+          <p className={`${styles["eventform-error"]}`}>
             {errors.description.message}
           </p>
         )}
- 
-        <div className={`${styles['eventform-datetimecontainer']}`}>
-          <div className={`${styles['eventform-datetime']}`}>
+
+        <div className={`${styles["eventform-datetimecontainer"]}`}>
+          <div className={`${styles["eventform-datetime"]}`}>
             <Controller
-              name='startDate'
+              name="startDate"
               control={control}
               rules={{
                 validate: validateStartDate("new"),
@@ -249,24 +245,24 @@ import { FiMinusCircle } from 'react-icons/fi';const EventForm = ({ hostId, onSu
               render={({ field }) => (
                 <Input
                   {...field}
-                  label='Start Date'
-                  size='normal'
-                  placeholders={['dd/mm/yyyy']}
-                  className={`${styles['eventform-startdate']}`}
+                  label="Start Date"
+                  size="normal"
+                  placeholders={["dd/mm/yyyy"]}
+                  className={`${styles["eventform-startdate"]}`}
                   isDatePicker
                 />
               )}
             />
             {errors.startDate && (
-              <p className={`${styles['eventform-error']}`}>
+              <p className={`${styles["eventform-error"]}`}>
                 {errors.startDate.message}
               </p>
             )}
           </div>
- 
-          <div className={`${styles['eventform-datetime']}`}>
+
+          <div className={`${styles["eventform-datetime"]}`}>
             <Controller
-              name='endDate'
+              name="endDate"
               control={control}
               rules={{
                 validate: validateEndDate,
@@ -274,227 +270,196 @@ import { FiMinusCircle } from 'react-icons/fi';const EventForm = ({ hostId, onSu
               render={({ field }) => (
                 <Input
                   {...field}
-                  label='End Date'
-                  size='normal'
-                  placeholders={['dd/mm/yyyy']}
-                  className={`${styles['eventform-enddate']}`}
+                  label="End Date"
+                  size="normal"
+                  placeholders={["dd/mm/yyyy"]}
+                  className={`${styles["eventform-enddate"]}`}
                   isDatePicker
                 />
               )}
             />
             {errors.endDate && (
-              <p className={`${styles['eventform-error']}`}>
+              <p className={`${styles["eventform-error"]}`}>
                 {errors.endDate.message}
               </p>
             )}
           </div>
- 
-          <div className={`${styles['eventform-datetime']}`}>
+
+          <div className={`${styles["eventform-datetime"]}`}>
             <Controller
-              name='startTime'
+              name="startTime"
               control={control}
               rules={{
-                required: 'Start Time is required',
+                required: "Start Time is required",
               }}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label='Start Time'
-                  size='normal'
-                  placeholders={['hh:mm:ss']}
-                  className={`${styles['eventform-starttime']}`}
+                  label="Start Time"
+                  size="normal"
+                  placeholders={["hh:mm:ss"]}
+                  className={`${styles["eventform-starttime"]}`}
                   isTimePicker
                 />
               )}
             />
             {errors.startTime && (
-              <p className={`${styles['eventform-error']}`}>
+              <p className={`${styles["eventform-error"]}`}>
                 {errors.startTime.message}
               </p>
             )}
           </div>
- 
-          <div className={`${styles['eventform-datetime']}`}>
+
+          <div className={`${styles["eventform-datetime"]}`}>
             <Controller
-              name='endTime'
+              name="endTime"
               control={control}
               rules={{
-                required: 'End Time is required',
+                required: "End Time is required",
               }}
               render={({ field }) => (
                 <Input
                   {...field}
-                  label='End Time'
-                  size='normal'
-                  placeholders={['hh:mm:ss']}
-                  className={`${styles['eventform-endtime']}`}
+                  label="End Time"
+                  size="normal"
+                  placeholders={["hh:mm:ss"]}
+                  className={`${styles["eventform-endtime"]}`}
                   isTimePicker
                 />
               )}
             />
             {errors.endTime && (
-              <p className={`${styles['eventform-error']}`}>
+              <p className={`${styles["eventform-error"]}`}>
                 {errors.endTime.message}
               </p>
             )}
           </div>
         </div>
- 
+
         <Controller
-          name='location'
+          name="location"
           control={control}
           rules={{
             required:
-              selectedEventMode === 'Online'
-                ? 'Link is required'
-                : 'Location is required',
+              selectedEventMode === "Online"
+                ? "Link is required"
+                : "Location is required",
             validate:
-              selectedEventMode === 'Online'
+              selectedEventMode === "Online"
                 ? validateURL
                 : validateAndCleanInput,
           }}
           render={({ field }) => (
             <Input
               {...field}
-              label={selectedEventMode === 'Online' ? 'Link' : 'Location'}
-              size='normal'
+              label={selectedEventMode === "Online" ? "Link" : "Location"}
+              size="normal"
               placeholders={[
-                selectedEventMode === 'Online' ? 'Link' : 'Location',
+                selectedEventMode === "Online" ? "Link" : "Location",
               ]}
-              className={`${styles['eventform-location']}`}
+              className={`${styles["eventform-location"]}`}
             />
           )}
         />
         {errors.location && (
-          <p className={`${styles['eventform-error']}`}>
+          <p className={`${styles["eventform-error"]}`}>
             {errors.location.message}
           </p>
         )}
-
- <div className={`${styles['eventform-speakers']}`}>
-          {/* <label>Speakers</label> */}
-          {fields.map((speaker, index) => (
-            <div key={speaker.id} className={`${styles['eventform-speaker']}`}>
-           
-        <Controller
-          // name='speaker'
-          name={`speakers[${index}].name`}
-
-          control={control}
-          rules={{
-            required: 'Speaker Name is required',
-
-            // required: 'Speaker is required',
-            // validate: validateAndCleanInput,
-          }}
-          render={({ field }) => (
-            <Input
-              {...field}
-              // label='Speaker'
-              label={fields.length > 1 ? `Speaker ${index + 1}` : 'Speaker'}
-
-              size='normal'
-              // placeholders={['Speaker']}
-              placeholders={['Speaker Name']}
-
-              className={`${styles['eventform-speaker']}`}
-              // className={`${styles['eventform-speakername']}`}
-
-            />
-          )}
-        />
-        {/* {errors.speaker && ( */}
-        {errors.speakers?.[index]?.name && (
-
-          <p className={`${styles['eventform-error']}`}>
-            {/* {errors.speaker.message} */}
-            {errors.speakers[index].name.message}
-
-          </p>
-        )}
- 
-        <Controller
-          // name='speakerDescription'
-          name={`speakers[${index}].description`}
-
-          control={control}
-          rules={{
-            required: 'Speaker Description is required',
-            // validate: validateAndCleanInput,
-          }}
-          render={({ field }) => (
-            <Input
-              {...field}
-              label={fields.length > 1 ? `Speaker Description ${index + 1}` : 'Speaker Description'}
-              size='normal'
-              placeholders={['Speaker Description']}
-              className={`${styles['eventform-speakerdescription']}`}
-            />
-          )}
-        />
-        {/* {errors.speakerDescription && ( */}
-        {errors.speakers?.[index]?.description && (
-
-          <p className={`${styles['eventform-error']}`}>
-            {/* {errors.speakerDescription.message} */}
-            {errors.speakers[index].description.message}
-
-          </p>
-        )}    
-        {fields.length > 1 && (
-        <TextButton                  
-        icon={<FiMinusCircle />}
-        // isDelete="true"
-        onClick={() => remove(index)}
-        // text="Remove Speaker"
-        variant='textbutton-delete'
-        redSpeaker // Add hover effect for "Remove Speaker"
-        className={`${styles['textbutton-removespeaker']}`} // Replace 'custom-class-name' with your desired CSS class
-              />
-              )}
+        <div className={`${styles["eventform-speakerscontainer"]} `}>
+          {fields.map((field, index) => (
+            <div
+              key={field.id}
+              className={`${styles["eventform-speaker-pair"]}`}
+            >
+              <div className={`${styles["eventform-speaker"]}`}>
+                <Controller
+                  name={`speakers[${index}].name`}
+                  control={control}
+                  rules={{
+                    required: "Speaker Name is required",
+                    validate: validateAndCleanInput,
+                  }}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      label={
+                        fields.length > 1 ? `Speaker ${index + 1}` : "Speaker"
+                      }
+                      size="normal"
+                      placeholders={["Speaker Name"]}
+                      className={`${styles["eventform-speakername"]}`}
+                      icon={
+                        fields.length > 1 && (
+                          <FiMinusCircle
+                            onClick={() => remove(index)}
+                            className={`${styles["eventform-removeicon-final"]}`}
+                          />
+                        )
+                      }
+                    />
+                  )}
+                />
+                {errors.speakers?.[index]?.name && (
+                  <p className={`${styles["eventform-error-speaker"]}`}>
+                    {errors.speakers[index].name.message}
+                  </p>
+                )}
+              </div>
+              <div className={`${styles["eventform-speaker-description"]}`}>
+                <Controller
+                  name={`speakers[${index}].description`}
+                  control={control}
+                  rules={{
+                    required: "Speaker Description is required",
+                    validate: validateAndCleanInput,
+                  }}
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      label={
+                        fields.length > 1
+                          ? `Speaker Description ${index + 1}`
+                          : "Speaker Description"
+                      }
+                      size="normal"
+                      placeholders={["Speaker Description"]}
+                      className={`${styles["eventform-speakerdescription"]}`}
+                    />
+                  )}
+                />
+                {errors.speakers?.[index]?.description && (
+                  <p className={`${styles["eventform-error-speaker"]}`}>
+                    {errors.speakers[index].description.message}
+                  </p>
+                )}
+              </div>
             </div>
           ))}
-          
-          <TextButton
-            type='button'
-            icon={<GoPlusCircle/>}
 
-            onClick={() => append({ name: '', description: '' })}
-            text="Add Speaker"
-            
-
-          >
-            
-          </TextButton>
+          <div className={`${styles["eventform-addspeaker-container"]}`}>
+            <TextButton
+              text="Add Speaker"
+              icon={<GoPlusCircle />}
+              className={`${styles["eventform-addspeaker"]}`}
+              onClick={() => append({ name: "", description: "" })}
+            />
+          </div>
         </div>
- 
-        <div className={`${styles['eventform-buttondiv']}`}>
-          <div className={`${styles['eventform-buttoncontainer']}`}>
+        <div className={`${styles["eventform-buttondiv"]}`}>
+          <div className={`${styles["eventform-buttoncontainer"]}`}>
             <PrimaryButton
-              content='Submit'
-              variant='primary'
-              width='full'
-              className={`${styles['eventform-submitbutton']}`}
-              type='submit'
+              content="Submit"
+              variant="primary"
+              width="full"
+              className={`${styles["eventform-submitbutton"]}`}
+              type="submit"
             />
           </div>
         </div>
       </form>
-      {/* <ToastContainer
-        position='top-center'
-        autoClose={5000}
-        hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='dark'
-      /> */}
     </div>
   );
 };
- 
+
 export default EventForm;
- 
