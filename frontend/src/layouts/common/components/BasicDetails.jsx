@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../common/Common.module.css";
 import { useForm, Controller } from "react-hook-form";
+import { subDays, format } from "date-fns"; 
 import Input from "../../../components/inputbox/InputBox";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import TextButton from "../../../components/buttons/TextButton";
@@ -16,6 +17,7 @@ import {
 } from "./validation";
 
 const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
+  const today = new Date();
   const {
     handleSubmit,
     control,
@@ -32,6 +34,11 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
   useEffect(() => {
     setShowProfileLinks(isEdit);
   }, [isEdit]);
+
+  const validateDOB = (value) => {
+    const todayMinus15Years = subDays(today, 15 * 365);
+    return value && value <= todayMinus15Years || "Date should be 15 years before today";
+  }
 
   const handleFormSubmit = (data) => {
     if (fileError) {
@@ -55,9 +62,10 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
           {mainHeading}
         </header>
         <div className={`${styles["basicdetails-containerinput-out"]}`}>
-          <Controller
+        <Controller
             name="dob"
             control={control}
+            rules={{ validate: validateDOB }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -68,6 +76,11 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               />
             )}
           />
+          {errors.dob && (
+            <p className={`${styles["basicdetails-error"]}`}>
+              {errors.dob.message}
+            </p>
+          )}
           <Controller
             name="phoneNo"
             control={control}
@@ -76,7 +89,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               <Input
                 {...field}
                 label="Phone Number"
-                placeholders={["phone number"]}
+                placeholders={["Phone Number"]}
                 size="normal"
               />
             )}
@@ -94,7 +107,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                 <Input
                   {...field}
                   label="Profile Photo"
-                  placeholders={["profile photo"]}
+                  placeholders={["Profile Photo"]}
                   size="normal"
                   isFileInput="true"
                   accept="image/*"
@@ -136,7 +149,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                   <Input
                     {...field}
                     label="GitHub Link"
-                    placeholders={["link"]}
+                    placeholders={["Link"]}
                     size="normal"
                   />
                 )}
@@ -156,7 +169,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                   <Input
                     {...field}
                     label="LinkedIn Link"
-                    placeholders={["link"]}
+                    placeholders={["Link"]}
                     size="normal"
                   />
                 )}
@@ -176,7 +189,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                   <Input
                     {...field}
                     label="Other Link"
-                    placeholders={["link"]}
+                    placeholders={["Link"]}
                     size="normal"
                   />
                 )}
@@ -269,7 +282,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               <Input
                 {...field}
                 label="About Me"
-                placeholders={["about me"]}
+                placeholders={["About Me"]}
                 size="large"
               />
             )}

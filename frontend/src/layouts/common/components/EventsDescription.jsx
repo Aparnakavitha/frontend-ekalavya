@@ -54,7 +54,13 @@ const EventsDescription = (props) => {
   const locationLabel = eventMode === "Offline" ? "Location" : "Link";
   let locationValue = eventMode === "Offline" ? location : link;
 
-  if (eventMode === "Online") {
+  if (new Date() > new Date(endDate)) {
+    locationValue = (
+      <p>
+        <b>{locationLabel} :</b> Event has ended
+      </p>
+    );
+  } else if (eventMode === "Online") {
     if (role == 3 || exploreEvent) {
       locationValue = isRegistered ? (
         <p>
@@ -79,7 +85,7 @@ const EventsDescription = (props) => {
   } else {
     locationValue = (
       <p>
-        <b>{locationLabel} :</b>
+        <b>{locationLabel} : </b>
         {location}
       </p>
     );
@@ -241,7 +247,7 @@ const EventsDescription = (props) => {
                 </div>
             </>
           )}
-          {(type === "public" || type === "admin" || type === "mentor") && (
+          {(type === "admin") && (
             <>
               <div className={`${styles["eventsdescription-gap"]}`}>
                 <div

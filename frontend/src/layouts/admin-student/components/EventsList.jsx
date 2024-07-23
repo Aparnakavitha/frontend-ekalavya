@@ -61,7 +61,7 @@ const EventList = ({
   };
 
   const heading = {
-    heading: "Events Attended",
+    heading: "Events Enrolled",
     textbuttonprops: {
       icon: <AiOutlinePlus />,
       text: "Add Events",
@@ -89,7 +89,7 @@ const EventList = ({
 
   const deleteprops = {
     title: "Delete Student",
-    message: "Are you sure you want to delete this Student?",
+    message: "Are you sure you want to Delete this Student?",
     buttonText: "Delete",
   };
 

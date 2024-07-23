@@ -59,7 +59,7 @@ const UserProfileInfo = (props) => {
             <div className={`${styles["userprofile-info-text"]}`}>
               <h3 className={`${styles["userprofile-name"]}`}>{name}</h3>
               <h4 className={`${styles["userprofile-student-id"]}`}>
-                <b>{role.charAt(0).toUpperCase() + role.slice(1)} Id:</b>{" "}
+                <b>{role.charAt(0).toUpperCase() + role.slice(1)} ID:</b>{" "}
                 {userId}
               </h4>
               {role === "student" && (
@@ -67,7 +67,7 @@ const UserProfileInfo = (props) => {
                   {college}
                 </h4>
               )}
-              <h4 className={`${styles["userprofile-dob"]}`}>DOB: {dob? dob : <a className="nodata">N/A</a>}</h4>
+              <h4 className={`${styles["userprofile-dob"]}`}><b>DOB:</b> {dob? dob : <a className="nodata">N/A</a>}</h4>
             </div>
           </div>
 

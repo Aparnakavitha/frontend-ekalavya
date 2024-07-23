@@ -47,7 +47,7 @@ const AddUser = ({
                   {...field}
                   label="Enter Full Name"
                   size="normal"
-                  placeholders={["First name"]}
+                  placeholders={["First Name"]}
                 />
               )}
             />
@@ -69,7 +69,7 @@ const AddUser = ({
                 <Input
                   {...field}
                   size="normal"
-                  placeholders={["Second name"]}
+                  placeholders={["Second Name"]}
                 />
               )}
             />
@@ -90,9 +90,9 @@ const AddUser = ({
           render={({ field }) => (
             <Input
               {...field}
-              label="Enter email address"
+              label="Enter Email ID"
               size="normal"
-              placeholders={["Email address"]}
+              placeholders={["Email ID"]}
             />
           )}
         />

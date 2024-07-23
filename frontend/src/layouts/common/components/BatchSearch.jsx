@@ -22,6 +22,9 @@ const BatchSearch = ({
   showSearch = true,
   onSearchChange,
   onFilterChange,
+  searchTerm,
+  setSearchTerm,
+  explorepage  
 }) => {
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
   const [filterStates, setFilterStates] = useState(
@@ -77,7 +80,10 @@ const BatchSearch = ({
       <div className={`${styles["batchsearch-content"]}`}>
         <div className={`${styles["batchsearch-top"]}`}>
           <div className={`${styles["batchsearch-heading"]}`}>
-          <b><NavButton {...navbuttonProps} /></b> <a style={{ fontSize: '16px' }}> (Count: {participantCount})</a>
+            <b>
+              <NavButton {...navbuttonProps} />
+            </b>{" "}
+            <a style={{ fontSize: "16px" }}> (Count: {participantCount})</a>
           </div>
           {showTextButton && (
             <div className={`${styles["batchsearch-textbutton"]}`}>
@@ -85,7 +91,7 @@ const BatchSearch = ({
                 <TextButton {...textbuttonProps} />
               </div>
               <div>
-                <TextButton {...textbuttonProps2} />
+                <TextButton isDelete="true" {...textbuttonProps2} />
               </div>
             </div>
           )}
@@ -93,7 +99,11 @@ const BatchSearch = ({
         <div className={`${styles["batchsearch-bottom"]}`}>
           {showSearch && (
             <div className={`${styles["batchsearch-search"]}`}>
-              <Searchbar {...searchbarProps} onSearch={handleSearchChange} />
+              <Searchbar
+                {...searchbarProps}
+                onSearch={explorepage ?handleSearchChange  : setSearchTerm}
+                value={searchTerm}
+              />
             </div>
           )}
           <div className={`${styles["batchsearch-right"]}`}>

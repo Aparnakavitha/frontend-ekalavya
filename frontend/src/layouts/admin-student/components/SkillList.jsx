@@ -129,7 +129,7 @@ const SkillList = ({ studentId }) => {
     heading: "Skills",
     textbuttonprops: {
       icon: <AiOutlinePlus />,
-      text: "Add new Skill",
+      text: "Add New Skill",
       onClick: handleOpenModal,
     },
   };
@@ -162,7 +162,7 @@ const SkillList = ({ studentId }) => {
           No skills achieved yet
         </p>
       )}
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
         hideProgressBar={true}
@@ -174,7 +174,7 @@ const SkillList = ({ studentId }) => {
         pauseOnHover
         theme="dark"
         transition={Slide}
-      />
+      /> */}
     </div>
   );
 };

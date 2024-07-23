@@ -10,18 +10,33 @@ const ProfileNotificationBox = ({
   onBellIconClick,
 }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 767);
 
   const handleNameClick = (event) => {
     event.stopPropagation();
-    setDropdownVisible((prevVisible) => !prevVisible);
+    if (isWideScreen) {
+      setDropdownVisible((prevVisible) => !prevVisible);
+    }
   };
 
   const handleClickOutside = (event) => {
     if (event.target.closest(`.${styles.profilenotificationbox}`)) {
-      return; // Ignore clicks inside the profile box
+      return;
     }
     setDropdownVisible(false);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsWideScreen(window.innerWidth > 767);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     if (dropdownVisible) {
@@ -48,7 +63,7 @@ const ProfileNotificationBox = ({
 
   return (
     <div>
-      <div className={styles.profilenotificationbox} onClick={handleNameClick}>
+      <div className={styles.profilenotificationbox}>
         <FiBell className={styles.bellicon} onClick={onBellIconClick} />
         <img src={profilePic} alt="Profile" className={styles.profilepic} />
         <div className={styles.info}>
@@ -60,11 +75,13 @@ const ProfileNotificationBox = ({
           </span>
         </div>
       </div>
-      {dropdownVisible && (
+      {dropdownVisible && isWideScreen && (
         <div className={styles.dropdowncontainer}>
           <div className={styles.pointer}></div>
           <div className={styles.dropdown}>
-            <div className={styles.button}>Profile</div>
+            <div className={styles.button} onClick={handleNameClick}>
+              Profile
+            </div>
             <div className={styles.line}></div>
             <div className={styles.button}>Logout</div>
           </div>

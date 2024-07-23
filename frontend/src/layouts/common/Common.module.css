@@ -1766,7 +1766,7 @@
 
 .userprofile-dob {
   font-weight: 400;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .userprofile-profile-picture {
@@ -1838,65 +1838,86 @@
 
 /*-----------------------------------------------------------Education layout css begins here-----------------------------------------------------------------*/
 
-.education-qualification {
-  display: flex;
-  flex-direction: column;
-}
-
-.education-qualification-button {
-  margin: 0.3rem;
-}
-
-.education-qualification-head {
-  display: flex;
-  align-items: center;
-}
-
-.education-qualification-name {
-  margin-right: auto;
-}
-
-.education-qualification-content {
-  display: flex;
-  justify-content: space-between;
-}
-
-.education-qualification-instance {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 1rem;
-  list-style-type: decimal;
-}
-
-.education-qualification-mod-buttons {
-  display: flex;
-}
-
-.education-title2 {
-  color: var(--primary-color);
-  font-weight: 600;
-  margin-right: auto;
-  margin-bottom: 1rem;
-}
-
-.education-qualifications-list {
-  color: var(--white);
-  margin-left: 0.2rem;
-}
-
-.education-education {
-  margin-bottom: 1rem;
-  margin-right: auto;
-  margin-left: 0.2rem;
-  color: var(--white);
-}
-
-.education-list-box {
-  margin-left: 0.2rem;
-  list-style-type: decimal;
-  padding-bottom: 1rem;
-}
-
+.education-container {
+    padding-bottom: 20px;
+  }
+  
+  .education-qualification {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .education-qualification-button {
+    margin: 0.3rem;
+  }
+  
+  .education-qualification-head {
+    display: flex;
+    align-items: center;
+  }
+  
+  .education-qualification-name {
+    margin-right: auto;
+  }
+  
+  .education-qualification-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .education-qualification-instance {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    list-style-type: decimal;
+    position: relative;
+  }
+  
+  .education-qualification-mod-buttons {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    align-items: center;
+    transition: opacity 0.3s, visibility 0.3s;
+    position: absolute;
+    right: 0;
+  }
+  
+  .education-qualification-instance:hover .education-qualification-mod-buttons {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .education-title2 {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-right: auto;
+    margin-bottom: 1rem;
+  }
+  
+  .education-qualifications-list {
+    color: var(--white);
+    margin-left: 0.2rem;
+  }
+  
+  .education-education {
+    margin-bottom: 1rem;
+    margin-right: auto;
+    margin-left: 0.2rem;
+    color: var(--white);
+  }
+  
+  .education-list-box {
+    margin-left: 0.2rem;
+    list-style-type: decimal;
+    padding-bottom: 1rem;
+  }
+  
+  .education-no-qualifications {
+    text-align: left;
+    color: var(--neutral600);
+  }
+  
 /*---------------------------------------------------Education layout css ends here--------------------------------------------------------------------------*/
 
 /*-------------------------------------------------Media queries for user profile starts here--------------------------------------------------------------------*/
@@ -1963,7 +1984,7 @@
   width: 99%;
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 112%;
   letter-spacing: 0.59px;
   text-align: justify;

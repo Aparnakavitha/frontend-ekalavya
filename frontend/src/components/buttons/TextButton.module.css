@@ -1,3 +1,4 @@
+/* TextButton.module.css */
 .textbutton {
   display: inline-flex;
   align-items: center;
@@ -6,7 +7,7 @@
 }
 
 .textbutton:hover .text,
-.textbutton:hover .icon{
+.textbutton:hover .icon {
   color: var(--primary-color);
 }
 
@@ -21,12 +22,26 @@
   font-size: 14px;
 }
 
-.dtext{
+.dtext {
   font-size: 16px;
   color: var(--warning-color);
 }
 
-.dicon{
+.dicon {
   margin-top: 2px;
   color: var(--warning-color);
+}
+
+.redHover .text,
+.redHover .icon,
+.redHover .dtext,
+.redHover .dicon {
+  color: red;
+}
+
+.redHover:hover .text,
+.redHover:hover .icon,
+.redHover:hover .dtext,
+.redHover:hover .dicon {
+  color: white;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import BatchSearch from "../../common/components/BatchSearch";
 
-const EventAction = ({ onSearchChange, onFilterChange }) => {
+const EventAction = ({ onSearchChange, onFilterChange, participantCount }) => {
   const EventActionData = {
     navbuttonProps: {
       pageName: "Events",
@@ -11,7 +11,7 @@ const EventAction = ({ onSearchChange, onFilterChange }) => {
     showReset: true,
     searchbarProps: {
       variant: "custom",
-      placeholder: "Event",
+      placeholder: "Search Events",
     },
     showFiltersAndReset: true,
     filterProps: [
@@ -49,7 +49,9 @@ const EventAction = ({ onSearchChange, onFilterChange }) => {
   return (
     <div>
       <BatchSearch
+        explorepage="true"
         {...EventActionData}
+        participantCount={participantCount}
         onSearchChange={onSearchChange}
         onFilterChange={onFilterChange}
       />
