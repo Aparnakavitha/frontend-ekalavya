@@ -38,8 +38,8 @@ const AdminEvent = () => {
     try {
       const filterParams = {
         eventTitle: params.eventTitle || "",
-        eventType: params.eventType || "",
-        eventMode: params.eventMode || "",
+        eventType: params.Type || "",
+        eventMode: params.Mode || "",
       };
       const filteredParams = Object.fromEntries(
         Object.entries(filterParams).filter(([key, value]) => value !== "")
