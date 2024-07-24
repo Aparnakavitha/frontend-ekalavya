@@ -94,7 +94,7 @@ const ProfileNotificationBox = ({
               onClick={(event) => {
                 event.stopPropagation();
                 onProfileClick();
-                setDropdownVisible(false); 
+                setDropdownVisible(false);
               }}
             >
               Profile
@@ -105,7 +105,7 @@ const ProfileNotificationBox = ({
               onClick={(event) => {
                 event.stopPropagation();
                 onLogoutClick();
-                setDropdownVisible(false); 
+                setDropdownVisible(false);
               }}
             >
               Logout
