@@ -5,7 +5,7 @@ import styles from "../Common.module.css";
 import { PiCards, PiListBullets } from "react-icons/pi";
 
 const DataView = ({
-  cardType = "profilecard",
+  cardType = "Primarycard",
   CardComponent,
   data = [],
   tableColumns = [],
