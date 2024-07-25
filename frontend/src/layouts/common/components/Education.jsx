@@ -7,7 +7,6 @@ import { format, parse } from "date-fns";
 import { MdDeleteOutline } from "react-icons/md";
 import { GoTrash } from "react-icons/go";
 
-
 const Education = ({
   qualifications,
   onClickAdd,
@@ -79,9 +78,12 @@ const Education = ({
                       <div
                         className={`${styles["education-qualification-button"]}`}
                       >
-                      
-                     <TextButton onClick={onClickDelete} icon= {<GoTrash />} isDelete="true"   text="Delete" />
-
+                        <TextButton
+                          onClick={onClickDelete}
+                          icon={<GoTrash />}
+                          isDelete="true"
+                          text="Delete"
+                        />
                       </div>
                     </div>
                   </li>
