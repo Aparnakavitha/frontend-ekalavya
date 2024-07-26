@@ -116,7 +116,7 @@ const DataView = ({
           <div className={styles["dataview-cardscontainer"]}>
             {currentData.map((item, index) => (
               <div key={index} className={`${styles[getComponentName(item)]}`}>
-                <CardComponent {...item} />
+                <CardComponent {...item} index={index}/>
               </div>
             ))}
             {!isMobileView &&

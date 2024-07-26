@@ -178,6 +178,7 @@ const EducationalQualification = ({
           CardComponent={(props) => (
             <QualificationCard
               {...props}
+              // index={index}
               onClickEdit={educationProps.onClickEdit}
               onClickDelete={educationProps.onClickDelete}
             />
@@ -192,8 +193,6 @@ const EducationalQualification = ({
         </div>
       )}
 
-      {/* <Education {...educationProps} /> */}
-      {/* Don't delete */}
       <Modal
         isOpen={isAddQualificationOpen}
         widthVariant="medium"

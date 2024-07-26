@@ -27,7 +27,7 @@ const MentorEvents = () => {
         completed: status === "completed" ? 1 : 0,
       });
       console.log(`Fetched ${status} events:`, eventList);
-      const reversedEventList = eventList.reverse();   
+      const reversedEventList = eventList.reverse();
       setEvents(reversedEventList);
       setFilteredEvents(reversedEventList);
     } catch (error) {
