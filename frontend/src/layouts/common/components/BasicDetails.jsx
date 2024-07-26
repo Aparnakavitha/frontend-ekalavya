@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../common/Common.module.css";
 import { useForm, Controller } from "react-hook-form";
-import { subDays, format } from "date-fns"; 
+import { subDays, format } from "date-fns";
 import Input from "../../../components/inputbox/InputBox";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import TextButton from "../../../components/buttons/TextButton";
@@ -24,6 +24,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
     setValue,
     setError,
     formState: { errors },
+    trigger,
   } = useForm({
     defaultValues: initialData,
   });
@@ -35,17 +36,16 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
     setShowProfileLinks(isEdit);
   }, [isEdit]);
 
-  const validateDOB = (value) => {
-    const todayMinus15Years = subDays(today, 15 * 365);
-    return value && value <= todayMinus15Years || "Date should be 15 years before today";
-  }
-
   const handleFormSubmit = (data) => {
     if (fileError) {
       return;
     }
     onSubmit(data);
     console.log(data);
+  };
+
+  const handleBlur = async (fieldName) => {
+    await trigger(fieldName);
   };
 
   const handleTextButtonClick = () => {
@@ -62,10 +62,9 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
           {mainHeading}
         </header>
         <div className={`${styles["basicdetails-containerinput-out"]}`}>
-        <Controller
+          <Controller
             name="dob"
             control={control}
-            rules={{ validate: validateDOB }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -73,6 +72,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                 size="normal"
                 placeholders={["yyyy-mm-dd"]}
                 isDatePicker
+                onBlur={() => handleBlur("dob")}
               />
             )}
           />
@@ -91,6 +91,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                 label="Phone Number"
                 placeholders={["Phone Number"]}
                 size="normal"
+                onBlur={() => handleBlur("phoneNo")}
               />
             )}
           />
@@ -214,6 +215,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
               label="Address"
               placeholders={["House Name"]}
               size="normal"
+              onBlur={() => handleBlur("addresses[0].houseName")}
             />
           )}
         />
@@ -227,7 +229,12 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
           control={control}
           rules={{ validate: validateAndCleanInput }}
           render={({ field }) => (
-            <Input {...field} placeholders={["City"]} size="normal" />
+            <Input
+              {...field}
+              placeholders={["City"]}
+              size="normal"
+              onBlur={() => handleBlur("addresses[0].city")}
+            />
           )}
         />
         {errors.addresses?.[0]?.city && (
@@ -240,7 +247,12 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
           control={control}
           rules={{ validate: validateNumber("postalCode") }}
           render={({ field }) => (
-            <Input {...field} placeholders={["Pincode"]} size="normal" />
+            <Input
+              {...field}
+              placeholders={["Pincode"]}
+              size="normal"
+              onBlur={() => handleBlur("addresses[0].pinCode")}
+            />
           )}
         />
         {errors.addresses?.[0]?.pinCode && (
@@ -250,10 +262,15 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
         )}
         <Controller
           name="addresses[0].state"
-          rules={{ validate: {validateState,validateAndCleanInput} }}
+          rules={{ validate: { validateState, validateAndCleanInput } }}
           control={control}
           render={({ field }) => (
-            <Input {...field} placeholders={["State"]} size="normal" />
+            <Input
+              {...field}
+              placeholders={["State"]}
+              size="normal"
+              onBlur={() => handleBlur("addresses[0].state")}
+            />
           )}
         />
         {errors.addresses?.[0]?.state && (
@@ -266,7 +283,12 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
           rules={{ validate: validateCountry }}
           control={control}
           render={({ field }) => (
-            <Input {...field} placeholders={["Country"]} size="normal" />
+            <Input
+              {...field}
+              placeholders={["Country"]}
+              size="normal"
+              onBlur={() => handleBlur("addresses[0].country")}
+            />
           )}
         />
         {errors.addresses?.[0]?.country && (
@@ -284,6 +306,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
                 label="About Me"
                 placeholders={["About Me"]}
                 size="large"
+                onBlur={() => handleBlur("aboutMe")}
               />
             )}
           />

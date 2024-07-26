@@ -60,22 +60,19 @@ const EducationalQualification = ({
 
   const handleFormSubmit = async (formData) => {
     try {
-      if (editIndex !== null) {
-        const updatedQualifications = [...qualifications];
-        updatedQualifications[editIndex] = formData;
-        const formDataToSend = {
-          userId: userId,
-          qualifications: updatedQualifications,
-        };
-        await onFormSubmit(formDataToSend);
-        toast.success("Qualification updated successfully!");
-      }
+      const formDataToSend = {
+        userId: userId,
+        qualifications: [formData],
+      };
+      await onFormSubmit(formDataToSend);
       handleCloseEditQualification();
+      handleCloseDeleteQualification();
+      handleCloseAddQualification();
+      toast.success("Qualification updated successfully!");
     } catch (error) {
-      toast.error("Error updating qualification!");
+      toast.error("Error updating user Qualification!");
     }
   };
-
   const handleRemove = async (index) => {
     try {
       const qualification = qualifications[index];

@@ -20,7 +20,12 @@ const AddUser = ({
     handleSubmit,
     control,
     formState: { errors },
+    trigger,
   } = useForm();
+
+  const handleBlur = async (fieldName) => {
+    await trigger(fieldName);
+  };
 
   const handleFormSubmit = (data) => {
     onSubmit(data);
@@ -48,6 +53,7 @@ const AddUser = ({
                   label="Enter Full Name"
                   size="normal"
                   placeholders={["First Name"]}
+                  onBlur={() => handleBlur("firstName")}
                 />
               )}
             />
@@ -70,6 +76,7 @@ const AddUser = ({
                   {...field}
                   size="normal"
                   placeholders={["Second Name"]}
+                  onBlur={() => handleBlur("lastName")}
                 />
               )}
             />
@@ -93,6 +100,7 @@ const AddUser = ({
               label="Enter Email ID"
               size="normal"
               placeholders={["Email ID"]}
+              onBlur={() => handleBlur("emailId")}
             />
           )}
         />
@@ -115,6 +123,7 @@ const AddUser = ({
                 size="normal"
                 placeholders={["Select College"]}
                 options={options}
+                onBlur={() => handleBlur("collegeId")}
               />
             )}
           />
