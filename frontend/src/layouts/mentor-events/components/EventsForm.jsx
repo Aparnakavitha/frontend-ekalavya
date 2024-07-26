@@ -25,6 +25,7 @@ const EventForm = ({ hostId, onSubmit }) => {
     setValue,
     reset,
     formState: { errors },
+    trigger,
   } = useForm({
     defaultValues: {
       eventTitle: "",
@@ -86,6 +87,10 @@ const EventForm = ({ hostId, onSubmit }) => {
     } catch (error) {
       console.error("Error creating event:", error);
     }
+  };
+
+  const handleBlur = async (fieldName) => {
+    await trigger(fieldName);
   };
 
   const handleToastMessage = (message) => {
@@ -151,6 +156,7 @@ const EventForm = ({ hostId, onSubmit }) => {
                   size="normal"
                   placeholders={["Event Title"]}
                   className={`${styles["eventform-eventtitle"]}`}
+                  onBlur={() => handleBlur("eventTitle")}
                 />
               )}
             />
@@ -176,6 +182,7 @@ const EventForm = ({ hostId, onSubmit }) => {
                   placeholder="Event Mode"
                   options={options}
                   className={`${styles["eventform-eventmode"]}`}
+                  onBlur={() => handleBlur("eventMode")}
                 />
               )}
             />
@@ -202,6 +209,7 @@ const EventForm = ({ hostId, onSubmit }) => {
               placeholder={["Event Type"]}
               options={typeoptions}
               className={`${styles["eventform-eventtype"]}`}
+              onBlur={() => handleBlur("eventType")}
             />
           )}
         />
@@ -225,6 +233,7 @@ const EventForm = ({ hostId, onSubmit }) => {
               size="large"
               placeholders={["Description"]}
               className={`${styles["eventform-description"]}`}
+              onBlur={() => handleBlur("description")}
             />
           )}
         />
@@ -250,6 +259,7 @@ const EventForm = ({ hostId, onSubmit }) => {
                   placeholders={["dd/mm/yyyy"]}
                   className={`${styles["eventform-startdate"]}`}
                   isDatePicker
+                  onBlur={() => handleBlur("startDate")}
                 />
               )}
             />
@@ -275,6 +285,7 @@ const EventForm = ({ hostId, onSubmit }) => {
                   placeholders={["dd/mm/yyyy"]}
                   className={`${styles["eventform-enddate"]}`}
                   isDatePicker
+                  onBlur={() => handleBlur("endDate")}
                 />
               )}
             />
@@ -300,6 +311,7 @@ const EventForm = ({ hostId, onSubmit }) => {
                   placeholders={["hh:mm:ss"]}
                   className={`${styles["eventform-starttime"]}`}
                   isTimePicker
+                  onBlur={() => handleBlur("startTime")}
                 />
               )}
             />
@@ -325,6 +337,7 @@ const EventForm = ({ hostId, onSubmit }) => {
                   placeholders={["hh:mm:ss"]}
                   className={`${styles["eventform-endtime"]}`}
                   isTimePicker
+                  onBlur={() => handleBlur("endTime")}
                 />
               )}
             />
@@ -358,6 +371,7 @@ const EventForm = ({ hostId, onSubmit }) => {
                 selectedEventMode === "Online" ? "Link" : "Location",
               ]}
               className={`${styles["eventform-location"]}`}
+              onBlur={() => handleBlur("location")}
             />
           )}
         />
@@ -389,6 +403,7 @@ const EventForm = ({ hostId, onSubmit }) => {
                       size="normal"
                       placeholders={["Speaker Name"]}
                       className={`${styles["eventform-speakername"]}`}
+                      onBlur={() => handleBlur(`speakers[${index}].name`)}
                       icon={
                         fields.length > 1 && (
                           <FiMinusCircle
@@ -425,6 +440,9 @@ const EventForm = ({ hostId, onSubmit }) => {
                       size="normal"
                       placeholders={["Speaker Description"]}
                       className={`${styles["eventform-speakerdescription"]}`}
+                      onBlur={() =>
+                        handleBlur(`speakers[${index}].description`)
+                      }
                     />
                   )}
                 />

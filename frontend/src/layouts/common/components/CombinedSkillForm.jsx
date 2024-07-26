@@ -21,12 +21,17 @@ const CombinedSkillForm = ({
     control,
     getValues,
     formState: { errors },
+    trigger,
   } = useForm({
     defaultValues: initialData,
   });
 
   const handleFormSubmit = (data) => {
     onSubmit(data);
+  };
+
+  const handleBlur = async (fieldName) => {
+    await trigger(fieldName);
   };
 
   return (
@@ -63,6 +68,7 @@ const CombinedSkillForm = ({
                     label="Select Skills"
                     placeholder="Skills"
                     options={options}
+                    onBlur={() => handleBlur("skill")}
                   />
                 )}
               />
@@ -85,6 +91,7 @@ const CombinedSkillForm = ({
                   label="Level"
                   placeholder="Select Level"
                   options={[{ value: 1, label: "Level 1" }]}
+                  onBlur={() => handleBlur("selectedLevel")}
                 />
               )}
             />
@@ -102,6 +109,7 @@ const CombinedSkillForm = ({
                     label="Select Skills"
                     placeholder="Select Your Skill"
                     options={options}
+                    onBlur={() => handleBlur("selectedSkills")}
                   />
                 )}
               />
@@ -122,6 +130,7 @@ const CombinedSkillForm = ({
                     label="Level"
                     placeholder="Select Level"
                     options={[{ value: 1, label: "Level 1" }]}
+                    onBlur={() => handleBlur("selectedLevel")}
                   />
                 )}
               />

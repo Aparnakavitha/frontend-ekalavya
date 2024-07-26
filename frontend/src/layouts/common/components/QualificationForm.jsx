@@ -9,13 +9,19 @@ import {
   validateStartDate,
   validateEndDate,
   validateNumber,
-  validateAndCleanInput
+  validateAndCleanInput,
 } from "./validation";
 
 const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
   const today = new Date();
-  const { handleSubmit, control, setValue,setError,
-    formState: { errors }, } = useForm({
+  const {
+    handleSubmit,
+    control,
+    setValue,
+    setError,
+    formState: { errors },
+    trigger,
+  } = useForm({
     defaultValues: initialValues,
   });
 
@@ -23,11 +29,17 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
     console.log("Form Data:", data);
     console.log("Start Date:", data.startDate);
     console.log("End Date:", data.endDate);
-    onSubmit(data); 
+    onSubmit(data);
+  };
+
+  const handleBlur = async (fieldName) => {
+    await trigger(fieldName);
   };
 
   const validateStartDateBeforeToday = (value) => {
-    return isAfter(today, new Date(value)) || "Start Date should be before today";
+    return (
+      isAfter(today, new Date(value)) || "Start Date should be before today"
+    );
   };
 
   return (
@@ -42,7 +54,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
         name="degree"
         control={control}
         rules={{
-          required: "Degree is required"
+          required: "Degree is required",
         }}
         render={({ field }) => (
           <InputDropdown
@@ -50,14 +62,15 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
             label="Degree of Education"
             placeholder="Select Degree"
             options={options}
+            onBlur={() => handleBlur("degree")}
           />
         )}
       />
-      {errors.degree&& (
-            <p className={`${styles["qualification-form-error"]}`}>
-              {errors.degree.message}
-            </p>
-          )}
+      {errors.degree && (
+        <p className={`${styles["qualification-form-error"]}`}>
+          {errors.degree.message}
+        </p>
+      )}
       <Controller
         name="specialization"
         control={control}
@@ -71,14 +84,15 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
             label="Specialization"
             placeholders={["Specialization"]}
             size="normal"
+            onBlur={() => handleBlur("specialization")}
           />
         )}
       />
-      {errors.specialization&& (
-            <p className={`${styles["qualification-form-error"]}`}>
-              {errors.specialization.message}
-            </p>
-          )}
+      {errors.specialization && (
+        <p className={`${styles["qualification-form-error"]}`}>
+          {errors.specialization.message}
+        </p>
+      )}
       <Controller
         name="institution"
         control={control}
@@ -92,19 +106,20 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
             label="Institution / University"
             placeholders={["University"]}
             size="normal"
+            onBlur={() => handleBlur("institution")}
           />
         )}
       />
-            {errors.institution&& (
-            <p className={`${styles["qualification-form-error"]}`}>
-              {errors.institution.message}
-            </p>
-          )}
+      {errors.institution && (
+        <p className={`${styles["qualification-form-error"]}`}>
+          {errors.institution.message}
+        </p>
+      )}
       <Controller
         name="percentage"
         control={control}
         rules={{
-          required : "Percentage is required ",
+          required: "Percentage is required ",
           validate: validateNumber("others"),
         }}
         render={({ field }) => (
@@ -113,14 +128,15 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
             label="Percentage"
             placeholders={["Percentage"]}
             size="normal"
+            onBlur={() => handleBlur("percentage")}
           />
         )}
       />
-        {errors.percentage&& (
-            <p className={`${styles["qualification-form-error"]}`}>
-              {errors.percentage.message}
-            </p>
-          )}
+      {errors.percentage && (
+        <p className={`${styles["qualification-form-error"]}`}>
+          {errors.percentage.message}
+        </p>
+      )}
       <div className={`${styles["qualification-form-startdate-enddate"]}`}>
         <div className={`${styles["qualification-form-datebox"]}`}>
           <Controller
@@ -136,6 +152,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
                 size="normal"
                 placeholders={["yyyy-mm-dd"]}
                 isDatePicker
+                onBlur={() => handleBlur("startDate")}
               />
             )}
           />
@@ -159,6 +176,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
                 size="normal"
                 placeholders={["yyyy-mm-dd"]}
                 isDatePicker
+                onBlur={() => handleBlur("endDate")}
               />
             )}
           />

@@ -199,27 +199,37 @@ const AdminEvent = () => {
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
       />
-      <div style={{ marginTop: '-30px' }}>
-      <EventMenus
-        statuses={[
-          { name: "Upcoming", onClick: () => handleStatusClick("Upcoming") },
-          { name: "Completed", onClick: () => handleStatusClick("Completed") },
-        ]}
-        showButton={false}
-        showSearchBar={false}
-      />
+      <div style={{ marginTop: "-30px" }}>
+        <EventMenus
+          statuses={[
+            { name: "Upcoming", onClick: () => handleStatusClick("Upcoming") },
+            {
+              name: "Completed",
+              onClick: () => handleStatusClick("Completed"),
+            },
+          ]}
+          showButton={false}
+          showSearchBar={false}
+          activeFilter={selectedStatus}
+        />
       </div>
       {loading && <LoadingSpinner />}
       {error && <p>Error: {error}</p>}
-      {!loading && !error && (
-        filteredEvents.length > 0 ? (
-          <DataView cardType="primarycard" CardComponent={PrimaryCard} {...primaryCardData} />
+      {!loading &&
+        !error &&
+        (filteredEvents.length > 0 ? (
+          <DataView
+            cardType="primarycard"
+            CardComponent={PrimaryCard}
+            {...primaryCardData}
+          />
         ) : (
-          <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+          <p
+            style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}
+          >
             No events to display
           </p>
-        )
-      )}
+        ))}
     </div>
   );
 };
