@@ -3,13 +3,23 @@ import AdminCollegeAction from "../../../layouts/admin-college/components/AdminC
 import CollegeCard from "../../../components/cards/CollegeCard";
 import { DataView } from "../../../layouts/common";
 import { getColleges } from "../../../services/User";
+import { postColleges } from "../../../services/User";
+import {  toast } from "react-toastify";
+import {  useLocation } from "react-router-dom";
+
 
 const AdminCollege = () => {
+  const location = useLocation();
   const [collegeData, setCollegeData] = useState([]);
+  const [userData, setUserData] = useState(null);
+  const [count, setCount] = useState(null);
+
   useEffect(() => {
     const fetchCollegeData = async () => {
       try {
         const data = await getColleges();
+        const count = data.responseData.length;
+        setCount(count);
         const transformedData = data.responseData
           .map((college) => [
             college.collegeId,
@@ -72,11 +82,50 @@ const AdminCollege = () => {
     searchPlaceholder: "Search Colleges",
   };
 
+  const formSubmit = async (formData) => {
+    try {
+      const response = await postColleges(formData);
+      try {
+        const data = await getColleges();
+        const transformedData = data.responseData.map((college) => [
+          college.collegeId,
+          college.collegeName,
+          college.collegePlace,
+          college.collegeDistrict,
+          college.collegeState,
+          college.collegeCountry,
+        ]);
+        setCollegeData(transformedData);
+
+        if (location.state && location.state.userData) {
+          setUserData(location.state.userData);
+        }
+      } catch (error) {
+        toast.error("Error creating college", {
+          position: "top-center",
+          autoClose: 5000,
+        });
+      }
+      toast.success("College Added", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (error) {
+      console.error("Error adding college:", error);
+    }
+  };
+
   return (
     <div>
       {/* <Greeting {...greeting} /> */}
       <AdminCollegeAction
-        // formSubmit={formSubmit}
+        count={count}
+        formSubmit={formSubmit}
         AdminCollegeActionData={AdminCollegeActionData}
         // onSearchChange={handleSearchChange}
       />
