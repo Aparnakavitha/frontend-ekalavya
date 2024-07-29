@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../AdminStudent.module.css";
+import styles from "../AdminCollege.module.css";
 import Table from "../../../components/table/Table";
 
 const CollegeList = ({ data, headings }) => {

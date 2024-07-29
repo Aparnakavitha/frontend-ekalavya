@@ -4,8 +4,6 @@ import { ToastContainer, toast, Slide } from "react-toastify";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
 import Greeting from "../../../layouts/common/components/Greeting";
-import AddCollege from "../../../layouts/admin-student/components/AddCollege";
-import CollegeList from "../../../layouts/admin-student/components/CollegeList";
 import Modal from "../../../layouts/common/components/Modal";
 import ActionComponent from "../../../layouts/common/components/Action";
 import AddUser from "../../../layouts/common/components/AddUser";
@@ -177,7 +175,7 @@ const AdminStudent = () => {
       name: loggedUserFirstName || "",
       info: "Here is the information about",
       profile: "Students",
-      showButtons: true,
+      showButtons: false,
       viewprops: {
         data: collegeData,
         headings: [
@@ -406,16 +404,16 @@ const AdminStudent = () => {
   return (
     <div>
       <Greeting {...GreetingData} />
-      <Modal isOpen={isViewOpen} widthVariant="large" onClose={handleCloseView}>
+      {/* <Modal isOpen={isViewOpen} widthVariant="large" onClose={handleCloseView}>
         {collegeData.length > 0 ? (
           <CollegeList {...AdminStudentData.greetingData.viewprops} />
         ) : (
           <div>No colleges available</div>
         )}
-      </Modal>
-      <Modal isOpen={isAddOpen} widthVariant="large" onClose={handleCloseAdd}>
+      </Modal> */}
+      {/* <Modal isOpen={isAddOpen} widthVariant="large" onClose={handleCloseAdd}>
         <AddCollege onSubmit={handleFormSubmit} />
-      </Modal>
+      </Modal> */}
 
       <ActionComponent
         {...actionData}

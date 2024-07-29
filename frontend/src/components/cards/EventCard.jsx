@@ -33,8 +33,7 @@ const EventCard = (props) => {
         <div className={`${styles["event-details"]}`}>
           <div className={`${styles["details-left"]}`}>
             <h1 className={`${styles.main}`} title={main}>{formatText(main)}</h1>
-
-            <h4 className={`${styles.sub}`}>
+            <h4 className={`${styles.sub}`} title={sub}>
                   {formatText(sub)}
             </h4>
           </div>
