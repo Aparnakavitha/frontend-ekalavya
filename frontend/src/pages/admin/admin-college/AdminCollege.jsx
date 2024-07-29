@@ -11,8 +11,10 @@ import {  useLocation } from "react-router-dom";
 const AdminCollege = () => {
   const location = useLocation();
   const [collegeData, setCollegeData] = useState([]);
+  const [filteredCollegeData, setFilteredCollegeData] = useState([]);
   const [userData, setUserData] = useState(null);
   const [count, setCount] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchCollegeData = async () => {
@@ -32,6 +34,7 @@ const AdminCollege = () => {
           .sort((a, b) => a[1].localeCompare(b[1]));
 
         setCollegeData(transformedData);
+        setFilteredCollegeData(transformedData);
       } catch (error) {
         console.error("Error fetching college data:", error);
       }
@@ -41,9 +44,20 @@ const AdminCollege = () => {
   }, []);
   console.log("_____________________0", collegeData);
 
+
+  const handleSearchChange = (college) => {
+    const searchValue = college.toLowerCase();
+    setSearchTerm(searchValue);
+
+    const filteredData = collegeData.filter((college) =>
+      college[1].toLowerCase().includes(searchValue)
+    );
+    setFilteredCollegeData(filteredData);
+  };
+
   const collegeCardData =
     {
-      data: collegeData.map((college) => ({
+      data: filteredCollegeData.map((college) => ({
         miniHeading: college[0],
         mainHeading: college[1],
         Count: 150,
@@ -96,6 +110,7 @@ const AdminCollege = () => {
           college.collegeCountry,
         ]);
         setCollegeData(transformedData);
+        setFilteredCollegeData(transformedData);
 
         if (location.state && location.state.userData) {
           setUserData(location.state.userData);
@@ -127,9 +142,9 @@ const AdminCollege = () => {
         count={count}
         formSubmit={formSubmit}
         AdminCollegeActionData={AdminCollegeActionData}
-        // onSearchChange={handleSearchChange}
+        onSearchChange={handleSearchChange}
       />
-      {collegeData.length > 0 ? (
+      {filteredCollegeData.length > 0 ? (
         <DataView CardComponent={CollegeCard} {...collegeCardData} />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
