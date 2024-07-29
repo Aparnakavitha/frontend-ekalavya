@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import styles from "../AdminStudent.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
@@ -16,6 +16,14 @@ const AddCollege = ({ onSubmit }) => {
     formState: { errors },
     trigger,
   } = useForm();
+
+  const collegeNameRef = useRef(null);
+
+  useEffect(() => {
+    if (collegeNameRef.current){
+      collegeNameRef.current.focus();
+    }
+  }, []);
 
   const handleBlur = async (fieldName) => {
     await trigger(fieldName);
@@ -44,6 +52,7 @@ const AddCollege = ({ onSubmit }) => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  ref={collegeNameRef}
                   label="College Name"
                   size="normal"
                   placeholders={["College Name"]}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import styles from "../Common.module.css";
 import Input from "../../../components/inputbox/InputBox";
@@ -22,6 +22,14 @@ const AddUser = ({
     formState: { errors },
     trigger,
   } = useForm();
+
+  const firstNameRef = useRef(null);
+
+  useEffect(() => {
+    if (firstNameRef.current) {
+      firstNameRef.current.focus();
+    }
+  }, []);
 
   const handleBlur = async (fieldName) => {
     await trigger(fieldName);
@@ -50,6 +58,7 @@ const AddUser = ({
               render={({ field }) => (
                 <Input
                   {...field}
+                  ref={firstNameRef}
                   label="Enter Full Name"
                   size="normal"
                   placeholders={["First Name"]}

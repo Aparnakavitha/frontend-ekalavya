@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
@@ -41,6 +41,14 @@ const AddEvent = ({
   });
 
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
+
+  const eventTitleRef = useRef(null);
+
+  useEffect(() => {
+    if (eventTitleRef.current){
+      eventTitleRef.current.focus();
+    }
+  }, []);
 
   const handleFormSubmit = (data) => {
     const ensureFullTimeFormat = (time) => {
@@ -111,6 +119,7 @@ const AddEvent = ({
             render={({ field }) => (
               <Input
                 {...field}
+                ref={eventTitleRef}
                 label="Event Title"
                 size="normal"
                 placeholders={["Event Title"]}

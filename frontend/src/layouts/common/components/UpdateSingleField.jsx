@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect,useRef} from "react";
 import styles from "../Common.module.css";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
@@ -38,6 +38,14 @@ const UpdateSingleField = ({
   const handleFormSubmit = (data) => {
     onSubmit(data);
   };
+
+  const editSkillRef = useRef(null);
+
+  useEffect(() => {
+    if(editSkillRef.current){
+      editSkillRef.current.focus();
+    }
+  },[]);
 
   return (
     <form
@@ -93,6 +101,7 @@ const UpdateSingleField = ({
                 render={({ field }) => (
                   <Input
                     {...field}
+                    ref={editSkillRef}
                     label={labelTitle}
                     placeholders={[placeHolder]}
                     size="normal"

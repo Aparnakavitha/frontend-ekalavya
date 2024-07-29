@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef} from "react";
 import { useForm, Controller } from "react-hook-form";
 import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
@@ -24,6 +24,14 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
   } = useForm({
     defaultValues: initialValues,
   });
+
+  const degreeRef = useRef(null);
+
+  useEffect(() => {
+    if (degreeRef.current) {
+      degreeRef.current.focus();
+    }
+  }, []);
 
   const handleFormSubmit = (data) => {
     console.log("Form Data:", data);
@@ -59,6 +67,7 @@ const QualificationForm = ({ heading, options, initialValues, onSubmit }) => {
         render={({ field }) => (
           <InputDropdown
             {...field}
+            ref={degreeRef}
             label="Degree of Education"
             placeholder="Select Degree"
             options={options}

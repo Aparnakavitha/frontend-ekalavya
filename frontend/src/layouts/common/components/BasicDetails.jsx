@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "../../common/Common.module.css";
 import { useForm, Controller } from "react-hook-form";
 import { subDays, format } from "date-fns";
@@ -36,6 +36,14 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
     setShowProfileLinks(isEdit);
   }, [isEdit]);
 
+  const dobRef = useRef(null);
+
+  useEffect(() => {
+    if (dobRef.current) {
+      dobRef.current.focus();
+    }
+  }, []);
+
   const handleFormSubmit = (data) => {
     if (fileError) {
       return;
@@ -68,6 +76,7 @@ const BasicDetails = ({ mainHeading, initialData, isEdit, onSubmit }) => {
             render={({ field }) => (
               <Input
                 {...field}
+                ref={dobRef}
                 label="Date of Birth"
                 size="normal"
                 placeholders={["yyyy-mm-dd"]}
