@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./SkillUser.module.css";
 import { ImCross } from "react-icons/im";
 import { FaPlus } from "react-icons/fa";
+import NoData from "../nodata/NoData";
 
 const SkillUser = ({
   miniHeading,
@@ -100,7 +101,7 @@ const SkillUser = ({
                   </div>
                 ))
               ) : (
-                <div className={`${styles.noSkills}`}>No Skills Available</div>
+                <NoData title="Skills"/>
               )}
             </div>
             {skills.length > 2 && (

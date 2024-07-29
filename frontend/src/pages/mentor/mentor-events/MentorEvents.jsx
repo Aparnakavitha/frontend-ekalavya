@@ -5,6 +5,7 @@ import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { fetchEventsService } from "../../../services/Event";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import NoData from "../../../components/nodata/NoData";
 
 const MentorEvents = () => {
   const navigate = useNavigate();
@@ -112,16 +113,7 @@ const MentorEvents = () => {
         filteredEvents.length > 0 ? (
           <DataView CardComponent={PrimaryCard} {...primaryCardData} />
         ) : (
-          <div
-            style={{
-              textAlign: "left",
-              color: "var(--neutral600)",
-              marginTop: "-19px",
-            }}
-            className="padding"
-          >
-            &nbsp;&nbsp;No events to display
-          </div>
+          <NoData title="Events"/>
         )
       )}
     </div>

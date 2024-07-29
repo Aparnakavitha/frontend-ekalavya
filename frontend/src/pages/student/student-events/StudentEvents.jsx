@@ -5,6 +5,7 @@ import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { getEnrolledEventIds, fetchEventsService } from "../../../services/Event";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import NoData from "../../../components/nodata/NoData";
 
 const StudentEvent = () => {
   const navigate = useNavigate();
@@ -127,16 +128,7 @@ const StudentEvent = () => {
           itemsPerPage={primaryCardData.itemsPerPage}
         />
       ) : (
-        <div
-          style={{
-            textAlign: "left",
-            color: "var(--neutral600)",
-            marginTop: "-19px",
-          }}
-          className="padding"
-        >
-          &nbsp;&nbsp;No events to display
-        </div>
+        <NoData title="Events"/>
       )}
     </div>
   );

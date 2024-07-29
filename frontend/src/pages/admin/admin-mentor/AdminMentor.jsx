@@ -6,6 +6,7 @@ import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import NoData from "../../../components/nodata/NoData";
 
 const fetchMentorData = async (setMentorData, value = "") => {
   try {
@@ -159,9 +160,7 @@ const AdminMentor = () => {
         />
         </div>
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No mentors available
-        </p>
+        <NoData title="Mentors"/>
       )}
     </div>
   );

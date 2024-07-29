@@ -8,6 +8,7 @@ import { fetchEventsService } from "../../../services/Event";
 import { toast } from "react-toastify";
 import EventMenus from "../../../layouts/common/components/EventMenus";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import NoData from "../../../components/nodata/NoData";
 
 const AdminEvent = () => {
   const [events, setEvents] = useState([]);
@@ -224,11 +225,7 @@ const AdminEvent = () => {
             {...primaryCardData}
           />
         ) : (
-          <p
-            style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}
-          >
-            No events to display
-          </p>
+          <NoData title="Events"/>
         ))}
     </div>
   );
