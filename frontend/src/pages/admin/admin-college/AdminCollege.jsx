@@ -21,18 +21,24 @@ const AdminCollege = () => {
       try {
         const data = await getColleges();
         const count = data.responseData.length;
-        setCount(count);
+        setCount(count);    
         const transformedData = data.responseData
           .map((college) => [
             college.collegeId,
-            college.collegeName,
+            college.collegeName,  
             college.collegePlace,
             college.collegeDistrict,
             college.collegeState,
             college.collegeCountry,
           ])
-          .sort((a, b) => a[1].localeCompare(b[1]));
-
+          .sort((a, b) => {
+            const nameA = a[1].toLowerCase();
+            const nameB = b[1].toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+          });
+    
         setCollegeData(transformedData);
         setFilteredCollegeData(transformedData);
       } catch (error) {
@@ -77,8 +83,7 @@ const AdminCollege = () => {
       toggle: true,
       itemsPerPage: 12,
     };
-  console.log("_____________________1", collegeCardData);
-
+    
   const AdminCollegeActionData = {
     heading: "Colleges List",
     buttonProps: {

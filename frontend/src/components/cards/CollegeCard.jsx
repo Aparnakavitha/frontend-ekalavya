@@ -69,7 +69,7 @@ const CollegeCard = (props) => {
             <div className={styles.miniheadingDelete}>
               <a className={styles.cardsminiheading}>{miniHeading}</a>
             </div>
-            <a className={styles.cardsmainheading}>
+            <a className={styles.cardsmainheading} title={mainHeading}>
               {transformMainHeading(mainHeading, cardType)}
             </a>
             {showPlace && (<a className={styles.cardsplaceheading}>
