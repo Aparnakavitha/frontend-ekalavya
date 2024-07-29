@@ -32,6 +32,8 @@ import "react-toastify/dist/ReactToastify.css";
 import image from "../../assets/DP.png";
 import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
+import { IoSchoolSharp } from "react-icons/io5";
+import AdminCollege from "./admin-college/AdminCollege";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -114,6 +116,12 @@ const AdminContent = () => {
         viewIcon: true,
         page: "mentor",
       },
+      {
+        icon: <IoSchoolSharp />,
+        name: "Colleges",
+        viewIcon: true,
+        page: "Colleges",
+      },
       { icon: <MdEvent />, name: "Events", viewIcon: true, page: "events" },
       {
         icon: <MdViewQuilt />,
@@ -180,6 +188,8 @@ const AdminContent = () => {
                   <Route path="events" element={<AdminEvent />} />
                   <Route path="batches" element={<AdminBatchList />} />
                   <Route path="skills" element={<AdminSkill />} />
+                  <Route path="colleges" element={<AdminCollege />} />
+
                   <Route
                     path="skills/skill-participants"
                     element={<AdminSkillStudents />}
