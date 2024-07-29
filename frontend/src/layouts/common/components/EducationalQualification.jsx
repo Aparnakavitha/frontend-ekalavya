@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import QualificationCard from "../../../components/cards/QualificationCard";
 import Education from "./Education";
 import Modal from "./Modal";
 import QualificationForm from "./QualificationForm";
 import DeleteBox from "./DeleteBox";
 import { toast } from "react-toastify";
+import DataView from "../../common/components/DataView";
+import TextButton from "../../../components/buttons/TextButton";
+import { IoMdAdd } from "react-icons/io";
+import styles from "../Common.module.css";
 
 const EducationalQualification = ({
   qualifications = [],
@@ -12,11 +17,13 @@ const EducationalQualification = ({
 }) => {
   const [isAddQualificationOpen, setIsAddQualificationOpen] = useState(false);
   const [isEditQualificationOpen, setIsEditQualificationOpen] = useState(false);
-  const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] = useState(false);
+  const [isDeleteQualificationOpen, setIsDeleteQualificationOpen] =
+    useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
   const handleOpenAddQualification = () => {
     setIsAddQualificationOpen(true);
+    setEditIndex(null);
   };
 
   const handleCloseAddQualification = () => {
@@ -66,7 +73,6 @@ const EducationalQualification = ({
       toast.error("Error updating user Qualification!");
     }
   };
-
   const handleRemove = async (index) => {
     try {
       const qualification = qualifications[index];
@@ -111,20 +117,29 @@ const EducationalQualification = ({
 
   const deleteQualProps = {
     title: "Delete Qualification",
-    message: "Are you sure you want to Delete this qualification?",
+    message: "Are you sure you want to delete this qualification?",
     buttonText: "Delete",
     onConfirm: () => {
-      console.log("hello");
-      if (editIndex !== null && editIndex >= 0 && editIndex < qualifications.length) {
+      if (
+        editIndex !== null &&
+        editIndex >= 0 &&
+        editIndex < qualifications.length
+      ) {
         handleRemove(editIndex);
       }
+      console.log("hello");
     },
-    onCancel: handleFormCancel,
+    onCancel: handleCloseDeleteQualification,
   };
 
   const educationProps = {
     qualifications: qualifications.sort((a, b) => {
-      const order = ["Ph.D.", "Master's Degree", "Bachelor's Degree", "High School"];
+      const order = [
+        "Ph.D.",
+        "Master's Degree",
+        "Bachelor's Degree",
+        "High School",
+      ];
       return order.indexOf(a.degree) - order.indexOf(b.degree);
     }),
     onClickAdd: handleOpenAddQualification,
@@ -133,8 +148,48 @@ const EducationalQualification = ({
   };
 
   return (
-    <div>
-      <Education {...educationProps} />
+    <div className={`${styles["education-container"]} padding-bottom padding`}>
+      <div className={`${styles["education-qualification"]}`}>
+        <div className={`${styles["education-qualification-content"]}`}>
+          <div className={`${styles["education-title"]}`}>
+            <h2 className={`${styles["education-title2"]}`}>
+              Educational Qualification
+            </h2>
+          </div>
+          <div className={`${styles["education-qualification-add-button"]}`}>
+            <div className={`${styles["education-qualification-button"]}`}>
+              <TextButton
+                icon={<IoMdAdd />}
+                text="Add Educational Qualification"
+                onClick={handleOpenAddQualification}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {educationProps.qualifications &&
+      educationProps.qualifications.length > 0 ? (
+        <DataView
+          data={educationProps.qualifications}
+          CardComponent={(props) => (
+            <QualificationCard
+              {...props}
+              // index={index}
+              onClickEdit={educationProps.onClickEdit}
+              onClickDelete={educationProps.onClickDelete}
+            />
+          )}
+        />
+      ) : (
+        <div
+          style={{ textAlign: "left", color: "var(--neutral600)" }}
+          className={`${styles["education-no-qualifications"]}`}
+        >
+          No qualifications to display
+        </div>
+      )}
+
       <Modal
         isOpen={isAddQualificationOpen}
         widthVariant="medium"

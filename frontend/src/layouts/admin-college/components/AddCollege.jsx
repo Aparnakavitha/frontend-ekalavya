@@ -14,7 +14,12 @@ const AddCollege = ({ onSubmit }) => {
     handleSubmit,
     control,
     formState: { errors },
+    trigger,
   } = useForm();
+
+  const handleBlur = async (fieldName) => {
+    await trigger(fieldName);
+  }
 
   const handleFormSubmit = (data) => {
     onSubmit(data);
@@ -42,6 +47,7 @@ const AddCollege = ({ onSubmit }) => {
                   label="College Name"
                   size="normal"
                   placeholders={["College Name"]}
+                  onBlur={() => handleBlur("collegeName")}
                 />
               )}
             />
@@ -65,6 +71,7 @@ const AddCollege = ({ onSubmit }) => {
                   label="Place"
                   size="normal"
                   placeholders={["Place"]}
+                  onBlur={() => handleBlur("collegePlace")}
                 />
               )}
             />
@@ -88,6 +95,7 @@ const AddCollege = ({ onSubmit }) => {
                   label="District"
                   size="normal"
                   placeholders={["District"]}
+                  onBlur={() => handleBlur("collegeDistrict")}
                 />
               )}
             />
@@ -111,6 +119,7 @@ const AddCollege = ({ onSubmit }) => {
                   label="State"
                   size="normal"
                   placeholders={["State"]}
+                  onBlur={() => handleBlur("collegeState")}
                 />
               )}
             />
@@ -134,6 +143,7 @@ const AddCollege = ({ onSubmit }) => {
                   label="Country"
                   size="normal"
                   placeholders={["Country"]}
+                  onBlur={() => handleBlur("collegeCountry")}
                 />
               )}
             />

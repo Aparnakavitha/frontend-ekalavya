@@ -2,7 +2,7 @@
   max-width: 1000px;
   width: 100%;
 }
-
+ 
 .search-box {
   position: relative;
   height: 45px;
@@ -13,10 +13,10 @@
   width: 100%;
   width: 100%;
 }
-
+ 
 .search-box input {
   flex: 1;
-  border-radius: 25px 0 0 25px;
+  border-radius: 1.5px 0 0 25px;
   outline: none;
   border: none;
   background: none;
@@ -31,99 +31,81 @@
   color: var(--white);
   width: 80%;
 }
-
-.search-button {
+ 
+.icon-button {
   border: none;
-  border-radius: 0 18px 18px 0;
-  background-color: var(--white);
-  color: var(--black);
-  font-size: 16px;
-  letter-spacing: -0.41px;
-  font-weight: 600;
+  background: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
+  padding: 8px;
 }
-
-.search-button:hover {
-  background: var(--primary-color);
-}
-
-.none {
-  display: none;
-}
-
-.clear-button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  padding: 0 8px;
-}
-
-.clear-button .icon {
+ 
+.icon-button .icon {
   color: var(--white);
   font-size: 24px;
 }
-
-.clear-button .icon :hover {
+ 
+.icon-button .icon:hover {
   color: var(--primary-color);
-  font-size: 24px;
 }
-
+ 
+.none {
+  display: none;
+}
+ 
 .custom-box {
   width: 100%;
   max-width: 1000px;
 }
-
+ 
 .small-box {
   width: 100%;
   max-width: 400px;
 }
-
+ 
 .small-box .search-box,
 .custom-box .search-box {
   border-radius: 25px;
 }
-
+ 
 .small-box input,
 .custom-box input {
   border-radius: 20px 0 0 20px;
   padding-left: 15px;
 }
-
+ 
 .small-box .search-button,
 .custom-box .search-button {
   border-radius: 0 18px 18px 0;
 }
-
+ 
 @media (min-width: 768px) and (max-width: 1235px) {
   .small-box,
   .custom-box {
     width: 100%;
   }
-
+ 
   .small-box .search-box,
   .custom-box .search-box {
     width: 100%;
   }
 }
-
+ 
 @media screen and (max-width: 767px) {
   .search-box {
     width: 125%;
   }
-
+ 
   .small-box {
     width: 100%;
   }
-
+ 
   .custom-box {
     width: 100%;
   }
-
+ 
   .small-box .search-box,
   .custom-box .search-box {
     width: 100%;

@@ -85,7 +85,7 @@ const EventsDescription = (props) => {
   } else {
     locationValue = (
       <p>
-        <b>{locationLabel} :</b>
+        <b>{locationLabel} : </b>
         {location}
       </p>
     );

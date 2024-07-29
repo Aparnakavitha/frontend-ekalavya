@@ -57,6 +57,8 @@ const SkillUser = ({
   }, []);
 
   const displayedSkills = showAllSkills ? skills : skills.slice(0, 2);
+  const hiddenSkillsCount = skills.length - 2;
+
 
   return (
     <div ref={cardRef} className={`container ${styles.cards} ${overlap ? styles.overlapClass : ''}`}>
@@ -109,7 +111,7 @@ const SkillUser = ({
                   setOverlap(!overlap);
                 }}
               >
-                {showAllSkills ? "View Less" : "View More"}
+                {showAllSkills ? "View Less" : `+ ${hiddenSkillsCount} more`}
               </div>
             )}
             <div className={`col-6 ${styles.addButtonContainer}`}>
