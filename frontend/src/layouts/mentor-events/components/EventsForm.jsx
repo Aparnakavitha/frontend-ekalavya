@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -133,6 +133,14 @@ const EventForm = ({ hostId, onSubmit }) => {
     { value: "Webinar", label: "Webinar" },
   ];
 
+  const eventTitleRef = useRef(null);
+
+  useEffect(() => {
+    if (eventTitleRef.current){
+      eventTitleRef.current.focus();
+    }
+  },[]);
+
   return (
     <div>
       <form
@@ -152,6 +160,7 @@ const EventForm = ({ hostId, onSubmit }) => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  ref={eventTitleRef}
                   label="Event Title"
                   size="normal"
                   placeholders={["Event Title"]}
