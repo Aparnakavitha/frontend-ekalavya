@@ -4,8 +4,6 @@ import { ToastContainer, toast, Slide } from "react-toastify";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
 import Greeting from "../../../layouts/common/components/Greeting";
-// import AddCollege from "../../../layouts/admin-student/components/AddCollege";
-// import CollegeList from "../../../layouts/admin-student/components/CollegeList";
 import Modal from "../../../layouts/common/components/Modal";
 import ActionComponent from "../../../layouts/common/components/Action";
 import AddUser from "../../../layouts/common/components/AddUser";

@@ -46,9 +46,6 @@ const AdminCollegeAction = ({
       />
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddCollege
-          {...AdminCollegeActionData.addeventprops}
-          organizeroptions={organizerOptions}
-          isOrganizer={true}
           onSubmit={handleFormSubmit}
         />
       </Modal>

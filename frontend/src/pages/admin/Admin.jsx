@@ -120,7 +120,7 @@ const AdminContent = () => {
         icon: <IoSchoolSharp />,
         name: "Colleges",
         viewIcon: true,
-        page: "Colleges",
+        page: "colleges",
       },
       { icon: <MdEvent />, name: "Events", viewIcon: true, page: "events" },
       {

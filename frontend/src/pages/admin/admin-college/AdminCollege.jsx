@@ -3,25 +3,44 @@ import AdminCollegeAction from "../../../layouts/admin-college/components/AdminC
 import CollegeCard from "../../../components/cards/CollegeCard";
 import { DataView } from "../../../layouts/common";
 import { getColleges } from "../../../services/User";
+import { postColleges } from "../../../services/User";
+import {  toast } from "react-toastify";
+import {  useLocation } from "react-router-dom";
+
 
 const AdminCollege = () => {
+  const location = useLocation();
   const [collegeData, setCollegeData] = useState([]);
+  const [filteredCollegeData, setFilteredCollegeData] = useState([]);
+  const [userData, setUserData] = useState(null);
+  const [count, setCount] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     const fetchCollegeData = async () => {
       try {
         const data = await getColleges();
+        const count = data.responseData.length;
+        setCount(count);    
         const transformedData = data.responseData
           .map((college) => [
             college.collegeId,
-            college.collegeName,
+            college.collegeName,  
             college.collegePlace,
             college.collegeDistrict,
             college.collegeState,
             college.collegeCountry,
           ])
-          .sort((a, b) => a[1].localeCompare(b[1]));
-
+          .sort((a, b) => {
+            const nameA = a[1].toLowerCase();
+            const nameB = b[1].toLowerCase();
+            if (nameA < nameB) return -1;
+            if (nameA > nameB) return 1;
+            return 0;
+          });
+    
         setCollegeData(transformedData);
+        setFilteredCollegeData(transformedData);
       } catch (error) {
         console.error("Error fetching college data:", error);
       }
@@ -31,9 +50,20 @@ const AdminCollege = () => {
   }, []);
   console.log("_____________________0", collegeData);
 
+
+  const handleSearchChange = (college) => {
+    const searchValue = college.toLowerCase();
+    setSearchTerm(searchValue);
+
+    const filteredData = collegeData.filter((college) =>
+      college[1].toLowerCase().includes(searchValue)
+    );
+    setFilteredCollegeData(filteredData);
+  };
+
   const collegeCardData =
     {
-      data: collegeData.map((college) => ({
+      data: filteredCollegeData.map((college) => ({
         miniHeading: college[0],
         mainHeading: college[1],
         Count: 150,
@@ -53,8 +83,7 @@ const AdminCollege = () => {
       toggle: true,
       itemsPerPage: 12,
     };
-  console.log("_____________________1", collegeCardData);
-
+    
   const AdminCollegeActionData = {
     heading: "Colleges List",
     buttonProps: {
@@ -72,15 +101,55 @@ const AdminCollege = () => {
     searchPlaceholder: "Search Colleges",
   };
 
+  const formSubmit = async (formData) => {
+    try {
+      const response = await postColleges(formData);
+      try {
+        const data = await getColleges();
+        const transformedData = data.responseData.map((college) => [
+          college.collegeId,
+          college.collegeName,
+          college.collegePlace,
+          college.collegeDistrict,
+          college.collegeState,
+          college.collegeCountry,
+        ]);
+        setCollegeData(transformedData);
+        setFilteredCollegeData(transformedData);
+
+        if (location.state && location.state.userData) {
+          setUserData(location.state.userData);
+        }
+      } catch (error) {
+        toast.error("Error creating college", {
+          position: "top-center",
+          autoClose: 5000,
+        });
+      }
+      toast.success("College Added", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (error) {
+      console.error("Error adding college:", error);
+    }
+  };
+
   return (
     <div>
       {/* <Greeting {...greeting} /> */}
       <AdminCollegeAction
-        // formSubmit={formSubmit}
+        count={count}
+        formSubmit={formSubmit}
         AdminCollegeActionData={AdminCollegeActionData}
-        // onSearchChange={handleSearchChange}
+        onSearchChange={handleSearchChange}
       />
-      {collegeData.length > 0 ? (
+      {filteredCollegeData.length > 0 ? (
         <DataView CardComponent={CollegeCard} {...collegeCardData} />
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
