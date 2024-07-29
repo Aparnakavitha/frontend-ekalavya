@@ -6,7 +6,7 @@ import { getColleges } from "../../../services/User";
 import { postColleges } from "../../../services/User";
 import {  toast } from "react-toastify";
 import {  useLocation } from "react-router-dom";
-
+import NoData from "../../../components/nodata/NoData";
 
 const AdminCollege = () => {
   const location = useLocation();
@@ -152,9 +152,7 @@ const AdminCollege = () => {
       {filteredCollegeData.length > 0 ? (
         <DataView CardComponent={CollegeCard} {...collegeCardData} />
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No Colleges to display
-        </p>
+        <NoData title="Colleges"/>
       )}
     </div>
   );

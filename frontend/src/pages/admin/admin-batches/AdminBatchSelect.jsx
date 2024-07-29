@@ -5,7 +5,7 @@ import AdminBatchParticipants from "../../../layouts/admin-batches/components/Ad
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { fetchbatches } from "../../../services/Batch";
-
+import NoData from "../../../components/nodata/NoData";
 import {
   fetchBatchParticipants,
   updateBatch,
@@ -215,9 +215,7 @@ const AdminBatchSelect = () => {
           fetchData={fetchData}
         />
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No participants available for this batch
-        </p>
+        <NoData title="Students"/>
       )}
     </div>
   );
