@@ -116,6 +116,12 @@ const AdminContent = () => {
         viewIcon: true,
         page: "mentor",
       },
+      {
+        icon: <IoSchoolSharp />,
+        name: "Colleges",
+        viewIcon: true,
+        page: "Colleges",
+      },
       { icon: <MdEvent />, name: "Events", viewIcon: true, page: "events" },
       {
         icon: <MdViewQuilt />,
@@ -128,12 +134,6 @@ const AdminContent = () => {
         name: "Skills",
         viewIcon: true,
         page: "skills",
-      },
-      {
-        icon: <IoSchoolSharp />,
-        name: "Colleges",
-        viewIcon: true,
-        page: "Colleges",
       },
     ],
     profileBox: {
