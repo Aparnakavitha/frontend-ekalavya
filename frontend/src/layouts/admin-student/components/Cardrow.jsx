@@ -12,8 +12,9 @@ import UpdateSingleField from "../../../layouts/common/components/UpdateSingleFi
 import { UserSkillDelete } from "../../../services/Skills";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
+import QualificationCard from "../../../components/cards/QualificationCard";
 
-const CardRow = ({ cardData, card, handleClick, userId }) => {
+const CardRow = ({ cardData, card, handleClick, userId , onClickEdit, onClickDelete}) => {
   const [cardnum, setCardnum] = useState(4);
   const [pcardnum, setPcardnum] = useState(4);
   const [showAllCards, setShowAllCards] = useState(false);
@@ -131,7 +132,33 @@ const CardRow = ({ cardData, card, handleClick, userId }) => {
           </div>
         </div>
       )}
-
+      {card === "education" && (
+        <div className={styles["cardrow-padding"]}>
+          <div className={styles["cardrow-skillcontainer"]}>
+            <div className={styles["cardrow-skillcard"]}>
+              {cardData
+                .slice(0, showAllCards ? cardData.length : cardnum)
+                .map((data, index) => (
+                  <QualificationCard
+                    key={index}
+                    {...data}
+                    onClickDelete={() => onClickDelete(data)}
+                    onClickEdit={() => onClickEdit(data)}
+                  />
+                ))}
+            </div>
+            <div className={styles["cardrow-viewnext"]}>
+              {cardData.length > cardnum  ? (
+                showAllCards ? (
+                  <TextButton {...upbutton} />
+                ) : (
+                  <TextButton {...downbutton} />
+                )
+              ) : null}
+            </div>
+          </div>
+        </div>
+      )}
       {card === "event" && (
         <div className="padding">
           <div className={styles["cardrow-content"]}>

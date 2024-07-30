@@ -9,6 +9,7 @@ import DataView from "../../common/components/DataView";
 import TextButton from "../../../components/buttons/TextButton";
 import { IoMdAdd } from "react-icons/io";
 import styles from "../Common.module.css";
+import CardRow from "../../admin-student/components/Cardrow";
 
 const EducationalQualification = ({
   qualifications = [],
@@ -146,7 +147,6 @@ const EducationalQualification = ({
     onClickEdit: handleOpenEditQualification,
     onClickDelete: handleOpenDeleteQualification,
   };
-
   return (
     <div className={`${styles["education-container"]} padding-bottom padding`}>
       <div className={`${styles["education-qualification"]}`}>
@@ -170,16 +170,11 @@ const EducationalQualification = ({
 
       {educationProps.qualifications &&
       educationProps.qualifications.length > 0 ? (
-        <DataView
-          data={educationProps.qualifications}
-          CardComponent={(props) => (
-            <QualificationCard
-              {...props}
-              // index={index}
-              onClickEdit={educationProps.onClickEdit}
-              onClickDelete={educationProps.onClickDelete}
-            />
-          )}
+        <CardRow
+          card="education"
+          cardData={educationProps.qualifications}
+          onClickEdit={educationProps.onClickEdit}
+          onClickDelete={educationProps.onClickDelete}
         />
       ) : (
         <div
