@@ -60,9 +60,11 @@ const SkillUser = ({
   const displayedSkills = showAllSkills ? skills : skills.slice(0, 2);
   const hiddenSkillsCount = skills.length - 2;
 
-
   return (
-    <div ref={cardRef} className={`container ${styles.cards} ${overlap ? styles.overlapClass : ''}`}>
+    <div
+      ref={cardRef}
+      className={`container ${styles.cards} ${overlap ? styles.overlapClass : ""}`}
+    >
       <div className={`row ${styles.cardsClass}`} onClick={handleClick}>
         <div className={`col-md-6 ${styles.profile}`}>
           <div className={`${styles.profilepiccontainer}`}>
@@ -87,7 +89,11 @@ const SkillUser = ({
             <div className={`row ${styles.buttonsContainer}`}>
               {skills.length > 0 ? (
                 displayedSkills.map((skill, index) => (
-                  <div key={index} className={`col-6 ${styles.button}`} title={skill.skillName}>
+                  <div
+                    key={index}
+                    className={`col-6 ${styles.button}`}
+                    title={skill.skillName}
+                  >
                     {transformSkillName(skill.skillName)}
                     {isVisible && (
                       <ImCross
@@ -101,7 +107,7 @@ const SkillUser = ({
                   </div>
                 ))
               ) : (
-                <NoData title="Skills"/>
+                <a className={styles.noSkills}>No skills to display</a>
               )}
             </div>
             {skills.length > 2 && (
