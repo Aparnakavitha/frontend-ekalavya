@@ -22,12 +22,7 @@ const CollegeCard = (props) => {
 
   const transformMainHeading = (heading = "", cardType) => {
     let maxLength;
-
-    if (cardType === "skill") {
       maxLength = 30;
-    } else {
-      maxLength = 35;
-    }
 
     if (heading.length > maxLength) {
       return heading.slice(0, maxLength - 2) + "...";
