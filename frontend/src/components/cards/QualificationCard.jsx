@@ -5,6 +5,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import TextButton from "../buttons/TextButton";
 import { format, parseISO, isValid } from "date-fns";
 import { RxCross1 } from "react-icons/rx";
+import { GoTrash } from "react-icons/go";
 
 const QualificationCard = ({
   qualifications,
@@ -43,8 +44,16 @@ const QualificationCard = ({
   };
 
   const formatText = (text) => {
-    if (text.length > 48) {
-      text = text.slice(0, 44) + "... ";
+    if (text.length > 30) {
+      text = text.slice(0, 28) + "... ";
+    }
+    return text;
+  };
+
+
+  const specialformatText = (text) => {
+    if (text.length > 50) {
+      text = text.slice(0, 48) + "... ";
     }
     return text;
   };
@@ -64,12 +73,17 @@ const QualificationCard = ({
               </h4>
             </div>
             <div>
-              <p className={`${styles["education-qualification-specialization"]}`}>
-                Specialization: {specialization}
+              <p
+                className={`${styles["education-qualification-specialization"]}`}
+                title={specialization}
+              >
+                {specialformatText(specialization)}
               </p>
             </div>
             <div>
-              <p className={`${styles["education-qualification-institution"]}`}>{formatText(institution)}</p>
+              <p className={`${styles["education-qualification-institution"]}`} title={institution}>
+                {formatText(institution)}
+              </p>
             </div>
             <div>
               <p className={`${styles["education-qualification-date"]}`}>
@@ -86,8 +100,9 @@ const QualificationCard = ({
             icon={<TiDeleteOutline size={19} />}
             text=" Remove"
           /> */}
-          <RxCross1
-            title="Remove"
+          <GoTrash
+            onClick={handleDeleteClick}
+            title="Delete"
             className={`${styles["education-qualification-remove"]}`}
           />
           {/* <FiMinusCircle/> */}

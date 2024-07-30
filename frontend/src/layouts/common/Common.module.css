@@ -2001,7 +2001,7 @@
   letter-spacing: 0.59px;
   text-align: justify;
   color: var(--white);
-  padding-left: 10px;
+  padding-top: 10px;
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
