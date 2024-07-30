@@ -40,6 +40,7 @@ const AdminBatchList = () => {
           Count: item.participantCount,
           cardType: "batch",
           showCount: true,
+          creationDate: item.creationDate,
           handleClick: () => handleClick(item.batchId, item.batchName),
         }));
 
@@ -114,19 +115,21 @@ const AdminBatchList = () => {
         </p>
       ) : batchData && batchData.length > 0 ? (
         <div>
-        <DataView
-          data={batchData}
-          CardComponent={(props) => <SkillBatchCard {...props} />}
-          tableColumns={[
-            { key: "miniHeading", displayName: "Batch ID" },
-            { key: "mainHeading", displayName: "Batch Name" },
-            { key: "Count", displayName: "Participant Count" },
-          ]}
-          toggle={true}
-          cardType="skillbatchcardbatch"
-          itemsPerPage={12}
-          showCount={true}
-        />
+          <DataView
+            data={batchData}
+            CardComponent={(props) => <SkillBatchCard {...props} />}
+            tableColumns={[
+              { key: "miniHeading", displayName: "Batch ID" },
+              { key: "mainHeading", displayName: "Batch Name" },
+              { key: "Count", displayName: "Participant Count" },
+              { key: "creationDate", displayName: "Creation Date" },
+            ]}
+            toggle={true}
+            cardType="skillbatchcardbatch"
+            itemsPerPage={12}
+            showCount={true}
+            creationDate={true}
+          />
         </div>
       ) : (
         <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
