@@ -17,6 +17,7 @@ import {
 import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import image from "../../../assets/DP.png";
+import NoData from "../../../components/nodata/NoData";
 
 const fetchStudentsData = async (setStudentsData, params) => {
   try {
@@ -446,9 +447,7 @@ const AdminStudent = () => {
           />
         </div>
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No Students Available
-        </p>
+        <NoData title="Students"/>
       )}
       {/* <ToastContainer
         position="top-center"

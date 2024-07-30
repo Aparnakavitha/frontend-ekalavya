@@ -5,6 +5,7 @@ import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import { fetchbatches, createBatch } from "../../../services/Batch";
 import AdminBatchAction from "../../../layouts/admin-batches/components/AdminBatchAction";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import NoData from "../../../components/nodata/NoData";
 
 const AdminBatchList = () => {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ const AdminBatchList = () => {
       }
     } catch (error) {
       console.error("Error fetching data:", error);
-      setError("No batches available");
+      setError("No Batches to display");
     } finally {
       setLoading(false);
     }
@@ -110,7 +111,7 @@ const AdminBatchList = () => {
       {loading ? (
         <LoadingSpinner />
       ) : error ? (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
+        <p style={{ padding:"2vh 4vw", color: "white" }}>
           {error}
         </p>
       ) : batchData && batchData.length > 0 ? (
@@ -132,9 +133,7 @@ const AdminBatchList = () => {
           />
         </div>
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No batches available
-        </p>
+        <NoData title="Batches"/>
       )}
     </div>
   );
