@@ -18,6 +18,7 @@ const SkillBatchCard = (props) => {
     canDelete,
     showCount,
     viewAnimation = false,
+    creationDate,
   } = props;
 
   const transformMainHeading = (heading = "", cardType) => {
@@ -114,6 +115,11 @@ const SkillBatchCard = (props) => {
               <a className={styles.cardsdiscription}>{formattedCount}</a>
             )}
           </div>
+          {creationDate && (
+            <div className={styles.creationDate}>
+              Created on: {new Date(creationDate).toLocaleDateString()}
+            </div>
+          )}
         </div>
       </div>
     </div>
