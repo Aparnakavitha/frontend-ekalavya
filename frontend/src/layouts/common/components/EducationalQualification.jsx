@@ -186,7 +186,7 @@ const EducationalQualification = ({
           style={{ textAlign: "left", color: "var(--neutral600)" }}
           className={`${styles["education-no-qualifications"]}`}
         >
-          No qualifications to display
+          No Qualifications to display
         </div>
       )}
 
