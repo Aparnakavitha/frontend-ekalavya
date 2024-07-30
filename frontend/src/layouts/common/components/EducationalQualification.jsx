@@ -32,7 +32,8 @@ const EducationalQualification = ({
   };
 
   const handleOpenEditQualification = (index) => {
-    setEditIndex(index);
+    setEditIndex(index.index);
+    console.log(index.index);
     setIsEditQualificationOpen(true);
   };
 
@@ -41,7 +42,7 @@ const EducationalQualification = ({
   };
 
   const handleOpenDeleteQualification = (index) => {
-    setEditIndex(index);
+    setEditIndex(index.index);
     setIsDeleteQualificationOpen(true);
   };
 

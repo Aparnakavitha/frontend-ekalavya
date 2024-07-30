@@ -142,8 +142,8 @@ const CardRow = ({ cardData, card, handleClick, userId , onClickEdit, onClickDel
                   <QualificationCard
                     key={index}
                     {...data}
-                    onClickDelete={() => onClickDelete(data)}
-                    onClickEdit={() => onClickEdit(data)}
+                    onClickDelete={() => onClickDelete({...data,index})}
+                    onClickEdit={() => onClickEdit({...data,index})}
                   />
                 ))}
             </div>
