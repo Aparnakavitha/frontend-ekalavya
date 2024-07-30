@@ -4,8 +4,8 @@ import CollegeCard from "../../../components/cards/CollegeCard";
 import { DataView } from "../../../layouts/common";
 import { getColleges } from "../../../services/User";
 import { postColleges } from "../../../services/User";
-import {  toast } from "react-toastify";
-import {  useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useLocation } from "react-router-dom";
 import NoData from "../../../components/nodata/NoData";
 
 const AdminCollege = () => {
@@ -21,11 +21,11 @@ const AdminCollege = () => {
       try {
         const data = await getColleges();
         const count = data.responseData.length;
-        setCount(count);    
+        setCount(count);
         const transformedData = data.responseData
           .map((college) => [
             college.collegeId,
-            college.collegeName,  
+            college.collegeName,
             college.collegePlace,
             college.collegeDistrict,
             college.collegeState,
@@ -38,7 +38,7 @@ const AdminCollege = () => {
             if (nameA > nameB) return 1;
             return 0;
           });
-    
+
         setCollegeData(transformedData);
         setFilteredCollegeData(transformedData);
       } catch (error) {
@@ -50,7 +50,6 @@ const AdminCollege = () => {
   }, []);
   console.log("_____________________0", collegeData);
 
-
   const handleSearchChange = (college) => {
     const searchValue = college.toLowerCase();
     setSearchTerm(searchValue);
@@ -61,29 +60,29 @@ const AdminCollege = () => {
     setFilteredCollegeData(filteredData);
   };
 
-  const collegeCardData =
-    {
-      data: filteredCollegeData.map((college) => ({
-        miniHeading: college[0],
-        mainHeading: college[1],
-        Count: 150,
-        cardType: "college",
-        handleClick: () => console.log("Card clicked"),
-        showCount: true,
-        viewAnimation: false,
-        showPlace: true,
-        placeHeading: `${college[2]}, ${college[3]}`,
-      })),
-      tableColumns: [
-        { key: "miniHeading", displayName: "College ID" },
-        { key: "mainHeading", displayName: "College Name" },
-        { key: "Count", displayName: "Count" },
-        { key: "placeHeading", displayName: "Place" },
-      ],
-      toggle: true,
-      itemsPerPage: 12,
-    };
-    
+  const collegeCardData = {
+    data: filteredCollegeData.map((college) => ({
+      miniHeading: college[0],
+      mainHeading: college[1],
+      Count: 150,
+      cardType: "college",
+      handleClick: () => console.log("Card clicked"),
+      showCount: true,
+      viewAnimation: false,
+      showPlace: true,
+      placeHeading: `${college[2]}, ${college[3]}`,
+    })),
+    tableColumns: [
+      { key: "miniHeading", displayName: "College ID" },
+      { key: "mainHeading", displayName: "College Name" },
+      { key: "Count", displayName: "Count" },
+      { key: "placeHeading", displayName: "Place" },
+    ],
+    toggle: true,
+    itemsPerPage: 12,
+    cardType: "collegecard",
+  };
+
   const AdminCollegeActionData = {
     heading: "Colleges List",
     buttonProps: {
@@ -152,7 +151,7 @@ const AdminCollege = () => {
       {filteredCollegeData.length > 0 ? (
         <DataView CardComponent={CollegeCard} {...collegeCardData} />
       ) : (
-        <NoData title="Colleges"/>
+        <NoData title="Colleges" />
       )}
     </div>
   );
