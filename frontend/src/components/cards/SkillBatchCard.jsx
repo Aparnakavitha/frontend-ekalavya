@@ -18,16 +18,16 @@ const SkillBatchCard = (props) => {
     canDelete,
     showCount,
     viewAnimation = false,
-    creationDate,
+    creationDate=false,
   } = props;
 
   const transformMainHeading = (heading = "", cardType) => {
     let maxLength;
 
     if (cardType === "skill") {
-      maxLength = 30;
+      maxLength = 13;
     } else {
-      maxLength = 33;
+      maxLength = 25;
     }
 
     if (heading.length > maxLength) {
@@ -63,8 +63,6 @@ const SkillBatchCard = (props) => {
   }
 
   return (
-    <div className="row">
-      <div className={`col-lg-2 col-md-3 col-sm-4 col-xs-6 ${styles.cards}`}>
         <div
           className={
             cardType === "skill"
@@ -111,18 +109,18 @@ const SkillBatchCard = (props) => {
             >
               {transformMainHeading(mainHeading, cardType)}
             </a>
+            <div className={styles.cardsbottom}>
             {showCount && (
               <a className={styles.cardsdiscription}>{formattedCount}</a>
             )}
-          </div>
-          {creationDate && (
-            <div className={styles.creationDate}>
-              Created on: {new Date(creationDate).toLocaleDateString()}
+            {creationDate && (
+              <div className={styles.creationDate}>
+                Created on: {new Date(creationDate).toLocaleDateString()}
+              </div>
+            )}
             </div>
-          )}
+          </div>
         </div>
-      </div>
-    </div>
   );
 };
 
