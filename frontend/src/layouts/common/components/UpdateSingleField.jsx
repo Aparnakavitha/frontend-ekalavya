@@ -75,8 +75,8 @@ const UpdateSingleField = ({
                 rules={{ required: "Student ID is required" }}
                 render={({ field }) => (
                   <InputDropdown
-                    label="Student ID(s)"
-                    placeholder="Student ID"
+                    label="Student Name/ID"
+                    placeholder="Student Name/ID"
                     options={options}
                     isMulti={true}
                     {...field}

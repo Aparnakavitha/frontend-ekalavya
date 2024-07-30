@@ -60,11 +60,16 @@
     word-break: break-word;
 }
 
+.cardsbottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
 .titleContainer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 9px;
     width: calc(209px + 34px);
     height: calc(110px + 48px);
     padding: 24px 17px;
@@ -122,15 +127,19 @@
     top: 79%;
 }
 
+.leftCard:hover .creationDate {
+    color: var(--black);
+}
+
 .rightCard:hover .deleteIcon,
-.rightCard:hover .editIcon {
+.rightCard:hover .editIcon,
+.rightCard:hover .creationDate {
     color: var(--black);
 }
 
 .creationDate {
     font-size: 12px;
-    color: var(--neutral600);
-    margin-top: 8px;
+    color: var(--neutral400);
 }
 
 @keyframes highlight {
