@@ -117,6 +117,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
         Count: skill.count,
         canEdit: true,
         cardType: "skill",
+        creationDate:false,
         showCount: true,
         viewAnimation,
         handleClick: async () => {
