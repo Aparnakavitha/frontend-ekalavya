@@ -104,7 +104,7 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
             headings={headings}
           />
         ) : (
-          <p className="nodata">No achievers yet.</p>
+          <p className="nodata">No Students to display</p>
         )}
       </div>
     </div>

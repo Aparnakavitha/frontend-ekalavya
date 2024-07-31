@@ -148,3 +148,53 @@
   
   /* ------------------------------- Collegelist.css ends here ------------------------------- */
   
+  /* ------------------------ AdminSkillParticipants.css starts here ------------------------ */
+
+.admincollegeparticipants-container {
+  width: 100%;
+  padding: 2vh 4vw;
+}
+.admincollegeparticipants-header {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.admincollegeparticipants-navbuttons {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 0px;
+}
+
+.admincollegeparticipants-navcount{
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.admincollegeparticipants-table {
+  margin-top: 0px;
+  width: 100%;
+  /* overflow-x: auto; */
+  scrollbar-width: thin;
+  color: white;
+  scrollbar-color: var(--neutral600) #ffffff00;
+}
+
+@media screen and (max-width: 768px) {
+  .admincollegeparticipants-container {
+    width: 100%;
+  }
+
+  .admincollegeparticipants-table {
+    width: 100%;
+  }
+
+  .admincollegeparticipants-navbuttons > *:not(:last-child) {
+    display: none;
+  }
+}
+
+/* ------------------------ AdminSkillParticipants.css ends here ------------------------ */
