@@ -30,6 +30,7 @@ const AdminCollege = () => {
             college.collegeDistrict,
             college.collegeState,
             college.collegeCountry,
+            college.studentsCount,
           ])
           .sort((a, b) => {
             const nameA = a[1].toLowerCase();
@@ -64,7 +65,7 @@ const AdminCollege = () => {
     data: filteredCollegeData.map((college) => ({
       miniHeading: college[0],
       mainHeading: college[1],
-      Count: 150,
+      Count: college[6],
       cardType: "college",
       handleClick: () => console.log("Card clicked"),
       showCount: true,
