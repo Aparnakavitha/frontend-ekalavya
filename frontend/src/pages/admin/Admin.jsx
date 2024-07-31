@@ -219,7 +219,11 @@ const AdminContent = () => {
                     path="colleges/college-participants/:collegeId"
                     element={<AdminCollegeStudents />}
                   />
-                </Routes>
+                  <Route
+                    path="/batches/batch-details/student-details/:userId"
+                    element={<AdminStudentDetails />}
+                  />
+                </Routes>                
               </SkillsProvider>
             </RecoilRoot>
           </div>
