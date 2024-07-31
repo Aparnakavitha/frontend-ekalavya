@@ -8,17 +8,17 @@ import { RxCross1 } from "react-icons/rx";
 import { GoTrash } from "react-icons/go";
 
 const QualificationCard = ({
-  qualifications,
-  degree,
-  institution,
-  percentage,
-  startDate,
-  endDate,
-  specialization,
-  handleClick,
-  onClickEdit,
-  onClickDelete,
-  index,
+  qualifications = [],
+  degree = "N/A",
+  institution = "N/A",
+  percentage = "N/A",
+  startDate = null,
+  endDate = null,
+  specialization = "N/A",
+  handleClick = () => {},
+  onClickEdit = () => {},
+  onClickDelete = () => {},
+  index = 0,
 }) => {
   const formattedDate = (dateString) => {
     if (!dateString) return "";
@@ -44,14 +44,15 @@ const QualificationCard = ({
   };
 
   const formatText = (text) => {
+    if (!text) return "";
     if (text.length > 30) {
       text = text.slice(0, 28) + "... ";
     }
     return text;
   };
 
-
-  const specialformatText = (text) => {
+  const specialFormatText = (text) => {
+    if (!text) return "";
     if (text.length > 50) {
       text = text.slice(0, 48) + "... ";
     }
@@ -64,7 +65,6 @@ const QualificationCard = ({
         <div className={styles.titleContainer}>
           <div className={`${styles["education-qualifications-list"]}`}>
             <div>
-              {" "}
               <h3>{degree}</h3>
             </div>
             <div>
@@ -77,7 +77,7 @@ const QualificationCard = ({
                 className={`${styles["education-qualification-specialization"]}`}
                 title={specialization}
               >
-                {specialformatText(specialization)}
+                {specialFormatText(specialization)}
               </p>
             </div>
             <div>
@@ -93,19 +93,11 @@ const QualificationCard = ({
           </div>
         </div>
         <div className={styles.cardsDeleteEdit}>
-          {/* <TextButton
-            onClick={handleDeleteClick}
-            isDelete={true}
-            className={styles.deleteTextIcon}
-            icon={<TiDeleteOutline size={19} />}
-            text=" Remove"
-          /> */}
           <GoTrash
             onClick={handleDeleteClick}
             title="Delete"
             className={`${styles["education-qualification-remove"]}`}
           />
-          {/* <FiMinusCircle/> */}
           <MdModeEdit
             className={styles.editIcon}
             onClick={handleEditClick}
