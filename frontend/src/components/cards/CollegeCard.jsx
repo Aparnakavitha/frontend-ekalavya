@@ -36,7 +36,12 @@ const CollegeCard = (props) => {
 
   const handleEditIconClick = (event) => {
     event.stopPropagation();
-    handleEditClick();
+    console.log("Edit icon clicked");
+    if (handleEditClick) {
+      handleEditClick();
+    } else {
+      console.error("handleEditClick is not defined");
+    }
   };
 
   let formattedCount;
@@ -75,7 +80,7 @@ const CollegeCard = (props) => {
         <div className={styles.cardsDeleteEdit}>
         <MdModeEdit
             className={styles.editIcon}
-            onClick={handleEditClick}
+            onClick={handleEditIconClick}
             title="Edit"
           />
           {/* Don't delete */}
