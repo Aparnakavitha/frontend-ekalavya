@@ -73,17 +73,19 @@ const CollegeCard = (props) => {
           )}
         </div>
         <div className={styles.cardsDeleteEdit}>
-          <RxCross1
-            onClick={handleDeleteClick}
-            isDelete={true}
-            className={styles.deleteIcon}
-            text=" Remove"
-          />
-          <MdModeEdit
+        <MdModeEdit
             className={styles.editIcon}
             onClick={handleEditClick}
             title="Edit"
           />
+          {/* Don't delete */}
+          {/* <RxCross1
+            onClick={handleDeleteClick}
+            isDelete={true}
+            className={styles.deleteIcon}
+            text=" Remove"
+          /> */}
+          
         </div>
       </div>
     </div>

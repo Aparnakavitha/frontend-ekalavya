@@ -34,6 +34,7 @@ import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
 import { IoSchoolSharp } from "react-icons/io5";
 import AdminCollege from "./admin-college/AdminCollege";
+import AdminCollegeStudents from "./admin-college/AdminCollegeStudents";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -214,7 +215,15 @@ const AdminContent = () => {
                     path="events/event-details/event-participants/:eventId"
                     element={<AdminEventParticipants />}
                   />
-                </Routes>
+                  <Route
+                    path="colleges/college-participants/:collegeId"
+                    element={<AdminCollegeStudents />}
+                  />
+                  <Route
+                    path="/batches/batch-details/student-details/:userId"
+                    element={<AdminStudentDetails />}
+                  />
+                </Routes>                
               </SkillsProvider>
             </RecoilRoot>
           </div>

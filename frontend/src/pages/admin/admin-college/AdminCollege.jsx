@@ -7,6 +7,7 @@ import { postColleges } from "../../../services/User";
 import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import NoData from "../../../components/nodata/NoData";
+import { useNavigate } from "react-router-dom";
 
 const AdminCollege = () => {
   const location = useLocation();
@@ -15,6 +16,7 @@ const AdminCollege = () => {
   const [userData, setUserData] = useState(null);
   const [count, setCount] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCollegeData = async () => {
@@ -30,6 +32,7 @@ const AdminCollege = () => {
             college.collegeDistrict,
             college.collegeState,
             college.collegeCountry,
+            college.studentsCount,
           ])
           .sort((a, b) => {
             const nameA = a[1].toLowerCase();
@@ -64,9 +67,9 @@ const AdminCollege = () => {
     data: filteredCollegeData.map((college) => ({
       miniHeading: college[0],
       mainHeading: college[1],
-      Count: 150,
+      Count: college[6],
       cardType: "college",
-      handleClick: () => console.log("Card clicked"),
+      handleClick: () => handleClick(college),
       showCount: true,
       viewAnimation: false,
       showPlace: true,
@@ -81,6 +84,11 @@ const AdminCollege = () => {
     toggle: true,
     itemsPerPage: 12,
     cardType: "collegecard",
+  };
+
+  const handleClick = (college) => {
+    console.log(`Clicked on college ${college[0]}`);
+    navigate(`college-participants/${college[0]}`);
   };
 
   const AdminCollegeActionData = {

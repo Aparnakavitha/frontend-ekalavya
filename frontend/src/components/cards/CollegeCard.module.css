@@ -129,13 +129,13 @@
 }
 
 .deleteIcon {
-    top: 20%;
+    top: 79%;
     stroke-width: 1px;
     color: var(--warning-color);
 }
 
 .editIcon {
-    top: 79%;
+    top: 20%;
     color: var(--black);
 }
 

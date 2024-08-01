@@ -4,7 +4,8 @@
 
 .miniheadingDelete {
     display: flex;
-    gap: 66px;
+    align-items: center;
+    gap: 130px;
 }
 
 .cardsminiheading {
@@ -23,15 +24,16 @@
 }
 
 .cardsDeleteEdit {
-    display: none;
+    visibility: hidden;
 }
 
 .rightCard:hover .cardsDeleteEdit {
-    display: block;
+    visibility: visible;
 }
 
 .rightCard:hover .deleteTextIcon {
     color: var(--warning-color);
+    stroke-width: 1px;
 }
 
 .cardsdiscription {
@@ -70,6 +72,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: space-between;
     width: calc(209px + 34px);
     height: calc(110px + 48px);
     padding: 24px 17px;

@@ -5,19 +5,20 @@ import { TiDeleteOutline } from "react-icons/ti";
 import TextButton from "../buttons/TextButton";
 import { format, parseISO, isValid } from "date-fns";
 import { RxCross1 } from "react-icons/rx";
+import { GoTrash } from "react-icons/go";
 
 const QualificationCard = ({
-  qualifications,
-  degree,
-  institution,
-  percentage,
-  startDate,
-  endDate,
-  specialization,
-  handleClick,
-  onClickEdit,
-  onClickDelete,
-  index,
+  qualifications = [],
+  degree = "N/A",
+  institution = "N/A",
+  percentage = "N/A",
+  startDate = null,
+  endDate = null,
+  specialization = "N/A",
+  handleClick = () => {},
+  onClickEdit = () => {},
+  onClickDelete = () => {},
+  index = 0,
 }) => {
   const formattedDate = (dateString) => {
     if (!dateString) return "";
@@ -43,8 +44,17 @@ const QualificationCard = ({
   };
 
   const formatText = (text) => {
-    if (text.length > 48) {
-      text = text.slice(0, 44) + "... ";
+    if (!text) return "";
+    if (text.length > 30) {
+      text = text.slice(0, 28) + "... ";
+    }
+    return text;
+  };
+
+  const specialFormatText = (text) => {
+    if (!text) return "";
+    if (text.length > 50) {
+      text = text.slice(0, 48) + "... ";
     }
     return text;
   };
@@ -55,7 +65,6 @@ const QualificationCard = ({
         <div className={styles.titleContainer}>
           <div className={`${styles["education-qualifications-list"]}`}>
             <div>
-              {" "}
               <h3>{degree}</h3>
             </div>
             <div>
@@ -64,12 +73,17 @@ const QualificationCard = ({
               </h4>
             </div>
             <div>
-              <p className={`${styles["education-qualification-specialization"]}`}>
-                Specialization: {specialization}
+              <p
+                className={`${styles["education-qualification-specialization"]}`}
+                title={specialization}
+              >
+                {specialFormatText(specialization)}
               </p>
             </div>
             <div>
-              <p className={`${styles["education-qualification-institution"]}`}>{formatText(institution)}</p>
+              <p className={`${styles["education-qualification-institution"]}`} title={institution}>
+                {formatText(institution)}
+              </p>
             </div>
             <div>
               <p className={`${styles["education-qualification-date"]}`}>
@@ -79,18 +93,11 @@ const QualificationCard = ({
           </div>
         </div>
         <div className={styles.cardsDeleteEdit}>
-          {/* <TextButton
+          <GoTrash
             onClick={handleDeleteClick}
-            isDelete={true}
-            className={styles.deleteTextIcon}
-            icon={<TiDeleteOutline size={19} />}
-            text=" Remove"
-          /> */}
-          <RxCross1
-            title="Remove"
+            title="Delete"
             className={`${styles["education-qualification-remove"]}`}
           />
-          {/* <FiMinusCircle/> */}
           <MdModeEdit
             className={styles.editIcon}
             onClick={handleEditClick}

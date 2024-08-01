@@ -1,6 +1,6 @@
 .cards {
   position: relative;
-  width: 254px;
+  width: 288px;
   height: 183px;
   border: 1px solid var(--neutral800);
   border-radius: 20px;
@@ -74,7 +74,8 @@
 
 .cards:hover .deleteTextIcon,
 .cards:hover .editIcon,
-.cards:hover .education-qualification-date {
+.cards:hover .education-qualification-date ,
+.cards:hover .education-qualification-institution{
   color: var(--black);
 }
 
@@ -93,10 +94,11 @@
   height: 20px;
 }
 .education-qualification-specialization {
-  height: 25px;
+  height: 40px;
 }
-.education-qualification-institution{
-    height: 40px; 
+.education-qualification-institution {
+  height: 20px;
+  color: var(--neutral500);
 }
 .education-qualifications-list {
   display: flex;
