@@ -60,7 +60,7 @@ const AdminBatchParticipants = ({ batchParticipantsData, batchId, fetchData }) =
         const response = await getUserDetails({ userId });
         const userDetails = response.responseData[0];
         if (userDetails) {
-          navigate(`/admin/student/student-details/${userId}`, {
+          navigate(`/admin/batches/batch-details/student-details/${userId}`, {
             state: { studentsData: userDetails },
           });
         } else {
@@ -85,6 +85,8 @@ const AdminBatchParticipants = ({ batchParticipantsData, batchId, fetchData }) =
             {...props}
             onClick={() => handleCardClick(props.studentId)}
             handleDelete={() => handleOpenModal(props)}
+            attendance={true}
+            percentage="99"
           />
         )}
         {...batchParticipantsData}

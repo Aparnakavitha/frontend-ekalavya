@@ -441,6 +441,8 @@ const AdminStudent = () => {
               <ProfileCard
                 {...props}
                 onClick={() => handleCardClick(props.studentId)}
+                attendance ={true}
+                percentage = "99"
               />
             )}
             {...dataView}
