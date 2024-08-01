@@ -4,6 +4,10 @@
   height: 193px;
 }
 
+.carousel {
+  position: relative;
+}
+
 .dateRow {
   display: flex;
   flex-direction: row;
@@ -270,6 +274,5 @@
 }
 
 .highlight {
-  animation: highlight 2.5s ease-in-out;
+  animation: highlight 3s ease-in-out;
 }
-

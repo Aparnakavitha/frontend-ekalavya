@@ -6,6 +6,7 @@ import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import NoData from "../../../components/nodata/NoData";
 import secureLocalStorage from "react-secure-storage";
 
 const fetchMentorData = async (setMentorData, value = "") => {
@@ -130,7 +131,7 @@ const AdminMentor = () => {
       { key: "studentAddress", displayName: "Address" },
     ],
     toggle: true,
-    itemsPerPage: 18,
+    itemsPerPage: 15,
   };
 
   const handleSearchChange = (value) => {
@@ -139,7 +140,7 @@ const AdminMentor = () => {
 
   return (
     <div>
-      <Greeting {...greet} />
+      {/* <Greeting {...greet} /> */}
       <AdminMentorAction
         count={mentorData.length}
         onAddSuccess={() => fetchMentorData(setMentorData)}
@@ -149,19 +150,19 @@ const AdminMentor = () => {
       />
 
       {mentorData.length > 0 ? (
-        <DataView
-          CardComponent={(props) => (
-            <ProfileCard
-              {...props}
-              onClick={() => handleCardClick(props.studentId)}
-            />
-          )}
-          {...data}
-        />
+        <div>
+          <DataView
+            CardComponent={(props) => (
+              <ProfileCard
+                {...props}
+                onClick={() => handleCardClick(props.studentId)}
+              />
+            )}
+            {...data}
+          />
+        </div>
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No mentors available
-        </p>
+        <NoData title="Mentors" />
       )}
     </div>
   );

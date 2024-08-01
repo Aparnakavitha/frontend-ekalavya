@@ -4,16 +4,18 @@ import Table from "../../../components/table/Table";
 import NavButton from "../../../components/buttons/NavButton";
 import { useRecoilValue } from "recoil";
 import { participantsState, skillState } from "../../../states/Atoms";
-import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import { deleteSkill } from "../../../services/Skills";
 import Modal from "../../common/components/Modal";
 import { toast } from "react-toastify";
 import { DeleteBox } from "../../common";
 import { useNavigate } from "react-router-dom";
+import DeleteButton from "../../../components/buttons/DeleteButton";
 
 const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
-  const participants = useRecoilValue(participantsState);
   const skillsData = useRecoilValue(skillState);
+  const skillParticipantDetails = JSON.parse(
+    localStorage.getItem("skillParticipantDetails")
+  );
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [deleteSkillId, setDeleteSkillId] = useState(null);
   const [error, setError] = useState("");
@@ -25,6 +27,8 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
     setIsDeleteOpen(true);
     setError("");
   };
+
+  console.log("Participant page data", skillParticipantDetails);
 
   const handleCloseDelete = () => {
     setIsDeleteOpen(false);
@@ -59,7 +63,7 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
 
   const deleteprops = {
     title: "Delete Skill ",
-    message: "Are you sure you want to delete this skill?",
+    message: "Are you sure you want to Delete this skill?",
     buttonText: "Delete",
   };
 
@@ -72,13 +76,13 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
           {pageName.map((name, index) => (
             <NavButton
               key={index}
-              pageName={skillsData.skillName}
+              pageName={skillParticipantDetails.title}
               onClick={onClick}
             />
           ))}
         </div>
         <div className={`${styles["adminskillparticipants-deletebutton"]}`}>
-          <PrimaryButton {...props} />
+          <DeleteButton {...props} />
         </div>
         <Modal
           isOpen={isDeleteOpen}
@@ -93,10 +97,14 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
         </Modal>
       </div>
       <div className={`${styles["adminskillparticipants-table"]}`}>
-        {participants && participants.length > 0 ? (
-          <Table data={participants} headings={headings} />
+        {skillParticipantDetails &&
+        skillParticipantDetails.participantDetails.length > 0 ? (
+          <Table
+            data={skillParticipantDetails.participantDetails}
+            headings={headings}
+          />
         ) : (
-          <p className="nodata" >No participants in this batch.</p>
+          <p className="nodata">No Students to display</p>
         )}
       </div>
     </div>

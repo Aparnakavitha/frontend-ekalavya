@@ -98,7 +98,9 @@ const MentorEventDetails = () => {
     logAttendance: () => {},
     onAttendanceUpdate: handleAttendanceUpdate,
     disableAttendance: !completed,
+    eventName: eventData.eventTitle,
   };
+  
 
   return (
     <div>

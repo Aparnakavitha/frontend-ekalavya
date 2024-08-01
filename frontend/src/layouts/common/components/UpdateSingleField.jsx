@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect,useRef} from "react";
 import styles from "../Common.module.css";
 import { useForm, Controller } from "react-hook-form";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
@@ -39,6 +39,14 @@ const UpdateSingleField = ({
     onSubmit(data);
   };
 
+  const editSkillRef = useRef(null);
+
+  useEffect(() => {
+    if(editSkillRef.current){
+      editSkillRef.current.focus();
+    }
+  },[]);
+
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
@@ -67,8 +75,8 @@ const UpdateSingleField = ({
                 rules={{ required: "Student ID is required" }}
                 render={({ field }) => (
                   <InputDropdown
-                    label="Student ID(s)"
-                    placeholder="Student ID"
+                    label="Student Name/ID"
+                    placeholder="Student Name/ID"
                     options={options}
                     isMulti={true}
                     {...field}
@@ -93,6 +101,7 @@ const UpdateSingleField = ({
                 render={({ field }) => (
                   <Input
                     {...field}
+                    ref={editSkillRef}
                     label={labelTitle}
                     placeholders={[placeHolder]}
                     size="normal"

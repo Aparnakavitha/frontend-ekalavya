@@ -63,7 +63,7 @@ const MentorEventsList = ({ events, handleDelete }) => {
 
   const deleteprops = {
     title: "Delete Mentor",
-    message: "Are you sure you want to delete this Mentor?",
+    message: "Are you sure you want to Delete this Mentor?",
     buttonText: "Delete",
   };
 
@@ -94,7 +94,7 @@ const MentorEventsList = ({ events, handleDelete }) => {
           style={{
             textAlign: "left",
             color: "var(--neutral600)",
-            marginTop: "-40px",
+            marginTop: "-20px",
           }}
           className="padding"
         >

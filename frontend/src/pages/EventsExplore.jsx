@@ -64,6 +64,7 @@ const EventsExplore = () => {
       <EventAction
         onFilterChange={handleFilterChange}
         onSearchChange={handleSearchChange}
+        participantCount={events.length} 
         searchPlaceholder="Search events"
       />
       {loading ? (
@@ -72,8 +73,8 @@ const EventsExplore = () => {
         <>
           {events.length === 0 ? (
             <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-            No events available
-          </p>
+              No events available
+            </p>
           ) : (
             <CardLayout events={events} onEventClick={handleClick} />
           )}
@@ -84,4 +85,3 @@ const EventsExplore = () => {
 };
 
 export default EventsExplore;
-

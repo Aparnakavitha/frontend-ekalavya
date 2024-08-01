@@ -22,7 +22,7 @@ const CardLayout = ({ events, onEventClick }) => {
       { key: "description", displayName: "Description" },
     ],
     toggle: false,
-    itemsPerPage: 8,
+    itemsPerPage: 12,
     cardType : "primarycard"
   };
 

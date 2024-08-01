@@ -5,8 +5,6 @@ import secureLocalStorage from "react-secure-storage";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
 import Greeting from "../../../layouts/common/components/Greeting";
-import AddCollege from "../../../layouts/admin-student/components/AddCollege";
-import CollegeList from "../../../layouts/admin-student/components/CollegeList";
 import Modal from "../../../layouts/common/components/Modal";
 import ActionComponent from "../../../layouts/common/components/Action";
 import AddUser from "../../../layouts/common/components/AddUser";
@@ -20,6 +18,7 @@ import {
 import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import image from "../../../assets/DP.png";
+import NoData from "../../../components/nodata/NoData";
 
 const fetchStudentsData = async (setStudentsData, params) => {
   try {
@@ -136,14 +135,17 @@ const AdminStudent = () => {
     const fetchCollegeData = async () => {
       try {
         const data = await getColleges();
-        const transformedData = data.responseData.map((college) => [
-          college.collegeId,
-          college.collegeName,
-          college.collegePlace,
-          college.collegeDistrict,
-          college.collegeState,
-          college.collegeCountry,
-        ]);
+        const transformedData = data.responseData
+          .map((college) => [
+            college.collegeId,
+            college.collegeName,
+            college.collegePlace,
+            college.collegeDistrict,
+            college.collegeState,
+            college.collegeCountry,
+          ])
+          .sort((a, b) => a[1].localeCompare(b[1]));
+
         setCollegeData(transformedData);
 
         if (location.state && location.state.userData) {
@@ -176,7 +178,7 @@ const AdminStudent = () => {
       name: loggedUserFirstName || "",
       info: "Here is the information about",
       profile: "Students",
-      showButtons: true,
+      showButtons: false,
       viewprops: {
         data: collegeData,
         headings: [
@@ -230,7 +232,7 @@ const AdminStudent = () => {
       viewCollege: true,
       heading: "Add New Student",
     },
-    searchPlaceholder: "Enter Student ID/Name",
+    searchPlaceholder: "Search Student ID/Name",
     combinedFilter: false,
   };
 
@@ -405,16 +407,16 @@ const AdminStudent = () => {
   return (
     <div>
       <Greeting {...GreetingData} />
-      <Modal isOpen={isViewOpen} widthVariant="large" onClose={handleCloseView}>
+      {/* <Modal isOpen={isViewOpen} widthVariant="large" onClose={handleCloseView}>
         {collegeData.length > 0 ? (
           <CollegeList {...AdminStudentData.greetingData.viewprops} />
         ) : (
           <div>No colleges available</div>
         )}
-      </Modal>
-      <Modal isOpen={isAddOpen} widthVariant="large" onClose={handleCloseAdd}>
+      </Modal> */}
+      {/* <Modal isOpen={isAddOpen} widthVariant="large" onClose={handleCloseAdd}>
         <AddCollege onSubmit={handleFormSubmit} />
-      </Modal>
+      </Modal> */}
 
       <ActionComponent
         {...actionData}
@@ -435,24 +437,26 @@ const AdminStudent = () => {
       </Modal>
 
       {studentsData.length > 0 ? (
-        <DataView
-          CardComponent={(props) => (
-            <ProfileCard
-              {...props}
-              onClick={() => handleCardClick(props.studentId)}
-            />
-          )}
-          {...dataView}
-        />
+        <div>
+          <DataView
+            CardComponent={(props) => (
+              <ProfileCard
+                {...props}
+                onClick={() => handleCardClick(props.studentId)}
+                attendance ={true}
+                percentage = "99"
+              />
+            )}
+            {...dataView}
+          />
+        </div>
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No students available
-        </p>
+        <NoData title="Students"/>
       )}
-      <ToastContainer
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
-        hideProgressBar={false}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}
@@ -461,7 +465,7 @@ const AdminStudent = () => {
         pauseOnHover
         theme="dark"
         transition={Slide}
-      />
+      /> */}
     </div>
   );
 };

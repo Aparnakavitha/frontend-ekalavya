@@ -61,7 +61,7 @@ const EventList = ({
   };
 
   const heading = {
-    heading: "Events Attended",
+    heading: "Events Enrolled",
     textbuttonprops: {
       icon: <AiOutlinePlus />,
       text: "Add Events",
@@ -89,7 +89,7 @@ const EventList = ({
 
   const deleteprops = {
     title: "Delete Student",
-    message: "Are you sure you want to delete this Student?",
+    message: "Are you sure you want to Delete this Student?",
     buttonText: "Delete",
   };
 
@@ -111,11 +111,11 @@ const EventList = ({
           style={{
             textAlign: "left",
             color: "var(--neutral600)",
-            marginTop: "-40px",
+            marginTop: "-26px",
           }}
           className="padding"
         >
-          &nbsp;&nbsp;No events to display
+          &nbsp;&nbsp;No events available
         </div>
       ) : (
         <CardRow {...eventcards} handleClick={handleCardClick} />

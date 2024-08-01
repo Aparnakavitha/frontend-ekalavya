@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styles from "./SkillUser.module.css";
 import { ImCross } from "react-icons/im";
 import { FaPlus } from "react-icons/fa";
+import NoData from "../nodata/NoData";
 
 const SkillUser = ({
   miniHeading,
@@ -57,9 +58,13 @@ const SkillUser = ({
   }, []);
 
   const displayedSkills = showAllSkills ? skills : skills.slice(0, 2);
+  const hiddenSkillsCount = skills.length - 2;
 
   return (
-    <div ref={cardRef} className={`container ${styles.cards} ${overlap ? styles.overlapClass : ''}`}>
+    <div
+      ref={cardRef}
+      className={`container ${styles.cards} ${overlap ? styles.overlapClass : ""}`}
+    >
       <div className={`row ${styles.cardsClass}`} onClick={handleClick}>
         <div className={`col-md-6 ${styles.profile}`}>
           <div className={`${styles.profilepiccontainer}`}>
@@ -84,7 +89,11 @@ const SkillUser = ({
             <div className={`row ${styles.buttonsContainer}`}>
               {skills.length > 0 ? (
                 displayedSkills.map((skill, index) => (
-                  <div key={index} className={`col-6 ${styles.button}`} title={skill.skillName}>
+                  <div
+                    key={index}
+                    className={`col-6 ${styles.button}`}
+                    title={skill.skillName}
+                  >
                     {transformSkillName(skill.skillName)}
                     {isVisible && (
                       <ImCross
@@ -98,7 +107,7 @@ const SkillUser = ({
                   </div>
                 ))
               ) : (
-                <div className={`${styles.noSkills}`}>No Skills Available</div>
+                <a className={styles.noSkills}>No skills to display</a>
               )}
             </div>
             {skills.length > 2 && (
@@ -109,7 +118,7 @@ const SkillUser = ({
                   setOverlap(!overlap);
                 }}
               >
-                {showAllSkills ? "View Less" : "View More"}
+                {showAllSkills ? "View Less" : `+ ${hiddenSkillsCount} more`}
               </div>
             )}
             <div className={`col-6 ${styles.addButtonContainer}`}>

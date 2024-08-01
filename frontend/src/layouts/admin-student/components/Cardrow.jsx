@@ -12,8 +12,9 @@ import UpdateSingleField from "../../../layouts/common/components/UpdateSingleFi
 import { UserSkillDelete } from "../../../services/Skills";
 import { useRecoilState } from "recoil";
 import { adminStudentSkillState } from "../../../states/Atoms";
+import QualificationCard from "../../../components/cards/QualificationCard";
 
-const CardRow = ({ cardData, card, handleClick, userId }) => {
+const CardRow = ({ cardData, card, handleClick, userId , onClickEdit, onClickDelete}) => {
   const [cardnum, setCardnum] = useState(4);
   const [pcardnum, setPcardnum] = useState(4);
   const [showAllCards, setShowAllCards] = useState(false);
@@ -27,18 +28,18 @@ const CardRow = ({ cardData, card, handleClick, userId }) => {
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
-      if (windowWidth <= 780) {
+      if (windowWidth <= 857) {
         setCardnum(1);
         setPcardnum(1);
-      } else if (windowWidth >= 768 && windowWidth <= 1170) {
+      } else if (windowWidth >= 768 && windowWidth <= 1254) {
         setCardnum(2);
         setPcardnum(2);
-      } else if (windowWidth <= 1530 && windowWidth >= 992) {
+      } else if (windowWidth <= 1557 && windowWidth >= 992) {
         setCardnum(3);
-        setPcardnum(2);
-      } else {
-        setCardnum(4);
         setPcardnum(3);
+      } else {
+        setCardnum(5);
+        setPcardnum(4);
       }
     };
 
@@ -120,16 +121,44 @@ const CardRow = ({ cardData, card, handleClick, userId }) => {
                 ))}
             </div>
             <div className={styles["cardrow-viewnext"]}>
-              {showAllCards ? (
-                <TextButton {...upbutton} />
-              ) : (
-                <TextButton {...downbutton} />
-              )}
+              {cardData.length > cardnum  ? (
+                showAllCards ? (
+                  <TextButton {...upbutton} />
+                ) : (
+                  <TextButton {...downbutton} />
+                )
+              ) : null}
             </div>
           </div>
         </div>
       )}
-
+      {card === "education" && (
+        <div className={styles["cardrow-padding"]}>
+          <div className={styles["cardrow-skillcontainer"]}>
+            <div className={styles["cardrow-skillcard"]}>
+              {cardData
+                .slice(0, showAllCards ? cardData.length : cardnum)
+                .map((data, index) => (
+                  <QualificationCard
+                    key={index}
+                    {...data}
+                    onClickDelete={() => onClickDelete({...data,index})}
+                    onClickEdit={() => onClickEdit({...data,index})}
+                  />
+                ))}
+            </div>
+            <div className={styles["cardrow-viewnext"]}>
+              {cardData.length > cardnum  ? (
+                showAllCards ? (
+                  <TextButton {...upbutton} />
+                ) : (
+                  <TextButton {...downbutton} />
+                )
+              ) : null}
+            </div>
+          </div>
+        </div>
+      )}
       {card === "event" && (
         <div className="padding">
           <div className={styles["cardrow-content"]}>
@@ -147,11 +176,13 @@ const CardRow = ({ cardData, card, handleClick, userId }) => {
                 ))}
             </div>
             <div className={styles["cardrow-pviewnext"]}>
-              {showAllCards ? (
-                <TextButton {...upbutton} />
-              ) : (
-                <TextButton {...downbutton} />
-              )}
+              {cardData.length > pcardnum  ? (
+                showAllCards ? (
+                  <TextButton {...upbutton} />
+                ) : (
+                  <TextButton {...downbutton} />
+                )
+              ) : null}
             </div>
           </div>
         </div>
@@ -159,9 +190,9 @@ const CardRow = ({ cardData, card, handleClick, userId }) => {
 
       <Modal isOpen={isModalOpen} widthVariant="small" onClose={closeModal}>
         <DeleteBox
-          title="Delete Skill"
-          message="Are you sure you want to delete this skill?"
-          buttonText="Delete"
+          title="Remove Skill"
+          message="Are you sure you want to Remove this skill?"
+          buttonText="Remove"
           onConfirm={confirmDelete}
           onCancel={closeModal}
         />

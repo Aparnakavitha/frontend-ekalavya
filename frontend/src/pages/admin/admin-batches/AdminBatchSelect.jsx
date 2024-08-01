@@ -4,7 +4,8 @@ import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBat
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { fetchbatches } from "../../../services/Batch";
+import NoData from "../../../components/nodata/NoData";
 import {
   fetchBatchParticipants,
   updateBatch,
@@ -27,6 +28,7 @@ const greeting = {
 };
 
 const AdminBatchSelect = () => {
+  const [participantCount, setParticipantCount] = useState(0);
   const { batchId } = useParams();
   const params = useParams();
   const location = useLocation();
@@ -34,23 +36,52 @@ const AdminBatchSelect = () => {
   const [batchParticipantsData, setBatchParticipantsData] = useState([]);
   const [newParticipantsData, setNewParticipantsData] = useState([]);
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredUserdetails, setFilteredUserdetails] = useState([]);
+  const [batchNameapi, setBatchNameapi] = useState("");
+
 
   useEffect(() => {
     fetchData();
   }, []);
+  const fetchBatchName = async (batchId) => {
+    try {
+      const responseData = await fetchbatches({batchId});
+      const data = responseData.responseData[0];
+      setBatchNameapi(data.batchName);
+      console.log("_______________", data.batchName);
+    } catch {
+      console.log("error fetching Batch Name");
+    }
+  };
+  
+  useEffect(() => {
+    if (searchTerm === "") {
+      setFilteredUserdetails(batchParticipantsData);
+    } else {
+      setFilteredUserdetails(
+        batchParticipantsData.filter((userDetail) =>
+          userDetail.studentName.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+    fetchBatchName(batchId);
+  }, [searchTerm, batchParticipantsData,batchId]); 
+  
 
   const fetchData = async () => {
     try {
       const batchId = params.batchId;
       const participantsResponse = await fetchBatchParticipants({ batchId });
       const participantIds = participantsResponse.responseData;
+     
 
       if (Array.isArray(participantIds) && participantIds.length > 0) {
         const userId = participantIds.join(",");
         const userDetailsResponse = await getUserDetails({ userId });
         const userDetails = userDetailsResponse.responseData;
-
-        const BatchParticipantsData = userDetails.map((userDetail) => ({
+        
+        const batchParticipantsData = userDetails.map((userDetail) => ({
           studentImage: image,
           studentName: `${userDetail?.firstName || ""} ${
             userDetail?.lastName || ""
@@ -62,18 +93,23 @@ const AdminBatchSelect = () => {
           canDelete: true,
           viewAnimation: false,
         }));
-
-        BatchParticipantsData.sort((a, b) =>
+        
+        batchParticipantsData.sort((a, b) =>
           a.studentName.localeCompare(b.studentName)
         );
-        setBatchParticipantsData(BatchParticipantsData);
+        setBatchParticipantsData(batchParticipantsData);
+        const count = batchParticipantsData.length;
+        setParticipantCount(count);
+        setFilteredUserdetails(batchParticipantsData); 
         setNewParticipantsData([]);
       } else {
         setBatchParticipantsData([]);
+        setFilteredUserdetails([]); 
       }
     } catch (error) {
       console.error("Error fetching data:", error);
       setBatchParticipantsData([]);
+      setFilteredUserdetails([]);
     }
   };
 
@@ -111,17 +147,6 @@ const AdminBatchSelect = () => {
       });
       const newParticipants = newParticipantsResponse.responseData;
 
-      if (Array.isArray(batchParticipantsData)) {
-        batchParticipantsData.forEach((participant) => {
-          if (
-            participant &&
-            typeof participant === "object" &&
-            participant.viewAnimation !== undefined
-          ) {
-            participant.viewAnimation = false;
-          }
-        });
-      }
       const newParticipantsData = newParticipants.map((userDetail) => ({
         studentImage: image,
         studentName: `${userDetail?.firstName || ""} ${
@@ -143,38 +168,36 @@ const AdminBatchSelect = () => {
 
       if (response.statusCode === 200) {
         toast.success("Added new student successfully!");
-        console.log("Participant added successfully.");
       } else {
         const errorMessage =
           response?.errorMessage?.match(/\[(.*?)\]/)?.[1] || "Unknown error";
         toast.error(errorMessage);
-        console.error("Error adding participant:", errorMessage);
       }
 
-      console.log("Response data:", response.data);
       return response.data;
     } catch (error) {
       toast.error("Error adding participant!");
-      console.error("Error adding participant:", error);
       throw error;
     }
   };
 
   return (
     <div>
-      <Greeting {...greeting} />
       <AdminBatchSearch
+        participantCount={participantCount}
         batchDelete={handleDeleteBatches}
         addParticipant={addParticipant}
         setBatchName={setBatchName}
-        batchName={batchName}
+        batchName={batchNameapi}
         batchId={params.batchId}
         batchParticipantsData={batchParticipantsData}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
       />
-      {batchParticipantsData.length > 0 ? (
+      {filteredUserdetails.length > 0 ? (
         <AdminBatchParticipants
           batchParticipantsData={{
-            data: batchParticipantsData,
+            data: filteredUserdetails,
             tableColumns: [
               { key: "studentId", displayName: "Student ID" },
               { key: "studentName", displayName: "Name" },
@@ -185,18 +208,16 @@ const AdminBatchSelect = () => {
             toggle: true,
             itemsPerPage: 15,
             deleteProps: {
-              title: "Delete Participant",
-              message: "Are you sure you want to delete this participant?",
-              buttonText: "Delete",
+              title: "Remove Participant",
+              message: "Are you sure you want to Remove this participant ?",
+              buttonText: "Remove",
             },
           }}
           batchId={batchId}
           fetchData={fetchData}
         />
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No participants available for this batch
-        </p>
+        <NoData title="Students"/>
       )}
     </div>
   );

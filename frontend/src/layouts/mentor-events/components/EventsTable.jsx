@@ -47,28 +47,6 @@ const EventsTable = (props) => {
     }
   };
 
-  const handleGlobalAttendanceClick = (isPresent) => {
-    if (disableAttendance) {
-      console.log("Global attendance marking is disabled for this event");
-      return;
-    }
-
-    const newAttendance = {};
-    for (const id in attendance) {
-      newAttendance[id] = isPresent;
-    }
-
-    setAttendance(newAttendance);
-
-    const requestBody = {
-      attendance: isPresent,
-    };
-
-    if (onAttendanceUpdate) {
-      onAttendanceUpdate(requestBody);
-    }
-  };
-
   const handleExportClick = () => {
     const csvData = [["Participant ID", "Name", "Username", "Attendance"]];
     data.forEach(([participantId, name, userName]) => {
@@ -86,63 +64,47 @@ const EventsTable = (props) => {
 
     const link = document.createElement("a");
     link.href = url;
-    link.setAttribute("download", `${eventName}.csv`); 
+    link.setAttribute("download", `${eventName}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  const allPresent = Object.values(attendance).every((value) => value === true);
-  const allAbsent = Object.values(attendance).every((value) => value === false);
+  const totalParticipants = data.length;
+  const presentParticipants = totalParticipants ? Object.values(attendance).filter(isPresent => isPresent).length : 0;
+  const attendancePercentage = totalParticipants ? Math.round((presentParticipants / totalParticipants) * 100) : 0;
 
   const tableData = data.map(([participantId, name, userName]) => [
     participantId,
     name,
     userName,
     <div style={{ display: "flex", width: "120px", gap: "2px" }} key={participantId}>
+      <div title={disableAttendance ? "Event not completed" : ""}>
       <AttendanceButton
         content="Present"
-        IsPresent={attendance[participantId] === true}
+        isActive={attendance[participantId] === true}
         onClick={() => handleAttendanceClick(participantId, true)}
-        disabled={attendance[participantId] === true || disableAttendance}
+        disabled={disableAttendance}
       />
-      <AttendanceButton
+      </div>
+      <div title={disableAttendance ? "Event not completed" : ""}>
+        <AttendanceButton
         content="Absent"
-        IsPresent={attendance[participantId] === false}
+        isActive={attendance[participantId] === false}
         onClick={() => handleAttendanceClick(participantId, false)}
-        disabled={attendance[participantId] === false || disableAttendance}
+        disabled={disableAttendance}
       />
+      </div>
     </div>,
   ]);
-
-  const globalAttendanceButtons = (
-    <div className={styles["global-attendance-buttons-container"]}>
-      <span className={styles["select-all-text"]}>Select All:</span>
-      <div className={styles["global-attendance-buttons"]}>
-        <AttendanceButton
-          content="Present"
-          IsPresent={allPresent}
-          onClick={() => handleGlobalAttendanceClick(true)}
-          disabled={allPresent || disableAttendance}
-        />
-        <AttendanceButton
-          content="Absent"
-          IsPresent={allAbsent}
-          onClick={() => handleGlobalAttendanceClick(false)}
-          disabled={allAbsent || disableAttendance}
-        />
-      </div>
-    </div>
-  );
-
   return (
     <div className={`${styles["eventstable-container"]} padding padding-bottom`}>
       <div className={styles["eventstable-topleft"]}>
-        <h2>Mark Attendance</h2>
+        <h2>Mark Attendance</h2> <h3>{`${presentParticipants}/${totalParticipants} Present`}</h3>
+        <h3>{`${attendancePercentage}% Attendance`}</h3>
         <TextButton text="Export" icon={<TfiExport />} onClick={handleExportClick} />
       </div>
       <div className={styles["eventstable-table"]}>
-        <div>{globalAttendanceButtons}</div>
         <div className={styles["eventstable-tablecontent"]}>
           <Table
             data={tableData}

@@ -18,31 +18,26 @@ const SkillList = ({ studentId }) => {
   const [studentSkills, setStudentSkills] = useRecoilState(
     adminStudentSkillState
   );
-  const allSkills = useRecoilValue(studentSkillState);
-  console.log("All defined skills",allSkills);
+  const [allSkills, setAllSkills] = useRecoilState(studentSkillState);
+  console.log("All defined skills", allSkills);
 
   const addSkillOptions = allSkills.map((skill) => ({
     value: skill.id,
-    label: skill.skillName,
+    label: `${skill.skillName}`,
   }));
 
   useEffect(() => {
     const fetchSkills = async () => {
       if (studentId) {
         try {
-          // const response = await getSkillsForUser(studentId);
           const skills = await axios.get(
             `https://ekalavya.tarento.com/api/skills?userId=${studentId}`
           );
           const response = skills.data.responseData;
-          console.log(
-            "Fetching skills for userId (Skill list):",
-            studentId,
-            "Here are the skills (Skill list):",
-            studentSkills
+          const options = await axios.get(
+            `https://ekalavya.tarento.com/api/skills`
           );
-          console.log("Skills API response:(SKill List)", response);
-
+          setAllSkills(options.data.responseData);
           if (response.length > 0 && response[0].skills) {
             const skills = response[0].skills.map((skill) => ({
               miniHeading: skill.id,
@@ -57,9 +52,11 @@ const SkillList = ({ studentId }) => {
             setStudentSkills(skills);
           } else {
             console.error("Unexpected response format:", response);
+            setStudentSkills([]);
           }
         } catch (error) {
           console.error("Error fetching student skills:", error);
+          setStudentSkills([]);
         }
       }
     };
@@ -111,7 +108,7 @@ const SkillList = ({ studentId }) => {
         cardType: "skill",
         showCount: false,
       };
-      setStudentSkills((prevSkills) => [newSkillState,...prevSkills]);
+      setStudentSkills((prevSkills) => [newSkillState, ...prevSkills]);
       handleCloseModal();
     } catch (error) {
       console.error("Error submitting skill:", error);
@@ -132,7 +129,7 @@ const SkillList = ({ studentId }) => {
     heading: "Skills",
     textbuttonprops: {
       icon: <AiOutlinePlus />,
-      text: "Add new Skill",
+      text: "Add New Skill",
       onClick: handleOpenModal,
     },
   };
@@ -158,11 +155,17 @@ const SkillList = ({ studentId }) => {
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <CombinedSkillForm {...addSkill} onSubmit={handleFormSubmit} />
       </Modal>
-      <CardRow {...skillcards} userId={studentId} />
-      <ToastContainer
+      {studentSkills.length > 0 ? (
+        <CardRow {...skillcards} userId={studentId} />
+      ) : (
+        <p className="nodata padding padding-top padding-bottom">
+          No skills achieved yet
+        </p>
+      )}
+      {/* <ToastContainer
         position="top-center"
         autoClose={5000}
-        hideProgressBar={false}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}
@@ -171,7 +174,7 @@ const SkillList = ({ studentId }) => {
         pauseOnHover
         theme="dark"
         transition={Slide}
-      />
+      /> */}
     </div>
   );
 };

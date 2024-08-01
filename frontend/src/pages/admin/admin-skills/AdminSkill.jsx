@@ -46,7 +46,7 @@ const AdminSkill = () => {
   return (
     <SkillsProvider>
       <div>
-        <Greeting {...greet} />
+        {/* <Greeting {...greet} /> */}
         <AdminSkillAction setCardAnimation={setCardAnimation} />
 
         <AdminSkillsList

@@ -68,7 +68,20 @@ const MentorProfile = () => {
 
   const about = {
     title: "About Me",
-    description: mentorData.aboutMe || "",
+    description: mentorData.aboutMe ? (
+      mentorData.aboutMe
+    ) : (
+      <div
+        style={{
+          textAlign: "left",
+          color: "var(--neutral600)",
+          marginTop: "10px",
+          fontSize: "15px",
+        }}
+      >
+        No data available
+      </div>
+    ),
   };
 
   const homeAddress = mentorData.addresses.find(
@@ -103,7 +116,7 @@ const MentorProfile = () => {
 
   return (
     <div>
-      <Greeting {...greet} />
+      {/* <Greeting {...greet} /> */}
       <MentorProfileInfo
         profileData={profileData}
         EditableData={EditableData}

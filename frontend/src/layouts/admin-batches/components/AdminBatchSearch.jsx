@@ -10,6 +10,7 @@ import { updateBatch } from "../../../services/Batch";
 import { toast } from "react-toastify";
 
 const AdminBatchSearch = ({
+  participantCount,
   batchDelete,
   addParticipant,
   changeBatchName,
@@ -17,6 +18,7 @@ const AdminBatchSearch = ({
   batchName,
   batchId,
   batchParticipantsData,
+  searchTerm, setSearchTerm
 }) => {
   const [isBatchOperationsOpen, setIsBatchOperationsOpen] = useState(false);
   const [isUpdateSingleFieldOpen, setIsUpdateSingleFieldOpen] = useState(false);
@@ -54,6 +56,7 @@ const AdminBatchSearch = ({
   }, [batchParticipantsData]);
 
   const AdminBatchSearchData = {
+    participantCount:participantCount,
     navbuttonProps: {
       pageName: batchName,
     },
@@ -74,11 +77,14 @@ const AdminBatchSearch = ({
         setIsDeleteBoxOpen(true);
       },
     },
-    showSearch: false,
+    showSearch: true,
+    searchbarProps:{
+      placeholder:"Search Student Name"
+    },
     showFiltersAndReset: false,
     addbuttonProps: {
       variant: "tertiary",
-      content: "+ Add new Student",
+      content: "+ Add New Student",
       width: "full",
       onClick: () => {
         setIsBatchOperationsOpen(true);
@@ -101,7 +107,7 @@ const AdminBatchSearch = ({
     },
     deleteprops: {
       title: "Delete Batch",
-      message: "Are you sure you want to delete this batch?",
+      message: "Are you sure you want to Delete this batch?",
       buttonText: "Delete",
     },
   };
@@ -144,7 +150,7 @@ const AdminBatchSearch = ({
 
   return (
     <div>
-      <BatchSearch {...AdminBatchSearchData} />
+      <BatchSearch {...AdminBatchSearchData} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Modal
         isOpen={isBatchOperationsOpen}
         widthVariant="medium"

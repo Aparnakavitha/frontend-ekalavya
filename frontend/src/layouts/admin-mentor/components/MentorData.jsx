@@ -16,7 +16,7 @@ const AdminStudentActionData = {
     viewCollege: false,
     heading: "Add New Mentor",
   },
-  searchPlaceholder: "Enter Mentor ID/Name",
+  searchPlaceholder: "Search Mentor ID/Name",
 };
 
 export default AdminStudentActionData;

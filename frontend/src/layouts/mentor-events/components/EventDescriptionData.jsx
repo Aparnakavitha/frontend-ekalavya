@@ -16,9 +16,9 @@ const EventDescriptionData = {
   },
   buttonProps: {
     button: "Events",
-    small: "edit",
-    medium: "delete",
-    large: "view participants",
+    small: "Edit",
+    medium: "Delete",
+    large: "View Participants",
     type: "mentor",
     smaller: "Register",
     onclick1: (e) => {

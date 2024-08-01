@@ -32,6 +32,9 @@ import "react-toastify/dist/ReactToastify.css";
 import image from "../../assets/DP.png";
 import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
+import { IoSchoolSharp } from "react-icons/io5";
+import AdminCollege from "./admin-college/AdminCollege";
+import AdminCollegeStudents from "./admin-college/AdminCollegeStudents";
 import secureLocalStorage from "react-secure-storage";
 
 const AdminContent = () => {
@@ -94,6 +97,7 @@ const AdminContent = () => {
   };
 
   const handleOpenLogoutModal = () => {
+    console.log("sda");
     setIsLogoutModalOpen(true);
   };
 
@@ -119,6 +123,12 @@ const AdminContent = () => {
         viewIcon: true,
         page: "mentor",
       },
+      {
+        icon: <IoSchoolSharp />,
+        name: "Colleges",
+        viewIcon: true,
+        page: "colleges",
+      },
       { icon: <MdEvent />, name: "Events", viewIcon: true, page: "events" },
       {
         icon: <MdViewQuilt />,
@@ -137,7 +147,7 @@ const AdminContent = () => {
       name: `${userData.firstName} ${userData.lastName}`,
       profilePic: image,
       gmail: userData.emailId,
-      onNameClick: () => navigate(`/admin/student`),
+      onProfileClick: () => navigate(`/admin/student`),
     },
   };
 
@@ -172,7 +182,8 @@ const AdminContent = () => {
               name={sidebarContent.profileBox.name}
               profilePic={sidebarContent.profileBox.profilePic}
               gmail={sidebarContent.profileBox.gmail}
-              onNameClick={sidebarContent.profileBox.onNameClick}
+              onProfileClick={sidebarContent.profileBox.onProfileClick}
+              onLogoutClick={handleOpenLogoutModal}
             />
           </div>
           <div className="statecontent">
@@ -184,6 +195,8 @@ const AdminContent = () => {
                   <Route path="events" element={<AdminEvent />} />
                   <Route path="batches" element={<AdminBatchList />} />
                   <Route path="skills" element={<AdminSkill />} />
+                  <Route path="colleges" element={<AdminCollege />} />
+
                   <Route
                     path="skills/skill-participants"
                     element={<AdminSkillStudents />}
@@ -207,6 +220,14 @@ const AdminContent = () => {
                   <Route
                     path="events/event-details/event-participants/:eventId"
                     element={<AdminEventParticipants />}
+                  />
+                  <Route
+                    path="colleges/college-participants/:collegeId"
+                    element={<AdminCollegeStudents />}
+                  />
+                  <Route
+                    path="/batches/batch-details/student-details/:userId"
+                    element={<AdminStudentDetails />}
                   />
                 </Routes>
               </SkillsProvider>

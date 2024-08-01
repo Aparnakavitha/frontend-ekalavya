@@ -57,8 +57,7 @@ const Layout = () => {
       setOptions(
         skillsResponse.map((skill) => ({
           value: skill.id,
-          label:
-            skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1),
+          label: `${skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1)}  (${skill.id})`,
           originalName: skill.skillName.toLowerCase(),
         }))
       );
@@ -152,16 +151,20 @@ const Layout = () => {
       <div className={styles["skilllayout-skilltitle"]}>
         <h3>Skills </h3>
         <div className={styles["skilllayout-layoutcontainer"]}>
-          {userSkills.map((skill, index) => (
-            <div key={index} className={styles["skilllayout-skillcontainer"]}>
-              <Card
-                subtitle={`Level ${skill.skillLevel}`}
-                title={capitalizeFirstLetter(skill.skillName)}
-                showCloseIcon={true}
-                onClose={() => setDeleteModal({ isOpen: true, index: index })}
-              />
-            </div>
-          ))}
+          {userSkills.length > 0 ? (
+            userSkills.map((skill, index) => (
+              <div key={index} className={styles["skilllayout-skillcontainer"]}>
+                <Card
+                  subtitle={`Level ${skill.skillLevel}`}
+                  title={capitalizeFirstLetter(skill.skillName)}
+                  showCloseIcon={true}
+                  onClose={() => setDeleteModal({ isOpen: true, index: index })}
+                />
+              </div>
+            ))
+          ) : (
+            <p className={styles["skilllayout-nodata"]}>No skills available</p>
+          )}
           <div className={styles["skilllayout-addbutton"]}>
             <GoPlus
               className={styles["skilllayout-plusicon"]}

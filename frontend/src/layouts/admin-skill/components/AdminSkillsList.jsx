@@ -11,9 +11,14 @@ import {
 import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { participantsState, studentSkillState, skillState } from "../../../states/Atoms";
+import {
+  participantsState,
+  studentSkillState,
+  skillState,
+} from "../../../states/Atoms";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { toast } from "react-toastify";
+import NoData from "../../../components/nodata/NoData";
 
 const capitalizeFirstLetter = (string) => {
   return string.trim().charAt(0).toUpperCase() + string.slice(1);
@@ -97,7 +102,8 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
   let firstTrueAnimationSet = false;
 
   const skillData = {
-    data: skills.map((skill) => {
+    itemsPerPage : 20,
+    data:skills && skills.map((skill) => {
       let viewAnimation = false;
       if (!firstTrueAnimationSet && cardAnimation && skill.newEntry) {
         viewAnimation = true;
@@ -111,11 +117,13 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
         Count: skill.count,
         canEdit: true,
         cardType: "skill",
+        creationDate:false,
         showCount: true,
         viewAnimation,
         handleClick: async () => {
           try {
             const response = await getUsersCountForSkill(skill.id);
+            console.log("Participant data from skilll list", response);
             const participantData = response.users.map((user) => [
               user.userId,
               user.UserName,
@@ -125,6 +133,14 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
               id: skill.id,
               skillName: skill.skillName,
             };
+            const skillParticipantDetails = {
+              title: skillsData.skillName,
+              participantDetails: participantData,
+            };
+            localStorage.setItem(
+              "skillParticipantDetails",
+              JSON.stringify(skillParticipantDetails)
+            );
             setSkillsData(skillsData);
             setParticipants(participantData);
             navigate(`/admin/skills/skill-participants`);
@@ -152,9 +168,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
           <DataView CardComponent={SkillBatchCard} {...skillData} />
         </div>
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No skills available
-        </p>
+        <NoData title="Skills"/>
       )}
 
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>

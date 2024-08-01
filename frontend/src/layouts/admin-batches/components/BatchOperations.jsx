@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "../AdminBatches.module.css";
 import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
@@ -22,6 +22,14 @@ const BatchOperations = ({ mainHeading, onSubmit, submitError, options }) => {
     onSubmit(formData);
   };
 
+  const batchNameRef = useRef(null);
+
+  useEffect(() => {
+    if (batchNameRef.current){
+      batchNameRef.current.focus();
+    }
+  }, []);
+
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
@@ -42,6 +50,7 @@ const BatchOperations = ({ mainHeading, onSubmit, submitError, options }) => {
             render={({ field }) => (
               <Input
                 {...field}
+                ref={batchNameRef}
                 label="Enter Batch Name"
                 placeholders={["Batch Name"]}
                 size="normal"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import styles from "../Common.module.css";
 import Input from "../../../components/inputbox/InputBox";
@@ -20,7 +20,20 @@ const AddUser = ({
     handleSubmit,
     control,
     formState: { errors },
+    trigger,
   } = useForm();
+
+  const firstNameRef = useRef(null);
+
+  useEffect(() => {
+    if (firstNameRef.current) {
+      firstNameRef.current.focus();
+    }
+  }, []);
+
+  const handleBlur = async (fieldName) => {
+    await trigger(fieldName);
+  };
 
   const handleFormSubmit = (data) => {
     onSubmit(data);
@@ -45,9 +58,11 @@ const AddUser = ({
               render={({ field }) => (
                 <Input
                   {...field}
+                  ref={firstNameRef}
                   label="Enter Full Name"
                   size="normal"
-                  placeholders={["First name"]}
+                  placeholders={["First Name"]}
+                  onBlur={() => handleBlur("firstName")}
                 />
               )}
             />
@@ -69,7 +84,8 @@ const AddUser = ({
                 <Input
                   {...field}
                   size="normal"
-                  placeholders={["Second name"]}
+                  placeholders={["Second Name"]}
+                  onBlur={() => handleBlur("lastName")}
                 />
               )}
             />
@@ -90,9 +106,10 @@ const AddUser = ({
           render={({ field }) => (
             <Input
               {...field}
-              label="Enter email address"
+              label="Enter Email ID"
               size="normal"
-              placeholders={["Email address"]}
+              placeholders={["Email ID"]}
+              onBlur={() => handleBlur("emailId")}
             />
           )}
         />
@@ -115,6 +132,7 @@ const AddUser = ({
                 size="normal"
                 placeholders={["Select College"]}
                 options={options}
+                onBlur={() => handleBlur("collegeId")}
               />
             )}
           />

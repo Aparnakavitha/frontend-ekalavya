@@ -8,6 +8,7 @@ import {
   fetchEventsService,
 } from "../../../services/Event";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import NoData from "../../../components/nodata/NoData";
 import secureLocalStorage from "react-secure-storage";
 
 const StudentEvent = () => {
@@ -133,16 +134,7 @@ const StudentEvent = () => {
           itemsPerPage={primaryCardData.itemsPerPage}
         />
       ) : (
-        <div
-          style={{
-            textAlign: "left",
-            color: "var(--neutral600)",
-            marginTop: "-19px",
-          }}
-          className="padding"
-        >
-          &nbsp;&nbsp;No events to display
-        </div>
+        <NoData title="Events" />
       )}
     </div>
   );
