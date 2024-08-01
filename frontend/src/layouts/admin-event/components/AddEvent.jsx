@@ -88,19 +88,21 @@ const AddEvent = ({
     setValue("eventMode", newValue);
 
     if (newValue === "Online") {
-      setValue("location", mergedDefaultValues.link || "");
+      // setValue("location", mergedDefaultValues.link || "");
     } else {
-      setValue("location", mergedDefaultValues.location || "");
+      // setValue("location", mergedDefaultValues.location || "");
     }
   };
 
   useEffect(() => {
+    if (!watch("location")) { // Added condition to prevent overwriting user input
     if (selectedEventMode === "Online") {
       setValue("location", mergedDefaultValues.link || "");
     } else {
       setValue("location", mergedDefaultValues.location || "");
     }
-  }, [selectedEventMode, setValue, mergedDefaultValues]);
+  }
+  }, [selectedEventMode, setValue, mergedDefaultValues,watch]);
 
   return (
     <form
