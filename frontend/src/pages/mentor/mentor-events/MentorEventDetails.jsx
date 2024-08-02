@@ -2,8 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import MentorEventDescription from "../../../layouts/mentor-events/components/MentorEventDescription";
 import EventsTable from "../../../layouts/mentor-events/components/EventsTable";
-import { fetchEventsService, addEventService, enrollParticipantService, addEnrollmentService } from "../../../services/Event";
+import {
+  fetchEventsService,
+  addEventService,
+  enrollParticipantService,
+  addEnrollmentService,
+} from "../../../services/Event";
 import { toast } from "react-toastify";
+import secureLocalStorage from "react-secure-storage";
 
 const MentorEventDetails = () => {
   const { eventId } = useParams();
@@ -32,8 +38,10 @@ const MentorEventDetails = () => {
     try {
       const response = await enrollParticipantService(eventId);
       if (response.statusMessage === "success") {
-        const updatedParticipants = response.responseData.map(participant => {
-          const existingParticipant = participants.find(p => p.participantId === participant.participantId);
+        const updatedParticipants = response.responseData.map((participant) => {
+          const existingParticipant = participants.find(
+            (p) => p.participantId === participant.participantId
+          );
           if (existingParticipant) {
             return {
               ...existingParticipant,
@@ -50,15 +58,14 @@ const MentorEventDetails = () => {
     }
   };
 
-
   useEffect(() => {
     fetchEventData();
     fetchParticipants();
   }, [eventId]);
 
-
   const formSubmit = async (data) => {
-    data.hostId = sessionStorage.getItem("user_id");
+    const userSession = secureLocalStorage.getItem("userSession") || {};
+    data.hostId = userSession.userId;
     try {
       const response = await addEventService(data);
       console.log("Response from API:", response);
@@ -70,7 +77,6 @@ const MentorEventDetails = () => {
     }
   };
 
-
   const handleAttendanceUpdate = async (attendance) => {
     try {
       const response = await addEnrollmentService(eventId, attendance);
@@ -80,7 +86,6 @@ const MentorEventDetails = () => {
       console.error("Error updating enrollment:", error);
     }
   };
-
 
   const tableContent = {
     data: participants.map((participant) => [
@@ -96,7 +101,6 @@ const MentorEventDetails = () => {
     eventName: eventData.eventTitle,
   };
   
-
 
   return (
     <div>
