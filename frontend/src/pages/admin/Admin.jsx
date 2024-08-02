@@ -35,6 +35,7 @@ import LogoutBox from "../../layouts/common/components/LogoutBox";
 import { IoSchoolSharp } from "react-icons/io5";
 import AdminCollege from "./admin-college/AdminCollege";
 import AdminCollegeStudents from "./admin-college/AdminCollegeStudents";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -46,7 +47,8 @@ const AdminContent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = sessionStorage.getItem("user_id");
+        const userSession = secureLocalStorage.getItem("userSession") || {};
+        const userId = userSession.userId;
         if (!userId) {
           console.error("User ID is not found in session storage");
           return;
@@ -58,7 +60,11 @@ const AdminContent = () => {
         };
         const data = await getUserDetails(params);
         const firstName = data.responseData[0].firstName;
-        sessionStorage.setItem("firstName", firstName);
+        const updatedSession = {
+          ...userSession,
+          firstName: firstName,
+        };
+        secureLocalStorage.setItem("userSession", updatedSession);
         setUserData(data.responseData[0]);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -72,7 +78,7 @@ const AdminContent = () => {
     return <LoadingSpinner />;
   }
   const handleLogout = () => {
-    sessionStorage.clear();
+    secureLocalStorage.removeItem("userSession");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",
@@ -223,7 +229,7 @@ const AdminContent = () => {
                     path="/batches/batch-details/student-details/:userId"
                     element={<AdminStudentDetails />}
                   />
-                </Routes>                
+                </Routes>
               </SkillsProvider>
             </RecoilRoot>
           </div>
