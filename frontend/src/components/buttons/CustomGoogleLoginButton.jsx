@@ -55,6 +55,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     console.log("Picture URL:", picture);
     console.log("Participant ID:", participantId);
 
+
     try {
       const response = await axios.post(
         "https://ekalavya.tarento.com/api/login",
@@ -110,9 +111,19 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     },
   });
 
+  const handleClick = () => {
+    const username = secureLocalStorage.getItem('userSession');
+
+    if (username) {
+      console.log("User already logged in:", username);
+    } else {
+      login();
+    }
+  };
+
   return (
     <button
-      onClick={() => login()}
+      onClick={() => handleClick()}
       className={`custom-google-login-button ${fullWidth ? "full-width" : ""}`}
     >
       <FaGoogle />
