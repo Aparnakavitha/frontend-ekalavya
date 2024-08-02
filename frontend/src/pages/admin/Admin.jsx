@@ -89,6 +89,7 @@ const AdminContent = () => {
   }
   const handleLogout = () => {
     secureLocalStorage.removeItem("userSession");
+    localStorage.removeItem("profilePicture");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",
@@ -155,7 +156,7 @@ const AdminContent = () => {
     ],
     profileBox: {
       name: `${userData.firstName} ${userData.lastName}`,
-      profilePic: `${localStorage.getItem("profilePicture")}`,
+      profilePic: `${localStorage.getItem("profilePicture")}` || image,
       gmail: userData.emailId,
       onProfileClick: () => navigate(`/admin/student`),
     },

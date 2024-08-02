@@ -75,6 +75,7 @@ const StudentContent = () => {
 
   const handleLogout = () => {
     secureLocalStorage.removeItem("userSession");
+    localStorage.removeItem("profilePicture");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",

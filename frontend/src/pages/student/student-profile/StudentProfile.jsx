@@ -113,7 +113,7 @@ const StudentProfile = () => {
   };
 
   const profileData = {
-    profilepic: profilepic,
+    profilepic: localStorage.getItem("profilePicture") || profilepic,
     name: `${studentData.firstName} ${studentData.lastName}`,
     college: studentData.college?.collegeName || "",
     email: studentData.emailId,
