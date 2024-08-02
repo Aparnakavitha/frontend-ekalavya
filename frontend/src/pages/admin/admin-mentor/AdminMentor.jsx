@@ -132,6 +132,11 @@ const AdminMentor = () => {
     ],
     toggle: true,
     itemsPerPage: 15,
+    viewInactiveText: "View Inactive Mentors",
+    viewInactive: true,
+    onViewInactiveClick: () => {
+      console.log("View Inactive clicked");
+    },
   };
 
   const handleSearchChange = (value) => {

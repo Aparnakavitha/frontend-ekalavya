@@ -266,6 +266,12 @@ const AdminStudent = () => {
     ],
     toggle: true,
     itemsPerPage: 15,
+    viewInactiveText: "View Inactive Students",
+    viewInactive: true,
+    onViewInactiveClick: () => {
+      console.log("View Inactive clicked");
+      navigate(`/admin/student/inactive-students`);
+    },
   };
 
   const handleOpenView = () => {
