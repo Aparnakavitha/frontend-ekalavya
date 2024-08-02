@@ -123,7 +123,7 @@ const StudentContent = () => {
     ],
     profileBox: {
       name: primaryData.name,
-      profilePic: `${localStorage.getItem("profilePicture")}`,
+      profilePic: `${localStorage.getItem("profilePicture")}` || Dp,
       gmail: primaryData.email,
       onProfileClick: () => navigate(`/student/profile`),
     },
