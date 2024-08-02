@@ -11,6 +11,7 @@ const DataView = ({
   tableColumns = [],
   toggle,
   itemsPerPage = 15,
+  viewIndex = false,
 }) => {
   const [isCardView, setIsCardView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -143,6 +144,8 @@ const DataView = ({
           </div>
         )}
       </div>
+
+      
 
       {data?.length > getItemsPerPage() && (
         <div className={styles["dataview-pagination"]}>
