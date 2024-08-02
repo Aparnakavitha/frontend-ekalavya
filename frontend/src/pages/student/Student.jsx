@@ -18,7 +18,7 @@ import StudentEvent from "./student-events/StudentEvents";
 import StudentEventDetails from "./student-events/StudentEventDetails";
 import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
-import { getUserDetails } from "../../services/User";
+import { getUserDetails, updateUserDetails } from "../../services/User";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "../../layouts/common/components/Modal";
@@ -46,6 +46,16 @@ const StudentContent = () => {
         };
         const data = await getUserDetails(params);
         setUserData(data.responseData[0]);
+
+        const storedProfilePicture = data.responseData[0].profilePicture;
+        const googleProfilePicture = localStorage.getItem("profilePicture");
+
+        if (storedProfilePicture != googleProfilePicture) {
+          await updateUserDetails({
+            userId: userId,
+            profilePicture: googleProfilePicture,
+          });
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -65,6 +75,7 @@ const StudentContent = () => {
 
   const handleLogout = () => {
     secureLocalStorage.removeItem("userSession");
+    localStorage.removeItem("profilePicture");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",
@@ -112,7 +123,7 @@ const StudentContent = () => {
     ],
     profileBox: {
       name: primaryData.name,
-      profilePic: Dp,
+      profilePic: `${localStorage.getItem("profilePicture")}` || Dp,
       gmail: primaryData.email,
       onProfileClick: () => navigate(`/student/profile`),
     },

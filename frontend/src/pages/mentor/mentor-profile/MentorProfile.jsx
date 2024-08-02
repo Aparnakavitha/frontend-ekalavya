@@ -27,7 +27,7 @@ const MentorProfile = () => {
       const params = { userId };
       const data = await getUserDetails(params);
       if (data.responseData.length === 0) {
-        navigate("/notFound"); // Navigate to NotFound page if mentor data is not found
+        navigate("/notFound");
         return;
       }
       setMentorData(data.responseData[0]);
@@ -36,7 +36,7 @@ const MentorProfile = () => {
       console.error("Error fetching mentor data:", error);
       setLoading(false);
       if (error.response && error.response.status === 404) {
-        navigate("/notFound"); // Navigate to NotFound page on 404 error
+        navigate("/notFound");
       }
     }
   };
@@ -106,7 +106,7 @@ const MentorProfile = () => {
   };
 
   const profileData = {
-    profilepic: profilepic,
+    profilepic: localStorage.getItem("profilePicture") || profilepic,
     name: `${mentorData.firstName} ${mentorData.lastName}`,
     college: mentorData.college?.collegeName || "",
     email: mentorData.emailId,

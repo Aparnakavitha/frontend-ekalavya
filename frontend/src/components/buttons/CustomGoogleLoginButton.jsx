@@ -54,7 +54,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     console.log("Name:", name);
     console.log("Picture URL:", picture);
     console.log("Participant ID:", participantId);
-
+    localStorage.setItem("profilePicture", picture);
 
     try {
       const response = await axios.post(
@@ -112,7 +112,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
   });
 
   const handleClick = () => {
-    const username = secureLocalStorage.getItem('userSession');
+    const username = secureLocalStorage.getItem("userSession");
 
     if (username) {
       console.log("User already logged in:", username);
