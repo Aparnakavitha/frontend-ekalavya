@@ -14,8 +14,10 @@ import {
 } from "../../../services/Batch";
 import { getUserDetails } from "../../../services/User";
 import image from "../../../assets/DP.png";
+import secureLocalStorage from "react-secure-storage";
 
-const loggedUserFirstName = sessionStorage.getItem("firstName");
+const userSession = secureLocalStorage.getItem("userSession") || {};
+const loggedUserFirstName = userSession.firstName;
 
 const greeting = {
   welcome: "Welcome back",

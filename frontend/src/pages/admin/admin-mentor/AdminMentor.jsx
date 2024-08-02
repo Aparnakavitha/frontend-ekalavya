@@ -7,6 +7,7 @@ import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import NoData from "../../../components/nodata/NoData";
+import secureLocalStorage from "react-secure-storage";
 
 const fetchMentorData = async (setMentorData, value = "") => {
   try {
@@ -87,7 +88,8 @@ const AdminMentor = () => {
     }
   };
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const loggedUserFirstName = userSession.firstName;
 
   const greet = {
     welcome: "Welcome back",
@@ -149,18 +151,18 @@ const AdminMentor = () => {
 
       {mentorData.length > 0 ? (
         <div>
-        <DataView
-          CardComponent={(props) => (
-            <ProfileCard
-              {...props}
-              onClick={() => handleCardClick(props.studentId)}
-            />
-          )}
-          {...data}
-        />
+          <DataView
+            CardComponent={(props) => (
+              <ProfileCard
+                {...props}
+                onClick={() => handleCardClick(props.studentId)}
+              />
+            )}
+            {...data}
+          />
         </div>
       ) : (
-        <NoData title="Mentors"/>
+        <NoData title="Mentors" />
       )}
     </div>
   );
