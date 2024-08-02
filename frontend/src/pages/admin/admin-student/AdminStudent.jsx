@@ -247,7 +247,7 @@ const AdminStudent = () => {
       }
 
       return {
-        studentImage: image,
+        studentImage: student.profilePicture || image,
         studentName: `${student.firstName || ""} ${student.lastName || ""}`,
         studentId: student.userId || "",
         studentCollege: student.college.collegeName || "",
@@ -443,15 +443,15 @@ const AdminStudent = () => {
               <ProfileCard
                 {...props}
                 onClick={() => handleCardClick(props.studentId)}
-                attendance ={true}
-                percentage = "99"
+                attendance={true}
+                percentage="99"
               />
             )}
             {...dataView}
           />
         </div>
       ) : (
-        <NoData title="Students"/>
+        <NoData title="Students" />
       )}
       {/* <ToastContainer
         position="top-center"
