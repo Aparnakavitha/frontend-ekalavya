@@ -207,6 +207,10 @@ const AdminContent = () => {
                     element={<AdminInactiveStudent />}
                   />
                   <Route
+                    path="/mentor/inactive-mentors"
+                    element={<AdminInactiveStudent />}
+                  />
+                  <Route
                     path="batches/batch-details/:batchId"
                     element={<AdminBatchSelect />}
                   />

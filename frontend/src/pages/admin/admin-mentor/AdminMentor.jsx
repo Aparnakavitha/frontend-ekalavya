@@ -136,7 +136,7 @@ const AdminMentor = () => {
     viewInactive: true,
     onViewInactiveClick: () => {
       console.log("View Inactive clicked");
-      navigate(`/admin/student/inactive-students`);
+      navigate(`/admin/mentor/inactive-mentors`);
     },
   };
 
