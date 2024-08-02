@@ -1,23 +1,23 @@
 .custom-google-login-button {
-    background-color:var(--primary-color); /* Bright green color */
-    color:var(--secondary-color); /* Black text */
-    border: none; /* Remove border */
-    border-radius: 50px; /* Rounded corners */
-    padding: 10px 20px; /* Padding for better appearance */
-    font-size: 14px; /* Larger font size */
-    font-weight: 600;
-    cursor: pointer; /* Pointer cursor on hover */
-    display: flex; /* Flexbox for aligning items */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-    display: flex;
-    gap: 5px;
-  }
-   
-  .custom-google-login-button:hover {
-    background-color: var(--white); /* Slightly darker green on hover */
-  }
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 5px;
+}
 
-  .full-width {
-    width: 100%;
-  }
+.custom-google-login-button:hover {
+  background-color: var(--white);
+}
+
+.full-width {
+  width: 100%;
+}
