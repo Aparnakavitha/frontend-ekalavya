@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import edunexa from "../../../src/assets/edunexa.png";
@@ -71,10 +72,15 @@ const AdminContent = () => {
         const googleProfilePicture = localStorage.getItem("profilePicture");
 
         if (storedProfilePicture != googleProfilePicture) {
-          await updateUserDetails({
-            userId: userId,
-            profilePicture: googleProfilePicture,
-          });
+          try {
+            await axios.get(googleProfilePicture);
+            await updateUserDetails({
+              userId: userId,
+              profilePicture: googleProfilePicture,
+            });
+          } catch (error) {
+            console.error("Error fetching profile picture");
+          }
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
