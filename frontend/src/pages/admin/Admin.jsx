@@ -165,6 +165,7 @@ const AdminContent = () => {
       profilePic: `${localStorage.getItem("profilePicture")}` || image,
       gmail: userData.emailId,
       onProfileClick: () => navigate(`/admin/student`),
+      role: "admin",
     },
   };
 
@@ -201,6 +202,7 @@ const AdminContent = () => {
               gmail={sidebarContent.profileBox.gmail}
               onProfileClick={sidebarContent.profileBox.onProfileClick}
               onLogoutClick={handleOpenLogoutModal}
+              role={sidebarContent.profileBox.role}
             />
           </div>
           <div className="statecontent">
