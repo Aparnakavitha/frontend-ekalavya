@@ -129,6 +129,7 @@ const AdminCollege = () => {
   const handleClick = (college) => {
     console.log(`Clicked on college ${college[0]}`);
     navigate(`college-participants/${college[0]}`);
+    localStorage.setItem('collegeData', JSON.stringify(college[1]));
   };
 
   const AdminCollegeActionData = {
@@ -173,15 +174,28 @@ const AdminCollege = () => {
           autoClose: 5000,
         });
       }
-      toast.success("College Added", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      if (formData.collegeId) {
+        toast.success("College updated successfully", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }else{
+        toast.success("College added successfully", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+      
     } catch (error) {
       console.error("Error adding college:", error);
     }
