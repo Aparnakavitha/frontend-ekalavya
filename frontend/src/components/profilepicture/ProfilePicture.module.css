@@ -2,7 +2,7 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 5px solid #ececec;
+  border: 3px solid #ececec;
   background: #ffffff;
   display: flex;
   justify-content: center;
@@ -11,8 +11,8 @@
 }
 
 .profile-picture {
-  width: 90px;
-  height: 90px;
+  width: 94px;
+  height: 94px;
   opacity: 2px;
 }
 
@@ -20,7 +20,7 @@
   width: 53px;
   height: 53px;
   border-radius: 50%;
-  border: 5px solid #ececec;
+  border: 3px solid #ececec;
   background: #ffffff;
   display: flex;
   justify-content: center;

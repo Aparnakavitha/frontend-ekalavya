@@ -10,11 +10,18 @@ const ProfileNotificationBox = ({
   onBellIconClick,
   onProfileClick,
   onLogoutClick,
+  role = "",
 }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 767);
   const dropdownRef = useRef(null);
   const profileNotificationBoxRef = useRef(null);
+
+  if (role === "admin") {
+    role = "Home";
+  } else {
+    role = "Profile";
+  }
 
   const handleNameClick = (event) => {
     event.stopPropagation();
@@ -97,7 +104,7 @@ const ProfileNotificationBox = ({
                 setDropdownVisible(false);
               }}
             >
-              Profile
+              {role}
             </div>
             <div className={styles.line}></div>
             <div
