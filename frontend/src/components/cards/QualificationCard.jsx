@@ -16,7 +16,7 @@ const QualificationCard = ({
   endDate = null,
   specialization = "N/A",
   handleClick = () => {},
-  onClickEdit = () => {},
+  handleEditClick = () => {},
   onClickDelete = () => {},
   index = 0,
 }) => {
@@ -33,9 +33,9 @@ const QualificationCard = ({
     }
   };
 
-  const handleEditClick = (event) => {
+  const handleEditIconClick = (event) => {
     event.stopPropagation();
-    onClickEdit(index);
+    handleEditClick(event);
   };
 
   const handleDeleteClick = (event) => {
@@ -65,11 +65,11 @@ const QualificationCard = ({
         <div className={styles.titleContainer}>
           <div className={`${styles["education-qualifications-list"]}`}>
             <div>
-              <h3>{degree}</h3>
+              <h3>{degree ? degree : "Degree"}</h3>
             </div>
             <div>
               <h4 className={`${styles["education-qualification-name"]}`}>
-                <p>Percentage: {percentage}%</p>
+                <p>Percentage: {percentage ? `${percentage}%` : "-%"}</p>
               </h4>
             </div>
             <div>
@@ -81,13 +81,18 @@ const QualificationCard = ({
               </p>
             </div>
             <div>
-              <p className={`${styles["education-qualification-institution"]}`} title={institution}>
+              <p
+                className={`${styles["education-qualification-institution"]}`}
+                title={institution}
+              >
                 {formatText(institution)}
               </p>
             </div>
             <div>
               <p className={`${styles["education-qualification-date"]}`}>
-                {formattedDate(startDate)} - {formattedDate(endDate)}
+                {startDate && endDate
+                  ? `${formattedDate(startDate)} - ${formattedDate(endDate)}`
+                  : ""}
               </p>
             </div>
           </div>
@@ -100,7 +105,7 @@ const QualificationCard = ({
           />
           <MdModeEdit
             className={styles.editIcon}
-            onClick={handleEditClick}
+            onClick={handleEditIconClick}
             title="Edit"
           />
         </div>

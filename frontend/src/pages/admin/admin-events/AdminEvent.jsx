@@ -173,7 +173,7 @@ const AdminEvent = () => {
       },
     ],
     resetProps: {
-      variant: "secondary",
+      variant: "reset",
       content: "Reset",
       width: "full",
     },

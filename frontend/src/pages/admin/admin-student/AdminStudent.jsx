@@ -220,7 +220,7 @@ const AdminStudent = () => {
       // },
     ],
     resetProps: {
-      variant: "secondary",
+      variant: "reset",
       content: "Reset",
       width: "full",
     },

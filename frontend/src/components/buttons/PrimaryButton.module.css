@@ -18,7 +18,15 @@
 .primary {
   background-color: var(--primary-color);
 }
-
+.reset {
+  border: 1px solid var(--white);
+  background-color: transparent;
+  color: var(--white);
+}
+.reset:hover {
+  border: 1px solid var(--primary-color);
+  background-color: transparent;
+}
 .primary:hover {
   background-color: var(--white);
 }
