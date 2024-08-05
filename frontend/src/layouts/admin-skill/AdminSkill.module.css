@@ -120,6 +120,13 @@
   color: white;
   scrollbar-color: var(--neutral600) #ffffff00;
 }
+.adminskillparticipants-nav{
+  display: flex;
+  color:var(--white);
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
 
 @media screen and (max-width: 768px) {
   .adminskillparticipants-container {

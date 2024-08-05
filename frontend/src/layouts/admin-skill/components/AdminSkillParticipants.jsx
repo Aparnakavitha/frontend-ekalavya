@@ -74,11 +74,15 @@ const AdminSkillParticipants = ({ data, headings, onClick, pageName }) => {
       <div className={`${styles["adminskillparticipants-header"]}`}>
         <div className={`${styles["adminskillparticipants-navbuttons"]}`}>
           {pageName.map((name, index) => (
-            <NavButton
-              key={index}
-              pageName={skillParticipantDetails.title}
-              onClick={onClick}
-            />
+            <div className={`${styles["adminskillparticipants-nav"]}`}>
+              {" "}
+              <NavButton
+                key={index}
+                pageName={skillParticipantDetails.title}
+                onClick={onClick}
+              />
+              (Count:{skillParticipantDetails.participantDetails.length})
+            </div>
           ))}
         </div>
         <div className={`${styles["adminskillparticipants-deletebutton"]}`}>
