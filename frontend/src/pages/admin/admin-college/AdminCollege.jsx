@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import NoData from "../../../components/nodata/NoData";
 import { useNavigate } from "react-router-dom";
+import AddCollege from "../../../layouts/admin-college/components/AddCollege";
+import Modal from "../../../layouts/common/components/Modal";
 
 const AdminCollege = () => {
   const location = useLocation();
@@ -17,6 +19,16 @@ const AdminCollege = () => {
   const [count, setCount] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [initialData, setInitialData]= useState({
+    collegeName: "",
+    collegePlace: "",
+    collegeDistrict: "",
+    collegeState: "",
+    collegeCountry: "",
+  })
+ const [isEdit, setIsEdit]=useState(false);
+ const [collegeId, setCollegeId]= useState("");
 
   useEffect(() => {
     const fetchCollegeData = async () => {
@@ -63,6 +75,34 @@ const AdminCollege = () => {
     setFilteredCollegeData(filteredData);
   };
 
+  const handleEdit = (college) => {
+    console.log("edit clicked");
+    handleOpenModal();
+    setInitialData({
+      collegeName: college[1],
+      collegePlace: college[2],
+      collegeDistrict: college[3],
+      collegeState: college[4],
+      collegeCountry:college[5],
+    })
+    setIsEdit(true);
+    setCollegeId(college[0]);
+  };
+
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
+  const handleFormSubmit = async (data) => {
+    console.log("Form submitted with data:", data);
+    handleCloseModal();
+    formSubmit(data);
+  };
+
   const collegeCardData = {
     data: filteredCollegeData.map((college) => ({
       miniHeading: college[0],
@@ -74,6 +114,7 @@ const AdminCollege = () => {
       viewAnimation: false,
       showPlace: true,
       placeHeading: `${college[2]}, ${college[3]}`,
+      handleEditClick:()=> handleEdit(college),
     })),
     tableColumns: [
       { key: "miniHeading", displayName: "College ID" },
@@ -85,7 +126,6 @@ const AdminCollege = () => {
     itemsPerPage: 12,
     cardType: "collegecard",
   };
-
   const handleClick = (college) => {
     console.log(`Clicked on college ${college[0]}`);
     navigate(`college-participants/${college[0]}`);
@@ -161,6 +201,9 @@ const AdminCollege = () => {
       ) : (
         <NoData title="Colleges" />
       )}
+      <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
+        <AddCollege onSubmit={handleFormSubmit} initialData={initialData} isEdit={isEdit} collegeId={collegeId}/>
+      </Modal>
     </div>
   );
 };

@@ -162,17 +162,17 @@ const EventsDescription = (props) => {
                   <div className={`${styles["eventsdescription-primarydiv"]}`}>
                     <PrimaryButton
                       content={large}
-                      variant="secondary"
+                      variant="reset"
                       onClick={onclick1}
                     />
                     <PrimaryButton
                       content={medium}
-                      variant="secondary"
+                      variant="reset"
                       onClick={onclick2}
                     />
                     <PrimaryButton
                       content={small}
-                      variant="secondary"
+                      variant="reset"
                       onClick={onclick3}
                     />
                   </div>
