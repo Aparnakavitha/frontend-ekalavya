@@ -23,7 +23,7 @@ import AdminMentorDetails from "./admin-mentor/AdminMentorDetails";
 import AdminEventDetails from "./admin-events/EventDetails";
 import AdminEventParticipants from "./admin-events/AdminEventParticipants";
 import AdminSkillStudents from "./admin-skills/AdminSkillStudents";
-import { getUserDetails } from "../../services/User";
+import { getUserDetails, updateUserDetails } from "../../services/User";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import { SkillsProvider } from "./admin-skills/AdminSkillContext";
 import { RecoilRoot } from "recoil";
@@ -67,6 +67,16 @@ const AdminContent = () => {
         };
         secureLocalStorage.setItem("userSession", updatedSession);
         setUserData(data.responseData[0]);
+
+        const storedProfilePicture = data.responseData[0].profilePicture;
+        const googleProfilePicture = localStorage.getItem("profilePicture");
+
+        if (storedProfilePicture != googleProfilePicture) {
+          await updateUserDetails({
+            userId: userId,
+            profilePicture: googleProfilePicture,
+          });
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -80,6 +90,7 @@ const AdminContent = () => {
   }
   const handleLogout = () => {
     secureLocalStorage.removeItem("userSession");
+    localStorage.removeItem("profilePicture");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",
@@ -146,7 +157,7 @@ const AdminContent = () => {
     ],
     profileBox: {
       name: `${userData.firstName} ${userData.lastName}`,
-      profilePic: image,
+      profilePic: `${localStorage.getItem("profilePicture")}` || image,
       gmail: userData.emailId,
       onProfileClick: () => navigate(`/admin/student`),
     },
