@@ -73,8 +73,11 @@ const AdminMentorDetails = () => {
       const response = await addNewUser(formData);
       console.log("Add user response:", response);
 
-      // Check if the response indicates that the email is already in use
-      if (response && response.statusCode === 400 && response.errorMessage === "Email ID already in use") {
+      if (
+        response &&
+        response.statusCode === 400 &&
+        response.errorMessage === "Email ID already in use"
+      ) {
         toast.error("Email ID already in use");
       } else {
         handleCloseEditBasicDetails();

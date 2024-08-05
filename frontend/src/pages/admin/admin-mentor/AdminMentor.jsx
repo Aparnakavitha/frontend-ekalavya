@@ -109,7 +109,7 @@ const AdminMentor = () => {
         firstTrueAnimationSet = true;
       }
       return {
-        studentImage: image,
+        studentImage: mentor.profilePicture || image,
         studentName: `${mentor.firstName || "N/A"} ${mentor.lastName || ""}`,
         studentId: mentor.userId || "",
         studentCollege: "",
