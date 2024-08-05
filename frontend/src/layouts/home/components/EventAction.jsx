@@ -41,7 +41,7 @@ const EventAction = ({ onSearchChange, onFilterChange, participantCount }) => {
       },
     ],
     resetProps: {
-      variant: "secondary",
+      variant: "reset",
       content: "Reset",
       width: "full",
     },

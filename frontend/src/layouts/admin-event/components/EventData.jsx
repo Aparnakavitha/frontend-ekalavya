@@ -19,7 +19,7 @@ const AdminEventActionData = {
       { Heading: "Status", Content: ["Upcoming", "Ongoing", "Completed"] },
     ],
     resetProps: {
-      variant: "secondary",
+      variant: "reset",
       content: "Reset",
       width: "full",
     },

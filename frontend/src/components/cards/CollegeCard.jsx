@@ -22,7 +22,7 @@ const CollegeCard = (props) => {
 
   const transformMainHeading = (heading = "", cardType) => {
     let maxLength;
-      maxLength = 30;
+    maxLength = 30;
 
     if (heading.length > maxLength) {
       return heading.slice(0, maxLength - 2) + "...";
@@ -34,8 +34,7 @@ const CollegeCard = (props) => {
     handleDeleteClick();
   };
 
-  const handleEditIconClick = (event) => {
-    event.stopPropagation();
+  const handleEditIconClick = () => {
     handleEditClick();
   };
 
@@ -73,9 +72,9 @@ const CollegeCard = (props) => {
           )}
         </div>
         <div className={styles.cardsDeleteEdit}>
-        <MdModeEdit
+          <MdModeEdit
             className={styles.editIcon}
-            onClick={handleEditClick}
+            onClick={handleEditIconClick}
             title="Edit"
           />
           {/* Don't delete */}
@@ -85,7 +84,6 @@ const CollegeCard = (props) => {
             className={styles.deleteIcon}
             text=" Remove"
           /> */}
-          
         </div>
       </div>
     </div>

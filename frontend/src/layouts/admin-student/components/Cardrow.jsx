@@ -28,7 +28,7 @@ const CardRow = ({ cardData, card, handleClick, userId , onClickEdit, onClickDel
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
-      if (windowWidth <= 857) {
+      if (windowWidth <= 915) {
         setCardnum(1);
         setPcardnum(1);
       } else if (windowWidth >= 768 && windowWidth <= 1254) {

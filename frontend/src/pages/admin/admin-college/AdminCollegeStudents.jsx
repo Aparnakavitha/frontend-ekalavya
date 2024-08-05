@@ -40,7 +40,7 @@ const AdminCollegeStudents = () => {
   }, []);
 
   const data = {
-    headings: ["StudentID", "StudentName", "email ID"],
+    headings: ["Student ID", "Student Name", "email ID"],
     data: collegeUserData,
   };
 
