@@ -5,6 +5,7 @@ import { fetchEventsService } from "../../../services/Event";
 import { getUserDetails } from "../../../services/User";
 import { enrollParticipantService } from "../../../services/Event";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import secureLocalStorage from "react-secure-storage";
 
 const StudentEventDetails = () => {
   const { eventId } = useParams();
@@ -14,8 +15,9 @@ const StudentEventDetails = () => {
   const [organizerName, setOrganizerName] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const participantId = sessionStorage.getItem("user_id");
-  const role = sessionStorage.getItem("role");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const participantId = userSession.userId;
+  const role = userSession.roleId;
 
   useEffect(() => {
     const getEventAndOrganizerDetails = async () => {

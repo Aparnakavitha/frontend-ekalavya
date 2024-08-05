@@ -6,6 +6,7 @@ import { fetchbatches, createBatch } from "../../../services/Batch";
 import AdminBatchAction from "../../../layouts/admin-batches/components/AdminBatchAction";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import NoData from "../../../components/nodata/NoData";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminBatchList = () => {
   const navigate = useNavigate();
@@ -90,7 +91,8 @@ const AdminBatchList = () => {
     }
   };
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const loggedUserFirstName = userSession.firstName;
 
   return (
     <div>
@@ -111,9 +113,7 @@ const AdminBatchList = () => {
       {loading ? (
         <LoadingSpinner />
       ) : error ? (
-        <p style={{ padding:"2vh 4vw", color: "white" }}>
-          {error}
-        </p>
+        <p style={{ padding: "2vh 4vw", color: "white" }}>{error}</p>
       ) : batchData && batchData.length > 0 ? (
         <div>
           <DataView
@@ -133,7 +133,7 @@ const AdminBatchList = () => {
           />
         </div>
       ) : (
-        <NoData title="Batches"/>
+        <NoData title="Batches" />
       )}
     </div>
   );

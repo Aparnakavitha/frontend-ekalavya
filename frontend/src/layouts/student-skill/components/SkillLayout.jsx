@@ -12,6 +12,7 @@ import {
   SkillService,
   UserSkillDelete,
 } from "../../../services/Skills";
+import secureLocalStorage from "react-secure-storage";
 
 const Layout = () => {
   const [userSkills, setUserSkills] = useState([]);
@@ -22,7 +23,9 @@ const Layout = () => {
     index: null,
   });
   const [options, setOptions] = useState([]);
-  const userId = sessionStorage.getItem("user_id");
+
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const userId = userSession.userId;
 
   useEffect(() => {
     fetchSkills();
@@ -54,9 +57,8 @@ const Layout = () => {
       setOptions(
         skillsResponse.map((skill) => ({
           value: skill.id,
-          label:
-            `${skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1)}  (${skill.id})`,
-          originalName: skill.skillName.toLowerCase(), 
+          label: `${skill.skillName.charAt(0).toUpperCase() + skill.skillName.slice(1)}  (${skill.id})`,
+          originalName: skill.skillName.toLowerCase(),
         }))
       );
     } catch (error) {

@@ -18,11 +18,13 @@ import StudentEvent from "./student-events/StudentEvents";
 import StudentEventDetails from "./student-events/StudentEventDetails";
 import SkillLayout from "../../layouts/student-skill/components/SkillLayout";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
-import { getUserDetails } from "../../services/User";
+import { getUserDetails, updateUserDetails } from "../../services/User";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
+import secureLocalStorage from "react-secure-storage";
+
 const StudentContent = () => {
   const [userData, setUserData] = useState({
     firstName: "",
@@ -33,7 +35,8 @@ const StudentContent = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const userId = sessionStorage.getItem("user_id");
+  const userSession = secureLocalStorage.getItem("userSession");
+  const userId = userSession.userId;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +46,16 @@ const StudentContent = () => {
         };
         const data = await getUserDetails(params);
         setUserData(data.responseData[0]);
+
+        const storedProfilePicture = data.responseData[0].profilePicture;
+        const googleProfilePicture = localStorage.getItem("profilePicture");
+
+        if (storedProfilePicture != googleProfilePicture) {
+          await updateUserDetails({
+            userId: userId,
+            profilePicture: googleProfilePicture,
+          });
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -61,7 +74,8 @@ const StudentContent = () => {
   };
 
   const handleLogout = () => {
-    sessionStorage.clear();
+    secureLocalStorage.removeItem("userSession");
+    localStorage.removeItem("profilePicture");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",
@@ -109,7 +123,7 @@ const StudentContent = () => {
     ],
     profileBox: {
       name: primaryData.name,
-      profilePic: Dp,
+      profilePic: `${localStorage.getItem("profilePicture")}` || Dp,
       gmail: primaryData.email,
       onProfileClick: () => navigate(`/student/profile`),
     },
@@ -152,10 +166,7 @@ const StudentContent = () => {
             <Routes>
               <Route exact path="/profile" element={<StudentProfile />} />
               <Route exact path="/events" element={<StudentEvent />} />
-              <Route
-                path="events/:eventId"
-                element={<StudentEventDetails />}
-              />
+              <Route path="events/:eventId" element={<StudentEventDetails />} />
               <Route exact path="skills" element={<SkillLayout />} />
             </Routes>
           </div>

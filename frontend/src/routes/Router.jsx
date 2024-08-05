@@ -9,9 +9,12 @@ import StudentContent from "../pages/student/Student";
 import NotFound from "../layouts/common/components/NotFound";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import secureLocalStorage from "react-secure-storage";
 
 const RouterComponent = () => {
-  const roleId = sessionStorage.getItem("role");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const roleId = userSession.roleId;
+
   return (
     <div>
       <BrowserRouter>
@@ -19,13 +22,11 @@ const RouterComponent = () => {
           <Route path="/explore/description" element={<EventDescription />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/" element={<Home />} />
-          {roleId === "2" && (
+          {roleId === 2 && (
             <Route path="/mentor/*" element={<MentorContent />} />
           )}
-          {roleId === "1" && (
-            <Route path="/admin/*" element={<AdminContent />} />
-          )}
-          {roleId === "3" && (
+          {roleId === 1 && <Route path="/admin/*" element={<AdminContent />} />}
+          {roleId === 3 && (
             <Route path="/student/*" element={<StudentContent />} />
           )}
           <Route

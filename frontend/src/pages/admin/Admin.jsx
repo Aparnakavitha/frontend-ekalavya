@@ -23,7 +23,7 @@ import AdminMentorDetails from "./admin-mentor/AdminMentorDetails";
 import AdminEventDetails from "./admin-events/EventDetails";
 import AdminEventParticipants from "./admin-events/AdminEventParticipants";
 import AdminSkillStudents from "./admin-skills/AdminSkillStudents";
-import { getUserDetails } from "../../services/User";
+import { getUserDetails, updateUserDetails } from "../../services/User";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import { SkillsProvider } from "./admin-skills/AdminSkillContext";
 import { RecoilRoot } from "recoil";
@@ -35,6 +35,7 @@ import LogoutBox from "../../layouts/common/components/LogoutBox";
 import { IoSchoolSharp } from "react-icons/io5";
 import AdminCollege from "./admin-college/AdminCollege";
 import AdminCollegeStudents from "./admin-college/AdminCollegeStudents";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -46,7 +47,8 @@ const AdminContent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = sessionStorage.getItem("user_id");
+        const userSession = secureLocalStorage.getItem("userSession") || {};
+        const userId = userSession.userId;
         if (!userId) {
           console.error("User ID is not found in session storage");
           return;
@@ -58,8 +60,22 @@ const AdminContent = () => {
         };
         const data = await getUserDetails(params);
         const firstName = data.responseData[0].firstName;
-        sessionStorage.setItem("firstName", firstName);
+        const updatedSession = {
+          ...userSession,
+          firstName: firstName,
+        };
+        secureLocalStorage.setItem("userSession", updatedSession);
         setUserData(data.responseData[0]);
+
+        const storedProfilePicture = data.responseData[0].profilePicture;
+        const googleProfilePicture = localStorage.getItem("profilePicture");
+
+        if (storedProfilePicture != googleProfilePicture) {
+          await updateUserDetails({
+            userId: userId,
+            profilePicture: googleProfilePicture,
+          });
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -72,7 +88,8 @@ const AdminContent = () => {
     return <LoadingSpinner />;
   }
   const handleLogout = () => {
-    sessionStorage.clear();
+    secureLocalStorage.removeItem("userSession");
+    localStorage.removeItem("profilePicture");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",
@@ -139,7 +156,7 @@ const AdminContent = () => {
     ],
     profileBox: {
       name: `${userData.firstName} ${userData.lastName}`,
-      profilePic: image,
+      profilePic: `${localStorage.getItem("profilePicture")}` || image,
       gmail: userData.emailId,
       onProfileClick: () => navigate(`/admin/student`),
     },
@@ -223,7 +240,7 @@ const AdminContent = () => {
                     path="/batches/batch-details/student-details/:userId"
                     element={<AdminStudentDetails />}
                   />
-                </Routes>                
+                </Routes>
               </SkillsProvider>
             </RecoilRoot>
           </div>

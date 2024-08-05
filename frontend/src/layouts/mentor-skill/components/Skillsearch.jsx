@@ -117,7 +117,7 @@ const Skillsearch = () => {
                   {...props}
                   mainHeading={`${props.firstName} ${props.lastName}`}
                   miniHeading="Student"
-                  profilepic={profilePic}
+                  profilepic={props.profilePicture || profilePic}
                   skills={(props.skills || []).map((skill) => ({
                     id: skill.id,
                     skillName: skill.skillName,

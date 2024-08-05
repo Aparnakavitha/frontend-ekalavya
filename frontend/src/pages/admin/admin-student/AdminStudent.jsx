@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast, Slide } from "react-toastify";
+import secureLocalStorage from "react-secure-storage";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
 import Greeting from "../../../layouts/common/components/Greeting";
@@ -168,7 +169,8 @@ const AdminStudent = () => {
     return <LoadingSpinner />;
   }
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession");
+  const loggedUserFirstName = userSession.firstName;
 
   const AdminStudentData = {
     greetingData: {
@@ -245,7 +247,7 @@ const AdminStudent = () => {
       }
 
       return {
-        studentImage: image,
+        studentImage: student.profilePicture || image,
         studentName: `${student.firstName || ""} ${student.lastName || ""}`,
         studentId: student.userId || "",
         studentCollege: student.college.collegeName || "",
@@ -441,15 +443,15 @@ const AdminStudent = () => {
               <ProfileCard
                 {...props}
                 onClick={() => handleCardClick(props.studentId)}
-                attendance ={true}
-                percentage = "99"
+                attendance={true}
+                percentage="99"
               />
             )}
             {...dataView}
           />
         </div>
       ) : (
-        <NoData title="Students"/>
+        <NoData title="Students" />
       )}
       {/* <ToastContainer
         position="top-center"

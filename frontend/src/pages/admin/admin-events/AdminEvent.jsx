@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import EventMenus from "../../../layouts/common/components/EventMenus";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import NoData from "../../../components/nodata/NoData";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminEvent = () => {
   const [events, setEvents] = useState([]);
@@ -23,7 +24,8 @@ const AdminEvent = () => {
     eventMode: "",
   });
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const loggedUserFirstName = userSession.firstName;
 
   const greeting = {
     welcome: "Welcome back",
@@ -225,7 +227,7 @@ const AdminEvent = () => {
             {...primaryCardData}
           />
         ) : (
-          <NoData title="Events"/>
+          <NoData title="Events" />
         ))}
     </div>
   );
