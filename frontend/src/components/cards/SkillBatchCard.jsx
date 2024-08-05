@@ -4,6 +4,7 @@ import { FaTrash } from "react-icons/fa6";
 import { MdModeEdit } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
 import TextButton from "../buttons/TextButton";
+import { RxCross1 } from "react-icons/rx";
 
 const SkillBatchCard = (props) => {
   const {
@@ -18,15 +19,16 @@ const SkillBatchCard = (props) => {
     canDelete,
     showCount,
     viewAnimation = false,
+    creationDate=false,
   } = props;
 
   const transformMainHeading = (heading = "", cardType) => {
     let maxLength;
 
     if (cardType === "skill") {
-      maxLength = 30;
+      maxLength = 13;
     } else {
-      maxLength = 33;
+      maxLength = 25;
     }
 
     if (heading.length > maxLength) {
@@ -62,58 +64,65 @@ const SkillBatchCard = (props) => {
   }
 
   return (
-    <div className="row">
-      <div className={`col-lg-2 col-md-3 col-sm-4 col-xs-6 ${styles.cards}`}>
-        <div
-          className={
-            cardType === "skill"
-              ? `${styles.rightCard} ${viewAnimation ? styles.highlight : ""}`
-              : `${styles.leftCard} ${viewAnimation ? styles.highlight : ""}`
-          }
-          onClick={handleClick}
-        >
-          <div className={styles.titleContainer}>
-            <div className={styles.miniheadingDelete}>
-              <a className={styles.cardsminiheading}>{miniHeading}</a>
-              {cardType === "skill" && (
-                <div className={styles.cardsDeleteEdit}>
-                  {canDelete ? (
-                    <TextButton
-                      onClick={handleDeleteIconClick}
-                      isDelete={true}
-                      className={styles.deleteTextIcon}
-                      icon={<TiDeleteOutline size={19} />}
-                      text=" Remove"
-                    />
-                  ) : canEdit ? (
-                    <MdModeEdit
-                      className={styles.deleteIcon}
-                      onClick={handleEditIconClick}
-                      title="Edit"
-                    />
-                  ) : null}
-                  {canEdit && canDelete && (
-                    <MdModeEdit
-                      className={styles.editIcon}
-                      onClick={handleEditIconClick}
-                      title="Edit"
-                    />
-                  )}
-                </div>
+    <div
+      className={
+        cardType === "skill"
+          ? `${styles.rightCard} ${viewAnimation ? styles.highlight : ""}`
+          : `${styles.leftCard} ${viewAnimation ? styles.highlight : ""}`
+      }
+      onClick={handleClick}
+    >
+      <div className={styles.titleContainer}>
+        <div className={styles.miniheadingDelete}>
+          <a className={styles.cardsminiheading}>{miniHeading}</a>
+          {cardType === "skill" && (
+            <div className={styles.cardsDeleteEdit}>
+              {canDelete ? (
+                // <TextButton
+                //   onClick={handleDeleteIconClick}
+                //   isDelete={true}
+                //   className={styles.deleteTextIcon}
+                //   icon={<RxCross1 size={19} />}
+                //   text=" Remove"
+                // />
+                <RxCross1
+                  className={styles.deleteTextIcon}
+                  onClick={handleDeleteIconClick}
+                  text=" Remove"
+                  title=" Remove"
+                />
+              ) : canEdit ? (
+                <MdModeEdit
+                  className={styles.deleteIcon}
+                  onClick={handleEditIconClick}
+                  title="Edit"
+                />
+              ) : null}
+              {canEdit && canDelete && (
+                <MdModeEdit
+                  className={styles.editIcon}
+                  onClick={handleEditIconClick}
+                  title="Edit"
+                />
               )}
             </div>
-            <a
-              className={styles.cardsmainheading}
-              style={
-                cardType === "skill" ? { width: "90%" } : { width: "auto" }
-              }
-            >
-              {transformMainHeading(mainHeading, cardType)}
-            </a>
-            {showCount && (
-              <a className={styles.cardsdiscription}>{formattedCount}</a>
-            )}
-          </div>
+          )}
+        </div>
+        <a
+          className={styles.cardsmainheading}
+          style={cardType === "skill" ? { width: "90%" } : { width: "auto" }}
+        >
+          {transformMainHeading(mainHeading, cardType)}
+        </a>
+        <div className={styles.cardsbottom}>
+          {showCount && (
+            <a className={styles.cardsdiscription}>{formattedCount}</a>
+          )}
+          {creationDate && (
+            <div className={styles.creationDate}>
+              Created on: {new Date(creationDate).toLocaleDateString()}
+            </div>
+          )}
         </div>
       </div>
     </div>

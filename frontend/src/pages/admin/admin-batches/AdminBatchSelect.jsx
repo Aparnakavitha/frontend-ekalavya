@@ -4,7 +4,8 @@ import AdminBatchSearch from "../../../layouts/admin-batches/components/AdminBat
 import AdminBatchParticipants from "../../../layouts/admin-batches/components/AdminBatchParticipants";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { fetchbatches } from "../../../services/Batch";
+import NoData from "../../../components/nodata/NoData";
 import {
   fetchBatchParticipants,
   updateBatch,
@@ -13,8 +14,10 @@ import {
 } from "../../../services/Batch";
 import { getUserDetails } from "../../../services/User";
 import image from "../../../assets/DP.png";
+import secureLocalStorage from "react-secure-storage";
 
-const loggedUserFirstName = sessionStorage.getItem("firstName");
+const userSession = secureLocalStorage.getItem("userSession") || {};
+const loggedUserFirstName = userSession.firstName;
 
 const greeting = {
   welcome: "Welcome back",
@@ -35,11 +38,23 @@ const AdminBatchSelect = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredUserdetails, setFilteredUserdetails] = useState([]);
+  const [batchNameapi, setBatchNameapi] = useState("");
+
 
   useEffect(() => {
     fetchData();
   }, []);
-
+  const fetchBatchName = async (batchId) => {
+    try {
+      const responseData = await fetchbatches({batchId});
+      const data = responseData.responseData[0];
+      setBatchNameapi(data.batchName);
+      console.log("_______________", data.batchName);
+    } catch {
+      console.log("error fetching Batch Name");
+    }
+  };
+  
   useEffect(() => {
     if (searchTerm === "") {
       setFilteredUserdetails(batchParticipantsData);
@@ -50,15 +65,16 @@ const AdminBatchSelect = () => {
         )
       );
     }
-  }, [searchTerm, batchParticipantsData]);
+    fetchBatchName(batchId);
+  }, [searchTerm, batchParticipantsData,batchId]); 
+  
 
   const fetchData = async () => {
     try {
       const batchId = params.batchId;
       const participantsResponse = await fetchBatchParticipants({ batchId });
       const participantIds = participantsResponse.responseData;
-      const count = participantIds.length;
-      setParticipantCount(count);
+     
 
       if (Array.isArray(participantIds) && participantIds.length > 0) {
         const userId = participantIds.join(",");
@@ -82,6 +98,8 @@ const AdminBatchSelect = () => {
           a.studentName.localeCompare(b.studentName)
         );
         setBatchParticipantsData(batchParticipantsData);
+        const count = batchParticipantsData.length;
+        setParticipantCount(count);
         setFilteredUserdetails(batchParticipantsData); 
         setNewParticipantsData([]);
       } else {
@@ -170,7 +188,7 @@ const AdminBatchSelect = () => {
         batchDelete={handleDeleteBatches}
         addParticipant={addParticipant}
         setBatchName={setBatchName}
-        batchName={batchName}
+        batchName={batchNameapi}
         batchId={params.batchId}
         batchParticipantsData={batchParticipantsData}
         searchTerm={searchTerm}
@@ -199,9 +217,7 @@ const AdminBatchSelect = () => {
           fetchData={fetchData}
         />
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No participants available for this batch
-        </p>
+        <NoData title="Students"/>
       )}
     </div>
   );

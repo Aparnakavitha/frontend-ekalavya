@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
@@ -35,11 +35,20 @@ const AddEvent = ({
     watch,
     setValue,
     formState: { errors },
+    trigger,
   } = useForm({
     defaultValues: mergedDefaultValues,
   });
 
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
+
+  const eventTitleRef = useRef(null);
+
+  useEffect(() => {
+    if (eventTitleRef.current){
+      eventTitleRef.current.focus();
+    }
+  }, []);
 
   const handleFormSubmit = (data) => {
     const ensureFullTimeFormat = (time) => {
@@ -60,6 +69,10 @@ const AddEvent = ({
     }
     console.log(data);
     onSubmit(data);
+  };
+
+  const handleBlur = async (fieldName) => {
+    await trigger(fieldName);
   };
 
   const options = [
@@ -106,10 +119,12 @@ const AddEvent = ({
             render={({ field }) => (
               <Input
                 {...field}
+                ref={eventTitleRef}
                 label="Event Title"
                 size="normal"
                 placeholders={["Event Title"]}
                 className={`${styles["addevent-eventtitle"]}`}
+                onBlur={() => handleBlur("eventTitle")}
               />
             )}
           />
@@ -135,6 +150,7 @@ const AddEvent = ({
                 placeholder="Event Mode"
                 options={options}
                 className={`${styles["addevent-eventmode"]}`}
+                onBlur={() => handleBlur("eventMode")}
               />
             )}
           />
@@ -161,6 +177,7 @@ const AddEvent = ({
             placeholders={["Event Type"]}
             options={eventtypeoptions}
             className={`${styles["addevent-eventtype"]}`}
+            onBlur={() => handleBlur("eventType")}
           />
         )}
       />
@@ -184,6 +201,7 @@ const AddEvent = ({
             size="large"
             placeholders={["Description"]}
             className={`${styles["addevent-description"]}`}
+            onBlur={() => handleBlur("description")}
           />
         )}
       />
@@ -199,7 +217,9 @@ const AddEvent = ({
             name="startDate"
             control={control}
             rules={{
-              validate: mergedDefaultValues.startDate ? validateStartDate('edit') : validateStartDate('new'),
+              validate: mergedDefaultValues.startDate
+                ? validateStartDate("edit")
+                : validateStartDate("new"),
             }}
             render={({ field }) => (
               <Input
@@ -209,6 +229,7 @@ const AddEvent = ({
                 placeholders={["dd/mm/yyyy"]}
                 className={`${styles["addevent-startdate"]}`}
                 isDatePicker
+                onBlur={() => handleBlur("startDate")}
               />
             )}
           />
@@ -234,6 +255,7 @@ const AddEvent = ({
                 placeholders={["dd/mm/yyyy"]}
                 className={`${styles["addevent-enddate"]}`}
                 isDatePicker
+                onBlur={() => handleBlur("endDate")}
               />
             )}
           />
@@ -259,6 +281,7 @@ const AddEvent = ({
                 placeholders={["hh:mm:ss"]}
                 className={`${styles["addevent-starttime"]}`}
                 isTimePicker
+                onBlur={() => handleBlur("startTime")}
               />
             )}
           />
@@ -284,6 +307,7 @@ const AddEvent = ({
                 placeholders={["hh:mm:ss"]}
                 className={`${styles["addevent-endtime"]}`}
                 isTimePicker
+                onBlur={() => handleBlur("endTime")}
               />
             )}
           />
@@ -317,6 +341,7 @@ const AddEvent = ({
               selectedEventMode === "Online" ? "Link" : "Location",
             ]}
             className={`${styles["addevent-location"]}`}
+            onBlur={() => handleBlur("location")}
           />
         )}
       />
@@ -340,6 +365,7 @@ const AddEvent = ({
             size="normal"
             placeholders={["Speaker"]}
             className={`${styles["addevent-speaker"]}`}
+            onBlur={() => handleBlur("speaker")}
           />
         )}
       />
@@ -363,6 +389,7 @@ const AddEvent = ({
             size="normal"
             placeholders={["Speaker Description"]}
             className={`${styles["addevent-speaker"]}`}
+            onBlur={() => handleBlur("speakerDescription")}
           />
         )}
       />
@@ -377,7 +404,7 @@ const AddEvent = ({
           name="hostId"
           control={control}
           rules={{
-            required: "Organizer is required"
+            required: "Organizer is required",
           }}
           render={({ field }) => (
             <InputDropdown
@@ -387,14 +414,13 @@ const AddEvent = ({
               placeholders={["Organizer"]}
               options={organizeroptions}
               className={`${styles["addevent-organizer"]}`}
+              onBlur={() => handleBlur("hostId")}
             />
           )}
         />
       )}
       {errors.hostId && (
-        <p className={`${styles["addevent-error"]}`}>
-          {errors.hostId.message}
-        </p>
+        <p className={`${styles["addevent-error"]}`}>{errors.hostId.message}</p>
       )}
 
       <PrimaryButton

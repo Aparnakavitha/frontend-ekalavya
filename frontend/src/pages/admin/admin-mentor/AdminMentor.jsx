@@ -6,6 +6,8 @@ import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 import { Greeting, DataView } from "../../../layouts/common";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import NoData from "../../../components/nodata/NoData";
+import secureLocalStorage from "react-secure-storage";
 
 const fetchMentorData = async (setMentorData, value = "") => {
   try {
@@ -86,7 +88,8 @@ const AdminMentor = () => {
     }
   };
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const loggedUserFirstName = userSession.firstName;
 
   const greet = {
     welcome: "Welcome back",
@@ -106,7 +109,7 @@ const AdminMentor = () => {
         firstTrueAnimationSet = true;
       }
       return {
-        studentImage: image,
+        studentImage: mentor.profilePicture || image,
         studentName: `${mentor.firstName || "N/A"} ${mentor.lastName || ""}`,
         studentId: mentor.userId || "",
         studentCollege: "",
@@ -148,20 +151,18 @@ const AdminMentor = () => {
 
       {mentorData.length > 0 ? (
         <div>
-        <DataView
-          CardComponent={(props) => (
-            <ProfileCard
-              {...props}
-              onClick={() => handleCardClick(props.studentId)}
-            />
-          )}
-          {...data}
-        />
+          <DataView
+            CardComponent={(props) => (
+              <ProfileCard
+                {...props}
+                onClick={() => handleCardClick(props.studentId)}
+              />
+            )}
+            {...data}
+          />
         </div>
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No mentors available
-        </p>
+        <NoData title="Mentors" />
       )}
     </div>
   );

@@ -11,7 +11,7 @@ const AdminBatchActionData = {
     variant: "custom",
     placeholder: "Batch",
   },
-  searchPlaceholder: "Enter Batch Name",
+  searchPlaceholder: "Search Batch Name",
   showFiltersAndReset: false,
   batchprops: {
     mainHeading: "Create Batch",

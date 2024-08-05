@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../Home.module.css";
 import { BsX, BsList } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
 import Modal from "../../common/components/Modal";
 import LoginBox from "../../common/components/LoginBox";
 
@@ -20,24 +21,20 @@ const Header = ({
   const navigate = useNavigate();
 
   const handleOpenLoginModal = () => {
-    // Check if user is already logged in
-    const isLoggedIn = !!sessionStorage.getItem("user_id");
+    const userSession = secureLocalStorage.getItem("userSession") || {};
+    const isLoggedIn = !!userSession.userId;
 
     if (isLoggedIn) {
-      // Navigate based on role
-      const roleId = parseInt(sessionStorage.getItem("role"));
+      const roleId = userSession.roleId;
       navigateBasedOnRole(roleId);
     } else {
-      // Open login modal if not logged in
       setIsLoginModalOpen(true);
     }
   };
 
-
   const handleCloseLoginModal = () => {
     setIsLoginModalOpen(false);
   };
-
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
@@ -91,7 +88,12 @@ const Header = ({
                 {item.name}
               </a>
             ))}
-          <div onClick={handleOpenLoginModal} className={`${styles["header-button"]}`}>{button}</div>
+          <div
+            onClick={handleOpenLoginModal}
+            className={`${styles["header-button"]}`}
+          >
+            {button}
+          </div>
         </div>
 
         <div
@@ -147,7 +149,12 @@ const Header = ({
         </div>
       )}
 
-      <div onClick={handleOpenLoginModal} className={`${styles["header-button"]}`}>{button}</div>
+      <div
+        onClick={handleOpenLoginModal}
+        className={`${styles["header-button"]}`}
+      >
+        {button}
+      </div>
     </div>
   );
 };

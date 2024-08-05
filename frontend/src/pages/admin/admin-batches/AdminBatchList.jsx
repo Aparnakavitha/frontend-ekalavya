@@ -5,6 +5,8 @@ import SkillBatchCard from "../../../components/cards/SkillBatchCard";
 import { fetchbatches, createBatch } from "../../../services/Batch";
 import AdminBatchAction from "../../../layouts/admin-batches/components/AdminBatchAction";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import NoData from "../../../components/nodata/NoData";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminBatchList = () => {
   const navigate = useNavigate();
@@ -40,6 +42,7 @@ const AdminBatchList = () => {
           Count: item.participantCount,
           cardType: "batch",
           showCount: true,
+          creationDate: item.creationDate,
           handleClick: () => handleClick(item.batchId, item.batchName),
         }));
 
@@ -59,7 +62,7 @@ const AdminBatchList = () => {
       }
     } catch (error) {
       console.error("Error fetching data:", error);
-      setError("No batches available");
+      setError("No Batches to display");
     } finally {
       setLoading(false);
     }
@@ -88,7 +91,8 @@ const AdminBatchList = () => {
     }
   };
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const loggedUserFirstName = userSession.firstName;
 
   return (
     <div>
@@ -109,29 +113,27 @@ const AdminBatchList = () => {
       {loading ? (
         <LoadingSpinner />
       ) : error ? (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          {error}
-        </p>
+        <p style={{ padding: "2vh 4vw", color: "white" }}>{error}</p>
       ) : batchData && batchData.length > 0 ? (
         <div>
-        <DataView
-          data={batchData}
-          CardComponent={(props) => <SkillBatchCard {...props} />}
-          tableColumns={[
-            { key: "miniHeading", displayName: "Batch ID" },
-            { key: "mainHeading", displayName: "Batch Name" },
-            { key: "Count", displayName: "Participant Count" },
-          ]}
-          toggle={true}
-          cardType="skillbatchcardbatch"
-          itemsPerPage={12}
-          showCount={true}
-        />
+          <DataView
+            data={batchData}
+            CardComponent={(props) => <SkillBatchCard {...props} />}
+            tableColumns={[
+              { key: "miniHeading", displayName: "Batch ID" },
+              { key: "mainHeading", displayName: "Batch Name" },
+              { key: "Count", displayName: "Participant Count" },
+              { key: "creationDate", displayName: "Creation Date" },
+            ]}
+            toggle={true}
+            cardType="skillbatchcardbatch"
+            itemsPerPage={12}
+            showCount={true}
+            creationDate={true}
+          />
         </div>
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No batches available
-        </p>
+        <NoData title="Batches" />
       )}
     </div>
   );

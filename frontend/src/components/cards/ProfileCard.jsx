@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./ProfileCard.module.css";
-import { MdDeleteOutline } from "react-icons/md";
+import { GoTrash } from "react-icons/go";
+import { RxCross1 } from "react-icons/rx";
+
 
 const ProfileCard = (props) => {
   const {
@@ -14,6 +16,8 @@ const ProfileCard = (props) => {
     canDelete,
     handleDelete,
     viewAnimation = false,
+    attendance = false,
+    percentage
   } = props;
 
   const transformMainMail = (studentMail) => {
@@ -55,7 +59,7 @@ const ProfileCard = (props) => {
             className={styles["student-image"]}
           />
           {canDelete && (
-            <MdDeleteOutline 
+            <RxCross1
               className={styles["delete-icon"]}
               title="Remove"
               onClick={handleDeleteIcon}
@@ -63,17 +67,30 @@ const ProfileCard = (props) => {
           )}
         </div>
         <div className={styles["titles-wrapper"]}>
-          <h1 className={styles.title1} title={studentName}>{transformName(studentName)}</h1>
-          <h2 className={styles.title2} title={studentId}>{transformName(studentId)}</h2>
-          <h3 className={styles.title3} title={studentCollege}>{transformCollege(studentCollege)}</h3>
+          <h1 className={styles.title1} title={studentName}>
+            {transformName(studentName)}
+          </h1>
+          <h2 className={styles.title2} title={studentId}>
+            {transformName(studentId)}
+          </h2>
+          <h3 className={styles.title3} title={studentCollege}>
+            {transformCollege(studentCollege)}
+          </h3>
         </div>
-
+        {/* 
         <div className={styles["contact-info"]}>
           <div className={styles.email} title={studentMail}>{transformMainMail(studentMail)}</div>
           <div className={styles.phone} title={studentPhoneNumber}>
             {transformMainMail(studentPhoneNumber)}
           </div>
-        </div>
+        </div> */}
+
+        {attendance && (
+         <div className={styles["attendance"]}>
+         <div className={styles.attendancecontainer}>
+         <p className={styles.attendance}>Attendance:</p>  <p className={styles.percentage}> {percentage}%</p></div>
+       </div>
+        )}
       </div>
     </div>
   );

@@ -5,6 +5,8 @@ import DataView from "../../../layouts/common/components/DataView";
 import PrimaryCard from "../../../components/cards/PrimaryCard";
 import { fetchEventsService } from "../../../services/Event";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import NoData from "../../../components/nodata/NoData";
+import secureLocalStorage from "react-secure-storage";
 
 const MentorEvents = () => {
   const navigate = useNavigate();
@@ -16,7 +18,8 @@ const MentorEvents = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const userId = sessionStorage.getItem("user_id");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const userId = userSession.userId;
 
   const fetchEventsByStatus = async (status) => {
     setLoading(true);
@@ -27,7 +30,7 @@ const MentorEvents = () => {
         completed: status === "completed" ? 1 : 0,
       });
       console.log(`Fetched ${status} events:`, eventList);
-      const reversedEventList = eventList.reverse();   
+      const reversedEventList = eventList.reverse();
       setEvents(reversedEventList);
       setFilteredEvents(reversedEventList);
     } catch (error) {
@@ -108,22 +111,13 @@ const MentorEvents = () => {
       />
       {loading && <LoadingSpinner />}
       {error && <p>Error: {error}</p>}
-      {!loading && !error && (
-        filteredEvents.length > 0 ? (
+      {!loading &&
+        !error &&
+        (filteredEvents.length > 0 ? (
           <DataView CardComponent={PrimaryCard} {...primaryCardData} />
         ) : (
-          <div
-            style={{
-              textAlign: "left",
-              color: "var(--neutral600)",
-              marginTop: "-19px",
-            }}
-            className="padding"
-          >
-            &nbsp;&nbsp;No events to display
-          </div>
-        )
-      )}
+          <NoData title="Events" />
+        ))}
     </div>
   );
 };

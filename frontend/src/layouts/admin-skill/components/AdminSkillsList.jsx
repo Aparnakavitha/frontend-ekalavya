@@ -18,6 +18,7 @@ import {
 } from "../../../states/Atoms";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { toast } from "react-toastify";
+import NoData from "../../../components/nodata/NoData";
 
 const capitalizeFirstLetter = (string) => {
   return string.trim().charAt(0).toUpperCase() + string.slice(1);
@@ -101,6 +102,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
   let firstTrueAnimationSet = false;
 
   const skillData = {
+    itemsPerPage : 20,
     data:skills && skills.map((skill) => {
       let viewAnimation = false;
       if (!firstTrueAnimationSet && cardAnimation && skill.newEntry) {
@@ -115,6 +117,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
         Count: skill.count,
         canEdit: true,
         cardType: "skill",
+        creationDate:false,
         showCount: true,
         viewAnimation,
         handleClick: async () => {
@@ -165,9 +168,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
           <DataView CardComponent={SkillBatchCard} {...skillData} />
         </div>
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No skills available
-        </p>
+        <NoData title="Skills"/>
       )}
 
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>

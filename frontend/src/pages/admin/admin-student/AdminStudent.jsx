@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast, Slide } from "react-toastify";
+import secureLocalStorage from "react-secure-storage";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import DataView from "../../../layouts/common/components/DataView";
 import Greeting from "../../../layouts/common/components/Greeting";
-import AddCollege from "../../../layouts/admin-student/components/AddCollege";
-import CollegeList from "../../../layouts/admin-student/components/CollegeList";
 import Modal from "../../../layouts/common/components/Modal";
 import ActionComponent from "../../../layouts/common/components/Action";
 import AddUser from "../../../layouts/common/components/AddUser";
@@ -19,6 +18,7 @@ import {
 import { fetchBatchParticipants, fetchbatches } from "../../../services/Batch";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import image from "../../../assets/DP.png";
+import NoData from "../../../components/nodata/NoData";
 
 const fetchStudentsData = async (setStudentsData, params) => {
   try {
@@ -169,7 +169,8 @@ const AdminStudent = () => {
     return <LoadingSpinner />;
   }
 
-  const loggedUserFirstName = sessionStorage.getItem("firstName");
+  const userSession = secureLocalStorage.getItem("userSession");
+  const loggedUserFirstName = userSession.firstName;
 
   const AdminStudentData = {
     greetingData: {
@@ -177,7 +178,7 @@ const AdminStudent = () => {
       name: loggedUserFirstName || "",
       info: "Here is the information about",
       profile: "Students",
-      showButtons: true,
+      showButtons: false,
       viewprops: {
         data: collegeData,
         headings: [
@@ -219,7 +220,7 @@ const AdminStudent = () => {
       // },
     ],
     resetProps: {
-      variant: "secondary",
+      variant: "reset",
       content: "Reset",
       width: "full",
     },
@@ -231,7 +232,7 @@ const AdminStudent = () => {
       viewCollege: true,
       heading: "Add New Student",
     },
-    searchPlaceholder: "Enter Student ID/Name",
+    searchPlaceholder: "Search Student ID/Name",
     combinedFilter: false,
   };
 
@@ -246,7 +247,7 @@ const AdminStudent = () => {
       }
 
       return {
-        studentImage: image,
+        studentImage: student.profilePicture || image,
         studentName: `${student.firstName || ""} ${student.lastName || ""}`,
         studentId: student.userId || "",
         studentCollege: student.college.collegeName || "",
@@ -406,16 +407,16 @@ const AdminStudent = () => {
   return (
     <div>
       <Greeting {...GreetingData} />
-      <Modal isOpen={isViewOpen} widthVariant="large" onClose={handleCloseView}>
+      {/* <Modal isOpen={isViewOpen} widthVariant="large" onClose={handleCloseView}>
         {collegeData.length > 0 ? (
           <CollegeList {...AdminStudentData.greetingData.viewprops} />
         ) : (
           <div>No colleges available</div>
         )}
-      </Modal>
-      <Modal isOpen={isAddOpen} widthVariant="large" onClose={handleCloseAdd}>
+      </Modal> */}
+      {/* <Modal isOpen={isAddOpen} widthVariant="large" onClose={handleCloseAdd}>
         <AddCollege onSubmit={handleFormSubmit} />
-      </Modal>
+      </Modal> */}
 
       <ActionComponent
         {...actionData}
@@ -442,15 +443,15 @@ const AdminStudent = () => {
               <ProfileCard
                 {...props}
                 onClick={() => handleCardClick(props.studentId)}
+                attendance={true}
+                percentage="99"
               />
             )}
             {...dataView}
           />
         </div>
       ) : (
-        <p style={{ color: "white", paddingLeft: "80px", paddingTop: "30px" }}>
-          No students available
-        </p>
+        <NoData title="Students" />
       )}
       {/* <ToastContainer
         position="top-center"

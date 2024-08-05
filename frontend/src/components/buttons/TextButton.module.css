@@ -45,3 +45,17 @@
 .redHover:hover .dicon {
   color: white;
 }
+
+.redSpeaker .text,
+.redSpeaker .icon,
+.redSpeaker .dtext,
+.redSpeaker .dicon {
+  color: var(--white);
+}
+
+.redSpeaker:hover .text,
+.redSpeaker:hover .icon,
+.redSpeaker:hover .dtext,
+.redSpeaker:hover .dicon {
+  color:  var(--warning-color);  
+}

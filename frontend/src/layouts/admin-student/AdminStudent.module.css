@@ -242,6 +242,9 @@
   align-items: center;
   justify-content: flex-end;
 }
+.cardrow-padding{
+  padding: 20px 0px;
+}
 
 @media (max-width: 992px) {
   .cardrow-skillcontainer {

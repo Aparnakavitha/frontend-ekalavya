@@ -5,7 +5,7 @@ import styles from "../Common.module.css";
 import { PiCards, PiListBullets } from "react-icons/pi";
 
 const DataView = ({
-  cardType = "profilecard",
+  cardType = "Primarycard",
   CardComponent,
   data = [],
   tableColumns = [],
@@ -116,7 +116,7 @@ const DataView = ({
           <div className={styles["dataview-cardscontainer"]}>
             {currentData.map((item, index) => (
               <div key={index} className={`${styles[getComponentName(item)]}`}>
-                <CardComponent {...item} />
+                <CardComponent {...item} index={index}/>
               </div>
             ))}
             {!isMobileView &&

@@ -77,10 +77,7 @@ const StudentProfileInfo = ({ studentsData, onSubmit }) => {
     description: studentsData.aboutMe ? (
       studentsData.aboutMe
     ) : (
-      <div className="nodata"
-      >
-        No data available
-      </div>
+      <div className="nodata">No data available</div>
     ),
   };
 
@@ -92,7 +89,7 @@ const StudentProfileInfo = ({ studentsData, onSubmit }) => {
       <UserProfileInfo
         userId={studentsData.userId}
         role={studentsData.role ? studentsData.role.roleName : ""}
-        profilepic={profilepic}
+        profilepic={studentsData.profilePicture || profilepic}
         name={`${studentsData.firstName || "N/A"} ${studentsData.lastName || "N/A"}`}
         college={studentsData.college ? studentsData.college.collegeName : ""}
         dob={studentsData.dob}

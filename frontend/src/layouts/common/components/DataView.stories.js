@@ -9,6 +9,7 @@ import SkillUser from "../../../components/cards/SkillUser";
 import StudentCard from "../../../components/cards/StudentCard";
 import TestimonialCard from "../../../components/cards/TestimonialCard";
 import image from "../../../assets/DP.png";
+import CollegeCard from "../../../components/cards/CollegeCard";
 
 export default {
   title: "Layouts/Common/Components/DataView",
@@ -356,6 +357,185 @@ const skillUserData = {
   toggle: true,
   itemsPerPage: 11,
 };
+
+const collegeCardData = {
+  data: [
+    {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },
+    {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },
+    {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },
+    {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },
+    {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },
+    {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },
+    {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },
+    {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },
+    {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },  {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },  {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },  {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },  {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },  {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },  {
+      miniHeading: '101',
+      mainHeading: 'College of Science Thrissur',
+      Count: 150,
+      cardType: 'college',
+      handleClick: console.log('Card clicked'),
+      showCount: true,
+      viewAnimation: false,
+      showPlace:true,
+      placeHeading:'Irinjalakuda, Thrissur',
+    },
+  ],
+  tableColumns: [
+    { key: "miniHeading", displayName: "College ID" },
+    { key: "mainHeading", displayName: "College Name" },
+    { key: "Count", displayName: "Count" },
+    { key: "placeHeading", displayName: "Place" },
+
+  ],
+  toggle: true,
+  itemsPerPage: 12,
+};
+
+export const CollegeCardView = (args) => (
+  <DataView CardComponent={CollegeCard} {...args} />
+);
+CollegeCardView.args = collegeCardData;
+
 
 export const PrimaryCardView = (args) => (
   <DataView CardComponent={PrimaryCard} {...args} />

@@ -18,6 +18,18 @@
   height: 169px;
   width: 169px;
 }
+.attendancecontainer{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 5px;
+}
+.attendance{
+ color: var(--neutral400);
+}
+.percentage{
+  color: var(--primary-color);
+}
 
 .image-icon {
   display: flex;
@@ -30,9 +42,8 @@
 .delete-icon {
   /* color: var(--primary-color); */
   cursor: pointer;
-  height: 25px;
-  width: 25px;
   display: none;
+  stroke-width: 1px;
 }
 .card:hover .delete-icon {
   display: block; 
@@ -89,6 +100,7 @@
 
 .email,
 .phone {
+  display: none;
   font-size: 16px;
   font-weight: 500;
   line-height: 15px;
@@ -101,11 +113,14 @@
 
 .card:hover .title1,
 .card:hover .title2,
-.card:hover .title3 {
+.card:hover .title3 ,
+.card:hover .percentage,
+.card:hover .attendance{
   color: var(--neutral600);
 }
 
-.card:hover .contact-info{
+.card:hover .contact-info,
+.card:hover .percentage{
   color: var(--neutral800);
 }
 

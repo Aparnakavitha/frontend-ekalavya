@@ -11,7 +11,7 @@ const EventAction = ({ onSearchChange, onFilterChange, participantCount }) => {
     showReset: true,
     searchbarProps: {
       variant: "custom",
-      placeholder: "Event",
+      placeholder: "Search Events",
     },
     showFiltersAndReset: true,
     filterProps: [
@@ -41,7 +41,7 @@ const EventAction = ({ onSearchChange, onFilterChange, participantCount }) => {
       },
     ],
     resetProps: {
-      variant: "secondary",
+      variant: "reset",
       content: "Reset",
       width: "full",
     },

@@ -123,6 +123,22 @@ const skillsAct = {
   showFiltersAndReset: false,
 };
 
+const collegesAct = { 
+  heading: "Colleges List",
+  showDelete: false,
+  buttonProps: {
+    variant: "tertiary",
+    content: "+ Add new College",
+    width: "full",
+  },
+  searchWidth: "large",
+  searchbarProps: {
+    variant: "custom",
+    placeholder: "Batch",
+  },
+  showFiltersAndReset: false,
+};
+
 export const studentAction = {
   args: {
     ...studentAct,
@@ -150,5 +166,11 @@ export const batchesAction = {
 export const skillAction = {
   args: {
     ...skillsAct,
+  },
+};
+
+export const collegeAct = {
+  args: {
+    ...collegesAct,
   },
 };

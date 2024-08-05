@@ -9,6 +9,7 @@ import profilepic from "../../../assets/DP.png";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { fetchEventsService } from "../../../services/Event";
 import { toast } from "react-toastify";
+import secureLocalStorage from "react-secure-storage";
 
 const StudentProfile = () => {
   const [studentData, setStudentData] = useState(null);
@@ -16,7 +17,8 @@ const StudentProfile = () => {
 
   const fetchData = async () => {
     try {
-      const userId = sessionStorage.getItem("user_id");
+      const userSession = secureLocalStorage.getItem("userSession") || {};
+      const userId = userSession.userId;
       const params = {
         userId: userId,
       };
@@ -45,7 +47,7 @@ const StudentProfile = () => {
       console.log("Update response:", response);
       fetchData();
     } catch (error) {
-      console.error("Error updating user details:",error);
+      console.error("Error updating user details:", error);
     }
   };
 
@@ -67,7 +69,7 @@ const StudentProfile = () => {
       date: new Date(event.startDate).getDate(),
     }));
   };
-  
+
   const transformedEventData = eventData ? transformEventData(eventData) : [];
   console.log(transformedEventData);
 
@@ -111,7 +113,7 @@ const StudentProfile = () => {
   };
 
   const profileData = {
-    profilepic: profilepic,
+    profilepic: localStorage.getItem("profilePicture") || profilepic,
     name: `${studentData.firstName} ${studentData.lastName}`,
     college: studentData.college?.collegeName || "",
     email: studentData.emailId,

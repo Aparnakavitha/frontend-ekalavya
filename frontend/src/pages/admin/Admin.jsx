@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import edunexa from "../../../src/assets/edunexa.png";
@@ -23,7 +24,7 @@ import AdminMentorDetails from "./admin-mentor/AdminMentorDetails";
 import AdminEventDetails from "./admin-events/EventDetails";
 import AdminEventParticipants from "./admin-events/AdminEventParticipants";
 import AdminSkillStudents from "./admin-skills/AdminSkillStudents";
-import { getUserDetails } from "../../services/User";
+import { getUserDetails, updateUserDetails } from "../../services/User";
 import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import { SkillsProvider } from "./admin-skills/AdminSkillContext";
 import { RecoilRoot } from "recoil";
@@ -32,6 +33,10 @@ import "react-toastify/dist/ReactToastify.css";
 import image from "../../assets/DP.png";
 import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
+import { IoSchoolSharp } from "react-icons/io5";
+import AdminCollege from "./admin-college/AdminCollege";
+import AdminCollegeStudents from "./admin-college/AdminCollegeStudents";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -43,20 +48,40 @@ const AdminContent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = sessionStorage.getItem("user_id");
+        const userSession = secureLocalStorage.getItem("userSession") || {};
+        const userId = userSession.userId;
         if (!userId) {
           console.error("User ID is not found in session storage");
           return;
         }
         console.log("Fetched User ID:", userId);
-        console.log("UserId is of type:",typeof(userId));
+        console.log("UserId is of type:", typeof userId);
         const params = {
           userId: userId,
         };
         const data = await getUserDetails(params);
         const firstName = data.responseData[0].firstName;
-        sessionStorage.setItem("firstName", firstName);
+        const updatedSession = {
+          ...userSession,
+          firstName: firstName,
+        };
+        secureLocalStorage.setItem("userSession", updatedSession);
         setUserData(data.responseData[0]);
+
+        const storedProfilePicture = data.responseData[0].profilePicture;
+        const googleProfilePicture = localStorage.getItem("profilePicture");
+
+        if (storedProfilePicture != googleProfilePicture) {
+          try {
+            await axios.get(googleProfilePicture);
+            await updateUserDetails({
+              userId: userId,
+              profilePicture: googleProfilePicture,
+            });
+          } catch (error) {
+            console.error("Error fetching profile picture");
+          }
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -69,7 +94,8 @@ const AdminContent = () => {
     return <LoadingSpinner />;
   }
   const handleLogout = () => {
-    sessionStorage.clear();
+    secureLocalStorage.removeItem("userSession");
+    localStorage.removeItem("profilePicture");
     navigate("/");
     toast.success("Logout Successful", {
       position: "top-center",
@@ -88,6 +114,7 @@ const AdminContent = () => {
   };
 
   const handleOpenLogoutModal = () => {
+    console.log("sda");
     setIsLogoutModalOpen(true);
   };
 
@@ -113,6 +140,12 @@ const AdminContent = () => {
         viewIcon: true,
         page: "mentor",
       },
+      {
+        icon: <IoSchoolSharp />,
+        name: "Colleges",
+        viewIcon: true,
+        page: "colleges",
+      },
       { icon: <MdEvent />, name: "Events", viewIcon: true, page: "events" },
       {
         icon: <MdViewQuilt />,
@@ -129,9 +162,10 @@ const AdminContent = () => {
     ],
     profileBox: {
       name: `${userData.firstName} ${userData.lastName}`,
-      profilePic: image,
+      profilePic: `${localStorage.getItem("profilePicture")}` || image,
       gmail: userData.emailId,
-      onNameClick: () => navigate(`/admin/student`),
+      onProfileClick: () => navigate(`/admin/student`),
+      role: "admin",
     },
   };
 
@@ -166,7 +200,9 @@ const AdminContent = () => {
               name={sidebarContent.profileBox.name}
               profilePic={sidebarContent.profileBox.profilePic}
               gmail={sidebarContent.profileBox.gmail}
-              onNameClick={sidebarContent.profileBox.onNameClick}
+              onProfileClick={sidebarContent.profileBox.onProfileClick}
+              onLogoutClick={handleOpenLogoutModal}
+              role={sidebarContent.profileBox.role}
             />
           </div>
           <div className="statecontent">
@@ -178,6 +214,8 @@ const AdminContent = () => {
                   <Route path="events" element={<AdminEvent />} />
                   <Route path="batches" element={<AdminBatchList />} />
                   <Route path="skills" element={<AdminSkill />} />
+                  <Route path="colleges" element={<AdminCollege />} />
+
                   <Route
                     path="skills/skill-participants"
                     element={<AdminSkillStudents />}
@@ -201,6 +239,14 @@ const AdminContent = () => {
                   <Route
                     path="events/event-details/event-participants/:eventId"
                     element={<AdminEventParticipants />}
+                  />
+                  <Route
+                    path="colleges/college-participants/:collegeId"
+                    element={<AdminCollegeStudents />}
+                  />
+                  <Route
+                    path="/batches/batch-details/student-details/:userId"
+                    element={<AdminStudentDetails />}
                   />
                 </Routes>
               </SkillsProvider>

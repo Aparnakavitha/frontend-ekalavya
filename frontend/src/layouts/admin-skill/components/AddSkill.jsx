@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import styles from "../AdminSkill.module.css";
@@ -12,6 +12,14 @@ const AddSkill = ({ onSubmit, onCancel, error }) => {
     setSkill(event.target.value);
     setLocalError("");
   };
+
+  const addSkillRef = useRef(null);
+
+  useEffect(() => {
+    if (addSkillRef.current) {
+      addSkillRef.current.focus();
+    }
+  }, []);
 
   const validateSkill = (skill) => {
     if (!skill.trim()) {
@@ -41,6 +49,7 @@ const AddSkill = ({ onSubmit, onCancel, error }) => {
         <p>Create New Skill</p>
         <div className={`${styles["addskill-inputbox"]}`}>
           <Input
+            ref={addSkillRef}
             size="normal"
             label="Create Skills"
             placeholders={["Skills"]}
@@ -49,7 +58,11 @@ const AddSkill = ({ onSubmit, onCancel, error }) => {
             id="normal-input"
           />
         </div>
-        {(localError || error) && <div className={`${styles["error-message"]}`}>{localError || error}</div>}
+        {(localError || error) && (
+          <div className={`${styles["error-message"]}`}>
+            {localError || error}
+          </div>
+        )}
         <div className={`${styles["addskill-buttonrow"]}`}>
           <PrimaryButton
             variant="secondary"

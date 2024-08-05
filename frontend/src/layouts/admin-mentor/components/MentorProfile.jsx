@@ -96,7 +96,7 @@ const MentorProfileInfo = ({ mentorData, onSubmit }) => {
       <UserProfileInfo
         userId={mentorData.userId}
         role={mentorData.role ? mentorData.role.roleName : ""}
-        profilepic={profilepic}
+        profilepic={mentorData.profilePicture || profilepic}
         name={`${mentorData.firstName || "N/A"} ${
           mentorData.lastName || "N/A"
         }`}

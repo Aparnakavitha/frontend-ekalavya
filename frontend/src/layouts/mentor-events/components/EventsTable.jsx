@@ -80,28 +80,28 @@ const EventsTable = (props) => {
     userName,
     <div style={{ display: "flex", width: "120px", gap: "2px" }} key={participantId}>
       <div title={disableAttendance ? "Event not completed" : ""}>
-        <AttendanceButton
-          content="Present"
-          IsPresent={attendance[participantId] === true}
-          onClick={() => handleAttendanceClick(participantId, true)}
-          disabled={attendance[participantId] === true || disableAttendance}
-        />
+      <AttendanceButton
+        content="Present"
+        isActive={attendance[participantId] === true}
+        onClick={() => handleAttendanceClick(participantId, true)}
+        disabled={disableAttendance}
+      />
       </div>
       <div title={disableAttendance ? "Event not completed" : ""}>
         <AttendanceButton
-          content="Absent"
-          IsPresent={attendance[participantId] === false}
-          onClick={() => handleAttendanceClick(participantId, false)}
-          disabled={attendance[participantId] === false || disableAttendance}
-        />
+        content="Absent"
+        isActive={attendance[participantId] === false}
+        onClick={() => handleAttendanceClick(participantId, false)}
+        disabled={disableAttendance}
+      />
       </div>
     </div>,
   ]);
   return (
     <div className={`${styles["eventstable-container"]} padding padding-bottom`}>
       <div className={styles["eventstable-topleft"]}>
-        <h2>Mark Attendance</h2> <h3>{`${presentParticipants}/${totalParticipants} present`}</h3>
-        <h3>{`${attendancePercentage}% attendance`}</h3>
+        <h2>Mark Attendance</h2> <h3>{`${presentParticipants}/${totalParticipants} Present`}</h3>
+        <h3>{`${attendancePercentage}% Attendance`}</h3>
         <TextButton text="Export" icon={<TfiExport />} onClick={handleExportClick} />
       </div>
       <div className={styles["eventstable-table"]}>

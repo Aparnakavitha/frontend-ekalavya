@@ -89,7 +89,7 @@ const EventList = ({
 
   const deleteprops = {
     title: "Delete Student",
-    message: "Are you sure you want to delete this Student?",
+    message: "Are you sure you want to Delete this Student?",
     buttonText: "Delete",
   };
 

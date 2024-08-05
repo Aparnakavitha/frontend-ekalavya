@@ -38,3 +38,14 @@ export const TertiarybuttonHalf = {
     width: "half",
   },
 };
+
+export const Resetbutton = {
+  args: {
+    content: "Submit",
+    variant: "reset",
+    onclick: (r) => {
+      console.log("clicked");
+    },
+    width: "half",
+  },
+};

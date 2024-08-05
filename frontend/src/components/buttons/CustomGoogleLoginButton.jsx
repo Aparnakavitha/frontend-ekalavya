@@ -6,6 +6,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaGoogle } from "react-icons/fa";
+import secureLocalStorage from "react-secure-storage";
+
 const clientId =
   "129038097874-1albul8aknf7348ljuhiro03sl8dhn43.apps.googleusercontent.com";
 
@@ -52,20 +54,26 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     console.log("Name:", name);
     console.log("Picture URL:", picture);
     console.log("Participant ID:", participantId);
+    localStorage.setItem("profilePicture", picture);
 
     try {
-      const response = await axios.post("https://ekalavya.tarento.com/api/login", {
-        email,
-      });
+      const response = await axios.post(
+        "https://ekalavya.tarento.com/api/login",
+        {
+          email,
+        }
+      );
       const { roleId, userId } = response.data.responseData;
       console.log("API Response Role ID:", roleId);
 
       if (typeof roleId === "undefined") {
         throw new Error("Role ID is undefined");
       } else {
-        sessionStorage.setItem("role", roleId);
-        sessionStorage.setItem("user_id", userId);
-        handleLoginNavigation(roleId); 
+        secureLocalStorage.setItem("userSession", {
+          roleId: roleId,
+          userId: userId,
+        });
+        handleLoginNavigation(roleId);
       }
     } catch (error) {
       console.error("Error logging in:", error);
@@ -92,7 +100,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
 
   const navigateAndReload = (route) => {
     navigate(route);
-    window.location.reload(); 
+    window.location.reload();
   };
 
   const login = useGoogleLogin({
@@ -103,12 +111,22 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
     },
   });
 
+  const handleClick = () => {
+    const username = secureLocalStorage.getItem("userSession");
+
+    if (username) {
+      console.log("User already logged in:", username);
+    } else {
+      login();
+    }
+  };
+
   return (
     <button
-      onClick={() => login()}
+      onClick={() => handleClick()}
       className={`custom-google-login-button ${fullWidth ? "full-width" : ""}`}
     >
-            <FaGoogle/>
+      <FaGoogle />
       Login
     </button>
   );

@@ -79,12 +79,12 @@ const AdminBatchSearch = ({
     },
     showSearch: true,
     searchbarProps:{
-      placeholder:"Enter Student Name"
+      placeholder:"Search Student Name"
     },
     showFiltersAndReset: false,
     addbuttonProps: {
       variant: "tertiary",
-      content: "+ Add new Student",
+      content: "+ Add New Student",
       width: "full",
       onClick: () => {
         setIsBatchOperationsOpen(true);
@@ -107,7 +107,7 @@ const AdminBatchSearch = ({
     },
     deleteprops: {
       title: "Delete Batch",
-      message: "Are you sure you want to delete this batch?",
+      message: "Are you sure you want to Delete this batch?",
       buttonText: "Delete",
     },
   };

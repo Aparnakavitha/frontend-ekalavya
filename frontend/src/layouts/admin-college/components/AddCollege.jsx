@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
-import styles from "../AdminStudent.module.css";
+import styles from "../AdminCollege.module.css";
 import PrimaryButton from "../../../components/buttons/PrimaryButton";
 import Input from "../../../components/inputbox/InputBox";
 import {
@@ -9,16 +9,37 @@ import {
   validateState,
 } from "../../common/components/validation";
 
-const AddCollege = ({ onSubmit }) => {
+const AddCollege = ({ onSubmit , initialData="", isEdit=false, collegeId}) => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+    trigger,
+  } = useForm({
+    defaultValues: initialData,
+  });
+
+  const collegeNameRef = useRef(null);
+
+  useEffect(() => {
+    if (collegeNameRef.current){
+      collegeNameRef.current.focus();
+    }
+  }, []);
+
+  const handleBlur = async (fieldName) => {
+    await trigger(fieldName);
+  }
 
   const handleFormSubmit = (data) => {
-    onSubmit(data);
+    if (isEdit === false) {
+      onSubmit(data);
+    } else {
+      const submitData = { ...data, collegeId };
+      onSubmit(submitData); 
+    }
   };
+  
 
   return (
     <div className={`${styles["addcollege-container"]}`}>
@@ -39,9 +60,11 @@ const AddCollege = ({ onSubmit }) => {
               render={({ field }) => (
                 <Input
                   {...field}
+                  ref={collegeNameRef}
                   label="College Name"
                   size="normal"
-                  placeholders={["College name"]}
+                  placeholders={["College Name"]}
+                  onBlur={() => handleBlur("collegeName")}
                 />
               )}
             />
@@ -65,6 +88,7 @@ const AddCollege = ({ onSubmit }) => {
                   label="Place"
                   size="normal"
                   placeholders={["Place"]}
+                  onBlur={() => handleBlur("collegePlace")}
                 />
               )}
             />
@@ -88,6 +112,7 @@ const AddCollege = ({ onSubmit }) => {
                   label="District"
                   size="normal"
                   placeholders={["District"]}
+                  onBlur={() => handleBlur("collegeDistrict")}
                 />
               )}
             />
@@ -111,6 +136,7 @@ const AddCollege = ({ onSubmit }) => {
                   label="State"
                   size="normal"
                   placeholders={["State"]}
+                  onBlur={() => handleBlur("collegeState")}
                 />
               )}
             />
@@ -134,6 +160,7 @@ const AddCollege = ({ onSubmit }) => {
                   label="Country"
                   size="normal"
                   placeholders={["Country"]}
+                  onBlur={() => handleBlur("collegeCountry")}
                 />
               )}
             />

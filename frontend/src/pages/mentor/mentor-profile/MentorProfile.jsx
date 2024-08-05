@@ -7,14 +7,16 @@ import profilepic from "../../../assets/DP.png";
 import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import { getUserDetails, updateUserDetails } from "../../../services/User";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify"; 
+import { toast } from "react-toastify";
+import secureLocalStorage from "react-secure-storage";
 
 const MentorProfile = () => {
   const [mentorData, setMentorData] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const userId = sessionStorage.getItem("user_id");
+  const userSession = secureLocalStorage.getItem("userSession") || {};
+  const userId = userSession.userId;
 
   useEffect(() => {
     fetchData();
@@ -25,7 +27,7 @@ const MentorProfile = () => {
       const params = { userId };
       const data = await getUserDetails(params);
       if (data.responseData.length === 0) {
-        navigate('/notFound'); // Navigate to NotFound page if mentor data is not found
+        navigate("/notFound");
         return;
       }
       setMentorData(data.responseData[0]);
@@ -34,7 +36,7 @@ const MentorProfile = () => {
       console.error("Error fetching mentor data:", error);
       setLoading(false);
       if (error.response && error.response.status === 404) {
-        navigate('/notFound'); // Navigate to NotFound page on 404 error
+        navigate("/notFound");
       }
     }
   };
@@ -49,7 +51,7 @@ const MentorProfile = () => {
       console.error("Error updating user details:", error);
     }
   };
-  
+
   if (loading) {
     return <LoadingSpinner />;
   }
@@ -104,7 +106,7 @@ const MentorProfile = () => {
   };
 
   const profileData = {
-    profilepic: profilepic,
+    profilepic: localStorage.getItem("profilePicture") || profilepic,
     name: `${mentorData.firstName} ${mentorData.lastName}`,
     college: mentorData.college?.collegeName || "",
     email: mentorData.emailId,
