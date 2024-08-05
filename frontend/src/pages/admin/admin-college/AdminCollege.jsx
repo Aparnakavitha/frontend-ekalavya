@@ -20,6 +20,15 @@ const AdminCollege = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [initialData, setInitialData]= useState({
+    collegeName: "",
+    collegePlace: "",
+    collegeDistrict: "",
+    collegeState: "",
+    collegeCountry: "",
+  })
+ const [isEdit, setIsEdit]=useState(false);
+ const [collegeId, setCollegeId]= useState("");
 
   useEffect(() => {
     const fetchCollegeData = async () => {
@@ -66,9 +75,18 @@ const AdminCollege = () => {
     setFilteredCollegeData(filteredData);
   };
 
-  const handleEdit = () => {
+  const handleEdit = (college) => {
     console.log("edit clicked");
     handleOpenModal();
+    setInitialData({
+      collegeName: college[1],
+      collegePlace: college[2],
+      collegeDistrict: college[3],
+      collegeState: college[4],
+      collegeCountry:college[5],
+    })
+    setIsEdit(true);
+    setCollegeId(college[0]);
   };
 
   const handleOpenModal = () => {
@@ -82,7 +100,7 @@ const AdminCollege = () => {
   const handleFormSubmit = async (data) => {
     console.log("Form submitted with data:", data);
     handleCloseModal();
-    // formSubmit(data);
+    formSubmit(data);
   };
 
   const collegeCardData = {
@@ -96,7 +114,7 @@ const AdminCollege = () => {
       viewAnimation: false,
       showPlace: true,
       placeHeading: `${college[2]}, ${college[3]}`,
-      handleEditClick:()=> handleEdit(),
+      handleEditClick:()=> handleEdit(college),
     })),
     tableColumns: [
       { key: "miniHeading", displayName: "College ID" },
@@ -184,7 +202,7 @@ const AdminCollege = () => {
         <NoData title="Colleges" />
       )}
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
-        <AddCollege onSubmit={handleFormSubmit} />
+        <AddCollege onSubmit={handleFormSubmit} initialData={initialData} isEdit={isEdit} collegeId={collegeId}/>
       </Modal>
     </div>
   );
