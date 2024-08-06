@@ -14,20 +14,18 @@ const AdminSkillAction = ({ setCardAnimation, count, setFilteredSkills }) => {
   const [localFilteredSkills, updateFilteredSkills] = useState([]);
 
   useEffect(() => {
-    // Initialize filtered skills
     updateFilteredSkills(skills);
   }, [skills]);
 
   useEffect(() => {
-    // Filter skills based on search term
     const filterSkills = debounce((term) => {
       const lowercasedTerm = term.toLowerCase();
-      const filtered = skills.filter(skill =>
+      const filtered = skills.filter((skill) =>
         skill.skillName.toLowerCase().includes(lowercasedTerm)
       );
       updateFilteredSkills(filtered);
-      setFilteredSkills(filtered); // Update the parent component's filtered skills
-    }); // Debounce delay of 300ms
+      setFilteredSkills(filtered);
+    });
 
     filterSkills(searchTerm);
 
@@ -104,7 +102,7 @@ const AdminSkillAction = ({ setCardAnimation, count, setFilteredSkills }) => {
         {...actionData}
         count={localFilteredSkills.length}
         onSearchChange={handleSearchChange}
-        skills={localFilteredSkills} // Pass filtered skills to the component
+        skills={localFilteredSkills} 
       />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddSkill
