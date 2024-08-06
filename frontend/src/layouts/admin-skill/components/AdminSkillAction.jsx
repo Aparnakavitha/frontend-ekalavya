@@ -1,21 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ActionComponent from "../../common/components/Action";
 import Modal from "../../common/components/Modal";
 import AddSkill from "./AddSkill";
-import {
-  createSkill,
-  deleteSkill,
-  filterSkills,
-} from "../../../services/Skills";
-import {
-  useSkills,
-  setSkills,
-} from "../../../pages/admin/admin-skills/AdminSkillContext";
+import { createSkill } from "../../../services/Skills";
+import { useSkills } from "../../../pages/admin/admin-skills/AdminSkillContext";
+import debounce from "lodash/debounce";
 
-const AdminSkillAction = ({ setCardAnimation, count }) => {
+const AdminSkillAction = ({ setCardAnimation, count, setFilteredSkills }) => {
   const { skills, setSkills, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [localFilteredSkills, updateFilteredSkills] = useState([]);
+
+  useEffect(() => {
+    // Initialize filtered skills
+    updateFilteredSkills(skills);
+  }, [skills]);
+
+  useEffect(() => {
+    // Filter skills based on search term
+    const filterSkills = debounce((term) => {
+      const lowercasedTerm = term.toLowerCase();
+      const filtered = skills.filter(skill =>
+        skill.skillName.toLowerCase().includes(lowercasedTerm)
+      );
+      updateFilteredSkills(filtered);
+      setFilteredSkills(filtered); // Update the parent component's filtered skills
+    }); // Debounce delay of 300ms
+
+    filterSkills(searchTerm);
+
+    return () => filterSkills.cancel();
+  }, [searchTerm, skills]);
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -47,15 +64,8 @@ const AdminSkillAction = ({ setCardAnimation, count }) => {
     }
   };
 
-  const handleSearchChange = async (value) => {
-    try {
-      const searchedSkill = await filterSkills(value);
-      console.log("search response from search skills", searchedSkill);
-      setSkills(searchedSkill);
-    } catch (error) {
-      console.error("Error occured in skill search", error);
-      setSkills([]);
-    }
+  const handleSearchChange = (value) => {
+    setSearchTerm(value);
   };
 
   const AdminSkillActionData = {
@@ -65,12 +75,6 @@ const AdminSkillAction = ({ setCardAnimation, count }) => {
       content: "+ Add New Skill",
       width: "full",
     },
-    deleteProps: {
-      variant: "tertiary",
-      content: "Delete Skill",
-      width: "full",
-    },
-    showDelete: false,
     deleteProps: {
       variant: "primary",
       content: "\u00A0Remove a Skill\u00A0",
@@ -87,7 +91,7 @@ const AdminSkillAction = ({ setCardAnimation, count }) => {
 
   const actionData = {
     ...AdminSkillActionData,
-    count,
+    count: localFilteredSkills.length,
     buttonProps: {
       ...AdminSkillActionData.buttonProps,
       onClick: handleOpenModal,
@@ -98,8 +102,9 @@ const AdminSkillAction = ({ setCardAnimation, count }) => {
     <div>
       <ActionComponent
         {...actionData}
-        count={skills !== null ? skills.length : 0}
+        count={localFilteredSkills.length}
         onSearchChange={handleSearchChange}
+        skills={localFilteredSkills} // Pass filtered skills to the component
       />
       <Modal isOpen={isOpen} widthVariant="medium" onClose={handleCloseModal}>
         <AddSkill

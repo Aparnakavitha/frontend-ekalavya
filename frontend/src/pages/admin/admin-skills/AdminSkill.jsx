@@ -12,6 +12,7 @@ const AdminSkill = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [cardAnimation, setCardAnimation] = useState(false);
+  const [filteredSkills, setFilteredSkills] = useState([]);
 
   const handleClick = (skillData) => {
     console.log("Data from skill card: ", skillData);
@@ -42,15 +43,16 @@ const AdminSkill = () => {
   };
 
   console.log("Rendering with errorMessage:", errorMessage);
-
+console.log("filtere:",filteredSkills);
   return (
     <SkillsProvider>
       <div>
         {/* <Greeting {...greet} /> */}
-        <AdminSkillAction setCardAnimation={setCardAnimation} />
+        <AdminSkillAction setCardAnimation={setCardAnimation}  setFilteredSkills={setFilteredSkills}/>
 
         <AdminSkillsList
           handleClick={handleClick}
+          skills={filteredSkills}
           cardAnimation={cardAnimation}
           setCardAnimation={setCardAnimation}
         />
