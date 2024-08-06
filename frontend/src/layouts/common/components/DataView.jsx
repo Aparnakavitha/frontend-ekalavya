@@ -3,6 +3,7 @@ import Table from "../../../components/table/Table";
 import Pagination from "../../../components/pagination/Pagination";
 import styles from "../Common.module.css";
 import { PiCards, PiListBullets } from "react-icons/pi";
+import TextButton from "../../../components/buttons/TextButton";
 
 const DataView = ({
   cardType = "Primarycard",
@@ -11,6 +12,9 @@ const DataView = ({
   tableColumns = [],
   toggle,
   itemsPerPage = 15,
+  viewInactive = false,
+  viewInactiveText = "View Inactive",
+  onViewInactiveClick = () => {},
 }) => {
   const [isCardView, setIsCardView] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -143,6 +147,16 @@ const DataView = ({
           </div>
         )}
       </div>
+
+      {viewInactive && (
+        <div className={styles["dataview-viewinactive"]}>
+          <TextButton
+            text={viewInactiveText}
+            onClick={onViewInactiveClick}
+            variant="default"
+          />
+        </div>
+      )}
 
       {data?.length > getItemsPerPage() && (
         <div className={styles["dataview-pagination"]}>
