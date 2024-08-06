@@ -16,8 +16,9 @@ const EventsDescription = (props) => {
     endTime,
     location,
     link,
-    speaker,
-    speakerDescription,
+    speakers = [], 
+    // speaker,
+    // speakerDescription,
     organizer,
     fraction,
     percentage,
@@ -224,9 +225,15 @@ const EventsDescription = (props) => {
               <h3>Speakers</h3>
             </div>
             <div>
-              <a className={`${styles["eventsdescription-speaker"]}`}>
-                <b>{speaker} </b>, {speakerDescription}
-              </a>
+              {speakers.length > 0 ? (
+                speakers.map((speaker, index) => (
+                  <p key={index} className={`${styles["eventsdescription-speaker"]}`}>
+                    <b>{speaker.name}:</b> {speaker.description}
+                  </p>
+                ))
+              ) : (
+                <p>No speakers available</p>
+              )}
             </div>
           </div>
 
