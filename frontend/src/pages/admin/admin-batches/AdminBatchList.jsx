@@ -10,10 +10,12 @@ import secureLocalStorage from "react-secure-storage";
 
 const AdminBatchList = () => {
   const navigate = useNavigate();
-  const [batchData, setBatchData] = useState(null);
+  const [batchData, setBatchData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [changed, setChanged] = useState(false);
+  const [filteredBatches, setFilteredBatches] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [initialLoad, setInitialLoad] = useState(true);
 
@@ -46,17 +48,16 @@ const AdminBatchList = () => {
           handleClick: () => handleClick(item.batchId, item.batchName),
         }));
 
-        var sortedBatches = null;
-        if (formattedData) {
-          sortedBatches = [...formattedData].sort((a, b) => {
-            const nameA = a.mainHeading.toLowerCase();
-            const nameB = b.mainHeading.toLowerCase();
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
-            return 0;
-          });
-        }
+        const sortedBatches = formattedData.sort((a, b) => {
+          const nameA = a.mainHeading.toLowerCase();
+          const nameB = b.mainHeading.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+
         setBatchData(sortedBatches);
+        setFilteredBatches(sortedBatches);
       } else {
         throw new Error("Received data is not in expected format");
       }
@@ -68,9 +69,18 @@ const AdminBatchList = () => {
     }
   };
 
-  const handleSearchChange = (data) => {
-    setSearchQuery(data);
-    setChanged((prev) => !prev);
+  // const handleSearchChange = (data) => {
+  //   setSearchQuery(data);
+  //   setChanged((prev) => !prev);
+  // };
+
+  const handleSearchChange = (batches) => {
+    const searchValue = batches.toLowerCase();
+    setSearchTerm(searchValue);
+    const filteredData = batchData.filter((batch) =>
+      batch.mainHeading.toLowerCase().includes(searchValue)
+    );
+    setFilteredBatches(filteredData);
   };
 
   const handleClick = (batchId, batchName) => {
@@ -104,7 +114,7 @@ const AdminBatchList = () => {
         showButtons={false}
       /> */}
       <AdminBatchAction
-        count={batchData ? batchData.length : 0}
+        count={batchData ? filteredBatches.length : 0}
         onSearchChange={handleSearchChange}
         setBatchData={setBatchData}
         setChanged={setChanged}
@@ -114,10 +124,10 @@ const AdminBatchList = () => {
         <LoadingSpinner />
       ) : error ? (
         <p style={{ padding: "2vh 4vw", color: "white" }}>{error}</p>
-      ) : batchData && batchData.length > 0 ? (
+      ) : filteredBatches && filteredBatches.length > 0 ? (
         <div>
           <DataView
-            data={batchData}
+            data={filteredBatches}
             CardComponent={(props) => <SkillBatchCard {...props} />}
             tableColumns={[
               { key: "miniHeading", displayName: "Batch ID" },
