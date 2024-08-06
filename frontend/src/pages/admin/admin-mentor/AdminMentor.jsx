@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUserDetails} from "../../../services/User";
+import { getUserDetails } from "../../../services/User";
 import AdminMentorAction from "../../../layouts/admin-mentor/components/AdminMentorAction";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
@@ -142,20 +142,15 @@ const AdminMentor = () => {
       />
 
       {filteredMentorData.length > 0 ? (
-        <div>
-          <DataView
-            CardComponent={(props) => (
-              <ProfileCard
-                {...props}
-                onClick={() => handleCardClick(props.studentId)}
-              />
-            )}
-            data={data.data}
-            tableColumns={data.tableColumns}
-            toggle={data.toggle}
-            itemsPerPage={data.itemsPerPage}
-          />
-        </div>
+        <DataView
+          CardComponent={(props) => (
+            <ProfileCard
+              {...props}
+              onClick={() => handleCardClick(props.studentId)}
+            />
+          )}
+          {...data}
+        />
       ) : (
         <NoData title="Mentors" />
       )}
