@@ -7,7 +7,9 @@ const AdminCollegeStudents = () => {
   const { collegeId } = useParams();
   const [count, setCount] = useState(null);
   const [collegeUserData, setCollegeUserData] = useState([]);
-
+  const collegeData = JSON.parse(
+    localStorage.getItem("collegeData")
+  );
   useEffect(() => {
     const fetchCollegeData = async () => {
       try {
@@ -40,11 +42,11 @@ const AdminCollegeStudents = () => {
   }, []);
 
   const data = {
-    headings: ["StudentID", "StudentName", "email ID"],
+    headings: ["Student ID", "Student Name", "email ID"],
     data: collegeUserData,
   };
 
-  const pageName = "College Name";
+  const pageName = collegeData;
   return (
     <div>
       <AdminCollegeParticipants data={data} pageName={pageName} count={count} />

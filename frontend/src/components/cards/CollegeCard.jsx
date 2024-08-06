@@ -22,7 +22,7 @@ const CollegeCard = (props) => {
 
   const transformMainHeading = (heading = "", cardType) => {
     let maxLength;
-      maxLength = 30;
+    maxLength = 30;
 
     if (heading.length > maxLength) {
       return heading.slice(0, maxLength - 2) + "...";
@@ -34,14 +34,8 @@ const CollegeCard = (props) => {
     handleDeleteClick();
   };
 
-  const handleEditIconClick = (event) => {
-    event.stopPropagation();
-    console.log("Edit icon clicked");
-    if (handleEditClick) {
-      handleEditClick();
-    } else {
-      console.error("handleEditClick is not defined");
-    }
+  const handleEditIconClick = () => {
+    handleEditClick();
   };
 
   let formattedCount;
@@ -78,7 +72,7 @@ const CollegeCard = (props) => {
           )}
         </div>
         <div className={styles.cardsDeleteEdit}>
-        <MdModeEdit
+          <MdModeEdit
             className={styles.editIcon}
             onClick={handleEditIconClick}
             title="Edit"
@@ -90,7 +84,6 @@ const CollegeCard = (props) => {
             className={styles.deleteIcon}
             text=" Remove"
           /> */}
-          
         </div>
       </div>
     </div>

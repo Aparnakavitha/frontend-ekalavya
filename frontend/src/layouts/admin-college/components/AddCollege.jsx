@@ -9,13 +9,15 @@ import {
   validateState,
 } from "../../common/components/validation";
 
-const AddCollege = ({ onSubmit }) => {
+const AddCollege = ({ onSubmit , initialData="", isEdit=false, collegeId}) => {
   const {
     handleSubmit,
     control,
     formState: { errors },
     trigger,
-  } = useForm();
+  } = useForm({
+    defaultValues: initialData,
+  });
 
   const collegeNameRef = useRef(null);
 
@@ -30,8 +32,14 @@ const AddCollege = ({ onSubmit }) => {
   }
 
   const handleFormSubmit = (data) => {
-    onSubmit(data);
+    if (isEdit === false) {
+      onSubmit(data);
+    } else {
+      const submitData = { ...data, collegeId };
+      onSubmit(submitData); 
+    }
   };
+  
 
   return (
     <div className={`${styles["addcollege-container"]}`}>
