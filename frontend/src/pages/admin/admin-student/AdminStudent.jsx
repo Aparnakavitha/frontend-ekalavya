@@ -20,55 +20,7 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import image from "../../../assets/DP.png";
 import NoData from "../../../components/nodata/NoData";
 
-const fetchStudentsData = async (setStudentsData, params) => {
-  try {
-    var filterParams = {
-      roleId: 3,
-    };
-    if (params.College) {
-      filterParams = {
-        collegeId: params.College || "",
-      };
-    }
-    if (params.StudentIds && Number.isInteger(Number(params.StudentIds))) {
-      filterParams = {
-        userId: Number(params.StudentIds),
-      };
-    } else if (params.StudentIds && typeof params.StudentIds === "string") {
-      filterParams = {
-        name: params.StudentIds,
-      };
-    }
-    if (params.Batch && !params.StudentIds) {
-      setStudentsData([]);
-      return;
-    }
-    const filteredParams = Object.fromEntries(
-      Object.entries(filterParams).filter(([key, value]) => value !== "")
-    );
 
-    const data = await getUserDetails(filteredParams);
-    const studentsOnly =
-      data.responseData?.filter(
-        (item) => item.role && item.role.roleId === 3
-      ) || [];
-
-    var sortedStudents = null;
-    if (studentsOnly) {
-      sortedStudents = [...studentsOnly].sort((a, b) => {
-        const nameA = a.firstName.toLowerCase();
-        const nameB = b.firstName.toLowerCase();
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1;
-        return 0;
-      });
-    }
-
-    setStudentsData(sortedStudents);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-};
 
 const fetchBatchData = async (setBatchData) => {
   try {
@@ -119,6 +71,9 @@ const AdminStudent = () => {
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [userData, setUserData] = useState(null);
   const [studentsData, setStudentsData] = useState([]);
+  const [filteredStudentData, setFilteredStudentData] = useState([]);
+
+  const [searchTerm, setSearchTerm] = useState("");
   const [isAddStudentOpen, setIsAddStudentOpen] = useState(false);
   const [cardAnimation, setCardAnimation] = useState(false);
   const [submitError, setSubmitError] = useState(null);
@@ -131,6 +86,56 @@ const AdminStudent = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const fetchStudentsData = async (setStudentsData, params) => {
+    try {
+      var filterParams = {
+        roleId: 3,
+      };
+      if (params.College) {
+        filterParams = {
+          collegeId: params.College || "",
+        };
+      }
+      if (params.StudentIds && Number.isInteger(Number(params.StudentIds))) {
+        filterParams = {
+          userId: Number(params.StudentIds),
+        };
+      } else if (params.StudentIds && typeof params.StudentIds === "string") {
+        filterParams = {
+          name: params.StudentIds,
+        };
+      }
+      if (params.Batch && !params.StudentIds) {
+        setStudentsData([]);
+        return;
+      }
+      const filteredParams = Object.fromEntries(
+        Object.entries(filterParams).filter(([key, value]) => value !== "")
+      );
+  
+      const data = await getUserDetails(filteredParams);
+      const studentsOnly =
+        data.responseData?.filter(
+          (item) => item.role && item.role.roleId === 3
+        ) || [];
+  
+      var sortedStudents = null;
+      if (studentsOnly) {
+        sortedStudents = [...studentsOnly].sort((a, b) => {
+          const nameA = a.firstName.toLowerCase();
+          const nameB = b.firstName.toLowerCase();
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+          return 0;
+        });
+      }
+  
+      setStudentsData(sortedStudents);
+      setFilteredStudentData(sortedStudents);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   useEffect(() => {
     const fetchCollegeData = async () => {
       try {
@@ -157,7 +162,8 @@ const AdminStudent = () => {
     };
 
     fetchCollegeData();
-  }, []);
+    fetchStudentsData();
+  }, [setStudentsData, params]);
 
   useEffect(() => {
     fetchStudentsData(setStudentsData, params);
@@ -168,6 +174,18 @@ const AdminStudent = () => {
   if (!collegeData.length) {
     return <LoadingSpinner />;
   }
+
+  const handleSearchChange = (student) => {
+    const searchValue = student.toLowerCase();
+    setSearchTerm(searchValue);
+    const filteredData = studentsData.filter((student) =>
+      `${student.firstName} ${student.lastName}`
+        .toLowerCase()
+        .includes(searchValue)
+    );
+    setFilteredStudentData(filteredData);
+    console.log("dhiuahd_________________",filteredData);
+  };
 
   const userSession = secureLocalStorage.getItem("userSession");
   const loggedUserFirstName = userSession.firstName;
@@ -239,7 +257,7 @@ const AdminStudent = () => {
   let firstTrueAnimationSet = false;
 
   const dataView = {
-    data: studentsData.map((student) => {
+    data: (searchTerm.length > 0 ? filteredStudentData : studentsData).map((student) => {
       const viewAnimation =
         !firstTrueAnimationSet && cardAnimation && student.newEntry;
       if (viewAnimation) {
@@ -390,12 +408,12 @@ const AdminStudent = () => {
     }));
   };
 
-  const handleSearchChange = (value) => {
-    setParams((prevParams) => ({
-      ...prevParams,
-      StudentIds: value,
-    }));
-  };
+  // const handleSearchChange = (value) => {
+  //   setParams((prevParams) => ({
+  //     ...prevParams,
+  //     StudentIds: value,
+  //   }));
+  // };
 
   const handleCardClick = (userId) => {
     const selectedStudent = studentsData.find(
@@ -442,7 +460,7 @@ const AdminStudent = () => {
         />
       </Modal>
 
-      {studentsData.length > 0 ? (
+      {filteredStudentData.length > 0? (
         <div>
           <DataView
             CardComponent={(props) => (
