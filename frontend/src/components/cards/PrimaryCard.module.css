@@ -210,20 +210,19 @@
   position: absolute;
   width: 40px;
   height: 40px;
-  box-shadow: 0 0 0 0.5px var(--white);
   border-radius: 50%;
   left: 248px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--white);
+  outline: solid 0.5px var(--white);
 }
 
 .arrowHover {
   position: absolute;
   width: 40px;
   height: 40px;
-  box-shadow: 0 0 0 0.5px var(--white);
   border-radius: 50%;
   left: 248px;
   display: flex;
