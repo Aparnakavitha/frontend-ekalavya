@@ -176,10 +176,10 @@
 }
 
 .footer-line {
-    height: 2px;
-    margin: 0 4vw;
-    border-radius: 25px;
-    background: var(--neutral800);
+  height: 2px;
+  margin: 0 4vw;
+  border-radius: 25px;
+  background: var(--neutral800);
 }
 
 .footer-footer {
@@ -886,6 +886,11 @@
 .dataview-collegecard {
   flex-basis: 285px;
   height: 187px;
+}
+
+.dataview-viewinactive {
+  padding-top: 20px;
+  color: var(--primary-color);
 }
 
 @media (max-width: 767px) {
@@ -2062,3 +2067,218 @@
 }
 
 /* ------------------------------- NotFound.module.css ends here ------------------------------- */
+
+/* ------------------------------- ProjectDetails.module.css starts here ------------------------------- */
+
+.project-stackused {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.projectdescription-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.projectdescription-topleft {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.projectdescription-backbutton {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.projectdescription-backbutton:hover {
+  background-color: #0056b3;
+}
+
+.projectdescription-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.projectdescription-headingcontent h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.projectdescription-contentheading {
+  font-size: 36px;
+}
+
+.projectdescription-texted {
+  display: flex;
+  flex-direction: column;
+}
+
+.projectdescription-text {
+  color: var(--white);
+  font-size: 20px;
+}
+
+.projectdescription-texts {
+  color: var(--white);
+}
+
+.projectdescription-container h2 {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.projectdescription-container h3 {
+  color: var(--primary-color);
+}
+
+.projectdescription-description {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.projectdescription-desc {
+  color: var(--white);
+}
+
+.projectdescription-date {
+  color: var(--white);
+}
+
+.projectdescription-gap {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.projectdescription-time {
+  color: var(--white);
+}
+
+.projectdescription-timer {
+  display: flex;
+  flex-direction: column;
+}
+
+.projectdescription-venue {
+  color: var(--white);
+}
+
+.projectdescription-address {
+  color: var(--white);
+}
+
+.projectdescription-align {
+  display: flex;
+  flex-direction: row;
+  gap: 10vw;
+}
+
+.projectdescription-speaker {
+  color: var(--white);
+}
+
+.projectdescription-navbutton {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.projectdescription-primarybutton {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+}
+
+.projectdescription-buttondiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.projectdescription-primarydiv {
+  display: flex;
+  justify-content: right;
+  gap: 20px;
+  top: 20px;
+  left: 20px;
+}
+
+.projectdescription-buttondiv2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 480px) {
+  .projectdescription-hiddenbutton {
+    display: none;
+  }
+  .projectdescription-topleft {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .projectdescription-align {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .projectdescription-primarydiv {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .projectdescription-buttondiv2 {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  .projectdescription-topleft {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .projectdescription-align {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .projectdescription-primarydiv {
+    position: static;
+    justify-content: center;
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .projectdescription-topleft {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .projectdescription-align {
+    flex-direction: row;
+    gap: 50px;
+  }
+  .projectdescription-primarydiv {
+    position: static;
+    justify-content: flex-end;
+  }
+}
+
+/* ------------------------------- ProjectDetails.module.css ends here ------------------------------- */

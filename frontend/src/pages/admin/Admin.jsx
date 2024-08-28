@@ -37,6 +37,7 @@ import { IoSchoolSharp } from "react-icons/io5";
 import AdminCollege from "./admin-college/AdminCollege";
 import AdminCollegeStudents from "./admin-college/AdminCollegeStudents";
 import secureLocalStorage from "react-secure-storage";
+import AdminInactiveStudent from "./admin-student/AdminInactiveStudent";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -219,6 +220,14 @@ const AdminContent = () => {
                   <Route
                     path="skills/skill-participants"
                     element={<AdminSkillStudents />}
+                  />
+                  <Route
+                    path="/student/inactive-students"
+                    element={<AdminInactiveStudent />}
+                  />
+                  <Route
+                    path="/mentor/inactive-mentors"
+                    element={<AdminInactiveStudent />}
                   />
                   <Route
                     path="batches/batch-details/:batchId"

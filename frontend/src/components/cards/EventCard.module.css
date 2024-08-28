@@ -118,7 +118,7 @@
   color: var(--white);
 }
 
-@media only screen and (max-width: 767px) {
+/* @media only screen and (max-width: 767px) {
   .event-card {
     height: calc(65px * 0.8);
     width: calc(326px * 0.8);
@@ -171,5 +171,5 @@
   .details-bottom {
     max-height: calc(36px * 0.8);
     margin-top: calc(-15px * 0.8);
-  }
-}
+  } */
+/* } */
