@@ -156,9 +156,11 @@
 .eventform-speakername {
   flex: 1;
 }
+
 .eventform-removeicon-final {
   cursor: pointer;
 }
+
 .eventform-removeicon-final:hover {
   color: var(--warning-color);
   transition: color 0.3s;
