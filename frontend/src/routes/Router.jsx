@@ -20,18 +20,31 @@ const RouterComponent = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/explore/description" element={<EventDescription />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/" element={<Home />} />
-          {roleId === 2 && (
-            <Route path="/mentor/*" element={<MentorContent />} />
-          )}
-          {roleId === 1 && <Route path="/admin/*" element={<AdminContent />} />}
-          {roleId === 3 && (
-            <Route path="/student/*" element={<StudentContent />} />
-          )}
+          <Route path="/explore/event-details/:eventId" element={<EventDescription />} />
+
           <Route
-            path="/explore/event-details/:eventId"
-            element={<EventDescription />}
+            path="/mentor/*"
+            element={
+              <ProtectedRoute roleId={roleId} allowedRoles={[1]}>
+                <MentorContent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/*"
+            element={
+              <ProtectedRoute roleId={roleId} allowedRoles={[1]}>
+                <AdminContent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/student/*"
+            element={
+              <ProtectedRoute roleId={roleId} allowedRoles={[1]}>
+                <StudentContent />
+              </ProtectedRoute>
+            }
           />
           <Route path="*" element={<NotFound />} />
         </Routes>

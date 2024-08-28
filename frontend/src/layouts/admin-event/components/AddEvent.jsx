@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 import Input from "../../../components/inputbox/InputBox";
 import InputDropdown from "../../../components/inputdropdown/InputDropdown";
 import styles from "../AdminEvent.module.css";
@@ -10,6 +10,9 @@ import {
   validateEndDate,
   validateAndCleanInput,
 } from "../../common/components/validation";
+import TextButton from "../../../components/buttons/TextButton";
+import { GoPlusCircle } from "react-icons/go";
+import { FiMinusCircle } from "react-icons/fi";
 
 const AddEvent = ({
   defaultValues,
@@ -40,12 +43,17 @@ const AddEvent = ({
     defaultValues: mergedDefaultValues,
   });
 
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "speakers",
+  });
+
   const [eventMode, setEventMode] = useState(mergedDefaultValues.eventMode);
 
   const eventTitleRef = useRef(null);
 
   useEffect(() => {
-    if (eventTitleRef.current){
+    if (eventTitleRef.current) {
       eventTitleRef.current.focus();
     }
   }, []);
@@ -109,6 +117,7 @@ const AddEvent = ({
       onSubmit={handleSubmit(handleFormSubmit)}
       className={`${styles["addevent-form"]}`}
     >
+      {/* Event Title and Mode */}
       <div className={`${styles["addevent-eventtitlemode"]}`}>
         <div className={`${styles["addevent-eventtitlediv"]}`}>
           <Controller
@@ -164,6 +173,7 @@ const AddEvent = ({
         </div>
       </div>
 
+      {/* Event Type */}
       <Controller
         name="eventType"
         control={control}
@@ -189,6 +199,7 @@ const AddEvent = ({
         </p>
       )}
 
+      {/* Description */}
       <Controller
         name="description"
         control={control}
@@ -213,6 +224,7 @@ const AddEvent = ({
         </p>
       )}
 
+      {/* Dates and Times */}
       <div className={`${styles["addevent-datetimecontainer"]}`}>
         <div className={`${styles["addevent-datetime"]}`}>
           <Controller
@@ -321,6 +333,7 @@ const AddEvent = ({
         </div>
       </div>
 
+      {/* Location */}
       <Controller
         name="location"
         control={control}
@@ -353,54 +366,87 @@ const AddEvent = ({
         </p>
       )}
 
-      <Controller
-        name="speaker"
-        control={control}
-        rules={{
-          required: "Speaker is required",
-          validate: validateAndCleanInput,
-        }}
-        render={({ field }) => (
-          <Input
-            {...field}
-            label="Speaker"
-            size="normal"
-            placeholders={["Speaker"]}
-            className={`${styles["addevent-speaker"]}`}
-            onBlur={() => handleBlur("speaker")}
+      {/* Speakers */}
+      <div className={`${styles["eventform-speakerscontainer"]}`}>
+        {fields.length > 0 && fields.map((field, index) => (
+          <div key={field.id} className={`${styles["eventform-speaker-pair"]}`}>
+            <div className={`${styles["eventform-speaker"]}`}>
+              <Controller
+                name={`speakers[${index}].name`}
+                control={control}
+                rules={{
+                  required: "Speaker Name is required",
+                  validate: validateAndCleanInput,
+                }}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label={`Speaker ${index + 1}`}
+                    size="normal"
+                    placeholders={["Speaker Name"]}
+                    className={`${styles["eventform-speakername"]}`}
+                    onBlur={() => handleBlur(`speakers[${index}].name`)}
+                    icon={
+                      fields.length > 1 && (
+                        <FiMinusCircle
+                          onClick={() => remove(index)}
+                          className={`${styles["eventform-removeicon-final"]}`}
+                        />
+                      )
+                    }
+                  />
+                )}
+              />
+              {errors.speakers?.[index]?.name && (
+                <p className={`${styles["eventform-error-speaker"]}`}>
+                  {errors.speakers[index].name.message}
+                </p>
+              )}
+            </div>
+            <div className={`${styles["eventform-speaker-description"]}`}>
+              <Controller
+                name={`speakers[${index}].description`}
+                control={control}
+                rules={{
+                  required: "Speaker Description is required",
+                  validate: validateAndCleanInput,
+                }}
+                render={({ field }) => (
+                  <Input
+                    {...field}
+                    label={`Speaker Description ${index + 1}`}
+                    size="normal"
+                    placeholders={["Speaker Description"]}
+                    className={`${styles["eventform-speakerdescription"]}`}
+                    onBlur={() => handleBlur(`speakers[${index}].description`)}
+                  />
+                )}
+              />
+              {errors.speakers?.[index]?.description && (
+                <p className={`${styles["eventform-error-speaker"]}`}>
+                  {errors.speakers[index].description.message}
+                </p>
+              )}
+            </div>
+          </div>
+        ))}
+
+        <div className={`${styles["eventform-addspeaker-container"]}`}>
+          <TextButton
+            text="Add Speaker"
+            icon={<GoPlusCircle />}
+            className={`${styles["eventform-addspeaker"]}`}
+            onClick={() => append({ name: "", description: "" })}
           />
-        )}
-      />
-      {errors.speaker && (
+        </div>
+      </div>
+      {errors.speakers && (
         <p className={`${styles["addevent-error"]}`}>
-          {errors.speaker.message}
+          {errors.speakers.message}
         </p>
       )}
 
-      <Controller
-        name="speakerDescription"
-        control={control}
-        rules={{
-          required: "Speaker Description is required",
-          validate: validateAndCleanInput,
-        }}
-        render={({ field }) => (
-          <Input
-            {...field}
-            label="Speaker Description"
-            size="normal"
-            placeholders={["Speaker Description"]}
-            className={`${styles["addevent-speaker"]}`}
-            onBlur={() => handleBlur("speakerDescription")}
-          />
-        )}
-      />
-      {errors.speakerDescription && (
-        <p className={`${styles["addevent-error"]}`}>
-          {errors.speakerDescription.message}
-        </p>
-      )}
-
+      {/* Organizer Dropdown */}
       {isOrganizer && (
         <Controller
           name="hostId"
@@ -425,6 +471,7 @@ const AddEvent = ({
         <p className={`${styles["addevent-error"]}`}>{errors.hostId.message}</p>
       )}
 
+      {/* Submit Button */}
       <PrimaryButton
         content="Submit"
         variant="primary"
