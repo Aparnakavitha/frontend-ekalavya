@@ -10,12 +10,12 @@ const TextButton = (props) => {
   >      {isDelete ? (
         <>
           <div className={`${styles.dicon} ${styles[`${variant}Icon`]}`}>{icon}</div>
-          <span className={`${styles.dtext} ${styles[`${variant}Text`]}`}>{text}</span>
+          <a className={`${styles.dtext} ${styles[`${variant}Text`]}`}>{text}</a>
         </>
       ) : (
         <>
           <div className={`${styles.icon} ${styles[`${variant}Icon`]}`}>{icon}</div>
-          <span className={`${styles.text} ${styles[`${variant}Text`]}`}>{text}</span>
+          <a className={`${styles.text} ${styles[`${variant}Text`]}`}>{text}</a>
         </>
       )}
     </div>
