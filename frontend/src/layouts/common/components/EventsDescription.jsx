@@ -16,7 +16,7 @@ const EventsDescription = (props) => {
     endTime,
     location,
     link,
-    speakers=[],
+    speakers = [],
     organizer,
     fraction,
     percentage,
@@ -34,7 +34,7 @@ const EventsDescription = (props) => {
     role,
   } = props;
 
-  console.log("speakers",speakers);
+  console.log("speakers", speakers);
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -225,13 +225,16 @@ const EventsDescription = (props) => {
               <h3>Speakers</h3>
             </div>
             <div>
-              {speakers.map((speaker, index) => (
-                <a className={styles["eventsdescription-speaker"]} key={index}>
-                  <b>{speaker.name}</b>, {speaker.description} 
-                  {index < speakers.length - 1 && <span>, </span>}
-                </a>
-
-              ))}
+              {speakers.length > 0 &&
+                speakers.map((speaker, index) => (
+                  <a
+                    className={styles["eventsdescription-speaker"]}
+                    key={index}
+                  >
+                    <b>{speaker.name}</b>, {speaker.description}
+                    {index < speakers.length - 1 && <span>, </span>}
+                  </a>
+                ))}
             </div>
           </div>
 
