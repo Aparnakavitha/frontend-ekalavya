@@ -1,4 +1,5 @@
 import { React, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Hero from "../layouts/home/components/Hero";
 import { Header } from "../layouts/home";
 import Button from "../components/buttons/PrimaryButton";
@@ -15,10 +16,13 @@ import image from "../../src/assets/DP.png";
 import Testimonials from "../layouts/home/components/Testimonials";
 import Footer from "../layouts/common/components/Footer";
 import CustomGoogleLoginButton from "../components/buttons/CustomGoogleLoginButton";
+import ProjectDescription from "./ProjectDescription";
 
 const Home = () => {
   const starPerformerRef = useRef(null);
   const testimonialsRef = useRef(null);
+  const navigate = useNavigate();
+
 
   const scrollToCenter = (ref) => {
     if (ref.current) {
@@ -97,6 +101,10 @@ const Home = () => {
     Images: [image1, image2, image3, image4, image5],
   };
 
+//  const handleProject=()=>{
+//   navigate(`/project`);
+//  }
+
   const projects = [
     {
       miniHeading: "Project Alpha",
@@ -105,7 +113,7 @@ const Home = () => {
       endDate: "2023-01-15T17:00:00Z",
       Description:
         "This project involves creating a fully responsive website using HTML, CSS, and JavaScript.",
-      handleClick: () => console.log("User clicked on Project Alpha"),
+      handleClick: () =>   navigate(`/project`),
     },
     {
       miniHeading: "Project Beta",

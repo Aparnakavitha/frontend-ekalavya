@@ -10,6 +10,7 @@ import NotFound from "../layouts/common/components/NotFound";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import secureLocalStorage from "react-secure-storage";
+import ProjectDescription from "../pages/ProjectDescription";
 
 const RouterComponent = () => {
   const userSession = secureLocalStorage.getItem("userSession") || {};
@@ -20,6 +21,8 @@ const RouterComponent = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/explore/description" element={<EventDescription />} />
+          <Route path="/project" element={<ProjectDescription />} />
+
           <Route path="/explore" element={<Explore />} />
           <Route path="/" element={<Home />} />
           {roleId === 2 && (
