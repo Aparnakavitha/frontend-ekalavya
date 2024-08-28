@@ -29,14 +29,6 @@ const AdminEvent = () => {
   const userSession = secureLocalStorage.getItem("userSession") || {};
   const loggedUserFirstName = userSession.firstName;
 
-  const greeting = {
-    welcome: "Welcome back",
-    name: loggedUserFirstName || "",
-    info: "Here is the information about",
-    profile: "Events",
-    showButtons: false,
-  };
-
   const getEventsByStatus = async (status) => {
     setLoading(true);
     setError(null);
@@ -199,7 +191,6 @@ const AdminEvent = () => {
 
   return (
     <div>
-      {/* <Greeting {...greeting} /> */}
       <AdminEventAction
         count={events.length}
         formSubmit={formSubmit}

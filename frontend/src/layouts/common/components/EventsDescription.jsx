@@ -34,6 +34,8 @@ const EventsDescription = (props) => {
     role,
   } = props;
 
+  console.log("speakers", speakers);
+
   function formatDate(dateString) {
     const date = new Date(dateString);
     const month = date.toLocaleDateString("en-US", { month: "short" });
@@ -225,9 +227,13 @@ const EventsDescription = (props) => {
             <div>
               {speakers.length > 0 ? (
                 speakers.map((speaker, index) => (
-                  <p key={index} className={`${styles["eventsdescription-speaker"]}`}>
-                    <b>{speaker.name}:</b> {speaker.description}
-                  </p>
+                  <a
+                    className={styles["eventsdescription-speaker"]}
+                    key={index}
+                  >
+                    <b>{speaker.name}</b>, {speaker.description}
+                    {index < speakers.length - 1 && <span>, </span>}
+                  </a>
                 ))
               ) : (
                 <p>No speakers available</p>
@@ -237,22 +243,22 @@ const EventsDescription = (props) => {
 
           {(type === "public" || type === "admin") && (
             <>
-                <div className={`${styles["eventsdescription-gap"]}`}>
-                  <div
-                    className={`${styles["eventsdescription-headingcontent"]}`}
-                  >
-                    <h3>Organizer</h3>
-                  </div>
-
-                  <div>
-                    <a className={`${styles["eventsdescription-speaker"]}`}>
-                      {organizer}
-                    </a>
-                  </div>
+              <div className={`${styles["eventsdescription-gap"]}`}>
+                <div
+                  className={`${styles["eventsdescription-headingcontent"]}`}
+                >
+                  <h3>Organizer</h3>
                 </div>
+
+                <div>
+                  <a className={`${styles["eventsdescription-speaker"]}`}>
+                    {organizer}
+                  </a>
+                </div>
+              </div>
             </>
           )}
-          {(type === "admin") && (
+          {type === "admin" && (
             <>
               <div className={`${styles["eventsdescription-gap"]}`}>
                 <div

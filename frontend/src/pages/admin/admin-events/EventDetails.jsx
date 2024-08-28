@@ -23,6 +23,7 @@ const AdminEventDetails = () => {
     try {
       const eventDataResponse = await fetchEventsService({ eventId });
       const event = eventDataResponse[0];
+      console.log("hello")
       setEventData(event);
       setEventName(event.eventTitle);
       setEventComplete(event.completed);

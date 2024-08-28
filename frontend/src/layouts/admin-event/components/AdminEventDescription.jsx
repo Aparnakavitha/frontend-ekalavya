@@ -100,10 +100,11 @@ const AdminEventDescription = ({
   };
 
   console.log("Participants:", participants); // Log participants here
+  console.log("speakers:", actionData.speakers); // Log participants here
 
   return (
     <div>
-      <EventsDescription {...actionData} organizer={organizer} fraction ={attendanceFraction} percentage = {attendancePercentage}/>
+      <EventsDescription {...actionData} speakers = {actionData.speakers} organizer={organizer} fraction ={attendanceFraction} percentage = {attendancePercentage}/>
 
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddEvent
