@@ -28,7 +28,7 @@ const RouterComponent = () => {
           <Route
             path="/mentor/*"
             element={
-              <ProtectedRoute roleId={roleId} allowedRoles={[2]}>
+              <ProtectedRoute roleId={roleId} allowedRoles={[1]}>
                 <MentorContent />
               </ProtectedRoute>
             }
@@ -44,7 +44,7 @@ const RouterComponent = () => {
           <Route
             path="/student/*"
             element={
-              <ProtectedRoute roleId={roleId} allowedRoles={[3]}>
+              <ProtectedRoute roleId={roleId} allowedRoles={[1]}>
                 <StudentContent />
               </ProtectedRoute>
             }

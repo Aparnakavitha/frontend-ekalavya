@@ -15,8 +15,25 @@
   background: 
   linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
   linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
- 
 }
+
+.eventform-eventtitle,
+.eventform-eventmode,
+.eventform-eventtype,
+.eventform-description,
+.eventform-location,
+.eventform-speaker {
+  margin-bottom: 2%;
+}
+
+.eventform-removeicon-final {
+  cursor: pointer;
+}
+.eventform-removeicon-final:hover {
+  color: var(--warning-color);
+  transition: color 0.3s;
+}
+
 
 .addevent-eventtitlediv {
   width: 80%;
