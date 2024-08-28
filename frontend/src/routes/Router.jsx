@@ -1,27 +1,24 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import secureLocalStorage from 'react-secure-storage';
-import { ToastContainer, Slide } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-const Home = React.lazy(() => import('../pages/index'));
-const Explore = React.lazy(() => import('../pages/Explore'));
-const EventDescription = React.lazy(() => import('../pages/EventDescription'));
-const MentorContent = React.lazy(() => import('../pages/mentor/Mentor'));
-const AdminContent = React.lazy(() => import('../pages/admin/Admin'));
-const StudentContent = React.lazy(() => import('../pages/student/Student'));
-const NotFound = React.lazy(() => import('../layouts/common/components/NotFound'));
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "../pages/index";
+import Explore from "../pages/Explore";
+import EventDescription from "../pages/EventDescription";
+import MentorContent from "../pages/mentor/Mentor";
+import AdminContent from "../pages/admin/Admin";
+import StudentContent from "../pages/student/Student";
+import NotFound from "../layouts/common/components/NotFound";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import secureLocalStorage from "react-secure-storage";
 
 const RouterComponent = () => {
-  const userSession = secureLocalStorage.getItem('userSession') || {};
+  const userSession = secureLocalStorage.getItem("userSession") || {};
   const roleId = userSession.roleId;
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
           <Route path="/explore/description" element={<EventDescription />} />
           <Route path="/explore/event-details/:eventId" element={<EventDescription />} />
 
@@ -49,32 +46,23 @@ const RouterComponent = () => {
               </ProtectedRoute>
             }
           />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-
       <ToastContainer
-        position="top-center"
+        position={"top-center"}
         autoClose={5000}
-        hideProgressBar
-        closeOnClick
-        pauseOnHover
-        draggable
+        hideProgressBar={true}
+        closeOnClick={true}
+        pauseOnHover={true}
+        draggable={true}
+        progress={undefined}
         pauseOnFocusLoss
-        theme="dark"
+        theme={"dark"}
         transition={Slide}
       />
-    </Suspense>
+    </div>
   );
-};
-
-const ProtectedRoute = ({ roleId, allowedRoles, children }) => {
-  if (!allowedRoles.includes(roleId)) {
-    return <Navigate to="/" replace />;
-  }
-
-  return <>{children}</>;
 };
 
 export default RouterComponent;

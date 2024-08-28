@@ -34,8 +34,8 @@ const HomeEventDescription = ({ event, organizer , exploreEvent}) => {
     endTime: event.endTime,
     location: event.location,
     link: event.link,
-    speakers: event.speakers,
-    // speakerDescription: event.speakerDescription,
+    speaker: event.speaker,
+    speakerDescription: event.speakerDescription,
     organizer: organizer ? `${organizer.firstName} ${organizer.lastName}` : "",
     button: "Events",
     buttons: event.eventTitle,
@@ -46,9 +46,6 @@ const HomeEventDescription = ({ event, organizer , exploreEvent}) => {
     smaller: "Register",
     onclick1: handleRegisterClick,
   };
-
-  console.log(homeEvents.speakers);
-
 
   const loginBoxProps = {
     title: "Please Log In",

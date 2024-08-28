@@ -11,8 +11,8 @@
   flex-wrap: wrap;
   cursor: pointer;
   transition:
-  background-color 0.3s,
-  color 0.3s;
+    background-color 0.3s,
+    color 0.3s;
   flex-wrap: wrap;
 }
 
@@ -27,8 +27,8 @@
 }
 
 .event-status.active {
-  background-color: var(--white);
-  color: var(--black);
+  background-color: var(--white); 
+  color: var(--black); 
 }
 
 @media (max-width: 767px) {

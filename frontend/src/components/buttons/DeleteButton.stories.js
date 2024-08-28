@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import DeleteButton from "./DeleteButton";
 
 export default {
