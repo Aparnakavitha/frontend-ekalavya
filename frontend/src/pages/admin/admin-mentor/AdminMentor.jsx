@@ -1,45 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUserDetails, updateUserDetails } from "../../../services/User";
+import { getUserDetails } from "../../../services/User";
 import AdminMentorAction from "../../../layouts/admin-mentor/components/AdminMentorAction";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
-import { Greeting, DataView } from "../../../layouts/common";
-import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
+import { DataView } from "../../../layouts/common";
 import NoData from "../../../components/nodata/NoData";
 import secureLocalStorage from "react-secure-storage";
 
-const fetchMentorData = async (setMentorData, value = "") => {
+const fetchMentorData = async (setMentorData) => {
   try {
-    var params = {
-      roleId: 2,
-    };
-
-    if (value && Number.isInteger(Number(value))) {
-      params = {
-        userId: Number(value),
-      };
-    } else if (value && typeof value === "string") {
-      params = {
-        name: value,
-      };
-    }
+    let params = { roleId: 2 };
 
     const data = await getUserDetails(params);
     const mentorsOnly =
       data.responseData?.filter(
         (item) => item.role && item.role.roleId === 2
       ) || [];
-    var sortedMentors = null;
-    if (mentorsOnly) {
-      sortedMentors = [...mentorsOnly].sort((a, b) => {
-        const nameA = a.firstName.toLowerCase();
-        const nameB = b.firstName.toLowerCase();
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1;
-        return 0;
-      });
-    }
+
+    const sortedMentors = mentorsOnly.sort((a, b) => {
+      const nameA = a.firstName.toLowerCase();
+      const nameB = b.firstName.toLowerCase();
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      return nameA.localeCompare(nameB);
+    });
+
     setMentorData(sortedMentors);
   } catch (error) {
     console.error("Error fetching mentor data:", error);
@@ -49,31 +35,35 @@ const fetchMentorData = async (setMentorData, value = "") => {
 const AdminMentor = () => {
   const [adminData, setAdminData] = useState(null);
   const [mentorData, setMentorData] = useState([]);
+  const [filteredMentorData, setFilteredMentorData] = useState([]);
   const [cardAnimation, setCardAnimation] = useState(false);
-  const [formData, setFormData] = useState({
-    userId: "",
-    firstName: "",
-    emailId: "",
-    collegeId: "defaultCollegeId",
-    roleId: "defaultRoleId",
-  });
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-
-  const fetchData = async (Data) => {
-    try {
-      const params = {
-        userId: Data,
-      };
-      const data = await getUserDetails(params);
-      setMentorData(data.responseData);
-    } catch (error) {
-      console.error("Error fetching mentor data:", error);
-    }
-  };
 
   useEffect(() => {
     fetchMentorData(setMentorData);
   }, []);
+
+  useEffect(() => {
+    const searchTerms = searchTerm
+      .toLowerCase()
+      .split(" ")
+      .filter((term) => term.trim() !== "");
+    const filteredData = mentorData.filter((mentor) => {
+      const mentorName = `${mentor.firstName.toLowerCase()} ${mentor.lastName.toLowerCase()}`;
+      return searchTerms.every(
+        (term) =>
+          mentorName.includes(term) ||
+          mentor.userId.toString().includes(term) ||
+          mentor.emailId.toLowerCase().includes(term)
+      );
+    });
+    setFilteredMentorData(filteredData);
+  }, [searchTerm, mentorData]);
+
+  const handleSearchChange = (value) => {
+    setSearchTerm(value);
+  };
 
   const handleCardClick = (userId) => {
     const selectedMentor = mentorData.find(
@@ -102,7 +92,7 @@ const AdminMentor = () => {
   let firstTrueAnimationSet = false;
 
   const data = {
-    data: mentorData.map((mentor) => {
+    data: filteredMentorData.map((mentor) => {
       const viewAnimation =
         !firstTrueAnimationSet && cardAnimation && mentor.newEntry;
       if (viewAnimation) {
@@ -132,35 +122,35 @@ const AdminMentor = () => {
     ],
     toggle: true,
     itemsPerPage: 15,
-  };
-
-  const handleSearchChange = (value) => {
-    fetchMentorData(setMentorData, value);
+    viewInactiveText: "View Inactive Mentors",
+    viewInactive: true,
+    onViewInactiveClick: () => {
+      console.log("View Inactive clicked");
+      navigate(`/admin/mentor/inactive-mentors`);
+    },
   };
 
   return (
     <div>
       {/* <Greeting {...greet} /> */}
       <AdminMentorAction
-        count={mentorData.length}
+        count={filteredMentorData.length}
         onAddSuccess={() => fetchMentorData(setMentorData)}
         onSearchChange={handleSearchChange}
         setMentorData={setMentorData}
         setCardAnimation={setCardAnimation}
       />
 
-      {mentorData.length > 0 ? (
-        <div>
-          <DataView
-            CardComponent={(props) => (
-              <ProfileCard
-                {...props}
-                onClick={() => handleCardClick(props.studentId)}
-              />
-            )}
-            {...data}
-          />
-        </div>
+      {filteredMentorData.length > 0 ? (
+        <DataView
+          CardComponent={(props) => (
+            <ProfileCard
+              {...props}
+              onClick={() => handleCardClick(props.studentId)}
+            />
+          )}
+          {...data}
+        />
       ) : (
         <NoData title="Mentors" />
       )}

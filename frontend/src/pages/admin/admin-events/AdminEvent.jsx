@@ -14,8 +14,10 @@ import secureLocalStorage from "react-secure-storage";
 const AdminEvent = () => {
   const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
+  const [eventsData, setEventsData] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState("Upcoming");
   const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [params, setParams] = useState({
@@ -77,7 +79,7 @@ const AdminEvent = () => {
   };
 
   const primaryCardData = {
-    data: filteredEvents.map((event) => ({
+    data: (searchTerm.length > 0 ? filteredEvents : events).map((event) => ({
       miniHeading: event.eventType,
       mainHeading: event.eventTitle,
       startDate: event.startDate,
@@ -103,8 +105,9 @@ const AdminEvent = () => {
   const formSubmit = async (data) => {
     try {
       const response = await addEventService(data);
-      const updatedEvents = [data, ...events];
+      const updatedEvents = [response, ...events];
       setEvents(updatedEvents);
+      setFilteredEvents(updatedEvents);
       toast.success("Event created successfully!");
     } catch (error) {
       toast.error("Error creating event!");
@@ -117,11 +120,13 @@ const AdminEvent = () => {
     }));
   };
 
-  const handleSearchChange = (value) => {
-    setParams((prevParams) => ({
-      ...prevParams,
-      eventTitle: value,
-    }));
+  const handleSearchChange = (event) => {
+    const searchValue = event.toLowerCase();
+    setSearchTerm(searchValue);
+    const filteredData = events.filter((event) =>
+      event.eventTitle.toLowerCase().includes(searchValue)
+    );
+    setFilteredEvents(filteredData);
   };
 
   const AdminEventActionData = {
