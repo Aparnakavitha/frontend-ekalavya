@@ -225,7 +225,7 @@ const EventsDescription = (props) => {
               <h3>Speakers</h3>
             </div>
             <div>
-              {speakers.length > 0 &&
+              {speakers.length > 0 ? (
                 speakers.map((speaker, index) => (
                   <a
                     className={styles["eventsdescription-speaker"]}
@@ -234,7 +234,10 @@ const EventsDescription = (props) => {
                     <b>{speaker.name}</b>, {speaker.description}
                     {index < speakers.length - 1 && <span>, </span>}
                   </a>
-                ))}
+                ))
+              ) : (
+                <p>No speakers available</p>
+              )}
             </div>
           </div>
 
