@@ -143,7 +143,7 @@ const CardRow = ({ cardData, card, handleClick, userId , onClickEdit, onClickDel
                     key={index}
                     {...data}
                     onClickDelete={() => onClickDelete({...data,index})}
-                    onClickEdit={() => onClickEdit({...data,index})}
+                    handleEditClick={() => onClickEdit({...data,index})}
                   />
                 ))}
             </div>

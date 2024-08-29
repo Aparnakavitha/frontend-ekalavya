@@ -18,7 +18,7 @@ const AddEvent = ({
   defaultValues,
   organizeroptions,
   onSubmit,
-  isOrganizer=true,
+  isOrganizer,
   fetchedFormData,
 }) => {
   const mergedDefaultValues = {
