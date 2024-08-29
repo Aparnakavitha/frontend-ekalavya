@@ -34,7 +34,8 @@ const CollegeCard = (props) => {
     handleDeleteClick();
   };
 
-  const handleEditIconClick = () => {
+  const handleEditIconClick = (event) => {
+    event.stopPropagation();
     handleEditClick();
   };
 
