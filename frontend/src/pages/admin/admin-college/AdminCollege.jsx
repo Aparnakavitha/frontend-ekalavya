@@ -20,15 +20,16 @@ const AdminCollege = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [initialData, setInitialData]= useState({
+  const [initialData, setInitialData] = useState({
     collegeName: "",
     collegePlace: "",
     collegeDistrict: "",
     collegeState: "",
     collegeCountry: "",
-  })
- const [isEdit, setIsEdit]=useState(false);
- const [collegeId, setCollegeId]= useState("");
+  });
+  const [isEdit, setIsEdit] = useState(false);
+  const [collegeId, setCollegeId] = useState("");
+  const [newCollegeId, setNewCollegeId] = useState(null);
 
   useEffect(() => {
     const fetchCollegeData = async () => {
@@ -83,8 +84,8 @@ const AdminCollege = () => {
       collegePlace: college[2],
       collegeDistrict: college[3],
       collegeState: college[4],
-      collegeCountry:college[5],
-    })
+      collegeCountry: college[5],
+    });
     setIsEdit(true);
     setCollegeId(college[0]);
   };
@@ -111,10 +112,10 @@ const AdminCollege = () => {
       cardType: "college",
       handleClick: () => handleClick(college),
       showCount: true,
-      viewAnimation: false,
+      viewAnimation: college[0] === newCollegeId,
       showPlace: true,
       placeHeading: `${college[2]}, ${college[3]}`,
-      handleEditClick:()=> handleEdit(college),
+      handleEditClick: () => handleEdit(college),
     })),
     tableColumns: [
       { key: "miniHeading", displayName: "College ID" },
@@ -129,7 +130,7 @@ const AdminCollege = () => {
   const handleClick = (college) => {
     console.log(`Clicked on college ${college[0]}`);
     navigate(`college-participants/${college[0]}`);
-    localStorage.setItem('collegeData', JSON.stringify(college[1]));
+    localStorage.setItem("collegeData", JSON.stringify(college[1]));
   };
 
   const AdminCollegeActionData = {
@@ -162,8 +163,20 @@ const AdminCollege = () => {
           college.collegeState,
           college.collegeCountry,
         ]);
-        setCollegeData(transformedData);
-        setFilteredCollegeData(transformedData);
+        const newCollege = [
+          formData.collegeId,
+          formData.collegeName,
+          formData.collegePlace,
+          formData.collegeDistrict,
+          formData.collegeState,
+          formData.collegeCountry,
+          0,
+        ];
+        setCollegeData([newCollege, ...transformedData]);
+        setFilteredCollegeData([newCollege, ...transformedData]);
+        setNewCollegeId(formData.collegeId);
+
+        setTimeout(() => setNewCollegeId(null), 3000);
 
         if (location.state && location.state.userData) {
           setUserData(location.state.userData);
@@ -178,24 +191,13 @@ const AdminCollege = () => {
         toast.success("College updated successfully", {
           position: "top-center",
           autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
         });
-      }else{
+      } else {
         toast.success("College added successfully", {
           position: "top-center",
           autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
         });
       }
-      
     } catch (error) {
       console.error("Error adding college:", error);
     }
@@ -216,7 +218,12 @@ const AdminCollege = () => {
         <NoData title="Colleges" />
       )}
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
-        <AddCollege onSubmit={handleFormSubmit} initialData={initialData} isEdit={isEdit} collegeId={collegeId}/>
+        <AddCollege
+          onSubmit={handleFormSubmit}
+          initialData={initialData}
+          isEdit={isEdit}
+          collegeId={collegeId}
+        />
       </Modal>
     </div>
   );
