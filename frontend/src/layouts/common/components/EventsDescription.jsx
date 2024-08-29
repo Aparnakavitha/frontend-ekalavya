@@ -226,7 +226,7 @@ const EventsDescription = (props) => {
               {speakers.length > 0 ? (
                 speakers.map((speaker, index) => (
                   <p key={index} className={`${styles["eventsdescription-speaker"]}`}>
-                    <b>{speaker.name}:</b> {speaker.description}
+                    <b>{speaker.name},</b> {speaker.description}
                   </p>
                 ))
               ) : (

@@ -18,10 +18,14 @@ const AddEvent = ({
   defaultValues,
   organizeroptions,
   onSubmit,
-  isOrganizer,
+  isOrganizer=true,
   fetchedFormData,
 }) => {
-  const mergedDefaultValues = { ...fetchedFormData };
+  const mergedDefaultValues = {
+    ...fetchedFormData,
+    speakers: fetchedFormData?.speakers || [{ name: "", description: "" }],
+    hostId: fetchedFormData?.hostId || "",
+  };
 
   const eventtypeoptions = [
     { value: "Hackathon", label: "Hackathon" },
@@ -40,7 +44,9 @@ const AddEvent = ({
     formState: { errors },
     trigger,
   } = useForm({
-    defaultValues: mergedDefaultValues,
+    defaultValues: {
+      ...mergedDefaultValues,
+    },
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -103,14 +109,15 @@ const AddEvent = ({
   };
 
   useEffect(() => {
-    if (!watch("location")) { // Added condition to prevent overwriting user input
-    if (selectedEventMode === "Online") {
-      setValue("location", mergedDefaultValues.link || "");
-    } else {
-      setValue("location", mergedDefaultValues.location || "");
+    if (!watch("location")) {
+      // Added condition to prevent overwriting user input
+      if (selectedEventMode === "Online") {
+        setValue("location", mergedDefaultValues.link || "");
+      } else {
+        setValue("location", mergedDefaultValues.location || "");
+      }
     }
-  }
-  }, [selectedEventMode, setValue, mergedDefaultValues,watch]);
+  }, [selectedEventMode, setValue, mergedDefaultValues, watch]);
 
   return (
     <form
@@ -366,9 +373,8 @@ const AddEvent = ({
         </p>
       )}
 
-      {/* Speakers */}
       <div className={`${styles["eventform-speakerscontainer"]}`}>
-        {fields.length > 0 && fields.map((field, index) => (
+        {fields.map((field, index) => (
           <div key={field.id} className={`${styles["eventform-speaker-pair"]}`}>
             <div className={`${styles["eventform-speaker"]}`}>
               <Controller

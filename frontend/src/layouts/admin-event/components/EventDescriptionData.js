@@ -10,7 +10,6 @@ const EventsDescriptionData = {
         endTime: "14:00",
         location: "Auditorium 101, Engineering Building",
         link: "gfmdhfdfkHRISDS",
-        speaker: "Sam Alex",
         speakerDescription: "Associate Software Engineer",
         organizer: "Nazeem",
     },
