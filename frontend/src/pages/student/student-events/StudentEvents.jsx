@@ -14,6 +14,7 @@ import secureLocalStorage from "react-secure-storage";
 const StudentEvent = () => {
   const navigate = useNavigate();
   const [events, setEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("Upcoming");
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,60 +22,61 @@ const StudentEvent = () => {
   const userSession = secureLocalStorage.getItem("userSession") || {};
   const participantId = userSession.userId;
 
-  useEffect(() => {
-    fetchEnrolledEvents();
-  }, [filter, searchTerm]);
-
   const fetchEnrolledEvents = useCallback(async () => {
     setLoading(true);
     try {
       const eventIds = await getEnrolledEventIds(participantId);
-      console.log("Enrolled Event IDs:", eventIds);
-
-      let filteredEvents = [];
+      let fetchedEvents = [];
       if (filter === "Upcoming") {
-        filteredEvents = eventIds.data.responseData.upcoming || [];
+        fetchedEvents = eventIds.data.responseData.upcoming || [];
       } else if (filter === "Enrolled") {
-        filteredEvents = eventIds.data.responseData.enrolled || [];
+        fetchedEvents = eventIds.data.responseData.enrolled || [];
       } else if (filter === "Completed") {
-        filteredEvents = eventIds.data.responseData.completed || [];
+        fetchedEvents = eventIds.data.responseData.completed || [];
       }
 
-      if (searchTerm) {
-        filteredEvents = filteredEvents.filter((event) =>
-          event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      }
-
-      setEvents(filteredEvents);
+      setEvents(fetchedEvents);
+      applySearchFilter(fetchedEvents);
     } catch (error) {
       console.error("Error fetching enrolled events:", error);
       const eventdata = await fetchEventsService({ completed: 0 });
-      console.log("Fetched Event Data:", eventdata);
-
-      let filteredEvents = [];
+      let fetchedEvents = [];
       if (filter === "Upcoming") {
-        filteredEvents = eventdata || [];
+        fetchedEvents = eventdata || [];
       } else if (filter === "Enrolled") {
-        filteredEvents = [];
+        fetchedEvents = [];
       } else if (filter === "Completed") {
-        filteredEvents = [];
+        fetchedEvents = [];
       }
 
-      if (searchTerm) {
-        filteredEvents = filteredEvents.filter((event) =>
-          event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-      }
-
-      setEvents(filteredEvents);
+      setEvents(fetchedEvents);
+      applySearchFilter(fetchedEvents);
     } finally {
       setLoading(false);
     }
-  }, [participantId, filter, searchTerm]);
+  }, [participantId, filter]);
+
+  const applySearchFilter = (eventsToFilter) => {
+    if (searchTerm) {
+      const filtered = eventsToFilter.filter((event) =>
+        event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredEvents(filtered);
+    } else {
+      setFilteredEvents(eventsToFilter);
+    }
+  };
+
+  useEffect(() => {
+    fetchEnrolledEvents();
+  }, [filter, fetchEnrolledEvents]);
+
+  useEffect(() => {
+    applySearchFilter(events);
+  }, [searchTerm, events]);
 
   const primaryCardData = {
-    data: events.map((event) => ({
+    data: filteredEvents.map((event) => ({
       id: event.eventId,
       miniHeading: event.eventType,
       mainHeading: event.eventTitle,
@@ -83,7 +85,6 @@ const StudentEvent = () => {
       Description: event.description,
       cardType: "Course",
       handleClick: () => {
-        console.log("clicked");
         navigate(`${event.eventId}`, {
           state: { eventId: event.eventId, tab: filter },
         });
@@ -107,7 +108,6 @@ const StudentEvent = () => {
           content: "Explore Events",
           variant: "secondary",
           onClick: () => {
-            console.log("Explore Events clicked");
             navigate("/explore");
           },
           width: "half",
@@ -125,7 +125,7 @@ const StudentEvent = () => {
       />
       {loading ? (
         <LoadingSpinner />
-      ) : events.length > 0 ? (
+      ) : filteredEvents.length > 0 ? (
         <DataView
           CardComponent={PrimaryCard}
           data={primaryCardData.data}

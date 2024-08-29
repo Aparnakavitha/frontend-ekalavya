@@ -136,7 +136,7 @@ const Home = () => {
       endDate: "2023-01-15T17:00:00Z",
       Description:
         "This project involves creating a fully responsive website using HTML, CSS, and JavaScript.",
-      handleClick: () => navigate(`/project`),
+      handleClick: () => navigate(`/projects`),
     },
     {
       miniHeading: "Project Beta",
