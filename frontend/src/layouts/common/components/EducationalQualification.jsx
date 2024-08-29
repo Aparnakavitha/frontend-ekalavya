@@ -32,6 +32,8 @@ const EducationalQualification = ({
   };
 
   const handleOpenEditQualification = (index) => {
+    console.log("open");
+
     setEditIndex(index.index);
     console.log(index.index);
     setIsEditQualificationOpen(true);

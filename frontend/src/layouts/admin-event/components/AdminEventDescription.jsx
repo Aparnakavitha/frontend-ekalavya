@@ -27,13 +27,17 @@ const AdminEventDescription = ({
       try {
         const response = await enrollParticipantService(eventId);
         if (response.statusMessage === "success") {
-          const updatedParticipants = response.responseData.map((participant) => {
-            return participant;
-          });
+          const updatedParticipants = response.responseData.map(
+            (participant) => {
+              return participant;
+            }
+          );
           setParticipants(updatedParticipants);
 
           if (updatedParticipants.length > 0) {
-            const presentCount = updatedParticipants.filter(participant => participant.attendance === true).length;
+            const presentCount = updatedParticipants.filter(
+              (participant) => participant.attendance === true
+            ).length;
             const totalParticipants = updatedParticipants.length;
 
             // Calculate attendance fraction
@@ -99,11 +103,16 @@ const AdminEventDescription = ({
     onclick1: handleClick,
   };
 
-  console.log("Participants:", participants); // Log participants here
+  console.log("Participants:", participants);
 
   return (
     <div>
-      <EventsDescription {...actionData} organizer={organizer} fraction ={attendanceFraction} percentage = {attendancePercentage}/>
+      <EventsDescription
+        {...actionData}
+        organizer={organizer}
+        fraction={attendanceFraction}
+        percentage={attendancePercentage}
+      />
 
       <Modal isOpen={isOpen} widthVariant="large" onClose={handleCloseModal}>
         <AddEvent

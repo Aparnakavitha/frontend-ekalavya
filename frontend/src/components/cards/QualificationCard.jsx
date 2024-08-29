@@ -35,7 +35,7 @@ const QualificationCard = ({
 
   const handleEditIconClick = (event) => {
     event.stopPropagation();
-    handleEditClick(event);
+    handleEditClick(index);
   };
 
   const handleDeleteClick = (event) => {

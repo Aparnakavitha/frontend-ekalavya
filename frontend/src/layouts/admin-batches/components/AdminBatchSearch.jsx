@@ -119,6 +119,7 @@ const AdminBatchSearch = ({
       toast.success("Batch name updated successfully!");
       setSubmitError(null);
       handleCloseAllModals();
+      changeBatchName(formData.inputData);
     } catch (error) {
       setSubmitError("Batch name already exists");
       console.error("Error updating batch name:", error);

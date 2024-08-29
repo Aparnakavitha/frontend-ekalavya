@@ -5,7 +5,7 @@ import styles from "./InputDropdown.module.css";
 function InputDropdown({
   label,
   placeholder,
-  options,
+  options=[],
   value,
   onChange,
   onBlur,
