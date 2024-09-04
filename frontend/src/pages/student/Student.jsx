@@ -10,7 +10,7 @@ import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
-import { MdEvent, MdAccountCircle, MdPsychology } from "react-icons/md";
+import { MdEvent, MdAccountCircle, MdPsychology, MdMenuBook } from "react-icons/md";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
 import Footer from "../../layouts/common/components/Footer";
 import StudentProfile from "./student-profile/StudentProfile";
@@ -24,6 +24,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
 import secureLocalStorage from "react-secure-storage";
+import { GrResources } from "react-icons/gr";
+import StudentCourses from "./student-courses/StudentCourses";
 
 const StudentContent = () => {
   const [userData, setUserData] = useState({
@@ -120,6 +122,12 @@ const StudentContent = () => {
         viewIcon: true,
         page: "skills",
       },
+      {
+        icon: <MdMenuBook />,
+        name: "Courses",
+        viewIcon: true,
+        page: "courses",
+      },
     ],
     profileBox: {
       name: primaryData.name,
@@ -168,6 +176,7 @@ const StudentContent = () => {
               <Route exact path="/events" element={<StudentEvent />} />
               <Route path="events/:eventId" element={<StudentEventDetails />} />
               <Route exact path="skills" element={<SkillLayout />} />
+              <Route exact path="courses" element={<StudentCourses />} />
             </Routes>
           </div>
         </div>

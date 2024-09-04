@@ -83,7 +83,7 @@ const StudentEvent = () => {
       startDate: event.startDate,
       endDate: event.endDate,
       Description: event.description,
-      cardType: "Course",
+      cardType: "Events",
       handleClick: () => {
         navigate(`${event.eventId}`, {
           state: { eventId: event.eventId, tab: filter },
