@@ -230,7 +230,7 @@ const EventsDescription = (props) => {
                   </p>
                 ))
               ) : (
-                <p>No speakers available</p>
+                <p className="nodata">No speakers available</p>
               )}
             </div>
           </div>

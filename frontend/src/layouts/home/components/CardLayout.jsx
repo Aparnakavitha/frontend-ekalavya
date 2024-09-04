@@ -11,7 +11,7 @@ const CardLayout = ({ events, onEventClick }) => {
       startDate: event.startDate,
       endDate: event.endDate,
       Description: event.description,
-      cardType: "Course",
+      cardType: "Events",
       handleClick: () => onEventClick(event.eventId),
     })),
     tableColumns: [
