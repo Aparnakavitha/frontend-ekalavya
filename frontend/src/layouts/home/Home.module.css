@@ -140,9 +140,30 @@
   gap: 30px;
 }
 
+/* .hero-statistics {
+  display: flex;
+  justify-content: center;
+} */
+
 .hero-statistics {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 723px;
+}
+
+.hero-vision {
+  color: var(--white);
+}
+
+.hero-visioncontent {
+  /* color: var(--primary-color);
+   */
+   color: var(--neutral400);
+  font-size: 18px;
+  text-align: center;
 }
 
 @media (max-width: 1238px) and (min-width: 993px) {
