@@ -13,7 +13,7 @@ import image5 from "../../src/assets/coursera.png";
 import Project from "../layouts/home/components/Projects";
 import StarPerformer from "../layouts/home/components/StarPerformer";
 import image from "../../src/assets/DP.png";
-import image6 from "../../src/assets/nxt.png";
+// import image6 from "../../src/assets/nxt.png";
 import Testimonials from "../layouts/home/components/Testimonials";
 import Footer from "../layouts/common/components/Footer";
 import CustomGoogleLoginButton from "../components/buttons/CustomGoogleLoginButton";
@@ -112,7 +112,6 @@ const Home = () => {
     Images: [
       // image1, image2,
       image3,
-      image6,
       //  image4, image5
     ],
   };
@@ -122,8 +121,6 @@ const Home = () => {
     Images: [
       // image1, image2,
       image3,
-      image6,
-
       // image4, image5
     ],
   };

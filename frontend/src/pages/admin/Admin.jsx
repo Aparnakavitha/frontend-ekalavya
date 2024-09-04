@@ -38,6 +38,7 @@ import AdminCollege from "./admin-college/AdminCollege";
 import AdminCollegeStudents from "./admin-college/AdminCollegeStudents";
 import secureLocalStorage from "react-secure-storage";
 import AdminInactiveStudent from "./admin-student/AdminInactiveStudent";
+import CourseDetails from "./admin-courses/CourseDetails";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -217,6 +218,10 @@ const AdminContent = () => {
                   <Route path="skills" element={<AdminSkill />} />
                   <Route path="colleges" element={<AdminCollege />} />
 
+                  <Route
+                    path="courses/course-details"
+                    element={<CourseDetails />}
+                  />
                   <Route
                     path="skills/skill-participants"
                     element={<AdminSkillStudents />}
