@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import styles from "./PrimaryCard.module.css";
 import { GoArrowRight, GoArrowUpRight } from "react-icons/go";
-import { format } from "date-fns";
- 
+import { format, parseISO, isValid } from "date-fns";
+
 const PrimaryCard = (props) => {
   const {
     carousel= false,
     miniHeading,
     mainHeading,
-    startDate,
-    endDate,
+    startDate=null,
+    endDate=null,
     Description,
     handleClick,
     viewAnimation = false,
+    cardType = "events",  
+    rating 
   } = props;
   const [viewAnimations, setViewAnimation] = useState(viewAnimation);
   const transformMainHeading = (heading) => {
@@ -28,10 +30,15 @@ const PrimaryCard = (props) => {
     }
     return description;
   };
- 
-  const formattedStartDate = format(new Date(startDate), "MMM dd, yyyy");
-  const formattedEndDate = format(new Date(endDate), "MMM dd, yyyy");
- 
+
+  const formatDate = (dateInput) => {
+    const date = dateInput ? parseISO(dateInput) : null;
+    return date && isValid(date) ? format(date, "MMM dd, yyyy") : '';
+  };
+
+  const formattedStartDate = formatDate(startDate);
+  const formattedEndDate = formatDate(endDate);
+
   const [isHover, setIsHover] = useState(false);
   const [animationTimeoutId, setAnimationTimeoutId] = useState(null);
  
@@ -118,15 +125,19 @@ const PrimaryCard = (props) => {
           {transformMainHeading(mainHeading)}
         </a>
         <div className={styles.dateRow}>
-          <a className={styles.cardsdate}>{formattedStartDate}</a>
+         {startDate && <a className={styles.cardsdate}>{formattedStartDate}</a>}
           <div>
-            <GoArrowRight />
+           {cardType!=="Course" && <GoArrowRight />}
           </div>
-          <a className={styles.cardsdate}>{formattedEndDate}</a>
+         {endDate && <a className={styles.cardsdate}>{formattedEndDate}</a>}
         </div>
         <a className={styles.cardsdiscription} title={Description}>
           {transformMainDescription(Description)}
         </a>
+        {cardType=="Course" && <a className={styles.cardsdiscription} title={Description}>
+          Rating : {rating}
+        </a>}
+
       </div>
       <div className={styles.CardsOutline}>
         <div className={leftCardClass}></div>

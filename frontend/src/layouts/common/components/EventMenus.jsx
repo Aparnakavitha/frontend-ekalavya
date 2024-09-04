@@ -4,7 +4,18 @@ import Button from "../../../components/buttons/PrimaryButton";
 import TabButton from "../../../components/buttons/TabButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
 
-const EventMenus = ({ explore, statuses, title, activeFilter, searchTerm, setSearchTerm ,buttonVisible=true, showSearchBar = true, showButton=true}) => {
+const EventMenus = ({
+  explore,
+  statuses,
+  title,
+  activeFilter,
+  searchTerm,
+  setSearchTerm,
+  buttonVisible = true,
+  showSearchBar = true,
+  showButton = true,
+  placeholder = "Search Events",
+}) => {
   const [activeStatus, setActiveStatus] = useState(activeFilter);
 
   const handleButtonClick = (status) => {
@@ -13,24 +24,23 @@ const EventMenus = ({ explore, statuses, title, activeFilter, searchTerm, setSea
 
   return (
     <div className={`${styles["eventmenus-container"]} padding`}>
-      
-        {showButton &&(
-          <div className={`${styles["eventmenus-head"]}`}>
+      {showButton && (
+        <div className={`${styles["eventmenus-head"]}`}>
           <h1 className={`${styles["eventmenus-title"]}`}>{title}</h1>
-        <div className={`${styles["eventmenus-explorebutton"]}`}>
-          {buttonVisible && <Button {...explore} />}
+          <div className={`${styles["eventmenus-explorebutton"]}`}>
+            {buttonVisible && <Button {...explore} />}
+          </div>
         </div>
+      )}
+
+      {showSearchBar && (
+        <div className={`${styles["eventmenus-searchbar"]}`}>
+          <Searchbar
+            placeholder={placeholder}
+            onSearch={setSearchTerm}
+            value={searchTerm}
+          />
         </div>
-        )}
-      
-      {showSearchBar &&(
-      <div className={`${styles["eventmenus-searchbar"]}`}>
-      <Searchbar
-        placeholder="Search Events"
-        onSearch={setSearchTerm}
-        value={searchTerm}
-      />
-      </div>
       )}
 
       <div className={`${styles["eventmenus-tabbutton"]}`}>

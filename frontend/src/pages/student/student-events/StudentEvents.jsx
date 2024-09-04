@@ -81,7 +81,7 @@ const StudentEvent = () => {
       startDate: event.startDate,
       endDate: event.endDate,
       Description: event.description,
-      cardType: "Course",
+      cardType: "Events",
       handleClick: () => {
         console.log("clicked");
         navigate(`${event.eventId}`, {

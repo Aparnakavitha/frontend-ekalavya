@@ -9,6 +9,7 @@ import {
   MdViewQuilt,
   MdAccountCircle,
   MdPsychology,
+  MdMenuBook,
 } from "react-icons/md";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
@@ -38,6 +39,7 @@ import AdminCollege from "./admin-college/AdminCollege";
 import AdminCollegeStudents from "./admin-college/AdminCollegeStudents";
 import secureLocalStorage from "react-secure-storage";
 import AdminInactiveStudent from "./admin-student/AdminInactiveStudent";
+import AdminCourses from "./admin-courses/AdminCourses";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -160,6 +162,12 @@ const AdminContent = () => {
         viewIcon: true,
         page: "skills",
       },
+      {
+        icon: <MdMenuBook />,
+        name: "Courses",
+        viewIcon: true,
+        page: "courses",
+      },
     ],
     profileBox: {
       name: `${userData.firstName} ${userData.lastName}`,
@@ -216,7 +224,7 @@ const AdminContent = () => {
                   <Route path="batches" element={<AdminBatchList />} />
                   <Route path="skills" element={<AdminSkill />} />
                   <Route path="colleges" element={<AdminCollege />} />
-
+                  <Route path="courses" element={<AdminCourses />} />
                   <Route
                     path="skills/skill-participants"
                     element={<AdminSkillStudents />}
