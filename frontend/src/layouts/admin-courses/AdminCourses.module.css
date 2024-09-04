@@ -1,0 +1,52 @@
+.coursedetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+}
+.head {
+  color: var(--primary-color);
+}
+.headLayout_head {
+  padding-top: 18px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+.skills {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 5px 0px;
+}
+.headLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.details {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  align-items: center;
+}
+.star{
+    color: var(--primary-color);
+}
+.modules{
+    padding: 20px 0px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+.mentor{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.mentorData{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;   
+}
