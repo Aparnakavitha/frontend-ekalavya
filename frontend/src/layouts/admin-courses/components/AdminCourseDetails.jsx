@@ -9,7 +9,6 @@ import DropTextButton from "../../../components/buttons/DropTextButton";
 import ProfileCard from "../../../components/cards/ProfileCard";
 import image from "../../../assets/DP.png";
 
-
 const AdminCourseDetails = ({
   heading,
   objective,
@@ -22,12 +21,12 @@ const AdminCourseDetails = ({
   lessons,
   enrollment,
   mentorData,
+  headingnav,
   handleClick = () => {
     console.log("clicked go to course");
   },
 }) => {
-
-  const cardData ={
+  const cardData = {
     studentImage: image,
     studentName: "John Doe",
     studentId: "STDID3456",
@@ -40,7 +39,11 @@ const AdminCourseDetails = ({
   return (
     <div className="padding">
       <div className={styles["coursedetails"]}>
-        <NavButton pageName={heading} />
+        <div className={styles["coursedetails_nav"]}>
+          {headingnav.map((item, index) => (
+            <NavButton pageName={item} />
+          ))}
+        </div>
         <div className={styles["headLayout"]}>
           <div className={styles["headLayout_head"]}>
             <h1 className={styles["head"]}>{heading}</h1>
@@ -87,36 +90,33 @@ const AdminCourseDetails = ({
           <h2 className={styles["head"]}>Modules</h2>
           {modules.map((moduleItem, moduleIndex) => (
             <div key={moduleIndex} className={styles["module"]}>
-              <div>
-                <DropTextButton
-                  text={moduleItem.module}
-                  list={moduleItem.submodules}
-                  onclick={(index, item) => console.log('Clicked item:', item, 'at index:', index)}
-                />
-              </div>
-
+              <DropTextButton
+                text={moduleItem.module}
+                list={moduleItem.submodules}
+                onclick={(index, item) =>
+                  console.log("Clicked item:", item, "at index:", index)
+                }
+              />
             </div>
           ))}
         </div>
         <div className={styles["mentor"]}>
-        <h2 className={styles["head"]}>Mentors</h2>
-        <div className={styles["mentorData"]}>
-        {mentorData.map((mentor) => {
-        const cardData = {
-          studentImage: mentor.imageUrl,
-          studentName: mentor.name,
-          studentId: mentor.studentId,
-          studentCollege: mentor.studentCollege,
-          studentMail: mentor.studentMail,
-          studentPhoneNumber: mentor.studentPhoneNumber,
-          onClick: console.log("Card clicked"),
-        };
+          <h2 className={styles["head"]}>Mentors</h2>
+          <div className={styles["mentorData"]}>
+            {mentorData.map((mentor) => {
+              const cardData = {
+                studentImage: mentor.imageUrl,
+                studentName: mentor.name,
+                studentId: mentor.studentId,
+                studentCollege: mentor.studentCollege,
+                studentMail: mentor.studentMail,
+                studentPhoneNumber: mentor.studentPhoneNumber,
+                onClick: console.log("Card clicked"),
+              };
 
-        return <ProfileCard key={mentor.id} {...cardData} />;
-      })}
-
-        </div>
-
+              return <ProfileCard key={mentor.id} {...cardData} />;
+            })}
+          </div>
         </div>
       </div>
     </div>
