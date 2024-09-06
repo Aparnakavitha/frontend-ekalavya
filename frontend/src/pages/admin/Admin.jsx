@@ -41,6 +41,7 @@ import secureLocalStorage from "react-secure-storage";
 import AdminInactiveStudent from "./admin-student/AdminInactiveStudent";
 import CourseDetails from "./admin-courses/CourseDetails";
 import AdminCourses from "./admin-courses/AdminCourses";
+import SubCourseDetails from "./admin-courses/SubCourseDetails";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -225,6 +226,9 @@ const AdminContent = () => {
                   <Route path="batches" element={<AdminBatchList />} />
                   <Route path="skills" element={<AdminSkill />} />
                   <Route path="colleges" element={<AdminCollege />} />
+                  <Route path="courses" element={<AdminCourses />} />
+                  <Route path="courses/course-details" element={<CourseDetails />} />
+                  <Route path="courses/course-details/modules" element={<SubCourseDetails/>} />
 
                   <Route
                     path="skills/skill-participants"

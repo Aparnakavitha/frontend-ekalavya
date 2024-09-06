@@ -4,17 +4,24 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { BsDot } from "react-icons/bs";
 
-const DropTextButton = ({ text, onclick, list }) => {
+const DropTextButton = ({ text, onclick, list, color }) => {
   const [clicked, setClicked] = useState(false);
   const handleClick = () => {
     setClicked(!clicked);
+    if (onclick) {
+      onclick(); 
+    }
   };
   const handleDropClick = (index, item) => {
-    onclick(index, item);
+   
   };
   return (
-    <div className={styles["textbutton"]} >
-      <div className={styles["buttontext"]} onClick={handleClick}>
+    <div className={styles["textbutton"]}>
+      <div
+        className={styles["buttontext"]}
+        onClick={handleClick}
+        style={{ color }}
+      >
         <div className={styles["button"]}>
           {clicked ? <RiArrowDownSLine /> : <RiArrowRightSLine />}
         </div>
@@ -28,7 +35,7 @@ const DropTextButton = ({ text, onclick, list }) => {
             <div
               key={index}
               className={styles["listitem"]}
-              onClick={() => handleDropClick(index, item)} 
+              onClick={() => handleDropClick(index, item)}
             >
               <BsDot />
               {item}
