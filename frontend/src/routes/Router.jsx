@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProjectDescription from "../pages/ProjectDescription";
 
 const Home = React.lazy(() => import("../pages/index"));
 const Explore = React.lazy(() => import("../pages/Explore"));
@@ -24,6 +25,7 @@ const RouterComponent = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/projects" element={<ProjectDescription />} />
           <Route path="/explore/description" element={<EventDescription />} />
           <Route
             path="/explore/event-details/:eventId"
