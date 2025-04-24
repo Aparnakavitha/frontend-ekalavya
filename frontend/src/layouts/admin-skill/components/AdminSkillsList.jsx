@@ -24,8 +24,8 @@ const capitalizeFirstLetter = (string) => {
   return string.trim().charAt(0).toUpperCase() + string.slice(1);
 };
 
-const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
-  const { skills, setSkills, changed, setChanged } = useSkills();
+const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation ,skills}) => {
+  const { skills: contextSkills, setSkills, changed, setChanged } = useSkills();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -34,6 +34,7 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
   const [studentkills, setStudentSkills] = useRecoilState(studentSkillState);
   const [skillsData, setSkillsData] = useRecoilState(skillState);
 
+  const localSkills = skills || contextSkills;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -100,10 +101,10 @@ const AdminSkillsList = ({ handleClick, cardAnimation, setCardAnimation }) => {
   };
 
   let firstTrueAnimationSet = false;
-
+console.log("here:",skills);
   const skillData = {
     itemsPerPage : 20,
-    data:skills && skills.map((skill) => {
+    data:localSkills && localSkills.map((skill) => {
       let viewAnimation = false;
       if (!firstTrueAnimationSet && cardAnimation && skill.newEntry) {
         viewAnimation = true;

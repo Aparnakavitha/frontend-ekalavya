@@ -35,7 +35,7 @@ const QualificationCard = ({
 
   const handleEditIconClick = (event) => {
     event.stopPropagation();
-    handleEditClick(event);
+    handleEditClick(index);
   };
 
   const handleDeleteClick = (event) => {
@@ -69,7 +69,7 @@ const QualificationCard = ({
             </div>
             <div>
               <h4 className={`${styles["education-qualification-name"]}`}>
-                <p>Percentage: {percentage ? `${percentage}%` : "-%"}</p>
+                <p>Percentage: {percentage ? `${percentage}%` : "--"}</p>
               </h4>
             </div>
             <div>

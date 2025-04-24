@@ -9,6 +9,7 @@ import {
   MdViewQuilt,
   MdAccountCircle,
   MdPsychology,
+  MdMenuBook,
 } from "react-icons/md";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
@@ -37,6 +38,10 @@ import { IoSchoolSharp } from "react-icons/io5";
 import AdminCollege from "./admin-college/AdminCollege";
 import AdminCollegeStudents from "./admin-college/AdminCollegeStudents";
 import secureLocalStorage from "react-secure-storage";
+import AdminInactiveStudent from "./admin-student/AdminInactiveStudent";
+import CourseDetails from "./admin-courses/CourseDetails";
+import AdminCourses from "./admin-courses/AdminCourses";
+import SubCourseDetails from "./admin-courses/SubCourseDetails";
 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
@@ -159,6 +164,12 @@ const AdminContent = () => {
         viewIcon: true,
         page: "skills",
       },
+      {
+        icon: <MdMenuBook />,
+        name: "Courses",
+        viewIcon: true,
+        page: "courses",
+      },
     ],
     profileBox: {
       name: `${userData.firstName} ${userData.lastName}`,
@@ -215,10 +226,21 @@ const AdminContent = () => {
                   <Route path="batches" element={<AdminBatchList />} />
                   <Route path="skills" element={<AdminSkill />} />
                   <Route path="colleges" element={<AdminCollege />} />
+                  <Route path="courses" element={<AdminCourses />} />
+                  <Route path="courses/course-details" element={<CourseDetails />} />
+                  <Route path="courses/course-details/modules" element={<SubCourseDetails/>} />
 
                   <Route
                     path="skills/skill-participants"
                     element={<AdminSkillStudents />}
+                  />
+                  <Route
+                    path="/student/inactive-students"
+                    element={<AdminInactiveStudent />}
+                  />
+                  <Route
+                    path="/mentor/inactive-mentors"
+                    element={<AdminInactiveStudent />}
                   />
                   <Route
                     path="batches/batch-details/:batchId"

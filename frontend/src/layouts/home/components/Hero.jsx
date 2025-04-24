@@ -23,7 +23,7 @@ const Hero = (props) => {
           setIsVisible(false);
         }
       },
-      { threshold: 0.5 } 
+      { threshold: 0.5 }
     );
 
     if (heroRef.current) {
@@ -94,7 +94,15 @@ const Hero = (props) => {
           </Link>
         </div>
         <div className={styles["hero-statistics"]}>
-          <div className={styles["hero-statidiv"]}>
+          <h2 className={styles["hero-vision"]}>
+            Make Yourself Industry-Ready: Elevate Your Future with Ekalavya
+          </h2>
+          <p className={styles["hero-visioncontent"]}>
+            To seamlessly connect education and career readiness,
+            empowering students with the skills, mentorship, and opportunities
+            they need to thrive in the professional world.
+          </p>
+          {/* <div className={styles["hero-statidiv"]}>
             {props.number.map((num, index) => (
               <div
                 key={index}
@@ -108,7 +116,7 @@ const Hero = (props) => {
                 <h1 className={styles["hero-title"]}>{props.title[index]}</h1>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

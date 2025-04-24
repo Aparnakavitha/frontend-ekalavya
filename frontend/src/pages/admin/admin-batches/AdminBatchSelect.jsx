@@ -40,47 +40,47 @@ const AdminBatchSelect = () => {
   const [filteredUserdetails, setFilteredUserdetails] = useState([]);
   const [batchNameapi, setBatchNameapi] = useState("");
 
-
   useEffect(() => {
     fetchData();
   }, []);
   const fetchBatchName = async (batchId) => {
     try {
-      const responseData = await fetchbatches({batchId});
+      const responseData = await fetchbatches({ batchId });
       const data = responseData.responseData[0];
-      setBatchNameapi(data.batchName);
+      setBatchNameapi(data.batchName); // Update batchNameapi
+      setBatchName(data.batchName); // Update batchName state
       console.log("_______________", data.batchName);
     } catch {
       console.log("error fetching Batch Name");
     }
   };
-  
+
   useEffect(() => {
     if (searchTerm === "") {
       setFilteredUserdetails(batchParticipantsData);
     } else {
       setFilteredUserdetails(
         batchParticipantsData.filter((userDetail) =>
-          userDetail.studentName.toLowerCase().includes(searchTerm.toLowerCase())
+          userDetail.studentName
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
         )
       );
     }
     fetchBatchName(batchId);
-  }, [searchTerm, batchParticipantsData,batchId]); 
-  
+  }, [searchTerm, batchParticipantsData, batchId]);
 
   const fetchData = async () => {
     try {
       const batchId = params.batchId;
       const participantsResponse = await fetchBatchParticipants({ batchId });
       const participantIds = participantsResponse.responseData;
-     
 
       if (Array.isArray(participantIds) && participantIds.length > 0) {
         const userId = participantIds.join(",");
         const userDetailsResponse = await getUserDetails({ userId });
         const userDetails = userDetailsResponse.responseData;
-        
+
         const batchParticipantsData = userDetails.map((userDetail) => ({
           studentImage: image,
           studentName: `${userDetail?.firstName || ""} ${
@@ -93,18 +93,18 @@ const AdminBatchSelect = () => {
           canDelete: true,
           viewAnimation: false,
         }));
-        
+
         batchParticipantsData.sort((a, b) =>
           a.studentName.localeCompare(b.studentName)
         );
         setBatchParticipantsData(batchParticipantsData);
         const count = batchParticipantsData.length;
         setParticipantCount(count);
-        setFilteredUserdetails(batchParticipantsData); 
+        setFilteredUserdetails(batchParticipantsData);
         setNewParticipantsData([]);
       } else {
         setBatchParticipantsData([]);
-        setFilteredUserdetails([]); 
+        setFilteredUserdetails([]);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -117,8 +117,9 @@ const AdminBatchSelect = () => {
     try {
       const batchId = params.batchId;
       await updateBatch({ batchId, batchName: newBatchName });
-      setBatchName(newBatchName);
-      toast.success("Batch name updated successfully!");
+      setBatchName(newBatchName); 
+      setBatchNameapi(newBatchName); 
+      // toast.success("Batch name updated successfully!");
     } catch (error) {
       console.error("Error updating batch name:", error);
       toast.error("Error updating batch name!");
@@ -188,6 +189,7 @@ const AdminBatchSelect = () => {
         batchDelete={handleDeleteBatches}
         addParticipant={addParticipant}
         setBatchName={setBatchName}
+        changeBatchName={changeBatchName}
         batchName={batchNameapi}
         batchId={params.batchId}
         batchParticipantsData={batchParticipantsData}
@@ -217,7 +219,7 @@ const AdminBatchSelect = () => {
           fetchData={fetchData}
         />
       ) : (
-        <NoData title="Students"/>
+        <NoData title="Students" />
       )}
     </div>
   );

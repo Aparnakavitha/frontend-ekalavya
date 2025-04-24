@@ -10,12 +10,41 @@
   color: var(--white);
   gap: 17px;
   padding: 50px;
-  border-radius: 40px;  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  border-radius: 40px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
   backdrop-filter: blur(20px);
-  background: 
-  linear-gradient(209deg, rgba(255, 255, 255, 0.041), rgba(0, 0, 0, 0.075)),
-  linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068)); 
- 
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
+}
+
+.eventform-eventtitle,
+.eventform-eventmode,
+.eventform-eventtype,
+.eventform-description,
+.eventform-location,
+.eventform-speaker {
+  margin-bottom: 2%;
+}
+
+.eventform-speakerscontainer{
+  margin-top: -2%;
+}
+
+.eventform-speaker-pair,
+.eventform-addspeaker-container{
+  margin-top: 2%;
+}
+
+.eventform-removeicon-final {
+  cursor: pointer;
+}
+.eventform-removeicon-final:hover {
+  color: var(--warning-color);
+  transition: color 0.3s;
 }
 
 .addevent-eventtitlediv {
@@ -160,7 +189,7 @@
   .eventparticipantslist-container {
     width: 100%;
   }
-  
+
   .eventparticipantslist-table {
     width: 100%;
   }

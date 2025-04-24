@@ -82,7 +82,7 @@ const MentorEvents = () => {
       startDate: event.startDate,
       endDate: event.endDate,
       Description: event.description,
-      cardType: "Course",
+      cardType: "Events",
       handleClick: () => handleClick(event),
     })),
     tableColumns: [

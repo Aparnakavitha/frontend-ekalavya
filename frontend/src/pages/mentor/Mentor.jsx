@@ -4,7 +4,7 @@ import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
-import { MdEvent, MdAccountCircle, MdPsychology } from "react-icons/md";
+import { MdEvent, MdAccountCircle, MdPsychology, MdMenuBook } from "react-icons/md";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
 import Footer from "../../layouts/common/components/Footer";
 import MentorProfile from "./mentor-profile/MentorProfile";
@@ -117,6 +117,12 @@ const MentorContent = () => {
         name: "Skills",
         viewIcon: true,
         page: "skills",
+      },
+      {
+        icon: <MdMenuBook />,
+        name: "Courses",
+        viewIcon: true,
+        page: "courses",
       },
     ],
     profileBox: {

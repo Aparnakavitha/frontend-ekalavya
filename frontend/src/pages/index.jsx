@@ -1,4 +1,5 @@
 import { React, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Hero from "../layouts/home/components/Hero";
 import { Header } from "../layouts/home";
 import Button from "../components/buttons/PrimaryButton";
@@ -12,13 +13,16 @@ import image5 from "../../src/assets/coursera.png";
 import Project from "../layouts/home/components/Projects";
 import StarPerformer from "../layouts/home/components/StarPerformer";
 import image from "../../src/assets/DP.png";
+// import image6 from "../../src/assets/nxt.png";
 import Testimonials from "../layouts/home/components/Testimonials";
 import Footer from "../layouts/common/components/Footer";
 import CustomGoogleLoginButton from "../components/buttons/CustomGoogleLoginButton";
+import ProjectDescription from "./ProjectDescription";
 
 const Home = () => {
   const starPerformerRef = useRef(null);
   const testimonialsRef = useRef(null);
+  const navigate = useNavigate();
 
   const scrollToCenter = (ref) => {
     if (ref.current) {
@@ -56,20 +60,36 @@ const Home = () => {
 
   const header = {
     menuItems: [
+      // {
+      //   name: "Leaderboard",
+      //   onClick: () => console.log("Leaderboard clicked"),
+      //   type: "aTag",
+      //   atag: "https://www.google.com",
+      // },
+      // {
+      //   name: "Track",
+      //   onClick: () => console.log("Track clicked"),
+      //   type: "link",
+      //   atag: "https://www.tarento.com",
+      // },
+      // {
+      //   name: "Top Performers",
+      //   onClick: () => {
+      //     scrollToCenter(starPerformerRef);
+      //   },
+      //   type: "link",
+      //   link: `https://www.google.com`,
+      // },
       {
-        name: "Leaderboard",
-        onClick: () => console.log("Leaderboard clicked"),
-        type: "aTag",
-        atag: "https://www.google.com",
-      },
-      {
-        name: "Track",
-        onClick: () => console.log("Track clicked"),
+        name: "Courses",
+        onClick: () => {
+          scrollToCenter(starPerformerRef);
+        },
         type: "link",
-        atag: "https://www.tarento.com",
+        link: `https://www.google.com`,
       },
       {
-        name: "Top Performers",
+        name: "Projects",
         onClick: () => {
           scrollToCenter(starPerformerRef);
         },
@@ -84,17 +104,25 @@ const Home = () => {
       },
     ],
     imageSrc: edunexa,
-    button: <CustomGoogleLoginButton/>
+    button: <CustomGoogleLoginButton />,
   };
 
   const partners = {
     title: "Academic Partners",
-    Images: [image1, image2, image3, image4, image5],
+    Images: [
+      // image1, image2,
+      image3,
+      //  image4, image5
+    ],
   };
 
   const partners2 = {
     title: "Hiring Partners",
-    Images: [image1, image2, image3, image4, image5],
+    Images: [
+      // image1, image2,
+      image3,
+      // image4, image5
+    ],
   };
 
   const projects = [
@@ -105,7 +133,7 @@ const Home = () => {
       endDate: "2023-01-15T17:00:00Z",
       Description:
         "This project involves creating a fully responsive website using HTML, CSS, and JavaScript.",
-      handleClick: () => console.log("User clicked on Project Alpha"),
+      handleClick: () => navigate(`/projects`),
     },
     {
       miniHeading: "Project Beta",
@@ -344,9 +372,9 @@ const Home = () => {
       <Partners {...partners2} />
       <Project {...projectcarousel} />
       <Project {...projectcarousel2} />
-      <div ref={starPerformerRef}>
+      {/* <div ref={starPerformerRef}>
         <StarPerformer {...starperformer} />
-      </div>
+      </div> */}
       <div ref={testimonialsRef}>
         <Testimonials {...testimonialsdata} />
       </div>
