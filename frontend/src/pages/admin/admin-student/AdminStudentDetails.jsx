@@ -15,6 +15,7 @@ import {
   addEnrollmentService,
 } from "../../../services/Event";
 import EducationalQualification from "../../../layouts/common/components/EducationalQualification";
+import secureLocalStorage from "react-secure-storage";
 
 const fetchStudentDetails = async (userId, setStudentData) => {
   try {
@@ -97,7 +98,11 @@ const AdminStudentDetails = () => {
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Data", formData);
-      const response = await addNewUser(formData);
+      const response = await addNewUser({
+        ...formData,
+        modifiedBy: secureLocalStorage.getItem("userSession").userId,
+        createdBy: secureLocalStorage.getItem("userSession").userId,
+      });
       console.log("Update response:", response);
       handleCloseEditBasicDetails();
       fetchStudentDetails(userId, setStudentData);
@@ -138,7 +143,10 @@ const AdminStudentDetails = () => {
         addresses: updatedAddresses,
       };
 
-      await addNewUser(updatedData);
+      await addNewUser({
+        ...updatedData,
+        modifiedBy: secureLocalStorage.getItem("userSession").userId,
+      });
 
       const fetchData = async () => {
         await fetchStudentDetails(userId, setStudentData);
