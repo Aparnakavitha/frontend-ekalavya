@@ -4,6 +4,7 @@ import AddUser from "../../common/components/AddUser";
 import Modal from "../../common/components/Modal";
 import AdminMentorActionData from "./MentorData";
 import { addNewUser } from "../../../services/User";
+import secureLocalStorage from "react-secure-storage";
 
 const AdminMentorAction = ({
   count,
@@ -33,6 +34,8 @@ const AdminMentorAction = ({
         lastName: formData.lastName,
         collegeId: formData.collegeId || 1,
         roleId: formData.roleId || 2,
+        createdBy: secureLocalStorage.getItem("userSession").userId,
+        modifiedBy: secureLocalStorage.getItem("userSession").userId,
       };
 
       const response = await addNewUser(userData);

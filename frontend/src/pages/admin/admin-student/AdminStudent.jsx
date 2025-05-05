@@ -20,8 +20,6 @@ import LoadingSpinner from "../../../components/loadingspinner/LoadingSpinner";
 import image from "../../../assets/DP.png";
 import NoData from "../../../components/nodata/NoData";
 
-
-
 const fetchBatchData = async (setBatchData) => {
   try {
     const data = await fetchbatches();
@@ -112,13 +110,13 @@ const AdminStudent = () => {
       const filteredParams = Object.fromEntries(
         Object.entries(filterParams).filter(([key, value]) => value !== "")
       );
-  
+
       const data = await getUserDetails(filteredParams);
       const studentsOnly =
         data.responseData?.filter(
           (item) => item.role && item.role.roleId === 3
         ) || [];
-  
+
       var sortedStudents = null;
       if (studentsOnly) {
         sortedStudents = [...studentsOnly].sort((a, b) => {
@@ -129,7 +127,7 @@ const AdminStudent = () => {
           return 0;
         });
       }
-  
+
       setStudentsData(sortedStudents);
       setFilteredStudentData(sortedStudents);
     } catch (error) {
@@ -184,7 +182,7 @@ const AdminStudent = () => {
         .includes(searchValue)
     );
     setFilteredStudentData(filteredData);
-    console.log("dhiuahd_________________",filteredData);
+    console.log("dhiuahd_________________", filteredData);
   };
 
   const userSession = secureLocalStorage.getItem("userSession");
@@ -257,24 +255,26 @@ const AdminStudent = () => {
   let firstTrueAnimationSet = false;
 
   const dataView = {
-    data: (searchTerm.length > 0 ? filteredStudentData : studentsData).map((student) => {
-      const viewAnimation =
-        !firstTrueAnimationSet && cardAnimation && student.newEntry;
-      if (viewAnimation) {
-        firstTrueAnimationSet = true;
-      }
+    data: (searchTerm.length > 0 ? filteredStudentData : studentsData).map(
+      (student) => {
+        const viewAnimation =
+          !firstTrueAnimationSet && cardAnimation && student.newEntry;
+        if (viewAnimation) {
+          firstTrueAnimationSet = true;
+        }
 
-      return {
-        studentImage: student.profilePicture || image,
-        studentName: `${student.firstName || ""} ${student.lastName || ""}`,
-        studentId: student.userId || "",
-        studentCollege: student.college.collegeName || "",
-        studentMail: student.emailId || "",
-        studentPhoneNumber: student.phoneNo || "",
-        canDelete: false,
-        viewAnimation: viewAnimation,
-      };
-    }),
+        return {
+          studentImage: student.profilePicture || image,
+          studentName: `${student.firstName || ""} ${student.lastName || ""}`,
+          studentId: student.userId || "",
+          studentCollege: student.college.collegeName || "",
+          studentMail: student.emailId || "",
+          studentPhoneNumber: student.phoneNo || "",
+          canDelete: false,
+          viewAnimation: viewAnimation,
+        };
+      }
+    ),
     tableColumns: [
       { key: "studentId", displayName: "Student ID" },
       { key: "studentName", displayName: "Name" },
@@ -375,7 +375,10 @@ const AdminStudent = () => {
       // formData.profilePicture =
       //   "https://as2.ftcdn.net/v2/jpg/03/31/69/91/1000_F_331699188_lRpvqxO5QRtwOM05gR50ImaaJgBx68vi.jpg";
 
-      const response = await addNewUser(formData);
+      const response = await addNewUser({
+        ...formData,
+        modifiedBy: secureLocalStorage.getItem("userSession").userId,
+        createdBy: secureLocalStorage.getItem("userSession").userId,});
       const newStudent = response.responseData;
       newStudent.college = {
         collegeId: formData.collegeId,
@@ -460,7 +463,7 @@ const AdminStudent = () => {
         />
       </Modal>
 
-      {filteredStudentData.length > 0? (
+      {filteredStudentData.length > 0 ? (
         <div>
           <DataView
             CardComponent={(props) => (

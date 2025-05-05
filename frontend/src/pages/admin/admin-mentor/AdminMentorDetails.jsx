@@ -14,6 +14,7 @@ import EducationalQualification from "../../../layouts/common/components/Educati
 import Modal from "../../../layouts/common/components/Modal";
 import BasicDetails from "../../../layouts/common/components/BasicDetails";
 import { toast } from "react-toastify";
+import secureLocalStorage from "react-secure-storage";
 
 const fetchMentorDetails = async (userId, setMentorData) => {
   try {
@@ -70,7 +71,10 @@ const AdminMentorDetails = () => {
   const handleFormSubmit2 = async (formData) => {
     try {
       console.log("Form Data", formData);
-      const response = await addNewUser(formData);
+      const response = await addNewUser({
+        ...formData,
+        modifiedBy: secureLocalStorage.getItem("userSession").userId,
+      });
       console.log("Add user response:", response);
 
       if (
@@ -117,7 +121,10 @@ const AdminMentorDetails = () => {
     try {
       if (mentorData && mentorData.userId) {
         const params = { userId: mentorData.userId };
-        await deleteUser(params);
+        await deleteUser({
+          ...params,
+          modifiedBy: secureLocalStorage.getItem("userSession").userId,
+        });
         navigate("/admin/mentor");
       } else {
         console.error("mentorData or mentorData.userId is not defined");
