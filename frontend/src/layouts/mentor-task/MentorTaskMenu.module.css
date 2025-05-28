@@ -1,0 +1,120 @@
+.mentortaskmenus-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+  }
+  
+  .mentortaskmenus-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .mentortaskmenus-title {
+    color: var(--primary-color);
+    font-size: 28px;
+    flex: 1;
+    text-align: left;
+  }
+  
+  .mentortaskmenus-button-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .mentortaskmenus-tabbutton {
+    display: flex;
+    margin-top: 30px;
+  }
+  
+  .mentortaskmenus-tabbutton-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .mentortaskmenus-searchbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .mentortaskmenus-searchbar-input {
+    width: 100%;
+    max-width: 500px;
+    flex-grow: 1;
+  }
+  
+  .mentortaskmenus-filter-group {
+    display: flex;
+    align-items: center;
+   
+    flex-wrap: wrap;
+  }
+  
+  .mentortaskmenus-filter {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    min-width: 180px;
+  }
+  
+  .mentortaskmenus-create {
+    min-width: 150px;
+  }
+  
+ 
+  @media (max-width: 767px) {
+    .mentortaskmenus-head {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .mentortaskmenus-title {
+      font-size: 23px;
+      text-align: left;
+    }
+  
+    .mentortaskmenus-searchbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .mentortaskmenus-filter-group {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+  
+    .mentortaskmenus-filter {
+      width: 100%;
+      margin-top: 10px;
+      justify-content: flex-start;
+    }
+  
+    .mentortaskmenus-searchbar-input {
+      width: 100%;
+    }
+  
+    .mentortaskmenus-create {
+      width: 100%;
+    }
+  
+    .mentortaskmenus-tabbutton-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 992px) {
+    .mentortaskmenus-searchbar-input {
+      width: 100%;
+    }
+  }

@@ -4,7 +4,7 @@ import SideBar from "../../layouts/common/components/SideBar";
 import Button from "../../components/buttons/PrimaryButton";
 import Dp from "../../../src/assets/DP.png";
 import edunexa from "../../../src/assets/edunexa.png";
-import { MdEvent, MdAccountCircle, MdPsychology, MdMenuBook } from "react-icons/md";
+import { MdEvent, MdAccountCircle, MdPsychology, MdMenuBook ,MdTask} from "react-icons/md";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
 import Footer from "../../layouts/common/components/Footer";
 import MentorProfile from "./mentor-profile/MentorProfile";
@@ -19,7 +19,8 @@ import LoadingSpinner from "../../components/loadingspinner/LoadingSpinner";
 import Modal from "../../layouts/common/components/Modal";
 import LogoutBox from "../../layouts/common/components/LogoutBox";
 import secureLocalStorage from "react-secure-storage";
-
+import MentorTasks from "./mentor-tasks/MentorTask.jsx";
+ 
 const MentorContent = () => {
   const [Data, setData] = useState({
     firstName: "",
@@ -27,14 +28,14 @@ const MentorContent = () => {
     emailId: "",
   });
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-
+ 
   const userSession = secureLocalStorage.getItem("userSession");
   const userId = userSession.userId;
-
+ 
   const location = useLocation();
-
+ 
   const navigate = useNavigate();
-
+ 
   const fetchData = async () => {
     try {
       const params = {
@@ -43,10 +44,10 @@ const MentorContent = () => {
       const data = await getUserDetails(params);
       setData(data.responseData[0]);
       console.log("mentor data:", Data);
-
+ 
       const storedProfilePicture = data.responseData[0].profilePicture;
       const googleProfilePicture = localStorage.getItem("profilePicture");
-
+ 
       if (storedProfilePicture != googleProfilePicture) {
         await updateUserDetails({
           userId: userId,
@@ -57,20 +58,20 @@ const MentorContent = () => {
       console.error("Error fetching mentor data:", error);
     }
   };
-
+ 
   useEffect(() => {
     fetchData();
   }, []);
-
+ 
   if (!Data) {
     return <LoadingSpinner />;
   }
-
+ 
   const primaryData = {
     name: `${Data.firstName} ${Data.lastName}`,
     email: Data.emailId,
   };
-
+ 
   const handleLogout = () => {
     secureLocalStorage.removeItem("userSession");
     localStorage.removeItem("profilePicture");
@@ -86,15 +87,15 @@ const MentorContent = () => {
       theme: "dark",
     });
   };
-
+ 
   const handleCancelLogout = () => {
     setIsLogoutModalOpen(false);
   };
-
+ 
   const handleOpenLogoutModal = () => {
     setIsLogoutModalOpen(true);
   };
-
+ 
   const sidebarContent = {
     button: (
       <Button
@@ -119,6 +120,12 @@ const MentorContent = () => {
         page: "skills",
       },
       {
+        icon: <MdTask />,
+        name: "Tasks",
+        viewIcon: true,
+        page: "Tasks",
+      },
+      {
         icon: <MdMenuBook />,
         name: "Courses",
         viewIcon: true,
@@ -132,11 +139,11 @@ const MentorContent = () => {
       onProfileClick: () => navigate(`/mentor/profile`),
     },
   };
-
+ 
   const handleSidebarItemClick = (page) => {
     navigate(`/mentor/${page}`);
   };
-
+ 
   const footercontent = {
     Logo: edunexa,
     quoteContent: "Embark on Your Learning Journey Today!",
@@ -144,7 +151,7 @@ const MentorContent = () => {
     copyrightContent2: "Privacy Policy",
     isLeftALigned: true,
   };
-
+ 
   return (
     <div className="flexStart">
       <SideBar
@@ -171,6 +178,8 @@ const MentorContent = () => {
               <Route path="/profile" element={<MentorProfile />} />
               <Route path="/events" element={<MentorEvents />} />
               <Route path="/skills" element={<MentorSkills />} />
+              <Route path="/Tasks" element={<MentorTasks />} />
+ 
               <Route
                 path="/events/event-creation"
                 element={<MentorCreateEvent />}
@@ -202,5 +211,6 @@ const MentorContent = () => {
     </div>
   );
 };
-
+ 
 export default MentorContent;
+ 

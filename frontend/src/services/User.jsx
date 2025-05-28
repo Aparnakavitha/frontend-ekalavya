@@ -1,8 +1,8 @@
 // service
 import axios from "axios";
 
-const API_URL = "https://ekalavya.tarento.com/api";
-
+//  const API_URL = "https://ekalavya.tarento.com/api";
+ const API_URL = 'http://localhost:8082';
 // Function to get user details
 export const getUserDetails = async (params) => {
   try {

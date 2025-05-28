@@ -1,0 +1,23 @@
+.taskSubmission {
+    padding: 1rem;
+    background-color: #3a3a3a; /* dark background as per image */
+    color: white;
+  }
+  
+  .editIcon {
+    margin-right: 5px;
+    font-size: 1rem; /* Adjust icon size */
+    vertical-align: middle; /* Align with text */
+    color: #ffffff; /* Optional: set icon color */
+  }
+  
+  .addMark {
+    color: #91dc5a; /* light green */
+    cursor: pointer;
+  }
+  
+  .markWithIcon {
+    display: flex;
+    align-items: center;
+  }
+  

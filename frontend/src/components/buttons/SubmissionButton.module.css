@@ -1,0 +1,29 @@
+.container {
+    width: 237.08px;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid #D9D9D9;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
+  
+  .button {
+    background: transparent;
+    color: #D9D9D9;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  
+  .container:hover {
+    border-color: #BAFF66;
+  }
+  
+  .container:hover .button {
+    color: #BAFF66;
+  }

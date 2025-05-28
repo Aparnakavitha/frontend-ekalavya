@@ -3,7 +3,7 @@ import styles from "../Common.module.css";
 import Button from "../../../components/buttons/PrimaryButton";
 import TabButton from "../../../components/buttons/TabButton";
 import Searchbar from "../../../components/searchbar/Searchbar";
-
+ 
 const EventMenus = ({
   explore,
   statuses,
@@ -17,11 +17,11 @@ const EventMenus = ({
   placeholder = "Search Events",
 }) => {
   const [activeStatus, setActiveStatus] = useState(activeFilter);
-
+ 
   const handleButtonClick = (status) => {
     setActiveStatus(status);
   };
-
+ 
   return (
     <div className={`${styles["eventmenus-container"]} padding`}>
       {showButton && (
@@ -32,7 +32,7 @@ const EventMenus = ({
           </div>
         </div>
       )}
-
+ 
       {showSearchBar && (
         <div className={`${styles["eventmenus-searchbar"]}`}>
           <Searchbar
@@ -42,7 +42,7 @@ const EventMenus = ({
           />
         </div>
       )}
-
+ 
       <div className={`${styles["eventmenus-tabbutton"]}`}>
         {statuses.map((status) => (
           <TabButton
@@ -59,5 +59,7 @@ const EventMenus = ({
     </div>
   );
 };
-
+ 
 export default EventMenus;
+ 
+ 

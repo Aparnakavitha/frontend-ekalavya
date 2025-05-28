@@ -2282,3 +2282,507 @@
 }
 
 /* ------------------------------- ProjectDetails.module.css ends here ------------------------------- */
+/* ------------------------------- StudentTaskMenu.css starts here ------------------------------- */
+
+.studenttaskmenus-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.studenttaskmenus-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.studenttaskmenus-title {
+  color: var(--primary-color);
+  font-size: 28px;
+  flex: 1;
+  text-align: left;
+}
+
+.studenttaskmenus-explorebutton {
+  width: 18%;
+  height: 34px;
+  text-align: right;
+}
+
+.studenttaskmenus-tabbutton {
+  display: flex;
+  margin-top: 30px;
+}
+
+.studenttaskmenus-searchbar {
+  width: 35%;
+}
+.studenttaskmenus-tabbutton-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* ensures responsive stacking on small screens */
+  gap: 1rem;
+}
+
+
+.studenttaskmenus-filter {
+  /* Optional: Adjust max width or spacing for alignment */
+  /* min-width: 180px; */
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+
+@media (max-width: 767px) {
+  .studenttaskmenus-head {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .studenttaskmenus-title {
+    font-size: 23px;
+    text-align: left;
+  }
+  .studenttaskmenus-explorebutton {
+    width: 53%;
+  }
+  .studenttaskmenus-tabbutton {
+    flex-direction: row;
+    align-items: center;
+    padding: 0px 0px;
+  }
+  .studenttaskmenus-searchbar {
+    width: 100%;
+  }
+  .studenttaskmenus-tabbutton-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .studenttaskmenus-filter {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .studenttaskmenus-explorebutton {
+    width: 33%;
+  }
+  .studenttaskmenus-searchbar {
+    width: 100%;
+  }
+}
+
+/* ------------------------------- studenttaskmenus.css ends here ------------------------------- */
+
+/* ------------------------------- TaskDetailPage.module.css starts here ------------------------------- */
+.task-detail-container {
+  
+  background-color: #333333;
+  padding: 30px;
+  color: white;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 16px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+ 
+.task-header {
+  margin-bottom: 45px;
+}
+ 
+.task-title {
+  font-size: 18px;
+  color: white;
+  margin: 0;
+}
+ 
+.task-content-wrapper {
+  display: flex;
+  gap: 20px;
+}
+ 
+.task-details {
+  flex: 1;
+  
+}
+ 
+.task-description {
+  margin-bottom: 20px;
+  line-height: 1.5;
+  font-size: 16px;
+  color: #adadad;
+  
+}
+ 
+.description-label {
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+}
+ 
+.task-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #adadad;
+}
+ 
+.meta-label {
+  font-weight: bold;
+  min-width: 90px;
+  color: white;
+  font-size: 16px;
+}
+ 
+.task-divider {
+  width: 1px;
+  background-color: #555;
+}
+ 
+.task-attachments {
+  width: 200px;
+}
+ 
+.attachments-title {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: white;
+}
+ 
+.attachment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+ 
+.attachment-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 13px;
+  word-break: break-word;
+}
+ 
+.attachment-link:hover {
+  text-decoration: underline;
+}
+ 
+.no-attachments {
+  color: #aaa;
+  font-size: 13px;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+/* ------------------------------- TaskDetailPage.module.css ends here ------------------------------- */
+
+/* ------------------------------- CreateTask.css starts here ------------------------------- */
+ 
+.container {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: 40px;
+  padding: 50px;
+  filter: drop-shadow(5px 5px 21px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(45px);
+  background: linear-gradient(
+      209deg,
+      rgba(255, 255, 255, 0.041),
+      rgba(0, 0, 0, 0.075)
+    ),
+    linear-gradient(198deg, rgba(0, 0, 0, 0.123), rgba(255, 255, 255, 0.068));
+}
+ 
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.submitButton {
+  padding: 10px 20px;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+ 
+.submitButton:hover {
+  background-color: var(--primary-hover-color);
+}
+ 
+ 
+/* -------------------------------- CreateTask.css ends here -------------------------------- */
+
+/* -------------------------------- TaskView.css starts here -------------------------------- */
+ 
+.taskViewContainer {
+  margin-left: 80px;
+  margin-top: 30px;
+  width: 90%;
+}
+ 
+.projectSection {
+  margin-bottom: 10px;
+  
+  color: var(--primary-color);
+}
+ 
+.titleWrapper:hover {
+  
+  transform: translateY(-2px);
+}
+ 
+/* --- For expanded state --- */
+.expandedContainer {
+  background-color: #333333;
+  
+  padding: 0;
+  color: var(--primary-color);
+  
+  
+}
+ 
+.expandedTitleHeader {
+  padding: 20px 30px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  background: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+ 
+.accordionContent {
+  padding: 30px;
+  background-color: #333;
+  
+}
+ 
+ 
+ 
+/* -------------------------------- TaskView.css ends here -------------------------------- */
+ 
+/* ------------------------------- TaskTitleView.module.css starts here ------------------------------- */
+.TaskTitleView {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+ 
+
+ 
+.projectContainerTitle {
+  margin: 0 0 12px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+ 
+.taskSubTitleList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+ 
+.taskAccordionWrapper {
+  border-radius: 6px;
+  background: white;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  padding: 8px;
+}
+ 
+ 
+ 
+/* ------------------------------- TaskTitleView.module.css ends here ------------------------------- */
+
+/* ------------------------------- TaskDetailPage.module.css starts here ------------------------------- */
+.taskAccordion {
+  margin-bottom: 16px;
+}
+ 
+/* Header Section Styles */
+.taskHeader {
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #333333;
+  padding: 15px;
+  color: white;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.3s ease;
+}
+ 
+.taskHeaderExpanded {
+  padding: 20px 15px;
+  background-color: #3a3a3a;
+}
+ 
+.taskHeader:hover {
+  background-color: #3a3a3a;
+}
+ 
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ 
+.rightContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+ 
+.taskNumber {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  color: white;
+  line-height: 1.4;
+  transition: font-size 0.3s ease, font-weight 0.3s ease;
+}
+ 
+.taskNumberExpanded {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+ 
+.taskDueDate {
+  font-size: 0.85rem;
+  color: #b0b0b0;
+  margin: 8px 0 0;
+}
+ 
+.icon {
+  display: flex;
+  align-items: center;
+  color: #acacac;
+  transition: transform 0.2s ease-in-out;
+}
+ 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+ 
+ 
+.taskDetailContainer {
+  background-color: #3a3a3a;
+  padding: 0 30px 30px 30px;
+  color: white;
+  box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease-out;
+}
+ 
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+.taskContentWrapper {
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+}
+ 
+.taskDetails {
+  flex: 1;
+}
+ 
+.taskDescription {
+  margin-bottom: 20px;
+  line-height: 1.5;
+  font-size: 16px;
+  color: #adadad;
+}
+ 
+.taskMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #adadad;
+}
+ 
+.metaLabel {
+  font-weight: bold;
+  min-width: 90px;
+  color: white;
+  font-size: 16px;
+}
+ 
+.taskDivider {
+  width: 1px;
+  background-color: #555;
+}
+ 
+.taskAttachments {
+  width: 200px;
+}
+ 
+.attachmentsTitle {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: white;
+}
+ 
+.attachmentList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+ 
+.attachmentLink {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 13px;
+  word-break: break-word;
+}
+ 
+.attachmentLink:hover {
+  text-decoration: underline;
+}
+ 
+.noAttachments {
+  color: #aaa;
+  font-size: 13px;
+}
+ 
+.avatarGroupContainer {
+  display: flex;
+  align-items: center;
+}
+ 
+ 
+ 
+ 
+/* ------------------------------- TaskDetailPage.module.css ends here ------------------------------- */
+ 
+

@@ -139,6 +139,40 @@ const collegesAct = {
   showFiltersAndReset: false,
 };
 
+const tasksAct = {
+  heading: "Tasks List",
+  
+  
+  buttonProps: {
+    variant: "tertiary",
+    content: "+ Add new Task",
+    width: "full",
+  },
+  searchWidth: "large",
+  searchbarProps: {
+    variant: "custom",
+    placeholder: "Search Tasks",
+  },
+  showFiltersAndReset: true,
+  filterProps: [
+    
+    { Heading: "Project", Content: ["Project", "Batch", "Individual"] },
+  ],
+  resetProps: {
+    variant: "secondary",
+    content: "Reset",
+    width: "full",
+  },
+};
+
+
+export const taskAction = {
+  args: {
+    ...tasksAct,
+  },
+};
+
+
 export const studentAction = {
   args: {
     ...studentAct,

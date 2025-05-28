@@ -1,0 +1,40 @@
+.scoreIcon {
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #cccbcb;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    user-select: none;
+  }
+  
+  .scoreMain {
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+    line-height: 2.3;
+  }
+ 
+  .scoreSlash {
+    font-size: 20px;
+    font-weight: 100;
+    color: black;
+    margin-left: 1px;
+    margin-right: 1px;
+    line-height: 1;
+  }
+  
+  
+  .scoreTotal {
+    font-size: 10px;
+    font-weight: 600;
+    color: black;
+    margin-left: 1px;
+    line-height: 3.5;
+    align-self: flex-end;
+  }
+  
+ 

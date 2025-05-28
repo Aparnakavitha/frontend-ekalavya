@@ -1,0 +1,11 @@
+.link {
+    color: var(--primary-color);
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }

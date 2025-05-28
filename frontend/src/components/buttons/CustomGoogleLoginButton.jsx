@@ -75,6 +75,7 @@ const CustomGoogleLoginButton = ({ fullWidth }) => {
         });
         handleLoginNavigation(roleId);
       }
+      
     } catch (error) {
       console.error("Error logging in:", error);
       throw error;

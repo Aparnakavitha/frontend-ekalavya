@@ -1,0 +1,48 @@
+ 
+.taskViewContainer {
+  margin-left: 80px;
+  margin-top: 30px;
+  width: 90%;
+}
+
+.projectSection {
+  margin-bottom: 10px;
+  color: var(--primary-color);
+  width: 100%;
+}
+
+.titleWrapper:hover {
+  transform: translateY(-2px);
+}
+
+
+.expandedContainer {
+  background-color: #333333;
+  margin-bottom: 30px;
+  padding: 0;
+  color: var(--primary-color);
+  width: 100%;
+  
+}
+
+.expandedTitleHeader {
+  padding: 20px 30px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  background: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.accordionContent {
+  padding: 0 0px 50px 0px;
+  width: 105%;
+  margin-left: -3%;
+  box-sizing: border-box;
+}
+
+
+.titleCardContainer {
+  width: 100%;
+}
+

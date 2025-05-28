@@ -10,6 +10,7 @@ import {
   MdAccountCircle,
   MdPsychology,
   MdMenuBook,
+  MdTask
 } from "react-icons/md";
 import { RiContactsBook3Fill } from "react-icons/ri";
 import ProfileNotificationBox from "../../components/profilenotificationbox/ProfileNotificationBox";
@@ -42,14 +43,17 @@ import AdminInactiveStudent from "./admin-student/AdminInactiveStudent";
 import CourseDetails from "./admin-courses/CourseDetails";
 import AdminCourses from "./admin-courses/AdminCourses";
 import SubCourseDetails from "./admin-courses/SubCourseDetails";
+import AdminTask from "./admin-tasks/AdminTask";
+import AdminSubmission from "./admin-tasks/AdminSubmission"
 
+ 
 const AdminContent = () => {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-
+ 
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
-
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -72,10 +76,10 @@ const AdminContent = () => {
         };
         secureLocalStorage.setItem("userSession", updatedSession);
         setUserData(data.responseData[0]);
-
+ 
         const storedProfilePicture = data.responseData[0].profilePicture;
         const googleProfilePicture = localStorage.getItem("profilePicture");
-
+ 
         if (storedProfilePicture != googleProfilePicture) {
           try {
             await axios.get(googleProfilePicture);
@@ -91,10 +95,10 @@ const AdminContent = () => {
         console.error("Error fetching user data:", error);
       }
     };
-
+ 
     fetchData();
   }, []);
-
+ 
   if (!userData) {
     return <LoadingSpinner />;
   }
@@ -113,16 +117,16 @@ const AdminContent = () => {
       theme: "dark",
     });
   };
-
+ 
   const handleCancelLogout = () => {
     setIsLogoutModalOpen(false);
   };
-
+ 
   const handleOpenLogoutModal = () => {
     console.log("sda");
     setIsLogoutModalOpen(true);
   };
-
+ 
   const sidebarContent = {
     button: (
       <Button
@@ -165,6 +169,12 @@ const AdminContent = () => {
         page: "skills",
       },
       {
+        icon: <MdTask />,
+        name: "Tasks",
+        viewIcon: true,
+        page: "tasks",
+      },
+      {
         icon: <MdMenuBook />,
         name: "Courses",
         viewIcon: true,
@@ -179,13 +189,13 @@ const AdminContent = () => {
       role: "admin",
     },
   };
-
+ 
   const handleSidebarItemClick = (page) => {
     navigate(`/admin/${page}`, {
       state: { userData },
     });
   };
-
+ 
   const footercontent = {
     Logo: edunexa,
     quoteContent: "Embark on Your Learning Journey Today!",
@@ -193,7 +203,7 @@ const AdminContent = () => {
     copyrightContent2: "Privacy Policy",
     isLeftALigned: true,
   };
-
+ 
   return (
     <div className="flexStart">
       <SideBar
@@ -229,7 +239,9 @@ const AdminContent = () => {
                   <Route path="courses" element={<AdminCourses />} />
                   <Route path="courses/course-details" element={<CourseDetails />} />
                   <Route path="courses/course-details/modules" element={<SubCourseDetails/>} />
-
+                  <Route path="tasks" element={<AdminTask />} />
+                  <Route path="/submissions/:taskId" element={<AdminSubmission />} />
+ 
                   <Route
                     path="skills/skill-participants"
                     element={<AdminSkillStudents />}
@@ -270,6 +282,7 @@ const AdminContent = () => {
                     path="/batches/batch-details/student-details/:userId"
                     element={<AdminStudentDetails />}
                   />
+                 
                 </Routes>
               </SkillsProvider>
             </RecoilRoot>
@@ -295,5 +308,7 @@ const AdminContent = () => {
     </div>
   );
 };
-
+ 
 export default AdminContent;
+ 
+ 

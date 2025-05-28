@@ -1,0 +1,26 @@
+
+.TaskTitleCard {
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #333333;
+    padding: 28px;
+    color: white;
+    box-shadow: 10px 8px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 16px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  .TaskTitleCard:hover {
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    background-color: #494949;
+  }
+  
+  .projectName {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-color) ;/* Green color matching your header */
+    letter-spacing: 0.5px;
+  }

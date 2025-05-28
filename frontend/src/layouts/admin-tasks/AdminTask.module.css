@@ -1,0 +1,338 @@
+/* ------------------------------- AdminTaskmenu.module.css starts here ------------------------------- */
+
+.mentortaskmenus-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mentortaskmenus-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .mentortaskmenus-title {
+    color: var(--primary-color);
+    font-size: 28px;
+    flex: 1;
+    text-align: left;
+  }
+  
+  .mentortaskmenus-button-group {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .mentortaskmenus-tabbutton {
+    display: flex;
+    margin-top: 30px;
+    gap: 0;
+    padding: 2vh 4vw;
+  }
+  
+  .mentortaskmenus-tabbutton-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .mentortaskmenus-searchbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .mentortaskmenus-searchbar-input {
+    width: 100%;
+    max-width: 500px;
+    flex-grow: 1;
+  }
+  
+  .mentortaskmenus-filter-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .mentortaskmenus-filter {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    min-width: 180px;
+  }
+  
+  .mentortaskmenus-create {
+    min-width: 150px;
+  }
+  
+  @media (max-width: 767px) {
+    .mentortaskmenus-head {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .mentortaskmenus-title {
+      font-size: 23px;
+      text-align: left;
+    }
+  
+    .mentortaskmenus-searchbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .mentortaskmenus-filter-group {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+    }
+  
+    .mentortaskmenus-filter {
+      width: 100%;
+      margin-top: 10px;
+      justify-content: flex-start;
+    }
+  
+    .mentortaskmenus-searchbar-input {
+      width: 100%;
+    }
+  
+    .mentortaskmenus-create {
+      width: 100%;
+    }
+  
+    .mentortaskmenus-tabbutton-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 992px) {
+    .mentortaskmenus-searchbar-input {
+      width: 100%;
+    }
+  }
+
+  /* ------------------------------- AdminTaskmenu.module.css ends here ------------------------------- */
+  /* ------------------------------- TaskDetailPage.module.css starts here ------------------------------- */
+  .taskAccordion {
+    margin-left: 80px;
+    margin-top: 30px;
+    width: 90%;
+  }
+   
+  
+  .taskHeader {
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #333333;
+    padding: 15px;
+    color: white;
+    box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, padding 0.3s ease;
+  }
+   
+  .taskHeaderExpanded {
+    padding: 20px 15px;
+    background-color: #3a3a3a;
+  }
+   
+  .taskHeader:hover {
+    background-color: #3a3a3a;
+  }
+   
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+   
+  .rightContent {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+   
+  .taskNumber {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    color: white;
+    line-height: 1.4;
+    transition: font-size 0.3s ease, font-weight 0.3s ease;
+  }
+   
+  .taskNumberExpanded {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+   
+  .taskDueDate {
+    font-size: 0.85rem;
+    color: #b0b0b0;
+    margin: 8px 0 0;
+  }
+   
+  .icon {
+    display: flex;
+    align-items: center;
+    color: #acacac;
+    transition: transform 0.2s ease-in-out;
+  }
+   
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+   
+   
+  .taskDetailContainer {
+    background-color: #3a3a3a;
+    padding: 0 30px 30px 30px;
+    color: white;
+    box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.3s ease-out;
+  }
+   
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+   
+  .taskContentWrapper {
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+  }
+   
+  .taskDetails {
+    flex: 1;
+  }
+   
+  .taskDescription {
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #adadad;
+  }
+   
+  .taskMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+   
+  .metaRow {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #adadad;
+  }
+   
+  .metaLabel {
+    font-weight: bold;
+    min-width: 90px;
+    color: white;
+    font-size: 16px;
+  }
+   
+  .taskDivider {
+    width: 1px;
+    background-color: #555;
+  }
+   
+  .taskAttachments {
+    width: 200px;
+  }
+   
+  .attachmentsTitle {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: white;
+  }
+   
+  .attachmentList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+   
+  .attachmentLink {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 13px;
+    word-break: break-word;
+  }
+   
+  .attachmentLink:hover {
+    text-decoration: underline;
+  }
+   
+  .noAttachments {
+    color: #aaa;
+    font-size: 13px;
+  }
+   
+  .avatarGroupContainer {
+    display: flex;
+    align-items: center;
+  }
+   
+ 
+ 
+
+
+/* ------------------------------- TaskDetailPage.module.css ends here ------------------------------- */
+
+
+
+/* -------------------------------- TaskSubmission.css starts here -------------------------------- */
+
+
+.taskSubmission {
+  padding: 1rem;
+  background-color: #3a3a3a; 
+  color: white;
+}
+.editIcon {
+  margin-right: 5px;
+  font-size: 1rem; 
+  vertical-align: middle; 
+  color: #ffffff; 
+  cursor: pointer;
+}
+
+.editIcon :hover {
+  color: var(--primary-color);
+}
+
+.addMark {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.addMark:hover{
+  text-decoration: underline;
+}
+
+.markWithIcon {
+  display: flex;
+  align-items: center;
+}
+
+/* -------------------------------- TaskSubmission.css ends here -------------------------------- */
